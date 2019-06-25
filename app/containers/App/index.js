@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
-import Map from 'containers/MapContainer';
+import Homepage from 'containers/Homepage';
 import NotFoundPage from 'containers/NotFoundPage';
 import Footer from 'components/Footer';
 import MainMenu from 'components/MainMenu';
@@ -34,7 +34,7 @@ export const App = () => {
       </div>
       <div className="content container">
         <Switch>
-          <Route exact path="/" component={Map} />
+          <Route exact path="/" component={Homepage} />
           <Route path="" component={NotFoundPage} />
         </Switch>
       </div>

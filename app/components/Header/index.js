@@ -26,45 +26,6 @@ const Header = ({ isAuthenticated, userName, onLoginLogoutButtonClick }) => (
         </h1>
         <span className="header-title">Amsterdam Vergunningschecker</span>
       </div>
-      <div className="col-sm-6">
-        <nav>
-          <ul className="links">
-            <li>
-              <span>
-                {isAuthenticated && 'Ingelogd als: '}
-                <b>{userName}</b>
-              </span>
-            </li>
-            {!isAuthenticated ? (
-              <li>
-                <button type="button" onClick={event => onLoginLogoutButtonClick(event, 'datapunt')}>
-                  {'Inloggen'}
-                </button>
-              </li>
-            ) : (
-              ''
-            )}
-            {!isAuthenticated ? (
-              <li>
-                <button type="button" onClick={event => onLoginLogoutButtonClick(event, 'grip')}>
-                  {'Inloggen ADW'}
-                </button>
-              </li>
-            ) : (
-              ''
-            )}
-            {isAuthenticated ? (
-              <li>
-                <button type="button" onClick={onLoginLogoutButtonClick}>
-                  {'Uitloggen'}
-                </button>
-              </li>
-            ) : (
-              ''
-            )}
-          </ul>
-        </nav>
-      </div>
     </div>
   </div>
 );

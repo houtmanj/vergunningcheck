@@ -13,10 +13,17 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import AddressInput from '../../components/AddressInput';
+
 const HomePage = () => (
-  <h1>
-    <FormattedMessage {...messages.header} />
-  </h1>
+  <>
+    <h3>
+      <FormattedMessage {...messages.header} />
+    </h3>
+    <>
+      <AddressInput />
+    </>
+  </>
 );
 
 export default HomePage;

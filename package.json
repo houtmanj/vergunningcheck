@@ -71,6 +71,9 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.4.3",
+    "@datapunt/asc-assets": "^0.7.1-beta.2",
+    "@datapunt/asc-core": "^0.7.1-beta.1",
+    "@datapunt/asc-ui": "^0.7.1-beta.2",
     "chalk": "2.4.2",
     "compression": "1.7.4",
     "connected-react-router": "6.4.0",
