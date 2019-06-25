@@ -6,6 +6,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
 import Homepage from 'containers/Homepage';
+import SearchContainer from 'containers/SearchContainer';
 import NotFoundPage from 'containers/NotFoundPage';
 import Footer from 'components/Footer';
 import MainMenu from 'components/MainMenu';
@@ -34,7 +35,8 @@ export const App = () => {
       </div>
       <div className="content container">
         <Switch>
-          <Route exact path="/" component={Homepage} />
+          <Route exact path="/" component={SearchContainer} />
+          {/* <Route exact path="/" component={Homepage} /> */}
           <Route path="" component={NotFoundPage} />
         </Switch>
       </div>
