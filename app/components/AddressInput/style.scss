@@ -1,7 +1,7 @@
-.address-input {
+.address-input-form {
   max-width: 400px;
 
-  & > div {
-    margin-bottom: 30px;
+  & input {
+    margin-bottom: 25px;
   }
 }
