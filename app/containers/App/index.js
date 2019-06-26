@@ -35,8 +35,7 @@ export const App = () => {
       </div>
       <div className="content container">
         <Switch>
-          <Route exact path="/" component={SearchContainer} />
-          {/* <Route exact path="/" component={Homepage} /> */}
+          <Route exact path="/" component={Homepage} />
           <Route path="" component={NotFoundPage} />
         </Switch>
       </div>
