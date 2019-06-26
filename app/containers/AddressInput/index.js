@@ -86,15 +86,16 @@ class AddressInput extends React.Component {
             label={intl.formatMessage(messages.huisnummer)}
             onInput={this.onStreetNumberInput}
           />
+
+          {showSuggestions && streetName && (
+            <div className="address-input__results">
+              <h4 className="address-input__results__title">{intl.formatMessage(messages.resultaat)}</h4>
+              {streetName} {streetNumber}
+            </div>
+          )}
+
           <Button className="address-input__submit">{intl.formatMessage(messages.submit)}</Button>
         </form>
-
-        {showSuggestions && streetName && (
-          <div className="address-input__results">
-            <h4 className="address-input__results__title">{intl.formatMessage(messages.resultaat)}</h4>
-            {streetName} {streetNumber}
-          </div>
-        )}
       </div>
     );
   }

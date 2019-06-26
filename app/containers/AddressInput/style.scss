@@ -1,9 +1,19 @@
 .address-input {
   &__form {
     max-width: 400px;
+
+    & > div {
+      margin-top: 25px;
+    }
   }
 
-  &__input {
-    margin-bottom: 25px;
+  &__results {
+    &__title {
+      margin: 0;
+    }
+  }
+
+  &__submit {
+    margin-top: 25px;
   }
 }
