@@ -9,3 +9,5 @@
  * export const YOUR_ACTION_CONSTANT = 'vergunningschecker/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
+// vergunningschecker consts
+export const FETCH_SUGGESTIONS_REQUEST = 'vergunningschecker/AddressInput/FETCH_SUGGESTIONS_REQUEST';

@@ -1,12 +1,13 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage, intlShape } from 'react-intl';
 import messages from './messages';
 import { Button, TextField } from '@datapunt/asc-ui';
+import { getSuggestionsAction } from '../App/actions';
 import './style.scss';
-
-// import { getSuggestionsAction } from '../../ducks/auto-suggest/auto-suggest';
 
 class AddressInput extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class AddressInput extends React.Component {
   }
 
   componentDidMount() {
-    // const { onGetSuggestions } = this.props;
+    const { onGetSuggestions, typedQuery } = this.props;
+    console.log('TYPEDQUERY', typedQuery);
   }
 
   onFormSubmit(event) {
@@ -31,13 +33,14 @@ class AddressInput extends React.Component {
   }
 
   onInput(event) {
-    // const { onGetSuggestions } = this.props;
+    console.log('onInput:', event.target.value);
+    const { onGetSuggestions } = this.props;
     //
     // event.persist();
     // if (activeSuggestion.index > -1) {
     //   this.resetActiveSuggestion();
     // }
-    // onGetSuggestions(event.target.value);
+    onGetSuggestions(event.target.value);
 
     this.setState({
       showSuggestions: true,
@@ -45,10 +48,7 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const {
-      intl,
-      // onGetSuggestions,
-    } = this.props;
+    const { intl, onGetSuggestions, typedQuery } = this.props;
     const { showSuggestions } = this.state;
 
     return (
@@ -69,6 +69,7 @@ class AddressInput extends React.Component {
         {showSuggestions && (
           <div className="address-input__results">
             <h4 className="address-input__results__title">{intl.formatMessage(messages.resultaat)}</h4>
+            {typedQuery}
           </div>
         )}
       </div>
@@ -80,4 +81,22 @@ AddressInput.defaultProps = {};
 
 AddressInput.propTypes = {};
 
-export default AddressInput;
+const mapStateToProps = state => {
+  const { typedQuery } = state.global;
+  return {
+    typedQuery,
+  };
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      onGetSuggestions: getSuggestionsAction,
+    },
+    dispatch,
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddressInput);

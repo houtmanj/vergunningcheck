@@ -12,17 +12,27 @@
 
 import produce from 'immer';
 
+import { FETCH_SUGGESTIONS_REQUEST } from './constants';
 
 // The initial state of the App
 export const initialState = {
   loading: false,
   error: false,
+  displayQuery: '',
+  typedQuery: '',
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const appReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
+      case FETCH_SUGGESTIONS_REQUEST:
+        return {
+          displayQuery: action.query,
+          error: false,
+          loading: true,
+          typedQuery: action.query,
+        };
 
       default:
         draft = state;
