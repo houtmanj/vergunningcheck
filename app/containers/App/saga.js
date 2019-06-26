@@ -1,4 +1,4 @@
-import { all, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 // import { authCall } from 'shared/services/api/api';

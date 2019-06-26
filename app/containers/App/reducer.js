@@ -31,7 +31,7 @@ export const initialState = {
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const appReducer = (state = initialState, action) =>
+export default (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case RESET_GLOBAL_ERROR:
@@ -43,6 +43,7 @@ const appReducer = (state = initialState, action) =>
 
       case FETCH_SUGGESTIONS_REQUEST:
         return {
+          ...state,
           count: 0,
           displayQuery: action.query,
           error: false,
@@ -51,18 +52,21 @@ const appReducer = (state = initialState, action) =>
         };
       case FETCH_SUGGESTIONS_SUCCESS:
         return {
+          ...state,
           count: action.suggestions.count,
           error: false,
-          loading: true,
+          loading: false,
           suggestions: action.suggestions.data,
         };
       case FETCH_SUGGESTIONS_FAILURE:
         return {
+          ...state,
           displayQuery: action.query,
           error: true,
           errorMsg: action.error,
           loading: true,
           typedQuery: action.query,
+          suggestions: [],
         };
 
       default:
@@ -71,4 +75,4 @@ const appReducer = (state = initialState, action) =>
     }
   });
 
-export default appReducer;
+// export default appReducer;

@@ -18,10 +18,10 @@ import saga from './saga';
 
 import GlobalStyles from '../../global-styles';
 
-const key = 'app';
+const key = 'global';
 
 export const App = () => {
-  useInjectReducer({ key, reducer });
+  // useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   return (
