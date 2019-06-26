@@ -2,26 +2,43 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import { FormattedMessage, intlShape } from 'react-intl';
+
 import messages from './messages';
 import { Button, TextField } from '@datapunt/asc-ui';
 import { getSuggestionsAction } from '../App/actions';
 import './style.scss';
+
+const getStreetName = suggestions => {
+  if (suggestions.length < 1) return null;
+
+  const streets = suggestions.reduce(category => {
+    if (category.label === 'Straatnamen') return category.content;
+  });
+
+  const { content = [] } = streets;
+  if (content.length === 1) {
+    return content.map(street => street.label);
+  }
+
+  return null;
+};
 
 class AddressInput extends React.Component {
   constructor(props) {
     super(props);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onInput = this.onInput.bind(this);
+    this.onStreetNumberInput = this.onStreetNumberInput.bind(this);
     this.state = {
       originalQuery: '',
       showSuggestions: false,
+      streetNumber: null,
     };
   }
 
   componentDidMount() {
-    const { onGetSuggestions, typedQuery } = this.props;
+    const { onGetSuggestions, suggestions } = this.props;
   }
 
   onFormSubmit(event) {
@@ -32,13 +49,9 @@ class AddressInput extends React.Component {
   }
 
   onInput(event) {
-    console.log('onInput:', event.target.value);
+    // console.log('onInput:', event.target.value);
     const { onGetSuggestions } = this.props;
-    //
-    // event.persist();
-    // if (activeSuggestion.index > -1) {
-    //   this.resetActiveSuggestion();
-    // }
+
     onGetSuggestions(event.target.value);
 
     this.setState({
@@ -46,9 +59,16 @@ class AddressInput extends React.Component {
     });
   }
 
+  onStreetNumberInput(event) {
+    this.setState({
+      streetNumber: event.target.value,
+    });
+  }
+
   render() {
-    const { intl, onGetSuggestions, typedQuery } = this.props;
-    const { showSuggestions } = this.state;
+    const { intl, onGetSuggestions, suggestions } = this.props;
+    const { showSuggestions, streetNumber } = this.state;
+    const streetName = getStreetName(suggestions);
 
     return (
       <div className="address-input">
@@ -61,14 +81,18 @@ class AddressInput extends React.Component {
             label={intl.formatMessage(messages.postcode)}
             onChange={this.onInput}
           />
-          <TextField className="address-input__input" label={intl.formatMessage(messages.huisnummer)} />
+          <TextField
+            className="address-input__input"
+            label={intl.formatMessage(messages.huisnummer)}
+            onInput={this.onStreetNumberInput}
+          />
           <Button className="address-input__submit">{intl.formatMessage(messages.submit)}</Button>
         </form>
 
-        {showSuggestions && (
+        {showSuggestions && streetName && (
           <div className="address-input__results">
             <h4 className="address-input__results__title">{intl.formatMessage(messages.resultaat)}</h4>
-            {typedQuery}
+            {streetName} {streetNumber}
           </div>
         )}
       </div>
@@ -81,9 +105,9 @@ AddressInput.defaultProps = {};
 AddressInput.propTypes = {};
 
 const mapStateToProps = state => {
-  const { typedQuery } = state.global;
+  const { suggestions = [] } = state.global;
   return {
-    typedQuery,
+    suggestions,
   };
 };
 
