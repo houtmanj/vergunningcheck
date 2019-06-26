@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { FormattedMessage, intlShape } from 'react-intl';
+import messages from './messages';
 import { Button, TextField } from '@datapunt/asc-ui';
 import './style.scss';
 
@@ -43,20 +45,30 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    // const { onGetSuggestions } = this.props;
+    const {
+      intl,
+      // onGetSuggestions,
+    } = this.props;
     const { showSuggestions } = this.state;
 
     return (
       <div className="address-input">
+        <h3>
+          <FormattedMessage {...messages.title} />
+        </h3>
         <form className="address-input__form" onSubmit={this.onFormSubmit}>
-          <TextField className="address-input__input" label="Postcode" onChange={this.onInput} />
-          <TextField className="address-input__input" label="Huisnummer" />
-          <Button className="address-input__submit">Submit</Button>
+          <TextField
+            className="address-input__input"
+            label={intl.formatMessage(messages.postcode)}
+            onChange={this.onInput}
+          />
+          <TextField className="address-input__input" label={intl.formatMessage(messages.huisnummer)} />
+          <Button className="address-input__submit">{intl.formatMessage(messages.submit)}</Button>
         </form>
 
         {showSuggestions && (
           <div className="address-input__results">
-            <h4 className="address-input__results__title">Resultaat:</h4>
+            <h4 className="address-input__results__title">{intl.formatMessage(messages.resultaat)}</h4>
           </div>
         )}
       </div>

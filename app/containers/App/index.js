@@ -4,8 +4,9 @@ import { compose } from 'redux';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
+import { injectIntl } from 'react-intl';
 
-import Homepage from 'containers/Homepage';
+import AddressInput from 'containers/AddressInput';
 import NotFoundPage from 'containers/NotFoundPage';
 import Footer from 'components/Footer';
 import MainMenu from 'components/MainMenu';
@@ -34,7 +35,7 @@ export const App = () => {
       </div>
       <div className="content container">
         <Switch>
-          <Route exact path="/" component={Homepage} />
+          <Route exact path="/" component={injectIntl(AddressInput)} />
           <Route path="" component={NotFoundPage} />
         </Switch>
       </div>
