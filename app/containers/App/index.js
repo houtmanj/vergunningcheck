@@ -6,7 +6,6 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
 import Homepage from 'containers/Homepage';
-import SearchContainer from 'containers/SearchContainer';
 import NotFoundPage from 'containers/NotFoundPage';
 import Footer from 'components/Footer';
 import MainMenu from 'components/MainMenu';
