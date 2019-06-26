@@ -12,8 +12,6 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectUserName } from 'containers/App/selectors';
 import Header from 'components/Header';
 
-import { doLogin, doLogout } from '../App/actions';
-
 import './style.scss';
 
 import { isAuthenticated } from '../../shared/services/auth/auth';
@@ -56,14 +54,7 @@ const mapStateToProps = createStructuredSelector({
   userName: makeSelectUserName(),
 });
 
-export const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      onLogin: doLogin,
-      onLogout: doLogout,
-    },
-    dispatch,
-  );
+export const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 const withConnect = connect(
   mapStateToProps,

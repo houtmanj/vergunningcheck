@@ -5,14 +5,13 @@ import { push } from 'react-router-redux';
 // import CONFIGURATION from 'shared/services/configuration/configuration';
 // export const baseUrl = `${CONFIGURATION.API_ROOT}signals/auth/me`;
 
-// import autoSuggestSearch from '../../services/auto-suggest/auto-suggest';
-import { FETCH_SUGGESTIONS_REQUEST } from './constants';
+import autoSuggestSearch from 'shared/services/auto-suggest/auto-suggest';
+import { FETCH_SUGGESTIONS_REQUEST, FETCH_SUGGESTIONS_SUCCESS, FETCH_SUGGESTIONS_FAILURE } from './constants';
 
 export function* fetchSuggestions(action) {
   try {
-    console.log('saga');
-    // const suggestions = yield call(autoSuggestSearch, action.query);
-    // yield put({ type: FETCH_SUGGESTIONS_SUCCESS, suggestions });
+    const suggestions = yield call(autoSuggestSearch, action.query);
+    yield put({ type: FETCH_SUGGESTIONS_SUCCESS, suggestions });
   } catch (error) {
     yield put({ type: FETCH_SUGGESTIONS_FAILURE, error });
   }

@@ -22,7 +22,6 @@ class AddressInput extends React.Component {
 
   componentDidMount() {
     const { onGetSuggestions, typedQuery } = this.props;
-    console.log('TYPEDQUERY', typedQuery);
   }
 
   onFormSubmit(event) {
