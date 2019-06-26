@@ -8,11 +8,4 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'vergunningschecker/YourContainer/YOUR_ACTION_CONSTANT';
  */
-export const AUTHENTICATE_USER = 'vergunningschecker/App/AUTHENTICATE_USER';
-export const AUTHORIZE_USER = 'vergunningschecker/App/AUTHORIZE_USER';
 
-export const SHOW_GLOBAL_ERROR = 'vergunningschecker/App/SHOW_GLOBAL_ERROR';
-export const RESET_GLOBAL_ERROR = 'vergunningschecker/App/RESET_GLOBAL_ERROR';
-
-export const LOGIN = 'vergunningschecker/App/LOGIN';
-export const LOGOUT = 'vergunningschecker/App/LOGOUT';
