@@ -17,8 +17,8 @@ const getStreetName = suggestions => {
   });
 
   const { content = [] } = streets;
-  if (content.length === 1) {
-    return content.map(street => street.label);
+  if (content.length > 0) {
+    return content.map(street => <div key={street.label}>{street.label}</div>);
   }
 
   return null;
@@ -28,12 +28,13 @@ class AddressInput extends React.Component {
   constructor(props) {
     super(props);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.onInput = this.onInput.bind(this);
+    this.onPostcodeInput = this.onPostcodeInput.bind(this);
     this.onStreetNumberInput = this.onStreetNumberInput.bind(this);
     this.state = {
       originalQuery: '',
       showSuggestions: false,
-      streetNumber: null,
+      postalCode: '',
+      streetNumber: '',
     };
   }
 
@@ -44,25 +45,31 @@ class AddressInput extends React.Component {
   onFormSubmit(event) {
     event.preventDefault();
     event.stopPropagation();
-
-    console.log('submit');
   }
 
-  onInput(event) {
-    // console.log('onInput:', event.target.value);
+  onPostcodeInput(event) {
     const { onGetSuggestions } = this.props;
-
-    onGetSuggestions(event.target.value);
+    const { streetNumber } = this.state;
 
     this.setState({
       showSuggestions: true,
+      postalCode: event.target.value,
     });
+
+    const query = streetNumber ? event.target.value + ' ' + streetNumber : event.target.value;
+    onGetSuggestions(query);
   }
 
   onStreetNumberInput(event) {
+    const { onGetSuggestions } = this.props;
+    const { postalCode } = this.state;
+
     this.setState({
       streetNumber: event.target.value,
     });
+
+    const query = postalCode + ' ' + event.target.value;
+    onGetSuggestions(query);
   }
 
   render() {
@@ -79,7 +86,7 @@ class AddressInput extends React.Component {
           <TextField
             className="address-input__input"
             label={intl.formatMessage(messages.postcode)}
-            onChange={this.onInput}
+            onChange={this.onPostcodeInput}
           />
           <TextField
             className="address-input__input"
@@ -90,7 +97,7 @@ class AddressInput extends React.Component {
           {showSuggestions && streetName && (
             <div className="address-input__results">
               <h4 className="address-input__results__title">{intl.formatMessage(messages.resultaat)}</h4>
-              {streetName} {streetNumber}
+              {streetName}
             </div>
           )}
 
