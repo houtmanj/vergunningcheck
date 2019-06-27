@@ -1,7 +1,6 @@
 import SHARED_CONFIG from '../shared-config/shared-config';
-import { getAuthHeaders } from '../auth/auth';
 
-function formatData(categories) {
+function formatDataAddress(categories) {
   const numberOfResults = categories.reduce((acc, category) => acc + category.content.length, 0);
   let indexInTotal = -1;
   const indexedCategories = categories.map(category => ({
@@ -23,15 +22,27 @@ function formatData(categories) {
   };
 }
 
-function search(query) {
+export function searchForAddress(query) {
   // Minimun length for typeahead query in backend is 3 characters
   const uri = query && query.length >= 3 && `${SHARED_CONFIG.API_ROOT}typeahead?q=${query}`;
   if (uri) {
     return fetch(uri)
       .then(response => response.json())
-      .then(response => formatData(response));
+      .then(response => formatDataAddress(response));
   }
   return {};
 }
 
-export default search;
+function check(response) {
+  console.log(response);
+}
+
+export function searchForMonument(query) {
+  const uri = query && `${SHARED_CONFIG.API_ROOT}${query}`;
+  if (uri) {
+    return fetch(uri)
+      .then(response => response.json())
+      .then(response => check(response));
+  }
+  return {};
+}

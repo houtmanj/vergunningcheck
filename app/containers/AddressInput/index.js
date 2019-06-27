@@ -6,7 +6,7 @@ import { FormattedMessage, intlShape } from 'react-intl';
 
 import messages from './messages';
 import { Button, TextField } from '@datapunt/asc-ui';
-import { getSuggestionsAction } from '../App/actions';
+import { getSuggestionsAction, fetchMonumentData } from '../App/actions';
 import './style.scss';
 
 const getStreetName = suggestions => {
@@ -38,25 +38,10 @@ class AddressInput extends React.Component {
   }
 
   componentDidMount() {
-    const { onGetSuggestions, suggestions } = this.props;
-  }
+    const { onGetSuggestions, suggestions, fetchMonumentData } = this.props;
 
-  onFormSubmit(event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const addressField = document.querySelector('.address-input__results__final');
-
-    if (!addressField || !addressField.textContent) {
-      this.setState({
-        hasError: true,
-      });
-      return;
-    }
-
-    const { textContent } = addressField;
-
-    console.log('TEXTCONTENT', textContent);
+    const uriTest = 'bag/verblijfsobject/0363010012062064/';
+    fetchMonumentData(uriTest);
   }
 
   onPostcodeInput(event) {
@@ -84,6 +69,28 @@ class AddressInput extends React.Component {
 
     const query = postalCode + ' ' + event.target.value;
     onGetSuggestions(query);
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const addressField = document.querySelector('.address-input__results__final');
+
+    if (!addressField || !addressField.textContent) {
+      this.setState({
+        hasError: true,
+      });
+      return;
+    }
+
+    const { textContent } = addressField;
+
+    const { suggestions } = this.props;
+    const { label, uri } = suggestions[0].content[0];
+
+    console.log('URI', uriTest);
+    console.log('LABEL', label);
   }
 
   render() {
@@ -149,6 +156,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       onGetSuggestions: getSuggestionsAction,
+      fetchMonumentData: fetchMonumentData,
     },
     dispatch,
   );

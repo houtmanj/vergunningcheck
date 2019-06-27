@@ -69,6 +69,34 @@ export default (state = initialState, action) =>
           suggestions: [],
         };
 
+      // case FETCH_MONUMENT_REQUEST:
+      //   return {
+      //     ...state,
+      //     count: 0,
+      //     displayQuery: action.query,
+      //     error: false,
+      //     loading: true,
+      //     typedQuery: action.query,
+      //   };
+      // case FETCH_MONUMENT_SUCCESS:
+      //   return {
+      //     ...state,
+      //     count: action.suggestions.count,
+      //     error: false,
+      //     loading: false,
+      //     suggestions: action.suggestions.data,
+      //   };
+      // case FETCH_MONUMENT_FAILURE:
+      //   return {
+      //     ...state,
+      //     displayQuery: action.query,
+      //     error: true,
+      //     errorMsg: action.error,
+      //     loading: true,
+      //     typedQuery: action.query,
+      //     suggestions: [],
+      //   };
+
       default:
         draft = state;
         break;
