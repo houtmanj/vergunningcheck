@@ -16,4 +16,14 @@
   &__submit {
     margin-top: 25px;
   }
+
+  &__error {
+    color: red;
+  }
+
+  &__results {
+    &__final {
+      color: green;
+    }
+  }
 }

@@ -17,11 +17,8 @@ const getStreetName = suggestions => {
   });
 
   const { content = [] } = streets;
-  if (content.length > 0) {
-    return content.map(street => <div key={street.label}>{street.label}</div>);
-  }
 
-  return null;
+  return content;
 };
 
 class AddressInput extends React.Component {
@@ -35,6 +32,8 @@ class AddressInput extends React.Component {
       showSuggestions: false,
       postalCode: '',
       streetNumber: '',
+      hasCompleteAddress: false,
+      hasError: false,
     };
   }
 
@@ -45,6 +44,19 @@ class AddressInput extends React.Component {
   onFormSubmit(event) {
     event.preventDefault();
     event.stopPropagation();
+
+    const addressField = document.querySelector('.address-input__results__final');
+
+    if (!addressField || !addressField.textContent) {
+      this.setState({
+        hasError: true,
+      });
+      return;
+    }
+
+    const { textContent } = addressField;
+
+    console.log('TEXTCONTENT', textContent);
   }
 
   onPostcodeInput(event) {
@@ -54,6 +66,7 @@ class AddressInput extends React.Component {
     this.setState({
       showSuggestions: true,
       postalCode: event.target.value,
+      hasError: false,
     });
 
     const query = streetNumber ? event.target.value + ' ' + streetNumber : event.target.value;
@@ -66,6 +79,7 @@ class AddressInput extends React.Component {
 
     this.setState({
       streetNumber: event.target.value,
+      hasError: false,
     });
 
     const query = postalCode + ' ' + event.target.value;
@@ -74,8 +88,8 @@ class AddressInput extends React.Component {
 
   render() {
     const { intl, onGetSuggestions, suggestions } = this.props;
-    const { showSuggestions, streetNumber } = this.state;
-    const streetName = getStreetName(suggestions);
+    const { showSuggestions, streetNumber, hasError } = this.state;
+    const streetName = getStreetName(suggestions) || [];
 
     return (
       <div className="address-input">
@@ -94,10 +108,22 @@ class AddressInput extends React.Component {
             onInput={this.onStreetNumberInput}
           />
 
-          {showSuggestions && streetName && (
+          {hasError && <div className="address-input__error">Error...</div>}
+
+          {showSuggestions && streetName.length > 0 && (
             <div className="address-input__results">
               <h4 className="address-input__results__title">{intl.formatMessage(messages.resultaat)}</h4>
-              {streetName}
+              {streetName.length > 0 &&
+                streetName.map(street => (
+                  <div
+                    className={`address-input__results__item ${streetName.length === 1 &&
+                      streetNumber &&
+                      'address-input__results__final'}`}
+                    key={street.label}
+                  >
+                    {street.label}
+                  </div>
+                ))}
             </div>
           )}
 
