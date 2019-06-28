@@ -17,6 +17,9 @@ import {
   FETCH_SUGGESTIONS_REQUEST,
   FETCH_SUGGESTIONS_SUCCESS,
   FETCH_SUGGESTIONS_FAILURE,
+  FETCH_MONUMENT_REQUEST,
+  FETCH_MONUMENT_SUCCESS,
+  FETCH_MONUMENT_FAILURE,
 } from './constants';
 
 // The initial state of the App
@@ -28,6 +31,9 @@ export const initialState = {
   displayQuery: '',
   typedQuery: '',
   suggestions: [],
+  monumentFetch: false,
+  monumentLoading: false,
+  monumentStatus: '',
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -49,6 +55,9 @@ export default (state = initialState, action) =>
           error: false,
           loading: true,
           typedQuery: action.query,
+          monumentFetch: false,
+          monumentLoading: false,
+          monumentStatus: '',
         };
       case FETCH_SUGGESTIONS_SUCCESS:
         return {
@@ -64,38 +73,33 @@ export default (state = initialState, action) =>
           displayQuery: action.query,
           error: true,
           errorMsg: action.error,
-          loading: true,
+          loading: false,
           typedQuery: action.query,
           suggestions: [],
         };
 
-      // case FETCH_MONUMENT_REQUEST:
-      //   return {
-      //     ...state,
-      //     count: 0,
-      //     displayQuery: action.query,
-      //     error: false,
-      //     loading: true,
-      //     typedQuery: action.query,
-      //   };
-      // case FETCH_MONUMENT_SUCCESS:
-      //   return {
-      //     ...state,
-      //     count: action.suggestions.count,
-      //     error: false,
-      //     loading: false,
-      //     suggestions: action.suggestions.data,
-      //   };
-      // case FETCH_MONUMENT_FAILURE:
-      //   return {
-      //     ...state,
-      //     displayQuery: action.query,
-      //     error: true,
-      //     errorMsg: action.error,
-      //     loading: true,
-      //     typedQuery: action.query,
-      //     suggestions: [],
-      //   };
+      case FETCH_MONUMENT_REQUEST:
+        return {
+          ...state,
+          error: false,
+          monumentFetch: true,
+          monumentLoading: true,
+          monumentStatus: '',
+        };
+      case FETCH_MONUMENT_SUCCESS:
+        return {
+          ...state,
+          monumentLoading: false,
+          monumentStatus: action.monument,
+        };
+      case FETCH_MONUMENT_FAILURE:
+        return {
+          ...state,
+          error: true,
+          errorMsg: action.error,
+          monumentLoading: false,
+          monumentStatus: '',
+        };
 
       default:
         draft = state;

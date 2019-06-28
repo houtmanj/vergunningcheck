@@ -6,6 +6,7 @@ import { push } from 'react-router-redux';
 // export const baseUrl = `${CONFIGURATION.API_ROOT}signals/auth/me`;
 
 import { searchForAddress, searchForMonument } from 'shared/services/auto-suggest/auto-suggest';
+
 import {
   FETCH_SUGGESTIONS_REQUEST,
   FETCH_SUGGESTIONS_SUCCESS,

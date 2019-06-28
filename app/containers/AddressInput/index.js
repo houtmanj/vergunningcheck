@@ -37,13 +37,6 @@ class AddressInput extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const { onGetSuggestions, suggestions, fetchMonumentData } = this.props;
-
-    const uriTest = 'bag/verblijfsobject/0363010012062064/';
-    fetchMonumentData(uriTest);
-  }
-
   onPostcodeInput(event) {
     const { onGetSuggestions } = this.props;
     const { streetNumber } = this.state;
@@ -86,15 +79,18 @@ class AddressInput extends React.Component {
 
     const { textContent } = addressField;
 
-    const { suggestions } = this.props;
-    const { label, uri } = suggestions[0].content[0];
+    const { suggestions, fetchMonumentData } = this.props;
+    const { uri = false } = suggestions[0].content[0];
 
-    console.log('URI', uriTest);
-    console.log('LABEL', label);
+    const uriTest = 'bag/verblijfsobject/0363010012062064/';
+
+    if (uri) {
+      fetchMonumentData(uri);
+    }
   }
 
   render() {
-    const { intl, onGetSuggestions, suggestions } = this.props;
+    const { intl, onGetSuggestions, suggestions, monumentFetch, monumentStatus = '', monumentLoading } = this.props;
     const { showSuggestions, streetNumber, hasError } = this.state;
     const streetName = getStreetName(suggestions) || [];
 
@@ -136,6 +132,14 @@ class AddressInput extends React.Component {
 
           <Button className="address-input__submit">{intl.formatMessage(messages.submit)}</Button>
         </form>
+
+        {monumentFetch && (
+          <div>
+            <h4>Monument:</h4>
+            {monumentLoading && <div>Laden....</div>}
+            {!monumentLoading && <div>Status: {monumentStatus}</div>}
+          </div>
+        )}
       </div>
     );
   }
@@ -146,9 +150,12 @@ AddressInput.defaultProps = {};
 AddressInput.propTypes = {};
 
 const mapStateToProps = state => {
-  const { suggestions = [] } = state.global;
+  const { suggestions = [], monumentFetch, monumentLoading, monumentStatus } = state.global;
   return {
     suggestions,
+    monumentFetch,
+    monumentLoading,
+    monumentStatus,
   };
 };
 

@@ -33,16 +33,12 @@ export function searchForAddress(query) {
   return {};
 }
 
-function check(response) {
-  console.log(response);
-}
-
 export function searchForMonument(query) {
   const uri = query && `${SHARED_CONFIG.API_ROOT}${query}`;
   if (uri) {
     return fetch(uri)
       .then(response => response.json())
-      .then(response => check(response));
+      .then(response => response.panden.href);
   }
   return {};
 }
