@@ -68,6 +68,7 @@ class AddressInput extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
+    const { suggestions, fetchMonumentData } = this.props;
     const addressField = document.querySelector('.address-input__results__final');
 
     if (!addressField || !addressField.textContent) {
@@ -79,10 +80,7 @@ class AddressInput extends React.Component {
 
     const { textContent } = addressField;
 
-    const { suggestions, fetchMonumentData } = this.props;
     const { uri = false } = suggestions[0].content[0];
-
-    const uriTest = 'bag/verblijfsobject/0363010012062064/';
 
     if (uri) {
       fetchMonumentData(uri);
@@ -137,7 +135,7 @@ class AddressInput extends React.Component {
           <div>
             <h4>Monument:</h4>
             {monumentLoading && <div>Laden....</div>}
-            {!monumentLoading && <div>Status: {monumentStatus}</div>}
+            {!monumentLoading && <div>Status: {monumentStatus || 'Geen monument'}</div>}
           </div>
         )}
       </div>
