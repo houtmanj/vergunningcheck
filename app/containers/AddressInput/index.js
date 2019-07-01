@@ -87,7 +87,6 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    // console.log('THIS.PROPS', this.props);
     const { intl, onGetSuggestions, suggestions, monumentFetch, monumentStatus = '', monumentLoading } = this.props;
     const { showSuggestions, streetNumber, hasError, debug } = this.state;
     const streetName = getStreetName(suggestions) || [];
