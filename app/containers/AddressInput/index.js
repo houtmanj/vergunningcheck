@@ -6,7 +6,7 @@ import { FormattedMessage, intlShape } from 'react-intl';
 
 import messages from './messages';
 import { Button, TextField } from '@datapunt/asc-ui';
-import { getSuggestionsAction, fetchMonumentData } from '../App/actions';
+import { getSuggestionsAction, fetchBagData } from '../App/actions';
 import './style.scss';
 
 const getStreetName = suggestions => {
@@ -34,6 +34,7 @@ class AddressInput extends React.Component {
       streetNumber: '',
       hasCompleteAddress: false,
       hasError: false,
+      debug: true,
     };
   }
 
@@ -68,7 +69,7 @@ class AddressInput extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    const { suggestions, fetchMonumentData } = this.props;
+    const { suggestions, fetchBagData } = this.props;
     const addressField = document.querySelector('.address-input__results__final');
 
     if (!addressField || !addressField.textContent) {
@@ -78,18 +79,16 @@ class AddressInput extends React.Component {
       return;
     }
 
-    const { textContent } = addressField;
-
     const { uri = false } = suggestions[0].content[0];
 
     if (uri) {
-      fetchMonumentData(uri);
+      fetchBagData(uri);
     }
   }
 
   render() {
     const { intl, onGetSuggestions, suggestions, monumentFetch, monumentStatus = '', monumentLoading } = this.props;
-    const { showSuggestions, streetNumber, hasError } = this.state;
+    const { showSuggestions, streetNumber, hasError, debug } = this.state;
     const streetName = getStreetName(suggestions) || [];
 
     return (
@@ -102,11 +101,13 @@ class AddressInput extends React.Component {
             className="address-input__input"
             label={intl.formatMessage(messages.postcode)}
             onChange={this.onPostcodeInput}
+            defaultValue={debug && '1055x'}
           />
           <TextField
             className="address-input__input"
             label={intl.formatMessage(messages.huisnummer)}
             onInput={this.onStreetNumberInput}
+            defaultValue={debug && '19'}
           />
 
           {hasError && <div className="address-input__error">Error...</div>}
@@ -148,9 +149,20 @@ AddressInput.defaultProps = {};
 AddressInput.propTypes = {};
 
 const mapStateToProps = state => {
-  const { suggestions = [], monumentFetch, monumentLoading, monumentStatus } = state.global;
+  const {
+    suggestions = [],
+    bagFetch,
+    bagLoading,
+    bagStatus,
+    monumentFetch,
+    monumentLoading,
+    monumentStatus,
+  } = state.global;
   return {
     suggestions,
+    bagFetch,
+    bagLoading,
+    bagStatus,
     monumentFetch,
     monumentLoading,
     monumentStatus,
@@ -161,7 +173,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       onGetSuggestions: getSuggestionsAction,
-      fetchMonumentData: fetchMonumentData,
+      fetchBagData: fetchBagData,
     },
     dispatch,
   );
