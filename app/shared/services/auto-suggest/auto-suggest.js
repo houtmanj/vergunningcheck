@@ -1,37 +1,27 @@
 import SHARED_CONFIG from '../shared-config/shared-config';
 
-const getByUri = uri => fetch(uri).then(response => response.json());
+import { grachtengordel } from './grachtengordel';
+
+const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
 
 function formatDataAddress(categories) {
-  const numberOfResults = categories.reduce((acc, category) => acc + category.content.length, 0);
-  let indexInTotal = -1;
-  const indexedCategories = categories.map(category => ({
-    ...category,
-    content: category.content.map(suggestion => {
-      indexInTotal += 1;
-      return {
-        category: category.label,
-        index: indexInTotal,
-        label: suggestion._display,
-        uri: suggestion.uri,
-      };
-    }),
+  const filteredCategories = categories.filter(category => {
+    return category.content.filter(suggestion => {
+      if (suggestion.category === 'Straatnamen' || suggestion.category === 'Adressen') return suggestion;
+    });
+  });
+
+  const indexedCategories = filteredCategories.map(category => ({
+    content: category.content.map(suggestion => ({
+      final: category.label === 'Adressen' && category.content.length === 1 ? true : false,
+      category: category.label,
+      label: suggestion._display,
+      uri: suggestion.uri,
+    })),
   }));
 
-  // if (indexInTotal === 0 && categories[0].label === 'Adressen') {
-  //   // console.log(categories);
-  //
-  //   const { uri = false } = categories[0].content[0];
-  //
-  //   if (uri) {
-  //     searchForMonument(uri);
-  //   }
-  // }
-
-  return {
-    count: numberOfResults,
-    data: indexedCategories,
-  };
+  if (indexedCategories.length < 1 || !indexedCategories[0].content) return [];
+  else return indexedCategories[0].content;
 }
 
 export function searchForAddress(query) {
@@ -43,12 +33,34 @@ export function searchForAddress(query) {
   return {};
 }
 
+const hasPointInPolygon = (point, vs) => {
+  var x = point[0],
+    y = point[1];
+
+  var inside = false;
+  for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+    var xi = vs[i][0],
+      yi = vs[i][1];
+    var xj = vs[j][0],
+      yj = vs[j][1];
+
+    var intersect = yi > y != yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+    if (intersect) inside = !inside;
+  }
+
+  return inside;
+};
+
 export function searchBag(query) {
   const uri = query && `${SHARED_CONFIG.API_ROOT}${query}`;
   if (uri) {
     return (
       // verblijfsobject uri: /bag/verblijfsobject/${ID}/
-      getByUri(uri).then(response => ({ pandId: response.verblijfsobjectidentificatie, geometrie: response.geometrie }))
+      getByUri(uri).then(response => ({
+        pandId: response.verblijfsobjectidentificatie,
+        geometrie: response.geometrie,
+        isInGrachtengordel: hasPointInPolygon(response.geometrie.coordinates, grachtengordel),
+      }))
     );
   }
   return {};
@@ -66,18 +78,6 @@ export function searchForMonument(query) {
         .then(id => (id ? getByUri(`${SHARED_CONFIG.API_ROOT}monumenten/monumenten/?betreft_pand=${id}`) : false))
         .then(response => (response.results.length > 0 ? response.results[0].monumentstatus : false))
     );
-  }
-  return {};
-}
-
-export function searchForBestemmingsplan(query) {
-  const { coordinates, type } = query && query.geometrie;
-  const uri =
-    query &&
-    coordinates &&
-    `https://www.ruimtelijkeplannen.nl/viewer/web-roo/rest/search/plannen/xy/${coordinates[0]}/${coordinates[1]}`;
-  if (uri) {
-    return getByUri(uri).then(response => console.log(response));
   }
   return {};
 }

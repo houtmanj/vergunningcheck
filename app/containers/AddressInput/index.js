@@ -9,18 +9,6 @@ import { Button, TextField } from '@datapunt/asc-ui';
 import { getSuggestionsAction, fetchBagData } from '../App/actions';
 import './style.scss';
 
-const getStreetName = suggestions => {
-  if (suggestions.length < 1) return null;
-
-  const streets = suggestions.reduce(category => {
-    if (category.label === 'Straatnamen') return category.content;
-  });
-
-  const { content = [] } = streets;
-
-  return content;
-};
-
 class AddressInput extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +16,6 @@ class AddressInput extends React.Component {
     this.onPostcodeInput = this.onPostcodeInput.bind(this);
     this.onStreetNumberInput = this.onStreetNumberInput.bind(this);
     this.state = {
-      originalQuery: '',
       showSuggestions: false,
       postalCode: '',
       streetNumber: '',
@@ -69,17 +56,17 @@ class AddressInput extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    const { suggestions, fetchBagData } = this.props;
+    const { suggestions, fetchBagData, bagStatus } = this.props;
     const addressField = document.querySelector('.address-input__results__final');
 
-    if (!addressField || !addressField.textContent) {
+    if (suggestions.length < 1 || !suggestions[0].final) {
       this.setState({
         hasError: true,
       });
       return;
     }
 
-    const { uri = false } = suggestions[0].content[0];
+    const { uri = false } = suggestions[0];
 
     if (uri) {
       fetchBagData(uri);
@@ -87,9 +74,18 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    const { intl, onGetSuggestions, suggestions, monumentFetch, monumentStatus = '', monumentLoading } = this.props;
-    const { showSuggestions, streetNumber, hasError, debug } = this.state;
-    const streetName = getStreetName(suggestions) || [];
+    const {
+      intl,
+      onGetSuggestions,
+      suggestions,
+      bagLoading,
+      bagFetch,
+      bagStatus,
+      monumentFetch,
+      monumentStatus = '',
+      monumentLoading,
+    } = this.props;
+    const { showSuggestions, hasError, debug } = this.state;
 
     return (
       <div className="address-input">
@@ -112,20 +108,18 @@ class AddressInput extends React.Component {
 
           {hasError && <div className="address-input__error">Error...</div>}
 
-          {showSuggestions && streetName.length > 0 && (
+          {showSuggestions && suggestions.length > 0 && (
             <div className="address-input__results">
               <h4 className="address-input__results__title">{intl.formatMessage(messages.resultaat)}</h4>
-              {streetName.length > 0 &&
-                streetName.map(street => (
-                  <div
-                    className={`address-input__results__item ${streetName.length === 1 &&
-                      streetNumber &&
-                      'address-input__results__final'}`}
-                    key={street.label}
-                  >
-                    {street.label}
-                  </div>
-                ))}
+              {suggestions.map(suggestion => (
+                <div
+                  className={`address-input__results__item
+                  ${suggestion.final && 'address-input__results__final'}`}
+                  key={suggestion.label}
+                >
+                  {suggestion.label}
+                </div>
+              ))}
             </div>
           )}
 
@@ -137,6 +131,14 @@ class AddressInput extends React.Component {
             <h4>Monument:</h4>
             {monumentLoading && <div>Laden....</div>}
             {!monumentLoading && <div>Status: {monumentStatus || 'Geen monument'}</div>}
+          </div>
+        )}
+
+        {bagFetch && (
+          <div>
+            <h4>Beschermd stadsgezicht:</h4>
+            {bagLoading && <div>Laden....</div>}
+            {!bagLoading && <div>Status: {bagStatus.isInGrachtengordel ? 'Ja' : 'Nee'}</div>}
           </div>
         )}
       </div>

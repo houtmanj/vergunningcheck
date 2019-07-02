@@ -72,5 +72,5 @@ export default function* watchFetchSuggestions() {
   yield takeLatest(FETCH_SUGGESTIONS_REQUEST, fetchSuggestions);
   yield takeLatest(FETCH_BAG_REQUEST, fetchBag);
   yield takeLatest(FETCH_MONUMENT_REQUEST, fetchMomument);
-  yield takeLatest(FETCH_BESTEMMINGSPLAN_REQUEST, fetchBestemmingsplan);
+  // yield takeLatest(FETCH_BESTEMMINGSPLAN_REQUEST, fetchBestemmingsplan);
 }

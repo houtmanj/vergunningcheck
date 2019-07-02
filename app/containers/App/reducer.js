@@ -70,6 +70,7 @@ export default (state = initialState, action) =>
           loading: true,
           typedQuery: action.query,
           monumentFetch: false,
+          bagFetch: false,
           monumentLoading: false,
           monumentStatus: '',
         };
@@ -79,7 +80,7 @@ export default (state = initialState, action) =>
           count: action.suggestions.count,
           error: false,
           loading: false,
-          suggestions: action.suggestions.data,
+          suggestions: action.suggestions,
         };
       case FETCH_SUGGESTIONS_FAILURE:
         return {
