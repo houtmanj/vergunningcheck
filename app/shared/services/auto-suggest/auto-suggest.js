@@ -1,7 +1,5 @@
 import SHARED_CONFIG from '../shared-config/shared-config';
 
-import { grachtengordel } from './grachtengordel';
-
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
 
 function formatDataAddress(categories) {
@@ -33,35 +31,35 @@ export function searchForAddress(query) {
   return {};
 }
 
-const hasPointInPolygon = (point, vs) => {
-  var x = point[0],
-    y = point[1];
-
-  var inside = false;
-  for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-    var xi = vs[i][0],
-      yi = vs[i][1];
-    var xj = vs[j][0],
-      yj = vs[j][1];
-
-    var intersect = yi > y != yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
-    if (intersect) inside = !inside;
-  }
-
-  return inside;
-};
-
 export function searchBag(query) {
   const uri = query && `${SHARED_CONFIG.API_ROOT}${query}`;
   if (uri) {
     return (
       // verblijfsobject uri: /bag/verblijfsobject/${ID}/
-      getByUri(uri).then(response => ({
-        pandId: response.verblijfsobjectidentificatie,
-        geometrie: response.geometrie,
-        isInGrachtengordel: hasPointInPolygon(response.geometrie.coordinates, grachtengordel),
-      }))
+      getByUri(uri)
+        .then(response => ({
+          pandId: response.verblijfsobjectidentificatie,
+          geometrie: response.geometrie,
+        }))
+        .then(response => searchForUnesco(response))
     );
+  }
+  return {};
+}
+
+export function searchForUnesco(query) {
+  const uri =
+    query &&
+    `${SHARED_CONFIG.API_ROOT}geosearch/search/?item=unesco&x=${query.geometrie.coordinates[0]}&y=${
+      query.geometrie.coordinates[1]
+    }`;
+  if (uri) {
+    return getByUri(uri).then(response => {
+      const unesco =
+        response.features.length > 0 && response.features.filter(zone => zone.properties.id === 'kernzone');
+      query.isUnesco = unesco.length > 0 ? true : false;
+      return query;
+    });
   }
   return {};
 }

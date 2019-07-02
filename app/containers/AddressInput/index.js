@@ -84,6 +84,7 @@ class AddressInput extends React.Component {
       monumentFetch,
       monumentStatus = '',
       monumentLoading,
+      isUnesco,
     } = this.props;
     const { showSuggestions, hasError, debug } = this.state;
 
@@ -138,7 +139,7 @@ class AddressInput extends React.Component {
           <div>
             <h4>Beschermd stadsgezicht:</h4>
             {bagLoading && <div>Laden....</div>}
-            {!bagLoading && <div>Status: {bagStatus.isInGrachtengordel ? 'Ja' : 'Nee'}</div>}
+            {!bagLoading && <div>Status: {isUnesco ? 'Ja' : 'Nee'}</div>}
           </div>
         )}
       </div>
@@ -159,6 +160,7 @@ const mapStateToProps = state => {
     monumentFetch,
     monumentLoading,
     monumentStatus,
+    isUnesco,
   } = state.global;
   return {
     suggestions,
@@ -168,6 +170,7 @@ const mapStateToProps = state => {
     monumentFetch,
     monumentLoading,
     monumentStatus,
+    isUnesco,
   };
 };
 

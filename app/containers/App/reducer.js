@@ -44,6 +44,7 @@ export const initialState = {
   monumentFetch: false,
   monumentLoading: false,
   monumentStatus: '',
+  isUnesco: false,
   planFetch: false,
   planLoading: false,
   planStatus: '',
@@ -73,6 +74,7 @@ export default (state = initialState, action) =>
           bagFetch: false,
           monumentLoading: false,
           monumentStatus: '',
+          isUnesco: false,
         };
       case FETCH_SUGGESTIONS_SUCCESS:
         return {
@@ -106,6 +108,7 @@ export default (state = initialState, action) =>
           ...state,
           bagLoading: false,
           bagStatus: action.bag,
+          isUnesco: action.bag.isUnesco,
         };
       case FETCH_BAG_FAILURE:
         return {
