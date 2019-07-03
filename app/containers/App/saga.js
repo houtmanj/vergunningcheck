@@ -6,7 +6,7 @@ import { push } from 'react-router-redux';
 // export const baseUrl = `${CONFIGURATION.API_ROOT}signals/auth/me`;
 
 import {
-  searchForAddress,
+  searchForStreetname,
   searchBag,
   searchForMonument,
   searchForBestemmingsplan,
@@ -18,6 +18,9 @@ import {
   FETCH_SUGGESTIONS_REQUEST,
   FETCH_SUGGESTIONS_SUCCESS,
   FETCH_SUGGESTIONS_FAILURE,
+  FETCH_STREETNAME_REQUEST,
+  FETCH_STREETNAME_SUCCESS,
+  FETCH_STREETNAME_FAILURE,
   FETCH_BAG_REQUEST,
   FETCH_BAG_SUCCESS,
   FETCH_BAG_FAILURE,
@@ -31,10 +34,19 @@ import {
 
 export function* fetchSuggestions(action) {
   try {
-    const suggestions = yield call(searchForAddress, action.query);
+    const suggestions = yield call(searchForStreetname, action.query);
     yield put({ type: FETCH_SUGGESTIONS_SUCCESS, suggestions });
   } catch (error) {
     yield put({ type: FETCH_SUGGESTIONS_FAILURE, error });
+  }
+}
+
+export function* fetchStreetname(action) {
+  try {
+    const streetname = yield call(searchForStreetname, action.query);
+    yield put({ type: FETCH_STREETNAME_SUCCESS, streetname });
+  } catch (error) {
+    yield put({ type: FETCH_STREETNAME_FAILURE, error });
   }
 }
 
@@ -71,6 +83,7 @@ export function* fetchBestemmingsplan(action) {
 export default function* watchFetchSuggestions() {
   yield takeLatest(FETCH_SUGGESTIONS_REQUEST, fetchSuggestions);
   yield takeLatest(FETCH_BAG_REQUEST, fetchBag);
+  yield takeLatest(FETCH_STREETNAME_REQUEST, fetchStreetname);
   yield takeLatest(FETCH_MONUMENT_REQUEST, fetchMomument);
   // yield takeLatest(FETCH_BESTEMMINGSPLAN_REQUEST, fetchBestemmingsplan);
 }

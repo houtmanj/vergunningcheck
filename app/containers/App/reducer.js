@@ -17,6 +17,9 @@ import {
   FETCH_SUGGESTIONS_REQUEST,
   FETCH_SUGGESTIONS_SUCCESS,
   FETCH_SUGGESTIONS_FAILURE,
+  FETCH_STREETNAME_REQUEST,
+  FETCH_STREETNAME_SUCCESS,
+  FETCH_STREETNAME_FAILURE,
   FETCH_BAG_REQUEST,
   FETCH_BAG_SUCCESS,
   FETCH_BAG_FAILURE,
@@ -30,13 +33,14 @@ import {
 
 // The initial state of the App
 export const initialState = {
-  loading: false,
+  suggestionLoading: false,
   error: false,
   errorMsg: {},
   count: 0,
   displayQuery: '',
   typedQuery: '',
-  suggestions: [],
+  streetName: '',
+  suggestions: '',
   geometrie: [],
   bagFetch: false,
   bagLoading: false,
@@ -68,20 +72,21 @@ export default (state = initialState, action) =>
           count: 0,
           displayQuery: action.query,
           error: false,
-          loading: true,
+          suggestionLoading: true,
           typedQuery: action.query,
           monumentFetch: false,
           bagFetch: false,
           monumentLoading: false,
           monumentStatus: '',
           isUnesco: false,
+          suggestions: '',
         };
       case FETCH_SUGGESTIONS_SUCCESS:
         return {
           ...state,
           count: action.suggestions.count,
           error: false,
-          loading: false,
+          suggestionLoading: false,
           suggestions: action.suggestions,
         };
       case FETCH_SUGGESTIONS_FAILURE:
@@ -90,9 +95,40 @@ export default (state = initialState, action) =>
           displayQuery: action.query,
           error: true,
           errorMsg: action.error,
-          loading: false,
+          suggestionLoading: false,
           typedQuery: action.query,
-          suggestions: [],
+          suggestions: '',
+        };
+
+      case FETCH_STREETNAME_REQUEST:
+        return {
+          ...state,
+          streetnameError: false,
+          streetnameLoading: true,
+          streetName: '',
+          suggestions: '',
+          // typedQuery: action.query,
+          // monumentFetch: false,
+          // bagFetch: false,
+          // monumentLoading: false,
+          // monumentStatus: '',
+          // isUnesco: false,
+        };
+      case FETCH_STREETNAME_SUCCESS:
+        return {
+          ...state,
+          streetnameError: false,
+          streetnameLoading: false,
+          streetName: action.streetname,
+        };
+      case FETCH_STREETNAME_FAILURE:
+        return {
+          ...state,
+          streetnameError: true,
+          errorMsg: action.error,
+          streetnameLoading: false,
+          typedQuery: action.query,
+          suggestions: '',
         };
 
       case FETCH_BAG_REQUEST:

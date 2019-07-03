@@ -3,30 +3,41 @@ import SHARED_CONFIG from '../shared-config/shared-config';
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
 
 function formatDataAddress(categories) {
-  const filteredCategories = categories.filter(category => {
-    return category.content.filter(suggestion => {
-      if (suggestion.category === 'Straatnamen' || suggestion.category === 'Adressen') return suggestion;
-    });
-  });
-
-  const indexedCategories = filteredCategories.map(category => ({
-    content: category.content.map(suggestion => ({
-      final: category.label === 'Adressen' && category.content.length === 1 ? true : false,
-      category: category.label,
-      label: suggestion._display,
-      uri: suggestion.uri,
-    })),
-  }));
+  const indexedCategories = categories
+    .filter(category =>
+      category.content.filter(suggestion => {
+        if (suggestion.category === 'Adressen') return suggestion;
+      }),
+    )
+    .map(category => ({
+      content: category.content.map(suggestion => ({
+        category: category.label,
+        label: suggestion._display,
+        uri: suggestion.uri,
+      })),
+    }));
 
   if (indexedCategories.length < 1 || !indexedCategories[0].content) return [];
   else return indexedCategories[0].content;
 }
 
-export function searchForAddress(query) {
+function formatStreetname(categories) {
+  const indexedCategories = categories.filter(category =>
+    category.content.filter(suggestion => {
+      if (suggestion.category === 'Straatnamen') return suggestion;
+    }),
+  );
+
+  return indexedCategories.length > 0 && indexedCategories[0].content.length === 1
+    ? indexedCategories[0].content[0]._display
+    : '';
+}
+
+export function searchForStreetname(query) {
   // Minimun length for typeahead query in backend is 3 characters
   const uri = query && query.length >= 3 && `${SHARED_CONFIG.API_ROOT}typeahead?q=${query}`;
   if (uri) {
-    return getByUri(uri).then(response => formatDataAddress(response));
+    return getByUri(uri).then(response => formatStreetname(response));
   }
   return {};
 }

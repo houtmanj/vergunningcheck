@@ -6,6 +6,10 @@ export const FETCH_SUGGESTIONS_REQUEST = `${scope}/AddressInput/FETCH_SUGGESTION
 export const FETCH_SUGGESTIONS_SUCCESS = `${scope}/AddressInput/FETCH_SUGGESTIONS_SUCCESS`;
 export const FETCH_SUGGESTIONS_FAILURE = `${scope}/AddressInput/FETCH_SUGGESTIONS_FAILURE`;
 
+export const FETCH_STREETNAME_REQUEST = `${scope}/AddressInput/FETCH_STREETNAME_REQUEST`;
+export const FETCH_STREETNAME_SUCCESS = `${scope}/AddressInput/FETCH_STREETNAME_SUCCESS`;
+export const FETCH_STREETNAME_FAILURE = `${scope}/AddressInput/FETCH_STREETNAME_FAILURE`;
+
 export const FETCH_BAG_REQUEST = `${scope}/AddressInput/FETCH_BAG_REQUEST`;
 export const FETCH_BAG_SUCCESS = `${scope}/AddressInput/FETCH_BAG_SUCCESS`;
 export const FETCH_BAG_FAILURE = `${scope}/AddressInput/FETCH_BAG_FAILURE`;
