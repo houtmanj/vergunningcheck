@@ -21,17 +21,24 @@ class AddressInput extends React.Component {
       streetNumber: '',
       hasCompleteAddress: false,
       hasError: false,
+      // debug: true,
     };
   }
 
   onPostcodeInput(event) {
-    const { fetchStreetname } = this.props;
+    const { fetchStreetname, streetName, onGetSuggestions } = this.props;
     const { streetNumber } = this.state;
     const { value: postcode } = event.target;
 
     const regexPostcode = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
     const validPostcode = regexPostcode.test(postcode);
     const hasError = postcode.length > 5 && !validPostcode;
+    if (streetNumber) {
+      document.querySelector('.address-input__streetnumber').value = '';
+      this.setState({
+        streetNumber: false,
+      });
+    }
 
     this.setState({
       validPostcode,
@@ -40,44 +47,37 @@ class AddressInput extends React.Component {
     });
 
     if (validPostcode) {
-      const query = streetNumber ? postcode + ' ' + streetNumber : postcode;
-      fetchStreetname(query);
+      fetchStreetname(postcode);
     }
   }
 
   onStreetNumberInput(event) {
     const { onGetSuggestions, streetName } = this.props;
-    const { postcode, validPostcode } = this.state;
+    const { validPostcode } = this.state;
     const { value: streetNumber } = event.target;
+    const query = streetName + '+' + streetNumber;
 
     this.setState({
       streetNumber,
     });
-
-    if (validPostcode && streetName) {
-      onGetSuggestions(query);
-    }
   }
 
   onFormSubmit(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    // const { suggestions, fetchBagData, bagStatus } = this.props;
-    // const addressField = document.querySelector('.address-input__results__final');
-    //
-    // // if (suggestions.length < 1) {
-    // //   this.setState({
-    // //     hasError: true,
-    // //   });
-    // //   return;
-    // // }
-    //
-    // const { uri = false } = suggestions[0];
-    //
-    // if (uri) {
-    //   fetchBagData(uri);
-    // }
+    const { suggestions, streetName, fetchBagData, bagStatus } = this.props;
+    const { streetNumber, postcode, validPostcode } = this.state;
+
+    if (postcode && streetNumber && validPostcode) {
+      const query = postcode + '+' + streetNumber;
+      fetchBagData(postcode, streetNumber);
+      return;
+    }
+
+    this.setState({
+      hasError: true,
+    });
   }
 
   render() {
@@ -93,14 +93,16 @@ class AddressInput extends React.Component {
       monumentFetch,
       monumentStatus = '',
       monumentLoading,
-      isUnesco,
     } = this.props;
 
+    const loading = streetnameLoading || suggestionLoading || bagLoading;
     const { validPostcode, postcode, streetNumber, hasError, debug } = this.state;
     const validPostcodeAmsterdam = validPostcode && streetName;
-    const showError = hasError || !validPostcodeAmsterdam;
-    const loading = streetnameLoading || suggestionLoading;
-    const addressComplete = suggestions.toLowerCase() === streetName.toLowerCase() + ' ' + streetNumber.toLowerCase();
+    const notValidPostcodeAmsterdam = validPostcode && !streetName;
+    const notValidAddress = bagFetch && !bagStatus.pandId;
+    const showError = hasError || notValidPostcodeAmsterdam || notValidAddress;
+    const notValidPostcode = !validPostcode || postcode.length !== 6;
+    const notValidStreetNumber = !streetNumber;
 
     return (
       <div className="address-input">
@@ -109,56 +111,71 @@ class AddressInput extends React.Component {
         </h3>
         <form className="address-input__form" onSubmit={this.onFormSubmit}>
           <TextField
-            className="address-input__input"
+            className="address-input__input address-input__postcode"
             label={intl.formatMessage(messages.postcode)}
             onChange={this.onPostcodeInput}
             defaultValue={debug && '1055x'}
           />
           <TextField
-            className="address-input__input"
+            className="address-input__input address-input__streetnumber"
             label={intl.formatMessage(messages.huisnummer)}
             onInput={this.onStreetNumberInput}
             defaultValue={debug && '19'}
           />
 
-          {!loading && showError && (
-            <div className="address-input__error">
-              {!validPostcode && postcode.length > 5 && (
-                <p>
-                  De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.
-                </p>
-              )}
-              {validPostcode && !validPostcodeAmsterdam && (
-                <p>De ingevoerde postcode is niet gevonden in de Amsterdamse database. Probeer opnieuw.</p>
-              )}
-            </div>
-          )}
-
-          {!showError && validPostcode && (
+          {validPostcode && (
             <div className="address-input__results">
-              <h4 className="address-input__results__title">{intl.formatMessage(messages.resultaat)}</h4>
+              <h4 className="address-input__results__title">Adres:</h4>
               {streetnameLoading && <div>Laden....</div>}
               {!streetnameLoading && streetName && (
                 <div className={'address-input__results__item'}>
                   {streetName} {streetNumber}
                 </div>
               )}
-              <div>
-                {suggestionLoading && <div>Laden....</div>}
-                {!suggestionLoading && !streetnameLoading && (
-                  <div>
-                    {streetNumber && addressComplete && <div>Dit adres bestaat. Klik op bevestig</div>}
-                    {streetNumber && !addressComplete && <div>Dit adres bestaat niet. Probeer opnieuw</div>}
-                  </div>
-                )}
-              </div>
+            </div>
+          )}
+
+          {!loading && showError && (
+            <div className="address-input__error">
+              {postcode && notValidPostcode && (
+                <p>
+                  De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.
+                </p>
+              )}
+              {notValidPostcodeAmsterdam && (
+                <p>De ingevoerde postcode is niet gevonden in de Amsterdamse database. Probeer opnieuw.</p>
+              )}
+              {!postcode && <p>Voer een postcode in</p>}
+              {notValidStreetNumber && <p>Voer een huisnummer in</p>}
+              {notValidAddress && (
+                <div>
+                  <p className="address-input__feedback__incomplete">
+                    Op de ingevoerde gegevens is geen adres gevonden.
+                  </p>
+                  {suggestions.length > 0 && (
+                    <>
+                      <div>Bedoel je misschien:</div>
+                      {suggestions.map(suggestion => (
+                        <div key={suggestion.label}>{suggestion.label}</div>
+                      ))}
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           )}
 
           <Button className="address-input__submit">{intl.formatMessage(messages.submit)}</Button>
         </form>
 
-        {monumentFetch && (
+        {streetNumber && loading && (
+          <div>
+            <h4>Laden...</h4>
+            <div>De resultaten worden ingeladen.</div>
+          </div>
+        )}
+
+        {!showError && monumentFetch && (
           <div>
             <h4>Monument:</h4>
             {monumentLoading && <div>Laden....</div>}
@@ -166,11 +183,11 @@ class AddressInput extends React.Component {
           </div>
         )}
 
-        {bagFetch && (
+        {!showError && bagFetch && (
           <div>
             <h4>Beschermd stadsgezicht:</h4>
             {bagLoading && <div>Laden....</div>}
-            {!bagLoading && <div>Status: {isUnesco ? 'Ja' : 'Nee'}</div>}
+            {!bagLoading && <div>Status: {bagStatus.isUnesco ? `Ja, ${bagStatus.isUnesco}` : 'Nee'}</div>}
           </div>
         )}
       </div>
@@ -184,7 +201,7 @@ AddressInput.propTypes = {};
 
 const mapStateToProps = state => {
   const {
-    suggestions = '',
+    suggestions = [],
     streetnameLoading,
     suggestionLoading,
     streetName,
@@ -194,7 +211,6 @@ const mapStateToProps = state => {
     monumentFetch,
     monumentLoading,
     monumentStatus,
-    isUnesco,
   } = state.global;
   return {
     suggestions,
@@ -207,14 +223,13 @@ const mapStateToProps = state => {
     monumentFetch,
     monumentLoading,
     monumentStatus,
-    isUnesco,
   };
 };
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      onGetSuggestions: getSuggestionsAction,
+      onGetSuggestions: getSuggestionsAction, // @Todo: Change dispatch name
       fetchBagData,
       fetchStreetname,
     },

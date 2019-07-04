@@ -17,13 +17,24 @@
     margin-top: 25px;
   }
 
-  &__error {
+  &__error p {
     color: red;
   }
 
   &__results {
     &__final {
       color: green;
+    }
+  }
+
+  &__feedback {
+    margin-top: 25px;
+
+    &__complete {
+      color: green;
+    }
+    &__incomplete {
+      color: red;
     }
   }
 }

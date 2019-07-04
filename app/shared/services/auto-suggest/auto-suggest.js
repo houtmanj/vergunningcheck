@@ -2,7 +2,33 @@ import SHARED_CONFIG from '../shared-config/shared-config';
 
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
 
-function formatDataAddress(categories) {
+function getVerblijfsobjectUri(categories, streetNumberFromInput) {
+  const indexedCategories = categories.filter(category =>
+    category.content.filter(suggestion => {
+      if (suggestion.category === 'Adressen') return suggestion;
+    }),
+  );
+
+  // No returned suggestions
+  if (indexedCategories.length < 1 || indexedCategories[0].content.length < 1) return '';
+
+  const { content } = indexedCategories[0];
+
+  if (content.length === 1) {
+    return content[0].uri;
+  } else {
+    // @TODO: find other solution for fetching correct address
+    return content
+      .filter(address => {
+        const { _display: label } = address;
+        const streetNameFromApi = label.slice(label.lastIndexOf(' ')).trim();
+        return streetNameFromApi === streetNumberFromInput;
+      })
+      .map(address => address.uri);
+  }
+}
+
+function formatAddress(categories) {
   const indexedCategories = categories
     .filter(category =>
       category.content.filter(suggestion => {
@@ -28,9 +54,19 @@ function formatStreetname(categories) {
     }),
   );
 
+  // @TODO: what if there's multiple streetnames on 1 postcode? EG: 1018xa
   return indexedCategories.length > 0 && indexedCategories[0].content.length === 1
     ? indexedCategories[0].content[0]._display
     : '';
+}
+
+export function searchForAddress(query) {
+  // Minimun length for typeahead query in backend is 3 characters
+  const uri = query && query.length >= 3 && `${SHARED_CONFIG.API_ROOT}typeahead?q=${query}`;
+  if (uri) {
+    return getByUri(uri).then(response => formatAddress(response));
+  }
+  return {};
 }
 
 export function searchForStreetname(query) {
@@ -43,16 +79,23 @@ export function searchForStreetname(query) {
 }
 
 export function searchBag(query) {
-  const uri = query && `${SHARED_CONFIG.API_ROOT}${query}`;
+  const { postcode = '', streetNumber = '' } = query;
+  const uri = postcode && streetNumber && `${SHARED_CONFIG.API_ROOT}typeahead?q=${postcode}+${streetNumber}`;
   if (uri) {
     return (
-      // verblijfsobject uri: /bag/verblijfsobject/${ID}/
       getByUri(uri)
-        .then(response => ({
-          pandId: response.verblijfsobjectidentificatie,
-          geometrie: response.geometrie,
-        }))
-        .then(response => searchForUnesco(response))
+        .then(response => getVerblijfsobjectUri(response, streetNumber))
+        // verblijfsobject uri: /bag/verblijfsobject/${ID}/
+        .then(response => {
+          if (response) {
+            return getByUri(`${SHARED_CONFIG.API_ROOT}${response}`).then(response => ({
+              pandId: response.verblijfsobjectidentificatie,
+              geometrie: response.geometrie,
+            }));
+          } else {
+            return response;
+          }
+        })
     );
   }
   return {};
@@ -67,16 +110,17 @@ export function searchForUnesco(query) {
   if (uri) {
     return getByUri(uri).then(response => {
       const unesco =
-        response.features.length > 0 && response.features.filter(zone => zone.properties.id === 'kernzone');
-      query.isUnesco = unesco.length > 0 ? true : false;
+        response.features.length > 0 &&
+        response.features.filter(zone => zone.properties.id === 'kernzone' || zone.properties.id === 'bufferzone');
+      query.isUnesco = unesco.length > 0 ? response.features[0].properties.id : '';
       return query;
     });
   }
-  return {};
+  return query;
 }
 
 export function searchForMonument(query) {
-  // https://acc.api.data.amsterdam.nl/bag/pand/?verblijfsobjecten__id=0363010012062064
+  // URI: https://acc.api.data.amsterdam.nl/bag/pand/?verblijfsobjecten__id=0363010012062064
   const uri = query && `${SHARED_CONFIG.API_ROOT}bag/pand/?verblijfsobjecten__id=${query}`;
   if (uri) {
     return (

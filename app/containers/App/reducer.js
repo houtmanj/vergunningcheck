@@ -35,12 +35,8 @@ import {
 export const initialState = {
   suggestionLoading: false,
   error: false,
-  errorMsg: {},
-  count: 0,
-  displayQuery: '',
-  typedQuery: '',
   streetName: '',
-  suggestions: '',
+  suggestions: [],
   geometrie: [],
   bagFetch: false,
   bagLoading: false,
@@ -48,7 +44,6 @@ export const initialState = {
   monumentFetch: false,
   monumentLoading: false,
   monumentStatus: '',
-  isUnesco: false,
   planFetch: false,
   planLoading: false,
   planStatus: '',
@@ -69,22 +64,17 @@ export default (state = initialState, action) =>
       case FETCH_SUGGESTIONS_REQUEST:
         return {
           ...state,
-          count: 0,
-          displayQuery: action.query,
           error: false,
           suggestionLoading: true,
-          typedQuery: action.query,
           monumentFetch: false,
           bagFetch: false,
           monumentLoading: false,
           monumentStatus: '',
-          isUnesco: false,
-          suggestions: '',
+          suggestions: [],
         };
       case FETCH_SUGGESTIONS_SUCCESS:
         return {
           ...state,
-          count: action.suggestions.count,
           error: false,
           suggestionLoading: false,
           suggestions: action.suggestions,
@@ -92,12 +82,9 @@ export default (state = initialState, action) =>
       case FETCH_SUGGESTIONS_FAILURE:
         return {
           ...state,
-          displayQuery: action.query,
           error: true,
-          errorMsg: action.error,
           suggestionLoading: false,
-          typedQuery: action.query,
-          suggestions: '',
+          suggestions: [],
         };
 
       case FETCH_STREETNAME_REQUEST:
@@ -106,13 +93,10 @@ export default (state = initialState, action) =>
           streetnameError: false,
           streetnameLoading: true,
           streetName: '',
-          suggestions: '',
-          // typedQuery: action.query,
-          // monumentFetch: false,
-          // bagFetch: false,
-          // monumentLoading: false,
-          // monumentStatus: '',
-          // isUnesco: false,
+          suggestions: [],
+          monumentStatus: '',
+          monumentFetch: false,
+          bagFetch: false,
         };
       case FETCH_STREETNAME_SUCCESS:
         return {
@@ -125,10 +109,8 @@ export default (state = initialState, action) =>
         return {
           ...state,
           streetnameError: true,
-          errorMsg: action.error,
           streetnameLoading: false,
-          typedQuery: action.query,
-          suggestions: '',
+          suggestions: [],
         };
 
       case FETCH_BAG_REQUEST:
@@ -138,19 +120,19 @@ export default (state = initialState, action) =>
           bagFetch: true,
           bagLoading: true,
           bagStatus: {},
+          monumentStatus: '',
+          monumentFetch: false,
         };
       case FETCH_BAG_SUCCESS:
         return {
           ...state,
           bagLoading: false,
           bagStatus: action.bag,
-          isUnesco: action.bag.isUnesco,
         };
       case FETCH_BAG_FAILURE:
         return {
           ...state,
           error: true,
-          errorMsg: action.error,
           bagLoading: false,
           bagStatus: {},
         };
@@ -173,7 +155,6 @@ export default (state = initialState, action) =>
         return {
           ...state,
           error: true,
-          errorMsg: action.error,
           monumentLoading: false,
           monumentStatus: '',
         };
@@ -196,7 +177,6 @@ export default (state = initialState, action) =>
         return {
           ...state,
           error: true,
-          errorMsg: action.error,
           planLoading: false,
           planStatus: '',
         };
@@ -206,5 +186,3 @@ export default (state = initialState, action) =>
         break;
     }
   });
-
-// export default appReducer;

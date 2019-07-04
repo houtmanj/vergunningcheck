@@ -1,15 +1,13 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
-// import { authCall } from 'shared/services/api/api';
-// import CONFIGURATION from 'shared/services/configuration/configuration';
-// export const baseUrl = `${CONFIGURATION.API_ROOT}signals/auth/me`;
-
 import {
   searchForStreetname,
+  searchForAddress,
   searchBag,
   searchForMonument,
   searchForBestemmingsplan,
+  searchForUnesco,
 } from 'shared/services/auto-suggest/auto-suggest';
 
 import { fetchMonumentData } from './actions';
@@ -34,7 +32,7 @@ import {
 
 export function* fetchSuggestions(action) {
   try {
-    const suggestions = yield call(searchForStreetname, action.query);
+    const suggestions = yield call(searchForAddress, action.query);
     yield put({ type: FETCH_SUGGESTIONS_SUCCESS, suggestions });
   } catch (error) {
     yield put({ type: FETCH_SUGGESTIONS_FAILURE, error });
@@ -53,9 +51,14 @@ export function* fetchStreetname(action) {
 export function* fetchBag(action) {
   try {
     const bag = yield call(searchBag, action.query);
-    yield put({ type: FETCH_BAG_SUCCESS, bag });
-    yield put({ type: FETCH_MONUMENT_REQUEST, bag });
-    yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
+    if (bag) {
+      yield put({ type: FETCH_BAG_SUCCESS, bag });
+      yield put({ type: FETCH_MONUMENT_REQUEST, bag });
+      yield call(searchForUnesco, bag);
+      // yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
+    } else {
+      yield put({ type: FETCH_BAG_FAILURE });
+    }
   } catch (error) {
     yield put({ type: FETCH_BAG_FAILURE, error });
   }

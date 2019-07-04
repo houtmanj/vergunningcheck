@@ -15,7 +15,10 @@ export const getSuggestionsAction = (query = '') => ({ type: FETCH_SUGGESTIONS_R
 
 export const fetchStreetname = (query = '') => ({ type: FETCH_STREETNAME_REQUEST, query });
 
-export const fetchBagData = (query = '') => ({ type: FETCH_BAG_REQUEST, query });
+export const fetchBagData = (postcode, streetNumber) => ({
+  type: FETCH_BAG_REQUEST,
+  query: { postcode, streetNumber },
+});
 
 export const fetchMonumentData = (query = '') => ({ type: FETCH_MONUMENT_REQUEST, query });
 
