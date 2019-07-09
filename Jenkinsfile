@@ -20,25 +20,12 @@ node {
     stage("Checkout") {
         checkout scm
     }
-
-    stage("Unit and Integration") {
-      String  PROJECT = "vergunningschecker"
-
-      tryStep "unittests start", {
-        sh "docker-compose -p ${PROJECT} up --build --exit-code-from test-unit-integration test-unit-integration"
-      }
-      always {
-        tryStep "unittests stop", {
-          sh "docker-compose -p ${PROJECT} down -v || true"
-        }
-      }
-    }
 }
 
 node {
     stage("Build acceptance image") {
         tryStep "build", {
-            def image = docker.build("build.app.amsterdam.nl:5000/ois/VergunningschekerJobName:${env.BUILD_NUMBER}",
+            def image = docker.build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}",
                 "--shm-size 1G " +
                 "--build-arg BUILD_ENV=acc " +
                 "--build-arg BUILD_NUMBER=${env.BUILD_NUMBER} " +
@@ -56,7 +43,7 @@ if (BRANCH == "master") {
     node {
         stage('Push acceptance image') {
             tryStep "image tagging", {
-                def image = docker.image("build.app.amsterdam.nl:5000/ois/VergunningschekerJobName:${env.BUILD_NUMBER}")
+                def image = docker.image("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}")
                 image.pull()
                 image.push("acceptance")
             }
@@ -69,7 +56,7 @@ if (BRANCH == "master") {
                 build job: 'Subtask_Openstack_Playbook',
                 parameters: [
                     [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
-                    [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'VergunningscheckerPlaybook.yml'],
+                    [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-vergunningschecker.yml'],
                 ]
             }
         }
@@ -85,7 +72,7 @@ if (BRANCH == "master") {
     node {
         stage("Build and Push Production image") {
             tryStep "build", {
-                def image = docker.build("build.app.amsterdam.nl:5000/ois/VergunningschekerJobName:${env.BUILD_NUMBER}",
+                def image = docker.build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}",
                     "--shm-size 1G " +
                     "--build-arg BUILD_NUMBER=${env.BUILD_NUMBER} " +
                     ".")
@@ -101,7 +88,7 @@ if (BRANCH == "master") {
                 build job: 'Subtask_Openstack_Playbook',
                 parameters: [
                     [$class: 'StringParameterValue', name: 'INVENTORY', value: 'production'],
-                    [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'VergunningscheckerPlaybook.yml'],
+                    [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-vergunningschecker.yml'],
                 ]
             }
         }
