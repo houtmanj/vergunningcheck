@@ -14,16 +14,15 @@ function getVerblijfsobjectUri(categories, streetNumberFromInput) {
 
   if (content.length === 1) {
     return content[0].uri;
-  } else {
-    // @TODO: find other solution for fetching correct address
-    return content
-      .filter(address => {
-        const { _display: label } = address;
-        const streetNameFromApi = label.slice(label.lastIndexOf(' ')).trim();
-        return streetNameFromApi === streetNumberFromInput;
-      })
-      .map(address => address.uri);
   }
+  // @TODO: find other solution for fetching correct address
+  return content
+    .filter(address => {
+      const { _display: label } = address;
+      const streetNameFromApi = label.slice(label.lastIndexOf(' ')).trim();
+      return streetNameFromApi === streetNumberFromInput;
+    })
+    .map(address => address.uri);
 }
 
 function formatAddress(categories) {
@@ -32,13 +31,13 @@ function formatAddress(categories) {
     .map(category => ({
       content: category.content.map(suggestion => ({
         category: category.label,
-        label: suggestion._display,
+        label: suggestion['_dislay'],
         uri: suggestion.uri,
       })),
     }));
 
   if (indexedCategories.length < 1 || !indexedCategories[0].content) return [];
-  else return indexedCategories[0].content;
+  return indexedCategories[0].content;
 }
 
 function formatStreetname(categories) {
@@ -48,7 +47,7 @@ function formatStreetname(categories) {
 
   // @TODO: what if there's multiple streetnames on 1 postcode? EG: 1018xa
   return indexedCategories.length > 0 && indexedCategories[0].content.length === 1
-    ? indexedCategories[0].content[0]._display
+    ? indexedCategories[0].content[0]['_display']
     : '';
 }
 
@@ -84,9 +83,9 @@ export function searchBag(query) {
               pandId: response.verblijfsobjectidentificatie,
               geometrie: response.geometrie,
             }));
-          } else {
-            return response;
           }
+
+          return verblijfsobjectUri;
         })
     );
   }
