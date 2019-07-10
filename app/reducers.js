@@ -16,7 +16,6 @@ export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
     global: globalReducer,
     language: languageProviderReducer,
-    autoSuggest: AutoSuggestReducer,
     router: connectRouter(history),
     ...injectedReducers,
   });
