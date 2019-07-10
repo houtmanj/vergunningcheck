@@ -28,11 +28,7 @@ function getVerblijfsobjectUri(categories, streetNumberFromInput) {
 
 function formatAddress(categories) {
   const indexedCategories = categories
-    .filter(category =>
-      category.content.filter(suggestion => {
-        if (suggestion.category === 'Adressen') return suggestion;
-      }),
-    )
+    .filter(category => category.content.filter(suggestion => suggestion.category === 'Adressen'))
     .map(category => ({
       content: category.content.map(suggestion => ({
         category: category.label,
@@ -82,9 +78,9 @@ export function searchBag(query) {
       getByUri(uri)
         .then(response => getVerblijfsobjectUri(response, streetNumber))
         // verblijfsobject uri: /bag/verblijfsobject/${ID}/
-        .then(response => {
-          if (response) {
-            return getByUri(`${SHARED_CONFIG.API_ROOT}${response}`).then(response => ({
+        .then(verblijfsobjectUri => {
+          if (verblijfsobjectUri) {
+            return getByUri(`${SHARED_CONFIG.API_ROOT}${verblijfsobjectUri}`).then(response => ({
               pandId: response.verblijfsobjectidentificatie,
               geometrie: response.geometrie,
             }));
@@ -108,8 +104,9 @@ export function searchForUnesco(query) {
       const unesco =
         response.features.length > 0 &&
         response.features.filter(zone => zone.properties.id === 'kernzone' || zone.properties.id === 'bufferzone');
-      query.isUnesco = unesco.length > 0 ? response.features[0].properties.id : '';
-      return query;
+      const result = query;
+      result.isUnesco = unesco.length > 0 ? response.features[0].properties.id : '';
+      return result;
     });
   }
   return query;

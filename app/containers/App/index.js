@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { compose } from 'redux';
 
-import { useInjectReducer } from 'utils/injectReducer';
+// import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import { injectIntl } from 'react-intl';
 
@@ -13,7 +13,7 @@ import MainMenu from 'components/MainMenu';
 import HeaderContainer from 'containers/HeaderContainer';
 import GlobalError from 'containers/GlobalError';
 
-import reducer from './reducer';
+// import reducer from './reducer';
 import saga from './saga';
 
 import GlobalStyles from '../../global-styles';

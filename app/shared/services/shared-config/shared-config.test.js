@@ -1,5 +1,5 @@
 import SHARED_CONFIG from './shared-config';
-import { getEnvironment } from '../../environment';
+import { getEnvironment } from '../environment';
 
 jest.mock('../../environment');
 
