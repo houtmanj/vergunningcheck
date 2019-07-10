@@ -78,7 +78,7 @@ export function* fetchMomument(action) {
 //   } catch (error) {
 //     yield put({ type: FETCH_BESTEMMINGSPLAN_FAILURE, error });
 //   }
-}
+// }
 
 export default function* watchFetchSuggestions() {
   yield takeLatest(FETCH_SUGGESTIONS_REQUEST, fetchSuggestions);
