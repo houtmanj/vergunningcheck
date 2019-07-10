@@ -24,7 +24,7 @@ const Header = ({ isAuthenticated, userName, onLoginLogoutButtonClick }) => (
             </span>
           </a>
         </h1>
-        <span className="header-title">Amsterdam Vergunningschecker</span>
+        <span className="header-title">Amsterdam Vergunningschecker 0.1</span>
       </div>
       <div className="col-sm-6">
         <nav>
