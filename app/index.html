@@ -1,42 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="mobile-web-app-capable" content="yes" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="vergunningschecker" />
 
-  <meta name="apple-mobile-web-app-title" content="vergunningschecker">
+    <link rel="icon" href="/favicon.png" />
+    <title>Amsterdam Vergunningschecker</title>
 
-  <link rel="icon" href="/favicon.png" />
-  <title>Amsterdam Vergunningschecker</title>
+    <!-- Matomo -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = '//piwik.datapunt.amsterdam.nl/';
+        _paq.push(['setTrackerUrl', u + 'piwik.php']);
+        _paq.push(['setSiteId', '14']);
+        var d = document,
+          g = d.createElement('script'),
+          s = d.getElementsByTagName('script')[0];
+        g.type = 'text/javascript';
+        g.async = true;
+        g.defer = true;
+        g.src = u + 'piwik.js';
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+  </head>
 
-  <!-- Matomo -->
-  <script type="text/javascript">
-    var _paq = _paq || [];
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function () {
-      var u = "//piwik.datapunt.amsterdam.nl/";
-      _paq.push(['setTrackerUrl', u + 'piwik.php']);
-      _paq.push(['setSiteId', '14']);
-      var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-      g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
-    })();
-  </script>
-  <!-- End Matomo Code -->
-</head>
+  <body class="with-sidebars">
+    <noscript
+      >If you're seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>, please
+      <strong>enable JS</strong> to make this app work.
+    </noscript>
 
-<body class="with-sidebars">
-  <noscript>If you're seeing this message, that means
-    <strong>JavaScript has been disabled on your browser</strong>, please
-    <strong>enable JS</strong> to make this app work.
-  </noscript>
+    <div id="app"></div>
 
-  <div id="app"></div>
-
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-</body>
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
+  </body>
 </html>

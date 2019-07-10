@@ -11,10 +11,7 @@ module.exports = require('./webpack.base.babel')({
   mode: 'production',
 
   // In production, we skip all hot-reloading stuff
-  entry: [
-    require.resolve('react-app-polyfill/ie11'),
-    path.join(process.cwd(), 'app/app.js'),
-  ],
+  entry: [require.resolve('react-app-polyfill/ie11'), path.join(process.cwd(), 'app/app.js')],
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
@@ -55,9 +52,7 @@ module.exports = require('./webpack.base.babel')({
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name(module) {
-            const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
-            )[1];
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
             return `npm.${packageName.replace('@', '')}`;
           },
         },
@@ -115,8 +110,6 @@ module.exports = require('./webpack.base.babel')({
       minRatio: 0.8,
     }),
 
-    
-
     new HashedModuleIdsPlugin({
       hashFunction: 'sha256',
       hashDigest: 'hex',
@@ -125,7 +118,6 @@ module.exports = require('./webpack.base.babel')({
   ],
 
   performance: {
-    assetFilter: assetFilename =>
-      !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
+    assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
 });
