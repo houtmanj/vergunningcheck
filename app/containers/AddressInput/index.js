@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 
-import messages from './messages';
 import { Button, TextField } from '@datapunt/asc-ui';
-import { getSuggestionsAction, fetchStreetname, fetchBagData } from '../App/actions';
+import messages from './messages';
+import { fetchStreetname, fetchBagData } from '../App/actions';
 import './style.scss';
 
 class AddressInput extends React.Component {
@@ -19,20 +19,19 @@ class AddressInput extends React.Component {
       validPostcode: false,
       postcode: '',
       streetNumber: '',
-      hasCompleteAddress: false,
       hasError: false,
       // debug: true,
     };
   }
 
   onPostcodeInput(event) {
-    const { fetchStreetname, streetName, onGetSuggestions } = this.props;
+    const { onfetchStreetname } = this.props;
     const { streetNumber } = this.state;
     const { value: postcode } = event.target;
-
     const regexPostcode = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
     const validPostcode = regexPostcode.test(postcode);
     const hasError = postcode.length > 5 && !validPostcode;
+
     if (streetNumber) {
       document.querySelector('.address-input__streetnumber').value = '';
       this.setState({
@@ -47,15 +46,12 @@ class AddressInput extends React.Component {
     });
 
     if (validPostcode) {
-      fetchStreetname(postcode);
+      onfetchStreetname(postcode);
     }
   }
 
   onStreetNumberInput(event) {
-    const { onGetSuggestions, streetName } = this.props;
-    const { validPostcode } = this.state;
     const { value: streetNumber } = event.target;
-    const query = streetName + '+' + streetNumber;
 
     this.setState({
       streetNumber,
@@ -66,12 +62,11 @@ class AddressInput extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    const { suggestions, streetName, fetchBagData, bagStatus } = this.props;
+    const { onFetchBagData } = this.props;
     const { streetNumber, postcode, validPostcode } = this.state;
 
     if (postcode && streetNumber && validPostcode) {
-      const query = postcode + '+' + streetNumber;
-      fetchBagData(postcode, streetNumber);
+      onFetchBagData(postcode, streetNumber);
       return;
     }
 
@@ -97,7 +92,6 @@ class AddressInput extends React.Component {
 
     const loading = streetnameLoading || suggestionLoading || bagLoading;
     const { validPostcode, postcode, streetNumber, hasError, debug } = this.state;
-    const validPostcodeAmsterdam = validPostcode && streetName;
     const notValidPostcodeAmsterdam = validPostcode && !streetName;
     const notValidAddress = bagFetch && !bagStatus.pandId;
     const showError = hasError || notValidPostcodeAmsterdam || notValidAddress;
@@ -175,7 +169,7 @@ class AddressInput extends React.Component {
           </div>
         )}
 
-        {!showError && monumentFetch && (
+        {validPostcode && !showError && monumentFetch && (
           <div>
             <h4>Monument:</h4>
             {monumentLoading && <div>Laden....</div>}
@@ -183,7 +177,7 @@ class AddressInput extends React.Component {
           </div>
         )}
 
-        {!showError && bagFetch && (
+        {validPostcode && !showError && bagFetch && (
           <div>
             <h4>Beschermd stadsgezicht:</h4>
             {bagLoading && <div>Laden....</div>}
@@ -229,9 +223,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      onGetSuggestions: getSuggestionsAction, // @Todo: Change dispatch name
-      fetchBagData,
-      fetchStreetname,
+      onFetchBagData: fetchBagData,
+      onfetchStreetname: fetchStreetname,
     },
     dispatch,
   );

@@ -1,16 +1,13 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
 
 import {
   searchForStreetname,
   searchForAddress,
   searchBag,
   searchForMonument,
-  searchForBestemmingsplan,
   searchForUnesco,
+  // searchForBestemmingsplan,
 } from 'shared/services/auto-suggest/auto-suggest';
-
-import { fetchMonumentData } from './actions';
 
 import {
   FETCH_SUGGESTIONS_REQUEST,
@@ -25,9 +22,9 @@ import {
   FETCH_MONUMENT_REQUEST,
   FETCH_MONUMENT_SUCCESS,
   FETCH_MONUMENT_FAILURE,
-  FETCH_BESTEMMINGSPLAN_REQUEST,
-  FETCH_BESTEMMINGSPLAN_SUCCESS,
-  FETCH_BESTEMMINGSPLAN_FAILURE,
+  // FETCH_BESTEMMINGSPLAN_REQUEST,
+  // FETCH_BESTEMMINGSPLAN_SUCCESS,
+  // FETCH_BESTEMMINGSPLAN_FAILURE,
 } from './constants';
 
 export function* fetchSuggestions(action) {
@@ -74,13 +71,13 @@ export function* fetchMomument(action) {
   }
 }
 
-export function* fetchBestemmingsplan(action) {
-  try {
-    const plan = yield call(searchForBestemmingsplan, action.bag);
-    yield put({ type: FETCH_BESTEMMINGSPLAN_SUCCESS, plan });
-  } catch (error) {
-    yield put({ type: FETCH_BESTEMMINGSPLAN_FAILURE, error });
-  }
+// export function* fetchBestemmingsplan(action) {
+//   try {
+//     const plan = yield call(searchForBestemmingsplan, action.bag);
+//     yield put({ type: FETCH_BESTEMMINGSPLAN_SUCCESS, plan });
+//   } catch (error) {
+//     yield put({ type: FETCH_BESTEMMINGSPLAN_FAILURE, error });
+//   }
 }
 
 export default function* watchFetchSuggestions() {
