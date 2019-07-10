@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import CONFIGURATION from 'shared/services/configuration/configuration';
 
 import './style.scss';
@@ -7,7 +6,7 @@ import LogoSvg from '../../../node_modules/amsterdam-stijl/dist/images/logos/and
 import LogoPng from '../../../node_modules/amsterdam-stijl/dist/images/logos/andreas.png';
 import LogoPrint from '../../../node_modules/amsterdam-stijl/dist/images/logos/andreas-print.png';
 
-const Header = ({ isAuthenticated, userName, onLoginLogoutButtonClick }) => (
+const Header = () => (
   <div className="header-component has_header_modern no-print">
     <div className="row header-wrapper">
       <div className="col-sm-6 grid-header-logo">
@@ -29,17 +28,5 @@ const Header = ({ isAuthenticated, userName, onLoginLogoutButtonClick }) => (
     </div>
   </div>
 );
-
-Header.propTypes = {
-  isAuthenticated: PropTypes.bool,
-  onLoginLogoutButtonClick: PropTypes.func,
-  userName: PropTypes.string,
-};
-
-Header.defaultProps = {
-  isAuthenticated: false,
-  onLoginLogoutButtonClick: undefined,
-  userName: '',
-};
 
 export default Header;

@@ -2,7 +2,6 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FormattedMessage, intlShape } from 'react-intl';
 
 import { Button, TextField } from '@datapunt/asc-ui';
 import messages from './messages';
@@ -77,7 +76,6 @@ class AddressInput extends React.Component {
 
   render() {
     const {
-      intl,
       streetName,
       streetnameLoading,
       suggestionLoading,
@@ -100,19 +98,17 @@ class AddressInput extends React.Component {
 
     return (
       <div className="address-input">
-        <h3>
-          <FormattedMessage {...messages.title} />
-        </h3>
+        <h3>Vul de betreffende postcode en huisnummer in:</h3>
         <form className="address-input__form" onSubmit={this.onFormSubmit}>
           <TextField
             className="address-input__input address-input__postcode"
-            label={intl.formatMessage(messages.postcode)}
+            label="Postcode"
             onChange={this.onPostcodeInput}
             defaultValue={debug && '1055x'}
           />
           <TextField
             className="address-input__input address-input__streetnumber"
-            label={intl.formatMessage(messages.huisnummer)}
+            label="Huisnummer + toevoeging"
             onInput={this.onStreetNumberInput}
             defaultValue={debug && '19'}
           />
@@ -159,7 +155,7 @@ class AddressInput extends React.Component {
             </div>
           )}
 
-          <Button className="address-input__submit">{intl.formatMessage(messages.submit)}</Button>
+          <Button className="address-input__submit">Bevestig</Button>
         </form>
 
         {streetNumber && loading && (

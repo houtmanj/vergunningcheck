@@ -4,9 +4,7 @@ const getByUri = (uri, params) => fetch(uri, params).then(response => response.j
 
 function getVerblijfsobjectUri(categories, streetNumberFromInput) {
   const indexedCategories = categories.filter(category =>
-    category.content.filter(suggestion => {
-      if (suggestion.category === 'Adressen') return suggestion;
-    }),
+    category.content.filter(suggestion => suggestion.category === 'Adressen'),
   );
 
   // No returned suggestions
@@ -49,9 +47,7 @@ function formatAddress(categories) {
 
 function formatStreetname(categories) {
   const indexedCategories = categories.filter(category =>
-    category.content.filter(suggestion => {
-      if (suggestion.category === 'Straatnamen') return suggestion;
-    }),
+    category.content.filter(suggestion => suggestion.category === 'Straatnamen'),
   );
 
   // @TODO: what if there's multiple streetnames on 1 postcode? EG: 1018xa
