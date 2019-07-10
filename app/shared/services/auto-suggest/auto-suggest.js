@@ -121,7 +121,7 @@ export function searchForMonument(query) {
         .then(response => (response.results.length > 0 ? response.results[0].landelijk_id : false))
         // get monumenten
         .then(id => (id ? getByUri(`${SHARED_CONFIG.API_ROOT}monumenten/monumenten/?betreft_pand=${id}`) : false))
-        .then(response => (response.results.length > 0 ? response.results[0].monumentstatus : false))
+        .then(response => (response.results.length > 0 ? response.results[0].monumentstatus : ''))
     );
   }
   return {};

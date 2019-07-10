@@ -37,7 +37,7 @@ export const initialState = {
   error: false,
   streetName: '',
   suggestions: [],
-  geometrie: [],
+  geometrie: {},
   bagFetch: false,
   bagLoading: false,
   bagStatus: {},

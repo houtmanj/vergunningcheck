@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Button, TextField } from '@datapunt/asc-ui';
-import messages from './messages';
 import { fetchStreetname, fetchBagData } from '../App/actions';
 import './style.scss';
 
@@ -185,9 +184,33 @@ class AddressInput extends React.Component {
   }
 }
 
-AddressInput.defaultProps = {};
+AddressInput.defaultProps = {
+  monumentStatus: '',
+  bagStatus: {
+    pandId: '',
+    geometrie: {},
+    isUnesco: '',
+  },
+};
 
-AddressInput.propTypes = {};
+AddressInput.propTypes = {
+  streetName: PropTypes.string,
+  streetnameLoading: PropTypes.bool,
+  suggestionLoading: PropTypes.bool,
+  suggestions: PropTypes.array,
+  bagLoading: PropTypes.bool,
+  bagFetch: PropTypes.bool,
+  bagStatus: PropTypes.shape({
+    pandId: PropTypes.string,
+    geometrie: PropTypes.object,
+    isUnesco: PropTypes.string,
+  }),
+  monumentFetch: PropTypes.bool,
+  monumentStatus: PropTypes.string,
+  monumentLoading: PropTypes.bool,
+  onfetchStreetname: PropTypes.func.isRequired,
+  onFetchBagData: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => {
   const {
