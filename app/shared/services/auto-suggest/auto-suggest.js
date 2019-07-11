@@ -45,10 +45,7 @@ function formatStreetname(categories) {
     category.content.filter(suggestion => suggestion.category === 'Straatnamen'),
   );
 
-  // @TODO: what if there's multiple streetnames on 1 postcode? EG: 1018xa
-  return indexedCategories.length > 0 && indexedCategories[0].content.length === 1
-    ? indexedCategories[0].content[0]['_display']
-    : '';
+  return indexedCategories.length > 0 ? indexedCategories[0].content[0]['_display'] : '';
 }
 
 export function searchForAddress(query) {
