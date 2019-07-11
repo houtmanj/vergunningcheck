@@ -10,9 +10,6 @@ import {
 } from 'shared/services/auto-suggest/auto-suggest';
 
 import {
-  FETCH_SUGGESTIONS_REQUEST,
-  FETCH_SUGGESTIONS_SUCCESS,
-  FETCH_SUGGESTIONS_FAILURE,
   FETCH_STREETNAME_REQUEST,
   FETCH_STREETNAME_SUCCESS,
   FETCH_STREETNAME_FAILURE,
@@ -27,15 +24,6 @@ import {
   // FETCH_BESTEMMINGSPLAN_SUCCESS,
   // FETCH_BESTEMMINGSPLAN_FAILURE,
 } from './constants';
-
-export function* fetchSuggestions(action) {
-  try {
-    const suggestions = yield call(searchForAddress, action.query);
-    yield put({ type: FETCH_SUGGESTIONS_SUCCESS, suggestions });
-  } catch (error) {
-    yield put({ type: FETCH_SUGGESTIONS_FAILURE, error });
-  }
-}
 
 export function* fetchStreetname(action) {
   try {
@@ -82,7 +70,6 @@ export function* fetchMomument(action) {
 // }
 
 export default function* watchFetchSuggestions() {
-  yield takeLatest(FETCH_SUGGESTIONS_REQUEST, fetchSuggestions);
   yield takeLatest(FETCH_BAG_REQUEST, fetchBag);
   yield takeLatest(FETCH_STREETNAME_REQUEST, fetchStreetname);
   yield takeLatest(FETCH_MONUMENT_REQUEST, fetchMomument);

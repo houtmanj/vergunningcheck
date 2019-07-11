@@ -14,9 +14,6 @@ import produce from 'immer';
 
 import {
   RESET_GLOBAL_ERROR,
-  FETCH_SUGGESTIONS_REQUEST,
-  FETCH_SUGGESTIONS_SUCCESS,
-  FETCH_SUGGESTIONS_FAILURE,
   FETCH_STREETNAME_REQUEST,
   FETCH_STREETNAME_SUCCESS,
   FETCH_STREETNAME_FAILURE,
@@ -34,10 +31,8 @@ import {
 
 // The initial state of the App
 export const initialState = {
-  suggestionLoading: false,
   error: false,
   streetName: '',
-  suggestions: [],
   bagFetch: false,
   bagLoading: false,
   bagStatus: {
@@ -67,39 +62,12 @@ export default (state = initialState, action) =>
         draft.errorEventId = undefined;
         break;
 
-      case FETCH_SUGGESTIONS_REQUEST:
-        return {
-          ...state,
-          error: false,
-          suggestionLoading: true,
-          monumentFetch: false,
-          bagFetch: false,
-          monumentLoading: false,
-          monumentStatus: '',
-          suggestions: [],
-        };
-      case FETCH_SUGGESTIONS_SUCCESS:
-        return {
-          ...state,
-          error: false,
-          suggestionLoading: false,
-          suggestions: action.suggestions,
-        };
-      case FETCH_SUGGESTIONS_FAILURE:
-        return {
-          ...state,
-          error: true,
-          suggestionLoading: false,
-          suggestions: [],
-        };
-
       case FETCH_STREETNAME_REQUEST:
         return {
           ...state,
           streetNameError: false,
           streetNameLoading: true,
           streetName: '',
-          suggestions: [],
           monumentStatus: '',
           monumentFetch: false,
           bagFetch: false,
@@ -116,7 +84,6 @@ export default (state = initialState, action) =>
           ...state,
           streetNameError: true,
           streetNameLoading: false,
-          suggestions: [],
         };
 
       case FETCH_BAG_REQUEST:

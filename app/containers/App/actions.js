@@ -1,6 +1,5 @@
 import {
   RESET_GLOBAL_ERROR,
-  FETCH_SUGGESTIONS_REQUEST,
   FETCH_STREETNAME_REQUEST,
   FETCH_BAG_REQUEST,
   FETCH_MONUMENT_REQUEST,
@@ -10,8 +9,6 @@ import {
 export const resetGlobalError = () => ({
   type: RESET_GLOBAL_ERROR,
 });
-
-export const getSuggestionsAction = (query = '') => ({ type: FETCH_SUGGESTIONS_REQUEST, query });
 
 export const fetchStreetname = (query = '') => ({ type: FETCH_STREETNAME_REQUEST, query });
 

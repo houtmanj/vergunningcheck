@@ -63,6 +63,7 @@ class AddressInput extends React.Component {
 
     if (postcode && streetNumber && validPostcode) {
       onFetchBagData(postcode, streetNumber);
+
       return;
     }
 
@@ -80,8 +81,6 @@ class AddressInput extends React.Component {
     const {
       streetName,
       streetNameLoading,
-      suggestionLoading,
-      suggestions,
       bagLoading,
       bagFetch,
       bagStatus,
@@ -95,9 +94,8 @@ class AddressInput extends React.Component {
       _gemeente: { _display: gemeenteName },
       verblijfsobjectidentificatie,
     } = bagStatus;
-    console.log('BAGSTATUS', bagStatus);
 
-    const loading = streetNameLoading || suggestionLoading || bagLoading;
+    const loading = streetNameLoading || bagLoading;
     const { validPostcode, postcode, streetNumber, hasError, debug } = this.state;
     const notValidPostcodeAmsterdam = validPostcode && !streetName;
     const notValidAddress = bagFetch && !fullAddress;
@@ -209,8 +207,6 @@ AddressInput.defaultProps = {
 AddressInput.propTypes = {
   streetName: PropTypes.string,
   streetNameLoading: PropTypes.bool,
-  suggestionLoading: PropTypes.bool,
-  suggestions: PropTypes.array,
   bagLoading: PropTypes.bool,
   bagFetch: PropTypes.bool,
   bagStatus: PropTypes.shape({
@@ -228,9 +224,7 @@ AddressInput.propTypes = {
 
 const mapStateToProps = state => {
   const {
-    suggestions = [],
     streetNameLoading,
-    suggestionLoading,
     streetName,
     bagFetch,
     bagLoading,
@@ -240,9 +234,7 @@ const mapStateToProps = state => {
     monumentStatus,
   } = state.global;
   return {
-    suggestions,
     streetNameLoading,
-    suggestionLoading,
     streetName,
     bagFetch,
     bagLoading,
