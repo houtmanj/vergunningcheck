@@ -19,7 +19,7 @@ import {
   FETCH_STREETNAME_FAILURE,
   FETCH_BAG_REQUEST,
   FETCH_BAG_SUCCESS,
-  FETCH_BAG_NO_RESULT,
+  FETCH_BAG_NO_RESULTS,
   FETCH_BAG_FAILURE,
   FETCH_MONUMENT_REQUEST,
   FETCH_MONUMENT_SUCCESS,
@@ -36,6 +36,7 @@ export const initialState = {
   bagFetch: false,
   bagLoading: false,
   bagStatus: {
+    _display: '',
     _gemeente: {
       _display: '',
     },
@@ -71,6 +72,7 @@ export default (state = initialState, action) =>
           monumentStatus: '',
           monumentFetch: false,
           bagFetch: false,
+          bagStatus: initialState.bagStatus,
         };
       case FETCH_STREETNAME_SUCCESS:
         return {
@@ -95,6 +97,7 @@ export default (state = initialState, action) =>
           bagStatus: initialState.bagStatus,
           monumentStatus: '',
           monumentFetch: false,
+          noResults: false,
         };
       case FETCH_BAG_SUCCESS:
         return {
@@ -102,12 +105,13 @@ export default (state = initialState, action) =>
           bagLoading: false,
           bagStatus: action.bag,
         };
-      case FETCH_BAG_NO_RESULT:
+      case FETCH_BAG_NO_RESULTS:
         return {
           ...state,
           error: false,
           bagLoading: false,
           bagStatus: initialState.bag,
+          noResults: true,
         };
       case FETCH_BAG_FAILURE:
         return {
@@ -116,6 +120,7 @@ export default (state = initialState, action) =>
           errorMessage: 'Helaas is geen verbinding met de server. Probeer het later opnieuw',
           bagLoading: false,
           bagStatus: initialState.bagStatus,
+          noResults: false,
         };
 
       case FETCH_MONUMENT_REQUEST:

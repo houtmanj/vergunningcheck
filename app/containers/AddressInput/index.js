@@ -64,6 +64,10 @@ class AddressInput extends React.Component {
     if (postcode && streetNumber && validPostcode) {
       onFetchBagData(postcode, streetNumber);
 
+      this.setState({
+        hasError: false,
+      });
+
       return;
     }
 
@@ -87,6 +91,7 @@ class AddressInput extends React.Component {
       monumentFetch,
       monumentStatus = '',
       monumentLoading,
+      noResults,
     } = this.props;
 
     const {
@@ -123,7 +128,7 @@ class AddressInput extends React.Component {
             defaultValue={debug && '19'}
           />
 
-          {!showError && validPostcode && streetNumber && (
+          {!showError && validPostcode && fullAddress && (
             <div>
               <h4>Adres:</h4>
               {streetNameLoading && <div>Laden....</div>}
@@ -152,7 +157,8 @@ class AddressInput extends React.Component {
               )}
               {!postcode && <p>Voer een postcode in</p>}
               {notValidStreetNumber && <p>Voer een huisnummer in</p>}
-              {notValidAddress && streetNumber && (
+
+              {noResults && (
                 <div>
                   <p className="address-input__feedback__incomplete">
                     Op de ingevoerde gegevens is geen adres gevonden.
@@ -172,7 +178,7 @@ class AddressInput extends React.Component {
           </div>
         )}
 
-        {validPostcode && !showError && monumentFetch && (
+        {validPostcode && fullAddress && !showError && monumentFetch && (
           <div>
             <h4>Monument:</h4>
             {monumentLoading && <div>Laden....</div>}
@@ -180,7 +186,7 @@ class AddressInput extends React.Component {
           </div>
         )}
 
-        {validPostcode && !showError && bagFetch && (
+        {validPostcode && fullAddress && !showError && bagFetch && (
           <div>
             <h4>Beschermd stadsgezicht:</h4>
             {bagLoading && <div>Laden....</div>}
@@ -196,12 +202,14 @@ AddressInput.defaultProps = {
   bagStatus: {
     geometrie: {},
     verblijfsobjectidentificatie: '',
+    _display: '',
     _gemeente: {
       _display: '',
     },
     isUnesco: '',
   },
   monumentStatus: '',
+  noResults: false,
 };
 
 AddressInput.propTypes = {
@@ -210,16 +218,18 @@ AddressInput.propTypes = {
   bagLoading: PropTypes.bool,
   bagFetch: PropTypes.bool,
   bagStatus: PropTypes.shape({
+    _display: PropTypes.string,
     verblijfsobjectidentificatie: PropTypes.string,
     geometrie: PropTypes.object,
     _gemeente: PropTypes.object,
-    isUnesco: PropTypes.string,
+    isUnesco: PropTypes.string, // @todo: remove from bagStatus and add to root
   }),
   monumentFetch: PropTypes.bool,
   monumentStatus: PropTypes.string,
   monumentLoading: PropTypes.bool,
   onFetchStreetname: PropTypes.func.isRequired,
   onFetchBagData: PropTypes.func.isRequired,
+  noResults: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
@@ -232,6 +242,7 @@ const mapStateToProps = state => {
     monumentFetch,
     monumentLoading,
     monumentStatus,
+    noResults,
   } = state.global;
   return {
     streetNameLoading,
@@ -242,6 +253,7 @@ const mapStateToProps = state => {
     monumentFetch,
     monumentLoading,
     monumentStatus,
+    noResults,
   };
 };
 

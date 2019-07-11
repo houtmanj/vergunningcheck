@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, delay } from 'redux-saga/effects';
 
 import {
   searchForStreetname,
@@ -15,7 +15,7 @@ import {
   FETCH_STREETNAME_FAILURE,
   FETCH_BAG_REQUEST,
   FETCH_BAG_SUCCESS,
-  FETCH_BAG_NO_RESULT,
+  FETCH_BAG_NO_RESULTS,
   FETCH_BAG_FAILURE,
   FETCH_MONUMENT_REQUEST,
   FETCH_MONUMENT_SUCCESS,
@@ -43,7 +43,8 @@ export function* fetchBag(action) {
       yield call(searchForUnesco, bag);
       // yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
     } else {
-      yield put({ type: FETCH_BAG_NO_RESULT });
+      yield delay(1000);
+      yield put({ type: FETCH_BAG_NO_RESULTS });
     }
   } catch (error) {
     yield put({ type: FETCH_BAG_FAILURE, error });
