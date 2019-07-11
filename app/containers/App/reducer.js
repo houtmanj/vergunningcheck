@@ -22,6 +22,7 @@ import {
   FETCH_STREETNAME_FAILURE,
   FETCH_BAG_REQUEST,
   FETCH_BAG_SUCCESS,
+  FETCH_BAG_NO_RESULT,
   FETCH_BAG_FAILURE,
   FETCH_MONUMENT_REQUEST,
   FETCH_MONUMENT_SUCCESS,
@@ -37,10 +38,15 @@ export const initialState = {
   error: false,
   streetName: '',
   suggestions: [],
-  geometrie: {},
   bagFetch: false,
   bagLoading: false,
-  bagStatus: {},
+  bagStatus: {
+    _gemeente: {
+      _display: '',
+    },
+    verblijfsobjectidentificatie: '',
+  },
+  isUnesco: '',
   monumentFetch: false,
   monumentLoading: false,
   monumentStatus: '',
@@ -90,8 +96,8 @@ export default (state = initialState, action) =>
       case FETCH_STREETNAME_REQUEST:
         return {
           ...state,
-          streetnameError: false,
-          streetnameLoading: true,
+          streetNameError: false,
+          streetNameLoading: true,
           streetName: '',
           suggestions: [],
           monumentStatus: '',
@@ -101,15 +107,15 @@ export default (state = initialState, action) =>
       case FETCH_STREETNAME_SUCCESS:
         return {
           ...state,
-          streetnameError: false,
-          streetnameLoading: false,
-          streetName: action.streetname,
+          streetNameError: false,
+          streetNameLoading: false,
+          streetName: action.streetName,
         };
       case FETCH_STREETNAME_FAILURE:
         return {
           ...state,
-          streetnameError: true,
-          streetnameLoading: false,
+          streetNameError: true,
+          streetNameLoading: false,
           suggestions: [],
         };
 
@@ -119,7 +125,7 @@ export default (state = initialState, action) =>
           error: false,
           bagFetch: true,
           bagLoading: true,
-          bagStatus: {},
+          bagStatus: initialState.bagStatus,
           monumentStatus: '',
           monumentFetch: false,
         };
@@ -129,12 +135,20 @@ export default (state = initialState, action) =>
           bagLoading: false,
           bagStatus: action.bag,
         };
+      case FETCH_BAG_NO_RESULT:
+        return {
+          ...state,
+          error: false,
+          bagLoading: false,
+          bagStatus: initialState.bag,
+        };
       case FETCH_BAG_FAILURE:
         return {
           ...state,
           error: true,
+          errorMessage: 'Helaas is geen verbinding met de server. Probeer het later opnieuw',
           bagLoading: false,
-          bagStatus: {},
+          bagStatus: initialState.bagStatus,
         };
 
       case FETCH_MONUMENT_REQUEST:

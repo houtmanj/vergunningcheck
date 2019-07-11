@@ -3,14 +3,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Button, TextField } from '@datapunt/asc-ui';
+import {
+  // Button,
+  TextField,
+} from '@datapunt/asc-ui';
 import { fetchStreetname, fetchBagData } from '../App/actions';
 import './style.scss';
 
 class AddressInput extends React.Component {
   constructor(props) {
     super(props);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
+    // this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onPostcodeInput = this.onPostcodeInput.bind(this);
     this.onStreetNumberInput = this.onStreetNumberInput.bind(this);
     this.state = {
@@ -54,14 +57,9 @@ class AddressInput extends React.Component {
     this.setState({
       streetNumber,
     });
-  }
-
-  onFormSubmit(event) {
-    event.preventDefault();
-    event.stopPropagation();
 
     const { onFetchBagData } = this.props;
-    const { streetNumber, postcode, validPostcode } = this.state;
+    const { postcode, validPostcode } = this.state;
 
     if (postcode && streetNumber && validPostcode) {
       onFetchBagData(postcode, streetNumber);
@@ -73,10 +71,15 @@ class AddressInput extends React.Component {
     });
   }
 
+  // onFormSubmit(event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  // }
+
   render() {
     const {
       streetName,
-      streetnameLoading,
+      streetNameLoading,
       suggestionLoading,
       suggestions,
       bagLoading,
@@ -87,10 +90,17 @@ class AddressInput extends React.Component {
       monumentLoading,
     } = this.props;
 
-    const loading = streetnameLoading || suggestionLoading || bagLoading;
+    const {
+      _display: fullAddress,
+      _gemeente: { _display: gemeenteName },
+      verblijfsobjectidentificatie,
+    } = bagStatus;
+    console.log('BAGSTATUS', bagStatus);
+
+    const loading = streetNameLoading || suggestionLoading || bagLoading;
     const { validPostcode, postcode, streetNumber, hasError, debug } = this.state;
     const notValidPostcodeAmsterdam = validPostcode && !streetName;
-    const notValidAddress = bagFetch && !bagStatus.pandId;
+    const notValidAddress = bagFetch && !fullAddress;
     const showError = hasError || notValidPostcodeAmsterdam || notValidAddress;
     const notValidPostcode = !validPostcode || postcode.length !== 6;
     const notValidStreetNumber = !streetNumber;
@@ -98,7 +108,10 @@ class AddressInput extends React.Component {
     return (
       <div className="address-input">
         <h3>Vul de betreffende postcode en huisnummer in:</h3>
-        <form className="address-input__form" onSubmit={this.onFormSubmit}>
+        <form
+          className="address-input__form"
+          // onSubmit={this.onFormSubmit}
+        >
           <TextField
             className="address-input__input address-input__postcode"
             label="Postcode"
@@ -112,13 +125,18 @@ class AddressInput extends React.Component {
             defaultValue={debug && '19'}
           />
 
-          {validPostcode && (
-            <div className="address-input__results">
-              <h4 className="address-input__results__title">Adres:</h4>
-              {streetnameLoading && <div>Laden....</div>}
-              {!streetnameLoading && streetName && (
-                <div className={'address-input__results__item'}>
-                  {streetName} {streetNumber}
+          {!showError && validPostcode && streetNumber && (
+            <div>
+              <h4>Adres:</h4>
+              {streetNameLoading && <div>Laden....</div>}
+              {!streetNameLoading && streetName && (
+                <div className="address-input__results__item">
+                  {fullAddress}
+                  <br />
+                  {postcode.toUpperCase()} {gemeenteName}
+                  <br />
+                  <br />
+                  Verblijfsobjectidentificatie: {verblijfsobjectidentificatie}
                 </div>
               )}
             </div>
@@ -136,25 +154,17 @@ class AddressInput extends React.Component {
               )}
               {!postcode && <p>Voer een postcode in</p>}
               {notValidStreetNumber && <p>Voer een huisnummer in</p>}
-              {notValidAddress && (
+              {notValidAddress && streetNumber && (
                 <div>
                   <p className="address-input__feedback__incomplete">
                     Op de ingevoerde gegevens is geen adres gevonden.
                   </p>
-                  {suggestions.length > 0 && (
-                    <>
-                      <div>Bedoel je misschien:</div>
-                      {suggestions.map(suggestion => (
-                        <div key={suggestion.label}>{suggestion.label}</div>
-                      ))}
-                    </>
-                  )}
                 </div>
               )}
             </div>
           )}
 
-          <Button className="address-input__submit">Bevestig</Button>
+          {/* <Button className="address-input__submit">Bevestig</Button> */}
         </form>
 
         {streetNumber && loading && (
@@ -185,24 +195,28 @@ class AddressInput extends React.Component {
 }
 
 AddressInput.defaultProps = {
-  monumentStatus: '',
   bagStatus: {
-    pandId: '',
     geometrie: {},
+    verblijfsobjectidentificatie: '',
+    _gemeente: {
+      _display: '',
+    },
     isUnesco: '',
   },
+  monumentStatus: '',
 };
 
 AddressInput.propTypes = {
   streetName: PropTypes.string,
-  streetnameLoading: PropTypes.bool,
+  streetNameLoading: PropTypes.bool,
   suggestionLoading: PropTypes.bool,
   suggestions: PropTypes.array,
   bagLoading: PropTypes.bool,
   bagFetch: PropTypes.bool,
   bagStatus: PropTypes.shape({
-    pandId: PropTypes.string,
+    verblijfsobjectidentificatie: PropTypes.string,
     geometrie: PropTypes.object,
+    _gemeente: PropTypes.object,
     isUnesco: PropTypes.string,
   }),
   monumentFetch: PropTypes.bool,
@@ -215,7 +229,7 @@ AddressInput.propTypes = {
 const mapStateToProps = state => {
   const {
     suggestions = [],
-    streetnameLoading,
+    streetNameLoading,
     suggestionLoading,
     streetName,
     bagFetch,
@@ -227,7 +241,7 @@ const mapStateToProps = state => {
   } = state.global;
   return {
     suggestions,
-    streetnameLoading,
+    streetNameLoading,
     suggestionLoading,
     streetName,
     bagFetch,

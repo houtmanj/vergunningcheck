@@ -18,6 +18,7 @@ import {
   FETCH_STREETNAME_FAILURE,
   FETCH_BAG_REQUEST,
   FETCH_BAG_SUCCESS,
+  FETCH_BAG_NO_RESULT,
   FETCH_BAG_FAILURE,
   FETCH_MONUMENT_REQUEST,
   FETCH_MONUMENT_SUCCESS,
@@ -38,8 +39,8 @@ export function* fetchSuggestions(action) {
 
 export function* fetchStreetname(action) {
   try {
-    const streetname = yield call(searchForStreetname, action.query);
-    yield put({ type: FETCH_STREETNAME_SUCCESS, streetname });
+    const streetName = yield call(searchForStreetname, action.query);
+    yield put({ type: FETCH_STREETNAME_SUCCESS, streetName });
   } catch (error) {
     yield put({ type: FETCH_STREETNAME_FAILURE, error });
   }
@@ -54,7 +55,7 @@ export function* fetchBag(action) {
       yield call(searchForUnesco, bag);
       // yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
     } else {
-      yield put({ type: FETCH_BAG_FAILURE });
+      yield put({ type: FETCH_BAG_NO_RESULT });
     }
   } catch (error) {
     yield put({ type: FETCH_BAG_FAILURE, error });
@@ -62,7 +63,7 @@ export function* fetchBag(action) {
 }
 
 export function* fetchMomument(action) {
-  const { pandId = '' } = action.bag;
+  const { verblijfsobjectidentificatie: pandId = '' } = action.bag;
   try {
     const monument = yield call(searchForMonument, pandId);
     yield put({ type: FETCH_MONUMENT_SUCCESS, monument });
@@ -85,5 +86,6 @@ export default function* watchFetchSuggestions() {
   yield takeLatest(FETCH_BAG_REQUEST, fetchBag);
   yield takeLatest(FETCH_STREETNAME_REQUEST, fetchStreetname);
   yield takeLatest(FETCH_MONUMENT_REQUEST, fetchMomument);
+
   // yield takeLatest(FETCH_BESTEMMINGSPLAN_REQUEST, fetchBestemmingsplan);
 }

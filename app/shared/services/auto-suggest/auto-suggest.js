@@ -15,14 +15,17 @@ function getVerblijfsobjectUri(categories, streetNumberFromInput) {
   if (content.length === 1) {
     return content[0].uri;
   }
-  // @TODO: find other solution for fetching correct address
-  return content
-    .filter(address => {
-      const { _display: label } = address;
-      const streetNameFromApi = label.slice(label.lastIndexOf(' ')).trim();
-      return streetNameFromApi === streetNumberFromInput;
-    })
-    .map(address => address.uri);
+
+  const filteredAddress = content.filter(address => {
+    const { _display: label } = address;
+    const streetNameFromApi = label.slice(label.lastIndexOf(' ')).trim();
+    return streetNameFromApi === streetNumberFromInput;
+  });
+  if (filteredAddress && filteredAddress.uri) {
+    return filteredAddress.uri;
+  }
+
+  return '';
 }
 
 function formatAddress(categories) {
@@ -75,14 +78,7 @@ export function searchBag(query) {
         .then(response => getVerblijfsobjectUri(response, streetNumber))
         // verblijfsobject uri: /bag/verblijfsobject/${ID}/
         .then(verblijfsobjectUri => {
-          if (verblijfsobjectUri) {
-            return getByUri(`${SHARED_CONFIG.API_ROOT}${verblijfsobjectUri}`).then(response => ({
-              pandId: response.verblijfsobjectidentificatie,
-              geometrie: response.geometrie,
-            }));
-          }
-
-          return verblijfsobjectUri;
+          if (verblijfsobjectUri) return getByUri(`${SHARED_CONFIG.API_ROOT}${verblijfsobjectUri}`);
         })
     );
   }
@@ -90,10 +86,12 @@ export function searchBag(query) {
 }
 
 export function searchForUnesco(query) {
+  const { geometrie } = query;
   const uri =
     query &&
-    `${SHARED_CONFIG.API_ROOT}geosearch/search/?item=unesco&x=${query.geometrie.coordinates[0]}&y=${
-      query.geometrie.coordinates[1]
+    geometrie &&
+    `${SHARED_CONFIG.API_ROOT}geosearch/search/?item=unesco&x=${geometrie.coordinates[0]}&y=${
+      geometrie.coordinates[1]
     }`;
   if (uri) {
     return getByUri(uri).then(response => {
@@ -121,5 +119,5 @@ export function searchForMonument(query) {
         .then(response => (response.results.length > 0 ? response.results[0].monumentstatus : ''))
     );
   }
-  return {};
+  return '';
 }
