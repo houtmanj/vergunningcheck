@@ -23,7 +23,7 @@ class AddressInput extends React.Component {
   }
 
   onPostcodeInput(event) {
-    const { onfetchStreetname } = this.props;
+    const { onFetchStreetname } = this.props;
     const { streetNumber } = this.state;
     const { value: postcode } = event.target;
     const regexPostcode = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
@@ -44,7 +44,7 @@ class AddressInput extends React.Component {
     });
 
     if (validPostcode) {
-      onfetchStreetname(postcode);
+      onFetchStreetname(postcode);
     }
   }
 
@@ -208,7 +208,7 @@ AddressInput.propTypes = {
   monumentFetch: PropTypes.bool,
   monumentStatus: PropTypes.string,
   monumentLoading: PropTypes.bool,
-  onfetchStreetname: PropTypes.func.isRequired,
+  onFetchStreetname: PropTypes.func.isRequired,
   onFetchBagData: PropTypes.func.isRequired,
 };
 
@@ -243,7 +243,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       onFetchBagData: fetchBagData,
-      onfetchStreetname: fetchStreetname,
+      onFetchStreetname: fetchStreetname,
     },
     dispatch,
   );
