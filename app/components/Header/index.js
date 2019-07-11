@@ -23,7 +23,7 @@ const Header = () => (
             </span>
           </a>
         </h1>
-        <span className="header-title">Amsterdam Vergunningschecker</span>
+        <span className="header-title">Amsterdam Vergunningschecker 0.0.1</span>
       </div>
     </div>
   </div>
