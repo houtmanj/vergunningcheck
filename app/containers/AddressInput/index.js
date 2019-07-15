@@ -8,12 +8,12 @@ import {
   TextField,
 } from '@datapunt/asc-ui';
 import { fetchStreetname, fetchBagData } from './actions';
+import AddressInputResult from 'components/AddressInputResult';
 import './style.scss';
 
 class AddressInput extends React.Component {
   constructor(props) {
     super(props);
-    // this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onPostcodeInput = this.onPostcodeInput.bind(this);
     this.onStreetNumberInput = this.onStreetNumberInput.bind(this);
     this.state = {
@@ -76,11 +76,6 @@ class AddressInput extends React.Component {
     });
   }
 
-  // onFormSubmit(event) {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  // }
-
   render() {
     const {
       streetName,
@@ -94,6 +89,8 @@ class AddressInput extends React.Component {
       noResults,
     } = this.props;
 
+    const { validPostcode, postcode, streetNumber, hasError, debug } = this.state;
+
     const {
       _display: fullAddress,
       _gemeente: { _display: gemeenteName },
@@ -101,7 +98,6 @@ class AddressInput extends React.Component {
     } = bagStatus;
 
     const loading = streetNameLoading || bagLoading;
-    const { validPostcode, postcode, streetNumber, hasError, debug } = this.state;
     const notValidPostcodeAmsterdam = validPostcode && !streetName;
     const notValidAddress = bagFetch && !fullAddress;
     const showError = hasError || notValidPostcodeAmsterdam || notValidAddress;
@@ -111,10 +107,7 @@ class AddressInput extends React.Component {
     return (
       <div className="address-input">
         <h3>Vul de betreffende postcode en huisnummer in:</h3>
-        <form
-          className="address-input__form"
-          // onSubmit={this.onFormSubmit}
-        >
+        <form className="address-input__form">
           <TextField
             className="address-input__input address-input__postcode"
             label="Postcode"
@@ -127,23 +120,6 @@ class AddressInput extends React.Component {
             onInput={this.onStreetNumberInput}
             defaultValue={debug && '19'}
           />
-
-          {!showError && validPostcode && fullAddress && (
-            <div>
-              <h4>Adres:</h4>
-              {streetNameLoading && <div>Laden....</div>}
-              {!streetNameLoading && streetName && (
-                <div className="address-input__results__item">
-                  {fullAddress}
-                  <br />
-                  {postcode.toUpperCase()} {gemeenteName}
-                  <br />
-                  <br />
-                  Verblijfsobjectidentificatie: {verblijfsobjectidentificatie}
-                </div>
-              )}
-            </div>
-          )}
 
           {!loading && showError && (
             <div className="address-input__error">
@@ -167,31 +143,29 @@ class AddressInput extends React.Component {
               )}
             </div>
           )}
-
-          {/* <Button className="address-input__submit">Bevestig</Button> */}
         </form>
 
         {streetNumber && loading && (
-          <div>
-            <h4>Laden...</h4>
-            <div>De resultaten worden ingeladen.</div>
-          </div>
+          <AddressInputResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
         )}
 
-        {validPostcode && fullAddress && !showError && monumentFetch && (
-          <div>
-            <h4>Monument:</h4>
-            {monumentLoading && <div>Laden....</div>}
-            {!monumentLoading && <div>Status: {monumentStatus || 'Geen monument'}</div>}
-          </div>
-        )}
+        {validPostcode && fullAddress && !showError && (
+          <>
+            <AddressInputResult loading={streetNameLoading} title="Adres:">
+              <div>{fullAddress}</div>
+              <div>
+                {postcode.toUpperCase()} {gemeenteName}
+              </div>
+            </AddressInputResult>
 
-        {validPostcode && fullAddress && !showError && bagFetch && (
-          <div>
-            <h4>Beschermd stadsgezicht:</h4>
-            {bagLoading && <div>Laden....</div>}
-            {!bagLoading && <div>Status: {bagStatus.isUnesco ? `Ja, ${bagStatus.isUnesco}` : 'Nee'}</div>}
-          </div>
+            <AddressInputResult loading={monumentLoading} title="Monument:">
+              Status: {monumentStatus || 'Geen monument'}
+            </AddressInputResult>
+
+            <AddressInputResult loading={bagLoading} title="Beschermd stadsgezicht:">
+              Status: {bagStatus.isUnesco ? `Ja, ${bagStatus.isUnesco}` : 'Nee'}
+            </AddressInputResult>
+          </>
         )}
       </div>
     );
