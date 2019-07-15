@@ -44,7 +44,6 @@ export const initialState = {
     verblijfsobjectidentificatie: '',
   },
   isUnesco: '',
-  monumentFetch: false,
   monumentLoading: false,
   monumentStatus: '',
   planFetch: false,
@@ -64,7 +63,6 @@ export default (state = initialState, action) =>
           streetNameLoading: true,
           streetName: '',
           monumentStatus: '',
-          monumentFetch: false,
           bagFetch: false,
           bagStatus: initialState.bagStatus,
         };
@@ -90,7 +88,6 @@ export default (state = initialState, action) =>
           bagLoading: true,
           bagStatus: initialState.bagStatus,
           monumentStatus: '',
-          monumentFetch: false,
           noResults: false,
         };
       case FETCH_BAG_SUCCESS:
@@ -121,7 +118,6 @@ export default (state = initialState, action) =>
         return {
           ...state,
           error: false,
-          monumentFetch: true,
           monumentLoading: true,
           monumentStatus: '',
         };

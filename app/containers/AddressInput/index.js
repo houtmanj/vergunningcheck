@@ -7,8 +7,8 @@ import {
   // Button,
   TextField,
 } from '@datapunt/asc-ui';
-import { fetchStreetname, fetchBagData } from './actions';
 import AddressInputResult from 'components/AddressInputResult';
+import { fetchStreetname, fetchBagData } from './actions';
 import './style.scss';
 
 class AddressInput extends React.Component {
@@ -83,8 +83,7 @@ class AddressInput extends React.Component {
       bagLoading,
       bagFetch,
       bagStatus,
-      monumentFetch,
-      monumentStatus = '',
+      monumentStatus,
       monumentLoading,
       noResults,
     } = this.props;
@@ -92,17 +91,17 @@ class AddressInput extends React.Component {
     const { validPostcode, postcode, streetNumber, hasError, debug } = this.state;
 
     const {
-      _display: fullAddress,
-      _gemeente: { _display: gemeenteName },
-      verblijfsobjectidentificatie,
+      _display: addressLine1,
+      _gemeente: { _display: gemeente },
     } = bagStatus;
 
     const loading = streetNameLoading || bagLoading;
     const notValidPostcodeAmsterdam = validPostcode && !streetName;
-    const notValidAddress = bagFetch && !fullAddress;
+    const notValidAddress = bagFetch && !addressLine1;
     const showError = hasError || notValidPostcodeAmsterdam || notValidAddress;
     const notValidPostcode = !validPostcode || postcode.length !== 6;
     const notValidStreetNumber = !streetNumber;
+    const addressLine2 = `${postcode.toUpperCase()} ${gemeente}`;
 
     return (
       <div className="address-input">
@@ -149,13 +148,11 @@ class AddressInput extends React.Component {
           <AddressInputResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
         )}
 
-        {validPostcode && fullAddress && !showError && (
+        {validPostcode && addressLine1 && !showError && (
           <>
             <AddressInputResult loading={streetNameLoading} title="Adres:">
-              <div>{fullAddress}</div>
-              <div>
-                {postcode.toUpperCase()} {gemeenteName}
-              </div>
+              <div>{addressLine1}</div>
+              <div>{addressLine2}</div>
             </AddressInputResult>
 
             <AddressInputResult loading={monumentLoading} title="Monument:">
@@ -175,7 +172,6 @@ class AddressInput extends React.Component {
 AddressInput.defaultProps = {
   bagStatus: {
     geometrie: {},
-    verblijfsobjectidentificatie: '',
     _display: '',
     _gemeente: {
       _display: '',
@@ -193,12 +189,10 @@ AddressInput.propTypes = {
   bagFetch: PropTypes.bool,
   bagStatus: PropTypes.shape({
     _display: PropTypes.string,
-    verblijfsobjectidentificatie: PropTypes.string,
     geometrie: PropTypes.object,
     _gemeente: PropTypes.object,
     isUnesco: PropTypes.string, // @todo: remove from bagStatus and add to root
   }),
-  monumentFetch: PropTypes.bool,
   monumentStatus: PropTypes.string,
   monumentLoading: PropTypes.bool,
   onFetchStreetname: PropTypes.func.isRequired,
@@ -213,7 +207,6 @@ const mapStateToProps = state => {
     bagFetch,
     bagLoading,
     bagStatus,
-    monumentFetch,
     monumentLoading,
     monumentStatus,
     noResults,
@@ -224,7 +217,6 @@ const mapStateToProps = state => {
     bagFetch,
     bagLoading,
     bagStatus,
-    monumentFetch,
     monumentLoading,
     monumentStatus,
     noResults,
