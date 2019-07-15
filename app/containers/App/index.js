@@ -36,6 +36,7 @@ export const App = () => {
       <div className="content container">
         <Switch>
           <Route exact path="/" component={injectIntl(AddressInput)} />
+          <Route exact path="/health" />
           <Route path="" component={NotFoundPage} />
         </Switch>
       </div>
