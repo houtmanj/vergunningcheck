@@ -7,7 +7,7 @@ import {
   // Button,
   TextField,
 } from '@datapunt/asc-ui';
-import { fetchStreetname, fetchBagData } from '../App/actions';
+import { fetchStreetname, fetchBagData } from './actions';
 import './style.scss';
 
 class AddressInput extends React.Component {
@@ -243,7 +243,7 @@ const mapStateToProps = state => {
     monumentLoading,
     monumentStatus,
     noResults,
-  } = state.global;
+  } = state.addressInput;
   return {
     streetNameLoading,
     streetName,

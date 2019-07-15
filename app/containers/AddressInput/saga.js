@@ -2,7 +2,6 @@ import { call, put, takeLatest, delay } from 'redux-saga/effects';
 
 import {
   searchForStreetname,
-  searchForAddress,
   searchBag,
   searchForMonument,
   searchForUnesco,

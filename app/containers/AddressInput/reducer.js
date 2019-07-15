@@ -13,7 +13,6 @@
 import produce from 'immer';
 
 import {
-  RESET_GLOBAL_ERROR,
   FETCH_STREETNAME_REQUEST,
   FETCH_STREETNAME_SUCCESS,
   FETCH_STREETNAME_FAILURE,
@@ -33,6 +32,8 @@ import {
 export const initialState = {
   error: false,
   streetName: '',
+  streetNameLoading: false,
+  streetNameError: false,
   bagFetch: false,
   bagLoading: false,
   bagStatus: {
@@ -56,13 +57,6 @@ export default (state = initialState, action) =>
   produce(state, draft => {
     // console.log('ACTION', action);
     switch (action.type) {
-      case RESET_GLOBAL_ERROR:
-        draft.error = false;
-        draft.errorMessage = '';
-        draft.loading = false;
-        draft.errorEventId = undefined;
-        break;
-
       case FETCH_STREETNAME_REQUEST:
         return {
           ...state,
