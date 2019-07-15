@@ -35,6 +35,7 @@ export const App = () => {
       <div className="content container">
         <Switch>
           <Route exact path="/" component={Map} />
+          <Route exact path="/health" />
           <Route path="" component={NotFoundPage} />
         </Switch>
       </div>
