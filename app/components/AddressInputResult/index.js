@@ -16,7 +16,7 @@ AddressInputResult.defaultProps = {
 AddressInputResult.propTypes = {
   title: PropTypes.string,
   loading: PropTypes.bool,
-  loadingText: PropTypes.string.isRequired,
+  loadingText: PropTypes.string,
   children: PropTypes.node,
 };
 
