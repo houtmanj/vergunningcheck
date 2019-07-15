@@ -7,34 +7,7 @@
     }
   }
 
-  &__results {
-    &__title {
-      margin: 0;
-    }
-  }
-
-  &__submit {
-    margin-top: 25px;
-  }
-
-  &__error p {
+  &__error {
     color: red;
-  }
-
-  &__results {
-    &__final {
-      color: green;
-    }
-  }
-
-  &__feedback {
-    margin-top: 25px;
-
-    &__complete {
-      color: green;
-    }
-    &__incomplete {
-      color: red;
-    }
   }
 }
