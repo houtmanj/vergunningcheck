@@ -5,6 +5,7 @@ import {
   searchBag,
   searchForMonument,
   searchForUnesco,
+  searchForBeperking,
   // searchForBestemmingsplan,
 } from 'shared/services/auto-suggest/auto-suggest';
 
@@ -19,6 +20,9 @@ import {
   FETCH_MONUMENT_REQUEST,
   FETCH_MONUMENT_SUCCESS,
   FETCH_MONUMENT_FAILURE,
+  FETCH_BEPERKING_REQUEST,
+  FETCH_BEPERKING_SUCCESS,
+  FETCH_BEPERKING_FAILURE,
   // FETCH_BESTEMMINGSPLAN_REQUEST,
   // FETCH_BESTEMMINGSPLAN_SUCCESS,
   // FETCH_BESTEMMINGSPLAN_FAILURE,
@@ -39,6 +43,7 @@ export function* fetchBag(action) {
     if (bag) {
       yield put({ type: FETCH_BAG_SUCCESS, bag });
       yield put({ type: FETCH_MONUMENT_REQUEST, bag });
+      yield put({ type: FETCH_BEPERKING_REQUEST, bag });
       yield call(searchForUnesco, bag);
       // yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
     } else {
@@ -60,6 +65,16 @@ export function* fetchMomument(action) {
   }
 }
 
+export function* fetchBeperking(action) {
+  const { verblijfsobjectidentificatie: pandId = '' } = action.bag;
+  try {
+    const beperking = yield call(searchForBeperking, pandId);
+    yield put({ type: FETCH_BEPERKING_SUCCESS, beperking });
+  } catch (error) {
+    yield put({ type: FETCH_BEPERKING_FAILURE, error });
+  }
+}
+
 // export function* fetchBestemmingsplan(action) {
 //   try {
 //     const plan = yield call(searchForBestemmingsplan, action.bag);
@@ -73,6 +88,7 @@ export default function* watchFetchSuggestions() {
   yield takeLatest(FETCH_BAG_REQUEST, fetchBag);
   yield takeLatest(FETCH_STREETNAME_REQUEST, fetchStreetname);
   yield takeLatest(FETCH_MONUMENT_REQUEST, fetchMomument);
+  yield takeLatest(FETCH_BEPERKING_REQUEST, fetchBeperking);
 
   // yield takeLatest(FETCH_BESTEMMINGSPLAN_REQUEST, fetchBestemmingsplan);
 }

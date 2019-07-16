@@ -23,9 +23,12 @@ import {
   FETCH_MONUMENT_REQUEST,
   FETCH_MONUMENT_SUCCESS,
   FETCH_MONUMENT_FAILURE,
-  FETCH_BESTEMMINGSPLAN_REQUEST,
-  FETCH_BESTEMMINGSPLAN_SUCCESS,
-  FETCH_BESTEMMINGSPLAN_FAILURE,
+  FETCH_BEPERKING_REQUEST,
+  FETCH_BEPERKING_SUCCESS,
+  FETCH_BEPERKING_FAILURE,
+  // FETCH_BESTEMMINGSPLAN_REQUEST,
+  // FETCH_BESTEMMINGSPLAN_SUCCESS,
+  // FETCH_BESTEMMINGSPLAN_FAILURE,
 } from './constants';
 
 // The initial state of the App
@@ -49,12 +52,15 @@ export const initialState = {
   planFetch: false,
   planLoading: false,
   planStatus: '',
+  beperkingLoading: false,
+  beperkingStatus: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
 export default (state = initialState, action) =>
   produce(state, draft => {
     // console.log('ACTION', action);
+
     switch (action.type) {
       case FETCH_STREETNAME_REQUEST:
         return {
@@ -135,27 +141,48 @@ export default (state = initialState, action) =>
           monumentStatus: '',
         };
 
-      case FETCH_BESTEMMINGSPLAN_REQUEST:
+      case FETCH_BEPERKING_REQUEST:
         return {
           ...state,
           error: false,
-          planFetch: true,
-          planLoading: true,
-          planStatus: '',
+          beperkingLoading: true,
+          beperkingStatus: [],
         };
-      case FETCH_BESTEMMINGSPLAN_SUCCESS:
+      case FETCH_BEPERKING_SUCCESS:
         return {
           ...state,
-          planLoading: false,
-          planStatus: action.plan,
+          beperkingLoading: false,
+          beperkingStatus: action.beperking,
         };
-      case FETCH_BESTEMMINGSPLAN_FAILURE:
+      case FETCH_BEPERKING_FAILURE:
         return {
           ...state,
           error: true,
-          planLoading: false,
-          planStatus: '',
+          beperkingLoading: false,
+          beperkingStatus: [],
         };
+
+      // case FETCH_BESTEMMINGSPLAN_REQUEST:
+      //   return {
+      //     ...state,
+      //     error: false,
+      //     planFetch: true,
+      //     planLoading: true,
+      //     planStatus: '',
+      //   };
+      // case FETCH_BESTEMMINGSPLAN_SUCCESS:
+      //   return {
+      //     ...state,
+      //     planLoading: false,
+      //     planStatus: action.plan,
+      //   };
+      // case FETCH_BESTEMMINGSPLAN_FAILURE:
+      //   return {
+      //     ...state,
+      //     error: true,
+      //     planLoading: false,
+      //     planStatus: '',
+      //   };
 
       default:
         draft = state;

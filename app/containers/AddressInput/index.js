@@ -85,6 +85,8 @@ class AddressInput extends React.Component {
       bagStatus,
       monumentStatus,
       monumentLoading,
+      beperkingStatus,
+      beperkingLoading,
       noResults,
     } = this.props;
 
@@ -156,11 +158,22 @@ class AddressInput extends React.Component {
             </AddressInputResult>
 
             <AddressInputResult loading={monumentLoading} title="Monument:">
-              Status: {monumentStatus || 'Geen monument'}
+              {monumentStatus || 'Geen monument'}
             </AddressInputResult>
 
             <AddressInputResult loading={bagLoading} title="Beschermd stadsgezicht:">
-              Status: {bagStatus.isUnesco ? `Ja, ${bagStatus.isUnesco}` : 'Nee'}
+              {bagStatus.isUnesco ? `Ja, ${bagStatus.isUnesco}` : 'Geen beschermd stadsgezicht'}
+            </AddressInputResult>
+
+            <AddressInputResult loading={beperkingLoading} title="Beperkingen:">
+              {beperkingStatus.length > 0 && (
+                <ul>
+                  {beperkingStatus.map(beperking => (
+                    <li key={beperking.inschrijfnummer}>{beperking['_display']}</li>
+                  ))}
+                </ul>
+              )}
+              {beperkingStatus.length === 0 && `Geen beperkingen`}
             </AddressInputResult>
           </>
         )}
@@ -195,6 +208,8 @@ AddressInput.propTypes = {
   }),
   monumentStatus: PropTypes.string,
   monumentLoading: PropTypes.bool,
+  beperkingStatus: PropTypes.arrayOf(PropTypes.object),
+  beperkingLoading: PropTypes.bool,
   onFetchStreetname: PropTypes.func.isRequired,
   onFetchBagData: PropTypes.func.isRequired,
   noResults: PropTypes.bool,
@@ -209,6 +224,8 @@ const mapStateToProps = state => {
     bagStatus,
     monumentLoading,
     monumentStatus,
+    beperkingLoading,
+    beperkingStatus,
     noResults,
   } = state.addressInput;
   return {
@@ -219,6 +236,8 @@ const mapStateToProps = state => {
     bagStatus,
     monumentLoading,
     monumentStatus,
+    beperkingLoading,
+    beperkingStatus,
     noResults,
   };
 };
