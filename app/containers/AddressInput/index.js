@@ -87,6 +87,8 @@ class AddressInput extends React.Component {
       monumentLoading,
       beperkingStatus,
       beperkingLoading,
+      stadsgezichtStatus,
+      stadsgezichtLoading,
       noResults,
     } = this.props;
 
@@ -162,11 +164,11 @@ class AddressInput extends React.Component {
             </AddressInputResult>
 
             <AddressInputResult loading={monumentLoading} title="Monument:">
-              {monumentStatus || 'Geen monument'}
+              {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
             </AddressInputResult>
 
-            <AddressInputResult loading={bagLoading} title="Beschermd stadsgezicht:">
-              {bagStatus.isUnesco ? `Ja, ${bagStatus.isUnesco}` : 'Geen beschermd stadsgezicht'}
+            <AddressInputResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
+              {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
             </AddressInputResult>
 
             <AddressInputResult loading={beperkingLoading} title="Beperkingen:">
@@ -199,7 +201,6 @@ AddressInput.defaultProps = {
     _gebiedsgerichtwerken: {
       naam: '',
     },
-    isUnesco: '',
   },
   monumentStatus: '',
   noResults: false,
@@ -220,10 +221,11 @@ AddressInput.propTypes = {
     }),
     geometrie: PropTypes.object,
     _gemeente: PropTypes.object,
-    isUnesco: PropTypes.string, // @todo: remove from bagStatus and add to root
   }),
   monumentStatus: PropTypes.string,
   monumentLoading: PropTypes.bool,
+  stadsgezichtStatus: PropTypes.string,
+  stadsgezichtLoading: PropTypes.bool,
   beperkingStatus: PropTypes.arrayOf(PropTypes.object),
   beperkingLoading: PropTypes.bool,
   onFetchStreetname: PropTypes.func.isRequired,
@@ -242,6 +244,8 @@ const mapStateToProps = state => {
     monumentStatus,
     beperkingLoading,
     beperkingStatus,
+    stadsgezichtLoading,
+    stadsgezichtStatus,
     noResults,
   } = state.addressInput;
   return {
@@ -254,6 +258,8 @@ const mapStateToProps = state => {
     monumentStatus,
     beperkingLoading,
     beperkingStatus,
+    stadsgezichtLoading,
+    stadsgezichtStatus,
     noResults,
   };
 };

@@ -85,22 +85,17 @@ export function searchBag(query) {
   return {};
 }
 
-export function searchForUnesco(query) {
-  const { geometrie } = query;
+export function searchForStadsgezicht(query) {
   const uri =
     query &&
-    geometrie &&
-    `${SHARED_CONFIG.API_ROOT}geosearch/search/?item=unesco&x=${geometrie.coordinates[0]}&y=${
-      geometrie.coordinates[1]
-    }`;
+    `${SHARED_CONFIG.API_ROOT}geosearch/search/?item=unesco&x=${query.coordinates[0]}&y=${query.coordinates[1]}`;
   if (uri) {
     return getByUri(uri).then(response => {
-      const unesco =
+      // Filter specific zones
+      const stadsgezicht =
         response.features.length > 0 &&
         response.features.filter(zone => zone.properties.id === 'kernzone' || zone.properties.id === 'bufferzone');
-      const result = query;
-      result.isUnesco = unesco.length > 0 ? response.features[0].properties.id : '';
-      return result;
+      return stadsgezicht.length > 0 ? stadsgezicht[0].properties.display : '';
     });
   }
   return query;

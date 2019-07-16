@@ -26,6 +26,9 @@ import {
   FETCH_BEPERKING_REQUEST,
   FETCH_BEPERKING_SUCCESS,
   FETCH_BEPERKING_FAILURE,
+  FETCH_STADSGEZICHT_REQUEST,
+  FETCH_STADSGEZICHT_SUCCESS,
+  FETCH_STADSGEZICHT_FAILURE,
   // FETCH_BESTEMMINGSPLAN_REQUEST,
   // FETCH_BESTEMMINGSPLAN_SUCCESS,
   // FETCH_BESTEMMINGSPLAN_FAILURE,
@@ -52,9 +55,10 @@ export const initialState = {
     },
     verblijfsobjectidentificatie: '',
   },
-  isUnesco: '',
   monumentLoading: false,
   monumentStatus: '',
+  stadsgezichtLoading: false,
+  stadsgezichtStatus: '',
   planFetch: false,
   planLoading: false,
   planStatus: '',
@@ -166,6 +170,27 @@ export default (state = initialState, action) =>
           error: true,
           beperkingLoading: false,
           beperkingStatus: [],
+        };
+
+      case FETCH_STADSGEZICHT_REQUEST:
+        return {
+          ...state,
+          error: false,
+          stadsgezichtLoading: true,
+          stadsgezichtStatus: '',
+        };
+      case FETCH_STADSGEZICHT_SUCCESS:
+        return {
+          ...state,
+          stadsgezichtLoading: false,
+          stadsgezichtStatus: action.stadsgezicht,
+        };
+      case FETCH_STADSGEZICHT_FAILURE:
+        return {
+          ...state,
+          error: true,
+          stadsgezichtLoading: false,
+          stadsgezichtStatus: '',
         };
 
       // case FETCH_BESTEMMINGSPLAN_REQUEST:
