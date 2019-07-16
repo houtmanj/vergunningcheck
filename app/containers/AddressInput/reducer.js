@@ -29,9 +29,6 @@ import {
   FETCH_STADSGEZICHT_REQUEST,
   FETCH_STADSGEZICHT_SUCCESS,
   FETCH_STADSGEZICHT_FAILURE,
-  // FETCH_BESTEMMINGSPLAN_REQUEST,
-  // FETCH_BESTEMMINGSPLAN_SUCCESS,
-  // FETCH_BESTEMMINGSPLAN_FAILURE,
 } from './constants';
 
 // The initial state of the App
@@ -192,28 +189,6 @@ export default (state = initialState, action) =>
           stadsgezichtLoading: false,
           stadsgezichtStatus: '',
         };
-
-      // case FETCH_BESTEMMINGSPLAN_REQUEST:
-      //   return {
-      //     ...state,
-      //     error: false,
-      //     planFetch: true,
-      //     planLoading: true,
-      //     planStatus: '',
-      //   };
-      // case FETCH_BESTEMMINGSPLAN_SUCCESS:
-      //   return {
-      //     ...state,
-      //     planLoading: false,
-      //     planStatus: action.plan,
-      //   };
-      // case FETCH_BESTEMMINGSPLAN_FAILURE:
-      //   return {
-      //     ...state,
-      //     error: true,
-      //     planLoading: false,
-      //     planStatus: '',
-      //   };
 
       default:
         draft = state;
