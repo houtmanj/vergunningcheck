@@ -95,6 +95,8 @@ class AddressInput extends React.Component {
     const {
       _display: addressLine1,
       _gemeente: { _display: gemeente },
+      _buurtcombinatie: { naam: buurtcombinatie },
+      _gebiedsgerichtwerken: { naam: gebied },
     } = bagStatus;
 
     const loading = streetNameLoading || bagLoading;
@@ -104,6 +106,7 @@ class AddressInput extends React.Component {
     const notValidPostcode = !validPostcode || postcode.length !== 6;
     const notValidStreetNumber = !streetNumber;
     const addressLine2 = `${postcode.toUpperCase()} ${gemeente}`;
+    const addressLine3 = `(${buurtcombinatie} ${buurtcombinatie && ':'} ${gebied})`;
 
     return (
       <div className="address-input">
@@ -155,6 +158,7 @@ class AddressInput extends React.Component {
             <AddressInputResult loading={streetNameLoading} title="Adres:">
               <div>{addressLine1}</div>
               <div>{addressLine2}</div>
+              <div>{addressLine3}</div>
             </AddressInputResult>
 
             <AddressInputResult loading={monumentLoading} title="Monument:">
@@ -189,6 +193,12 @@ AddressInput.defaultProps = {
     _gemeente: {
       _display: '',
     },
+    _buurtcombinatie: {
+      naam: '',
+    },
+    _gebiedsgerichtwerken: {
+      naam: '',
+    },
     isUnesco: '',
   },
   monumentStatus: '',
@@ -202,6 +212,12 @@ AddressInput.propTypes = {
   bagFetch: PropTypes.bool,
   bagStatus: PropTypes.shape({
     _display: PropTypes.string,
+    _buurtcombinatie: PropTypes.shape({
+      naam: PropTypes.string,
+    }),
+    _gebiedsgerichtwerken: PropTypes.shape({
+      naam: PropTypes.string,
+    }),
     geometrie: PropTypes.object,
     _gemeente: PropTypes.object,
     isUnesco: PropTypes.string, // @todo: remove from bagStatus and add to root

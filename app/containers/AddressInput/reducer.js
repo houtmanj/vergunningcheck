@@ -44,6 +44,12 @@ export const initialState = {
     _gemeente: {
       _display: '',
     },
+    _buurtcombinatie: {
+      naam: '',
+    },
+    _gebiedsgerichtwerken: {
+      naam: '',
+    },
     verblijfsobjectidentificatie: '',
   },
   isUnesco: '',
