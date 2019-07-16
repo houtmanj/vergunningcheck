@@ -174,9 +174,10 @@ class AddressInput extends React.Component {
             <AddressInputResult loading={beperkingLoading} title="Beperkingen:">
               {beperkingStatus.length > 0 && (
                 <ul>
-                  {beperkingStatus.map(beperking => (
-                    <li key={beperking.inschrijfnummer}>{beperking['_display']}</li>
-                  ))}
+                  {beperkingStatus.map(beperking => {
+                    const { _display: label, inschrijfnummer } = beperking;
+                    return <li key={inschrijfnummer}>{label}</li>;
+                  })}
                 </ul>
               )}
               {beperkingStatus.length === 0 && `Geen beperkingen`}

@@ -32,11 +32,14 @@ function formatAddress(categories) {
   const indexedCategories = categories
     .filter(category => category.content.filter(suggestion => suggestion.category === 'Adressen'))
     .map(category => ({
-      content: category.content.map(suggestion => ({
-        category: category.label,
-        label: suggestion['_dislay'],
-        uri: suggestion.uri,
-      })),
+      content: category.content.map(suggestion => {
+        const { label, uri } = suggestion;
+        return {
+          category: category.label,
+          label,
+          uri,
+        };
+      }),
     }));
 
   if (indexedCategories.length < 1 || !indexedCategories[0].content) return [];
@@ -48,7 +51,9 @@ function formatStreetname(categories) {
     category.content.filter(suggestion => suggestion.category === 'Straatnamen'),
   );
 
-  return indexedCategories.length > 0 ? indexedCategories[0].content[0]['_display'] : '';
+  const { _display: label = '' } = indexedCategories[0].content[0];
+
+  return label;
 }
 
 export function searchForAddress(query) {
@@ -79,6 +84,7 @@ export function searchBag(query) {
         // verblijfsobject uri: /bag/verblijfsobject/${ID}/
         .then(verblijfsobjectUri => {
           if (verblijfsobjectUri) return getByUri(`${SHARED_CONFIG.API_ROOT}${verblijfsobjectUri}`);
+          return false;
         })
     );
   }

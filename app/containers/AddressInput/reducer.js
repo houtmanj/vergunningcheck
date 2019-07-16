@@ -70,128 +70,107 @@ export default (state = initialState, action) =>
 
     switch (action.type) {
       case FETCH_STREETNAME_REQUEST:
-        return {
-          ...state,
-          streetNameError: false,
-          streetNameLoading: true,
-          streetName: '',
-          monumentStatus: '',
-          bagFetch: false,
-          bagStatus: initialState.bagStatus,
-        };
+        draft.streetNameError = false;
+        draft.streetNameLoading = true;
+        draft.streetName = '';
+        draft.monumentStatus = '';
+        draft.bagFetch = false;
+        draft.bagStatus = initialState.bagStatus;
+        break;
+
       case FETCH_STREETNAME_SUCCESS:
-        return {
-          ...state,
-          streetNameError: false,
-          streetNameLoading: false,
-          streetName: action.streetName,
-        };
+        draft.streetNameError = false;
+        draft.streetNameLoading = false;
+        draft.streetName = action.streetName;
+        break;
+
       case FETCH_STREETNAME_FAILURE:
-        return {
-          ...state,
-          streetNameError: true,
-          streetNameLoading: false,
-        };
+        draft.streetNameError = false;
+        draft.streetNameLoading = false;
+        draft.streetName = action.streetName;
+        break;
 
       case FETCH_BAG_REQUEST:
-        return {
-          ...state,
-          error: false,
-          bagFetch: true,
-          bagLoading: true,
-          bagStatus: initialState.bagStatus,
-          monumentStatus: '',
-          noResults: false,
-        };
+        draft.error = false;
+        draft.bagFetch = true;
+        draft.bagLoading = true;
+        draft.bagStatus = initialState.bagStatus;
+        draft.monumentStatus = '';
+        draft.noResults = false;
+        break;
+
       case FETCH_BAG_SUCCESS:
-        return {
-          ...state,
-          bagLoading: false,
-          bagStatus: action.bag,
-        };
+        draft.bagLoading = false;
+        draft.bagStatus = action.bag;
+        break;
+
       case FETCH_BAG_NO_RESULTS:
-        return {
-          ...state,
-          error: false,
-          bagLoading: false,
-          bagStatus: initialState.bag,
-          noResults: true,
-        };
+        draft.error = false;
+        draft.bagLoading = false;
+        draft.bagStatus = initialState.bag;
+        draft.noResults = true;
+        break;
+
       case FETCH_BAG_FAILURE:
-        return {
-          ...state,
-          error: true,
-          errorMessage: 'Helaas is geen verbinding met de server. Probeer het later opnieuw',
-          bagLoading: false,
-          bagStatus: initialState.bagStatus,
-          noResults: false,
-        };
+        draft.error = true;
+        draft.errorMessage = 'Helaas is geen verbinding met de server. Probeer het later opnieuw';
+        draft.bagLoading = false;
+        draft.bagStatus = initialState.bagStatus;
+        draft.noResults = false;
+        break;
 
       case FETCH_MONUMENT_REQUEST:
-        return {
-          ...state,
-          error: false,
-          monumentLoading: true,
-          monumentStatus: '',
-        };
+        draft.error = false;
+        draft.monumentLoading = true;
+        draft.monumentStatus = '';
+        break;
+
       case FETCH_MONUMENT_SUCCESS:
-        return {
-          ...state,
-          monumentLoading: false,
-          monumentStatus: action.monument,
-        };
+        draft.monumentLoading = false;
+        draft.monumentStatus = action.monument;
+        break;
+
       case FETCH_MONUMENT_FAILURE:
-        return {
-          ...state,
-          error: true,
-          monumentLoading: false,
-          monumentStatus: '',
-        };
+        draft.error = true;
+        draft.monumentLoading = false;
+        draft.monumentStatus = '';
+        break;
 
       case FETCH_BEPERKING_REQUEST:
-        return {
-          ...state,
-          error: false,
-          beperkingLoading: true,
-          beperkingStatus: [],
-        };
+        draft.error = false;
+        draft.beperkingLoading = true;
+        draft.beperkingStatus = [];
+        break;
+
       case FETCH_BEPERKING_SUCCESS:
-        return {
-          ...state,
-          beperkingLoading: false,
-          beperkingStatus: action.beperking,
-        };
+        draft.beperkingLoading = false;
+        draft.beperkingStatus = action.beperking;
+        break;
+
       case FETCH_BEPERKING_FAILURE:
-        return {
-          ...state,
-          error: true,
-          beperkingLoading: false,
-          beperkingStatus: [],
-        };
+        draft.error = true;
+        draft.beperkingLoading = false;
+        draft.beperkingStatus = [];
+        break;
 
       case FETCH_STADSGEZICHT_REQUEST:
-        return {
-          ...state,
-          error: false,
-          stadsgezichtLoading: true,
-          stadsgezichtStatus: '',
-        };
+        draft.error = false;
+        draft.stadsgezichtLoading = true;
+        draft.stadsgezichtStatus = '';
+        break;
+
       case FETCH_STADSGEZICHT_SUCCESS:
-        return {
-          ...state,
-          stadsgezichtLoading: false,
-          stadsgezichtStatus: action.stadsgezicht,
-        };
+        draft.stadsgezichtLoading = false;
+        draft.stadsgezichtStatus = action.stadsgezicht;
+        break;
+
       case FETCH_STADSGEZICHT_FAILURE:
-        return {
-          ...state,
-          error: true,
-          stadsgezichtLoading: false,
-          stadsgezichtStatus: '',
-        };
+        draft.error = true;
+        draft.stadsgezichtLoading = false;
+        draft.stadsgezichtStatus = '';
+        break;
 
       default:
-        draft = state;
         break;
     }
   });
