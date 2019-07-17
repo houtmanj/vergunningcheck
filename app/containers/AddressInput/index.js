@@ -171,7 +171,7 @@ class AddressInput extends React.Component {
               {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
             </AddressInputResult>
 
-            <AddressInputResult loading={beperkingLoading} title="Beperkingen:">
+            <AddressInputResult loading={beperkingLoading} title="Gemeentelijke beperkingen (WKPB):">
               {beperkingStatus.length > 0 && (
                 <ul>
                   {beperkingStatus.map(beperking => {
