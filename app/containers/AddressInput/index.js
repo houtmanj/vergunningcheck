@@ -126,30 +126,26 @@ class AddressInput extends React.Component {
             onInput={this.onStreetNumberInput}
             defaultValue={debug && '19'}
           />
-
-          {!loading && showError && (
-            <div className="address-input__error">
-              {postcode && notValidPostcode && (
-                <p>
-                  De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.
-                </p>
-              )}
-              {notValidPostcodeAmsterdam && (
-                <p>De ingevoerde postcode is niet gevonden in de Amsterdamse database. Probeer opnieuw.</p>
-              )}
-              {!postcode && <p>Voer een postcode in</p>}
-              {notValidStreetNumber && <p>Voer een huisnummer in</p>}
-
-              {noResults && (
-                <div>
-                  <p className="address-input__feedback__incomplete">
-                    Op de ingevoerde gegevens is geen adres gevonden.
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
         </form>
+
+        {!loading && showError && (
+          <div className="address-input__error">
+            {postcode && notValidPostcode && (
+              <p>De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.</p>
+            )}
+            {notValidPostcodeAmsterdam && (
+              <p>De ingevoerde postcode is niet gevonden in de Amsterdamse database. Probeer opnieuw.</p>
+            )}
+            {!postcode && <p>Voer een postcode in</p>}
+            {notValidStreetNumber && <p>Voer een huisnummer in</p>}
+
+            {noResults && (
+              <div>
+                <p className="address-input__feedback__incomplete">Op de ingevoerde gegevens is geen adres gevonden.</p>
+              </div>
+            )}
+          </div>
+        )}
 
         {streetNumber && loading && (
           <AddressInputResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
@@ -172,6 +168,7 @@ class AddressInput extends React.Component {
             </AddressInputResult>
 
             <AddressInputResult loading={beperkingLoading} title="Gemeentelijke beperkingen (WKPB):">
+              {beperkingStatus.length === 0 && `Geen beperkingen`}
               {beperkingStatus.length > 0 && (
                 <ul>
                   {beperkingStatus.map(beperking => {
@@ -180,7 +177,6 @@ class AddressInput extends React.Component {
                   })}
                 </ul>
               )}
-              {beperkingStatus.length === 0 && `Geen beperkingen`}
             </AddressInputResult>
           </>
         )}
