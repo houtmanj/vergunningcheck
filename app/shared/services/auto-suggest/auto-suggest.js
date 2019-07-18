@@ -5,6 +5,7 @@ const getByUri = (uri, params) => fetch(uri, params).then(response => response.j
 const preparePostCall = (url, body) => {
   const headers = {
     'Content-Type': 'text/xml',
+    Origin: 'amsterdam.nl',
   };
 
   const options = {
