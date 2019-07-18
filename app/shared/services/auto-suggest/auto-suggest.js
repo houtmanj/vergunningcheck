@@ -18,7 +18,7 @@ function preparePostCall(url, body) {
   });
 }
 
-export function searchForBestemmingsplan(query) {
+export function searchForBestemmingsplan() {
   const uri = `http://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&serv
 ice=WFS&version=1.0.0&typename=ProvinciaalPlangebied`;
 
