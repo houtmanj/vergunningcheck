@@ -2,6 +2,118 @@ import SHARED_CONFIG from '../shared-config/shared-config';
 
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
 
+function preparePostCall(url, body) {
+  const headers = {
+    'Content-Type': 'text/xml',
+  };
+
+  const options = {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
+  };
+
+  fetch(url, options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => {
+      throw err;
+    });
+}
+
+export function searchForBestemmingsplan(query) {
+  // console.log('QUERY', query);
+
+  const uri = `http://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&serv
+ice=WFS&version=1.0.0&typename=ProvinciaalPlangebied`;
+
+  if (uri) {
+    const coordinates = [118986, 488256];
+    const body = `
+<GetFeature
+  version="2.0.0"
+  service="WFS"
+  xmlns="http://www.opengis.net/wfs/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:gml="http://www.opengis.net/gml"
+  xsi:schemaLocation="http://www.opengis.net/wfs
+http://schemas.opengis.net/wfs/2.0/wfs.xsd">
+  <Query typeNames="app:Plangebied_PCP" fid="" xmlns:app="http://www.deegree.org/app">
+    <PropertyName>app:fid</PropertyName>
+    <PropertyName>app:datum</PropertyName>
+    <PropertyName>app:historisch</PropertyName>
+    <PropertyName>app:identificatie</PropertyName>
+    <PropertyName>app:naam</PropertyName>
+    <PropertyName>app:naamOverheid</PropertyName>
+    <PropertyName>app:overheidscode</PropertyName>
+    <PropertyName>app:plangebied</PropertyName>
+    <PropertyName>app:planstatus</PropertyName>
+    <PropertyName>app:typePlan</PropertyName>
+    <PropertyName>app:versieIMRO</PropertyName>
+    <fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0">
+      <fes:And>
+        <fes:DWithin>
+          <gml:Point gml:id="P1" srsName="urn:ogc:def:crs:EPSG::28992">
+            <gml:pos>118986 488256</gml:pos>
+          </gml:Point>
+          <fes:Distance uom="m">1</fes:Distance>
+        </fes:DWithin>
+        <fes:Or>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>app:planstatus</fes:ValueReference>
+            <fes:Literal>vastgesteld</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>app:planstatus</fes:ValueReference>
+            <fes:Literal>onherroepelijk</fes:Literal>
+          </fes:PropertyIsEqualTo>
+        </fes:Or>
+      </fes:And>
+    </fes:Filter>
+  </Query>
+
+  <Query typeNames="app:Bestemmingsplangebied" fid="" xmlns:app="http://www.deegree.org/app">
+    <PropertyName>app:fid</PropertyName>
+    <PropertyName>app:datum</PropertyName>
+    <PropertyName>app:historisch</PropertyName>
+    <PropertyName>app:identificatie</PropertyName>
+    <PropertyName>app:naam</PropertyName>
+    <PropertyName>app:naamOverheid</PropertyName>
+    <PropertyName>app:overheidscode</PropertyName>
+    <PropertyName>app:plangebied</PropertyName>
+    <PropertyName>app:planstatus</PropertyName>
+    <PropertyName>app:typePlan</PropertyName>
+    <PropertyName>app:versieIMRO</PropertyName>
+    <fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0">
+      <fes:And>
+        <fes:DWithin>
+          <gml:Point gml:id="P1" srsName="urn:ogc:def:crs:EPSG::28992">
+            <gml:pos>118986 488256</gml:pos>
+          </gml:Point>
+          <fes:Distance uom="m">1</fes:Distance>
+        </fes:DWithin>
+        <fes:Or>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>app:planstatus</fes:ValueReference>
+            <fes:Literal>vastgesteld</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>app:planstatus</fes:ValueReference>
+            <fes:Literal>onherroepelijk</fes:Literal>
+          </fes:PropertyIsEqualTo>
+        </fes:Or>
+      </fes:And>
+    </fes:Filter>
+  </Query>
+</GetFeature>`;
+
+    preparePostCall(uri, body);
+  }
+  return {};
+}
+
+searchForBestemmingsplan();
+
 function getVerblijfsobjectUri(categories, streetNumberFromInput) {
   const indexedCategories = categories.filter(category =>
     category.content.filter(suggestion => suggestion.category === 'Adressen'),
