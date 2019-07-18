@@ -2,22 +2,6 @@ import SHARED_CONFIG from '../shared-config/shared-config';
 
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
 
-function preparePostCall(url, body) {
-  const headers = {
-    'Content-Type': 'text/xml',
-  };
-
-  const options = {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(body),
-  };
-
-  fetch(url, options).catch(err => {
-    throw err;
-  });
-}
-
 function getVerblijfsobjectUri(categories, streetNumberFromInput) {
   const indexedCategories = categories.filter(category =>
     category.content.filter(suggestion => suggestion.category === 'Adressen'),
