@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { searchForBestemmingsplan } from 'shared/services/auto-suggest/auto-suggest';
 import {
   // Button,
   TextField,
@@ -77,6 +78,7 @@ class AddressInput extends React.Component {
   }
 
   render() {
+    searchForBestemmingsplan();
     const {
       streetName,
       streetNameLoading,
