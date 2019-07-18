@@ -15,7 +15,9 @@ function preparePostCall(url, body) {
 
   fetch(url, options)
     .then(response => response.json())
+    /* eslint-disable no-console */
     .then(response => console.log(response))
+    /* eslint-enable no-console */
     .catch(err => {
       throw err;
     });
