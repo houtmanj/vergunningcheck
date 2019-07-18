@@ -13,14 +13,9 @@ function preparePostCall(url, body) {
     body: JSON.stringify(body),
   };
 
-  fetch(url, options)
-    .then(response => response.json())
-    /* eslint-disable no-console */
-    .then(response => console.log(response))
-    /* eslint-enable no-console */
-    .catch(err => {
-      throw err;
-    });
+  fetch(url, options).catch(err => {
+    throw err;
+  });
 }
 
 export function searchForBestemmingsplan() {
