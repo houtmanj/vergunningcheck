@@ -21,14 +21,14 @@ function preparePostCall(url, body) {
     });
 }
 
-export function searchForBestemmingsplan(query) {
+export function searchForBestemmingsplan() {
   // console.log('QUERY', query);
 
-  const uri = `http://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&serv
+  const uri = `https://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&serv
 ice=WFS&version=1.0.0&typename=ProvinciaalPlangebied`;
 
   if (uri) {
-    const coordinates = [118986, 488256];
+    // const coordinates = [118986, 488256];
     const body = `
 <GetFeature
   version="2.0.0"
