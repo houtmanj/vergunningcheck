@@ -1,16 +1,11 @@
+import { xml2js } from 'xml-js';
 import SHARED_CONFIG from '../shared-config/shared-config';
 
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
 
 const preparePostCall = (url, body) => {
-  const headers = {
-    'Content-Type': 'text/xml',
-    Origin: 'amsterdam.nl',
-  };
-
   const options = {
     method: 'POST',
-    headers,
     body,
   };
 
@@ -21,12 +16,51 @@ const preparePostCall = (url, body) => {
     });
 };
 
-export function searchForBestemmingsplan() {
-  const uri = `https://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&serv
-ice=WFS&version=1.0.0&typename=ProvinciaalPlangebied`;
+function convertXMLtoJS(xml) {
+  return (
+    xml &&
+    xml2js(xml, {
+      compact: true,
+      ignoreAttributes: true,
+      ignoreCdata: true,
+      ignoreComment: true,
+      ignoreDeclaration: true,
+      ignoreDoctype: true,
+      ignoreInstruction: true,
+      textKey: 'text',
+      elementNameFn: val =>
+        val
+          .replace('wfs:', '')
+          .replace('app:', '')
+          .replace('Plangebied_PCP', 'bestemmingsplan')
+          .replace('Bestemmingsplangebied', 'bestemmingsplan'),
+    })
+  );
+}
 
-  if (uri) {
-    // const coordinates = [118986, 488256];
+function formatBestemmingPlan(response) {
+  // console.log('formatBestemmingPlan');
+  if (response && response.FeatureCollection && response.FeatureCollection.member) {
+    const {
+      FeatureCollection: { member = [] },
+    } = response;
+
+    // Response only contains one plan
+    if (typeof member.bestemmingsplan !== 'undefined') {
+      return [member.bestemmingsplan];
+    }
+    // Response contains multiple plans
+    if (member.length > 1) {
+      return member.map(plan => plan.bestemmingsplan);
+    }
+  }
+  return [];
+}
+
+export function searchForBestemmingsplan(query) {
+  const uri = `https://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&service=WFS&version=1.0.0&typename=ProvinciaalPlangebied`;
+
+  if (uri && query) {
     const body = `
 <GetFeature
   version="2.0.0"
@@ -36,23 +70,28 @@ ice=WFS&version=1.0.0&typename=ProvinciaalPlangebied`;
   xmlns:gml="http://www.opengis.net/gml"
   xsi:schemaLocation="http://www.opengis.net/wfs
 http://schemas.opengis.net/wfs/2.0/wfs.xsd">
-  <Query typeNames="app:Plangebied_PCP" fid="" xmlns:app="http://www.deegree.org/app">
-    <PropertyName>app:fid</PropertyName>
-    <PropertyName>app:datum</PropertyName>
-    <PropertyName>app:historisch</PropertyName>
-    <PropertyName>app:identificatie</PropertyName>
-    <PropertyName>app:naam</PropertyName>
-    <PropertyName>app:naamOverheid</PropertyName>
-    <PropertyName>app:overheidscode</PropertyName>
-    <PropertyName>app:plangebied</PropertyName>
+  <Query typeNames="app:Plangebied_PCP" xmlns:app="http://www.deegree.org/app">
     <PropertyName>app:planstatus</PropertyName>
-    <PropertyName>app:typePlan</PropertyName>
-    <PropertyName>app:versieIMRO</PropertyName>
+    <PropertyName>app:naam</PropertyName>
+${
+  /* eslint-disable
+  Import other properties:
+<PropertyName>app:datum</PropertyName>
+<PropertyName>app:historisch</PropertyName>
+<PropertyName>app:identificatie</PropertyName>
+<PropertyName>app:naamOverheid</PropertyName>
+<PropertyName>app:overheidscode</PropertyName>
+<PropertyName>app:plangebied</PropertyName>
+<PropertyName>app:typePlan</PropertyName>
+<PropertyName>app:versieIMRO</PropertyName>
+eslint-enable
+*/ ''
+}
     <fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0">
       <fes:And>
         <fes:DWithin>
           <gml:Point gml:id="P1" srsName="urn:ogc:def:crs:EPSG::28992">
-            <gml:pos>118986 488256</gml:pos>
+            <gml:pos>${query.coordinates[0]} ${query.coordinates[1]}</gml:pos>
           </gml:Point>
           <fes:Distance uom="m">1</fes:Distance>
         </fes:DWithin>
@@ -70,23 +109,28 @@ http://schemas.opengis.net/wfs/2.0/wfs.xsd">
     </fes:Filter>
   </Query>
 
-  <Query typeNames="app:Bestemmingsplangebied" fid="" xmlns:app="http://www.deegree.org/app">
-    <PropertyName>app:fid</PropertyName>
-    <PropertyName>app:datum</PropertyName>
-    <PropertyName>app:historisch</PropertyName>
-    <PropertyName>app:identificatie</PropertyName>
-    <PropertyName>app:naam</PropertyName>
-    <PropertyName>app:naamOverheid</PropertyName>
-    <PropertyName>app:overheidscode</PropertyName>
-    <PropertyName>app:plangebied</PropertyName>
+  <Query typeNames="app:Bestemmingsplangebied" xmlns:app="http://www.deegree.org/app">
     <PropertyName>app:planstatus</PropertyName>
-    <PropertyName>app:typePlan</PropertyName>
-    <PropertyName>app:versieIMRO</PropertyName>
+    <PropertyName>app:naam</PropertyName>
+${
+  /* eslint-disable
+  Import other properties:
+<PropertyName>app:datum</PropertyName>
+<PropertyName>app:historisch</PropertyName>
+<PropertyName>app:identificatie</PropertyName>
+<PropertyName>app:naamOverheid</PropertyName>
+<PropertyName>app:overheidscode</PropertyName>
+<PropertyName>app:plangebied</PropertyName>
+<PropertyName>app:typePlan</PropertyName>
+<PropertyName>app:versieIMRO</PropertyName>
+eslint-enable
+*/ ''
+}
     <fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0">
       <fes:And>
         <fes:DWithin>
           <gml:Point gml:id="P1" srsName="urn:ogc:def:crs:EPSG::28992">
-            <gml:pos>118986 488256</gml:pos>
+            <gml:pos>${query.coordinates[0]} ${query.coordinates[1]}</gml:pos>
           </gml:Point>
           <fes:Distance uom="m">1</fes:Distance>
         </fes:DWithin>
@@ -104,8 +148,9 @@ http://schemas.opengis.net/wfs/2.0/wfs.xsd">
     </fes:Filter>
   </Query>
 </GetFeature>`;
-
-    return preparePostCall(uri, body);
+    return preparePostCall(uri, body)
+      .then(response => convertXMLtoJS(response))
+      .then(response => formatBestemmingPlan(response));
   }
   return {};
 }

@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { searchForBestemmingsplan } from 'shared/services/auto-suggest/auto-suggest';
 import {
   // Button,
   TextField,
@@ -78,7 +77,6 @@ class AddressInput extends React.Component {
   }
 
   render() {
-    searchForBestemmingsplan();
     const {
       streetName,
       streetNameLoading,
@@ -91,6 +89,8 @@ class AddressInput extends React.Component {
       beperkingLoading,
       stadsgezichtStatus,
       stadsgezichtLoading,
+      bestemmingsplanStatus,
+      bestemmingsplanLoading,
       noResults,
     } = this.props;
 
@@ -180,6 +180,19 @@ class AddressInput extends React.Component {
                 </ul>
               )}
             </AddressInputResult>
+
+            <AddressInputResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
+              {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
+              {bestemmingsplanStatus.length > 0 && (
+                <ul>
+                  {bestemmingsplanStatus.map(bestemmingsplan => (
+                    <li key={bestemmingsplan.fid.text}>
+                      {bestemmingsplan.naam.text} ({bestemmingsplan.planstatus.text})
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </AddressInputResult>
           </>
         )}
       </div>
@@ -227,6 +240,8 @@ AddressInput.propTypes = {
   stadsgezichtLoading: PropTypes.bool,
   beperkingStatus: PropTypes.arrayOf(PropTypes.object),
   beperkingLoading: PropTypes.bool,
+  bestemmingsplanStatus: PropTypes.arrayOf(PropTypes.object),
+  bestemmingsplanLoading: PropTypes.bool,
   onFetchStreetname: PropTypes.func.isRequired,
   onFetchBagData: PropTypes.func.isRequired,
   noResults: PropTypes.bool,
@@ -245,6 +260,8 @@ const mapStateToProps = state => {
     beperkingStatus,
     stadsgezichtLoading,
     stadsgezichtStatus,
+    bestemmingsplanLoading,
+    bestemmingsplanStatus,
     noResults,
   } = state.addressInput;
   return {
@@ -259,6 +276,8 @@ const mapStateToProps = state => {
     beperkingStatus,
     stadsgezichtLoading,
     stadsgezichtStatus,
+    bestemmingsplanLoading,
+    bestemmingsplanStatus,
     noResults,
   };
 };
