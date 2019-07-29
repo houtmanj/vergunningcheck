@@ -96,7 +96,7 @@ if (BRANCH == "master") {
 }
 
 
-if (BRANCH == "basic-input") {
+if (BRANCH == "develop") {
 
     node {
         stage('Push acceptance image') {
