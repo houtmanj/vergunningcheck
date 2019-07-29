@@ -12,33 +12,18 @@
 
 import produce from 'immer';
 
-import { AUTHORIZE_USER, SHOW_GLOBAL_ERROR, RESET_GLOBAL_ERROR, AUTHENTICATE_USER } from './constants';
+import { SHOW_GLOBAL_ERROR, RESET_GLOBAL_ERROR } from './constants';
 
 // The initial state of the App
 export const initialState = {
-  loading: false,
   error: false,
-  userName: undefined,
-  userScopes: [],
-  accessToken: undefined,
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const appReducer = (state = initialState, action) =>
+export default (state = initialState, action) =>
   produce(state, draft => {
-    if (!action.payload) {
-      draft = state;
-      return;
-    }
-
+    // console.log('ACTION', action);
     switch (action.type) {
-      case AUTHENTICATE_USER:
-      case AUTHORIZE_USER:
-        draft.userName = action.payload.userName;
-        draft.userScopes = action.payload.userScopes;
-        draft.accessToken = action.payload.accessToken;
-        break;
-
       case SHOW_GLOBAL_ERROR:
         draft.error = !!action.payload;
         draft.errorMessage = action.payload;
@@ -49,6 +34,7 @@ const appReducer = (state = initialState, action) =>
         draft.error = false;
         draft.errorMessage = '';
         draft.loading = false;
+        draft.errorEventId = undefined;
         break;
 
       default:
@@ -56,5 +42,3 @@ const appReducer = (state = initialState, action) =>
         break;
     }
   });
-
-export default appReducer;

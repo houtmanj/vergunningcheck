@@ -18,8 +18,6 @@ import moment from 'moment';
 import 'moment/src/locale/nl';
 import history from 'utils/history';
 import 'leaflet/dist/leaflet';
-import { authenticate } from 'shared/services/auth/auth';
-import { authenticateUser } from 'containers/App/actions';
 
 // Import root app
 import App from 'containers/App';
@@ -100,7 +98,3 @@ if (!window.Intl) {
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 }
-
-// Authenticate and start the authorization process
-const credentials = authenticate();
-store.dispatch(authenticateUser(credentials));

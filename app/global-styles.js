@@ -78,7 +78,7 @@ const GlobalStyle = createGlobalStyle`
       margin-right: 1cm;
     }
 
-    // Reset the flex model to allow printig on more than one page
+    /* Reset the flex model to allow printig on more than one page */
     .row {
       display: block;
     }

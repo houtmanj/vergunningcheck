@@ -1,0 +1,13 @@
+.address-input {
+  &__form {
+    max-width: 400px;
+
+    & > div {
+      margin-top: 25px;
+    }
+  }
+
+  &__error {
+    color: red;
+  }
+}
