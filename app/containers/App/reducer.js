@@ -12,7 +12,7 @@
 
 import produce from 'immer';
 
-import { RESET_GLOBAL_ERROR } from './constants';
+import { SHOW_GLOBAL_ERROR, RESET_GLOBAL_ERROR } from './constants';
 
 // The initial state of the App
 export const initialState = {
@@ -24,6 +24,12 @@ export default (state = initialState, action) =>
   produce(state, draft => {
     // console.log('ACTION', action);
     switch (action.type) {
+      case SHOW_GLOBAL_ERROR:
+        draft.error = !!action.payload;
+        draft.errorMessage = action.payload;
+        draft.loading = false;
+        break;
+
       case RESET_GLOBAL_ERROR:
         draft.error = false;
         draft.errorMessage = '';
