@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "title": "Is dit vraag 1?",
+      "answers": [
+        {
+          "id": "q1a",
+          "title": "Ja"
+        },
+        {
+          "id": "q1b",
+          "title": "Nee"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "title": "Is dit de tweede vraag?",
+      "subtitle": "Deze wordt alleen getoond als q1.q1a",
+      "condition": "q1.q1a",
+      "answers": [
+        {
+          "id": "q2a",
+          "title": "Ja"
+        },
+        {
+          "id": "q2b",
+          "title": "Nee"
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "title": "Is dit de derde vraag?",
+      "subtitle": "Deze word alleen getoond als q1.q1b",
+      "condition": "q1.q1b",
+      "answers": [
+        {
+          "id": "q3a",
+          "title": "Ja"
+        },
+        {
+          "id": "q3b",
+          "title": "Nee"
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "title": "`We zijn aan het eind gekomen van de vragenlijst`"
+    }
+  ]
+}
