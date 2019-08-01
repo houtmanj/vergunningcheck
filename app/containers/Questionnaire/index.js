@@ -1,22 +1,26 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 
-// import {
-//   // Button,
-//   TextField,
-// } from '@datapunt/asc-ui';
-import { fetchStreetname, fetchBagData } from './actions';
-import './style.scss';
+import {
+  Button,
+  // TextField,
+} from '@datapunt/asc-ui';
+// import { fetchStreetname, fetchBagData } from './actions';
+// import './style.scss';
 
-class AddressInput extends React.Component {
+class Questionarnaire extends React.Component {
   constructor(props) {
     super(props);
 
+    this.onGoToNext = this.onGoToNext.bind(this);
+    this.onGoToPrev = this.onGoToPrev.bind(this);
+
     this.state = {
       // hasError: false,
-      currentQuestion: 3,
+      currentQuestion: 0,
+      userAnswers: {},
       questionsJson: {
         questions: [
           {
@@ -76,40 +80,78 @@ class AddressInput extends React.Component {
     };
   }
 
+  onGoToNext(event) {
+    const questionId = event.target.getAttribute('question-id');
+    const answerId = event.target.getAttribute('answer-id');
+
+    this.setState(prevState => ({
+      currentQuestion: prevState.currentQuestion + 1,
+      userAnswers: {
+        ...prevState.userAnswers,
+        [questionId]: answerId,
+      },
+    }));
+  }
+
+  onGoToPrev() {
+    this.setState(prevState => ({
+      currentQuestion: prevState.currentQuestion - 1,
+    }));
+  }
+
   render() {
     // const {
     //
     // } = this.props;
 
-    const { questionsJson, currentQuestion } = this.state;
+    const { questionsJson, currentQuestion, userAnswers } = this.state;
 
     const currentQuestionObject = questionsJson.questions[currentQuestion];
+
+    if (!questionsJson.questions[currentQuestion]) {
+      return <div>NULL</div>;
+    }
+
+    console.log(userAnswers);
+
     const {
       id: currentQuestionId,
       title: currentQuestionTitle,
-      answers: currentQuestionAnswers = '',
+      subtitle: currentQuestionSubtitle,
+      answers: currentQuestionAnswers = [],
     } = currentQuestionObject;
 
     return (
       <div className="address-input">
         <h2>Questionarnaire:</h2>
+        <p>currentQuestion: {currentQuestion}</p>
         <div>
           <h3>{currentQuestionTitle}</h3>
+          <p>{currentQuestionSubtitle}</p>
           <p>ID: {currentQuestionId}</p>
           <div>
             {currentQuestionAnswers.map(answer => (
-              <button type="submit">
+              <button
+                onClick={this.onGoToNext}
+                question-id={currentQuestionId}
+                answer-id={answer.id}
+                type="submit"
+                key={answer.id}
+              >
                 {answer.title} ({answer.id})
               </button>
             ))}
           </div>
         </div>
+        <br />
+        <br />
+        <Button onClick={this.onGoToPrev}>Vorige vraag</Button>
       </div>
     );
   }
 }
 
-AddressInput.defaultProps = {
+Questionarnaire.defaultProps = {
   // bagStatus: {
   //   geometrie: {},
   //   _display: '',
@@ -127,7 +169,7 @@ AddressInput.defaultProps = {
   // noResults: false,
 };
 
-AddressInput.propTypes = {
+Questionarnaire.propTypes = {
   // streetName: PropTypes.string,
   // streetNameLoading: PropTypes.bool,
   // bagLoading: PropTypes.bool,
@@ -163,17 +205,19 @@ AddressInput.propTypes = {
 //   ({
 //     // streetNameLoading,
 //   });
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      onFetchBagData: fetchBagData,
-      onFetchStreetname: fetchStreetname,
-    },
-    dispatch,
-  );
+// const mapDispatchToProps = dispatch =>
+//   bindActionCreators(
+//     {
+//       // onFetchBagData: fetchBagData,
+//       // onFetchStreetname: fetchStreetname,
+//     },
+//     dispatch,
+//   );
 
-export default connect(
-  // mapStateToProps,
-  {},
-  mapDispatchToProps,
-)(AddressInput);
+export default Questionarnaire;
+
+// export default connect(
+//   // mapStateToProps,
+//   {},
+//   mapDispatchToProps,
+// )(Questionarnaire);
