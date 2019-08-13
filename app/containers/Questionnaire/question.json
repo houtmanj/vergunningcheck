@@ -1,4 +1,47 @@
 {
+  "id": "_8743984",
+  "name": "Conclusie vergunningscheck Aanbouw",
+  "uitvoeringsregels": [
+    {
+      "id": "UitvId0008",
+      "vraag": {
+        "vraagTekst": "Vanaf wanneer gaat u het bouwwerk gebruiken?",
+        "vraagType": "list",
+        "antwoordOpties": [
+          {
+            "id": "1",
+            "optieText": "Noord"
+          },
+          {
+            "id": "2",
+            "optieText": "Zuid",
+            "waarde": true
+          },
+          {
+            "id": "3",
+            "optieText": "Oost"
+          },
+          {
+            "id": "4",
+            "optieText": "West"
+          }
+        ]
+      },
+      "content": {
+        "toelichting": "<em>Let op:</em> <br />Met ‘voldoende afstand’ bedoelen we dat er minimaal 1 bouwlaag tussen balkon en aanbouw zit.",
+        "langeToelichting": "Dit komt in de pop-up",
+        "media": [
+          {
+            "type": "image",
+            "path": "/path/to/img.jpg",
+            "caption": "titel van afbeelding"
+          }
+        ]
+      },
+      "juridischeBronnen": {},
+      "interactieRegels": {}
+    }
+  ],
   "questions": [
     {
       "id": "q2",
@@ -9,12 +52,7 @@
         {
           "id": "7weiruy4fhue",
           "src": "https://images.amsterdam.nl/7weiruy4fhue.jpg",
-          "alt": "Aanbouw hoogte",
-          "caption": "Aanbouw onder een balkon, met tenminste 1 bouwlaag ertussen.",
-          "size": {
-            "width": 400,
-            "height": 300
-          }
+          "caption": "Aanbouw onder een balkon, met tenminste 1 bouwlaag ertussen."
         }
       ],
       "explanation": {
@@ -25,12 +63,7 @@
           {
             "id": "6y3e5tgwr5",
             "src": "https://images.amsterdam.nl/6y3e5tgwr5.jpg",
-            "alt": "Aanbouw hoogte",
-            "caption": "Aanbouw onder een balkon, met tenminste 1 bouwlaag ertussen.",
-            "size": {
-              "width": 400,
-              "height": 300
-            }
+            "caption": "Aanbouw onder een balkon, met tenminste 1 bouwlaag ertussen."
           }
         ],
         "content": "<h4>Balkon dicht op aanbouw</h4><p>Wanneer het balkon dicht op het dak van de aanbouw zit, of wanneer het balkon onderdeel wordt van dak van de aanbouw, kunnen er speciale eisen worden gesteld. Daarom kan dit niet zonder vergunning.</p>"
