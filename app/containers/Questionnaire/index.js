@@ -7,85 +7,45 @@ import {
   Button,
   // TextField,
 } from '@datapunt/asc-ui';
-// import { fetchStreetname, fetchBagData } from './actions';
-// import './style.scss';
+
+import config from './config';
 
 class Questionarnaire extends React.Component {
   constructor(props) {
     super(props);
 
+    this.onGoToQuestion = this.onGoToQuestion.bind(this);
     this.onGoToNext = this.onGoToNext.bind(this);
     this.onGoToPrev = this.onGoToPrev.bind(this);
 
     this.state = {
       // hasError: false,
-      currentQuestion: 0,
+      questionIndex: 0,
+      // currentQuestion: 0,
+      // currentQuestionId: 0,
       userAnswers: {},
-      questionsJson: {
-        questions: [
-          {
-            id: 'q1',
-            title: 'Is dit vraag 1?',
-            answers: [
-              {
-                id: 'q1a',
-                title: 'Ja',
-              },
-              {
-                id: 'q1b',
-                title: 'Nee',
-              },
-            ],
-          },
-          {
-            id: 'q2',
-            title: 'Is dit de tweede vraag?',
-            subtitle: 'Deze word alleen getoond als q1.q1a',
-            condition: 'q1.q1a',
-            answers: [
-              {
-                id: 'q2a',
-                title: 'Ja',
-              },
-              {
-                id: 'q2b',
-                title: 'Nee',
-              },
-            ],
-          },
-          {
-            id: 'q3',
-            title: 'Is dit de derde vraag?',
-            subtitle: 'Deze word alleen getoond als q1.q1b',
-            condition: 'q1.q1b',
-            answers: [
-              {
-                id: 'q3a',
-                title: 'Ja',
-              },
-              {
-                id: 'q3b',
-                title: 'Nee',
-              },
-            ],
-          },
-          {
-            id: 'q3',
-            title: 'We zijn aan het eind gekomen van de vragenlijst',
-          },
-        ],
-      },
 
       // debug: true,
     };
   }
 
-  onGoToNext(event) {
-    const questionId = event.target.getAttribute('question-id');
-    const answerId = event.target.getAttribute('answer-id');
+  onGoToQuestion(questionId) {
+    let questionIndex = 0;
+    // Used for() instead of findIndex(), because of https://stackoverflow.com/a/15998003
+    for (let i = 0; i < config.uitvoeringsregels.length; i += 1) {
+      if (config.uitvoeringsregels[i].id === questionId) {
+        questionIndex = i;
+        break;
+      }
+    }
+    this.setState({
+      questionIndex,
+    });
+  }
 
+  onGoToNext(questionId, answerId) {
     this.setState(prevState => ({
-      currentQuestion: prevState.currentQuestion + 1,
+      questionIndex: prevState.questionIndex + 1,
       userAnswers: {
         ...prevState.userAnswers,
         [questionId]: answerId,
@@ -95,57 +55,105 @@ class Questionarnaire extends React.Component {
 
   onGoToPrev() {
     this.setState(prevState => ({
-      currentQuestion: prevState.currentQuestion - 1,
+      questionIndex: prevState.questionIndex - 1,
     }));
   }
 
   render() {
-    // const {
-    //
-    // } = this.props;
+    const { questionIndex, userAnswers } = this.state;
+    // console.log(userAnswers);
 
-    const { questionsJson, currentQuestion, userAnswers } = this.state;
+    const { uitvoeringsregels } = config;
 
-    const currentQuestionObject = questionsJson.questions[currentQuestion];
-
-    if (!questionsJson.questions[currentQuestion]) {
-      return <div>NULL</div>;
+    if (questionIndex > 0 && questionIndex >= uitvoeringsregels.length) {
+      return (
+        <div>
+          <h3>Overzicht</h3>
+          <div>
+            {uitvoeringsregels.map((regel, index) => {
+              const userAnswer = userAnswers[regel.id];
+              const answer = regel.vraag.antwoordOpties
+                .filter(antwoord => antwoord.id === userAnswer)
+                .map(antwoord => antwoord.optieText);
+              return (
+                <div key={regel.id} style={{ columnCount: '3' }}>
+                  <div key={regel.vraag.vraagTekst}>
+                    {index}: {regel.vraag.vraagTekst}
+                  </div>
+                  <div key={answer}>{answer}</div>
+                  <button
+                    onClick={() => this.onGoToQuestion(regel.id)}
+                    type="button"
+                    href="#"
+                    key={regel.content.toelicht}
+                  >
+                    Wijzig
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
     }
 
-    console.log(userAnswers);
+    if (questionIndex < 0 || !uitvoeringsregels[questionIndex]) {
+      return null;
+    }
+
+    const currentObject = uitvoeringsregels[questionIndex];
+    // console.log('CURRENTOBJECT', currentObject);
 
     const {
-      id: currentQuestionId,
-      title: currentQuestionTitle,
-      subtitle: currentQuestionSubtitle,
-      answers: currentQuestionAnswers = [],
-    } = currentQuestionObject;
+      id: questionId,
+      vraag: { vraagTekst, antwoordOpties },
+      content: { toelichting },
+    } = currentObject;
+
+    if (userAnswers[questionId]) {
+      console.log('has already answer!');
+      console.log(userAnswers[questionId]);
+    }
+    const userAnswer = userAnswers[questionId] || null;
 
     return (
       <div className="address-input">
         <h2>Questionarnaire:</h2>
-        <p>currentQuestion: {currentQuestion}</p>
         <div>
-          <h3>{currentQuestionTitle}</h3>
-          <p>{currentQuestionSubtitle}</p>
-          <p>ID: {currentQuestionId}</p>
+          <h3 data-id={questionId}>{vraagTekst}</h3>
+          <p>{toelichting}</p>
           <div>
-            {currentQuestionAnswers.map(answer => (
-              <button
-                onClick={this.onGoToNext}
-                question-id={currentQuestionId}
-                answer-id={answer.id}
-                type="submit"
-                key={answer.id}
-              >
-                {answer.title} ({answer.id})
-              </button>
-            ))}
+            {antwoordOpties.map(answer => {
+              let prefilled = answer.waarde ? { background: 'LimeGreen' } : {};
+              if (userAnswer) {
+                prefilled = {};
+                if (userAnswer === answer.id) {
+                  prefilled = { background: 'green' };
+                }
+              }
+              return (
+                <Button
+                  onClick={() => this.onGoToNext(questionId, answer.id)}
+                  question-id={questionId}
+                  answer-id={answer.id}
+                  type="submit"
+                  key={answer.id}
+                  style={prefilled}
+                  data-id={answer.id}
+                >
+                  {answer.optieText}
+                </Button>
+              );
+            })}
           </div>
         </div>
         <br />
         <br />
-        <Button onClick={this.onGoToPrev}>Vorige vraag</Button>
+        {questionIndex > 0 && (
+          <button type="button" onClick={this.onGoToPrev}>
+            Vorige vraag
+          </button>
+        )}
       </div>
     );
   }
