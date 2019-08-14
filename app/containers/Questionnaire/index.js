@@ -111,8 +111,8 @@ class Questionarnaire extends React.Component {
     } = currentObject;
 
     if (userAnswers[questionId]) {
-      console.log('has already answer!');
-      console.log(userAnswers[questionId]);
+      // console.log('has already answer!');
+      // console.log(userAnswers[questionId]);
     }
     const userAnswer = userAnswers[questionId] || null;
 
