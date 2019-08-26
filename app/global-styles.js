@@ -21,11 +21,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a, a:hover {
-    color: #004699 !important;
+    color: #004699;
   }
 
   a:hover::before {
-    background-image: url("~amsterdam-stijl/dist/images/svg/caret-left-blue.svg") !important;
+    background-image: url("~amsterdam-stijl/dist/images/svg/caret-left-blue.svg");
   }
 
   ul li {

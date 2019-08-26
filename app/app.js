@@ -19,6 +19,9 @@ import 'moment/src/locale/nl';
 import history from 'utils/history';
 import 'leaflet/dist/leaflet';
 
+// Import from @datapunt
+import { GlobalStyle, ThemeProvider } from '@datapunt/asc-ui';
+
 // Import root app
 import App from 'containers/App';
 
@@ -52,13 +55,16 @@ const MOUNT_NODE = document.getElementById('app');
 
 const render = messages => {
   ReactDOM.render(
-    <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </LanguageProvider>
-    </Provider>,
+    <ThemeProvider>
+      <GlobalStyle />
+      <Provider store={store}>
+        <LanguageProvider messages={messages}>
+          <ConnectedRouter history={history}>
+            <App />
+          </ConnectedRouter>
+        </LanguageProvider>
+      </Provider>
+    </ThemeProvider>,
     MOUNT_NODE,
   );
 };
