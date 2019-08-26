@@ -810,32 +810,34 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@datapunt/asc-assets@^0.9.0-alpha.0":
-  version "0.9.0-alpha.0"
-  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-assets/-/asc-assets-0.9.0-alpha.0.tgz#c4ecfa1e313c292c3cd3a5a4e983a5636c523d96"
-  integrity sha512-3i6wkkIcjPgPsiy3BHOo6EW+42Rxq+Fse+EJfRjCghIsIXf+L2FYUwkEVS7JJA7RPLFks8uMXMKeCsOH3u0HUA==
+"@datapunt/asc-assets@^0.12.6":
+  version "0.12.6"
+  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-assets/-/asc-assets-0.12.6.tgz#029ffeba891a749b7c7751dd9db4f7ee9d1b1e6b"
+  integrity sha512-O7phpOt8eqR08ScbiepXUUxMxUHTo/lHRHv1ykfMNZ1avFmmk+0Ybt803ud3IBGIXv8/LF80tU38MnD0sip9xg==
   dependencies:
     "@svgr/cli" "^4.3.1"
     "@svgr/core" "^2.4.1"
     svgo "^1.2.2"
 
-"@datapunt/asc-core@^0.9.2":
-  version "0.9.2"
-  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-core/-/asc-core-0.9.2.tgz#38e5f8928d0245f40a16daa19444338e990f489c"
-  integrity sha512-pJ5LWT9O1fFnMfm7Vc/0Y4kZG+MqtP0Gjg+aHnSS8GmYloU9lQOEBFS2e1pFgfj+wzzshqIKWjZlxhOpTd91Nw==
+"@datapunt/asc-core@^0.12.6":
+  version "0.12.6"
+  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-core/-/asc-core-0.12.6.tgz#d2d98a12e88421a18a24b630a8f8131a2cadd894"
+  integrity sha512-dmQbj11PWKZbGOkEOmcOLAzFMBzKMirhhpoe4bxxCf1BxYpGKUaOqYDbELG9Tq3c3Nh4jHbW9wN75sy+Fq8QNA==
   dependencies:
     styled-components "^4.3.1"
 
-"@datapunt/asc-ui@^0.9.2":
-  version "0.9.2"
-  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-ui/-/asc-ui-0.9.2.tgz#addcb221766b0a90f5fddd5f9544d1aeba771980"
-  integrity sha512-O9sM7UEoAC9+1TzmvamCITlEGQGfknWZnHimWFW4zxRsHTFjD5PkXPHkwUU6NMujKrHcEfyMpjEbne/mUG1dhQ==
+"@datapunt/asc-ui@^0.12.6":
+  version "0.12.6"
+  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-ui/-/asc-ui-0.12.6.tgz#b85341a79df0b4cc5cf6a91cc79625450c54ee72"
+  integrity sha512-kiy95Rs2TWf7A/RcEp1cyqiJ80AeAi4/GSpBQynVxZXKFBgp/zIiFNx1+54KjoG42Vbb6Q/6yU/LFxzN957COQ==
   dependencies:
-    "@datapunt/asc-assets" "^0.9.0-alpha.0"
+    "@datapunt/asc-assets" "^0.12.6"
+    "@datapunt/asc-core" "^0.12.6"
     classnames "^2.2.6"
     deepmerge "^4.0.0"
     enzyme "^3.10.0"
     jest-styled-components "^6.3.3"
+    objectFitPolyfill "^2.3.0"
     polished "^3.4.1"
     react-uid "^2.2.0"
 
@@ -8834,6 +8836,11 @@ object.values@^1.0.4, object.values@^1.1.0:
     es-abstract "^1.12.0"
     function-bind "^1.1.1"
     has "^1.0.3"
+
+objectFitPolyfill@^2.3.0:
+  version "2.3.0"
+  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/objectFitPolyfill/-/objectFitPolyfill-2.3.0.tgz#e4c54df5943f5f65351ca07692c613c9da3b5536"
+  integrity sha512-VgF98xGs2upBxO6a4FKGEEip5kXQCYpIwrKSDQ6oyFvPAmTrm6nPD/Y/IetoHx62HE6N82hWvc7Tc0evEBkoyA==
 
 offline-plugin@5.0.6:
   version "5.0.6"
