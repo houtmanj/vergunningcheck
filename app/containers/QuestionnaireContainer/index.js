@@ -1,12 +1,7 @@
 import React from 'react';
-// import { bindActionCreators } from 'redux';
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import Content from 'components/Questionnaire/Content';
 
-import {
-  Button,
-  // TextField,
-} from '@datapunt/asc-ui';
+import { Button } from '@datapunt/asc-ui';
 
 import config from './config';
 
@@ -19,13 +14,8 @@ class Questionarnaire extends React.Component {
     this.onGoToPrev = this.onGoToPrev.bind(this);
 
     this.state = {
-      // hasError: false,
       questionIndex: 0,
-      // currentQuestion: 0,
-      // currentQuestionId: 0,
       userAnswers: {},
-
-      // debug: true,
     };
   }
 
@@ -65,6 +55,7 @@ class Questionarnaire extends React.Component {
 
     const { uitvoeringsregels } = config;
 
+    // CONCLUSIE PAGINA
     if (questionIndex > 0 && questionIndex >= uitvoeringsregels.length) {
       return (
         <div>
@@ -117,11 +108,8 @@ class Questionarnaire extends React.Component {
     const userAnswer = userAnswers[questionId] || null;
 
     return (
-      <div className="address-input">
-        <h2>Questionarnaire:</h2>
+      <Content headingDataId={questionId} heading={vraagTekst} paragraph={toelichting}>
         <div>
-          <h3 data-id={questionId}>{vraagTekst}</h3>
-          <p>{toelichting}</p>
           <div>
             {antwoordOpties.map(answer => {
               let prefilled = answer.waarde ? { background: 'LimeGreen' } : {};
@@ -146,86 +134,18 @@ class Questionarnaire extends React.Component {
               );
             })}
           </div>
+
+          <br />
+          <br />
+          {questionIndex > 0 && (
+            <button type="button" onClick={this.onGoToPrev}>
+              Vorige vraag
+            </button>
+          )}
         </div>
-        <br />
-        <br />
-        {questionIndex > 0 && (
-          <button type="button" onClick={this.onGoToPrev}>
-            Vorige vraag
-          </button>
-        )}
-      </div>
+      </Content>
     );
   }
 }
 
-Questionarnaire.defaultProps = {
-  // bagStatus: {
-  //   geometrie: {},
-  //   _display: '',
-  //   _gemeente: {
-  //     _display: '',
-  //   },
-  //   _buurtcombinatie: {
-  //     naam: '',
-  //   },
-  //   _gebiedsgerichtwerken: {
-  //     naam: '',
-  //   },
-  // },
-  // monumentStatus: '',
-  // noResults: false,
-};
-
-Questionarnaire.propTypes = {
-  // streetName: PropTypes.string,
-  // streetNameLoading: PropTypes.bool,
-  // bagLoading: PropTypes.bool,
-  // bagFetch: PropTypes.bool,
-  // bagStatus: PropTypes.shape({
-  //   _display: PropTypes.string,
-  //   _buurtcombinatie: PropTypes.shape({
-  //     naam: PropTypes.string,
-  //   }),
-  //   _gebiedsgerichtwerken: PropTypes.shape({
-  //     naam: PropTypes.string,
-  //   }),
-  //   geometrie: PropTypes.object,
-  //   _gemeente: PropTypes.object,
-  // }),
-  // monumentStatus: PropTypes.string,
-  // monumentLoading: PropTypes.bool,
-  // stadsgezichtStatus: PropTypes.string,
-  // stadsgezichtLoading: PropTypes.bool,
-  // beperkingStatus: PropTypes.arrayOf(PropTypes.object),
-  // beperkingLoading: PropTypes.bool,
-  // bestemmingsplanStatus: PropTypes.arrayOf(PropTypes.object),
-  // bestemmingsplanLoading: PropTypes.bool,
-  // onFetchStreetname: PropTypes.func.isRequired,
-  // onFetchBagData: PropTypes.func.isRequired,
-  // noResults: PropTypes.bool,
-};
-
-// const mapStateToProps = state =>
-//   // const {
-//   // // streetNameLoading,
-//   // } = state;
-//   ({
-//     // streetNameLoading,
-//   });
-// const mapDispatchToProps = dispatch =>
-//   bindActionCreators(
-//     {
-//       // onFetchBagData: fetchBagData,
-//       // onFetchStreetname: fetchStreetname,
-//     },
-//     dispatch,
-//   );
-
 export default Questionarnaire;
-
-// export default connect(
-//   // mapStateToProps,
-//   {},
-//   mapDispatchToProps,
-// )(Questionarnaire);
