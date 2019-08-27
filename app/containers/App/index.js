@@ -8,7 +8,7 @@ import AddressInput from 'containers/AddressInput';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
 import NotFoundPage from 'containers/NotFoundPage';
 import Footer from 'components/Footer';
-import HeaderContainer from 'containers/HeaderContainer';
+import Header from 'components/Header';
 import GlobalError from 'containers/GlobalError';
 
 import addressInputSaga from '../AddressInput/saga';
@@ -25,7 +25,7 @@ export const App = () => {
   return (
     <div className="container app-container">
       <GlobalError />
-      <HeaderContainer />
+      <Header />
       <div className="content container">
         <Switch>
           <Route exact path="/" component={QuestionnaireContainer} />
