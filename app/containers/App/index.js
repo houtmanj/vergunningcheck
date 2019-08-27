@@ -13,7 +13,9 @@ import GlobalError from 'containers/GlobalError';
 
 import addressInputSaga from '../AddressInput/saga';
 
-import GlobalStyles from '../../global-styles';
+// import GlobalStyles from '../../global-styles';
+
+import './style.scss';
 
 const addressInputKey = 'addressInput';
 
@@ -32,11 +34,7 @@ export const App = () => {
           <Route path="" component={NotFoundPage} />
         </Switch>
       </div>
-      <div className="container-fluid">
-        <Footer />
-      </div>
-
-      <GlobalStyles />
+      <Footer />
     </div>
   );
 };

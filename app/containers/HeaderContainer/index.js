@@ -13,13 +13,13 @@ export const HeaderContainer = () => (
     navigation={
       <MenuInline>
         <MenuItem>
-          <MenuButton>Inleiding</MenuButton>
+          <MenuButton $as="div">Inleiding</MenuButton>
         </MenuItem>
         <MenuItem>
-          <MenuButton>Vragen</MenuButton>
+          <MenuButton $as="div">Vragen</MenuButton>
         </MenuItem>
         <MenuItem>
-          <MenuButton>Conclusie</MenuButton>
+          <MenuButton $as="div">Conclusie</MenuButton>
         </MenuItem>
       </MenuInline>
     }

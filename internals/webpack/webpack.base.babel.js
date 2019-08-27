@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = options => ({
   mode: options.mode,
@@ -110,11 +111,26 @@ module.exports = options => ({
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
     }),
+    new CopyWebpackPlugin([
+      {
+        context: 'modules/shared/assets',
+        from: '**/*',
+        to: 'assets',
+      },
+      {
+        from: './node_modules/@datapunt/asc-assets/lib/assets/Fonts',
+        to: 'Fonts',
+      },
+    ]),
   ]),
   resolve: {
     modules: ['node_modules', 'app'],
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
+    alias: {
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+    },
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window

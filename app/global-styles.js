@@ -1,19 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
-import 'amsterdam-stijl/dist/css/ams-stijl.css';
 
 const GlobalStyle = createGlobalStyle`
   html,
   body {
     height: 100%;
     width: 100%;
-  }
-
-  body {
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  }
-
-  body.fontLoaded {
-    font-family: AvenirNextLTW01-Regular, Helvetica Neue, Helvetica, Arial, sans-serif;
   }
 
   p {
