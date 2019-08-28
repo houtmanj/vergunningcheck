@@ -11,7 +11,7 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
       return (
         <div key={regel.id} style={{ columnCount: '3' }}>
           <div key={regel.vraag.vraagTekst}>
-            {index}: {regel.vraag.vraagTekst}
+            {index + 1}: {regel.vraag.vraagTekst}
           </div>
           <div key={answer}>{answer}</div>
           <button onClick={() => onGoToQuestion(regel.id)} type="button" href="#" key={regel.content.toelicht}>

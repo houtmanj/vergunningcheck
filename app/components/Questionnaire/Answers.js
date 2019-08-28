@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import { Button } from '@datapunt/asc-ui';
 
-const Answers = ({ answers, userAnswers, questionId, onGoToNext }) => {
+const Answers = ({ className, answers, userAnswers, questionId, onGoToNext }) => {
   const userAnswer = userAnswers[questionId] || null;
 
   return (
-    <div>
+    <div className={className}>
       {answers.map(answer => {
-        let prefilled = answer.waarde ? { background: 'LimeGreen' } : {};
+        let prefilled = answer.prefilled ? { background: 'Purple' } : {};
         if (userAnswer) {
           prefilled = {};
           if (userAnswer === answer.id) {
@@ -34,7 +34,9 @@ const Answers = ({ answers, userAnswers, questionId, onGoToNext }) => {
     </div>
   );
 };
+
 Answers.propTypes = {
+  className: PropTypes.string,
   answers: PropTypes.array,
   userAnswers: PropTypes.object,
   questionId: PropTypes.string,

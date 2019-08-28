@@ -3,6 +3,34 @@ export default {
   name: 'Conclusie vergunningscheck Aanbouw',
   uitvoeringsregels: [
     {
+      id: '4e98togyhv',
+      vraag: {
+        vraagTekst: 'Gaat u bouwen aan (op, of bij) een monument?',
+        vraagType: 'boolean',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+            prefilled: true,
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting: '',
+      },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
+    },
+    {
       id: 'UitvId0001',
       vraag: {
         vraagTekst: 'Wordt uw aanbouw minder dan 2,5 m diep (vanaf de achtergevel)?',
@@ -42,7 +70,6 @@ export default {
           {
             id: '2',
             optieText: 'Nee',
-            // waarde: true,
           },
         ],
       },

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@datapunt/asc-core';
 
-import { Content, Overview, Answers } from 'components/Questionnaire';
+import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
 
 import config from './config';
@@ -10,6 +10,12 @@ const StyledContent = styled(Content)`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+`;
+
+const StyledAnswers = styled(Answers)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 class QuestionnaireContainer extends React.Component {
@@ -21,7 +27,8 @@ class QuestionnaireContainer extends React.Component {
     this.onGoToPrev = this.onGoToPrev.bind(this);
 
     this.state = {
-      questionIndex: 0,
+      location: false,
+      questionIndex: -1,
       userAnswers: {},
     };
   }
@@ -37,6 +44,13 @@ class QuestionnaireContainer extends React.Component {
     }
     this.setState({
       questionIndex,
+    });
+  }
+
+  setLocation(location) {
+    this.setState({
+      location,
+      questionIndex: 0,
     });
   }
 
@@ -57,50 +71,65 @@ class QuestionnaireContainer extends React.Component {
   }
 
   render() {
-    const { questionIndex, userAnswers } = this.state;
-    // console.log(userAnswers);
+    const { questionIndex, userAnswers, location } = this.state;
+
+    if (!location || questionIndex < 0) {
+      // FIRST QUESTION: LOCATION
+      return (
+        <StyledContent heading="Waar wilt u uw aanbouw maken?">
+          <h2>✓ De Pijp</h2>
+          <p>Straks kunt u hier een locatie kiezen, nu wordt de vragenlijst van De Pijp laten zien.</p>
+          <Navigation onGoToNext={() => this.setLocation('de pijp')} showNext />
+        </StyledContent>
+      );
+    }
 
     const { uitvoeringsregels } = config;
 
-    let QuestionnaireContent;
+    if (uitvoeringsregels[questionIndex]) {
+      // QUESTION FLOW FROM JSON
+      const {
+        id: questionId,
+        vraag: { vraagTekst: question, antwoordOpties: answers },
+        content: { toelichting: paragraph },
+      } = uitvoeringsregels[questionIndex];
 
-    if (questionIndex > 0 && questionIndex > uitvoeringsregels.length) {
+      const hasPrefilledAnswer = answers.filter(answer => answer.prefilled).length > 0;
+
+      return (
+        <StyledContent headingDataId={questionId} heading={question} paragraph={paragraph}>
+          {hasPrefilledAnswer && <PrefilledAnswerText />}
+          <StyledAnswers
+            questionId={questionId}
+            userAnswers={userAnswers}
+            answers={answers}
+            onGoToNext={this.onGoToNext}
+          />
+          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
+        </StyledContent>
+      );
+    }
+
+    if (questionIndex >= uitvoeringsregels.length) {
       // OVERVIEW
-      QuestionnaireContent = () => (
-        <StyledContent heading="Overzicht">
+      return (
+        <StyledContent heading="Controleer uw antwoorden">
+          <p>
+            Op grond van uw antwoorden heeft u geen omgevingsvergunning voor bouw en gebruik nodig. Hieronder ziet u uw
+            antwoorden terug.
+          </p>
+          <p>U kunt u antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet u wat de vervolgstappen zijn.</p>
           <Overview
             onGoToQuestion={this.onGoToQuestion}
             userAnswers={userAnswers}
             uitvoeringsregels={uitvoeringsregels}
           />
-        </StyledContent>
-      );
-    } else if (questionIndex > 0 && uitvoeringsregels[questionIndex - 1]) {
-      // QUESTION FLOW FROM BACKEND
-      const {
-        id: questionId,
-        vraag: { vraagTekst: question, antwoordOpties: answers },
-        content: { toelichting: paragraph },
-      } = uitvoeringsregels[questionIndex - 1];
-
-      QuestionnaireContent = () => (
-        <StyledContent headingDataId={questionId} heading={question} paragraph={paragraph}>
-          <Answers questionId={questionId} userAnswers={userAnswers} answers={answers} onGoToNext={this.onGoToNext} />
-          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
-        </StyledContent>
-      );
-    } else {
-      // FIRST QUESTION: LOCATION
-      QuestionnaireContent = () => (
-        <StyledContent heading="Waar wilt u uw aanbouw maken?">
-          <h2>✓ De Pijp</h2>
-          <p>Straks kunt u hier een locatie kiezen, nu wordt de vragenlijst van De Pijp laten zien.</p>
-          <Navigation onGoToNext={this.onGoToNext} showNext />
+          <Navigation />
         </StyledContent>
       );
     }
 
-    return <QuestionnaireContent />;
+    return null;
   }
 }
 

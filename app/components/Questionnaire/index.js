@@ -1,6 +1,6 @@
 import Answers from './Answers';
 import Overview from './Overview';
 import Content from './Content';
-import Introduction from './Introduction';
+import PrefilledAnswerText from './PrefilledAnswerText';
 
-export { Answers, Overview, Content, Introduction };
+export { Answers, Overview, Content, PrefilledAnswerText };
