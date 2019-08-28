@@ -3,8 +3,10 @@ import { Switch, Route } from 'react-router-dom';
 import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
+import { Row, Column } from '@datapunt/asc-ui';
 
 import AddressInput from 'containers/AddressInput';
+import HomePage from 'containers/HomePage';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
 import NotFoundPage from 'containers/NotFoundPage';
 import Footer from 'components/Footer';
@@ -26,14 +28,17 @@ export const App = () => {
     <div className="container app-container">
       <GlobalError />
       <Header />
-      <div className="content container">
-        <Switch>
-          <Route exact path="/" component={QuestionnaireContainer} />
-          <Route exact path="/adres" component={AddressInput} />
-          <Route exact path="/health" />
-          <Route path="" component={NotFoundPage} />
-        </Switch>
-      </div>
+      <Row halign="center" valign="center">
+        <Column wrap span={{ small: 1, medium: 2, big: 6, large: 12, xLarge: 11 }}>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/aanbouw" component={QuestionnaireContainer} />
+            <Route exact path="/adres" component={AddressInput} />
+            <Route exact path="/health" />
+            <Route path="" component={NotFoundPage} />
+          </Switch>
+        </Column>
+      </Row>
       <Footer />
     </div>
   );

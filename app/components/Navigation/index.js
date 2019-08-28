@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 
-const Footer = styled(`div`)`
+const NavigationStyle = styled(`div`)`
   display: flex;
   height: 60px;
   margin: 20px 0;
@@ -11,8 +11,8 @@ const Footer = styled(`div`)`
   align-items: center;
 `;
 
-const QuestionFooter = ({ showPrev, onGoToPrev, showNext, onGoToNext }) => (
-  <Footer>
+const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext }) => (
+  <NavigationStyle>
     <div>
       {showPrev && (
         <button type="button" onClick={onGoToPrev}>
@@ -27,14 +27,14 @@ const QuestionFooter = ({ showPrev, onGoToPrev, showNext, onGoToNext }) => (
         </button>
       )}
     </div>
-  </Footer>
+  </NavigationStyle>
 );
 
-QuestionFooter.propTypes = {
+Navigation.propTypes = {
   showPrev: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
   onGoToNext: PropTypes.func,
 };
 
-export default QuestionFooter;
+export default Navigation;

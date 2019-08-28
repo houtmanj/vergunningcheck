@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Conclusion = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
+const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
   <div>
     {uitvoeringsregels.map((regel, index) => {
       const userAnswer = userAnswers[regel.id];
@@ -23,10 +23,10 @@ const Conclusion = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
   </div>
 );
 
-Conclusion.propTypes = {
+Overview.propTypes = {
   onGoToQuestion: PropTypes.func,
   uitvoeringsregels: PropTypes.array,
   userAnswers: PropTypes.object,
 };
 
-export default Conclusion;
+export default Overview;

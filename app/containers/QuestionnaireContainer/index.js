@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@datapunt/asc-core';
-import { Row, Column } from '@datapunt/asc-ui';
 
-import { Content, Conclusion, Introduction, Answers, QuestionFooter } from 'components/Questionnaire';
+import { Content, Overview, Answers } from 'components/Questionnaire';
+import Navigation from 'components/Navigation';
 
 import config from './config';
 
@@ -64,48 +64,43 @@ class QuestionnaireContainer extends React.Component {
 
     let QuestionnaireContent;
 
-    if (questionIndex > 0 && questionIndex >= uitvoeringsregels.length) {
-      // CONCLUSION
+    if (questionIndex > 0 && questionIndex > uitvoeringsregels.length) {
+      // OVERVIEW
       QuestionnaireContent = () => (
         <StyledContent heading="Overzicht">
-          <Conclusion
+          <Overview
             onGoToQuestion={this.onGoToQuestion}
             userAnswers={userAnswers}
             uitvoeringsregels={uitvoeringsregels}
           />
         </StyledContent>
       );
-    } else if (questionIndex > 0 && uitvoeringsregels[questionIndex]) {
-      // QUESTION
+    } else if (questionIndex > 0 && uitvoeringsregels[questionIndex - 1]) {
+      // QUESTION FLOW FROM BACKEND
       const {
         id: questionId,
         vraag: { vraagTekst: question, antwoordOpties: answers },
         content: { toelichting: paragraph },
-      } = uitvoeringsregels[questionIndex];
+      } = uitvoeringsregels[questionIndex - 1];
 
       QuestionnaireContent = () => (
         <StyledContent headingDataId={questionId} heading={question} paragraph={paragraph}>
           <Answers questionId={questionId} userAnswers={userAnswers} answers={answers} onGoToNext={this.onGoToNext} />
-          <QuestionFooter showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
+          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
         </StyledContent>
       );
     } else {
-      // INTRODUCTION
+      // FIRST QUESTION: LOCATION
       QuestionnaireContent = () => (
-        <StyledContent heading="Inleiding">
-          <Introduction />
-          <QuestionFooter onGoToNext={this.onGoToNext} showNext />
+        <StyledContent heading="Waar wilt u uw aanbouw maken?">
+          <h2>✓ De Pijp</h2>
+          <p>Straks kunt u hier een locatie kiezen, nu wordt de vragenlijst van De Pijp laten zien.</p>
+          <Navigation onGoToNext={this.onGoToNext} showNext />
         </StyledContent>
       );
     }
 
-    return (
-      <Row halign="center" valign="center">
-        <Column wrap alignSelf="flex-start" span={{ small: 1, medium: 2, big: 6, large: 12, xLarge: 12 }}>
-          <QuestionnaireContent />
-        </Column>
-      </Row>
-    );
+    return <QuestionnaireContent />;
   }
 }
 

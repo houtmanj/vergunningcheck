@@ -3,49 +3,6 @@ export default {
   name: 'Conclusie vergunningscheck Aanbouw',
   uitvoeringsregels: [
     {
-      id: 'UitvId0000',
-      vraag: {
-        vraagTekst: 'Waar wilt u uw aanbouw maken?',
-        vraagType: 'list',
-        antwoordOpties: [
-          {
-            id: '1',
-            optieText: 'Centrum',
-          },
-          {
-            id: '2',
-            optieText: 'De Pijp',
-            waarde: true,
-          },
-          {
-            id: '3',
-            optieText: 'Bos en Lommer',
-          },
-          {
-            id: '4',
-            optieText: 'Noord',
-          },
-        ],
-      },
-      content: {
-        toelichting: 'Dit is vraag 0',
-        media: [
-          {
-            type: 'image',
-            path: '/path/to/img.jpg',
-            caption: 'titel van afbeelding',
-          },
-        ],
-      },
-      juridischeBronnen: [
-        {
-          label: 'Titel bron 1',
-          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
-        },
-      ],
-      interactieRegels: [{}],
-    },
-    {
       id: 'UitvId0001',
       vraag: {
         vraagTekst: 'Wordt uw aanbouw minder dan 2,5 m diep (vanaf de achtergevel)?',

@@ -10,20 +10,30 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 
-import AddressInput from '../AddressInput';
+import Navigation from 'components/Navigation';
 
 const HomePage = () => (
-  <>
-    <h3>
-      <FormattedMessage {...messages.header} />
-    </h3>
-    <>
-      <AddressInput />
-    </>
-  </>
+  <div>
+    <h3>Inleiding</h3>
+    <p>
+      Met de vergunningchecker ziet u snel of u een omgevingsvergunning moet aanvragen. Ook kunt u kijken waar uw
+      bouwwerk aan moet voldoen zodat u geen vergunning nodig heeft voor uw bouwwerk.
+    </p>
+    <ul>
+      <li>Als u een omgevingsvergunning moet aanvragen, ziet u wat uw vervolgstappen zijn.</li>
+      <li>
+        Als u geen omgevingsvergunning hoeft aan te vragen, kunt u direct aan Verklaring Vergunningsvrij aanvragen
+        (gratis en online).
+      </li>
+    </ul>
+    <Navigation
+      showNext
+      onGoToNext={() => {
+        window.location.href = '/aanbouw/';
+      }}
+    />
+  </div>
 );
 
 export default HomePage;
