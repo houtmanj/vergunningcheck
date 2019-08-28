@@ -1,11 +1,18 @@
 import React from 'react';
-import Content from 'components/Questionnaire/Content';
+import styled from '@datapunt/asc-core';
+import { Row, Column } from '@datapunt/asc-ui';
 
-import { Button } from '@datapunt/asc-ui';
+import { Content, Conclusion, Introduction, Answers, QuestionFooter } from 'components/Questionnaire';
 
 import config from './config';
 
-class Questionarnaire extends React.Component {
+const StyledContent = styled(Content)`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
+class QuestionnaireContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -55,97 +62,51 @@ class Questionarnaire extends React.Component {
 
     const { uitvoeringsregels } = config;
 
-    // CONCLUSIE PAGINA
+    let QuestionnaireContent;
+
     if (questionIndex > 0 && questionIndex >= uitvoeringsregels.length) {
-      return (
-        <div>
-          <h3>Overzicht</h3>
-          <div>
-            {uitvoeringsregels.map((regel, index) => {
-              const userAnswer = userAnswers[regel.id];
-              const answer = regel.vraag.antwoordOpties
-                .filter(antwoord => antwoord.id === userAnswer)
-                .map(antwoord => antwoord.optieText);
-              return (
-                <div key={regel.id} style={{ columnCount: '3' }}>
-                  <div key={regel.vraag.vraagTekst}>
-                    {index}: {regel.vraag.vraagTekst}
-                  </div>
-                  <div key={answer}>{answer}</div>
-                  <button
-                    onClick={() => this.onGoToQuestion(regel.id)}
-                    type="button"
-                    href="#"
-                    key={regel.content.toelicht}
-                  >
-                    Wijzig
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+      // CONCLUSION
+      QuestionnaireContent = () => (
+        <StyledContent heading="Overzicht">
+          <Conclusion
+            onGoToQuestion={this.onGoToQuestion}
+            userAnswers={userAnswers}
+            uitvoeringsregels={uitvoeringsregels}
+          />
+        </StyledContent>
+      );
+    } else if (questionIndex > 0 && uitvoeringsregels[questionIndex]) {
+      // QUESTION
+      const {
+        id: questionId,
+        vraag: { vraagTekst: question, antwoordOpties: answers },
+        content: { toelichting: paragraph },
+      } = uitvoeringsregels[questionIndex];
+
+      QuestionnaireContent = () => (
+        <StyledContent headingDataId={questionId} heading={question} paragraph={paragraph}>
+          <Answers questionId={questionId} userAnswers={userAnswers} answers={answers} onGoToNext={this.onGoToNext} />
+          <QuestionFooter showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
+        </StyledContent>
+      );
+    } else {
+      // INTRODUCTION
+      QuestionnaireContent = () => (
+        <StyledContent heading="Inleiding">
+          <Introduction />
+          <QuestionFooter onGoToNext={this.onGoToNext} showNext />
+        </StyledContent>
       );
     }
 
-    if (questionIndex < 0 || !uitvoeringsregels[questionIndex]) {
-      return null;
-    }
-
-    const currentObject = uitvoeringsregels[questionIndex];
-    // console.log('CURRENTOBJECT', currentObject);
-
-    const {
-      id: questionId,
-      vraag: { vraagTekst, antwoordOpties },
-      content: { toelichting },
-    } = currentObject;
-
-    if (userAnswers[questionId]) {
-      // console.log('has already answer!');
-      // console.log(userAnswers[questionId]);
-    }
-    const userAnswer = userAnswers[questionId] || null;
-
     return (
-      <Content headingDataId={questionId} heading={vraagTekst} paragraph={toelichting}>
-        <div>
-          <div>
-            {antwoordOpties.map(answer => {
-              let prefilled = answer.waarde ? { background: 'LimeGreen' } : {};
-              if (userAnswer) {
-                prefilled = {};
-                if (userAnswer === answer.id) {
-                  prefilled = { background: 'green' };
-                }
-              }
-              return (
-                <Button
-                  onClick={() => this.onGoToNext(questionId, answer.id)}
-                  question-id={questionId}
-                  answer-id={answer.id}
-                  type="submit"
-                  key={answer.id}
-                  style={prefilled}
-                  data-id={answer.id}
-                >
-                  {answer.optieText}
-                </Button>
-              );
-            })}
-          </div>
-
-          <br />
-          <br />
-          {questionIndex > 0 && (
-            <button type="button" onClick={this.onGoToPrev}>
-              Vorige vraag
-            </button>
-          )}
-        </div>
-      </Content>
+      <Row halign="center" valign="center">
+        <Column wrap alignSelf="flex-start" span={{ small: 1, medium: 2, big: 6, large: 12, xLarge: 12 }}>
+          <QuestionnaireContent />
+        </Column>
+      </Row>
     );
   }
 }
 
-export default Questionarnaire;
+export default QuestionnaireContainer;

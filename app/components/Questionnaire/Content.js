@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Content = ({ heading, headingDataId, paragraph, children }) => (
-  <>
-    <h3 data-id={headingDataId}>{heading}</h3>
-    <p>{paragraph}</p>
+const Content = ({ className, heading, headingDataId, paragraph, children }) => (
+  <div className={className}>
+    {heading && <h3 data-id={headingDataId}>{heading}</h3>}
+    {paragraph && <p>{paragraph}</p>}
     {children}
-  </>
+  </div>
 );
 
 Content.propTypes = {
+  className: PropTypes.string,
   heading: PropTypes.string,
   headingDataId: PropTypes.string,
   paragraph: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.any,
 };
 
 export default Content;
