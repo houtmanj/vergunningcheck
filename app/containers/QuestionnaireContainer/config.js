@@ -7,6 +7,7 @@ export default {
       vraag: {
         vraagTekst: 'Gaat u bouwen aan (op, of bij) een monument?',
         vraagType: 'boolean',
+        vergunningplichtig: 'Ja',
         antwoordOpties: [
           {
             id: '1',
@@ -35,6 +36,7 @@ export default {
       vraag: {
         vraagTekst: 'Woont u in een stadsgezicht?',
         vraagType: 'boolean',
+        vergunningplichtig: 'Ja',
         antwoordOpties: [
           {
             id: '1',
@@ -63,6 +65,7 @@ export default {
       vraag: {
         vraagTekst: 'Is uw bouwerk zichtbaar vanaf de openbare weg?',
         vraagType: 'boolean',
+        vergunningplichtig: 'Ja',
         antwoordOpties: [
           {
             id: '1',
@@ -91,6 +94,7 @@ export default {
       vraag: {
         vraagTekst: 'Wordt uw aanbouw minder dan 2,5 m diep (vanaf de achtergevel)?',
         vraagType: 'boolean',
+        vergunningplichtig: 'Nee',
         antwoordOpties: [
           {
             id: '1',
@@ -118,6 +122,7 @@ export default {
       vraag: {
         vraagTekst: 'Wilt u minder dan de helft van uw tuin gaan bebouwen?',
         vraagType: 'boolean',
+        vergunningplichtig: 'Nee',
         antwoordOpties: [
           {
             id: '1',
@@ -156,6 +161,7 @@ Met ‘bebouwen‘ bedoelen zowel de nieuwe aanbouw, als bestaande bebouwing (bi
       vraag: {
         vraagTekst: 'Sluit de vloer van de aanbouw aan op de vloer van de 1e bouwlaag?',
         vraagType: 'list',
+        vergunningplichtig: 'Nee',
         antwoordOpties: [
           {
             id: '1',
@@ -190,6 +196,7 @@ Met ‘bebouwen‘ bedoelen zowel de nieuwe aanbouw, als bestaande bebouwing (bi
       vraag: {
         vraagTekst: 'Komt de aanbouw op een nieuwe (of uitgebreide) kelder of soutterrain?',
         vraagType: 'list',
+        vergunningplichtig: 'Ja',
         antwoordOpties: [
           {
             id: '1',
@@ -224,6 +231,7 @@ Met ‘bebouwen‘ bedoelen zowel de nieuwe aanbouw, als bestaande bebouwing (bi
       vraag: {
         vraagTekst: 'Wordt uw aanbouw minder dan 5 m hoog?',
         vraagType: 'list',
+        vergunningplichtig: 'Nee',
         antwoordOpties: [
           {
             id: '1',
@@ -258,6 +266,7 @@ Met ‘bebouwen‘ bedoelen zowel de nieuwe aanbouw, als bestaande bebouwing (bi
       vraag: {
         vraagTekst: 'Wordt uw aanbouw maximaal 0,3 m hoger dan de vloer van de 2e bouwlaag van het bestaande gebouw?',
         vraagType: 'list',
+        vergunningplichtig: 'Nee',
         antwoordOpties: [
           {
             id: '1',
@@ -295,6 +304,7 @@ Kelder en souterrain tellen niet als 1e bouwlaag.`,
       vraag: {
         vraagTekst: 'Krijgt uw aanbouw een dakterras?',
         vraagType: 'list',
+        vergunningplichtig: 'Ja',
         antwoordOpties: [
           {
             id: '1',
@@ -330,6 +340,7 @@ Kelder en souterrain tellen niet als 1e bouwlaag.`,
       vraag: {
         vraagTekst: 'Komt er voldoende afstand tussen uw aanbouw en een (eventueel) bestaand balkon?',
         vraagType: 'list',
+        vergunningplichtig: 'Nee',
         antwoordOpties: [
           {
             id: '1',
@@ -367,6 +378,7 @@ Met ‘voldoende afstand’ bedoelen we dat er minimaal 1 bouwlaag tussen balkon
       vraag: {
         vraagTekst: `Krijgt uw aanbouw een 'groen' dak?`,
         vraagType: 'list',
+        vergunningplichtig: 'Nee',
         antwoordOpties: [
           {
             id: '1',
@@ -405,6 +417,7 @@ Met een ‘groen’ dak bedoelen we een dak dat geheel is bedekt met planten. Oo
         vraagTekst:
           'Is het hoofdgebouw (woning, bedrijfsruimte), waar de aanbouw aan vast komt, gebouwd met een tijdelijke omgevingsvergunning?',
         vraagType: 'list',
+        vergunningplichtig: 'Ja',
         antwoordOpties: [
           {
             id: '1',

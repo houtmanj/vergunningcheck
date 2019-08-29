@@ -124,7 +124,7 @@ class QuestionnaireContainer extends React.Component {
       // QUESTION FLOW FROM JSON
       const {
         id: questionId,
-        vraag: { vraagTekst: question, antwoordOpties: answers },
+        vraag: { vraagTekst: question, antwoordOpties: answers, vergunningplichtig: required },
         content: { toelichting: paragraph },
       } = uitvoeringsregels[questionIndex];
 
@@ -137,6 +137,7 @@ class QuestionnaireContainer extends React.Component {
             questionId={questionId}
             userAnswers={userAnswers}
             answers={answers}
+            required={required}
             onGoToNext={this.onGoToNext}
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
