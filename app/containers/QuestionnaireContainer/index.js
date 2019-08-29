@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 
 import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Questionnaire';
@@ -18,6 +19,15 @@ const StyledAnswers = styled(Answers)`
   align-items: flex-start;
 `;
 
+const RandomizeButton = props => (
+  <button type="submit" onClick={props.randomizeAnswers()}>
+    Randomize
+  </button>
+);
+RandomizeButton.propTypes = {
+  randomizeAnswers: PropTypes.func,
+};
+
 class QuestionnaireContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +35,7 @@ class QuestionnaireContainer extends React.Component {
     this.onGoToQuestion = this.onGoToQuestion.bind(this);
     this.onGoToNext = this.onGoToNext.bind(this);
     this.onGoToPrev = this.onGoToPrev.bind(this);
+    this.onRandomizeAnswers = this.onRandomizeAnswers.bind(this);
 
     this.state = {
       location: false,
@@ -55,6 +66,8 @@ class QuestionnaireContainer extends React.Component {
   }
 
   onGoToNext(questionId, answerId) {
+    const { userAnswers } = this.state;
+    console.log(userAnswers);
     this.setState(prevState => ({
       questionIndex: prevState.questionIndex + 1,
       userAnswers: {
@@ -70,6 +83,26 @@ class QuestionnaireContainer extends React.Component {
     }));
   }
 
+  onRandomizeAnswers() {
+    const randomAnswers = config.uitvoeringsregels.reduce(
+      (o, key) => ({
+        ...o,
+        [key.id]: key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id,
+      }),
+      {},
+    );
+
+    this.setLocation('de pijp');
+
+    this.setState(prevState => ({
+      questionIndex: config.uitvoeringsregels.length,
+      userAnswers: {
+        ...randomAnswers,
+        ...prevState.userAnswers,
+      },
+    }));
+  }
+
   render() {
     const { questionIndex, userAnswers, location } = this.state;
 
@@ -80,6 +113,7 @@ class QuestionnaireContainer extends React.Component {
           <h2>✓ De Pijp</h2>
           <p>Straks kunt u hier een locatie kiezen, nu wordt de vragenlijst van De Pijp laten zien.</p>
           <Navigation onGoToNext={() => this.setLocation('de pijp')} showNext />
+          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
         </StyledContent>
       );
     }
@@ -106,6 +140,7 @@ class QuestionnaireContainer extends React.Component {
             onGoToNext={this.onGoToNext}
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
+          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
         </StyledContent>
       );
     }
@@ -118,7 +153,7 @@ class QuestionnaireContainer extends React.Component {
             Op grond van uw antwoorden heeft u geen omgevingsvergunning voor bouw en gebruik nodig. Hieronder ziet u uw
             antwoorden terug.
           </p>
-          <p>U kunt u antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet u wat de vervolgstappen zijn.</p>
+          <p>U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet u wat de vervolgstappen zijn.</p>
           <Overview
             onGoToQuestion={this.onGoToQuestion}
             userAnswers={userAnswers}
