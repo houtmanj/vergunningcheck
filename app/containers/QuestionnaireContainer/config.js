@@ -3,7 +3,7 @@ export default {
   name: 'Conclusie vergunningscheck Aanbouw',
   uitvoeringsregels: [
     {
-      id: '4e98togyhv',
+      id: 'monument',
       vraag: {
         vraagTekst: 'Gaat u bouwen aan (op, of bij) een monument?',
         vraagType: 'boolean',
@@ -31,7 +31,63 @@ export default {
       interactieRegels: [{}],
     },
     {
-      id: 'UitvId0001',
+      id: 'stadsgezicht1',
+      vraag: {
+        vraagTekst: 'Woont u in een stadsgezicht?',
+        vraagType: 'boolean',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting:
+          'Let op: Omdat uw locatie in een beschermd stadsgezicht ligt, kunt u alleen zonder vergunning bouwen als het niet zichtaar is vanaf de openbare weg.',
+      },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
+    },
+    {
+      id: 'stadsgezicht2',
+      vraag: {
+        vraagTekst: 'Is uw bouwerk zichtbaar vanaf de openbare weg?',
+        vraagType: 'boolean',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting:
+          'Let op: Omdat uw locatie in een beschermd stadsgezicht ligt, kunt u alleen zonder vergunning bouwen als het niet zichtaar is vanaf de openbare weg.',
+      },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
+    },
+    {
+      id: 'diepte',
       vraag: {
         vraagTekst: 'Wordt uw aanbouw minder dan 2,5 m diep (vanaf de achtergevel)?',
         vraagType: 'boolean',
@@ -47,7 +103,7 @@ export default {
         ],
       },
       content: {
-        toelichting: 'Dit is vraag 1....',
+        toelichting: '',
       },
       juridischeBronnen: [
         {
@@ -58,7 +114,7 @@ export default {
       interactieRegels: [{}],
     },
     {
-      id: 'UitvId0002',
+      id: 'oppervlakte',
       vraag: {
         vraagTekst: 'Wilt u minder dan de helft van uw tuin gaan bebouwen?',
         vraagType: 'boolean',
@@ -74,7 +130,11 @@ export default {
         ],
       },
       content: {
-        toelichting: 'Dit is vraag 2...',
+        toelichting: `Let op:
+
+Met ‘uw tuin’ bedoelen we de tuin zoals die oorspronkelijk is opgeleverd bij de bouw. Dat is zonder bebouwing. Dit kan u vinden in het bestemmingsplan.
+
+Met ‘bebouwen‘ bedoelen zowel de nieuwe aanbouw, als bestaande bebouwing (bijvoorbeeld: schuur, pergola, vlonder, konijnenhok).`,
         media: [
           {
             type: 'image',
@@ -92,7 +152,75 @@ export default {
       interactieRegels: [{}],
     },
     {
-      id: 'UitvId0003',
+      id: 'vloer sluit aan',
+      vraag: {
+        vraagTekst: 'Sluit de vloer van de aanbouw aan op de vloer van de 1e bouwlaag?',
+        vraagType: 'list',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting: '',
+        media: [
+          {
+            type: 'image',
+            path: '/path/to/img.jpg',
+            caption: 'titel van afbeelding',
+          },
+        ],
+      },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
+    },
+    {
+      id: 'op kelder of soutterrain',
+      vraag: {
+        vraagTekst: 'Komt de aanbouw op een nieuwe (of uitgebreide) kelder of soutterrain?',
+        vraagType: 'list',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting: '',
+        media: [
+          {
+            type: 'image',
+            path: '/path/to/img.jpg',
+            caption: 'titel van afbeelding',
+          },
+        ],
+      },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
+    },
+    {
+      id: 'hoogte',
       vraag: {
         vraagTekst: 'Wordt uw aanbouw minder dan 5 m hoog?',
         vraagType: 'list',
@@ -108,7 +236,7 @@ export default {
         ],
       },
       content: {
-        toelichting: 'Dit is vraag 3',
+        toelichting: '',
         media: [
           {
             type: 'image',
@@ -125,62 +253,186 @@ export default {
       ],
       interactieRegels: [{}],
     },
-  ],
-  questions: [
     {
-      id: 'q2',
-      label: 'Komt er voldoende afstand tussen uw aanbouw en een (eventueel) bestaand balkon?',
-      comment:
-        '<em>Let op:</em> <br />Met ‘voldoende afstand’ bedoelen we dat er minimaal 1 bouwlaag tussen balkon en aanbouw zit.',
-      condition: [{ q1: 'true' }],
-      images: [
+      id: 'hoogte tov vloer',
+      vraag: {
+        vraagTekst: 'Wordt uw aanbouw maximaal 0,3 m hoger dan de vloer van de 2e bouwlaag van het bestaande gebouw?',
+        vraagType: 'list',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting: `Let op:
+
+Kelder en souterrain tellen niet als 1e bouwlaag.`,
+        media: [
+          {
+            type: 'image',
+            path: '/path/to/img.jpg',
+            caption: 'titel van afbeelding',
+          },
+        ],
+      },
+      juridischeBronnen: [
         {
-          id: '7weiruy4fhue',
-          src: 'https://images.amsterdam.nl/7weiruy4fhue.jpg',
-          caption: 'Aanbouw onder een balkon, met tenminste 1 bouwlaag ertussen.',
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
         },
       ],
-      explanation: {
-        type: 'modal',
-        buttonLabel: 'Toelichting',
-        label: 'Vlak onder een balkon',
-        images: [
+      interactieRegels: [{}],
+    },
+
+    {
+      id: 'dakterras',
+      vraag: {
+        vraagTekst: 'Krijgt uw aanbouw een dakterras?',
+        vraagType: 'list',
+        antwoordOpties: [
           {
-            id: '6y3e5tgwr5',
-            src: 'https://images.amsterdam.nl/6y3e5tgwr5.jpg',
-            caption: 'Aanbouw onder een balkon, met tenminste 1 bouwlaag ertussen.',
-          },
-        ],
-        content:
-          '<h4>Balkon dicht op aanbouw</h4><p>Wanneer het balkon dicht op het dak van de aanbouw zit, of wanneer het balkon onderdeel wordt van dak van de aanbouw, kunnen er speciale eisen worden gesteld. Daarom kan dit niet zonder vergunning.</p>',
-      },
-      answers: {
-        type: 'boolean',
-        comment: '* Vergunning nodig',
-        answerOptions: [
-          {
-            id: 'q1a',
-            label: 'Ja',
-            value: 'true',
-            prefilled: 'true',
+            id: '1',
+            optieText: 'Ja',
           },
           {
-            id: 'q1b',
-            label: 'Nee *',
-            value: 'false',
+            id: '2',
+            optieText: 'Nee',
           },
         ],
       },
-      externalLinks: {
-        type: 'modal',
-        label: 'Overzicht van de jurisiche regels',
-        links: [
+      content: {
+        toelichting: '',
+        media: [
           {
-            label: 'Artikel 2.1 eerste lid',
-            url: 'https://amsterdam.nl/regels/1/',
+            type: 'image',
+            path: '/path/to/img.jpg',
+            caption: 'titel van afbeelding',
           },
         ],
       },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
+    },
+
+    {
+      id: 'balkonafstand',
+      vraag: {
+        vraagTekst: 'Komt er voldoende afstand tussen uw aanbouw en een (eventueel) bestaand balkon?',
+        vraagType: 'list',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting: `Let op:
+
+Met ‘voldoende afstand’ bedoelen we dat er minimaal 1 bouwlaag tussen balkon en aanbouw zit.`,
+        media: [
+          {
+            type: 'image',
+            path: '/path/to/img.jpg',
+            caption: 'titel van afbeelding',
+          },
+        ],
+      },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
+    },
+
+    {
+      id: 'groen dak',
+      vraag: {
+        vraagTekst: `Krijgt uw aanbouw een 'groen' dak?`,
+        vraagType: 'list',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting: `Let op:
+
+Met een ‘groen’ dak bedoelen we een dak dat geheel is bedekt met planten. Ook moet zo’n dak in 1 uur, 60 mm regenwater kunnen opnemen. Als het klaar is, moet u dit kunnen aantonen met een certificaat van uw leverancier.`,
+        media: [
+          {
+            type: 'image',
+            path: '/path/to/img.jpg',
+            caption: 'titel van afbeelding',
+          },
+        ],
+      },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
+    },
+
+    {
+      id: 'tijdelijke omgevingsvergunning',
+      vraag: {
+        vraagTekst:
+          'Is het hoofdgebouw (woning, bedrijfsruimte), waar de aanbouw aan vast komt, gebouwd met een tijdelijke omgevingsvergunning?',
+        vraagType: 'list',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting: '',
+        media: [
+          {
+            type: 'image',
+            path: '/path/to/img.jpg',
+            caption: 'titel van afbeelding',
+          },
+        ],
+      },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
     },
   ],
 };
