@@ -38,6 +38,9 @@ class QuestionnaireContainer extends React.Component {
     this.onRandomizeAnswers = this.onRandomizeAnswers.bind(this);
 
     this.state = {
+      debug: {
+        defaultLocation: 'de pijp',
+      },
       location: false,
       questionIndex: -1,
       userAnswers: {},
@@ -66,8 +69,12 @@ class QuestionnaireContainer extends React.Component {
   }
 
   onGoToNext(questionId, answerId) {
-    const { userAnswers } = this.state;
-    console.log(userAnswers);
+    // const { userAnswers } = this.state;
+    // console.log('userAnswers:');
+    // console.log({
+    //   ...userAnswers,
+    //   [questionId]: answerId,
+    // });
     this.setState(prevState => ({
       questionIndex: prevState.questionIndex + 1,
       userAnswers: {
@@ -78,6 +85,7 @@ class QuestionnaireContainer extends React.Component {
   }
 
   onGoToPrev() {
+    // Check if question might be skipped by Cond
     this.setState(prevState => ({
       questionIndex: prevState.questionIndex - 1,
     }));
@@ -104,7 +112,14 @@ class QuestionnaireContainer extends React.Component {
   }
 
   render() {
-    const { questionIndex, userAnswers, location } = this.state;
+    const { questionIndex, userAnswers, location, debug } = this.state;
+
+    if (debug) {
+      // Debug > Set default location
+      if (debug.defaultLocation && !location) {
+        this.setLocation('de pijp');
+      }
+    }
 
     if (!location || questionIndex < 0) {
       // FIRST QUESTION: LOCATION
@@ -126,7 +141,42 @@ class QuestionnaireContainer extends React.Component {
         id: questionId,
         vraag: { vraagTekst: question, antwoordOpties: answers, vergunningplichtig: required },
         content: { toelichting: paragraph },
+        cond,
       } = uitvoeringsregels[questionIndex];
+
+      // CONDITIONALS
+      if (cond && Array.isArray(cond)) {
+        // This question has condition(s)
+        const condTrue = cond.some(condition => {
+          const conditionQuestion = condition.split('.')[0];
+          const conditionAnswerText = condition
+            .split('.')[1]
+            .toLowerCase()
+            .replace(/['"]+/g, '');
+
+          const conditionQuestionData = uitvoeringsregels.filter(q => q.id === conditionQuestion);
+          // if conditionQuestion exists is datafile && user has already answered
+          if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
+            const userAnswerId = userAnswers[conditionQuestion];
+
+            const userAnswer = conditionQuestionData[0].vraag.antwoordOpties
+              .filter(antwoord => antwoord.id === userAnswerId)
+              .map(antwoord => antwoord.optieText);
+            const userAnswerText = userAnswer.toString().toLowerCase();
+
+            // if conditionAnswer is the same as answeredQuestion
+            if (conditionAnswerText === userAnswerText) {
+              return true;
+            }
+          }
+          return false;
+        });
+
+        if (!condTrue) {
+          // the conditions are not true, so skip this question
+          this.onGoToNext(questionId, null);
+        }
+      }
 
       const hasPrefilledAnswer = answers.filter(answer => answer.prefilled).length > 0;
 
