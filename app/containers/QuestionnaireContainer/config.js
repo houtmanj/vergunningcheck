@@ -2,35 +2,35 @@ export default {
   id: '_8743984',
   name: 'Conclusie vergunningscheck Aanbouw',
   uitvoeringsregels: [
-    // {
-    //   id: 'monument',
-    //   vraag: {
-    //     vraagTekst: 'Gaat u bouwen aan (op, of bij) een monument?',
-    //     vraagType: 'boolean',
-    //     vergunningplichtig: 'Ja',
-    //     antwoordOpties: [
-    //       {
-    //         id: '1',
-    //         optieText: 'Ja',
-    //         prefilled: true,
-    //       },
-    //       {
-    //         id: '2',
-    //         optieText: 'Nee',
-    //       },
-    //     ],
-    //   },
-    //   content: {
-    //     toelichting: '',
-    //   },
-    //   juridischeBronnen: [
-    //     {
-    //       label: 'Titel bron 1',
-    //       uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
-    //     },
-    //   ],
-    //   interactieRegels: [{}],
-    // },
+    {
+      id: 'monument',
+      vraag: {
+        vraagTekst: 'Gaat u bouwen aan (op, of bij) een monument?',
+        vraagType: 'boolean',
+        vergunningplichtig: 'Ja',
+        antwoordOpties: [
+          {
+            id: '1',
+            optieText: 'Ja',
+            prefilled: true,
+          },
+          {
+            id: '2',
+            optieText: 'Nee',
+          },
+        ],
+      },
+      content: {
+        toelichting: '',
+      },
+      juridischeBronnen: [
+        {
+          label: 'Titel bron 1',
+          uri: 'http://toepasbare-regels.omgevingswet.overheid.nl/',
+        },
+      ],
+      interactieRegels: [{}],
+    },
     {
       id: 'stadsgezicht1',
       vraag: {
