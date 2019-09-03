@@ -13,11 +13,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import FontFaceObserver from 'fontfaceobserver';
 import moment from 'moment';
 import 'moment/src/locale/nl';
 import history from 'utils/history';
 import 'leaflet/dist/leaflet';
+
+// Import from @datapunt
+import { GlobalStyle, ThemeProvider } from '@datapunt/asc-ui';
 
 // Import root app
 import App from 'containers/App';
@@ -34,15 +36,6 @@ import configureStore from './configureStore';
 // Import i18n messages
 import { translationMessages } from './i18n';
 
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
-// the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
-
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
-});
-
 moment.locale('nl');
 
 // Create redux store with history
@@ -52,13 +45,16 @@ const MOUNT_NODE = document.getElementById('app');
 
 const render = messages => {
   ReactDOM.render(
-    <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </LanguageProvider>
-    </Provider>,
+    <ThemeProvider>
+      <GlobalStyle />
+      <Provider store={store}>
+        <LanguageProvider messages={messages}>
+          <ConnectedRouter history={history}>
+            <App />
+          </ConnectedRouter>
+        </LanguageProvider>
+      </Provider>
+    </ThemeProvider>,
     MOUNT_NODE,
   );
 };

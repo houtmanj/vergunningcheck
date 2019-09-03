@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import 'amsterdam-stijl/dist/css/ams-stijl.css';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -8,24 +7,16 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
-  body {
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  }
-
-  body.fontLoaded {
-    font-family: AvenirNextLTW01-Regular, Helvetica Neue, Helvetica, Arial, sans-serif;
-  }
-
   p {
     line-height: 26px;
   }
 
   a, a:hover {
-    color: #004699 !important;
+    color: #004699;
   }
 
   a:hover::before {
-    background-image: url("~amsterdam-stijl/dist/images/svg/caret-left-blue.svg") !important;
+    background-image: url("~amsterdam-stijl/dist/images/svg/caret-left-blue.svg");
   }
 
   ul li {
