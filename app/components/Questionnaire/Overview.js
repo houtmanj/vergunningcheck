@@ -39,7 +39,12 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
       const userAnswer = regel.vraag.antwoordOpties
         .filter(antwoord => antwoord.id === userAnswerId)
         .map(antwoord => antwoord.optieText);
+
       const answerText = userAnswer.toString();
+
+      if (!answerText) {
+        return null;
+      }
 
       const required = regel.vraag.vergunningplichtig;
 
@@ -55,7 +60,7 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
           <UserAnswer key={userAnswer}>{answerText}</UserAnswer>
           <Result key={userAnswerId}>{resultText}</Result>
           <Change>
-            <button onClick={() => onGoToQuestion(regel.id)} type="button" href="#" key={regel.content.toelicht}>
+            <button onClick={() => onGoToQuestion(regel.id)} type="button" href="#" key={regel.id}>
               Wijzig
             </button>
           </Change>

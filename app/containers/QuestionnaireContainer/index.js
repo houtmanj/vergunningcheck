@@ -5,7 +5,8 @@ import styled from '@datapunt/asc-core';
 import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
 
-import config from './config';
+// import config from './config';
+import config from './demo';
 
 const StyledContent = styled(Content)`
   display: flex;
@@ -27,6 +28,31 @@ const RandomizeButton = props => (
 RandomizeButton.propTypes = {
   randomizeAnswers: PropTypes.func,
 };
+
+const getQuestionIdFromIndex = index => (config.uitvoeringsregels[index] ? config.uitvoeringsregels[index].id : null);
+
+const isCondTrue = (cond, userAnswers) =>
+  cond.some(condition => {
+    const conditionQuestion = condition.split('.')[0];
+    const conditionAnswerText = condition
+      .split('.')[1]
+      .toLowerCase()
+      .replace(/['"]+/g, '');
+
+    const conditionQuestionData = config.uitvoeringsregels.filter(q => q.id === conditionQuestion);
+    // if conditionQuestion exists is datafile && user has already answered
+    if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
+      const userAnswerId = userAnswers[conditionQuestion];
+
+      const userAnswer = conditionQuestionData[0].vraag.antwoordOpties
+        .filter(antwoord => antwoord.id === userAnswerId)
+        .map(antwoord => antwoord.optieText);
+      const userAnswerText = userAnswer.toString().toLowerCase();
+      // if conditionAnswer is the same as answeredQuestion
+      return conditionAnswerText === userAnswerText;
+    }
+    return false;
+  });
 
 class QuestionnaireContainer extends React.Component {
   constructor(props) {
@@ -85,30 +111,41 @@ class QuestionnaireContainer extends React.Component {
   }
 
   onGoToPrev() {
-    // Check if question might be skipped by Cond
-    this.setState(prevState => ({
-      questionIndex: prevState.questionIndex - 1,
-    }));
+    const { questionIndex, userAnswers } = this.state;
+
+    // Check if prev question exists
+    if (getQuestionIdFromIndex(questionIndex - 1)) {
+      for (let i = 1; i <= questionIndex; i += 1) {
+        // Loop through answered questions until a question has been answered
+        if (userAnswers[getQuestionIdFromIndex(questionIndex - i)]) {
+          this.setState(prevState => ({
+            questionIndex: prevState.questionIndex - i,
+          }));
+        }
+      }
+    }
   }
 
   onRandomizeAnswers() {
-    const randomAnswers = config.uitvoeringsregels.reduce(
-      (o, key) => ({
+    const randomAnswers = config.uitvoeringsregels.reduce((o, key) => {
+      const hasConditionAndFailed = key.cond && Array.isArray(key.cond) && !isCondTrue(key.cond, o);
+      const value = !hasConditionAndFailed
+        ? key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id
+        : null;
+      return {
         ...o,
-        [key.id]: key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id,
-      }),
-      {},
-    );
+        [key.id]: value,
+      };
+    }, {});
 
     this.setLocation('de pijp');
 
-    this.setState(prevState => ({
+    this.setState({
       questionIndex: config.uitvoeringsregels.length,
       userAnswers: {
         ...randomAnswers,
-        ...prevState.userAnswers,
       },
-    }));
+    });
   }
 
   render() {
@@ -140,39 +177,16 @@ class QuestionnaireContainer extends React.Component {
       const {
         id: questionId,
         vraag: { vraagTekst: question, antwoordOpties: answers, vergunningplichtig: required },
-        content: { toelichting: paragraph },
+        // content: { toelichting: paragraph = 'demo' },
         cond,
       } = uitvoeringsregels[questionIndex];
+
+      const paragraph = ''; // fake text
 
       // CONDITIONALS
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
-        const condTrue = cond.some(condition => {
-          const conditionQuestion = condition.split('.')[0];
-          const conditionAnswerText = condition
-            .split('.')[1]
-            .toLowerCase()
-            .replace(/['"]+/g, '');
-
-          const conditionQuestionData = uitvoeringsregels.filter(q => q.id === conditionQuestion);
-          // if conditionQuestion exists is datafile && user has already answered
-          if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
-            const userAnswerId = userAnswers[conditionQuestion];
-
-            const userAnswer = conditionQuestionData[0].vraag.antwoordOpties
-              .filter(antwoord => antwoord.id === userAnswerId)
-              .map(antwoord => antwoord.optieText);
-            const userAnswerText = userAnswer.toString().toLowerCase();
-
-            // if conditionAnswer is the same as answeredQuestion
-            if (conditionAnswerText === userAnswerText) {
-              return true;
-            }
-          }
-          return false;
-        });
-
-        if (!condTrue) {
+        if (!isCondTrue(cond, userAnswers)) {
           // the conditions are not true, so skip this question
           this.onGoToNext(questionId, null);
         }
@@ -201,16 +215,22 @@ class QuestionnaireContainer extends React.Component {
       return (
         <StyledContent heading="Controleer uw antwoorden">
           <p>
-            Op grond van uw antwoorden heeft u geen omgevingsvergunning voor bouw en gebruik nodig. Hieronder ziet u uw
-            antwoorden terug.
+            Uitkomst:{' '}
+            <strong>
+              {config.uitkomsten.map(uitkomst => (isCondTrue(uitkomst.cond, userAnswers) ? uitkomst.label : null))}
+            </strong>
           </p>
-          <p>U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet u wat de vervolgstappen zijn.</p>
+          <p>
+            Hieronder ziet u uw antwoorden terug. U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet
+            u wat de vervolgstappen zijn.
+          </p>
           <Overview
             onGoToQuestion={this.onGoToQuestion}
             userAnswers={userAnswers}
             uitvoeringsregels={uitvoeringsregels}
           />
           <Navigation />
+          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
         </StyledContent>
       );
     }
