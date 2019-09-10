@@ -882,29 +882,29 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@datapunt/asc-assets@^0.12.6", "@datapunt/asc-assets@^0.12.7":
-  version "0.12.7"
-  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-assets/-/asc-assets-0.12.7.tgz#ed9c1bb244f5eaeedab25305570e2d6859796880"
-  integrity sha512-p3hVtHq7F2vYLaiBBx10AjfOCO9F+QJHBpy0JpUR/z7i/AKUWbreANlMPe9rgooIQA0pykv5bvOVvD0gj8H6SQ==
+"@datapunt/asc-assets@^0.14.2-rc.3":
+  version "0.14.2-rc.3"
+  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-assets/-/asc-assets-0.14.2-rc.3.tgz#0317cad48ad077ce8758f471570de6bd55576709"
+  integrity sha512-1X9/rsygmNao7QojXw+/lndkLG+ZQh03LMWX0Z2YrcbnOntrdKuYtdyBNmesmcMj97TSu68B/EBa7iK8KukNiQ==
   dependencies:
     "@svgr/cli" "^4.3.1"
     "@svgr/core" "^2.4.1"
     svgo "^1.2.2"
 
-"@datapunt/asc-core@^0.12.6":
-  version "0.12.6"
-  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-core/-/asc-core-0.12.6.tgz#d2d98a12e88421a18a24b630a8f8131a2cadd894"
-  integrity sha512-dmQbj11PWKZbGOkEOmcOLAzFMBzKMirhhpoe4bxxCf1BxYpGKUaOqYDbELG9Tq3c3Nh4jHbW9wN75sy+Fq8QNA==
+"@datapunt/asc-core@^0.14.2-rc.3":
+  version "0.14.2-rc.3"
+  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-core/-/asc-core-0.14.2-rc.3.tgz#d99641205fca5bfe3a121479469bbd84006162b1"
+  integrity sha512-nNRHfAdi+4HHXP4FzAZaavgp+SyLUsKSB5A7S2MiiYRLgxnWBXcrE3+jsuXDYYFkPSrdXQ/mqXETDdJ8OOntGQ==
   dependencies:
     styled-components "^4.3.1"
 
-"@datapunt/asc-ui@^0.12.6":
-  version "0.12.7"
-  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-ui/-/asc-ui-0.12.7.tgz#8ac9532edffc7511858d668bd890ac0bbd44767b"
-  integrity sha512-U8q+ixCX2/OeYNJY0r418Qkr0tzoJpfp61ucvCs8U+XqpWuz82/FLbcxaNZYv8cOVb+1r7rPJioJp1W5ZUo+QA==
+"@datapunt/asc-ui@^0.14.2-rc.3":
+  version "0.14.2-rc.3"
+  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-ui/-/asc-ui-0.14.2-rc.3.tgz#5dcda77068f64d2b0e0c0bc6acc1ac55f486a91d"
+  integrity sha512-4KpdcByfMBHGerSVV8MSKWYg6DbrABJKqW7FY102CXqMtLEhcFPHypez71LY7rTgSpxhJZNamgS9buMuhumJ6Q==
   dependencies:
-    "@datapunt/asc-assets" "^0.12.7"
-    "@datapunt/asc-core" "^0.12.6"
+    "@datapunt/asc-assets" "^0.14.2-rc.3"
+    "@datapunt/asc-core" "^0.14.2-rc.3"
     classnames "^2.2.6"
     deepmerge "^4.0.0"
     enzyme "^3.10.0"
