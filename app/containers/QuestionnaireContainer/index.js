@@ -6,7 +6,7 @@ import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Ques
 import Navigation from 'components/Navigation';
 
 // import config from './config';
-import config from './demo';
+import config from './demo-v2';
 
 const StyledContent = styled(Content)`
   display: flex;
