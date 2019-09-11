@@ -72,7 +72,7 @@ export default {
           },
         ],
       },
-      cond: ['stadsgezicht-zichtbaar."Nee"'],
+      cond: ['stadsgezicht-zichtbaar."Nee"', 'stadsgezicht."Nee"'],
     },
     {
       id: 'artikel-2-s',
@@ -90,7 +90,7 @@ export default {
           },
         ],
       },
-      cond: ['stadsgezicht-zichtbaar."Nee"'],
+      cond: ['stadsgezicht."Nee"'],
     },
     {
       id: 'artikel-2-o',
@@ -126,7 +126,7 @@ export default {
           },
         ],
       },
-      cond: ['artikel-3."Ja"', 'monument."Ja"'],
+      cond: ['artikel-3."Ja"', 'monument."Ja"', 'stadsgezicht-zichtbaar."Ja"'],
     },
   ],
   uitkomsten: [
@@ -139,9 +139,27 @@ export default {
       cond: ['monument."Ja"', 'bestemmingsplan."Nee"'],
     },
     {
-      label: 'Vergunning nodig: Bouwen',
-      cond: ['stadsgezicht-zichtbaar."Ja"', 'artikel-3."Nee"'],
+      label: '3) Vergunning nodig: Bouwen',
+      cond: ['stadsgezicht-zichtbaar."Ja"', 'bestemmingsplan."Ja"'],
     },
+    {
+      label: '4) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
+      cond: ['stadsgezicht-zichtbaar."Ja"', 'bestemmingsplan."Nee"'],
+    },
+    {
+      label: '5) Vergunning nodig: NEE 😁',
+      cond: ['stadsgezicht-zichtbaar."Nee"', 'artikel-3."Ja"', 'bestemmingsplan."Ja"'],
+    },
+    {
+      label: '6) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
+      cond: ['stadsgezicht-zichtbaar."Nee"', 'artikel-3."Ja"', 'bestemmingsplan."Nee"'],
+    },
+
+    {
+      label: '8) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
+      cond: ['stadsgezicht."Nee"', 'artikel-3."Nee"'],
+    },
+
     // {
     //   label: 'Vergunning nodig: Afwijken bestemmingsplan (Geen bouw-vergunning nodig)',
     //   cond: ['bestemmingsplan."Nee"'],

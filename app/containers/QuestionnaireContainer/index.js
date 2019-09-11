@@ -54,6 +54,29 @@ const isCondTrue = (cond, userAnswers) =>
     return false;
   });
 
+const areAllCondTrue = (cond, userAnswers) =>
+  cond.every(condition => {
+    const conditionQuestion = condition.split('.')[0];
+    const conditionAnswerText = condition
+      .split('.')[1]
+      .toLowerCase()
+      .replace(/['"]+/g, '');
+
+    const conditionQuestionData = config.uitvoeringsregels.filter(q => q.id === conditionQuestion);
+    // if conditionQuestion exists is datafile && user has already answered
+    if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
+      const userAnswerId = userAnswers[conditionQuestion];
+
+      const userAnswer = conditionQuestionData[0].vraag.antwoordOpties
+        .filter(antwoord => antwoord.id === userAnswerId)
+        .map(antwoord => antwoord.optieText);
+      const userAnswerText = userAnswer.toString().toLowerCase();
+      // if conditionAnswer is the same as answeredQuestion
+      return conditionAnswerText === userAnswerText;
+    }
+    return false;
+  });
+
 class QuestionnaireContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -217,7 +240,7 @@ class QuestionnaireContainer extends React.Component {
           <p>
             Uitkomst:{' '}
             <strong>
-              {config.uitkomsten.map(uitkomst => (isCondTrue(uitkomst.cond, userAnswers) ? uitkomst.label : null))}
+              {config.uitkomsten.map(uitkomst => (areAllCondTrue(uitkomst.cond, userAnswers) ? uitkomst.label : null))}
             </strong>
           </p>
           <p>
