@@ -898,10 +898,10 @@
   dependencies:
     styled-components "^4.3.1"
 
-"@datapunt/asc-ui@^0.14.2-rc.3":
-  version "0.14.2-rc.3"
-  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-ui/-/asc-ui-0.14.2-rc.3.tgz#5dcda77068f64d2b0e0c0bc6acc1ac55f486a91d"
-  integrity sha512-4KpdcByfMBHGerSVV8MSKWYg6DbrABJKqW7FY102CXqMtLEhcFPHypez71LY7rTgSpxhJZNamgS9buMuhumJ6Q==
+"@datapunt/asc-ui@^0.14.3-rc.0":
+  version "0.14.3-rc.0"
+  resolved "https://repo.datapunt.amsterdam.nl/repository/npm-group/@datapunt/asc-ui/-/asc-ui-0.14.3-rc.0.tgz#f66d5884069142553964cb47d23e3e14a412d70b"
+  integrity sha512-ru3a6sZM1d4l/LyW+se0Dp56r0MaZkCvTU1KGgNwj2SkH8Au//T/M5fr363wr62N45dZ9PUPo0YEvftXSj0AyA==
   dependencies:
     "@datapunt/asc-assets" "^0.14.2-rc.3"
     "@datapunt/asc-core" "^0.14.2-rc.3"
