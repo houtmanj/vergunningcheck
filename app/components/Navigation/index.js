@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
+import { Button } from '@datapunt/asc-ui';
+import { ChevronLeft } from '@datapunt/asc-assets';
 
 const NavigationStyle = styled(`div`)`
   display: flex;
@@ -15,16 +17,16 @@ const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext }) => (
   <NavigationStyle>
     <div>
       {showPrev && (
-        <button type="button" onClick={onGoToPrev}>
-          &lt; Vorige
-        </button>
+        <Button variant="textButton" iconLeft={<ChevronLeft />} iconSize={14} onClick={onGoToPrev}>
+          Vorige
+        </Button>
       )}
     </div>
     <div>
       {showNext && (
-        <button type="button" onClick={onGoToNext}>
-          Volgende &gt;
-        </button>
+        <Button variant="secondary" taskflow onClick={onGoToNext}>
+          Volgende
+        </Button>
       )}
     </div>
   </NavigationStyle>

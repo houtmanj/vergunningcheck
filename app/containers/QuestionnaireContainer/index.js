@@ -6,7 +6,7 @@ import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Ques
 import Navigation from 'components/Navigation';
 
 // import config from './config';
-import config from './demo';
+import config from './demo-v2';
 
 const StyledContent = styled(Content)`
   display: flex;
@@ -31,8 +31,42 @@ RandomizeButton.propTypes = {
 
 const getQuestionIdFromIndex = index => (config.uitvoeringsregels[index] ? config.uitvoeringsregels[index].id : null);
 
-const isCondTrue = (cond, userAnswers) =>
-  cond.some(condition => {
+const condCheck = (cond, userAnswers) =>
+  cond.some(condition =>
+    // Check if condition has multiple conditions
+    Array.isArray(condition) ? areAllCondTrue(condition, userAnswers) : isCondTrue(condition, userAnswers),
+  );
+
+const isCondTrue = (condition, userAnswers) => {
+  // Check if one condition is true
+  if (typeof condition === 'string') {
+    // return cond.some(condition => {
+    const conditionQuestion = condition.split('.')[0];
+    const conditionAnswerText = condition
+      .split('.')[1]
+      .toLowerCase()
+      .replace(/['"]+/g, '');
+
+    const conditionQuestionData = config.uitvoeringsregels.filter(q => q.id === conditionQuestion);
+    // if conditionQuestion exists is datafile && user has already answered
+    if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
+      const userAnswerId = userAnswers[conditionQuestion];
+
+      const userAnswer = conditionQuestionData[0].vraag.antwoordOpties
+        .filter(antwoord => antwoord.id === userAnswerId)
+        .map(antwoord => antwoord.optieText);
+      const userAnswerText = userAnswer.toString().toLowerCase();
+      // if conditionAnswer is the same as answeredQuestion
+      return conditionAnswerText === userAnswerText;
+    }
+    return false;
+  }
+  return false;
+};
+
+const areAllCondTrue = (cond, userAnswers) =>
+  // Check if multiple conditions are true
+  cond.every(condition => {
     const conditionQuestion = condition.split('.')[0];
     const conditionAnswerText = condition
       .split('.')[1]
@@ -128,7 +162,7 @@ class QuestionnaireContainer extends React.Component {
 
   onRandomizeAnswers() {
     const randomAnswers = config.uitvoeringsregels.reduce((o, key) => {
-      const hasConditionAndFailed = key.cond && Array.isArray(key.cond) && !isCondTrue(key.cond, o);
+      const hasConditionAndFailed = key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o);
       const value = !hasConditionAndFailed
         ? key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id
         : null;
@@ -186,7 +220,10 @@ class QuestionnaireContainer extends React.Component {
       // CONDITIONALS
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
-        if (!isCondTrue(cond, userAnswers)) {
+
+        const isTrue = condCheck(cond, userAnswers);
+
+        if (!isTrue) {
           // the conditions are not true, so skip this question
           this.onGoToNext(questionId, null);
         }
@@ -217,7 +254,7 @@ class QuestionnaireContainer extends React.Component {
           <p>
             Uitkomst:{' '}
             <strong>
-              {config.uitkomsten.map(uitkomst => (isCondTrue(uitkomst.cond, userAnswers) ? uitkomst.label : null))}
+              {config.uitkomsten.map(uitkomst => (areAllCondTrue(uitkomst.cond, userAnswers) ? uitkomst.label : null))}
             </strong>
           </p>
           <p>
