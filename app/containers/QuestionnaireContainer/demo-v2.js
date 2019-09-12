@@ -59,7 +59,7 @@ export default {
     {
       id: 'artikel-3',
       vraag: {
-        vraagTekst: 'Voldoen Artikel 3 volledig?',
+        vraagTekst: 'Voldoet Artikel 3 volledig?',
         vergunningplichtig: 'Nee',
         antwoordOpties: [
           {

@@ -162,7 +162,7 @@ class QuestionnaireContainer extends React.Component {
 
   onRandomizeAnswers() {
     const randomAnswers = config.uitvoeringsregels.reduce((o, key) => {
-      const hasConditionAndFailed = key.cond && Array.isArray(key.cond) && !isCondTrue(key.cond, o);
+      const hasConditionAndFailed = key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o);
       const value = !hasConditionAndFailed
         ? key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id
         : null;
@@ -221,7 +221,6 @@ class QuestionnaireContainer extends React.Component {
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
 
-        // const isTrue = Array.isArray(cond[0]) ? areAllCondTrue(cond[0], userAnswers) : isCondTrue(cond, userAnswers);
         const isTrue = condCheck(cond, userAnswers);
 
         if (!isTrue) {
