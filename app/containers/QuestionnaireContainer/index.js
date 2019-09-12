@@ -31,8 +31,16 @@ RandomizeButton.propTypes = {
 
 const getQuestionIdFromIndex = index => (config.uitvoeringsregels[index] ? config.uitvoeringsregels[index].id : null);
 
-const isCondTrue = (cond, userAnswers) =>
-  cond.some(condition => {
+const condCheck = (cond, userAnswers) =>
+  cond.some(condition =>
+    // Check if condition has multiple conditions
+    Array.isArray(condition) ? areAllCondTrue(condition, userAnswers) : isCondTrue(condition, userAnswers),
+  );
+
+const isCondTrue = (condition, userAnswers) => {
+  // Check if one condition is true
+  if (typeof condition === 'string') {
+    // return cond.some(condition => {
     const conditionQuestion = condition.split('.')[0];
     const conditionAnswerText = condition
       .split('.')[1]
@@ -52,9 +60,12 @@ const isCondTrue = (cond, userAnswers) =>
       return conditionAnswerText === userAnswerText;
     }
     return false;
-  });
+  }
+  return false;
+};
 
 const areAllCondTrue = (cond, userAnswers) =>
+  // Check if multiple conditions are true
   cond.every(condition => {
     const conditionQuestion = condition.split('.')[0];
     const conditionAnswerText = condition
@@ -209,7 +220,11 @@ class QuestionnaireContainer extends React.Component {
       // CONDITIONALS
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
-        if (!isCondTrue(cond, userAnswers)) {
+
+        // const isTrue = Array.isArray(cond[0]) ? areAllCondTrue(cond[0], userAnswers) : isCondTrue(cond, userAnswers);
+        const isTrue = condCheck(cond, userAnswers);
+
+        if (!isTrue) {
           // the conditions are not true, so skip this question
           this.onGoToNext(questionId, null);
         }

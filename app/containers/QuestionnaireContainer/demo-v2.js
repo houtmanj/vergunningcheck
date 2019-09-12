@@ -90,7 +90,7 @@ export default {
           },
         ],
       },
-      cond: ['stadsgezicht."Nee"'],
+      cond: [['stadsgezicht."Nee"', 'artikel-3.Ja']],
     },
     {
       id: 'artikel-2-o',
@@ -108,7 +108,7 @@ export default {
           },
         ],
       },
-      cond: ['stadsgezicht-zichtbaar."Nee"'],
+      cond: ['artikel-2-s."Ja"'],
     },
     {
       id: 'bestemmingsplan',
@@ -126,7 +126,13 @@ export default {
           },
         ],
       },
-      cond: ['artikel-3."Ja"', 'monument."Ja"', 'stadsgezicht-zichtbaar."Ja"'],
+      cond: [
+        'monument."Ja"',
+        'stadsgezicht-zichtbaar."Ja"',
+        ['stadsgezicht-zichtbaar."Nee"', 'artikel-3."Ja"'],
+        'artikel-2-s."Nee"',
+        ['artikel-2-s."Ja"', 'artikel-2-o."Nee"'],
+      ],
     },
   ],
   uitkomsten: [
@@ -154,19 +160,33 @@ export default {
       label: '6) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
       cond: ['stadsgezicht-zichtbaar."Nee"', 'artikel-3."Ja"', 'bestemmingsplan."Nee"'],
     },
-
+    {
+      label: '7) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
+      cond: ['stadsgezicht-zichtbaar."Nee"', 'artikel-3."Nee"'],
+    },
     {
       label: '8) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
       cond: ['stadsgezicht."Nee"', 'artikel-3."Nee"'],
     },
-
-    // {
-    //   label: 'Vergunning nodig: Afwijken bestemmingsplan (Geen bouw-vergunning nodig)',
-    //   cond: ['bestemmingsplan."Nee"'],
-    // },
     {
-      label: 'GEEN vergunning nodig',
-      cond: ['artikel-2."Ja"', 'bestemmingsplan."Ja"'],
+      label: '9) Vergunning nodig: NEE 😁',
+      cond: ['artikel-2-s."Ja"', 'artikel-2-o."Ja"'],
+    },
+    {
+      label: '10) Vergunning nodig: NEE 😁',
+      cond: ['artikel-2-s."Nee"', 'bestemmingsplan."Ja"'],
+    },
+    {
+      label: '11) Vergunning nodig: NEE 😁',
+      cond: ['artikel-2-s."Ja"', 'artikel-2-o."Nee"', 'bestemmingsplan."Ja"'],
+    },
+    {
+      label: '12) Vergunning nodig: Afwijken bestemmingsplan',
+      cond: ['artikel-2-s."Nee"', 'bestemmingsplan."Nee"'],
+    },
+    {
+      label: '13) Vergunning nodig: Afwijken bestemmingsplan',
+      cond: ['artikel-2-s."Ja"', 'artikel-2-o."Nee"', 'bestemmingsplan."Nee"'],
     },
   ],
 };
