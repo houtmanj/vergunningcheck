@@ -224,10 +224,10 @@ class QuestionnaireContainer extends React.Component {
         };
       }, {});
 
-      const contains = allRoutes.some(elem => JSON.stringify(randomAnswers) === JSON.stringify(elem));
+      const contains = allRoutes.some(elem => JSON.stringify(randomAnswers) === JSON.stringify(elem.route));
 
       if (!contains) {
-        allRoutes.push(randomAnswers);
+        allRoutes.push({ route: randomAnswers, key: allRoutes.length + 1 });
       }
     }
 
@@ -297,7 +297,7 @@ class QuestionnaireContainer extends React.Component {
             userAnswers={userAnswers}
             answers={answers}
             required={required}
-            onGoToNext={this.onGoToNext}
+            action={this.onGoToNext}
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
           <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
@@ -308,7 +308,7 @@ class QuestionnaireContainer extends React.Component {
 
     if (allRoutes && allRoutes.length > 0) {
       // ALL ROUTES OVERVIEW
-      return allRoutes.map(route => <Route route={route} key={route} />);
+      return allRoutes.map(route => <Route route={route.route} key={route.key} />);
     }
 
     if (questionIndex >= uitvoeringsregels.length) {

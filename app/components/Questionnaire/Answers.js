@@ -8,7 +8,7 @@ const AnswerFooter = styled(`div`)`
   margin-top: 20px;
 `;
 
-const Answers = ({ className, answers, required, userAnswers, questionId, onGoToNext }) => {
+const Answers = ({ className, answers, required, userAnswers, questionId, action }) => {
   const userAnswer = userAnswers[questionId] || null;
 
   return (
@@ -27,7 +27,7 @@ const Answers = ({ className, answers, required, userAnswers, questionId, onGoTo
 
           return (
             <Button
-              onClick={() => onGoToNext(questionId, answer.id)}
+              onClick={() => action(questionId, answer.id)}
               question-id={questionId}
               answer-id={answer.id}
               type="submit"
@@ -36,9 +36,7 @@ const Answers = ({ className, answers, required, userAnswers, questionId, onGoTo
               data-id={answer.id}
               variant="secondary"
             >
-              <>
-                {answer.optieText} {requiredText}
-              </>
+              {answer.optieText} {requiredText}
             </Button>
           );
         })}
@@ -54,7 +52,7 @@ Answers.propTypes = {
   answers: PropTypes.array,
   userAnswers: PropTypes.object,
   questionId: PropTypes.string,
-  onGoToNext: PropTypes.func,
+  action: PropTypes.func,
 };
 
 export default Answers;
