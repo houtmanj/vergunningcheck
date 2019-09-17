@@ -38,18 +38,18 @@ CreateRoutesButton.propTypes = {
   createRoutes: PropTypes.func,
 };
 
-const Route = props => (
-  <StyledContent heading="Uitkomst" prop={props.route}>
-    <p>
-      Uitkomst:{' '}
-      <strong>
-        {config.uitkomsten.map(uitkomst => (areAllCondTrue(uitkomst.cond, props.route) ? uitkomst.label : null))}
-      </strong>
-    </p>
-    <Overview userAnswers={props.route} uitvoeringsregels={config.uitvoeringsregels} />
-    <Navigation />
-  </StyledContent>
-);
+const Route = props => {
+  const outcome = config.uitkomsten
+    .filter(uitkomst => (areAllCondTrue(uitkomst.cond, props.route) ? uitkomst.label : false))
+    .map(uitkomst => uitkomst.label);
+  return (
+    <StyledContent>
+      <p>{outcome.length ? `Uitkomst: ${outcome}` : <strong>Deze route heeft geen uitkomst!</strong>}</p>
+      <Overview userAnswers={props.route} uitvoeringsregels={config.uitvoeringsregels} />
+      <br />
+    </StyledContent>
+  );
+};
 Route.propTypes = {
   route: PropTypes.object,
 };
