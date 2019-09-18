@@ -29,6 +29,31 @@ RandomizeButton.propTypes = {
   randomizeAnswers: PropTypes.func,
 };
 
+const CreateRoutesButton = props => (
+  <button type="submit" onClick={props.createRoutes()}>
+    Create routes
+  </button>
+);
+CreateRoutesButton.propTypes = {
+  createRoutes: PropTypes.func,
+};
+
+const Route = props => {
+  const outcome = config.uitkomsten
+    .filter(uitkomst => (areAllCondTrue(uitkomst.cond, props.route) ? uitkomst.label : false))
+    .map(uitkomst => uitkomst.label);
+  return (
+    <StyledContent>
+      <p>{outcome.length ? `Uitkomst: ${outcome}` : <strong>Deze route heeft geen uitkomst!</strong>}</p>
+      <Overview userAnswers={props.route} uitvoeringsregels={config.uitvoeringsregels} />
+      <br />
+    </StyledContent>
+  );
+};
+Route.propTypes = {
+  route: PropTypes.object,
+};
+
 const getQuestionIdFromIndex = index => (config.uitvoeringsregels[index] ? config.uitvoeringsregels[index].id : null);
 
 const condCheck = (cond, userAnswers) =>
@@ -96,6 +121,7 @@ class QuestionnaireContainer extends React.Component {
     this.onGoToNext = this.onGoToNext.bind(this);
     this.onGoToPrev = this.onGoToPrev.bind(this);
     this.onRandomizeAnswers = this.onRandomizeAnswers.bind(this);
+    this.onCreateAllRoutes = this.onCreateAllRoutes.bind(this);
 
     this.state = {
       debug: {
@@ -104,6 +130,7 @@ class QuestionnaireContainer extends React.Component {
       location: false,
       questionIndex: -1,
       userAnswers: {},
+      allRoutes: [],
     };
   }
 
@@ -182,8 +209,38 @@ class QuestionnaireContainer extends React.Component {
     });
   }
 
+  onCreateAllRoutes() {
+    const { allRoutes } = this.state;
+
+    for (let i = 0; i < 100; i += 1) {
+      const randomAnswers = config.uitvoeringsregels.reduce((o, key) => {
+        const hasConditionAndFailed = key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o);
+        const value = !hasConditionAndFailed
+          ? key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id
+          : null;
+        return {
+          ...o,
+          [key.id]: value,
+        };
+      }, {});
+
+      const contains = allRoutes.some(elem => JSON.stringify(randomAnswers) === JSON.stringify(elem.route));
+
+      if (!contains) {
+        allRoutes.push({ route: randomAnswers, key: allRoutes.length + 1 });
+      }
+    }
+
+    this.setLocation('de pijp');
+
+    this.setState({
+      questionIndex: config.uitvoeringsregels.length,
+      allRoutes,
+    });
+  }
+
   render() {
-    const { questionIndex, userAnswers, location, debug } = this.state;
+    const { questionIndex, userAnswers, location, debug, allRoutes } = this.state;
 
     if (debug) {
       // Debug > Set default location
@@ -200,6 +257,7 @@ class QuestionnaireContainer extends React.Component {
           <p>Straks kunt u hier een locatie kiezen, nu wordt de vragenlijst van De Pijp laten zien.</p>
           <Navigation onGoToNext={() => this.setLocation('de pijp')} showNext />
           <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
+          <CreateRoutesButton createRoutes={() => this.onCreateAllRoutes} />
         </StyledContent>
       );
     }
@@ -239,12 +297,18 @@ class QuestionnaireContainer extends React.Component {
             userAnswers={userAnswers}
             answers={answers}
             required={required}
-            onGoToNext={this.onGoToNext}
+            action={this.onGoToNext}
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
           <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
+          <CreateRoutesButton createRoutes={() => this.onCreateAllRoutes} />
         </StyledContent>
       );
+    }
+
+    if (allRoutes && allRoutes.length > 0) {
+      // ALL ROUTES OVERVIEW
+      return allRoutes.map(route => <Route route={route.route} key={route.key} />);
     }
 
     if (questionIndex >= uitvoeringsregels.length) {
@@ -268,6 +332,7 @@ class QuestionnaireContainer extends React.Component {
           />
           <Navigation />
           <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
+          <CreateRoutesButton createRoutes={() => this.onCreateAllRoutes} />
         </StyledContent>
       );
     }
