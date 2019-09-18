@@ -9,6 +9,7 @@ import AddressInput from 'containers/AddressInput';
 import HomePage from 'containers/HomePage';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
 import QuestionnaireQuestions from 'containers/QuestionnaireContainer/Questions';
+import QuestionnaireRoutes from 'containers/QuestionnaireContainer/QuestionRoutes';
 import NotFoundPage from 'containers/NotFoundPage';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
@@ -33,8 +34,10 @@ export const App = () => {
         <Column wrap span={{ small: 1, medium: 2, big: 6, large: 12, xLarge: 11 }}>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/aanbouw" component={QuestionnaireContainer} />
-            <Route exact path="/aanbouw/questions" component={QuestionnaireQuestions} />
+            <Route exact path="/aanbouw/inleiding" component={HomePage} />
+            <Route exact path="/aanbouw/alle-vragen" component={QuestionnaireQuestions} />
+            <Route exact path="/aanbouw/alle-routes" component={QuestionnaireRoutes} />
+            <Route exact path="/aanbouw/*" component={QuestionnaireContainer} />
             <Route exact path="/adres" component={AddressInput} />
             <Route exact path="/health" />
             <Route path="" component={NotFoundPage} />

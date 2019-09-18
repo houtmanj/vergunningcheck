@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 
+import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
+
 import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Questionnaire';
+import { AddressForm } from 'components/AddressInput/';
 import Navigation from 'components/Navigation';
 
 import config from './de-pijp';
@@ -28,89 +31,7 @@ RandomizeButton.propTypes = {
   randomizeAnswers: PropTypes.func,
 };
 
-const CreateRoutesButton = props => (
-  <button type="submit" onClick={props.createRoutes()}>
-    Create routes
-  </button>
-);
-CreateRoutesButton.propTypes = {
-  createRoutes: PropTypes.func,
-};
-
-const Route = props => {
-  const outcome = config.uitkomsten
-    .filter(uitkomst => (areAllCondTrue(uitkomst.cond, props.route) ? uitkomst.label : false))
-    .map(uitkomst => uitkomst.label);
-  return (
-    <StyledContent>
-      <p>{outcome.length ? `Uitkomst: ${outcome}` : <strong>Deze route heeft geen uitkomst!</strong>}</p>
-      <Overview userAnswers={props.route} uitvoeringsregels={config.uitvoeringsregels} />
-      <br />
-    </StyledContent>
-  );
-};
-Route.propTypes = {
-  route: PropTypes.object,
-};
-
 const getQuestionIdFromIndex = index => (config.uitvoeringsregels[index] ? config.uitvoeringsregels[index].id : null);
-
-const condCheck = (cond, userAnswers) =>
-  cond.some(condition =>
-    // Check if condition has multiple conditions
-    Array.isArray(condition) ? areAllCondTrue(condition, userAnswers) : isCondTrue(condition, userAnswers),
-  );
-
-const isCondTrue = (condition, userAnswers) => {
-  // Check if one condition is true
-  if (typeof condition === 'string') {
-    // return cond.some(condition => {
-    const conditionQuestion = condition.split('.')[0];
-    const conditionAnswerText = condition
-      .split('.')[1]
-      .toLowerCase()
-      .replace(/['"]+/g, '');
-
-    const conditionQuestionData = config.uitvoeringsregels.filter(q => q.id === conditionQuestion);
-    // if conditionQuestion exists is datafile && user has already answered
-    if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
-      const userAnswerId = userAnswers[conditionQuestion];
-
-      const userAnswer = conditionQuestionData[0].vraag.antwoordOpties
-        .filter(antwoord => antwoord.id === userAnswerId)
-        .map(antwoord => antwoord.optieText);
-      const userAnswerText = userAnswer.toString().toLowerCase();
-      // if conditionAnswer is the same as answeredQuestion
-      return conditionAnswerText === userAnswerText;
-    }
-    return false;
-  }
-  return false;
-};
-
-const areAllCondTrue = (cond, userAnswers) =>
-  // Check if multiple conditions are true
-  cond.every(condition => {
-    const conditionQuestion = condition.split('.')[0];
-    const conditionAnswerText = condition
-      .split('.')[1]
-      .toLowerCase()
-      .replace(/['"]+/g, '');
-
-    const conditionQuestionData = config.uitvoeringsregels.filter(q => q.id === conditionQuestion);
-    // if conditionQuestion exists is datafile && user has already answered
-    if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
-      const userAnswerId = userAnswers[conditionQuestion];
-
-      const userAnswer = conditionQuestionData[0].vraag.antwoordOpties
-        .filter(antwoord => antwoord.id === userAnswerId)
-        .map(antwoord => antwoord.optieText);
-      const userAnswerText = userAnswer.toString().toLowerCase();
-      // if conditionAnswer is the same as answeredQuestion
-      return conditionAnswerText === userAnswerText;
-    }
-    return false;
-  });
 
 class QuestionnaireContainer extends React.Component {
   constructor(props) {
@@ -120,16 +41,14 @@ class QuestionnaireContainer extends React.Component {
     this.onGoToNext = this.onGoToNext.bind(this);
     this.onGoToPrev = this.onGoToPrev.bind(this);
     this.onRandomizeAnswers = this.onRandomizeAnswers.bind(this);
-    this.onCreateAllRoutes = this.onCreateAllRoutes.bind(this);
 
     this.state = {
       debug: {
-        defaultLocation: 'de pijp',
+        // defaultLocation: 'de pijp',
       },
       location: false,
       questionIndex: -1,
       userAnswers: {},
-      allRoutes: [],
     };
   }
 
@@ -188,7 +107,8 @@ class QuestionnaireContainer extends React.Component {
 
   onRandomizeAnswers() {
     const randomAnswers = config.uitvoeringsregels.reduce((o, key) => {
-      const hasConditionAndFailed = key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o);
+      const hasConditionAndFailed =
+        key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, config.uitvoeringsregels);
       const value = !hasConditionAndFailed
         ? key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id
         : null;
@@ -198,8 +118,6 @@ class QuestionnaireContainer extends React.Component {
       };
     }, {});
 
-    this.setLocation('de pijp');
-
     this.setState({
       questionIndex: config.uitvoeringsregels.length,
       userAnswers: {
@@ -208,38 +126,8 @@ class QuestionnaireContainer extends React.Component {
     });
   }
 
-  onCreateAllRoutes() {
-    const { allRoutes } = this.state;
-
-    for (let i = 0; i < 100; i += 1) {
-      const randomAnswers = config.uitvoeringsregels.reduce((o, key) => {
-        const hasConditionAndFailed = key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o);
-        const value = !hasConditionAndFailed
-          ? key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id
-          : null;
-        return {
-          ...o,
-          [key.id]: value,
-        };
-      }, {});
-
-      const contains = allRoutes.some(elem => JSON.stringify(randomAnswers) === JSON.stringify(elem.route));
-
-      if (!contains) {
-        allRoutes.push({ route: randomAnswers, key: allRoutes.length + 1 });
-      }
-    }
-
-    this.setLocation('de pijp');
-
-    this.setState({
-      questionIndex: config.uitvoeringsregels.length,
-      allRoutes,
-    });
-  }
-
   render() {
-    const { questionIndex, userAnswers, location, debug, allRoutes } = this.state;
+    const { questionIndex, userAnswers, location, debug } = this.state;
 
     if (debug) {
       // Debug > Set default location
@@ -252,11 +140,10 @@ class QuestionnaireContainer extends React.Component {
       // FIRST QUESTION: LOCATION
       return (
         <StyledContent heading="Waar wilt u uw aanbouw maken?">
-          <h2>✓ De Pijp</h2>
-          <p>Straks kunt u hier een locatie kiezen, nu wordt de vragenlijst van De Pijp laten zien.</p>
+          <AddressForm />
+
           <Navigation onGoToNext={() => this.setLocation('de pijp')} showNext />
           <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
-          <CreateRoutesButton createRoutes={() => this.onCreateAllRoutes} />
         </StyledContent>
       );
     }
@@ -278,7 +165,7 @@ class QuestionnaireContainer extends React.Component {
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
 
-        const isTrue = condCheck(cond, userAnswers);
+        const isTrue = condCheck(cond, userAnswers, config.uitvoeringsregels);
 
         if (!isTrue) {
           // the conditions are not true, so skip this question
@@ -300,14 +187,8 @@ class QuestionnaireContainer extends React.Component {
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
           <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
-          <CreateRoutesButton createRoutes={() => this.onCreateAllRoutes} />
         </StyledContent>
       );
-    }
-
-    if (allRoutes && allRoutes.length > 0) {
-      // ALL ROUTES OVERVIEW
-      return allRoutes.map(route => <Route route={route.route} key={route.key} />);
     }
 
     if (questionIndex >= uitvoeringsregels.length) {
@@ -317,7 +198,9 @@ class QuestionnaireContainer extends React.Component {
           <p>
             Uitkomst:{' '}
             <strong>
-              {config.uitkomsten.map(uitkomst => (areAllCondTrue(uitkomst.cond, userAnswers) ? uitkomst.label : null))}
+              {config.uitkomsten.map(uitkomst =>
+                areAllCondTrue(uitkomst.cond, userAnswers, config.uitvoeringsregels) ? uitkomst.label : null,
+              )}
             </strong>
           </p>
           <p>
@@ -331,7 +214,6 @@ class QuestionnaireContainer extends React.Component {
           />
           <Navigation />
           <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
-          <CreateRoutesButton createRoutes={() => this.onCreateAllRoutes} />
         </StyledContent>
       );
     }

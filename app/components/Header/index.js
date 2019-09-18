@@ -15,13 +15,29 @@ export const Header = () => (
         navigation={
           <MenuInline>
             <MenuItem>
-              <MenuButton $as="div">Inleiding</MenuButton>
+              <MenuButton $as="a" href="/aanbouw/inleiding">
+                Inleiding
+              </MenuButton>
             </MenuItem>
             <MenuItem>
-              <MenuButton $as="div">Vragen</MenuButton>
+              <MenuButton $as="a" href="/aanbouw/vragen">
+                Vragen
+              </MenuButton>
             </MenuItem>
             <MenuItem>
-              <MenuButton $as="div">Conclusie</MenuButton>
+              <MenuButton $as="a" href="/aanbouw/conclusie">
+                Conclusie
+              </MenuButton>
+            </MenuItem>
+            <MenuItem>
+              <MenuButton $as="a" href="/aanbouw/alle-vragen">
+                Alle vragen
+              </MenuButton>
+            </MenuItem>
+            <MenuItem>
+              <MenuButton $as="a" href="/aanbouw/alle-routes">
+                Alle routes
+              </MenuButton>
             </MenuItem>
           </MenuInline>
         }

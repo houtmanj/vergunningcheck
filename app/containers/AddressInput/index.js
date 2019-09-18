@@ -3,11 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {
-  // Button,
-  TextField,
-} from '@datapunt/asc-ui';
-import AddressInputResult from 'components/AddressInputResult';
+import { AddressResult, AddressForm } from 'components/AddressInput/';
 import { fetchStreetname, fetchBagData } from './actions';
 import './style.scss';
 
@@ -115,20 +111,7 @@ class AddressInput extends React.Component {
     return (
       <div className="address-input">
         <h3>Vul de betreffende postcode en huisnummer in:</h3>
-        <form className="address-input__form">
-          <TextField
-            className="address-input__input address-input__postcode"
-            label="Postcode"
-            onChange={this.onPostcodeInput}
-            defaultValue={debug && '1055x'}
-          />
-          <TextField
-            className="address-input__input address-input__streetnumber"
-            label="Huisnummer + toevoeging"
-            onInput={this.onStreetNumberInput}
-            defaultValue={debug && '19'}
-          />
-        </form>
+        <AddressForm onChange={this.onPostcodeInput} onInput={this.onStreetNumberInput} debug={debug} />
 
         {!loading && showError && (
           <div className="address-input__error">
@@ -150,26 +133,26 @@ class AddressInput extends React.Component {
         )}
 
         {streetNumber && loading && (
-          <AddressInputResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
+          <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
         )}
 
         {validPostcode && addressLine1 && !showError && (
           <>
-            <AddressInputResult loading={streetNameLoading} title="Adres:">
+            <AddressResult loading={streetNameLoading} title="Adres:">
               <div>{addressLine1}</div>
               <div>{addressLine2}</div>
               <div>{addressLine3}</div>
-            </AddressInputResult>
+            </AddressResult>
 
-            <AddressInputResult loading={monumentLoading} title="Monument:">
+            <AddressResult loading={monumentLoading} title="Monument:">
               {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
-            </AddressInputResult>
+            </AddressResult>
 
-            <AddressInputResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
+            <AddressResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
               {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
-            </AddressInputResult>
+            </AddressResult>
 
-            <AddressInputResult loading={beperkingLoading} title="Gemeentelijke beperkingen (WKPB):">
+            <AddressResult loading={beperkingLoading} title="Gemeentelijke beperkingen (WKPB):">
               {beperkingStatus.length === 0 && `Geen beperkingen`}
               {beperkingStatus.length > 0 && (
                 <ul>
@@ -179,9 +162,9 @@ class AddressInput extends React.Component {
                   })}
                 </ul>
               )}
-            </AddressInputResult>
+            </AddressResult>
 
-            <AddressInputResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
+            <AddressResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
               {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
               {bestemmingsplanStatus.length > 0 && (
                 <ul>
@@ -192,7 +175,7 @@ class AddressInput extends React.Component {
                   ))}
                 </ul>
               )}
-            </AddressInputResult>
+            </AddressResult>
           </>
         )}
       </div>
