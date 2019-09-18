@@ -5,8 +5,7 @@ import styled from '@datapunt/asc-core';
 import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
 
-// import config from './config';
-import config from './demo-v2';
+import config from './de-pijp';
 
 const StyledContent = styled(Content)`
   display: flex;

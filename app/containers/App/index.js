@@ -8,7 +8,7 @@ import { Row, Column } from '@datapunt/asc-ui';
 import AddressInput from 'containers/AddressInput';
 import HomePage from 'containers/HomePage';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
-import QuestionnaireTotaal from 'containers/QuestionnaireContainer/Totaal';
+import QuestionnaireQuestions from 'containers/QuestionnaireContainer/Questions';
 import NotFoundPage from 'containers/NotFoundPage';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
@@ -34,7 +34,7 @@ export const App = () => {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/aanbouw" component={QuestionnaireContainer} />
-            <Route exact path="/aanbouw/totaal" component={QuestionnaireTotaal} />
+            <Route exact path="/aanbouw/questions" component={QuestionnaireQuestions} />
             <Route exact path="/adres" component={AddressInput} />
             <Route exact path="/health" />
             <Route path="" component={NotFoundPage} />

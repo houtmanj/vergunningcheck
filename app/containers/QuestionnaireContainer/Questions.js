@@ -8,7 +8,7 @@ const Div = styled(`div`)`
   white-space: nowrap;
 `;
 
-const QuestionnaireTotaal = () => {
+const QuestionnaireQuestions = () => {
   const { uitvoeringsregels } = config;
 
   // TOTAAL
@@ -21,4 +21,4 @@ const QuestionnaireTotaal = () => {
   );
 };
 
-export default QuestionnaireTotaal;
+export default QuestionnaireQuestions;
