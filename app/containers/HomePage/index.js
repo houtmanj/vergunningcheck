@@ -10,6 +10,7 @@
  */
 
 import React from 'react';
+import history from 'utils/history';
 
 import Navigation from 'components/Navigation';
 
@@ -27,12 +28,7 @@ const HomePage = () => (
         (gratis en online).
       </li>
     </ul>
-    <Navigation
-      showNext
-      onGoToNext={() => {
-        window.location.href = '/aanbouw/';
-      }}
-    />
+    <Navigation showNext onGoToNext={() => history.push('/aanbouw/locatie')} />
   </div>
 );
 

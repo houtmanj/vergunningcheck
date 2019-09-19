@@ -1,25 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
+import history from 'utils/history';
 
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
-
 import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Questionnaire';
-import { AddressForm } from 'components/AddressInput/';
 import Navigation from 'components/Navigation';
-
-import config from './de-pijp';
+import { fetchQuestionnaire } from './actions';
 
 const StyledContent = styled(Content)`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-`;
-
-const StyledAnswers = styled(Answers)`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 `;
 
 const RandomizeButton = props => (
@@ -31,7 +25,8 @@ RandomizeButton.propTypes = {
   randomizeAnswers: PropTypes.func,
 };
 
-const getQuestionIdFromIndex = index => (config.uitvoeringsregels[index] ? config.uitvoeringsregels[index].id : null);
+const getQuestionIdFromIndex = (index, questionnaire) =>
+  questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
 
 class QuestionnaireContainer extends React.Component {
   constructor(props) {
@@ -43,33 +38,31 @@ class QuestionnaireContainer extends React.Component {
     this.onRandomizeAnswers = this.onRandomizeAnswers.bind(this);
 
     this.state = {
-      debug: {
-        // defaultLocation: 'de pijp',
-      },
-      location: false,
-      questionIndex: -1,
+      questionIndex: 0,
       userAnswers: {},
     };
   }
 
+  componentDidMount() {
+    const {
+      onFetchQuestionnaire,
+      addressInput: { bestemmingsplanStatus },
+    } = this.props;
+    onFetchQuestionnaire(bestemmingsplanStatus);
+  }
+
   onGoToQuestion(questionId) {
+    const { questionnaire } = this.props;
     let questionIndex = 0;
     // Used for() instead of findIndex(), because of https://stackoverflow.com/a/15998003
-    for (let i = 0; i < config.uitvoeringsregels.length; i += 1) {
-      if (config.uitvoeringsregels[i].id === questionId) {
+    for (let i = 0; i < questionnaire.uitvoeringsregels.length; i += 1) {
+      if (questionnaire.uitvoeringsregels[i].id === questionId) {
         questionIndex = i;
         break;
       }
     }
     this.setState({
       questionIndex,
-    });
-  }
-
-  setLocation(location) {
-    this.setState({
-      location,
-      questionIndex: 0,
     });
   }
 
@@ -91,12 +84,18 @@ class QuestionnaireContainer extends React.Component {
 
   onGoToPrev() {
     const { questionIndex, userAnswers } = this.state;
+    const { questionnaire } = this.props;
+    if (questionIndex < 1) {
+      this.setState({
+        questionIndex: -1,
+      });
+    }
 
     // Check if prev question exists
-    if (getQuestionIdFromIndex(questionIndex - 1)) {
+    if (getQuestionIdFromIndex(questionIndex - 1, questionnaire)) {
       for (let i = 1; i <= questionIndex; i += 1) {
         // Loop through answered questions until a question has been answered
-        if (userAnswers[getQuestionIdFromIndex(questionIndex - i)]) {
+        if (userAnswers[getQuestionIdFromIndex(questionIndex - i, questionnaire)]) {
           this.setState(prevState => ({
             questionIndex: prevState.questionIndex - i,
           }));
@@ -106,9 +105,10 @@ class QuestionnaireContainer extends React.Component {
   }
 
   onRandomizeAnswers() {
-    const randomAnswers = config.uitvoeringsregels.reduce((o, key) => {
+    const { questionnaire } = this.props;
+    const randomAnswers = questionnaire.uitvoeringsregels.reduce((o, key) => {
       const hasConditionAndFailed =
-        key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, config.uitvoeringsregels);
+        key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
       const value = !hasConditionAndFailed
         ? key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id
         : null;
@@ -119,7 +119,7 @@ class QuestionnaireContainer extends React.Component {
     }, {});
 
     this.setState({
-      questionIndex: config.uitvoeringsregels.length,
+      questionIndex: questionnaire.uitvoeringsregels.length,
       userAnswers: {
         ...randomAnswers,
       },
@@ -127,28 +127,35 @@ class QuestionnaireContainer extends React.Component {
   }
 
   render() {
-    const { questionIndex, userAnswers, location, debug } = this.state;
+    const { questionIndex, userAnswers } = this.state;
 
-    if (debug) {
-      // Debug > Set default location
-      if (debug.defaultLocation && !location) {
-        this.setLocation('de pijp');
-      }
+    const {
+      questionnaire,
+      loading,
+      error,
+      addressInput: {
+        bagStatus: { _display: userAddress = '' },
+      },
+    } = this.props;
+
+    if (loading) {
+      return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
     }
 
-    if (!location || questionIndex < 0) {
-      // FIRST QUESTION: LOCATION
-      return (
-        <StyledContent heading="Waar wilt u uw aanbouw maken?">
-          <AddressForm />
-
-          <Navigation onGoToNext={() => this.setLocation('de pijp')} showNext />
-          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
-        </StyledContent>
-      );
+    if (!userAddress || questionIndex < 0) {
+      // Return to Location page if no address is in state
+      history.push('/aanbouw/locatie');
+      return null;
     }
 
-    const { uitvoeringsregels } = config;
+    const { uitvoeringsregels } = questionnaire;
+
+    if (!uitvoeringsregels) {
+      return <div>Helaas zijn er geen vragenlijsten gevonden op deze locatie: {userAddress}</div>;
+    }
+    if (error) {
+      return <div>Helaas is er iets mis gegaan met het ophalen van de vragenlijsten, probeer het nog eens.</div>;
+    }
 
     if (uitvoeringsregels[questionIndex]) {
       // QUESTION FLOW FROM JSON
@@ -165,7 +172,7 @@ class QuestionnaireContainer extends React.Component {
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
 
-        const isTrue = condCheck(cond, userAnswers, config.uitvoeringsregels);
+        const isTrue = condCheck(cond, userAnswers, questionnaire.uitvoeringsregels);
 
         if (!isTrue) {
           // the conditions are not true, so skip this question
@@ -178,7 +185,7 @@ class QuestionnaireContainer extends React.Component {
       return (
         <StyledContent headingDataId={questionId} heading={question} paragraph={paragraph}>
           {hasPrefilledAnswer && <PrefilledAnswerText />}
-          <StyledAnswers
+          <Answers
             questionId={questionId}
             userAnswers={userAnswers}
             answers={answers}
@@ -195,11 +202,13 @@ class QuestionnaireContainer extends React.Component {
       // OVERVIEW
       return (
         <StyledContent heading="Controleer uw antwoorden">
+          <p>Adres: {userAddress}</p>
           <p>
+            {' '}
             Uitkomst:{' '}
             <strong>
-              {config.uitkomsten.map(uitkomst =>
-                areAllCondTrue(uitkomst.cond, userAnswers, config.uitvoeringsregels) ? uitkomst.label : null,
+              {questionnaire.uitkomsten.map(uitkomst =>
+                areAllCondTrue(uitkomst.cond, userAnswers, questionnaire.uitvoeringsregels) ? uitkomst.label : null,
               )}
             </strong>
           </p>
@@ -222,4 +231,39 @@ class QuestionnaireContainer extends React.Component {
   }
 }
 
-export default QuestionnaireContainer;
+QuestionnaireContainer.defaultProps = {
+  addressInput: {
+    bestemmingsplanStatus: [],
+  },
+};
+
+QuestionnaireContainer.propTypes = {
+  onFetchQuestionnaire: PropTypes.func.isRequired,
+  addressInput: PropTypes.shape({
+    bestemmingsplanStatus: PropTypes.array,
+  }),
+  questionnaire: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+};
+
+const mapStateToProps = state => {
+  const {
+    addressInput,
+    questionnaire: { loading, error, questionnaire },
+  } = state;
+  return { addressInput, questionnaire, error, loading };
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      onFetchQuestionnaire: fetchQuestionnaire,
+    },
+    dispatch,
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(QuestionnaireContainer);

@@ -8,8 +8,8 @@ const AnswerFooter = styled(`div`)`
   margin-top: 20px;
 `;
 
-const Answers = ({ className, answers, required, userAnswers, questionId, action }) => {
-  const userAnswer = userAnswers[questionId] || null;
+const Answers = ({ className, answers, required, userAnswers, questionId, action, hideFooter }) => {
+  const userAnswer = (userAnswers && userAnswers[questionId]) || null;
 
   return (
     <>
@@ -41,7 +41,7 @@ const Answers = ({ className, answers, required, userAnswers, questionId, action
           );
         })}
       </div>
-      <AnswerFooter>* Vergunning nodig</AnswerFooter>
+      {!hideFooter && <AnswerFooter>* Vergunning nodig</AnswerFooter>}
     </>
   );
 };
@@ -53,6 +53,13 @@ Answers.propTypes = {
   userAnswers: PropTypes.object,
   questionId: PropTypes.string,
   action: PropTypes.func,
+  hideFooter: PropTypes.bool,
 };
 
-export default Answers;
+const StyledAnswers = styled(Answers)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export default StyledAnswers;

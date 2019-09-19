@@ -1,10 +1,11 @@
 import React from 'react';
-import { Row, Column, Header as HeaderComp, MenuInline, MenuItem, MenuButton } from '@datapunt/asc-ui';
+import history from 'utils/history';
+import { Row, Column, Header as HeaderComp, MenuInline, MenuItem, MenuButton, MenuFlyOut } from '@datapunt/asc-ui';
 
 import './style.scss';
 
 export const Header = () => (
-  <Row halign="center" valign="center" debug>
+  <Row halign="center" valign="center" debug={false}>
     <Column wrap alignSelf="flex-start" span={{ small: 1, medium: 2, big: 6, large: 12, xLarge: 12 }}>
       <HeaderComp
         tall
@@ -15,30 +16,42 @@ export const Header = () => (
         navigation={
           <MenuInline>
             <MenuItem>
-              <MenuButton $as="a" href="/aanbouw/inleiding">
+              <MenuButton $as="a" onClick={() => history.push('/aanbouw/inleiding')}>
                 Inleiding
               </MenuButton>
             </MenuItem>
             <MenuItem>
-              <MenuButton $as="a" href="/aanbouw/vragen">
+              <MenuButton $as="a" onClick={() => history.push('/aanbouw/locatie')}>
+                Locatie
+              </MenuButton>
+            </MenuItem>
+            <MenuItem>
+              <MenuButton $as="a" onClick={() => history.push('/aanbouw/vragen')}>
                 Vragen
               </MenuButton>
             </MenuItem>
             <MenuItem>
-              <MenuButton $as="a" href="/aanbouw/conclusie">
+              <MenuButton $as="a" onClick={() => history.push('/aanbouw/conclusie')}>
                 Conclusie
               </MenuButton>
             </MenuItem>
-            <MenuItem>
-              <MenuButton $as="a" href="/aanbouw/alle-vragen">
-                Alle vragen
-              </MenuButton>
-            </MenuItem>
-            <MenuItem>
-              <MenuButton $as="a" href="/aanbouw/alle-routes">
-                Alle routes
-              </MenuButton>
-            </MenuItem>
+            <MenuFlyOut label="Debugging!">
+              <MenuItem>
+                <MenuButton $as="a" onClick={() => history.push('/aanbouw/alle-vragen')}>
+                  Alle vragen
+                </MenuButton>
+              </MenuItem>
+              <MenuItem>
+                <MenuButton $as="a" onClick={() => history.push('/aanbouw/alle-routes')}>
+                  Alle routes
+                </MenuButton>
+              </MenuItem>
+              <MenuItem>
+                <MenuButton $as="a" onClick={() => history.push('/adres/')}>
+                  Adres informatie
+                </MenuButton>
+              </MenuItem>
+            </MenuFlyOut>
           </MenuInline>
         }
       />

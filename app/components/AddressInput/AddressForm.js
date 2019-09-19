@@ -7,14 +7,14 @@ const AddressForm = ({ onChange, onInput, debug }) => (
     <TextField
       className="address-input__input address-input__postcode"
       label="Postcode"
-      defaultValue={debug && '1055x'}
-      placeholder="bv. 1000AA"
+      defaultValue={debug && '1074VE'}
+      placeholder="bv. 1074VE"
       onChange={onChange}
     />
     <TextField
       className="address-input__input address-input__streetnumber"
       label="Huisnummer + toevoeging"
-      defaultValue={debug && '19'}
+      defaultValue={debug && '1'}
       onInput={onInput}
     />
   </form>

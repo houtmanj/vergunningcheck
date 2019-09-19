@@ -45,10 +45,10 @@ export function* fetchBag(action) {
     const bag = yield call(searchBag, action.query);
     if (bag) {
       yield put({ type: FETCH_BAG_SUCCESS, bag });
+      yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
       yield put({ type: FETCH_MONUMENT_REQUEST, bag });
       yield put({ type: FETCH_BEPERKING_REQUEST, bag });
       yield put({ type: FETCH_STADSGEZICHT_REQUEST, bag });
-      yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
     } else {
       yield delay(1000);
       yield put({ type: FETCH_BAG_NO_RESULTS });

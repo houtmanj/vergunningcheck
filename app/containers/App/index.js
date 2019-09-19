@@ -6,6 +6,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { Row, Column } from '@datapunt/asc-ui';
 
 import AddressInput from 'containers/AddressInput';
+import AddressInputResults from 'containers/AddressInput/Results';
 import HomePage from 'containers/HomePage';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
 import QuestionnaireQuestions from 'containers/QuestionnaireContainer/Questions';
@@ -16,15 +17,18 @@ import Header from 'components/Header';
 import GlobalError from 'containers/GlobalError';
 
 import addressInputSaga from '../AddressInput/saga';
+import questionnaireSaga from '../QuestionnaireContainer/saga';
 
 // import GlobalStyles from '../../global-styles';
 
 import './style.scss';
 
 const addressInputKey = 'addressInput';
+const questionnaireKey = 'questionnaire';
 
 export const App = () => {
   useInjectSaga({ key: addressInputKey, saga: addressInputSaga });
+  useInjectSaga({ key: questionnaireKey, saga: questionnaireSaga });
 
   return (
     <div className="container app-container">
@@ -35,10 +39,11 @@ export const App = () => {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/aanbouw/inleiding" component={HomePage} />
+            <Route exact path="/aanbouw/locatie" component={AddressInput} />
             <Route exact path="/aanbouw/alle-vragen" component={QuestionnaireQuestions} />
             <Route exact path="/aanbouw/alle-routes" component={QuestionnaireRoutes} />
             <Route exact path="/aanbouw/*" component={QuestionnaireContainer} />
-            <Route exact path="/adres" component={AddressInput} />
+            <Route exact path="/adres" component={AddressInputResults} />
             <Route exact path="/health" />
             <Route path="" component={NotFoundPage} />
           </Switch>
