@@ -1,131 +1,119 @@
 export default {
   id: '_8743984',
-  name: 'Conclusie vergunningscheck Aanbouw',
+  name: 'Conclusie vergunningscheck Aanbouw (De Pijp)',
   uitvoeringsregels: [
     {
       id: 'monument',
-      vraag: {
-        vraagTekst: 'Betreft (rijks / gemeentelijk) monument?',
-        vergunningplichtig: 'Ja',
-        antwoordOpties: [
-          {
-            id: '1',
-            optieText: 'Ja',
-            // prefilled: true,
-          },
-          {
-            id: '2',
-            optieText: 'Nee',
-          },
-        ],
-      },
+      vraagTekst: 'Betreft (rijks / gemeentelijk) monument?',
+      vergunningplichtig: 'Ja',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+          // prefilled: true,
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+        },
+      ],
     },
     {
       id: 'stadsgezicht',
-      vraag: {
-        vraagTekst: 'Betreft beschermd stads/dorps stadsgezicht?',
-        vergunningplichtig: 'Ja',
-        antwoordOpties: [
-          {
-            id: '1',
-            optieText: 'Ja',
-          },
-          {
-            id: '2',
-            optieText: 'Nee',
-          },
-        ],
-      },
+      vraagTekst: 'Betreft beschermd stads/dorps stadsgezicht?',
+      vergunningplichtig: 'Ja',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+        },
+      ],
       cond: ['monument."Nee"'],
     },
     {
       id: 'stadsgezicht-zichtbaar',
-      vraag: {
-        vraagTekst: 'Betreft "zichtbaar" stads/dorp gezicht?',
-        vergunningplichtig: 'Ja',
-        antwoordOpties: [
-          {
-            id: '1',
-            optieText: 'Ja',
-          },
-          {
-            id: '2',
-            optieText: 'Nee',
-          },
-        ],
-      },
+
+      vraagTekst: 'Betreft "zichtbaar" stads/dorp gezicht?',
+      vergunningplichtig: 'Ja',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+        },
+      ],
       cond: ['stadsgezicht."Ja"'],
     },
     {
       id: 'artikel-3',
-      vraag: {
-        vraagTekst: 'Voldoet Artikel 3 volledig?',
-        vergunningplichtig: 'Nee',
-        antwoordOpties: [
-          {
-            id: '1',
-            optieText: 'Ja',
-          },
-          {
-            id: '2',
-            optieText: 'Nee',
-          },
-        ],
-      },
+
+      vraagTekst: 'Voldoet Artikel 3 volledig?',
+      vergunningplichtig: 'Nee',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+        },
+      ],
       cond: ['stadsgezicht-zichtbaar."Nee"', 'stadsgezicht."Nee"'],
     },
     {
       id: 'artikel-2-s',
-      vraag: {
-        vraagTekst: 'Voldoet Artikel 2 -specifieke vraag-?',
-        vergunningplichtig: 'Nee',
-        antwoordOpties: [
-          {
-            id: '1',
-            optieText: 'Ja',
-          },
-          {
-            id: '2',
-            optieText: 'Nee',
-          },
-        ],
-      },
+      vraagTekst: 'Voldoet Artikel 2 -specifieke vraag-?',
+      vergunningplichtig: 'Nee',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+        },
+      ],
       cond: [['stadsgezicht."Nee"', 'artikel-3.Ja']],
     },
     {
       id: 'artikel-2-o',
-      vraag: {
-        vraagTekst: 'Voldoet Artikel 2 -overige vragen-?',
-        vergunningplichtig: 'Nee',
-        antwoordOpties: [
-          {
-            id: '1',
-            optieText: 'Ja',
-          },
-          {
-            id: '2',
-            optieText: 'Nee',
-          },
-        ],
-      },
+      vraagTekst: 'Voldoet Artikel 2 -overige vragen-?',
+      vergunningplichtig: 'Nee',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+        },
+      ],
       cond: ['artikel-2-s."Ja"'],
     },
     {
       id: 'bestemmingsplan',
-      vraag: {
-        vraagTekst: 'Wordt voldaan aan ALLE regels van bestemmingsplan "De Pijp"?',
-        vergunningplichtig: 'Nee',
-        antwoordOpties: [
-          {
-            id: '1',
-            optieText: 'Ja',
-          },
-          {
-            id: '2',
-            optieText: 'Nee',
-          },
-        ],
-      },
+      vraagTekst: 'Wordt voldaan aan ALLE regels van bestemmingsplan "De Pijp"?',
+      vergunningplichtig: 'Nee',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+        },
+      ],
       cond: [
         'monument."Ja"',
         'stadsgezicht-zichtbaar."Ja"',

@@ -36,7 +36,7 @@ const QuestionRoutes = () => {
       const hasConditionAndFailed =
         key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, config.uitvoeringsregels);
       const value = !hasConditionAndFailed
-        ? key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id
+        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].id
         : null;
       return {
         ...o,

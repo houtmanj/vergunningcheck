@@ -110,7 +110,7 @@ class QuestionnaireContainer extends React.Component {
       const hasConditionAndFailed =
         key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
       const value = !hasConditionAndFailed
-        ? key.vraag.antwoordOpties[Math.floor(Math.random() * key.vraag.antwoordOpties.length)].id
+        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].id
         : null;
       return {
         ...o,
@@ -161,7 +161,9 @@ class QuestionnaireContainer extends React.Component {
       // QUESTION FLOW FROM JSON
       const {
         id: questionId,
-        vraag: { vraagTekst: question, antwoordOpties: answers, vergunningplichtig: required },
+        vraagTekst: question,
+        antwoordOpties: answers,
+        vergunningplichtig: required,
         // content: { toelichting: paragraph = 'demo' },
         cond,
       } = uitvoeringsregels[questionIndex];

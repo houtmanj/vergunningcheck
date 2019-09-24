@@ -15,7 +15,7 @@ const QuestionnaireQuestions = () => {
   return (
     <div>
       {uitvoeringsregels.map((regel, index) => (
-        <Div key={regel.vraag.vraagTekst}>{`${index + 1}: ${regel.id}: ${regel.vraag.vraagTekst}`}</Div>
+        <Div key={regel.vraagTekst}>{`${index + 1}: ${regel.id}: ${regel.vraagTekst}`}</Div>
       ))}
     </div>
   );

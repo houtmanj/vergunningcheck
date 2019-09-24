@@ -36,7 +36,7 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
 
     {uitvoeringsregels.map((regel, index) => {
       const userAnswerId = userAnswers[regel.id];
-      const userAnswer = regel.vraag.antwoordOpties
+      const userAnswer = regel.antwoordOpties
         .filter(antwoord => antwoord.id === userAnswerId)
         .map(antwoord => antwoord.optieText);
 
@@ -46,7 +46,7 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
         return null;
       }
 
-      const required = regel.vraag.vergunningplichtig;
+      const required = regel.vergunningplichtig;
 
       const requiredText = required.toString();
 
@@ -54,8 +54,8 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
 
       return (
         <Wrapper key={regel.id}>
-          <Question key={regel.vraag.vraagTekst}>
-            {index + 1}: {regel.vraag.vraagTekst}
+          <Question key={regel.vraagTekst}>
+            {index + 1}: {regel.vraagTekst}
           </Question>
           <UserAnswer key={userAnswer}>{answerText}</UserAnswer>
           <Result key={userAnswerId}>{resultText}</Result>

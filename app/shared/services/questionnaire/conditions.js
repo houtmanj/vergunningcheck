@@ -21,7 +21,7 @@ export const isCondTrue = (condition, userAnswers, questionnaire) => {
     if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
       const userAnswerId = userAnswers[conditionQuestion];
 
-      const userAnswer = conditionQuestionData[0].vraag.antwoordOpties
+      const userAnswer = conditionQuestionData[0].antwoordOpties
         .filter(antwoord => antwoord.id === userAnswerId)
         .map(antwoord => antwoord.optieText);
       const userAnswerText = userAnswer.toString().toLowerCase();
@@ -47,7 +47,7 @@ export const areAllCondTrue = (cond, userAnswers, questionnaire) =>
     if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
       const userAnswerId = userAnswers[conditionQuestion];
 
-      const userAnswer = conditionQuestionData[0].vraag.antwoordOpties
+      const userAnswer = conditionQuestionData[0].antwoordOpties
         .filter(antwoord => antwoord.id === userAnswerId)
         .map(antwoord => antwoord.optieText);
       const userAnswerText = userAnswer.toString().toLowerCase();
