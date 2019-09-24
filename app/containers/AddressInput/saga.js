@@ -91,8 +91,10 @@ export function* fetchStadsgezicht(action) {
 export function* fetchBestemmingplan(action) {
   const { geometrie = '' } = action.bag;
   try {
-    const bestemmingsplan = yield call(searchForBestemmingsplan, geometrie);
-    yield put({ type: FETCH_BESTEMMINGSPLAN_SUCCESS, bestemmingsplan });
+    if (geometrie !== '') {
+      const bestemmingsplan = yield call(searchForBestemmingsplan, geometrie);
+      yield put({ type: FETCH_BESTEMMINGSPLAN_SUCCESS, bestemmingsplan });
+    }
   } catch (error) {
     yield put({ type: FETCH_BESTEMMINGSPLAN_FAILURE, error });
   }

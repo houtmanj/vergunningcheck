@@ -1,9 +1,11 @@
 // import SHARED_CONFIG from '../shared-config/shared-config';
 import { camelCase } from 'lodash';
 import dePijp2018 from 'shared/content/aanbouw/de-pijp-2018';
+import test from 'shared/content/aanbouw/test';
 
 const questionnaires = {
   dePijp2018,
+  test,
 };
 
 const properPlanName = plan => camelCase(plan.text);

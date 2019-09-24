@@ -40,6 +40,7 @@ class QuestionnaireContainer extends React.Component {
     this.state = {
       questionIndex: 0,
       userAnswers: {},
+      debug: true,
     };
   }
 
@@ -48,7 +49,12 @@ class QuestionnaireContainer extends React.Component {
       onFetchQuestionnaire,
       addressInput: { bestemmingsplanStatus },
     } = this.props;
-    onFetchQuestionnaire(bestemmingsplanStatus);
+    const { debug } = this.state;
+    if (!bestemmingsplanStatus.length && debug) {
+      onFetchQuestionnaire([{ text: 'test' }]);
+    } else {
+      onFetchQuestionnaire(bestemmingsplanStatus);
+    }
   }
 
   onGoToQuestion(questionId) {
@@ -127,7 +133,7 @@ class QuestionnaireContainer extends React.Component {
   }
 
   render() {
-    const { questionIndex, userAnswers } = this.state;
+    const { questionIndex, userAnswers, debug } = this.state;
 
     const {
       questionnaire,
@@ -142,7 +148,7 @@ class QuestionnaireContainer extends React.Component {
       return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
     }
 
-    if (!userAddress || questionIndex < 0) {
+    if ((!userAddress && !debug) || questionIndex < 0) {
       // Return to Location page if no address is in state
       history.push('/aanbouw/locatie');
       return null;
@@ -195,6 +201,11 @@ class QuestionnaireContainer extends React.Component {
             action={this.onGoToNext}
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
+          {debug && (
+            <p>
+              <em>{questionnaire.name}</em>
+            </p>
+          )}
           <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
         </StyledContent>
       );
@@ -206,7 +217,6 @@ class QuestionnaireContainer extends React.Component {
         <StyledContent heading="Controleer uw antwoorden">
           <p>Adres: {userAddress}</p>
           <p>
-            {' '}
             Uitkomst:{' '}
             <strong>
               {questionnaire.uitkomsten.map(uitkomst =>

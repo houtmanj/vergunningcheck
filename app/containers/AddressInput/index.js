@@ -36,14 +36,11 @@ class AddressInput extends React.Component {
 
     if (debug) {
       const postcode = document.querySelector('.address-input__postcode').value;
-      const streetNumber = document.querySelector('.address-input__streetnumber').value;
       this.setState({
         postcode,
-        streetNumber,
+        validPostcode: true,
       });
-      this.onPostcodeInput({ target: { value: postcode } });
-      document.querySelector('.address-input__streetnumber').value = streetNumber;
-      setTimeout(() => this.onStreetNumberInput({ target: { value: streetNumber } }), 1000);
+      setTimeout(() => this.onPostcodeInput({ target: { value: postcode } }), 1);
     }
   }
 
@@ -75,7 +72,6 @@ class AddressInput extends React.Component {
 
   onStreetNumberInput(event) {
     const { value: streetNumber } = event.target;
-
     this.setState({
       streetNumber,
     });
