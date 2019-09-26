@@ -32,6 +32,9 @@ const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext, disabledNext }
   </NavigationStyle>
 );
 
+Navigation.defaultProps = {
+  disabledNext: true,
+};
 Navigation.propTypes = {
   showPrev: PropTypes.bool,
   onGoToPrev: PropTypes.func,

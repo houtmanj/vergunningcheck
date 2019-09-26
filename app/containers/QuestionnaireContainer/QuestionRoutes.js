@@ -4,8 +4,9 @@ import styled from '@datapunt/asc-core';
 
 import { Content, Overview } from 'components/Questionnaire';
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
-import config from './config';
+import { questionnaires } from 'shared/services/questionnaire/questionnaire';
 
+const { basis: questionnaire } = questionnaires;
 const StyledContent = styled(Content)`
   display: flex;
   flex-direction: column;
@@ -13,13 +14,15 @@ const StyledContent = styled(Content)`
 `;
 
 const Route = props => {
-  const outcome = config.uitkomsten
-    .filter(uitkomst => (areAllCondTrue(uitkomst.cond, props.route, config.uitvoeringsregels) ? uitkomst.label : false))
+  const outcome = questionnaire.uitkomsten
+    .filter(uitkomst =>
+      areAllCondTrue(uitkomst.cond, props.route, questionnaire.uitvoeringsregels) ? uitkomst.label : false,
+    )
     .map(uitkomst => uitkomst.label);
   return (
     <StyledContent>
       <p>{outcome.length ? `Uitkomst: ${outcome}` : <strong>Deze route heeft geen uitkomst!</strong>}</p>
-      <Overview userAnswers={props.route} uitvoeringsregels={config.uitvoeringsregels} />
+      <Overview userAnswers={props.route} uitvoeringsregels={questionnaire.uitvoeringsregels} />
       <br />
     </StyledContent>
   );
@@ -32,9 +35,9 @@ const QuestionRoutes = () => {
   const allRoutes = [];
 
   for (let i = 0; i < 500; i += 1) {
-    const randomAnswers = config.uitvoeringsregels.reduce((o, key) => {
+    const randomAnswers = questionnaire.uitvoeringsregels.reduce((o, key) => {
       const hasConditionAndFailed =
-        key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, config.uitvoeringsregels);
+        key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
       const value = !hasConditionAndFailed
         ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].id
         : null;
@@ -49,7 +52,7 @@ const QuestionRoutes = () => {
     if (!contains) {
       allRoutes.push({ route: randomAnswers, key: allRoutes.length + 1 });
       // Break loop if all routes are found
-      if (allRoutes.length === config.uitkomsten.length) break;
+      if (allRoutes.length === questionnaire.uitkomsten.length) break;
     }
   }
 

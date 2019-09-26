@@ -35,7 +35,7 @@ export const Header = () => (
                 Conclusie
               </MenuButton>
             </MenuItem>
-            <MenuFlyOut label="Debugging!">
+            <MenuFlyOut label="Debugging">
               <MenuItem>
                 <MenuButton $as="a" onClick={() => history.push('/aanbouw/alle-vragen')}>
                   Alle vragen
@@ -49,6 +49,11 @@ export const Header = () => (
               <MenuItem>
                 <MenuButton $as="a" onClick={() => history.push('/adres/')}>
                   Adres informatie
+                </MenuButton>
+              </MenuItem>
+              <MenuItem>
+                <MenuButton $as="a" onClick={() => history.push('/aanbouw/basis')}>
+                  Basis
                 </MenuButton>
               </MenuItem>
             </MenuFlyOut>

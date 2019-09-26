@@ -2,10 +2,12 @@
 import { camelCase } from 'lodash';
 import dePijp2018 from 'shared/content/aanbouw/de-pijp-2018';
 import test from 'shared/content/aanbouw/test';
+import basis from 'shared/content/aanbouw/basis';
 
-const questionnaires = {
+export const questionnaires = {
   dePijp2018,
   test,
+  basis,
 };
 
 const properPlanName = plan => camelCase(plan.text);
@@ -15,6 +17,7 @@ const mapPlans = plans => {
   const hasPlan = plans
     .filter(planName => questionnaires[properPlanName(planName)])
     .map(planName => questionnaires[properPlanName(planName)]);
+
   if (hasPlan.length > 0) {
     return hasPlan[0];
   }

@@ -4,9 +4,16 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 import history from 'utils/history';
-
-import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
-import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Questionnaire';
+import {
+  condCheck,
+  // areAllCondTrue
+} from 'shared/services/questionnaire/conditions';
+import {
+  Content,
+  // Overview,
+  Answers,
+  //  PrefilledAnswerText
+} from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
 import { fetchQuestionnaire } from './actions';
 
@@ -28,6 +35,21 @@ RandomizeButton.propTypes = {
 const getQuestionIdFromIndex = (index, questionnaire) =>
   questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
 
+const isCurrentRule = (rule, questionIndex) => {
+  if (rule.type === 'input' && rule.index === questionIndex) {
+    return rule;
+  }
+  if (rule.type === 'decision' && rule.group.length > 0) {
+    // console.log('decision');
+    // loop through rule
+    const ruleGroupResult = rule.group.filter(r => r.index === questionIndex);
+    if (ruleGroupResult.length === 1) {
+      return ruleGroupResult[0];
+    }
+  }
+  return false;
+};
+
 class QuestionnaireContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +62,7 @@ class QuestionnaireContainer extends React.Component {
     this.state = {
       questionIndex: 0,
       userAnswers: {},
-      debug: false,
+      debug: true,
     };
   }
 
@@ -53,7 +75,7 @@ class QuestionnaireContainer extends React.Component {
 
     setTimeout(() => {
       if (!bestemmingsplanStatus || !bestemmingsplanStatus.length || debug) {
-        onFetchQuestionnaire([{ text: 'test' }]);
+        onFetchQuestionnaire([{ text: 'basis' }]);
       } else {
         onFetchQuestionnaire(bestemmingsplanStatus);
       }
@@ -158,6 +180,7 @@ class QuestionnaireContainer extends React.Component {
     }
 
     const { uitvoeringsregels } = questionnaire;
+
     if (!uitvoeringsregels) {
       return <div>Helaas zijn er geen vragenlijsten gevonden op deze locatie: {userAddress}</div>;
     }
@@ -166,78 +189,101 @@ class QuestionnaireContainer extends React.Component {
       return <div>Helaas is er iets mis gegaan met het ophalen van de vragenlijsten, probeer het nog eens.</div>;
     }
 
-    const question = uitvoeringsregels[questionIndex];
+    // const question = uitvoeringsregels[questionIndex];
+
+    const question = uitvoeringsregels
+      .filter(r => isCurrentRule(r, questionIndex))
+      .map(r => isCurrentRule(r, questionIndex))[0];
+
+    // console.log('question:', question);
+    // console.log('questionIndex:', questionIndex);
 
     if (question) {
       // QUESTION FLOW FROM JSON
       const {
         id: questionId,
         vraagTekst: questionText,
-        antwoordOpties: answers,
-        vergunningplichtig: required,
-        cond,
+        // antwoordOpties: answers,
+        // vergunningplichtig: required,
+        // cond,
       } = question;
 
+      const answers = [
+        {
+          id: '1',
+          optieText: 'Ja',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+        },
+      ];
+
       // CONDITIONALS
-      if (cond && Array.isArray(cond)) {
-        // This question has condition(s)
+      // if (cond && Array.isArray(cond)) {
+      //   // This question has condition(s)
 
-        const isTrue = condCheck(cond, userAnswers, questionnaire.uitvoeringsregels);
+      //   const isTrue = condCheck(cond, userAnswers, questionnaire.uitvoeringsregels);
 
-        if (!isTrue) {
-          // the conditions are not true, so skip this question
-          this.onGoToNext(questionId, null);
-        }
-      }
+      //   if (!isTrue) {
+      //     // the conditions are not true, so skip this question
+      //     this.onGoToNext(questionId, null);
+      //   }
+      // }
 
-      const hasPrefilledAnswer = answers.filter(answer => answer.prefilled).length > 0;
+      // const hasPrefilledAnswer = answers.filter(answer => answer.prefilled).length > 0;
 
       return (
         <StyledContent headingDataId={questionId} heading={questionText} paragraph="">
-          {hasPrefilledAnswer && <PrefilledAnswerText />}
+          <div>{questionId}</div>
+          <br />
           <Answers
             questionId={questionId}
             userAnswers={userAnswers}
             answers={answers}
-            required={required}
+            // required={required}
             action={this.onGoToNext}
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
-          <p>
-            <em>{questionnaire.name}</em>
-          </p>
-          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
+          {/* {debug && (
+            <p>
+              <em>{questionnaire.name}</em>
+            </p>
+          )}
+          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} /> */}
         </StyledContent>
       );
+      // return <div id={questionId}>{questionText}</div>;
     }
 
-    if (questionIndex >= uitvoeringsregels.length) {
-      // OVERVIEW
-      return (
-        <StyledContent heading="Controleer uw antwoorden">
-          <p>Adres: {userAddress}</p>
-          <p>
-            Uitkomst:{' '}
-            <strong>
-              {questionnaire.uitkomsten.map(uitkomst =>
-                areAllCondTrue(uitkomst.cond, userAnswers, questionnaire.uitvoeringsregels) ? uitkomst.label : null,
-              )}
-            </strong>
-          </p>
-          <p>
-            Hieronder ziet u uw antwoorden terug. U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet
-            u wat de vervolgstappen zijn.
-          </p>
-          <Overview
-            onGoToQuestion={this.onGoToQuestion}
-            userAnswers={userAnswers}
-            uitvoeringsregels={uitvoeringsregels}
-          />
-          <Navigation />
-          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
-        </StyledContent>
-      );
-    }
+    // if (questionIndex >= uitvoeringsregels.length) {
+    //   // OVERVIEW
+    //   return (
+    //     <div>Klaar!</div>
+    //     // <StyledContent heading="Controleer uw antwoorden">
+    //     //   <p>Adres: {userAddress}</p>
+    //     //   <p>
+    //     //     Uitkomst:{' '}
+    //     //     <strong>
+    //     //       {questionnaire.uitkomsten.map(uitkomst =>
+    //     //         areAllCondTrue(uitkomst.cond, userAnswers, questionnaire.uitvoeringsregels) ? uitkomst.label : null,
+    //     //       )}
+    //     //     </strong>
+    //     //   </p>
+    //     //   <p>
+    //     //     Hieronder ziet u uw antwoorden terug. U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet
+    //     //     u wat de vervolgstappen zijn.
+    //     //   </p>
+    //     //   <Overview
+    //     //     onGoToQuestion={this.onGoToQuestion}
+    //     //     userAnswers={userAnswers}
+    //     //     uitvoeringsregels={uitvoeringsregels}
+    //     //   />
+    //     //   <Navigation />
+    //     //   <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
+    //     // </StyledContent>
+    //   );
+    // }
 
     return null;
   }

@@ -5,13 +5,12 @@ export default {
     {
       id: 'monument',
       type: 'input',
-      vraagTekst: 'Betreft (rijks / gemeentelijk) monument?',
-      vergunningplichtig: 'Ja',
+      index: 0,
+      vraagTekst: 'Ben je momument?',
       antwoordOpties: [
         {
           id: '1',
           optieText: 'Ja',
-          // prefilled: true,
         },
         {
           id: '2',
@@ -21,6 +20,8 @@ export default {
     },
     {
       id: 'stadsgezicht',
+      index: 1,
+      type: 'input',
       vraagTekst: 'Betreft beschermd stads/dorps stadsgezicht?',
       vergunningplichtig: 'Ja',
       antwoordOpties: [
@@ -34,10 +35,12 @@ export default {
         },
       ],
 
-      cond: ['monument."Nee"'],
+      // cond: ['monument."Nee"'],
     },
     {
       id: 'stadsgezicht-zichtbaar',
+      index: 2,
+      type: 'input',
       vraagTekst: 'Betreft "zichtbaar" stads/dorp gezicht?',
       vergunningplichtig: 'Ja',
       antwoordOpties: [
@@ -51,27 +54,57 @@ export default {
         },
       ],
 
-      cond: ['stadsgezicht."Ja"'],
+      // cond: ['stadsgezicht."Ja"'],
     },
     {
       id: 'artikel-3',
+      type: 'decision',
       vraagTekst: 'Voldoet Artikel 3 volledig?',
-      vergunningplichtig: 'Nee',
-      antwoordOpties: [
+      group: [
         {
-          id: '1',
-          optieText: 'Ja',
+          id: 'artikel-3-vraag-1',
+          index: 3,
+          type: 'input',
+          vraagTekst: 'Aritkel 3 vraag 1',
+          vergunningplichtig: 'Ja',
+          antwoordOpties: [
+            {
+              id: '1',
+              optieText: 'Ja',
+            },
+            {
+              id: '2',
+              optieText: 'Nee',
+            },
+          ],
+          // cond: ['monument."Nee"'],
         },
         {
-          id: '2',
-          optieText: 'Nee',
+          id: 'artikel-3-vraag-2',
+          index: 4,
+          type: 'input',
+          vraagTekst: 'Aritkel 3 vraag 2',
+          vergunningplichtig: 'Ja',
+          antwoordOpties: [
+            {
+              id: '1',
+              optieText: 'Ja',
+            },
+            {
+              id: '2',
+              optieText: 'Nee',
+            },
+          ],
+          // cond: ['monument."Nee"'],
         },
       ],
 
-      cond: ['stadsgezicht-zichtbaar."Nee"', 'stadsgezicht."Nee"'],
+      // cond: ['stadsgezicht-zichtbaar."Nee"', 'stadsgezicht."Nee"'],
     },
     {
       id: 'artikel-2-s',
+      index: 5,
+      type: 'input',
       vraagTekst: 'Voldoet Artikel 2 -specifieke vraag-?',
       vergunningplichtig: 'Nee',
       antwoordOpties: [
@@ -85,27 +118,57 @@ export default {
         },
       ],
 
-      cond: [['stadsgezicht."Nee"', 'artikel-3.Ja']],
+      // cond: [['stadsgezicht."Nee"', 'artikel-3.Ja']],
     },
     {
       id: 'artikel-2-o',
+      type: 'decision',
       vraagTekst: 'Voldoet Artikel 2 -overige vragen-?',
-      vergunningplichtig: 'Nee',
-      antwoordOpties: [
+      group: [
         {
-          id: '1',
-          optieText: 'Ja',
+          id: 'artikel-2-vraag-1',
+          index: 6,
+          type: 'input',
+          vraagTekst: 'Aritkel 2 vraag 1',
+          vergunningplichtig: 'Ja',
+          antwoordOpties: [
+            {
+              id: '1',
+              optieText: 'Ja',
+            },
+            {
+              id: '2',
+              optieText: 'Nee',
+            },
+          ],
+          // cond: ['monument."Nee"'],
         },
         {
-          id: '2',
-          optieText: 'Nee',
+          id: 'artikel-2-vraag-2',
+          index: 7,
+          type: 'input',
+          vraagTekst: 'Aritkel 2 vraag 2',
+          vergunningplichtig: 'Ja',
+          antwoordOpties: [
+            {
+              id: '1',
+              optieText: 'Ja',
+            },
+            {
+              id: '2',
+              optieText: 'Nee',
+            },
+          ],
+          // cond: ['monument."Nee"'],
         },
       ],
 
-      cond: ['artikel-2-s."Ja"'],
+      // cond: ['artikel-2-s."Ja"'],
     },
     {
       id: 'bestemmingsplan',
+      index: 8,
+      type: 'input',
       vraagTekst: 'Wordt voldaan aan ALLE regels van bestemmingsplan "De Pijp"?',
       vergunningplichtig: 'Nee',
       antwoordOpties: [
@@ -119,13 +182,13 @@ export default {
         },
       ],
 
-      cond: [
-        'monument."Ja"',
-        'stadsgezicht-zichtbaar."Ja"',
-        ['stadsgezicht-zichtbaar."Nee"', 'artikel-3."Ja"'],
-        'artikel-2-s."Nee"',
-        ['artikel-2-s."Ja"', 'artikel-2-o."Nee"'],
-      ],
+      // cond: [
+      //   'monument."Ja"',
+      //   'stadsgezicht-zichtbaar."Ja"',
+      //   ['stadsgezicht-zichtbaar."Nee"', 'artikel-3."Ja"'],
+      //   'artikel-2-s."Nee"',
+      //   ['artikel-2-s."Ja"', 'artikel-2-o."Nee"'],
+      // ],
     },
   ],
   uitkomsten: [

@@ -41,7 +41,7 @@ const Answers = ({ className, answers, required, userAnswers, questionId, action
           );
         })}
       </div>
-      {!hideFooter && <AnswerFooter>* Vergunning nodig</AnswerFooter>}
+      {!hideFooter && required && <AnswerFooter>* Vergunning nodig</AnswerFooter>}
     </>
   );
 };
