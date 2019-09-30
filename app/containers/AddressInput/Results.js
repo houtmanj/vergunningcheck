@@ -2,20 +2,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from '@datapunt/asc-core';
-import history from 'utils/history';
 
-import { Content, Answers } from 'components/Questionnaire';
-import Navigation from 'components/Navigation';
 import { AddressResult, AddressForm } from 'components/AddressInput/';
 import { fetchStreetname, fetchBagData } from './actions';
 import './style.scss';
-
-const StyledContent = styled(Content)`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-`;
 
 class AddressInput extends React.Component {
   constructor(props) {
@@ -27,21 +17,8 @@ class AddressInput extends React.Component {
       postcode: '',
       streetNumber: '',
       hasError: false,
-      debug: true,
+      // debug: true,
     };
-  }
-
-  componentDidMount() {
-    const { debug } = this.state;
-
-    if (debug) {
-      const postcode = document.querySelector('.address-input__postcode').value;
-      this.setState({
-        postcode,
-        validPostcode: true,
-      });
-      setTimeout(() => this.onPostcodeInput({ target: { value: postcode } }), 1);
-    }
   }
 
   onPostcodeInput(event) {
@@ -72,6 +49,7 @@ class AddressInput extends React.Component {
 
   onStreetNumberInput(event) {
     const { value: streetNumber } = event.target;
+
     this.setState({
       streetNumber,
     });
@@ -103,6 +81,8 @@ class AddressInput extends React.Component {
       bagStatus,
       monumentStatus,
       monumentLoading,
+      beperkingStatus,
+      beperkingLoading,
       stadsgezichtStatus,
       stadsgezichtLoading,
       bestemmingsplanStatus,
@@ -129,8 +109,10 @@ class AddressInput extends React.Component {
     const addressLine3 = `(${buurtcombinatie} ${buurtcombinatie && ':'} ${gebied})`;
 
     return (
-      <StyledContent heading="Waar wilt u uw aanbouw maken?">
+      <div className="address-input">
+        <h3>Vul de betreffende postcode en huisnummer in:</h3>
         <AddressForm onChange={this.onPostcodeInput} onInput={this.onStreetNumberInput} debug={debug} />
+
         {!loading && showError && (
           <div className="address-input__error">
             {postcode && notValidPostcode && (
@@ -149,9 +131,11 @@ class AddressInput extends React.Component {
             )}
           </div>
         )}
+
         {streetNumber && loading && (
           <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
         )}
+
         {validPostcode && addressLine1 && !showError && (
           <>
             <AddressResult loading={streetNameLoading} title="Adres:">
@@ -160,40 +144,24 @@ class AddressInput extends React.Component {
               <div>{addressLine3}</div>
             </AddressResult>
 
-            <StyledContent heading="Klopt dit adres?">
-              <Answers
-                questionId="location"
-                answers={[
-                  {
-                    id: '1',
-                    optieText: 'Ja',
-                  },
-                  {
-                    id: '2',
-                    optieText: 'Nee',
-                  },
-                ]}
-                action={() => history.push('/aanbouw/vragen')}
-                hideFooter
-              />
-            </StyledContent>
-          </>
-        )}
-
-        <Navigation
-          onGoToNext={() => this.setLocation('de pijp')}
-          showNext
-          disabledNext={!validPostcode || !addressLine1 || showError}
-        />
-
-        {validPostcode && addressLine1 && !showError && (
-          <>
             <AddressResult loading={monumentLoading} title="Monument:">
               {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
             </AddressResult>
 
             <AddressResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
               {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
+            </AddressResult>
+
+            <AddressResult loading={beperkingLoading} title="Gemeentelijke beperkingen (WKPB):">
+              {beperkingStatus.length === 0 && `Geen beperkingen`}
+              {beperkingStatus.length > 0 && (
+                <ul>
+                  {beperkingStatus.map(beperking => {
+                    const { _display: label, inschrijfnummer } = beperking;
+                    return <li key={inschrijfnummer}>{label}</li>;
+                  })}
+                </ul>
+              )}
             </AddressResult>
 
             <AddressResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
@@ -208,7 +176,7 @@ class AddressInput extends React.Component {
             </AddressResult>
           </>
         )}
-      </StyledContent>
+      </div>
     );
   }
 }
@@ -251,6 +219,8 @@ AddressInput.propTypes = {
   monumentLoading: PropTypes.bool,
   stadsgezichtStatus: PropTypes.string,
   stadsgezichtLoading: PropTypes.bool,
+  beperkingStatus: PropTypes.arrayOf(PropTypes.object),
+  beperkingLoading: PropTypes.bool,
   bestemmingsplanStatus: PropTypes.arrayOf(PropTypes.object),
   bestemmingsplanLoading: PropTypes.bool,
   onFetchStreetname: PropTypes.func.isRequired,
@@ -267,6 +237,8 @@ const mapStateToProps = state => {
     bagStatus,
     monumentLoading,
     monumentStatus,
+    beperkingLoading,
+    beperkingStatus,
     stadsgezichtLoading,
     stadsgezichtStatus,
     bestemmingsplanLoading,
@@ -281,6 +253,8 @@ const mapStateToProps = state => {
     bagStatus,
     monumentLoading,
     monumentStatus,
+    beperkingLoading,
+    beperkingStatus,
     stadsgezichtLoading,
     stadsgezichtStatus,
     bestemmingsplanLoading,

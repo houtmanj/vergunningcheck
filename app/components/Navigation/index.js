@@ -8,12 +8,12 @@ const NavigationStyle = styled(`div`)`
   display: flex;
   height: 60px;
   margin: 20px 0;
-  background-color: rgba(229, 229, 229, 1);
+  background-color: rgba(241, 241, 241, 1);
   justify-content: space-between;
   align-items: center;
 `;
 
-const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext }) => (
+const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext, disabledNext }) => (
   <NavigationStyle>
     <div>
       {showPrev && (
@@ -24,7 +24,7 @@ const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext }) => (
     </div>
     <div>
       {showNext && (
-        <Button variant="secondary" taskflow onClick={onGoToNext}>
+        <Button variant="secondary" taskflow onClick={onGoToNext} disabled={disabledNext}>
           Volgende
         </Button>
       )}
@@ -32,11 +32,15 @@ const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext }) => (
   </NavigationStyle>
 );
 
+Navigation.defaultProps = {
+  disabledNext: true,
+};
 Navigation.propTypes = {
   showPrev: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
   onGoToNext: PropTypes.func,
+  disabledNext: PropTypes.bool,
 };
 
 export default Navigation;

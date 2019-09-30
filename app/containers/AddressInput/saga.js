@@ -45,10 +45,10 @@ export function* fetchBag(action) {
     const bag = yield call(searchBag, action.query);
     if (bag) {
       yield put({ type: FETCH_BAG_SUCCESS, bag });
+      yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
       yield put({ type: FETCH_MONUMENT_REQUEST, bag });
       yield put({ type: FETCH_BEPERKING_REQUEST, bag });
       yield put({ type: FETCH_STADSGEZICHT_REQUEST, bag });
-      yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
     } else {
       yield delay(1000);
       yield put({ type: FETCH_BAG_NO_RESULTS });
@@ -91,8 +91,10 @@ export function* fetchStadsgezicht(action) {
 export function* fetchBestemmingplan(action) {
   const { geometrie = '' } = action.bag;
   try {
-    const bestemmingsplan = yield call(searchForBestemmingsplan, geometrie);
-    yield put({ type: FETCH_BESTEMMINGSPLAN_SUCCESS, bestemmingsplan });
+    if (geometrie !== '') {
+      const bestemmingsplan = yield call(searchForBestemmingsplan, geometrie);
+      yield put({ type: FETCH_BESTEMMINGSPLAN_SUCCESS, bestemmingsplan });
+    }
   } catch (error) {
     yield put({ type: FETCH_BESTEMMINGSPLAN_FAILURE, error });
   }

@@ -47,11 +47,11 @@ function formatBestemmingPlan(response) {
 
     // Response only contains one plan
     if (typeof member.bestemmingsplan !== 'undefined') {
-      return [member.bestemmingsplan];
+      return [member.bestemmingsplan.naam];
     }
     // Response contains multiple plans
     if (member.length > 1) {
-      return member.map(plan => plan.bestemmingsplan);
+      return member.map(plan => plan.bestemmingsplan.naam);
     }
   }
   return [];
@@ -174,8 +174,8 @@ function getVerblijfsobjectUri(categories, streetNumberFromInput) {
     const streetNameFromApi = label.slice(label.lastIndexOf(' ')).trim();
     return streetNameFromApi === streetNumberFromInput;
   });
-  if (filteredAddress && filteredAddress.uri) {
-    return filteredAddress.uri;
+  if (filteredAddress.length === 1 && filteredAddress[0].uri) {
+    return filteredAddress[0].uri;
   }
 
   return '';
