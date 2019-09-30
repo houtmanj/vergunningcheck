@@ -369,7 +369,7 @@ export default {
       type: 'input',
       index: 20,
       vraagTekst: 'Krijgt uw aanbouw een tweede bouwlaag?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-8b',
 
       antwoordOpties: [
         {
@@ -388,7 +388,7 @@ export default {
       index: 21,
       vraagTekst:
         'Zo ja; Gaat u de tweede bouwlaag van uw aanbouw gebruiken als een verblijfsruimte (eten, slapen of verblijven)?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-9',
 
       antwoordOpties: [
         {
@@ -406,7 +406,7 @@ export default {
       type: 'input',
       index: 22,
       vraagTekst: 'Gaat u een dakterras op of een balkon direct boven uw aanbouw plaatsen?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-10',
 
       antwoordOpties: [
         {
@@ -424,7 +424,7 @@ export default {
       type: 'input',
       index: 23,
       vraagTekst: 'Hoe groot is het bebouwingsgebied in uw situatie?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-11',
 
       antwoordOpties: [
         {
@@ -443,7 +443,7 @@ export default {
       index: 24,
       vraagTekst:
         '1b..Gaat u met de aanbouw meer dan 50% van het oppervlakte van het als bebouwingsgebied (erf) aangewezen gebied bebouwen ?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-12',
 
       antwoordOpties: [
         {
@@ -462,7 +462,7 @@ export default {
       index: 25,
       vraagTekst:
         '2b. Gaat u met de aanbouw meer bebouwen dan 50%, vermeerderd met 20% van het deel dat groter is dan 100 m2?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-13',
 
       antwoordOpties: [
         {
@@ -481,7 +481,7 @@ export default {
       index: 26,
       vraagTekst:
         '3b. Gaat u met de aanbouw meer bebouwen dan 90 m2, vermeerderd met 10% van het deel dat groter is dan 300 m2?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-14',
 
       antwoordOpties: [
         {
@@ -499,7 +499,7 @@ export default {
       type: 'input',
       index: 27,
       vraagTekst: '3c. Gaat u met de aanbouw meer bebouwen dan 150 m2?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-15',
 
       antwoordOpties: [
         {
@@ -517,7 +517,7 @@ export default {
       type: 'input',
       index: 28,
       vraagTekst: 'Gaat u tegen een woonwagen aanbouwen?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-16',
 
       antwoordOpties: [
         {
@@ -535,7 +535,7 @@ export default {
       type: 'input',
       index: 29,
       vraagTekst: 'Gaat u tegen een tijdelijk hoofdgebouw aanbouwen?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-17',
 
       antwoordOpties: [
         {
@@ -553,7 +553,7 @@ export default {
       type: 'input',
       index: 30,
       vraagTekst: 'Gaat u tegen een recreatief nachtverblijf (voor één huishouden) aanbouwen?',
-      id: 'artikel-2-vraag-8',
+      id: 'artikel-2-vraag-18',
 
       antwoordOpties: [
         {
