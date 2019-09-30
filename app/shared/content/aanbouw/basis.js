@@ -1,4 +1,5 @@
 export default {
+  name: 'Basis vragenlijst de Pijp',
   uitvoeringsregels: [
     {
       type: 'input',
@@ -21,7 +22,7 @@ export default {
     {
       type: 'decision',
       vraagTekst: 'Voldoet u aan Artikel 3',
-      id: 'id-1',
+      id: 'artikel-3',
       group: [
         {
           type: 'input',
