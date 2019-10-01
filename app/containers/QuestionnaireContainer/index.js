@@ -157,6 +157,10 @@ class QuestionnaireContainer extends React.Component {
       return null;
     }
 
+    if (loading) {
+      return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
+    }
+
     const { uitvoeringsregels } = questionnaire;
     if (!uitvoeringsregels) {
       return <div>Helaas zijn er geen vragenlijsten gevonden op deze locatie: {userAddress}</div>;
