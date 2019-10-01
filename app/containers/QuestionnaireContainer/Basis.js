@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
-import history from 'utils/history';
+// import history from 'utils/history';
 import {
   condCheck,
   // areAllCondTrue
@@ -32,23 +32,38 @@ RandomizeButton.propTypes = {
   randomizeAnswers: PropTypes.func,
 };
 
+const handleInput = (input, index) => (input.index === index ? input : null);
+
+const handleDecision = (input, index) => {
+  // return root decision
+  if (input.index === index) return input;
+  // return
+  return getQuestionFromIndex(index, input.group)[0];
+};
+
+const getQuestionFromIndex = (index, questionnaire) =>
+  questionnaire
+    .filter(r => {
+      // return root input
+      if (r.type === 'input') return handleInput(r, index);
+      // return root decision
+      if (r.type === 'decision') {
+        return handleDecision(r, index);
+      }
+      return null;
+    })
+    .map(r => {
+      // return root input
+      if (r.type === 'input') return handleInput(r, index);
+      // return root decision
+      if (r.type === 'decision') {
+        return handleDecision(r, index);
+      }
+      return null;
+    });
+
 const getQuestionIdFromIndex = (index, questionnaire) =>
   questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
-
-const isCurrentRule = (rule, questionIndex) => {
-  if (rule.type === 'input' && rule.index === questionIndex) {
-    return rule;
-  }
-  if (rule.type === 'decision' && rule.group.length > 0) {
-    // console.log('decision');
-    // loop through rule
-    const ruleGroupResult = rule.group.filter(r => r.index === questionIndex);
-    if (ruleGroupResult.length === 1) {
-      return ruleGroupResult[0];
-    }
-  }
-  return false;
-};
 
 class QuestionnaireContainer extends React.Component {
   constructor(props) {
@@ -69,16 +84,16 @@ class QuestionnaireContainer extends React.Component {
   componentDidMount() {
     const {
       onFetchQuestionnaire,
-      addressInput: { bestemmingsplanStatus },
+      // addressInput: { bestemmingsplanStatus },
     } = this.props;
-    const { debug } = this.state;
+    // const { debug } = this.state;
 
     setTimeout(() => {
-      if (!bestemmingsplanStatus || !bestemmingsplanStatus.length || debug) {
-        onFetchQuestionnaire([{ text: 'basis' }]);
-      } else {
-        onFetchQuestionnaire(bestemmingsplanStatus);
-      }
+      // if (!bestemmingsplanStatus || !bestemmingsplanStatus.length || debug) {
+      onFetchQuestionnaire([{ text: 'basis' }]);
+      // } else {
+      // onFetchQuestionnaire(bestemmingsplanStatus);
+      // }
     }, 3);
   }
 
@@ -160,40 +175,14 @@ class QuestionnaireContainer extends React.Component {
   render() {
     const { questionIndex, userAnswers, debug } = this.state;
 
-    const {
-      questionnaire,
-      loading,
-      error,
-      addressInput: {
-        bagStatus: { _display: userAddress = '' },
-      },
-    } = this.props;
+    const { questionnaire } = this.props;
 
-    if (loading) {
-      return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
-    }
-
-    if ((!userAddress && !debug) || questionIndex < 0) {
-      // Return to Location page if no address is in state
-      history.push('/aanbouw/locatie');
-      return null;
-    }
+    if (!debug) return <div>No Debug</div>;
 
     const { uitvoeringsregels } = questionnaire;
 
-    if (!uitvoeringsregels) {
-      return <div>Helaas zijn er geen vragenlijsten gevonden op deze locatie: {userAddress}</div>;
-    }
-
-    if (error) {
-      return <div>Helaas is er iets mis gegaan met het ophalen van de vragenlijsten, probeer het nog eens.</div>;
-    }
-
-    // const question = uitvoeringsregels[questionIndex];
-
-    const question = uitvoeringsregels
-      .filter(r => isCurrentRule(r, questionIndex))
-      .map(r => isCurrentRule(r, questionIndex))[0];
+    if (!uitvoeringsregels) return <div>Geen uitvoeringsregels</div>;
+    const question = getQuestionFromIndex(questionIndex, uitvoeringsregels)[0];
 
     // console.log('question:', question);
     // console.log('questionIndex:', questionIndex);
@@ -219,23 +208,10 @@ class QuestionnaireContainer extends React.Component {
         },
       ];
 
-      // CONDITIONALS
-      // if (cond && Array.isArray(cond)) {
-      //   // This question has condition(s)
-
-      //   const isTrue = condCheck(cond, userAnswers, questionnaire.uitvoeringsregels);
-
-      //   if (!isTrue) {
-      //     // the conditions are not true, so skip this question
-      //     this.onGoToNext(questionId, null);
-      //   }
-      // }
-
-      // const hasPrefilledAnswer = answers.filter(answer => answer.prefilled).length > 0;
-
       return (
         <StyledContent headingDataId={questionId} heading={questionText} paragraph="">
-          <div>{questionId}</div>
+          <div>ID: {questionId}</div>
+          <div>questionIndex: {questionIndex}</div>
           <br />
           <Answers
             questionId={questionId}
@@ -245,45 +221,13 @@ class QuestionnaireContainer extends React.Component {
             action={this.onGoToNext}
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
-          {/* {debug && (
-            <p>
-              <em>{questionnaire.name}</em>
-            </p>
-          )}
-          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} /> */}
+          <p>
+            <em>{questionnaire.name}</em>
+          </p>
         </StyledContent>
       );
       // return <div id={questionId}>{questionText}</div>;
     }
-
-    // if (questionIndex >= uitvoeringsregels.length) {
-    //   // OVERVIEW
-    //   return (
-    //     <div>Klaar!</div>
-    //     // <StyledContent heading="Controleer uw antwoorden">
-    //     //   <p>Adres: {userAddress}</p>
-    //     //   <p>
-    //     //     Uitkomst:{' '}
-    //     //     <strong>
-    //     //       {questionnaire.uitkomsten.map(uitkomst =>
-    //     //         areAllCondTrue(uitkomst.cond, userAnswers, questionnaire.uitvoeringsregels) ? uitkomst.label : null,
-    //     //       )}
-    //     //     </strong>
-    //     //   </p>
-    //     //   <p>
-    //     //     Hieronder ziet u uw antwoorden terug. U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet
-    //     //     u wat de vervolgstappen zijn.
-    //     //   </p>
-    //     //   <Overview
-    //     //     onGoToQuestion={this.onGoToQuestion}
-    //     //     userAnswers={userAnswers}
-    //     //     uitvoeringsregels={uitvoeringsregels}
-    //     //   />
-    //     //   <Navigation />
-    //     //   <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
-    //     // </StyledContent>
-    //   );
-    // }
 
     return null;
   }
@@ -301,8 +245,6 @@ QuestionnaireContainer.propTypes = {
     bestemmingsplanStatus: PropTypes.array,
   }),
   questionnaire: PropTypes.object,
-  loading: PropTypes.bool,
-  error: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
