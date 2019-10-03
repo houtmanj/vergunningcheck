@@ -32,38 +32,15 @@ RandomizeButton.propTypes = {
   randomizeAnswers: PropTypes.func,
 };
 
-const handleInput = (input, index) => (input.index === index ? input : null);
+const handleInput = (input, index) => (input.type === 'input' && input.index === index ? input : null);
 
-const handleDecision = (input, index) => {
-  // return root decision
-  if (input.index === index) return input;
-  // return
-  return getQuestionFromIndex(index, input.group)[0];
-};
+const handleDecision = (input, index) => (input.index === index ? input : getQuestionFromIndex(input.group, index)[0]);
 
-const getQuestionFromIndex = (index, questionnaire) =>
-  questionnaire
-    .filter(r => {
-      // return root input
-      if (r.type === 'input') return handleInput(r, index);
-      // return root decision
-      if (r.type === 'decision') {
-        return handleDecision(r, index);
-      }
-      return null;
-    })
-    .map(r => {
-      // return root input
-      if (r.type === 'input') return handleInput(r, index);
-      // return root decision
-      if (r.type === 'decision') {
-        return handleDecision(r, index);
-      }
-      return null;
-    });
+const handleElement = (elem, index) =>
+  elem.type === 'decision' ? handleDecision(elem, index) : handleInput(elem, index);
 
-const getQuestionIdFromIndex = (index, questionnaire) =>
-  questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
+const getQuestionFromIndex = (elements, index) =>
+  elements.filter(e => handleElement(e, index)).map(e => handleElement(e, index));
 
 class QuestionnaireContainer extends React.Component {
   constructor(props) {
@@ -129,8 +106,11 @@ class QuestionnaireContainer extends React.Component {
   }
 
   onGoToPrev() {
-    const { questionIndex, userAnswers } = this.state;
-    const { questionnaire } = this.props;
+    const {
+      questionIndex,
+      // userAnswers,
+    } = this.state;
+    // const { questionnaire } = this.props;
     if (questionIndex < 1) {
       this.setState({
         questionIndex: -1,
@@ -138,16 +118,16 @@ class QuestionnaireContainer extends React.Component {
     }
 
     // Check if prev question exists
-    if (getQuestionIdFromIndex(questionIndex - 1, questionnaire)) {
-      for (let i = 1; i <= questionIndex; i += 1) {
-        // Loop through answered questions until a question has been answered
-        if (userAnswers[getQuestionIdFromIndex(questionIndex - i, questionnaire)]) {
-          this.setState(prevState => ({
-            questionIndex: prevState.questionIndex - i,
-          }));
-        }
-      }
-    }
+    // if (getQuestionIdFromIndex(questionIndex - 1, questionnaire)) {
+    //   for (let i = 1; i <= questionIndex; i += 1) {
+    //     // Loop through answered questions until a question has been answered
+    //     if (userAnswers[getQuestionIdFromIndex(questionIndex - i, questionnaire)]) {
+    //       this.setState(prevState => ({
+    //         questionIndex: prevState.questionIndex - i,
+    //       }));
+    //     }
+    //   }
+    // }
   }
 
   onRandomizeAnswers() {
@@ -182,7 +162,7 @@ class QuestionnaireContainer extends React.Component {
     const { uitvoeringsregels } = questionnaire;
 
     if (!uitvoeringsregels) return <div>Geen uitvoeringsregels</div>;
-    const question = getQuestionFromIndex(questionIndex, uitvoeringsregels)[0];
+    const question = getQuestionFromIndex(uitvoeringsregels, questionIndex)[0];
 
     // console.log('question:', question);
     // console.log('questionIndex:', questionIndex);
