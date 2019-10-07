@@ -1,12 +1,12 @@
 import { camelCase } from 'lodash';
 import dePijp2018 from 'shared/content/aanbouw/de-pijp-2018';
 import test from 'shared/content/aanbouw/test';
-import basis from 'shared/content/aanbouw/basis';
+import dePijp2018Grouped from 'shared/content/aanbouw/de-pijp-2018-grouped';
 
 export const questionnaires = {
   dePijp2018,
   test,
-  basis,
+  dePijp2018Grouped,
 };
 
 function addIndexesToQuestionnaire(q) {

@@ -67,7 +67,7 @@ class QuestionnaireContainer extends React.Component {
 
     setTimeout(() => {
       // if (!bestemmingsplanStatus || !bestemmingsplanStatus.length || debug) {
-      onFetchQuestionnaire([{ text: 'basis' }]);
+      onFetchQuestionnaire([{ text: 'dePijp2018Grouped' }]);
       // } else {
       // onFetchQuestionnaire(bestemmingsplanStatus);
       // }
@@ -89,18 +89,18 @@ class QuestionnaireContainer extends React.Component {
     });
   }
 
-  onGoToNext(questionId, answerId) {
-    // const { userAnswers } = this.state;
-    // console.log('userAnswers:');
-    // console.log({
-    //   ...userAnswers,
-    //   [questionId]: answerId,
-    // });
+  onGoToNext(questionId, value) {
+    const { userAnswers } = this.state;
+    console.log('userAnswers:');
+    console.log({
+      ...userAnswers,
+      [questionId]: value,
+    });
     this.setState(prevState => ({
       questionIndex: prevState.questionIndex + 1,
       userAnswers: {
         ...prevState.userAnswers,
-        [questionId]: answerId,
+        [questionId]: value,
       },
     }));
   }
@@ -136,7 +136,7 @@ class QuestionnaireContainer extends React.Component {
       const hasConditionAndFailed =
         key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
       const value = !hasConditionAndFailed
-        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].id
+        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].value
         : null;
       return {
         ...o,
@@ -164,29 +164,27 @@ class QuestionnaireContainer extends React.Component {
     if (!uitvoeringsregels) return <div>Geen uitvoeringsregels</div>;
     const question = getQuestionFromIndex(uitvoeringsregels, questionIndex)[0];
 
-    // console.log('question:', question);
-    // console.log('questionIndex:', questionIndex);
-
     if (question) {
       // QUESTION FLOW FROM JSON
       const {
         id: questionId,
         vraagTekst: questionText,
-        // antwoordOpties: answers,
+        antwoordOpties: answers,
         // vergunningplichtig: required,
-        // cond,
+        cond,
       } = question;
 
-      const answers = [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ];
+      // CONDITIONALS
+      if (cond && Array.isArray(cond)) {
+        // This question has condition(s)
+
+        const isTrue = condCheck(cond, userAnswers, questionnaire.uitvoeringsregels);
+
+        if (!isTrue) {
+          // the conditions are not true, so skip this question
+          this.onGoToNext(questionId, null);
+        }
+      }
 
       return (
         <StyledContent headingDataId={questionId} heading={questionText} paragraph="">

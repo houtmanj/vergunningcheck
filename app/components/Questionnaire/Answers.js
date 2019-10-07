@@ -18,7 +18,7 @@ const Answers = ({ className, answers, required, userAnswers, questionId, action
           let prefilled = answer.prefilled ? { background: 'Purple' } : {};
           if (userAnswer) {
             prefilled = {};
-            if (userAnswer === answer.id) {
+            if (userAnswer === answer.value) {
               prefilled = { background: 'green' };
             }
           }
@@ -27,7 +27,7 @@ const Answers = ({ className, answers, required, userAnswers, questionId, action
 
           return (
             <Button
-              onClick={() => action(questionId, answer.id)}
+              onClick={() => action(questionId, answer.value)}
               question-id={questionId}
               answer-id={answer.id}
               type="submit"
