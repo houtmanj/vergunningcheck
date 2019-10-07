@@ -9,35 +9,7 @@ export const questionnaires = {
   dePijp2018Grouped,
 };
 
-function addIndexesToQuestionnaire(q) {
-  let globalIndex = -1;
-
-  const handleInput = (input, index) => ({ ...input, index });
-
-  const handleDecision = (input, index) => ({
-    ...input,
-    index,
-    group: addIndexes(input.group),
-  });
-
-  const handleElement = (elem, index) => {
-    if (elem.type === 'input') {
-      return handleInput(elem, index);
-    }
-    if (elem.type === 'decision') {
-      return handleDecision(elem, index);
-    }
-    return null;
-  };
-
-  const addIndexes = r =>
-    r.map(e => {
-      globalIndex += 1;
-      return handleElement(e, globalIndex);
-    });
-
-  return addIndexes(q);
-}
+const addIndexToQuestions = q => q.map((i, index) => ({ ...i, index }));
 
 const mapPlans = plans => {
   const planName = plan => camelCase(plan.text);
@@ -49,7 +21,7 @@ const mapPlans = plans => {
   if (questionnaire.length > 0 && questionnaire[0].uitvoeringsregels) {
     return {
       ...questionnaire[0],
-      uitvoeringsregels: addIndexesToQuestionnaire(questionnaire[0].uitvoeringsregels),
+      uitvoeringsregels: addIndexToQuestions(questionnaire[0].uitvoeringsregels),
     };
   }
   return {};

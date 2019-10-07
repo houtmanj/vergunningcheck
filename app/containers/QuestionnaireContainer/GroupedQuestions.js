@@ -4,10 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 // import history from 'utils/history';
-import {
-  condCheck,
-  // areAllCondTrue
-} from 'shared/services/questionnaire/conditions';
+import { condCheck } from 'shared/services/questionnaire/conditions';
 import {
   Content,
   // Overview,
@@ -90,12 +87,12 @@ class QuestionnaireContainer extends React.Component {
   }
 
   onGoToNext(questionId, value) {
-    const { userAnswers } = this.state;
-    console.log('userAnswers:');
-    console.log({
-      ...userAnswers,
-      [questionId]: value,
-    });
+    // const { userAnswers } = this.state;
+    // console.log('userAnswers:');
+    // console.log({
+    //   ...userAnswers,
+    //   [questionId]: value,
+    // });
     this.setState(prevState => ({
       questionIndex: prevState.questionIndex + 1,
       userAnswers: {

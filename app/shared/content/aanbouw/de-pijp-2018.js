@@ -4,24 +4,23 @@ export default {
   uitvoeringsregels: [
     {
       type: 'input',
-      index: 0,
       vraagTekst: 'Gaat u bouwen aan (op, of bij) een monument?',
       id: 'monument',
-
       antwoordOpties: [
         {
           id: '1',
           optieText: 'Ja',
+          value: 'true',
         },
         {
           id: '2',
           optieText: 'Nee',
+          value: 'false',
         },
       ],
     },
     {
       type: 'input',
-      index: 1,
       vraagTekst: 'Gaat u bouwen in een beschermd stads- of dorpsgezicht?',
       id: 'stadsgezicht',
 
@@ -29,632 +28,841 @@ export default {
         {
           id: '1',
           optieText: 'Ja',
+          value: 'true',
         },
         {
           id: '2',
           optieText: 'Nee',
+          value: 'false',
         },
       ],
+      cond: ['monument.false'],
     },
     {
       type: 'input',
-      index: 2,
       vraagTekst: 'Is de locatie waar je gaat bouwen zichtbaar vanaf de openbare ruimte?',
       id: 'stadsgezicht-zichtbaar',
-
       antwoordOpties: [
         {
           id: '1',
           optieText: 'Ja',
+          value: 'true',
         },
         {
           id: '2',
           optieText: 'Nee',
+          value: 'false',
+        },
+      ],
+      cond: ['stadsgezicht.true'],
+    },
+    // {
+    //   type: 'decision',
+    //   vraagTekst: 'Moet artikel 3 getoond worden?',
+    //   id: 'artikel-3-vraag-0',
+    //   cond: ['stadsgezicht-zichtbaar.false', 'stadsgezicht.false'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Wordt de hoogte van de aanbouw hoger dan 5 m?',
+    //   id: 'artikel-3-vraag-1',
+    //   cond: ['artikel-3-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Komt de aanbouw op een nieuwe (of uitgebreide) kelder of souterrain?',
+    //   id: 'artikel-3-vraag-2',
+    //   cond: ['artikel-3-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Gaat u de aanbouw gebruiken overeenkomstig het gebruik van het hoofdgebouw?',
+    //   id: 'artikel-3-vraag-3',
+    //   cond: ['artikel-3-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Gaat u de aanbouw bouwen in het achtererfgebied?',
+    //   id: 'artikel-3-vraag-4',
+    //   cond: ['artikel-3-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Bevindt uw aanbouw zich op afstand van meer dan 1 m vanaf het openbaar terrein?',
+    //   id: 'artikel-3-vraag-5',
+    //   cond: ['artikel-3-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Krijgt uw aanbouw een tweede bouwlaag?',
+    //   id: 'artikel-3-vraag-6',
+    //   cond: ['artikel-3-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst:
+    //     'Zo ja; Gaat u de tweede bouwlaag van uw aanbouw gebruiken als een verblijfsruimte (eten, slapen of verblijven)?',
+    //   id: 'artikel-3-vraag-7',
+    //   cond: ['artikel-3-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Gaat u een dakterras op of een balkon direct boven uw aanbouw plaatsen?',
+    //   id: 'artikel-3-vraag-8',
+    //   cond: ['artikel-3-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    {
+      type: 'decision',
+      vraagTekst: 'decision: Voldoet u aan artikel 3 volledig?',
+      id: 'artikel-3-conclusie',
+      cond: ['stadsgezicht-zichtbaar.false', 'stadsgezicht.false'],
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+          value: 'true',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+          value: 'false',
         },
       ],
     },
     {
       type: 'input',
-      index: 3,
-      vraagTekst: 'Wordt de hoogte van de aanbouw hoger dan 5 m?',
-      id: 'artikel-3-vraag-1',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 4,
-      vraagTekst: 'Komt de aanbouw op een nieuwe (of uitgebreide) kelder of souterrain?',
-      id: 'artikel-3-vraag-2',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 5,
-      vraagTekst: 'Gaat u de aanbouw gebruiken overeenkomstig het gebruik van het hoofdgebouw?',
-      id: 'artikel-3-vraag-3',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 6,
-      vraagTekst: 'Gaat u de aanbouw bouwen in het achtererfgebied?',
-      id: 'artikel-3-vraag-4',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 7,
-      vraagTekst: 'Bevindt uw aanbouw zich op afstand van meer dan 1 m vanaf het openbaar terrein?',
-      id: 'artikel-3-vraag-5',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 8,
-      vraagTekst: 'Krijgt uw aanbouw een tweede bouwlaag?',
-      id: 'artikel-3-vraag-6',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 9,
-      vraagTekst:
-        'Zo ja; Gaat u de tweede bouwlaag van uw aanbouw gebruiken als een verblijfsruimte (eten, slapen of verblijven)?',
-      id: 'artikel-3-vraag-7',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 10,
-      vraagTekst: 'Gaat u een dakterras op of een balkon direct boven uw aanbouw plaatsen?',
-      id: 'artikel-3-vraag-8',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 11,
       vraagTekst:
         'Gaat u met de aanbouw meer dan 50% van het oppervlakte van het als bebouwingsgebied (erf) aangewezen gebied bebouwen ?',
       id: 'artikel-2-specifiek',
-
       antwoordOpties: [
         {
           id: '1',
           optieText: 'Ja',
+          value: 'true',
         },
         {
           id: '2',
           optieText: 'Nee',
+          value: 'false',
         },
       ],
+      cond: [['stadsgezicht.false', 'artikel-3-conclusie.true']],
     },
-
     {
-      type: 'input',
-      index: 12,
-      vraagTekst: 'Komt de aanbouw op een nieuwe (of uitgebreide) kelder of souterrain?',
-      id: 'artikel-2-vraag-1',
-
+      type: 'decision',
+      vraagTekst: 'decision: Moet artikel 2 getoond worden?',
+      id: 'artikel-2-vraag-0',
+      cond: ['artikel-2-specifiek.true'],
       antwoordOpties: [
         {
           id: '1',
           optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
+          value: 'true',
+          autoAnswer: true,
         },
       ],
     },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Komt de aanbouw op een nieuwe (of uitgebreide) kelder of souterrain?',
+    //   id: 'artikel-2-vraag-1',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Gaat u de aanbouw gebruiken overeenkomstig het gebruik van het hoofdgebouw?',
+    //   id: 'artikel-2-vraag-2',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Gaat u de aanbouw bouwen in het achtererfgebied?',
+    //   id: 'artikel-2-vraag-3',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Wordt de aanbouw meer dan 4 m diep (achter de achtergevel)?',
+    //   id: 'artikel-2-vraag-4',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Indien nee; Wordt uw aanbouw hoger dan 5 m?',
+    //   id: 'artikel-2-vraag-5',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Wordt uw aanbouw max  0,3 m hoger dan de vloer van de 2e bouwlaag van het bestaande hoofdgebouw?',
+    //   id: 'artikel-2-vraag-6',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Wordt uw aanbouw hoger dan het bestaande hoofdgebouw?',
+    //   id: 'artikel-2-vraag-7',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Bevindt uw aanbouw zich op afstand van meer dan 1 m vanaf het openbaar terrein?',
+    //   id: 'artikel-2-vraag-8',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Krijgt uw aanbouw een tweede bouwlaag?',
+    //   id: 'artikel-2-vraag-9',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst:
+    //     'Zo ja; Gaat u de tweede bouwlaag van uw aanbouw gebruiken als een verblijfsruimte (eten, slapen of verblijven)?',
+    //   id: 'artikel-2-vraag-10',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Gaat u een dakterras op of een balkon direct boven uw aanbouw plaatsen?',
+    //   id: 'artikel-2-vraag-11',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Hoe groot is het bebouwingsgebied in uw situatie?',
+    //   id: 'artikel-2-vraag-12',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst:
+    //     '1b..Gaat u met de aanbouw meer dan 50% van het oppervlakte van het als bebouwingsgebied (erf) aangewezen gebied bebouwen ?',
+    //   id: 'artikel-2-vraag-13',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst:
+    //     '2b. Gaat u met de aanbouw meer bebouwen dan 50%, vermeerderd met 20% van het deel dat groter is dan 100 m2?',
+    //   id: 'artikel-2-vraag-14',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst:
+    //     '3b. Gaat u met de aanbouw meer bebouwen dan 90 m2, vermeerderd met 10% van het deel dat groter is dan 300 m2?',
+    //   id: 'artikel-2-vraag-15',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: '3c. Gaat u met de aanbouw meer bebouwen dan 150 m2?',
+    //   id: 'artikel-2-vraag-16',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Gaat u tegen een woonwagen aanbouwen?',
+    //   id: 'artikel-2-vraag-17',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Gaat u tegen een tijdelijk hoofdgebouw aanbouwen?',
+    //   id: 'artikel-2-vraag-18',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Gaat u tegen een recreatief nachtverblijf (voor één huishouden) aanbouwen?',
+    //   id: 'artikel-2-vraag-19',
+    //   cond: ['artikel-2-vraag-0.true'],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    //
     {
-      type: 'input',
-      index: 13,
-      vraagTekst: 'Gaat u de aanbouw gebruiken overeenkomstig het gebruik van het hoofdgebouw?',
-      id: 'artikel-2-vraag-2',
-
+      type: 'decision',
+      vraagTekst: 'Voldoet uw bouwwerk aan artikel 2?',
+      id: 'artikel-2-conclusie',
+      cond: ['artikel-2-vraag-0.true', 'artikel-2-vraag-0.false'],
       antwoordOpties: [
         {
           id: '1',
           optieText: 'Ja',
+          value: 'true',
         },
         {
           id: '2',
           optieText: 'Nee',
+          value: 'false',
         },
       ],
     },
+    // {
+    //   type: 'decision',
+    //   vraagTekst: 'Voldoet u aan alle regels van het bestemmingsplan?',
+    //   id: 'bestemmingsplan-vraag-0',
+    //   cond: [
+    //     'monument.true',
+    //     'stadsgezicht-zichtbaar.true',
+    //     ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.true'],
+    //     'artikel-2-s.false',
+    //     'artikel-2-conclusie.false',
+    //   ],
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //   ],
+    // },
     {
       type: 'input',
-      index: 14,
-      vraagTekst: 'Gaat u de aanbouw bouwen in het achtererfgebied?',
-      id: 'artikel-2-vraag-3',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 15,
-      vraagTekst: 'Wordt de aanbouw meer dan 4 m diep (achter de achtergevel)?',
-      id: 'artikel-2-vraag-4',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 16,
-      vraagTekst: 'Indien nee; Wordt uw aanbouw hoger dan 5 m?',
-      id: 'artikel-2-vraag-5',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 17,
-      vraagTekst: 'Wordt uw aanbouw max  0,3 m hoger dan de vloer van de 2e bouwlaag van het bestaande hoofdgebouw?',
-      id: 'artikel-2-vraag-6',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 18,
-      vraagTekst: 'Wordt uw aanbouw hoger dan het bestaande hoofdgebouw?',
-      id: 'artikel-2-vraag-7',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 19,
-      vraagTekst: 'Bevindt uw aanbouw zich op afstand van meer dan 1 m vanaf het openbaar terrein?',
-      id: 'artikel-2-vraag-8',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 20,
-      vraagTekst: 'Krijgt uw aanbouw een tweede bouwlaag?',
-      id: 'artikel-2-vraag-9',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 21,
-      vraagTekst:
-        'Zo ja; Gaat u de tweede bouwlaag van uw aanbouw gebruiken als een verblijfsruimte (eten, slapen of verblijven)?',
-      id: 'artikel-2-vraag-10',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 22,
-      vraagTekst: 'Gaat u een dakterras op of een balkon direct boven uw aanbouw plaatsen?',
-      id: 'artikel-2-vraag-11',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 23,
-      vraagTekst: 'Hoe groot is het bebouwingsgebied in uw situatie?',
-      id: 'artikel-2-vraag-12',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 24,
-      vraagTekst:
-        '1b..Gaat u met de aanbouw meer dan 50% van het oppervlakte van het als bebouwingsgebied (erf) aangewezen gebied bebouwen ?',
-      id: 'artikel-2-vraag-13',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 25,
-      vraagTekst:
-        '2b. Gaat u met de aanbouw meer bebouwen dan 50%, vermeerderd met 20% van het deel dat groter is dan 100 m2?',
-      id: 'artikel-2-vraag-14',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 26,
-      vraagTekst:
-        '3b. Gaat u met de aanbouw meer bebouwen dan 90 m2, vermeerderd met 10% van het deel dat groter is dan 300 m2?',
-      id: 'artikel-2-vraag-15',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 27,
-      vraagTekst: '3c. Gaat u met de aanbouw meer bebouwen dan 150 m2?',
-      id: 'artikel-2-vraag-16',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 28,
-      vraagTekst: 'Gaat u tegen een woonwagen aanbouwen?',
-      id: 'artikel-2-vraag-17',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 29,
-      vraagTekst: 'Gaat u tegen een tijdelijk hoofdgebouw aanbouwen?',
-      id: 'artikel-2-vraag-18',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-    {
-      type: 'input',
-      index: 30,
-      vraagTekst: 'Gaat u tegen een recreatief nachtverblijf (voor één huishouden) aanbouwen?',
-      id: 'artikel-2-vraag-19',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
-    },
-
-    {
-      type: 'input',
-      index: 31,
       vraagTekst: 'Gaat u de aanbouw gebruiken overeenkomstig het gebruik van het hoofdgebouw?',
       id: 'bestemmingsplan-vraag-1',
-
+      cond: [
+        'monument.true',
+        'stadsgezicht-zichtbaar.true',
+        ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.true'],
+        'artikel-2-specifiek.false',
+        'artikel-2-conclusie.false',
+      ],
+      vergunningplichtig: 'true',
       antwoordOpties: [
         {
           id: '1',
           optieText: 'Ja',
+          value: 'true',
         },
         {
           id: '2',
           optieText: 'Nee',
+          value: 'false',
         },
       ],
     },
     {
       type: 'input',
-      index: 32,
+      vergunningplichtig: 'true',
       vraagTekst: 'Wordt de aanbouw meer dan 2,5 m diep (achter de achtergevel)?',
       id: 'bestemmingsplan-vraag-2',
-
+      cond: ['bestemmingsplan-vraag-1.true', 'bestemmingsplan-vraag-1.false'],
       antwoordOpties: [
         {
           id: '1',
           optieText: 'Ja',
+          value: 'true',
         },
         {
           id: '2',
           optieText: 'Nee',
+          value: 'false',
         },
       ],
     },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Wordt uw aanbouw hoger dan 5 m?',
+    //   id: 'bestemmingsplan-vraag-3',
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Wordt uw aanbouw max  0,3 m hoger dan de vloer van de 2e bouwlaag van het bestaande hoofdgebouw?',
+    //   id: 'bestemmingsplan-vraag-4',
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Wordt uw aanbouw hoger dan het bestaande hoofdgebouw?',
+    //   id: 'bestemmingsplan-vraag-5',
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Wordt met de aanbouw meer dan 50% van het perceel (binnen bestemming Tuin) Bebouwd?',
+    //   id: 'bestemmingsplan-vraag-6',
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
+    // {
+    //   type: 'input',
+    //   vraagTekst: 'Krijgt de aanbouw een groen dak met een waterbergend vermogen van 60 mm in één uur?',
+    //   id: 'bestemmingsplan-vraag-7',
+    //   antwoordOpties: [
+    //     {
+    //       id: '1',
+    //       optieText: 'Ja',
+    //       value: 'true',
+    //     },
+    //     {
+    //       id: '2',
+    //       optieText: 'Nee',
+    //       value: 'false',
+    //     },
+    //   ],
+    // },
     {
-      type: 'input',
-      index: 33,
-      vraagTekst: 'Wordt uw aanbouw hoger dan 5 m?',
-      id: 'bestemmingsplan-vraag-3',
-
+      type: 'decision',
+      vraagTekst: 'Voldoet u aan alle regels van het bestemmingsplan?',
+      id: 'bestemmingsplan-conclusie',
+      cond: [
+        'monument.true',
+        'stadsgezicht-zichtbaar.true',
+        ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.true'],
+        'artikel-2-specifiek.false',
+        'artikel-2-conclusie.false',
+      ],
       antwoordOpties: [
         {
           id: '1',
           optieText: 'Ja',
+          value: 'true',
+          cond: [['bestemmingsplan-vraag-1.true', 'bestemmingsplan-vraag-2.false']],
         },
         {
           id: '2',
           optieText: 'Nee',
+          value: 'false',
+          required: true,
+          cond: ['bestemmingsplan-vraag-1.false', 'bestemmingsplan-vraag-2.true'],
         },
       ],
     },
+  ],
+  uitkomsten: [
     {
-      type: 'input',
-      index: 34,
-      vraagTekst: 'Wordt uw aanbouw max  0,3 m hoger dan de vloer van de 2e bouwlaag van het bestaande hoofdgebouw?',
-      id: 'bestemmingsplan-vraag-4',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
+      label: '1) Vergunning nodig: Bouwvergunning, Wijzigen Monument',
+      cond: ['monument.true', 'bestemmingsplan-conclusie.true'],
     },
     {
-      type: 'input',
-      index: 35,
-      vraagTekst: 'Wordt uw aanbouw hoger dan het bestaande hoofdgebouw?',
-      id: 'bestemmingsplan-vraag-5',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
+      label: '2) Vergunning nodig: Bouwvergunning, Wijzigen Monument, Afwijken bestemmingsplan',
+      cond: ['monument.true', 'bestemmingsplan-conclusie.false'],
     },
     {
-      type: 'input',
-      index: 36,
-      vraagTekst: 'Wordt met de aanbouw meer dan 50% van het perceel (binnen bestemming Tuin) Bebouwd?',
-      id: 'bestemmingsplan-vraag-6',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
+      label: '3) Vergunning nodig: Bouwen',
+      cond: ['stadsgezicht-zichtbaar.true', 'bestemmingsplan-conclusie.true'],
     },
     {
-      type: 'input',
-      index: 37,
-      vraagTekst: 'Krijgt de aanbouw een groen dak met een waterbergend vermogen van 60 mm in één uur?',
-      id: 'bestemmingsplan-vraag-7',
-
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-        },
-      ],
+      label: '4) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
+      cond: ['stadsgezicht-zichtbaar.true', 'bestemmingsplan-conclusie.false'],
+    },
+    {
+      label: '5) Vergunning nodig: NEE 😁',
+      cond: ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.true', 'bestemmingsplan-conclusie.true'],
+    },
+    {
+      label: '6) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
+      cond: ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.true', 'bestemmingsplan-conclusie.false'],
+    },
+    {
+      label: '7) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
+      cond: ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.false'],
+    },
+    {
+      label: '8) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
+      cond: ['stadsgezicht.false', 'artikel-3-conclusie.false'],
+    },
+    {
+      label: '9) Vergunning nodig: NEE 😁',
+      cond: ['artikel-2-specifiek.true', 'artikel-2-conclusie.true'],
+    },
+    {
+      label: '10) Vergunning nodig: NEE 😁',
+      cond: ['artikel-2-specifiek.false', 'bestemmingsplan-conclusie.true'],
+    },
+    {
+      label: '11) Vergunning nodig: NEE 😁',
+      cond: ['artikel-2-specifiek.true', 'artikel-2-conclusie.false', 'bestemmingsplan-conclusie.true'],
+    },
+    {
+      label: '12) Vergunning nodig: Afwijken bestemmingsplan',
+      cond: ['artikel-2-specifiek.false', 'bestemmingsplan-conclusie.false'],
+    },
+    {
+      label: '13) Vergunning nodig: Afwijken bestemmingsplan',
+      cond: ['artikel-2-specifiek.true', 'artikel-2-conclusie.false', 'bestemmingsplan-conclusie.false'],
     },
   ],
 };

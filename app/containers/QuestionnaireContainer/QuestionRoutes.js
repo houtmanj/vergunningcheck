@@ -6,7 +6,7 @@ import { Content, Overview } from 'components/Questionnaire';
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
 import { questionnaires } from 'shared/services/questionnaire/questionnaire';
 
-const { basis: questionnaire } = questionnaires;
+const { dePijp2018: questionnaire } = questionnaires;
 const StyledContent = styled(Content)`
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ const QuestionRoutes = () => {
       const hasConditionAndFailed =
         key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
       const value = !hasConditionAndFailed
-        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].id
+        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].value
         : null;
       return {
         ...o,

@@ -35,9 +35,10 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
     </MainWrapper>
 
     {uitvoeringsregels.map((regel, index) => {
-      const userAnswerId = userAnswers[regel.id];
+      if (regel.type === 'decision') return null;
+      const userAnswerValue = userAnswers[regel.id];
       const userAnswer = regel.antwoordOpties
-        .filter(antwoord => antwoord.id === userAnswerId)
+        .filter(antwoord => antwoord.value === userAnswerValue)
         .map(antwoord => antwoord.optieText);
 
       const answerText = userAnswer.toString();
@@ -46,11 +47,8 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
         return null;
       }
 
-      const required = regel.vergunningplichtig;
-
-      const requiredText = required.toString();
-
-      const resultText = requiredText === answerText ? `⚠️` : `✅`;
+      // const required = regel.vergunningplichtig;
+      // const resultText = requiredText === answerText ? `⚠️` : `✅`;
 
       return (
         <Wrapper key={regel.id}>
@@ -58,7 +56,7 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
             {index + 1}: {regel.vraagTekst}
           </Question>
           <UserAnswer key={userAnswer}>{answerText}</UserAnswer>
-          <Result key={userAnswerId}>{resultText}</Result>
+          {/* <Result key={resultText}>{resultText}</Result> */}
           <Change>
             <button onClick={() => onGoToQuestion(regel.id)} type="button" href="#" key={regel.id}>
               Wijzig
