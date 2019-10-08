@@ -7,6 +7,7 @@ export default {
       type: 'input',
       vraagTekst: 'Gaat u bouwen aan (op, of bij) een monument?',
       id: 'monument',
+      registerbevraging: 'monument',
       antwoordOpties: [
         {
           id: '1',
