@@ -10,20 +10,22 @@ const { dePijp2018: questionnaire } = questionnaires;
 const StyledContent = styled(Content)`
   display: flex;
   flex-direction: column;
+  width: 100%;
   flex-grow: 1;
 `;
 
 const Route = props => {
-  const outcome = questionnaire.uitkomsten
-    .filter(uitkomst =>
-      areAllCondTrue(uitkomst.cond, props.route, questionnaire.uitvoeringsregels) ? uitkomst.label : false,
-    )
-    .map(uitkomst => uitkomst.label);
+  const outcome = questionnaire.uitkomsten.filter(uitkomst =>
+    areAllCondTrue(uitkomst.cond, props.route, questionnaire.uitvoeringsregels) ? uitkomst.label : false,
+  );
   return (
     <StyledContent>
-      <p>{outcome.length ? `Uitkomst: ${outcome}` : <strong>Deze route heeft geen uitkomst!</strong>}</p>
+      <p>
+        <strong>{outcome.length ? `Uitkomst: ${outcome[0].label}` : `Deze route heeft geen uitkomst!`}</strong>
+        <br />
+        {outcome.length && <em>Route: {outcome[0].cond.join(' > ')}</em>}
+      </p>
       <Overview userAnswers={props.route} uitvoeringsregels={questionnaire.uitvoeringsregels} />
-      <br />
     </StyledContent>
   );
 };
@@ -31,21 +33,39 @@ Route.propTypes = {
   route: PropTypes.object,
 };
 
+const generateAnswer = (key, o) => {
+  const hasConditionAndFailed =
+    key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
+
+  if (hasConditionAndFailed) return null;
+
+  if (key.type === 'decision') {
+    return key.antwoordOpties
+      .filter(a => (a.cond ? condCheck(a.cond, o, questionnaire.uitvoeringsregels) : null))
+      .map(a => a.value)[0];
+  }
+
+  return key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].value;
+};
+
 const QuestionRoutes = () => {
   const allRoutes = [];
 
-  for (let i = 0; i < 500; i += 1) {
-    const randomAnswers = questionnaire.uitvoeringsregels.reduce((o, key) => {
-      const hasConditionAndFailed =
-        key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
-      const value = !hasConditionAndFailed
-        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].value
-        : null;
-      return {
+  for (let i = 0; i < 1500; i += 1) {
+    const randomAnswers = questionnaire.uitvoeringsregels.reduce(
+      (o, key) => ({
         ...o,
-        [key.id]: value,
-      };
-    }, {});
+        [key.id]: generateAnswer(key, o, questionnaire),
+      }),
+      {},
+    );
+
+    // remove child from randomAnswers
+    // questionnaire.uitvoeringsregels.map(r => {
+    //   if (r.child === true) {
+    //     delete randomAnswers[r.id];
+    //   }
+    // });
 
     const contains = allRoutes.some(elem => JSON.stringify(randomAnswers) === JSON.stringify(elem.route));
 
@@ -57,7 +77,14 @@ const QuestionRoutes = () => {
   }
 
   // ALL ROUTES OVERVIEW
-  return allRoutes.map(route => <Route route={route.route} key={route.key} />);
+  return (
+    <>
+      <h2>Totaal aantal routes: {allRoutes.length}</h2>
+      {allRoutes.map(route => (
+        <Route route={route.route} key={route.key} />
+      ))}
+    </>
+  );
 };
 
 // QuestionRoutes.propTypes = {

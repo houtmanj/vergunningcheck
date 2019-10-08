@@ -252,7 +252,6 @@ class QuestionnaireContainer extends React.Component {
           if (a.cond) {
             const isTrue = condCheck(a.cond, userAnswers, questionnaire.uitvoeringsregels);
             if (isTrue) {
-              // console.log('isTrue, val:', a.value);
               this.onGoToNext(questionId, a.value);
               return null;
             }

@@ -18,24 +18,24 @@ const Question = styled(`div`)`
 const UserAnswer = styled(`div`)`
   width: 100px;
 `;
-const Result = styled(`div`)`
-  width: 150px;
-`;
+// const Result = styled(`div`)`
+//   width: 150px;
+// `;
 const Change = styled(`div`)`
   width: 60px;
 `;
 
 const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
-  <div>
+  <>
     <MainWrapper>
       <Question>Vraag</Question>
       <UserAnswer>Uw antwoord</UserAnswer>
-      <Result>Vergunningsplichtig?</Result>
+      {/* <Result>Vergunningsplichtig?</Result> */}
       <Change>Wijzig</Change>
     </MainWrapper>
 
     {uitvoeringsregels.map((regel, index) => {
-      if (regel.type === 'decision') return null;
+      // if (regel.type === 'decision') return null;
       const userAnswerValue = userAnswers[regel.id];
       const userAnswer = regel.antwoordOpties
         .filter(antwoord => antwoord.value === userAnswerValue)
@@ -54,8 +54,18 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
         <Wrapper key={regel.id}>
           <Question key={regel.vraagTekst}>
             {index + 1}: {regel.vraagTekst}
+            <p>
+              <em>
+                {index + 1}: {regel.id}
+              </em>
+            </p>
           </Question>
-          <UserAnswer key={userAnswer}>{answerText}</UserAnswer>
+          <UserAnswer key={userAnswer}>
+            {answerText}
+            <p>
+              <em>{userAnswerValue}</em>
+            </p>
+          </UserAnswer>
           {/* <Result key={resultText}>{resultText}</Result> */}
           <Change>
             <button onClick={() => onGoToQuestion(regel.id)} type="button" href="#" key={regel.id}>
@@ -65,7 +75,7 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
         </Wrapper>
       );
     })}
-  </div>
+  </>
 );
 
 Overview.propTypes = {
