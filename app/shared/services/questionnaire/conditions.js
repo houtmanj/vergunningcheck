@@ -11,19 +11,17 @@ export const isCondTrue = (condition, userAnswers, questionnaire) => {
   if (typeof condition === 'string') {
     // return cond.some(condition => {
     const conditionQuestion = condition.split('.')[0];
-    const conditionAnswerText = condition
-      .split('.')[1]
-      .toLowerCase()
-      .replace(/['"]+/g, '');
+    const conditionAnswerText = condition.split('.')[1].toLowerCase();
+    // .replace(/['"]+/g, '');
 
     const conditionQuestionData = questionnaire.filter(q => q.id === conditionQuestion);
+
     // if conditionQuestion exists is datafile && user has already answered
     if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
       const userAnswerId = userAnswers[conditionQuestion];
-
       const userAnswer = conditionQuestionData[0].antwoordOpties
-        .filter(antwoord => antwoord.id === userAnswerId)
-        .map(antwoord => antwoord.optieText);
+        .filter(antwoord => antwoord.value === userAnswerId)
+        .map(antwoord => antwoord.value);
       const userAnswerText = userAnswer.toString().toLowerCase();
       // if conditionAnswer is the same as answeredQuestion
       return conditionAnswerText === userAnswerText;
@@ -34,22 +32,20 @@ export const isCondTrue = (condition, userAnswers, questionnaire) => {
 };
 
 export const areAllCondTrue = (cond, userAnswers, questionnaire) =>
-  // Check if multiple conditions are true
+  // Check if every condition is true
   cond.every(condition => {
     const conditionQuestion = condition.split('.')[0];
-    const conditionAnswerText = condition
-      .split('.')[1]
-      .toLowerCase()
-      .replace(/['"]+/g, '');
+    const conditionAnswerText = condition.split('.')[1].toLowerCase();
+    // .replace(/['"]+/g, '');
 
     const conditionQuestionData = questionnaire.filter(q => q.id === conditionQuestion);
-    // if conditionQuestion exists is datafile && user has already answered
+    // if conditionQuestion exists in datafile && user has already answered
     if (conditionQuestionData.length === 1 && userAnswers[conditionQuestion]) {
       const userAnswerId = userAnswers[conditionQuestion];
 
       const userAnswer = conditionQuestionData[0].antwoordOpties
-        .filter(antwoord => antwoord.id === userAnswerId)
-        .map(antwoord => antwoord.optieText);
+        .filter(antwoord => antwoord.value === userAnswerId)
+        .map(antwoord => antwoord.value);
       const userAnswerText = userAnswer.toString().toLowerCase();
       // if conditionAnswer is the same as answeredQuestion
       return conditionAnswerText === userAnswerText;

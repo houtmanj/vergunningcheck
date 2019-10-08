@@ -52,8 +52,8 @@ export const Header = () => (
                 </MenuButton>
               </MenuItem>
               <MenuItem>
-                <MenuButton $as="a" onClick={() => history.push('/aanbouw/basis')}>
-                  Basis
+                <MenuButton $as="a" onClick={() => history.push('/aanbouw/grouped')}>
+                  Grouped decision
                 </MenuButton>
               </MenuItem>
             </MenuFlyOut>

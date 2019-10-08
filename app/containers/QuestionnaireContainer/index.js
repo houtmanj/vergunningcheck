@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
-import history from 'utils/history';
+// import history from 'utils/history';
 
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
 import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Questionnaire';
@@ -35,12 +35,14 @@ class QuestionnaireContainer extends React.Component {
     this.onGoToQuestion = this.onGoToQuestion.bind(this);
     this.onGoToNext = this.onGoToNext.bind(this);
     this.onGoToPrev = this.onGoToPrev.bind(this);
+    this.setBestemmingsplan = this.setBestemmingsplan.bind(this);
     this.onRandomizeAnswers = this.onRandomizeAnswers.bind(this);
 
     this.state = {
       questionIndex: 0,
       userAnswers: {},
       debug: false,
+      hasBestemmingsplan: false,
     };
   }
 
@@ -56,6 +58,9 @@ class QuestionnaireContainer extends React.Component {
         onFetchQuestionnaire([{ text: 'test' }]);
       } else {
         onFetchQuestionnaire(bestemmingsplanStatus);
+        this.setState({
+          hasBestemmingsplan: true,
+        });
       }
     }, 3);
   }
@@ -75,20 +80,29 @@ class QuestionnaireContainer extends React.Component {
     });
   }
 
-  onGoToNext(questionId, answerId) {
+  onGoToNext(questionId, value) {
     // const { userAnswers } = this.state;
     // console.log('userAnswers:');
     // console.log({
     //   ...userAnswers,
-    //   [questionId]: answerId,
+    //   [questionId]: value,
     // });
     this.setState(prevState => ({
       questionIndex: prevState.questionIndex + 1,
       userAnswers: {
         ...prevState.userAnswers,
-        [questionId]: answerId,
+        [questionId]: value,
       },
     }));
+  }
+
+  setBestemmingsplan(questionId, bestemmingsplan) {
+    const { onFetchQuestionnaire } = this.props;
+
+    onFetchQuestionnaire([{ text: bestemmingsplan }]);
+    this.setState({
+      hasBestemmingsplan: true,
+    });
   }
 
   onGoToPrev() {
@@ -99,7 +113,6 @@ class QuestionnaireContainer extends React.Component {
         questionIndex: -1,
       });
     }
-
     // Check if prev question exists
     if (getQuestionIdFromIndex(questionIndex - 1, questionnaire)) {
       for (let i = 1; i <= questionIndex; i += 1) {
@@ -108,6 +121,8 @@ class QuestionnaireContainer extends React.Component {
           this.setState(prevState => ({
             questionIndex: prevState.questionIndex - i,
           }));
+          // End loop if prev question has been set
+          break;
         }
       }
     }
@@ -119,7 +134,7 @@ class QuestionnaireContainer extends React.Component {
       const hasConditionAndFailed =
         key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
       const value = !hasConditionAndFailed
-        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].id
+        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].value
         : null;
       return {
         ...o,
@@ -136,7 +151,12 @@ class QuestionnaireContainer extends React.Component {
   }
 
   render() {
-    const { questionIndex, userAnswers, debug } = this.state;
+    const {
+      questionIndex,
+      userAnswers,
+      // debug,
+      hasBestemmingsplan,
+    } = this.state;
 
     const {
       questionnaire,
@@ -151,13 +171,50 @@ class QuestionnaireContainer extends React.Component {
       return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
     }
 
-    if ((!userAddress && !debug) || questionIndex < 0) {
-      // Return to Location page if no address is in state
-      history.push('/aanbouw/locatie');
-      return null;
+    // if ((!userAddress && !debug) || questionIndex < 0) {
+    //   // Return to Location page if no address is in state
+    //   history.push('/aanbouw/locatie');
+    //   return null;
+    // }
+
+    if (loading) {
+      return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
+    }
+
+    if (!hasBestemmingsplan) {
+      return (
+        <StyledContent
+          headingDataId="bestemmingsplan"
+          heading="Er is geen bestemmingsplan gevonden. Welk bestemmingsplan wilt u gebruiken?"
+          paragraph="Kies een bestemmingsplan waar u mee wilt werken."
+        >
+          <Answers
+            questionId="bestemmingsplan"
+            answers={[
+              {
+                id: 1,
+                value: 'dePijp2018',
+                optieText: 'De Pijp',
+              },
+              {
+                id: 2,
+                value: 'dePijp2018',
+                optieText: 'Rivierenbuurt',
+              },
+            ]}
+            action={this.setBestemmingsplan}
+          />
+          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
+          <p>
+            <em>{questionnaire.name}</em>
+          </p>
+          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
+        </StyledContent>
+      );
     }
 
     const { uitvoeringsregels } = questionnaire;
+
     if (!uitvoeringsregels) {
       return <div>Helaas zijn er geen vragenlijsten gevonden op deze locatie: {userAddress}</div>;
     }
@@ -176,6 +233,7 @@ class QuestionnaireContainer extends React.Component {
         antwoordOpties: answers,
         vergunningplichtig: required,
         cond,
+        type,
       } = question;
 
       // CONDITIONALS
@@ -189,11 +247,26 @@ class QuestionnaireContainer extends React.Component {
           this.onGoToNext(questionId, null);
         }
       }
+      if (type === 'decision') {
+        answers.filter(a => {
+          if (a.cond) {
+            const isTrue = condCheck(a.cond, userAnswers, questionnaire.uitvoeringsregels);
+            if (isTrue) {
+              this.onGoToNext(questionId, a.value);
+              return null;
+            }
+          }
+          return a;
+        });
+      }
 
       const hasPrefilledAnswer = answers.filter(answer => answer.prefilled).length > 0;
 
       return (
         <StyledContent headingDataId={questionId} heading={questionText} paragraph="">
+          <div>ID: {questionId}</div>
+          <div>questionIndex: {questionIndex}</div>
+          <br />
           {hasPrefilledAnswer && <PrefilledAnswerText />}
           <Answers
             questionId={questionId}

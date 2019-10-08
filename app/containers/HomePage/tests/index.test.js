@@ -1,13 +1,12 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { shallow } from 'enzyme';
 
 import HomePage from '..';
-import messages from '../messages';
+import Navigation from 'components/Navigation/';
 
 describe('<HomePage />', () => {
   it('should render the page message', () => {
     const renderedComponent = shallow(<HomePage />);
-    expect(renderedComponent.contains(<FormattedMessage {...messages.header} />)).toEqual(true);
+    expect(renderedComponent.find(Navigation).length).toBe(1);
   });
 });
