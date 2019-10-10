@@ -29,7 +29,8 @@ const Answers = ({
           let backgroundColor = userAnswer && userAnswer === answer.value ? 'green' : '';
           // Overwrite if registry answered question
           if (hasRegistry) {
-            backgroundColor = setAnswer && answer.value === 'true' ? 'purple' : 'red';
+            backgroundColor =
+              (setAnswer && answer.value === 'true') || (!setAnswer && answer.value === 'false') ? 'purple' : 'red';
           }
 
           // Check 'vergunningplichtig'
