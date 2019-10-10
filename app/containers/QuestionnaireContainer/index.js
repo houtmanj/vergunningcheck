@@ -25,18 +25,6 @@ RandomizeButton.propTypes = {
   randomizeAnswers: PropTypes.func,
 };
 
-const setRegistryAnswer = (registry, data) => {
-  if (registry === 'monument') {
-    if (data.monumentStatus) {
-      return false;
-      // return 'true';
-    }
-    // return 'false';
-    return false;
-  }
-  return false;
-};
-
 const getQuestionIdFromIndex = (index, questionnaire) =>
   questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
 
@@ -184,12 +172,6 @@ class QuestionnaireContainer extends React.Component {
       return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
     }
 
-    // if ((!userAddress && !debug) || questionIndex < 0) {
-    //   // Return to Location page if no address is in state
-    //   history.push('/aanbouw/locatie');
-    //   return null;
-    // }
-
     if (loading) {
       return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
     }
@@ -248,7 +230,7 @@ class QuestionnaireContainer extends React.Component {
         cond,
         type,
         toelichting: paragraph,
-        registerbevraging: registry,
+        registerbevraging: registryQuestion,
       } = question;
 
       // CONDITIONALS
@@ -276,7 +258,8 @@ class QuestionnaireContainer extends React.Component {
       }
 
       const hasPrefilledAnswer = answers.filter(answer => answer.prefilled).length > 0;
-      const registryAnswer = setRegistryAnswer(registry, monumentStatus);
+      const hasRegistry = !!registryQuestion;
+      const setAnswer = !!(registryQuestion === 'monument' && monumentStatus !== '');
 
       return (
         <StyledContent headingDataId={questionId} heading={questionText} paragraph={paragraph}>
@@ -289,7 +272,8 @@ class QuestionnaireContainer extends React.Component {
             userAnswers={userAnswers}
             answers={answers}
             required={required}
-            registry={registryAnswer}
+            hasRegistry={hasRegistry}
+            setAnswer={setAnswer}
             action={this.onGoToNext}
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />

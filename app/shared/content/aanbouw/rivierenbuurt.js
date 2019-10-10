@@ -9,6 +9,7 @@ export default {
       toelichting:
         'Deze vraag is al door de gemeente beantwoord, op basis van de gegevens die bij ons bekend zijn. Wanneer u denkt dat dit niet klopt, kunt u dit aanpassen. Dit wordt later gecontroleerd.\n\nHeeft u op basis van deze vraag een vergunning nodig?\n\nDan kunt u deze vergunningschecker verlaten, en direct gaan naar Vergunning aanbouw en uitbouw om te zien wat u verder moet aanleveren.\nWij adviseren u om verder te gaan, zodat u ziet welke andere kenmerken leiden tot vergunningplicht. Zo vergroot u de kans op een vergunning.',
       id: 'monument',
+      registerbevraging: 'monument',
       antwoordOpties: [
         {
           id: '1',
