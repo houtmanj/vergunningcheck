@@ -25,6 +25,18 @@ RandomizeButton.propTypes = {
   randomizeAnswers: PropTypes.func,
 };
 
+const setRegistryAnswer = (registry, data) => {
+  if (registry === 'monument') {
+    if (data.monumentStatus) {
+      return false;
+      // return 'true';
+    }
+    // return 'false';
+    return false;
+  }
+  return false;
+};
+
 const getQuestionIdFromIndex = (index, questionnaire) =>
   questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
 
@@ -164,6 +176,7 @@ class QuestionnaireContainer extends React.Component {
       error,
       addressInput: {
         bagStatus: { _display: userAddress = '' },
+        monumentStatus,
       },
     } = this.props;
 
@@ -198,7 +211,7 @@ class QuestionnaireContainer extends React.Component {
               },
               {
                 id: 2,
-                value: 'dePijp2018',
+                value: 'rivierenbuurt',
                 optieText: 'Rivierenbuurt',
               },
             ]}
@@ -234,6 +247,8 @@ class QuestionnaireContainer extends React.Component {
         vergunningplichtig: required,
         cond,
         type,
+        toelichting: paragraph,
+        registerbevraging: registry,
       } = question;
 
       // CONDITIONALS
@@ -261,9 +276,10 @@ class QuestionnaireContainer extends React.Component {
       }
 
       const hasPrefilledAnswer = answers.filter(answer => answer.prefilled).length > 0;
+      const registryAnswer = setRegistryAnswer(registry, monumentStatus);
 
       return (
-        <StyledContent headingDataId={questionId} heading={questionText} paragraph="">
+        <StyledContent headingDataId={questionId} heading={questionText} paragraph={paragraph}>
           <div>ID: {questionId}</div>
           <div>questionIndex: {questionIndex}</div>
           <br />
@@ -273,6 +289,7 @@ class QuestionnaireContainer extends React.Component {
             userAnswers={userAnswers}
             answers={answers}
             required={required}
+            registry={registryAnswer}
             action={this.onGoToNext}
           />
           <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />

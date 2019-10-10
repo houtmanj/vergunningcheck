@@ -8,7 +8,7 @@ const AnswerFooter = styled(`div`)`
   margin-top: 20px;
 `;
 
-const Answers = ({ className, answers, required, userAnswers, questionId, action, hideFooter }) => {
+const Answers = ({ className, answers, required, userAnswers, questionId, action, hideFooter, registry }) => {
   const userAnswer = (userAnswers && userAnswers[questionId]) || null;
 
   return (
@@ -16,6 +16,7 @@ const Answers = ({ className, answers, required, userAnswers, questionId, action
       <div className={className}>
         {answers.map(answer => {
           let prefilled = answer.prefilled ? { background: 'Purple' } : {};
+          prefilled = registry && registry === answer.value ? { background: 'Purple' } : {};
           if (userAnswer) {
             prefilled = {};
             if (userAnswer === answer.value) {
@@ -54,6 +55,7 @@ Answers.propTypes = {
   questionId: PropTypes.string,
   action: PropTypes.func,
   hideFooter: PropTypes.bool,
+  registry: PropTypes.any,
 };
 
 const StyledAnswers = styled(Answers)`

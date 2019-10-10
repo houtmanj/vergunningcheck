@@ -130,6 +130,12 @@ class AddressInput extends React.Component {
 
     return (
       <StyledContent heading="Waar wilt u uw aanbouw maken?">
+        {debug && (
+          <ul>
+            <li>1074VE = De Pijp</li>
+            <li>1079VR = Rivierenbuurt</li>
+          </ul>
+        )}
         <AddressForm onChange={this.onPostcodeInput} onInput={this.onStreetNumberInput} debug={debug} />
         {!loading && showError && (
           <div className="address-input__error">
@@ -181,9 +187,9 @@ class AddressInput extends React.Component {
         )}
 
         <Navigation
-          onGoToNext={() => this.setLocation('de pijp')}
+          // onGoToNext={() => this.setLocation('de pijp')}
           showNext
-          disabledNext={!validPostcode || !addressLine1 || showError}
+          disabledNext
         />
 
         {validPostcode && addressLine1 && !showError && (
