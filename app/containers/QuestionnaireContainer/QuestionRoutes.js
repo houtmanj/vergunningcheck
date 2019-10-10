@@ -72,7 +72,7 @@ const QuestionRoutes = () => {
     if (!contains) {
       allRoutes.push({ route: randomAnswers, key: allRoutes.length + 1 });
       // Break loop if all routes are found
-      if (allRoutes.length === questionnaire.uitkomsten.length) break;
+      // if (allRoutes.length === questionnaire.uitkomsten.length) break;
     }
   }
 

@@ -28,9 +28,11 @@ RandomizeButton.propTypes = {
 const setRegistryAnswer = (registry, data) => {
   if (registry === 'monument') {
     if (data.monumentStatus) {
-      return 'true';
+      return false;
+      // return 'true';
     }
-    return 'false';
+    // return 'false';
+    return false;
   }
   return false;
 };

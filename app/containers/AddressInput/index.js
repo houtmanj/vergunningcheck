@@ -187,9 +187,9 @@ class AddressInput extends React.Component {
         )}
 
         <Navigation
-          onGoToNext={() => this.setLocation('de pijp')}
+          // onGoToNext={() => this.setLocation('de pijp')}
           showNext
-          disabledNext={!validPostcode || !addressLine1 || showError}
+          disabledNext
         />
 
         {validPostcode && addressLine1 && !showError && (
