@@ -8,21 +8,31 @@ const AnswerFooter = styled(`div`)`
   margin-top: 20px;
 `;
 
-const Answers = ({ className, answers, required, userAnswers, questionId, action, hideFooter, registry }) => {
+const Answers = ({
+  className,
+  answers,
+  required,
+  userAnswers,
+  questionId,
+  action,
+  hideFooter,
+  hasRegistry,
+  setAnswer,
+}) => {
   const userAnswer = (userAnswers && userAnswers[questionId]) || null;
 
   return (
     <>
       <div className={className}>
         {answers.map(answer => {
-          let prefilled = answer.prefilled ? { background: 'Purple' } : {};
-          prefilled = registry && registry === answer.value ? { background: 'Purple' } : {};
-          if (userAnswer) {
-            prefilled = {};
-            if (userAnswer === answer.value) {
-              prefilled = { background: 'green' };
-            }
+          // Set answer based on previous user input
+          let backgroundColor = userAnswer && userAnswer === answer.value ? 'green' : '';
+          // Overwrite if registry answered question
+          if (hasRegistry) {
+            backgroundColor =
+              (setAnswer && answer.value === 'true') || (!setAnswer && answer.value === 'false') ? 'purple' : 'red';
           }
+
           // Check 'vergunningplichtig'
           const requiredText = required === answer.optieText ? '*' : '';
 
@@ -33,9 +43,9 @@ const Answers = ({ className, answers, required, userAnswers, questionId, action
               answer-id={answer.id}
               type="submit"
               key={answer.id}
-              style={prefilled}
+              style={{ backgroundColor }}
               data-id={answer.id}
-              variant="secondary"
+              variant="primary"
             >
               {answer.optieText} {requiredText}
             </Button>
@@ -55,7 +65,8 @@ Answers.propTypes = {
   questionId: PropTypes.string,
   action: PropTypes.func,
   hideFooter: PropTypes.bool,
-  registry: PropTypes.any,
+  hasRegistry: PropTypes.bool,
+  setAnswer: PropTypes.bool,
 };
 
 const StyledAnswers = styled(Answers)`

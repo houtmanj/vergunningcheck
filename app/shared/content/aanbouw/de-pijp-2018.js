@@ -510,7 +510,7 @@ export default {
     {
       type: 'input',
       vraagTekst:
-        '1b..Gaat u met de aanbouw meer dan 50% van het oppervlakte van het als bebouwingsgebied (erf) aangewezen gebied bebouwen ?',
+        'Gaat u met de aanbouw meer dan 50% van het oppervlakte van het als bebouwingsgebied (erf) aangewezen gebied bebouwen?',
       id: 'artikel-2-vraag-13',
       cond: ['artikel-2-vraag-1.true', 'artikel-2-vraag-1.false'],
       antwoordOpties: [
@@ -529,7 +529,7 @@ export default {
     {
       type: 'input',
       vraagTekst:
-        '2b. Gaat u met de aanbouw meer bebouwen dan 50%, vermeerderd met 20% van het deel dat groter is dan 100 m2?',
+        'Gaat u met de aanbouw meer bebouwen dan 50%, vermeerderd met 20% van het deel dat groter is dan 100 m2?',
       id: 'artikel-2-vraag-14',
       cond: ['artikel-2-vraag-1.true', 'artikel-2-vraag-1.false'],
       antwoordOpties: [
@@ -548,7 +548,7 @@ export default {
     {
       type: 'input',
       vraagTekst:
-        '3b. Gaat u met de aanbouw meer bebouwen dan 90 m2, vermeerderd met 10% van het deel dat groter is dan 300 m2?',
+        'Gaat u met de aanbouw meer bebouwen dan 90 m2, vermeerderd met 10% van het deel dat groter is dan 300 m2?',
       id: 'artikel-2-vraag-15',
       cond: ['artikel-2-vraag-1.true', 'artikel-2-vraag-1.false'],
       antwoordOpties: [
@@ -566,7 +566,7 @@ export default {
     },
     {
       type: 'input',
-      vraagTekst: '3c. Gaat u met de aanbouw meer bebouwen dan 150 m2?',
+      vraagTekst: 'Gaat u met de aanbouw meer bebouwen dan 150 m2?',
       id: 'artikel-2-vraag-16',
       cond: ['artikel-2-vraag-1.true', 'artikel-2-vraag-1.false'],
       antwoordOpties: [
