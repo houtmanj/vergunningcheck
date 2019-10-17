@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styled from '@datapunt/asc-core';
-import { Button } from '@datapunt/asc-ui';
+import { Label } from '@datapunt/asc-ui';
 
 const AnswerFooter = styled(`div`)`
   margin-top: 20px;
@@ -14,7 +14,7 @@ const Answers = ({
   required,
   userAnswers,
   questionId,
-  action,
+  // action,
   hideFooter,
   hasRegistry,
   setAnswer,
@@ -25,30 +25,38 @@ const Answers = ({
     <>
       <div className={className}>
         {answers.map(answer => {
-          // Set answer based on previous user input
-          let backgroundColor = userAnswer && userAnswer === answer.value ? 'green' : '';
-          // Overwrite if registry answered question
-          if (hasRegistry) {
-            backgroundColor =
-              (setAnswer && answer.value === 'true') || (!setAnswer && answer.value === 'false') ? 'purple' : 'red';
-          }
+          // // Set answer based on previous user input
+          // let backgroundColor = userAnswer && userAnswer === answer.value ? 'green' : '';
+          // // Overwrite if registry answered question
+          // if (hasRegistry) {
+          //   backgroundColor =
+          //     (setAnswer && answer.value === 'true') || (!setAnswer && answer.value === 'false') ? 'purple' : 'red';
+          // }
+          const checked =
+            (userAnswer && userAnswer === answer.value) ||
+            (hasRegistry && setAnswer && answer.value === 'true') ||
+            (hasRegistry && !setAnswer && answer.value === 'false');
 
           // Check 'vergunningplichtig'
-          const requiredText = required === answer.optieText ? '*' : '';
+          // const requiredText = required === answer.optieText ? '*' : '';
+          const answerId = `${questionId}-${answer.id}`;
 
           return (
-            <Button
-              onClick={() => action(questionId, answer.value)}
-              question-id={questionId}
-              answer-id={answer.id}
-              type="submit"
-              key={answer.id}
-              style={{ backgroundColor }}
-              data-id={answer.id}
-              variant="primary"
-            >
-              {answer.optieText} {requiredText}
-            </Button>
+            <Label htmlFor={answerId} key={answerId} label={answer.optieText}>
+              <input
+                key={answer.id}
+                type="radio"
+                id={answerId}
+                name={questionId}
+                answer-id={answer.id}
+                value={answer.id}
+                data-id={answer.id}
+                style={{ marginRight: 10, height: 30 }}
+                // onClick={() => action(questionId, answer.value)}
+                checked={checked}
+                disabled="disabled"
+              />
+            </Label>
           );
         })}
       </div>
@@ -63,7 +71,7 @@ Answers.propTypes = {
   answers: PropTypes.array,
   userAnswers: PropTypes.object,
   questionId: PropTypes.string,
-  action: PropTypes.func,
+  // action: PropTypes.func,
   hideFooter: PropTypes.bool,
   hasRegistry: PropTypes.bool,
   setAnswer: PropTypes.bool,

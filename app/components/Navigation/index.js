@@ -13,7 +13,12 @@ const NavigationStyle = styled(`div`)`
   align-items: center;
 `;
 
-const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext, disabledNext }) => (
+const Navigation = ({
+  showPrev,
+  onGoToPrev,
+  showNext,
+  // onGoToNext
+}) => (
   <NavigationStyle>
     <div>
       {showPrev && (
@@ -24,7 +29,7 @@ const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext, disabledNext }
     </div>
     <div>
       {showNext && (
-        <Button variant="secondary" taskflow onClick={onGoToNext} disabled={disabledNext}>
+        <Button type="submit" variant="secondary" taskflow>
           Volgende
         </Button>
       )}
@@ -32,15 +37,13 @@ const Navigation = ({ showPrev, onGoToPrev, showNext, onGoToNext, disabledNext }
   </NavigationStyle>
 );
 
-Navigation.defaultProps = {
-  disabledNext: true,
-};
+// Navigation.defaultProps = {
+// };
 Navigation.propTypes = {
   showPrev: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
-  onGoToNext: PropTypes.func,
-  disabledNext: PropTypes.bool,
+  // onGoToNext: PropTypes.func,
 };
 
 export default Navigation;

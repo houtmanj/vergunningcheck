@@ -11,7 +11,7 @@ const Div = styled(`div`)`
 `;
 
 const { uitvoeringsregels } = questionnaire;
-const QuestionnaireQuestions = () => {
+const AllQuestions = () => {
   const questions = uitvoeringsregels.map((rule, index) => (
     <Div key={rule.vraagTekst}>
       {`${index}: ${rule.id}`}: <strong>{rule.vraagTekst}</strong>
@@ -22,4 +22,4 @@ const QuestionnaireQuestions = () => {
   return <div>{questions}</div>;
 };
 
-export default QuestionnaireQuestions;
+export default AllQuestions;
