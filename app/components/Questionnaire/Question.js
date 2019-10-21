@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
+import { Heading } from '@datapunt/asc-ui';
+
 import Form from 'components/Form/Form';
 
 const Question = ({ className, heading, headingDataId, paragraph, children, ...otherProps }) => (
   <Form className={className} {...otherProps}>
-    {heading && <h3 data-id={headingDataId}>{heading}</h3>}
+    {heading && (
+      <Heading $as="h3" data-id={headingDataId}>
+        {heading}
+      </Heading>
+    )}
     {paragraph && <ReactMarkdown source={paragraph} />}
     {children}
   </Form>

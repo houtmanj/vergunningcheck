@@ -1,4 +1,4 @@
-import AddressForm from './AddressForm';
 import AddressResult from './AddressResult';
+import AddressInputFields from './AddressInputFields';
 
-export { AddressForm, AddressResult };
+export { AddressInputFields, AddressResult };

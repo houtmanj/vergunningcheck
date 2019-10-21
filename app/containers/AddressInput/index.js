@@ -5,29 +5,34 @@ import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 import history from 'utils/history';
 
-import { Content, Answers } from 'components/Questionnaire';
+import { Question, Answers } from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
-import { AddressResult, AddressForm } from 'components/AddressInput/';
+import { AddressResult, AddressInputFields } from 'components/AddressInput/';
+import { isDevelopment } from 'shared/services/environment';
 import { fetchStreetname, fetchBagData } from './actions';
 import './style.scss';
 
-const StyledContent = styled(Content)`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+const StyledAddressInputFields = styled(AddressInputFields)`
+  max-width: 400px;
 `;
+
+// const InputErrors = () => <div>InputErrors</div>;
 
 class AddressInput extends React.Component {
   constructor(props) {
     super(props);
     this.onPostcodeInput = this.onPostcodeInput.bind(this);
     this.onStreetNumberInput = this.onStreetNumberInput.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       validPostcode: false,
       postcode: '',
       streetNumber: '',
       hasError: false,
       debug: true,
+      isQuestionAnswered: false,
+      answerValue: '',
     };
   }
 
@@ -63,6 +68,8 @@ class AddressInput extends React.Component {
       validPostcode,
       postcode,
       hasError,
+      isQuestionAnswered: false,
+      answerValue: '',
     });
 
     if (validPostcode) {
@@ -84,6 +91,8 @@ class AddressInput extends React.Component {
 
       this.setState({
         hasError: false,
+        isQuestionAnswered: false,
+        answerValue: '',
       });
 
       return;
@@ -91,7 +100,32 @@ class AddressInput extends React.Component {
 
     this.setState({
       hasError: true,
+      isQuestionAnswered: false,
+      answerValue: '',
     });
+  }
+
+  handleChange(e) {
+    const { value } = e.target;
+    this.setState({
+      isQuestionAnswered: true,
+      answerValue: value,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const { bestemmingsplanStatus } = this.props;
+    const { answerValue } = this.state;
+
+    if (bestemmingsplanStatus.length > 0 && answerValue === 'true') {
+      history.push('/aanbouw/vragen');
+    } else {
+      this.setState({
+        hasError: true,
+      });
+    }
   }
 
   render() {
@@ -110,33 +144,26 @@ class AddressInput extends React.Component {
       noResults,
     } = this.props;
 
-    const { validPostcode, postcode, streetNumber, hasError, debug } = this.state;
+    const { validPostcode, postcode, streetNumber, hasError, debug, isQuestionAnswered } = this.state;
 
     const {
       _display: addressLine1,
       _gemeente: { _display: gemeente },
-      _buurtcombinatie: { naam: buurtcombinatie },
-      _gebiedsgerichtwerken: { naam: gebied },
     } = bagStatus;
 
     const loading = streetNameLoading || bagLoading;
     const notValidPostcodeAmsterdam = validPostcode && !streetName;
     const notValidAddress = bagFetch && !addressLine1;
+    const showAddressResults = validPostcode && streetName && bagFetch && addressLine1;
     const showError = hasError || notValidPostcodeAmsterdam || notValidAddress;
     const notValidPostcode = !validPostcode || postcode.length !== 6;
     const notValidStreetNumber = !streetNumber;
     const addressLine2 = `${postcode.toUpperCase()} ${gemeente}`;
-    const addressLine3 = `(${buurtcombinatie} ${buurtcombinatie && ':'} ${gebied})`;
 
     return (
-      <StyledContent heading="Waar wilt u uw aanbouw maken?">
-        {debug && (
-          <ul>
-            <li>1074VE = De Pijp</li>
-            <li>1079VR = Rivierenbuurt</li>
-          </ul>
-        )}
-        <AddressForm onChange={this.onPostcodeInput} onInput={this.onStreetNumberInput} debug={debug} />
+      <Question heading="Waar wilt u uw aanbouw maken?" onSubmit={this.handleSubmit}>
+        <StyledAddressInputFields onChange={this.onPostcodeInput} onInput={this.onStreetNumberInput} debug={debug} />
+
         {!loading && showError && (
           <div className="address-input__error">
             {postcode && notValidPostcode && (
@@ -158,41 +185,53 @@ class AddressInput extends React.Component {
         {streetNumber && loading && (
           <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
         )}
-        {validPostcode && addressLine1 && !showError && (
+        {showError && showAddressResults && !isQuestionAnswered && (
+          <div className="address-input__error">
+            <p>Geef antwoord!</p>
+          </div>
+        )}
+        {showAddressResults && (
+          // validPostcode && addressLine1
+          // !showError &&
           <>
             <AddressResult loading={streetNameLoading} title="Adres:">
               <div>{addressLine1}</div>
               <div>{addressLine2}</div>
-              <div>{addressLine3}</div>
             </AddressResult>
 
-            <StyledContent heading="Klopt dit adres?">
-              <Answers
-                questionId="location"
-                answers={[
-                  {
-                    id: '1',
-                    optieText: 'Ja',
-                  },
-                  {
-                    id: '2',
-                    optieText: 'Nee',
-                  },
-                ]}
-                action={() => history.push('/aanbouw/vragen')}
-                hideFooter
-              />
-            </StyledContent>
+            <h3>Klopt dit adres?</h3>
+            <Answers
+              questionId="location"
+              answers={[
+                {
+                  id: '1',
+                  optieText: 'Ja',
+                  value: 'true',
+                },
+                {
+                  id: '2',
+                  optieText: 'Nee',
+                  value: 'false',
+                },
+              ]}
+              onChange={this.handleChange}
+              hideFooter
+            />
           </>
         )}
+        <Navigation showNext />
 
-        <Navigation
-          // onGoToNext={() => this.setLocation('de pijp')}
-          showNext
-          disabledNext
-        />
+        {isDevelopment && (
+          <div>
+            <h4>Voorbeeld postcodes:</h4>
+            <p>
+              1074VE = De Pijp <br />
+              1079VR = Rivierenbuurt
+            </p>
+          </div>
+        )}
 
-        {validPostcode && addressLine1 && !showError && (
+        {isDevelopment && validPostcode && addressLine1 && !showError && (
           <>
             <AddressResult loading={monumentLoading} title="Monument:">
               {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
@@ -214,7 +253,7 @@ class AddressInput extends React.Component {
             </AddressResult>
           </>
         )}
-      </StyledContent>
+      </Question>
     );
   }
 }

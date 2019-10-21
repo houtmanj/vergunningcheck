@@ -6,7 +6,8 @@ import { ChevronLeft } from '@datapunt/asc-assets';
 
 const NavigationStyle = styled(`div`)`
   display: flex;
-  height: 60px;
+  // max-width: 620px; // See design system..
+  height: 64px;
   margin: 20px 0;
   background-color: rgba(241, 241, 241, 1);
   justify-content: space-between;

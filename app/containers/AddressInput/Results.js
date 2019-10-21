@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { AddressResult, AddressForm } from 'components/AddressInput/';
+import { AddressResult, AddressInputFields } from 'components/AddressInput/';
 import { fetchStreetname, fetchBagData } from './actions';
 import './style.scss';
 
@@ -111,7 +111,7 @@ class AddressInput extends React.Component {
     return (
       <div className="address-input">
         <h3>Vul de betreffende postcode en huisnummer in:</h3>
-        <AddressForm onChange={this.onPostcodeInput} onInput={this.onStreetNumberInput} debug={debug} />
+        <AddressInputFields onChange={this.onPostcodeInput} onInput={this.onStreetNumberInput} debug={debug} />
 
         {!loading && showError && (
           <div className="address-input__error">

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 import { Label } from '@datapunt/asc-ui';
 
-const AnswerFooter = styled(`div`)`
+const StyledFooter = styled.div`
   margin-top: 20px;
 `;
 
@@ -15,6 +15,7 @@ const Answers = ({
   userAnswers,
   questionId,
   // action,
+  onChange,
   hideFooter,
   hasRegistry,
   setAnswer,
@@ -49,9 +50,14 @@ const Answers = ({
                 id={answerId}
                 name={questionId}
                 answer-id={answer.id}
-                value={answer.id}
+                value={answer.value}
                 data-id={answer.id}
                 style={{ marginRight: 10, height: 30 }}
+                onChange={e => {
+                  if (onChange) {
+                    onChange(e);
+                  }
+                }}
                 // onClick={() => action(questionId, answer.value)}
                 checked={checked}
                 disabled="disabled"
@@ -60,10 +66,16 @@ const Answers = ({
           );
         })}
       </div>
-      {!hideFooter && required && <AnswerFooter>* Vergunning nodig</AnswerFooter>}
+      {!hideFooter && required && <StyledFooter>* Vergunning nodig</StyledFooter>}
     </>
   );
 };
+
+const StyledAnswers = styled(Answers)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 
 Answers.propTypes = {
   className: PropTypes.string,
@@ -72,15 +84,10 @@ Answers.propTypes = {
   userAnswers: PropTypes.object,
   questionId: PropTypes.string,
   // action: PropTypes.func,
+  onChange: PropTypes.func,
   hideFooter: PropTypes.bool,
   hasRegistry: PropTypes.bool,
   setAnswer: PropTypes.bool,
 };
-
-const StyledAnswers = styled(Answers)`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
 
 export default StyledAnswers;
