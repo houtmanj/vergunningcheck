@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import { AddressResult, AddressInputFields } from 'components/AddressInput/';
 import { fetchStreetname, fetchBagData } from './actions';
-import './style.scss';
 
 class AddressInput extends React.Component {
   constructor(props) {
