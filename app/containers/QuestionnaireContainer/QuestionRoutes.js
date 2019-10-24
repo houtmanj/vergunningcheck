@@ -51,7 +51,7 @@ const generateAnswer = (key, o) => {
 const QuestionRoutes = () => {
   const allRoutes = [];
 
-  for (let i = 0; i < 1500; i += 1) {
+  for (let i = 0; i < 500; i += 1) {
     const randomAnswers = questionnaire.uitvoeringsregels.reduce(
       (o, key) => ({
         ...o,
