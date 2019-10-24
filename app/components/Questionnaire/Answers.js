@@ -14,7 +14,7 @@ const Answers = ({
   required,
   userAnswers,
   questionId,
-  // action,
+  action,
   onChange,
   hideFooter,
   hasRegistry,
@@ -58,7 +58,7 @@ const Answers = ({
                     onChange(e);
                   }
                 }}
-                // onClick={() => action(questionId, answer.value)}
+                onClick={() => action && action(questionId, answer.value)}
                 checked={checked}
                 disabled="disabled"
               />
@@ -83,7 +83,7 @@ Answers.propTypes = {
   answers: PropTypes.array,
   userAnswers: PropTypes.object,
   questionId: PropTypes.string,
-  // action: PropTypes.func,
+  action: PropTypes.func,
   onChange: PropTypes.func,
   hideFooter: PropTypes.bool,
   hasRegistry: PropTypes.bool,

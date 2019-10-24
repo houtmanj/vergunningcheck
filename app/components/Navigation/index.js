@@ -18,6 +18,7 @@ const Navigation = ({
   showPrev,
   onGoToPrev,
   showNext,
+  disableNext,
   // onGoToNext
 }) => (
   <NavigationStyle>
@@ -30,7 +31,7 @@ const Navigation = ({
     </div>
     <div>
       {showNext && (
-        <Button type="submit" variant="secondary" taskflow>
+        <Button type="submit" variant="secondary" taskflow disabled={disableNext}>
           Volgende
         </Button>
       )}
@@ -44,6 +45,7 @@ Navigation.propTypes = {
   showPrev: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
+  disableNext: PropTypes.bool,
   // onGoToNext: PropTypes.func,
 };
 

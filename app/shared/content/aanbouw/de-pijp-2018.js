@@ -788,7 +788,7 @@ export default {
         'artikel-2-specifiek.false',
         'artikel-2-conclusie.false',
       ],
-      vergunningplichtig: true,
+      // vergunningplichtig: true,
       antwoordOpties: [
         {
           id: '1',

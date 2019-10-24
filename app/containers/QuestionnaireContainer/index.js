@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import history from 'utils/history';
 import styled from '@datapunt/asc-core';
 
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
@@ -121,9 +122,8 @@ class QuestionnaireContainer extends React.Component {
     const { questionIndex, userAnswers } = this.state;
     const { questionnaire } = this.props;
     if (questionIndex < 1) {
-      this.setState({
-        questionIndex: -1,
-      });
+      // Return to location question
+      history.push('/aanbouw/locatie');
     }
     // Check if prev question exists
     if (getQuestionIdFromIndex(questionIndex - 1, questionnaire)) {
@@ -210,9 +210,9 @@ class QuestionnaireContainer extends React.Component {
                 optieText: 'Rivierenbuurt',
               },
             ]}
-            // action={this.setBestemmingsplan}
+            action={this.setBestemmingsplan}
           />
-          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.setBestemmingsplan} />
+          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.setBestemmingsplan} disableNext />
           <p>
             <em>{questionnaire.name}</em>
           </p>
@@ -275,7 +275,7 @@ class QuestionnaireContainer extends React.Component {
       const setAnswer = !!(registryQuestion === 'monument' && monumentStatus !== '');
 
       return (
-        <StyledContent headingDataId={questionId} heading={questionText} paragraph={paragraph}>
+        <Question headingDataId={questionId} heading={questionText} paragraph={paragraph} onSubmit={this.handleSubmit}>
           <div>ID: {questionId}</div>
           <div>questionIndex: {questionIndex}</div>
           <br />
@@ -289,12 +289,18 @@ class QuestionnaireContainer extends React.Component {
             setAnswer={setAnswer}
             action={this.onGoToNext}
           />
-          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
+          <Navigation
+            showPrev
+            onGoToPrev={this.onGoToPrev}
+            showNext
+            disableNext
+            // onGoToNext={this.onGoToNext}
+          />
           <p>
             <em>{questionnaire.name}</em>
           </p>
           {/* <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} /> */}
-        </StyledContent>
+        </Question>
       );
     }
 

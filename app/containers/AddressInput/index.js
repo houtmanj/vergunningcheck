@@ -118,20 +118,15 @@ class AddressInput extends React.Component {
 
     const { onFetchBagData } = this.props;
     const { postcode, validPostcode } = this.state;
+    let hasError = true;
 
     if (postcode && streetNumber && validPostcode) {
       onFetchBagData(postcode, streetNumber);
-
-      this.setState({
-        hasError: false,
-        answerValue: '',
-      });
-
-      return;
+      hasError = false;
     }
 
     this.setState({
-      hasError: true,
+      hasError,
       answerValue: '',
     });
   }
@@ -197,12 +192,12 @@ class AddressInput extends React.Component {
         )}
         {showAddressResults && (
           <>
-            {!inputError && hasError && <StyledAddressInputErrors error="Geef antwoord!" />}
             <AddressResult loading={streetNameLoading} title="Adres:">
               <div>{addressLine1}</div>
               <div>{addressLine2}</div>
             </AddressResult>
 
+            {!inputError && hasError && <StyledAddressInputErrors error="Vul een correct antwoord in" />}
             <h3>Klopt dit adres?</h3>
             <Answers
               questionId="location"
