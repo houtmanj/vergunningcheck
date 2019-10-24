@@ -88,10 +88,7 @@ export default {
       vraagTekst: 'Wordt de hoogte van de aanbouw hoger dan 5 m?',
       id: 'artikel-3-vraag-1',
       child: true,
-      cond: [
-        // 'stadsgezicht-zichtbaar.false', 'stadsgezicht.false',
-        'tussenwoning.true',
-      ],
+      cond: ['tussenwoning.true'],
       antwoordOpties: [
         {
           id: '1',
