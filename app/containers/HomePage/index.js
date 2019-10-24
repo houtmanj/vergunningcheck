@@ -11,12 +11,11 @@
 
 import React from 'react';
 import history from 'utils/history';
-
+import { Question } from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
 
-const HomePage = () => (
-  <div>
-    <h3>Inleiding</h3>
+const HomePageText = () => (
+  <>
     <p>
       Met de vergunningchecker ziet u snel of u een omgevingsvergunning moet aanvragen. Ook kunt u kijken waar uw
       bouwwerk aan moet voldoen zodat u geen vergunning nodig heeft voor uw bouwwerk.
@@ -28,8 +27,14 @@ const HomePage = () => (
         (gratis en online).
       </li>
     </ul>
-    <Navigation showNext onGoToNext={() => history.push('/aanbouw/locatie')} />
-  </div>
+  </>
+);
+
+const HomePage = () => (
+  <Question headingDataId="bestemmingsplan" heading="Inleiding" onSubmit={() => history.push('/aanbouw/locatie')}>
+    <HomePageText />
+    <Navigation showNext />
+  </Question>
 );
 
 export default HomePage;

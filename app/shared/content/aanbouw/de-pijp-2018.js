@@ -63,13 +63,32 @@ export default {
       ],
       cond: ['stadsgezicht.true'],
     },
+    {
+      type: 'input',
+      vraagTekst: 'Is de woning een tussenwoning?',
+      toelichting: '',
+      id: 'tussenwoning',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+          value: 'true',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+          value: 'false',
+        },
+      ],
+      cond: ['stadsgezicht.false', 'stadsgezicht-zichtbaar.false'],
+    },
     // // Artikel 3 Set
     {
       type: 'input',
       vraagTekst: 'Wordt de hoogte van de aanbouw hoger dan 5 m?',
       id: 'artikel-3-vraag-1',
       child: true,
-      cond: ['stadsgezicht-zichtbaar.false', 'stadsgezicht.false'],
+      cond: ['tussenwoning.true'],
       antwoordOpties: [
         {
           id: '1',
@@ -221,7 +240,7 @@ export default {
       type: 'decision',
       vraagTekst: 'decision: Voldoet u aan artikel 3 volledig?',
       id: 'artikel-3-conclusie',
-      cond: ['stadsgezicht-zichtbaar.false', 'stadsgezicht.false'],
+      cond: ['artikel-3-vraag-1.true', 'artikel-3-vraag-1.false'],
       antwoordOpties: [
         {
           id: '1',
@@ -788,7 +807,7 @@ export default {
         'artikel-2-specifiek.false',
         'artikel-2-conclusie.false',
       ],
-      vergunningplichtig: true,
+      // vergunningplichtig: true,
       antwoordOpties: [
         {
           id: '1',
@@ -825,6 +844,7 @@ export default {
       type: 'input',
       vraagTekst: 'Wordt uw aanbouw hoger dan 5 m?',
       id: 'bestemmingsplan-vraag-3',
+      cond: ['bestemmingsplan-vraag-1.true', 'bestemmingsplan-vraag-1.false'],
       antwoordOpties: [
         {
           id: '1',
@@ -842,6 +862,7 @@ export default {
       type: 'input',
       vraagTekst: 'Wordt uw aanbouw max  0,3 m hoger dan de vloer van de 2e bouwlaag van het bestaande hoofdgebouw?',
       id: 'bestemmingsplan-vraag-4',
+      cond: ['bestemmingsplan-vraag-1.true', 'bestemmingsplan-vraag-1.false'],
       antwoordOpties: [
         {
           id: '1',
@@ -859,6 +880,7 @@ export default {
       type: 'input',
       vraagTekst: 'Wordt uw aanbouw hoger dan het bestaande hoofdgebouw?',
       id: 'bestemmingsplan-vraag-5',
+      cond: ['bestemmingsplan-vraag-1.true', 'bestemmingsplan-vraag-1.false'],
       antwoordOpties: [
         {
           id: '1',
@@ -876,6 +898,7 @@ export default {
       type: 'input',
       vraagTekst: 'Wordt met de aanbouw meer dan 50% van het perceel (binnen bestemming Tuin) Bebouwd?',
       id: 'bestemmingsplan-vraag-6',
+      cond: ['bestemmingsplan-vraag-1.true', 'bestemmingsplan-vraag-1.false'],
       antwoordOpties: [
         {
           id: '1',
@@ -893,6 +916,7 @@ export default {
       type: 'input',
       vraagTekst: 'Krijgt de aanbouw een groen dak met een waterbergend vermogen van 60 mm in één uur?',
       id: 'bestemmingsplan-vraag-7',
+      cond: ['bestemmingsplan-vraag-1.true', 'bestemmingsplan-vraag-1.false'],
       antwoordOpties: [
         {
           id: '1',
@@ -910,13 +934,7 @@ export default {
       type: 'decision',
       vraagTekst: 'Voldoet u aan alle regels van het bestemmingsplan?',
       id: 'bestemmingsplan-conclusie',
-      cond: [
-        'monument.true',
-        'stadsgezicht-zichtbaar.true',
-        ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.true'],
-        'artikel-2-specifiek.false',
-        'artikel-2-conclusie.false',
-      ],
+      cond: ['bestemmingsplan-vraag-1.true', 'bestemmingsplan-vraag-1.false'],
       antwoordOpties: [
         {
           id: '2',
@@ -970,39 +988,67 @@ export default {
     },
     {
       label: '5) Vergunning nodig: NEE 😁',
-      cond: ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.true', 'bestemmingsplan-conclusie.true'],
+      cond: [
+        'stadsgezicht-zichtbaar.false',
+        'tussenwoning.true',
+        'artikel-3-conclusie.true',
+        'bestemmingsplan-conclusie.true',
+      ],
     },
     {
       label: '6) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
-      cond: ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.true', 'bestemmingsplan-conclusie.false'],
+      cond: [
+        'stadsgezicht-zichtbaar.false',
+        'tussenwoning.true',
+        'artikel-3-conclusie.true',
+        'bestemmingsplan-conclusie.false',
+      ],
     },
     {
       label: '7) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
-      cond: ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.false'],
+      cond: ['stadsgezicht-zichtbaar.false', 'tussenwoning.true', 'artikel-3-conclusie.false'],
     },
     {
       label: '8) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
-      cond: ['stadsgezicht.false', 'artikel-3-conclusie.false'],
+      cond: ['stadsgezicht.false', 'tussenwoning.true', 'artikel-3-conclusie.false'],
     },
     {
       label: '9) Vergunning nodig: NEE 😁',
-      cond: ['artikel-2-specifiek.true', 'artikel-2-conclusie.true'],
+      cond: ['artikel-2-specifiek.true', 'tussenwoning.true', 'artikel-2-conclusie.true'],
     },
     {
       label: '10) Vergunning nodig: NEE 😁',
-      cond: ['artikel-2-specifiek.false', 'bestemmingsplan-conclusie.true'],
+      cond: ['artikel-2-specifiek.false', 'tussenwoning.true', 'bestemmingsplan-conclusie.true'],
     },
     {
       label: '11) Vergunning nodig: NEE 😁',
-      cond: ['artikel-2-specifiek.true', 'artikel-2-conclusie.false', 'bestemmingsplan-conclusie.true'],
+      cond: [
+        'artikel-2-specifiek.true',
+        'tussenwoning.true',
+        'artikel-2-conclusie.false',
+        'bestemmingsplan-conclusie.true',
+      ],
     },
     {
       label: '12) Vergunning nodig: Afwijken bestemmingsplan',
-      cond: ['artikel-2-specifiek.false', 'bestemmingsplan-conclusie.false'],
+      cond: ['artikel-2-specifiek.false', 'tussenwoning.true', 'bestemmingsplan-conclusie.false'],
     },
     {
       label: '13) Vergunning nodig: Afwijken bestemmingsplan',
-      cond: ['artikel-2-specifiek.true', 'artikel-2-conclusie.false', 'bestemmingsplan-conclusie.false'],
+      cond: [
+        'artikel-2-specifiek.true',
+        'artikel-2-conclusie.false',
+        'tussenwoning.true',
+        'bestemmingsplan-conclusie.false',
+      ],
+    },
+    {
+      label: '14) Neem contact op met de gemeente',
+      cond: ['stadsgezicht.false', 'tussenwoning.false'],
+    },
+    {
+      label: '15) Neem contact op met de gemeente',
+      cond: ['stadsgezicht.true', 'tussenwoning.false'],
     },
   ],
 };

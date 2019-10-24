@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Heading } from '@datapunt/asc-ui';
+
 const AddressInputResult = ({ title, loading, loadingText, children }) => (
   <div>
-    {title && <h4>{title}</h4>}
+    {title && <Heading $as="h4">{title}</Heading>}
     {loading && <div>{loadingText}</div>}
     {children && !loading && <div>{children}</div>}
   </div>

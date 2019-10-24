@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import history from 'utils/history';
 import styled from '@datapunt/asc-core';
-// import history from 'utils/history';
 
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
-import { Content, Overview, Answers, PrefilledAnswerText } from 'components/Questionnaire';
+import { Content, Overview, Question, Answers, PrefilledAnswerText } from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
 import { fetchQuestionnaire } from './actions';
 
@@ -16,14 +16,14 @@ const StyledContent = styled(Content)`
   flex-grow: 1;
 `;
 
-const RandomizeButton = props => (
-  <button type="submit" onClick={props.randomizeAnswers()}>
-    Randomize
-  </button>
-);
-RandomizeButton.propTypes = {
-  randomizeAnswers: PropTypes.func,
-};
+// const RandomizeButton = props => (
+//   <button type="submit" onClick={props.randomizeAnswers()}>
+//     Randomize
+//   </button>
+// );
+// RandomizeButton.propTypes = {
+//   randomizeAnswers: PropTypes.func,
+// };
 
 const getQuestionIdFromIndex = (index, questionnaire) =>
   questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
@@ -36,7 +36,10 @@ class QuestionnaireContainer extends React.Component {
     this.onGoToNext = this.onGoToNext.bind(this);
     this.onGoToPrev = this.onGoToPrev.bind(this);
     this.setBestemmingsplan = this.setBestemmingsplan.bind(this);
-    this.onRandomizeAnswers = this.onRandomizeAnswers.bind(this);
+    // this.onRandomizeAnswers = this.onRandomizeAnswers.bind(this);
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       questionIndex: 0,
@@ -63,6 +66,16 @@ class QuestionnaireContainer extends React.Component {
         });
       }
     }, 3);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    // const data = new FormData(e.target);
+  }
+
+  handleChange() {
+    // this.setState({value: event.target.value});
   }
 
   onGoToQuestion(questionId) {
@@ -109,9 +122,8 @@ class QuestionnaireContainer extends React.Component {
     const { questionIndex, userAnswers } = this.state;
     const { questionnaire } = this.props;
     if (questionIndex < 1) {
-      this.setState({
-        questionIndex: -1,
-      });
+      // Return to location question
+      history.push('/aanbouw/locatie');
     }
     // Check if prev question exists
     if (getQuestionIdFromIndex(questionIndex - 1, questionnaire)) {
@@ -128,27 +140,27 @@ class QuestionnaireContainer extends React.Component {
     }
   }
 
-  onRandomizeAnswers() {
-    const { questionnaire } = this.props;
-    const randomAnswers = questionnaire.uitvoeringsregels.reduce((o, key) => {
-      const hasConditionAndFailed =
-        key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
-      const value = !hasConditionAndFailed
-        ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].value
-        : null;
-      return {
-        ...o,
-        [key.id]: value,
-      };
-    }, {});
+  // onRandomizeAnswers() {
+  //   const { questionnaire } = this.props;
+  //   const randomAnswers = questionnaire.uitvoeringsregels.reduce((o, key) => {
+  //     const hasConditionAndFailed =
+  //       key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
+  //     const value = !hasConditionAndFailed
+  //       ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].value
+  //       : null;
+  //     return {
+  //       ...o,
+  //       [key.id]: value,
+  //     };
+  //   }, {});
 
-    this.setState({
-      questionIndex: questionnaire.uitvoeringsregels.length,
-      userAnswers: {
-        ...randomAnswers,
-      },
-    });
-  }
+  //   this.setState({
+  //     questionIndex: questionnaire.uitvoeringsregels.length,
+  //     userAnswers: {
+  //       ...randomAnswers,
+  //     },
+  //   });
+  // }
 
   render() {
     const {
@@ -178,10 +190,11 @@ class QuestionnaireContainer extends React.Component {
 
     if (!hasBestemmingsplan) {
       return (
-        <StyledContent
+        <Question
           headingDataId="bestemmingsplan"
           heading="Er is geen bestemmingsplan gevonden. Welk bestemmingsplan wilt u gebruiken?"
           paragraph="Kies een bestemmingsplan waar u mee wilt werken."
+          onSubmit={this.handleSubmit}
         >
           <Answers
             questionId="bestemmingsplan"
@@ -199,12 +212,12 @@ class QuestionnaireContainer extends React.Component {
             ]}
             action={this.setBestemmingsplan}
           />
-          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
+          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.setBestemmingsplan} disableNext />
           <p>
             <em>{questionnaire.name}</em>
           </p>
-          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
-        </StyledContent>
+          {/* <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} /> */}
+        </Question>
       );
     }
 
@@ -262,7 +275,7 @@ class QuestionnaireContainer extends React.Component {
       const setAnswer = !!(registryQuestion === 'monument' && monumentStatus !== '');
 
       return (
-        <StyledContent headingDataId={questionId} heading={questionText} paragraph={paragraph}>
+        <Question headingDataId={questionId} heading={questionText} paragraph={paragraph} onSubmit={this.handleSubmit}>
           <div>ID: {questionId}</div>
           <div>questionIndex: {questionIndex}</div>
           <br />
@@ -276,12 +289,18 @@ class QuestionnaireContainer extends React.Component {
             setAnswer={setAnswer}
             action={this.onGoToNext}
           />
-          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.onGoToNext} />
+          <Navigation
+            showPrev
+            onGoToPrev={this.onGoToPrev}
+            showNext
+            disableNext
+            // onGoToNext={this.onGoToNext}
+          />
           <p>
             <em>{questionnaire.name}</em>
           </p>
-          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
-        </StyledContent>
+          {/* <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} /> */}
+        </Question>
       );
     }
 
@@ -308,7 +327,7 @@ class QuestionnaireContainer extends React.Component {
             uitvoeringsregels={uitvoeringsregels}
           />
           <Navigation />
-          <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} />
+          {/* <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} /> */}
         </StyledContent>
       );
     }

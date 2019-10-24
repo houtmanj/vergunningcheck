@@ -9,8 +9,7 @@ import AddressInput from 'containers/AddressInput';
 import AddressInputResults from 'containers/AddressInput/Results';
 import HomePage from 'containers/HomePage';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
-import QuestionnaireQuestions from 'containers/QuestionnaireContainer/Questions';
-import QuestionnaireGrouped from 'containers/QuestionnaireContainer/GroupedQuestions';
+import AllQuestions from 'containers/QuestionnaireContainer/AllQuestions';
 import QuestionnaireRoutes from 'containers/QuestionnaireContainer/QuestionRoutes';
 import NotFoundPage from 'containers/NotFoundPage';
 import Footer from 'components/Footer';
@@ -41,9 +40,8 @@ export const App = () => {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/aanbouw/inleiding" component={HomePage} />
             <Route exact path="/aanbouw/locatie" component={AddressInput} />
-            <Route exact path="/aanbouw/alle-vragen" component={QuestionnaireQuestions} />
+            <Route exact path="/aanbouw/alle-vragen" component={AllQuestions} />
             <Route exact path="/aanbouw/alle-routes" component={QuestionnaireRoutes} />
-            <Route exact path="/aanbouw/grouped" component={QuestionnaireGrouped} />
             <Route exact path="/aanbouw/*" component={QuestionnaireContainer} />
             <Route exact path="/adres" component={AddressInputResults} />
             <Route exact path="/health" />

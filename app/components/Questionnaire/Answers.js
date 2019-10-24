@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styled from '@datapunt/asc-core';
-import { Button } from '@datapunt/asc-ui';
+import { Label } from '@datapunt/asc-ui';
 
-const AnswerFooter = styled(`div`)`
+const StyledFooter = styled.div`
   margin-top: 20px;
 `;
 
@@ -15,6 +15,7 @@ const Answers = ({
   userAnswers,
   questionId,
   action,
+  onChange,
   hideFooter,
   hasRegistry,
   setAnswer,
@@ -25,37 +26,56 @@ const Answers = ({
     <>
       <div className={className}>
         {answers.map(answer => {
-          // Set answer based on previous user input
-          let backgroundColor = userAnswer && userAnswer === answer.value ? 'green' : '';
-          // Overwrite if registry answered question
-          if (hasRegistry) {
-            backgroundColor =
-              (setAnswer && answer.value === 'true') || (!setAnswer && answer.value === 'false') ? 'purple' : 'red';
-          }
+          // // Set answer based on previous user input
+          // let backgroundColor = userAnswer && userAnswer === answer.value ? 'green' : '';
+          // // Overwrite if registry answered question
+          // if (hasRegistry) {
+          //   backgroundColor =
+          //     (setAnswer && answer.value === 'true') || (!setAnswer && answer.value === 'false') ? 'purple' : 'red';
+          // }
+          const checked =
+            (userAnswer && userAnswer === answer.value) ||
+            (hasRegistry && setAnswer && answer.value === 'true') ||
+            (hasRegistry && !setAnswer && answer.value === 'false');
 
           // Check 'vergunningplichtig'
-          const requiredText = required === answer.optieText ? '*' : '';
+          // const requiredText = required === answer.optieText ? '*' : '';
+          const answerId = `${questionId}-${answer.id}`;
 
           return (
-            <Button
-              onClick={() => action(questionId, answer.value)}
-              question-id={questionId}
-              answer-id={answer.id}
-              type="submit"
-              key={answer.id}
-              style={{ backgroundColor }}
-              data-id={answer.id}
-              variant="primary"
-            >
-              {answer.optieText} {requiredText}
-            </Button>
+            <Label htmlFor={answerId} key={answerId} label={answer.optieText}>
+              <input
+                key={answer.id}
+                type="radio"
+                id={answerId}
+                name={questionId}
+                answer-id={answer.id}
+                value={answer.value}
+                data-id={answer.id}
+                style={{ marginRight: 10, height: 30 }}
+                onChange={e => {
+                  if (onChange) {
+                    onChange(e);
+                  }
+                }}
+                onClick={() => action && action(questionId, answer.value)}
+                checked={checked}
+                disabled="disabled"
+              />
+            </Label>
           );
         })}
       </div>
-      {!hideFooter && required && <AnswerFooter>* Vergunning nodig</AnswerFooter>}
+      {!hideFooter && required && <StyledFooter>* Vergunning nodig</StyledFooter>}
     </>
   );
 };
+
+const StyledAnswers = styled(Answers)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 
 Answers.propTypes = {
   className: PropTypes.string,
@@ -64,15 +84,10 @@ Answers.propTypes = {
   userAnswers: PropTypes.object,
   questionId: PropTypes.string,
   action: PropTypes.func,
+  onChange: PropTypes.func,
   hideFooter: PropTypes.bool,
   hasRegistry: PropTypes.bool,
   setAnswer: PropTypes.bool,
 };
-
-const StyledAnswers = styled(Answers)`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
 
 export default StyledAnswers;
