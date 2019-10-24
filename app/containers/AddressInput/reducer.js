@@ -53,6 +53,9 @@ export const initialState = {
     _gebiedsgerichtwerken: {
       naam: '',
     },
+    ligging: {
+      omschrijving: '',
+    },
     verblijfsobjectidentificatie: '',
   },
   monumentLoading: false,
