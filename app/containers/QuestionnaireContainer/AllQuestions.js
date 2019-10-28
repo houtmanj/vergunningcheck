@@ -5,21 +5,26 @@ import { questionnaires } from 'shared/services/questionnaire/questionnaire';
 
 const { dePijp2018: questionnaire } = questionnaires;
 
-const Div = styled(`div`)`
+const AllQuestionsContainer = styled(`ol`)`
   margin: 20px 0;
-  white-space: nowrap;
+  max-width: 100%;
+`;
+const QuestionContainer = styled(`li`)`
+  margin: 20px 0;
 `;
 
 const { uitvoeringsregels } = questionnaire;
 const AllQuestions = () => {
-  const questions = uitvoeringsregels.map((rule, index) => (
-    <Div key={rule.vraagTekst}>
-      {`${index}: ${rule.id}`}: <strong>{rule.vraagTekst}</strong>
-    </Div>
+  const questions = uitvoeringsregels.map(rule => (
+    <QuestionContainer key={rule.vraagTekst}>
+      {rule.id}: <strong>{rule.vraagTekst}</strong>
+      <br />
+      {rule.toelichting && `Toelichting: ${rule.toelichting}`}
+    </QuestionContainer>
   ));
 
   // TOTAAL
-  return <div>{questions}</div>;
+  return <AllQuestionsContainer>{questions}</AllQuestionsContainer>;
 };
 
 export default AllQuestions;
