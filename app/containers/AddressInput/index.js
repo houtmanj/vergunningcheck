@@ -8,7 +8,7 @@ import history from 'utils/history';
 import { Question, Answers } from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
 import { AddressResult, AddressInputFields, AddressInputErrors } from 'components/AddressInput/';
-import { isDevelopment } from 'shared/services/environment';
+// import { isDevelopment } from 'shared/services/environment';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressInputFields = styled(AddressInputFields)`
@@ -173,6 +173,7 @@ class AddressInput extends React.Component {
     const {
       _display: addressLine1,
       _gemeente: { _display: city },
+      ligging: { omschrijving: buildingType },
     } = bagStatus;
 
     const loading = streetNameLoading || bagLoading;
@@ -220,35 +221,39 @@ class AddressInput extends React.Component {
         )}
         <Navigation showNext />
 
-        {isDevelopment && (
-          <>
-            <AddressResult loading={monumentLoading} title="Voorbeeld postcodes:">
-              <p>
-                1074VE = De Pijp <br />
-                1079VR = Rivierenbuurt
-              </p>
-            </AddressResult>
+        {/* {isDevelopment && ( */}
+        <>
+          <AddressResult loading={monumentLoading} title="Voorbeeld postcodes:">
+            <p>
+              1074VE = De Pijp <br />
+              1079VR = Rivierenbuurt
+            </p>
+          </AddressResult>
 
-            <AddressResult loading={monumentLoading} title="Monument:">
-              {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
-            </AddressResult>
+          <AddressResult loading={monumentLoading} title="Monument:">
+            {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
+          </AddressResult>
 
-            <AddressResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
-              {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
-            </AddressResult>
+          <AddressResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
+            {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
+          </AddressResult>
 
-            <AddressResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
-              {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
-              {bestemmingsplanStatus.length > 0 && (
-                <ul>
-                  {bestemmingsplanStatus.map(bestemmingsplan => (
-                    <li key={bestemmingsplan.text}>{bestemmingsplan.text}</li>
-                  ))}
-                </ul>
-              )}
-            </AddressResult>
-          </>
-        )}
+          <AddressResult loading={bagLoading} title="Type gebouw:">
+            {buildingType || '...'}
+          </AddressResult>
+
+          <AddressResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
+            {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
+            {bestemmingsplanStatus.length > 0 && (
+              <ul>
+                {bestemmingsplanStatus.map(bestemmingsplan => (
+                  <li key={bestemmingsplan.text}>{bestemmingsplan.text}</li>
+                ))}
+              </ul>
+            )}
+          </AddressResult>
+        </>
+        {/* )} */}
       </Question>
     );
   }
@@ -261,6 +266,7 @@ AddressInput.defaultProps = {
     _gemeente: {
       _display: '',
     },
+    ligging: { omschrijving: '' },
     _buurtcombinatie: {
       naam: '',
     },
@@ -281,6 +287,9 @@ AddressInput.propTypes = {
     _display: PropTypes.string,
     _buurtcombinatie: PropTypes.shape({
       naam: PropTypes.string,
+    }),
+    ligging: PropTypes.shape({
+      omschrijving: PropTypes.string,
     }),
     _gebiedsgerichtwerken: PropTypes.shape({
       naam: PropTypes.string,
