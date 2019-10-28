@@ -243,6 +243,7 @@ class QuestionnaireContainer extends React.Component {
         cond,
         type,
         toelichting: paragraph,
+        langeToelichting: modalText,
         registerbevraging: registryQuestion,
       } = question;
 
@@ -275,7 +276,13 @@ class QuestionnaireContainer extends React.Component {
       const setAnswer = !!(registryQuestion === 'monument' && monumentStatus !== '');
 
       return (
-        <Question headingDataId={questionId} heading={questionText} paragraph={paragraph} onSubmit={this.handleSubmit}>
+        <Question
+          headingDataId={questionId}
+          heading={questionText}
+          paragraph={paragraph}
+          modalText={modalText}
+          onSubmit={this.handleSubmit}
+        >
           <div>ID: {questionId}</div>
           <div>questionIndex: {questionIndex}</div>
           <br />
