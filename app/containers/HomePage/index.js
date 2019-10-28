@@ -17,9 +17,8 @@ import Navigation from 'components/Navigation';
 const HomePageText = () => (
   <>
     <p>
-      Met de vergunningchecker ziet u snel of u een omgevingsvergunning moet aanvragen. Ook kunt u kijken waar uw
-      bouwwerk aan moet voldoen zodat u geen vergunning nodig heeft voor uw bouwwerk. Als u een omgevingsvergunning moet
-      aanvragen, ziet u wat uw vervolgstappen zijn.
+      Met de vergunningchecker ziet u of u een omgevingsvergunning nodig hebt. Als u alle vragen beantwoord heeft, geeft
+      u dat inzicht waar u rekening mee moet houden.
     </p>
     <div>
       <h3>Proclaimer</h3>
