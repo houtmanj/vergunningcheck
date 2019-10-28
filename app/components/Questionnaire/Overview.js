@@ -34,10 +34,10 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
       <Change>Wijzig</Change>
     </MainWrapper>
 
-    {uitvoeringsregels.map((regel, index) => {
-      // if (regel.type === 'decision') return null;
-      const userAnswerValue = userAnswers[regel.id];
-      const userAnswer = regel.antwoordOpties
+    {uitvoeringsregels.map((rule, index) => {
+      // if (rule.type === 'decision') return null;
+      const userAnswerValue = userAnswers[rule.id];
+      const userAnswer = rule.antwoordOpties
         .filter(antwoord => antwoord.value === userAnswerValue)
         .map(antwoord => antwoord.optieText);
 
@@ -47,16 +47,18 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
         return null;
       }
 
-      // const required = regel.vergunningplichtig;
+      // const required = rule.vergunningplichtig;
       // const resultText = requiredText === answerText ? `⚠️` : `✅`;
 
       return (
-        <Wrapper key={regel.id}>
-          <Question key={regel.vraagTekst}>
-            {index + 1}: {regel.vraagTekst}
+        <Wrapper key={rule.id}>
+          <Question key={rule.vraagTekst}>
+            {rule.vraagTekst}
+            <br />
+            {rule.toelichting && rule.toelichting}
             <p>
               <em>
-                {index + 1}: {regel.id}
+                {index + 1}: {rule.id}
               </em>
             </p>
           </Question>
@@ -68,7 +70,7 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
           </UserAnswer>
           {/* <Result key={resultText}>{resultText}</Result> */}
           <Change>
-            <button onClick={() => onGoToQuestion(regel.id)} type="button" href="#" key={regel.id}>
+            <button onClick={() => onGoToQuestion(rule.id)} type="button" href="#" key={rule.id}>
               Wijzig
             </button>
           </Change>
