@@ -19,7 +19,13 @@ const AllQuestions = () => {
     <QuestionContainer key={rule.vraagTekst}>
       {rule.id}: <strong>{rule.vraagTekst}</strong>
       <br />
+      <br />
       {rule.toelichting && `Toelichting: ${rule.toelichting}`}
+      {rule.langeToelichting && (
+        <>
+          <br /> <br /> Lange toelichting: {rule.langeToelichting}
+        </>
+      )}
     </QuestionContainer>
   ));
 
