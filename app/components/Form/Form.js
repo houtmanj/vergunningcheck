@@ -2,9 +2,8 @@ import styled from '@datapunt/asc-core';
 
 const Form = styled.form`
   display: flex;
-  margin-top: 20px;
+  width: 100%;
   flex-direction: column;
-  flex-grow: 1;
 `;
 
 export default Form;

@@ -191,7 +191,6 @@ class QuestionnaireContainer extends React.Component {
     if (!hasBestemmingsplan) {
       return (
         <Question
-          headingDataId="bestemmingsplan"
           heading="Er is geen bestemmingsplan gevonden. Welk bestemmingsplan wilt u gebruiken?"
           paragraph="Kies een bestemmingsplan waar u mee wilt werken."
           onSubmit={this.handleSubmit}
@@ -276,13 +275,7 @@ class QuestionnaireContainer extends React.Component {
       const setAnswer = !!(registryQuestion === 'monument' && monumentStatus !== '');
 
       return (
-        <Question
-          headingDataId={questionId}
-          heading={questionText}
-          paragraph={paragraph}
-          modalText={modalText}
-          onSubmit={this.handleSubmit}
-        >
+        <Question heading={questionText} paragraph={paragraph} modalText={modalText} onSubmit={this.handleSubmit}>
           <div>ID: {questionId}</div>
           <div>questionIndex: {questionIndex}</div>
           <br />
