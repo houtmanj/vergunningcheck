@@ -6,7 +6,14 @@ import history from 'utils/history';
 import styled from '@datapunt/asc-core';
 
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
-import { Content, Overview, Question, Answers, PrefilledAnswerText } from 'components/Questionnaire';
+import {
+  Content,
+  Overview,
+  Question,
+  Answers,
+  PrefilledAnswerText,
+  // ImageContainer,
+} from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
 import { fetchQuestionnaire } from './actions';
 
@@ -195,6 +202,7 @@ class QuestionnaireContainer extends React.Component {
           paragraph="Kies een bestemmingsplan waar u mee wilt werken."
           onSubmit={this.handleSubmit}
         >
+          {/* <ImageContainer /> */}
           <Answers
             questionId="bestemmingsplan"
             answers={[

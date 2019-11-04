@@ -10,35 +10,13 @@
  */
 
 import React from 'react';
-import styled from '@datapunt/asc-core';
 import history from 'utils/history';
 import { Question } from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
-import { Heading, Paragraph, List, ListItem, Link, breakpoint } from '@datapunt/asc-ui';
-
-const ImgContainer = styled(`div`)`
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
-const StyledImg = styled(`img`)`
-  width: 100%;
-  margin-bottom: 20px;
-
-  @media screen and ${breakpoint('min-width', 'tabletS')} {
-    width: 48%;
-  }
-`;
+import { Heading, Paragraph, List, ListItem, Link } from '@datapunt/asc-ui';
 
 const HomePageText = () => (
   <>
-    <ImgContainer>
-      <StyledImg src="https://via.placeholder.com/220x151.png" />
-      <StyledImg src="https://via.placeholder.com/220x151.png" />
-      <StyledImg src="https://via.placeholder.com/220x151.png" />
-    </ImgContainer>
     <Paragraph>
       Met de vergunningchecker ziet u of u een omgevingsvergunning nodig hebt. Als u alle vragen beantwoord heeft, geeft
       u dat inzicht waar u rekening mee moet houden.
