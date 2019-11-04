@@ -11,23 +11,23 @@ Modal.propTypes = {
   modalText: PropTypes.string,
 };
 
-const Question = ({ className, heading, headingDataId, paragraph, modalText, children, ...otherProps }) => (
+const Question = ({ className, heading, headingAs, paragraph, modalText, children, ...otherProps }) => (
   <Form className={className} {...otherProps}>
-    {heading && (
-      <Heading $as="h3" data-id={headingDataId}>
-        {heading}
-      </Heading>
-    )}
+    {heading && <Heading $as={headingAs}>{heading}</Heading>}
     {paragraph && <ReactMarkdown source={paragraph} />}
     {modalText && <Modal modalText={modalText} />}
     {children}
   </Form>
 );
 
+Question.defaultProps = {
+  headingAs: 'h3',
+};
+
 Question.propTypes = {
   className: PropTypes.string,
   heading: PropTypes.string,
-  headingDataId: PropTypes.string,
+  headingAs: PropTypes.string,
   paragraph: PropTypes.string,
   modalText: PropTypes.string,
   children: PropTypes.any,

@@ -1,67 +1,77 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import history from 'utils/history';
-import { Row, Column, Header as HeaderComp, MenuInline, MenuItem, MenuButton, MenuFlyOut } from '@datapunt/asc-ui';
+import styled from '@datapunt/asc-core';
+import {
+  Header as HeaderComp,
+  MenuInline,
+  MenuItem,
+  MenuButton,
+  // MenuToggle,
+} from '@datapunt/asc-ui';
 
 import './style.scss';
 
+const StyledHeader = styled(HeaderComp)`
+  max-width: 960px;
+`;
+
+const StyledMenuInline = styled(MenuInline)`
+  margin-left: -10px;
+`;
+
+const pages = {
+  intro: '/aanbouw/inleiding',
+  location: '/aanbouw/locatie',
+  questions: '/aanbouw/vragen',
+  overview: '/aanbouw/conclusie',
+};
+
+const MenuChildren = () => {
+  const { pathname } = useLocation();
+
+  return (
+    <>
+      <MenuItem>
+        <MenuButton onClick={() => history.push(pages.intro)} active={pathname === pages.intro}>
+          Inleiding
+        </MenuButton>
+      </MenuItem>
+      <MenuItem>
+        <MenuButton onClick={() => history.push(pages.location)} active={pathname === pages.location}>
+          Locatie
+        </MenuButton>
+      </MenuItem>
+      <MenuItem>
+        <MenuButton onClick={() => history.push(pages.questions)} active={pathname === pages.questions}>
+          Vragen
+        </MenuButton>
+      </MenuItem>
+      <MenuItem>
+        <MenuButton onClick={() => history.push(pages.overview)} active={pathname === pages.overview}>
+          Conclusie
+        </MenuButton>
+      </MenuItem>
+    </>
+  );
+};
+
 export const Header = () => (
-  <Row halign="center" valign="center" debug={false}>
-    <Column wrap alignSelf="flex-start" span={{ small: 1, medium: 2, big: 6, large: 12, xLarge: 12 }}>
-      <HeaderComp
-        tall
-        title="Vergunningchecker aanbouw"
-        backgroundColor="#fff"
-        homeLink="/"
-        fullWidth
-        navigation={
-          <MenuInline>
-            <MenuItem>
-              <MenuButton $as="a" onClick={() => history.push('/aanbouw/inleiding')}>
-                Inleiding
-              </MenuButton>
-            </MenuItem>
-            <MenuItem>
-              <MenuButton $as="a" onClick={() => history.push('/aanbouw/locatie')}>
-                Locatie
-              </MenuButton>
-            </MenuItem>
-            <MenuItem>
-              <MenuButton $as="a" onClick={() => history.push('/aanbouw/vragen')}>
-                Vragen
-              </MenuButton>
-            </MenuItem>
-            <MenuItem>
-              <MenuButton $as="a" onClick={() => history.push('/aanbouw/conclusie')}>
-                Conclusie
-              </MenuButton>
-            </MenuItem>
-            <MenuFlyOut label="Debugging">
-              <MenuItem>
-                <MenuButton $as="a" onClick={() => history.push('/aanbouw/alle-vragen')}>
-                  Alle vragen
-                </MenuButton>
-              </MenuItem>
-              <MenuItem>
-                <MenuButton $as="a" onClick={() => history.push('/aanbouw/alle-routes')}>
-                  Alle routes
-                </MenuButton>
-              </MenuItem>
-              <MenuItem>
-                <MenuButton $as="a" onClick={() => history.push('/adres/')}>
-                  Adres informatie
-                </MenuButton>
-              </MenuItem>
-              <MenuItem>
-                <MenuButton $as="a" onClick={() => history.push('/aanbouw/grouped')}>
-                  Grouped decision
-                </MenuButton>
-              </MenuItem>
-            </MenuFlyOut>
-          </MenuInline>
-        }
-      />
-    </Column>
-  </Row>
+  <StyledHeader
+    tall
+    backgroundColor="#fff"
+    homeLink="/"
+    navigation={
+      <>
+        <StyledMenuInline showAt="tabletM">
+          <MenuChildren />
+        </StyledMenuInline>
+        {/* <MenuToggle hideAt="tabletM">
+          <MenuChildren />
+        </MenuToggle> */}
+      </>
+    }
+  />
 );
 
 export default Header;

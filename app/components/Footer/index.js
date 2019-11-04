@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@datapunt/asc-core';
 
 import {
   Footer as FooterComp,
@@ -20,23 +21,18 @@ import {
 const ColofonLinks = () => (
   <FooterLinkList>
     <FooterLinkListItem>
-      <Link href="/" variant="with-chevron">
-        Over deze site
+      <Link href="/aanbouw/alle-vragen" variant="with-chevron">
+        Alle vragen
       </Link>
     </FooterLinkListItem>
     <FooterLinkListItem>
-      <Link href="/" variant="with-chevron">
-        Over OIS
+      <Link href="/aanbouw/alle-routes" variant="with-chevron">
+        Alle routes
       </Link>
     </FooterLinkListItem>
     <FooterLinkListItem>
-      <Link href="/" variant="with-chevron">
-        Databeleid
-      </Link>
-    </FooterLinkListItem>
-    <FooterLinkListItem>
-      <Link href="/" variant="with-chevron">
-        Bronnen
+      <Link href="/adres/" variant="with-chevron">
+        Adres informatie
       </Link>
     </FooterLinkListItem>
   </FooterLinkList>
@@ -103,72 +99,80 @@ const HelpLinks = () => (
   </>
 );
 
-// import './style.scss';
+const ContentContainer = styled(`div`)`
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+`;
 
 const Footer = () => (
   <FooterComp>
     <FooterTop>
-      <Row>
-        <Column wrap span={{ small: 1, medium: 2, big: 2, large: 4, xLarge: 4 }}>
-          <>
-            <FooterToggle title="Colofon" hideAt="tabletM">
-              <FooterContent indent>
+      <ContentContainer>
+        <Row>
+          <Column wrap span={{ small: 1, medium: 2, big: 2, large: 4, xLarge: 4 }}>
+            <>
+              <FooterToggle title="Ontwikkeling" hideAt="tabletM">
+                <FooterContent indent>
+                  <ColofonLinks />
+                </FooterContent>
+              </FooterToggle>
+              <FooterContent showAt="tabletM">
+                <FooterHeading $as="h3">Ontwikkeling</FooterHeading>
                 <ColofonLinks />
               </FooterContent>
-            </FooterToggle>
-            <FooterContent showAt="tabletM">
-              <FooterHeading $as="h3">Colofon</FooterHeading>
-              <ColofonLinks />
-            </FooterContent>
-          </>
-        </Column>
-        <Column wrap span={{ small: 1, medium: 2, big: 2, large: 4, xLarge: 4 }}>
-          <>
-            <FooterToggle title="Volg de gemeente" hideAt="tabletM">
-              <FooterContent indent>
+            </>
+          </Column>
+          <Column wrap span={{ small: 1, medium: 2, big: 2, large: 4, xLarge: 4 }}>
+            <>
+              <FooterToggle title="Volg de gemeente" hideAt="tabletM">
+                <FooterContent indent>
+                  <FollowLinks />
+                </FooterContent>
+              </FooterToggle>
+              <FooterContent showAt="tabletM">
+                <FooterHeading $as="h3">Volg de gemeente</FooterHeading>
                 <FollowLinks />
               </FooterContent>
-            </FooterToggle>
-            <FooterContent showAt="tabletM">
-              <FooterHeading $as="h3">Volg de gemeente</FooterHeading>
-              <FollowLinks />
-            </FooterContent>
-          </>
-        </Column>
-        <Column wrap span={{ small: 1, medium: 2, big: 2, large: 4, xLarge: 4 }}>
-          <>
-            <FooterToggle title="Vragen?" hideAt="tabletM">
-              <FooterContent indent>
+            </>
+          </Column>
+          <Column wrap span={{ small: 1, medium: 2, big: 2, large: 4, xLarge: 4 }}>
+            <>
+              <FooterToggle title="Vragen?" hideAt="tabletM">
+                <FooterContent indent>
+                  <HelpLinks />
+                </FooterContent>
+              </FooterToggle>
+              <FooterContent showAt="tabletM">
+                <FooterHeading $as="h3" styleAs="h3">
+                  Vragen?
+                </FooterHeading>
                 <HelpLinks />
               </FooterContent>
-            </FooterToggle>
-            <FooterContent showAt="tabletM">
-              <FooterHeading $as="h3" styleAs="h3">
-                Vragen?
-              </FooterHeading>
-              <HelpLinks />
-            </FooterContent>
-          </>
-        </Column>
-      </Row>
+            </>
+          </Column>
+        </Row>
+      </ContentContainer>
     </FooterTop>
     <FooterBottom>
-      <Row>
-        <Column wrap span={{ small: 1, medium: 2, big: 6, large: 10, xLarge: 10 }}>
-          <FooterBottomLinkList>
-            <FooterBottomLinkListItem>
-              <Link href="/" variant="with-chevron">
-                Privacy en cookies
-              </Link>
-            </FooterBottomLinkListItem>
-            <FooterBottomLinkListItem>
-              <Link href="/" variant="with-chevron">
-                Over deze site
-              </Link>
-            </FooterBottomLinkListItem>
-          </FooterBottomLinkList>
-        </Column>
-      </Row>
+      <ContentContainer>
+        <Row>
+          <Column wrap span={{ small: 1, medium: 2, big: 6, large: 10, xLarge: 10 }}>
+            <FooterBottomLinkList>
+              <FooterBottomLinkListItem>
+                <Link href="/" variant="with-chevron">
+                  Privacy en cookies
+                </Link>
+              </FooterBottomLinkListItem>
+              <FooterBottomLinkListItem>
+                <Link href="/" variant="with-chevron">
+                  Over deze site
+                </Link>
+              </FooterBottomLinkListItem>
+            </FooterBottomLinkList>
+          </Column>
+        </Row>
+      </ContentContainer>
     </FooterBottom>
   </FooterComp>
 );
