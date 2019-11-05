@@ -20,7 +20,6 @@ export default {
           value: 'false',
         },
       ],
-      cond: ['stadsgezicht.false', 'stadsgezicht-zichtbaar.false'],
     },
     // // Monument
     {
@@ -43,11 +42,13 @@ export default {
           value: 'false',
         },
       ],
+      cond: ['tussenpand.true'],
     },
     {
       type: 'input',
       vraagTekst: 'Gaat u bouwen in een beschermd stads- of dorpsgezicht?',
       id: 'stadsgezicht',
+
       toelichting:
         'Het gaat hier om een beschermd stads- of dorpsgezicht dat door het Rijk is aangewezen. Twijfelt u? Wilt u meer informatie? Neem dan contact op met de gemeente.',
       antwoordOpties: [
@@ -62,7 +63,7 @@ export default {
           value: 'false',
         },
       ],
-      cond: ['monument.false'],
+      cond: ['tussenpand.true', 'monument.false'],
     },
     {
       type: 'input',
@@ -97,7 +98,7 @@ export default {
           value: 'false',
         },
       ],
-      cond: ['stadsgezicht.true'],
+      cond: ['tussenpand.true', 'stadsgezicht.true'],
     },
     // // Artikel 3 Set
     {
@@ -106,7 +107,6 @@ export default {
       vraagTekst: 'Komt de aanbouw op een nieuwe (of uitgebreide) kelder of souterrain?',
       toelichting: 'De aanbouw moet direct op de grond worden gebouwd',
       child: true,
-      cond: ['tussenpand.true'],
       antwoordOpties: [
         {
           id: '1',
@@ -119,6 +119,7 @@ export default {
           value: 'false',
         },
       ],
+      cond: ['tussenpand.true', 'stadsgezicht.false', 'stadsgezicht-zichtbaar.false'],
     },
     {
       type: 'input',
@@ -128,7 +129,6 @@ export default {
         "Anders gezegd:\nGaat u de aanbouw voor hetzelfde doel gebruiken als het gebouw waar u tegenaan bouwt? Voorbeeld: u gaat de uitbouw van uw woning (gebouw met bestemming 'wonen') ook voor wonen gebruiken.",
       langeToelichting: '',
       child: true,
-      cond: ['artikel-3-vraag-1.true', 'artikel-3-vraag-1.false'],
       antwoordOpties: [
         {
           id: '1',
@@ -141,6 +141,7 @@ export default {
           value: 'false',
         },
       ],
+      cond: ['artikel-3-vraag-1.true', 'artikel-3-vraag-1.false'],
     },
     {
       type: 'input',
