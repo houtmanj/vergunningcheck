@@ -284,8 +284,8 @@ class QuestionnaireContainer extends React.Component {
 
       return (
         <Question heading={questionText} paragraph={paragraph} modalText={modalText} onSubmit={this.handleSubmit}>
-          <div>ID: {questionId}</div>
-          <div>questionIndex: {questionIndex}</div>
+          {/* <div>ID: {questionId}</div> */}
+          {/* <div>questionIndex: {questionIndex}</div> */}
           <br />
           {hasPrefilledAnswer && <PrefilledAnswerText />}
           <Answers

@@ -29,7 +29,7 @@ export default {
       vraagTekst: 'Gaat u bouwen aan (op, of bij) een monument?',
       toelichting:
         'Deze vraag is al door de gemeente beantwoord, op basis van de gegevens die bij ons bekend zijn. Het is mogelijk dat een gebouw nog niet geregistreerd staat als monument, maar al wel beschermd wordt. Wanneer u denkt dat het antwoord van de gemeente niet klopt, kunt u dit aanpassen. Twijfelt u? Wilt u meer informatie? Neem contact op met de gemeente.',
-      langeToelichting: 'Lange toelichting test @todo: deze tekst er uit halen',
+      langeToelichting: '',
       registerbevraging: 'monument',
       antwoordOpties: [
         {
