@@ -2,6 +2,26 @@ export default {
   id: '_8743984',
   name: 'Conclusie vergunningscheck Aanbouw (De Pijp)',
   uitvoeringsregels: [
+    // // Tussenpand
+    {
+      type: 'input',
+      vraagTekst: 'Is het gebouw een tussenpand?',
+      toelichting: '',
+      id: 'tussenpand',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+          value: 'true',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+          value: 'false',
+        },
+      ],
+      cond: ['stadsgezicht.false', 'stadsgezicht-zichtbaar.false'],
+    },
     // // Monument
     {
       id: 'monument',
@@ -64,32 +84,13 @@ export default {
       ],
       cond: ['stadsgezicht.true'],
     },
-    {
-      type: 'input',
-      vraagTekst: 'Is de woning een tussenwoning?',
-      toelichting: '',
-      id: 'tussenwoning',
-      antwoordOpties: [
-        {
-          id: '1',
-          optieText: 'Ja',
-          value: 'true',
-        },
-        {
-          id: '2',
-          optieText: 'Nee',
-          value: 'false',
-        },
-      ],
-      cond: ['stadsgezicht.false', 'stadsgezicht-zichtbaar.false'],
-    },
     // // Artikel 3 Set
     {
       type: 'input',
       vraagTekst: 'Wordt de hoogte van de aanbouw hoger dan 5 m?',
       id: 'artikel-3-vraag-1',
       child: true,
-      cond: ['tussenwoning.true'],
+      cond: ['tussenpand.true'],
       antwoordOpties: [
         {
           id: '1',
@@ -973,25 +974,25 @@ export default {
   uitkomsten: [
     {
       label: '1) Vergunning nodig: Bouwvergunning, Wijzigen Monument',
-      cond: ['monument.true', 'bestemmingsplan-conclusie.true'],
+      cond: ['tussenpand.true', 'monument.true', 'bestemmingsplan-conclusie.true'],
     },
     {
       label: '2) Vergunning nodig: Bouwvergunning, Wijzigen Monument, Afwijken bestemmingsplan',
-      cond: ['monument.true', 'bestemmingsplan-conclusie.false'],
+      cond: ['tussenpand.true', 'monument.true', 'bestemmingsplan-conclusie.false'],
     },
     {
       label: '3) Vergunning nodig: Bouwen',
-      cond: ['stadsgezicht-zichtbaar.true', 'bestemmingsplan-conclusie.true'],
+      cond: ['tussenpand.true', 'stadsgezicht-zichtbaar.true', 'bestemmingsplan-conclusie.true'],
     },
     {
       label: '4) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
-      cond: ['stadsgezicht-zichtbaar.true', 'bestemmingsplan-conclusie.false'],
+      cond: ['tussenpand.true', 'stadsgezicht-zichtbaar.true', 'bestemmingsplan-conclusie.false'],
     },
     {
       label: '5) Vergunning nodig: NEE 😁',
       cond: [
+        'tussenpand.true',
         'stadsgezicht-zichtbaar.false',
-        'tussenwoning.true',
         'artikel-3-conclusie.true',
         'bestemmingsplan-conclusie.true',
       ],
@@ -999,57 +1000,53 @@ export default {
     {
       label: '6) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
       cond: [
+        'tussenpand.true',
         'stadsgezicht-zichtbaar.false',
-        'tussenwoning.true',
         'artikel-3-conclusie.true',
         'bestemmingsplan-conclusie.false',
       ],
     },
     {
       label: '7) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
-      cond: ['stadsgezicht-zichtbaar.false', 'tussenwoning.true', 'artikel-3-conclusie.false'],
+      cond: ['tussenpand.true', 'stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.false'],
     },
     {
       label: '8) Vergunning nodig: Bouwen, Afwijken bestemmingsplan',
-      cond: ['stadsgezicht.false', 'tussenwoning.true', 'artikel-3-conclusie.false'],
+      cond: ['tussenpand.true', 'stadsgezicht.false', 'artikel-3-conclusie.false'],
     },
     {
       label: '9) Vergunning nodig: NEE 😁',
-      cond: ['artikel-2-specifiek.true', 'tussenwoning.true', 'artikel-2-conclusie.true'],
+      cond: ['tussenpand.true', 'artikel-2-specifiek.true', 'artikel-2-conclusie.true'],
     },
     {
       label: '10) Vergunning nodig: NEE 😁',
-      cond: ['artikel-2-specifiek.false', 'tussenwoning.true', 'bestemmingsplan-conclusie.true'],
+      cond: ['tussenpand.true', 'artikel-2-specifiek.false', 'bestemmingsplan-conclusie.true'],
     },
     {
       label: '11) Vergunning nodig: NEE 😁',
       cond: [
+        'tussenpand.true',
         'artikel-2-specifiek.true',
-        'tussenwoning.true',
         'artikel-2-conclusie.false',
         'bestemmingsplan-conclusie.true',
       ],
     },
     {
       label: '12) Vergunning nodig: Afwijken bestemmingsplan',
-      cond: ['artikel-2-specifiek.false', 'tussenwoning.true', 'bestemmingsplan-conclusie.false'],
+      cond: ['tussenpand.true', 'artikel-2-specifiek.false', 'bestemmingsplan-conclusie.false'],
     },
     {
       label: '13) Vergunning nodig: Afwijken bestemmingsplan',
       cond: [
+        'tussenpand.true',
         'artikel-2-specifiek.true',
         'artikel-2-conclusie.false',
-        'tussenwoning.true',
         'bestemmingsplan-conclusie.false',
       ],
     },
     {
       label: '14) Neem contact op met de gemeente',
-      cond: ['stadsgezicht.false', 'tussenwoning.false'],
-    },
-    {
-      label: '15) Neem contact op met de gemeente',
-      cond: ['stadsgezicht.true', 'tussenwoning.false'],
+      cond: ['tussenpand.false'],
     },
   ],
 };
