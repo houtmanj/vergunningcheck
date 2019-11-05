@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import styled from '@datapunt/asc-core';
 
 import { questionnaires } from 'shared/services/questionnaire/questionnaire';
@@ -17,15 +18,11 @@ const { uitvoeringsregels } = questionnaire;
 const AllQuestions = () => {
   const questions = uitvoeringsregels.map(rule => (
     <QuestionContainer key={rule.vraagTekst}>
-      {rule.id}: <strong>{rule.vraagTekst}</strong>
+      {rule.id}:<br />
       <br />
-      <br />
-      {rule.toelichting && `Toelichting: ${rule.toelichting}`}
-      {rule.langeToelichting && (
-        <>
-          <br /> <br /> Lange toelichting: {rule.langeToelichting}
-        </>
-      )}
+      <strong>{rule.vraagTekst}</strong>
+      {rule.toelichting && <ReactMarkdown source={rule.toelichting} />}
+      {rule.langeToelichting && <ReactMarkdown source={rule.langeToelichting} />}
     </QuestionContainer>
   ));
 
