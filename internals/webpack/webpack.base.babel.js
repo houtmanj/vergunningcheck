@@ -30,6 +30,9 @@ module.exports = options => ({
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
           // query: {
           //   presets: ['react', 'es2015'],
           // },
