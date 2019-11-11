@@ -63,7 +63,7 @@ export default {
           value: 'false',
         },
       ],
-      cond: ['tussenpand.true', 'monument.false'],
+      cond: ['monument.false'],
     },
     {
       type: 'input',
@@ -98,7 +98,7 @@ export default {
           value: 'false',
         },
       ],
-      cond: ['tussenpand.true', 'stadsgezicht.true'],
+      cond: ['stadsgezicht.true'],
     },
     // // Artikel 3 Set
     {
@@ -119,7 +119,7 @@ export default {
           value: 'false',
         },
       ],
-      cond: ['tussenpand.true', 'stadsgezicht.false', 'stadsgezicht-zichtbaar.false'],
+      cond: ['stadsgezicht.false', 'stadsgezicht-zichtbaar.false'],
     },
     {
       type: 'input',
