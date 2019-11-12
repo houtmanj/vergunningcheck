@@ -12,7 +12,6 @@
 import React from 'react';
 import history from 'utils/history';
 import { Question } from 'components/Questionnaire';
-import Navigation from 'components/Navigation';
 import { Heading, Paragraph, List, ListItem, Link } from '@datapunt/asc-ui';
 
 const HomePageText = () => (
@@ -70,9 +69,8 @@ const HomePageText = () => (
 );
 
 const HomePage = () => (
-  <Question heading="Inleiding" headingAs="h2" onSubmit={() => history.push('/aanbouw/locatie')}>
+  <Question heading="Inleiding" headingAs="h2" onSubmit={() => history.push('/aanbouw/locatie')} showNext>
     <HomePageText />
-    <Navigation showNext />
   </Question>
 );
 
