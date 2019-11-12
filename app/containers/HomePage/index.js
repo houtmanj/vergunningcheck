@@ -37,35 +37,35 @@ const HomePageText = () => (
         U kunt de vergunningchecker alleen gebruiken voor <em>tussenwoningen</em>
       </ListItem>
       <ListItem>De vergunningchecker voldoet nog niet aan de Web Content Accessibilty Guidelines.</ListItem>
-      <ListItem>
-        Nog niet alle regels zijn in de vergunningchecker verwerkt. Een deel van de regels uit het Besluit
-        Omgevingsrecht (Bor) is nog niet verwerkt:
-      </ListItem>
-      <List variant="bullet">
-        <ListItem>
-          De vergunningchecker geldt op het moment alleen voor bouwwerken direct achter het hoofdgebouw. Bouwwerken op
-          een afstand groter dan 4 meter achter de achtergevel zijn nog niet mogelijk binnen de vergunningchecker
-          (artikel 2 onderdeel 3 sub b van Bijlage II Bor).
-        </ListItem>
-        <ListItem>
-          De regels over het toenemen van het aantal woningen, mantelzorg, illegale bouwwerken, veiligheidszones en
-          archeologische monumentenzorg zijn nog niet meegenomen (artikel 5 van Bijlage II Bor).
-        </ListItem>
-        <ListItem>
-          De regels over mantelzorg, inwendige scheidingsconstructie en functionele verbondenheid zijn nog niet
-          meegenomen (artikel 7 van Bijlage II Bor).
-        </ListItem>
-      </List>
-      <Paragraph>
-        De precieze tekst van deze artikelen is te vinden in{' '}
-        <Link
-          href="https://wetten.overheid.nl/jci1.3:c:BWBR0027464&amp;bijlage=II&amp;z=2019-07-01&amp;g=2019-07-01"
-          target="_blank"
-        >
-          Bijlage II bij het Besluit Omgevingsrecht
-        </Link>
-      </Paragraph>
     </List>
+    <Paragraph>
+      Nog niet alle regels zijn in de vergunningchecker verwerkt. Een deel van de regels uit het Besluit Omgevingsrecht
+      (Bor) is nog niet verwerkt:
+    </Paragraph>
+    <List variant="bullet">
+      <ListItem>
+        De vergunningchecker geldt op het moment alleen voor bouwwerken direct achter het hoofdgebouw. Bouwwerken op een
+        afstand groter dan 4 meter achter de achtergevel zijn nog niet mogelijk binnen de vergunningchecker (artikel 2
+        onderdeel 3 sub b van Bijlage II Bor).
+      </ListItem>
+      <ListItem>
+        De regels over het toenemen van het aantal woningen, mantelzorg, illegale bouwwerken, veiligheidszones en
+        archeologische monumentenzorg zijn nog niet meegenomen (artikel 5 van Bijlage II Bor).
+      </ListItem>
+      <ListItem>
+        De regels over mantelzorg, inwendige scheidingsconstructie en functionele verbondenheid zijn nog niet meegenomen
+        (artikel 7 van Bijlage II Bor).
+      </ListItem>
+    </List>
+    <Paragraph>
+      De precieze tekst van deze artikelen is te vinden in{' '}
+      <Link
+        href="https://wetten.overheid.nl/jci1.3:c:BWBR0027464&amp;bijlage=II&amp;z=2019-07-01&amp;g=2019-07-01"
+        target="_blank"
+      >
+        Bijlage II bij het Besluit Omgevingsrecht
+      </Link>
+    </Paragraph>
   </>
 );
 
