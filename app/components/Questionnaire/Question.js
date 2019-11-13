@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import useForm from 'react-hook-form';
 import { Heading } from '@datapunt/asc-ui';
 
+import { ExplanationModal } from 'components/Modal';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import Answers from './Answers';
@@ -11,12 +12,6 @@ import Answers from './Answers';
 const hasKeys = obj =>
   // convert to array, map, and then give the length
   Object.entries(obj).map(([key, value]) => [key, value]).length;
-
-const Modal = props => <div style={{ border: '1px solid red', marginBottom: 20 }}>{props.modalText}</div>;
-
-Modal.propTypes = {
-  modalText: PropTypes.string,
-};
 
 const Question = ({
   questionId,
@@ -72,7 +67,7 @@ const Question = ({
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
       {heading && <Heading $as={headingAs}>{heading}</Heading>}
       {paragraph && <ReactMarkdown source={paragraph} />}
-      {modalText && <Modal modalText={modalText} />}
+      {modalText && <ExplanationModal modalText={modalText} />}
       {errors[questionId] && errors[questionId].message}
       <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
       {children}
