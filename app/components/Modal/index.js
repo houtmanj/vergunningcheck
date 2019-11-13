@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Divider, Heading, Icon, Paragraph, TopBar, Modal } from '@datapunt/asc-ui';
+import { Button, Divider, Heading, Icon, TopBar, Modal } from '@datapunt/asc-ui';
 import { Close } from '@datapunt/asc-assets';
+import ReactMarkdown from 'react-markdown';
 import styled from '@datapunt/asc-core';
 import PropTypes from 'prop-types';
 
@@ -38,7 +39,7 @@ const ToelichtingModal = ({ modalText }) => {
           </TopBar>
           <Divider />
           <ModalBlock>
-            <Paragraph>{modalText}</Paragraph>
+            <ReactMarkdown source={modalText} />
           </ModalBlock>
         </div>
       </Modal>
