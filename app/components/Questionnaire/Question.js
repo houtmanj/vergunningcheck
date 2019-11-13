@@ -3,18 +3,14 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { Heading } from '@datapunt/asc-ui';
 
-import Modal from 'components/Modal';
+import { ExplanationModal } from 'components/Modal';
 import Form from 'components/Form/Form';
-
-Modal.propTypes = {
-  modalText: PropTypes.string,
-};
 
 const Question = ({ className, heading, headingAs, paragraph, modalText, children, ...otherProps }) => (
   <Form className={className} {...otherProps}>
     {heading && <Heading $as={headingAs}>{heading}</Heading>}
     {paragraph && <ReactMarkdown source={paragraph} />}
-    {modalText && <Modal modalText={modalText} />}
+    {modalText && <ExplanationModal modalText={modalText} />}
     {children}
   </Form>
 );
