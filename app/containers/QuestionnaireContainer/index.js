@@ -4,16 +4,10 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import history from 'utils/history';
 import styled from '@datapunt/asc-core';
+import { Container, Row } from '@datapunt/asc-ui';
 
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
-import {
-  Content,
-  Overview,
-  Question,
-  Answers,
-  PrefilledAnswerText,
-  // ImageContainer,
-} from 'components/Questionnaire';
+import { Content, Overview, Question, Answers, PrefilledAnswerText, ImageContainer } from 'components/Questionnaire';
 import Navigation from 'components/Navigation';
 import { fetchQuestionnaire } from './actions';
 
@@ -191,10 +185,6 @@ class QuestionnaireContainer extends React.Component {
       return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
     }
 
-    if (loading) {
-      return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
-    }
-
     if (!hasBestemmingsplan) {
       return (
         <Question
@@ -202,7 +192,6 @@ class QuestionnaireContainer extends React.Component {
           paragraph="Kies een bestemmingsplan waar u mee wilt werken."
           onSubmit={this.handleSubmit}
         >
-          {/* <ImageContainer /> */}
           <Answers
             questionId="bestemmingsplan"
             answers={[
@@ -248,6 +237,7 @@ class QuestionnaireContainer extends React.Component {
         antwoordOpties: answers,
         vergunningplichtig: required,
         cond,
+        media,
         type,
         toelichting: paragraph,
         langeToelichting: modalText,
@@ -286,6 +276,13 @@ class QuestionnaireContainer extends React.Component {
         <Question heading={questionText} paragraph={paragraph} modalText={modalText} onSubmit={this.handleSubmit}>
           {/* <div>ID: {questionId}</div> */}
           {/* <div>questionIndex: {questionIndex}</div> */}
+          {media && (
+            <Container>
+              <Row>
+                <ImageContainer media={media} />
+              </Row>
+            </Container>
+          )}
           <br />
           {hasPrefilledAnswer && <PrefilledAnswerText />}
           <Answers

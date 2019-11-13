@@ -29,6 +29,12 @@ export default {
       toelichting:
         'Deze vraag is al door de gemeente beantwoord, op basis van de gegevens die bij ons bekend zijn. Het is mogelijk dat een gebouw nog niet geregistreerd staat als monument, maar al wel beschermd wordt. Wanneer u denkt dat het antwoord van de gemeente niet klopt, kunt u dit aanpassen. Twijfelt u? Wilt u meer informatie? Neem contact op met de gemeente.',
       langeToelichting: '',
+      media: [
+        { id: 1, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
+        { id: 2, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
+        { id: 3, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
+        { id: 4, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
+      ],
       registerbevraging: 'monument',
       antwoordOpties: [
         {

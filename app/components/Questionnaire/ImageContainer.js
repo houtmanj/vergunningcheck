@@ -1,37 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styled from '@datapunt/asc-core';
-import { breakpoint } from '@datapunt/asc-ui';
+import Image from 'components/Image';
 
-const Container = styled(`div`)`
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  img {
-    width: 100%;
-    margin-bottom: 20px;
-
-    @media screen and ${breakpoint('min-width', 'tabletS')} {
-      width: 48%;
-    }
-  }
-`;
-
-const ImageContainer = ({ children }) => (
-  <Container>
-    {children}
-    {/* Temp fix: */}
-    <img src="https://via.placeholder.com/220x151.png" alt="" />
-    <img src="https://via.placeholder.com/220x151.png" alt="" />
-    <img src="https://via.placeholder.com/220x151.png" alt="" />
-  </Container>
-);
+const ImageContainer = ({ media }) =>
+  media.map(image => <Image key={`media-${image.id}`} description={image.description} url={image.url} />);
 
 ImageContainer.propTypes = {
-  children: PropTypes.node,
+  media: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      description: PropTypes.string,
+    }),
+  ),
 };
 
 export default ImageContainer;
