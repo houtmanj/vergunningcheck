@@ -20,22 +20,11 @@ const getQuestionIdFromIndex = (index, questionnaire) =>
   questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
 
 class QuestionnaireContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.onGoToQuestion = this.onGoToQuestion.bind(this);
-    this.onGoToNext = this.onGoToNext.bind(this);
-    this.onGoToPrev = this.onGoToPrev.bind(this);
-    this.setBestemmingsplan = this.setBestemmingsplan.bind(this);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.state = {
-      questionIndex: 0,
-      userAnswers: {},
-      hasBestemmingsplan: false,
-    };
-  }
+  state = {
+    questionIndex: 0,
+    userAnswers: {},
+    hasBestemmingsplan: false,
+  };
 
   componentDidMount() {
     const {
@@ -51,16 +40,14 @@ class QuestionnaireContainer extends React.Component {
     }
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-  }
-
-  onGoToQuestion(questionId) {
-    const { questionnaire } = this.props;
+  onGoToQuestion = questionId => {
+    const {
+      questionnaire: { uitvoeringsregels },
+    } = this.props;
     let questionIndex = 0;
     // Used for() instead of findIndex(), because of https://stackoverflow.com/a/15998003
-    for (let i = 0; i < questionnaire.uitvoeringsregels.length; i += 1) {
-      if (questionnaire.uitvoeringsregels[i].id === questionId) {
+    for (let i = 0; i < uitvoeringsregels.length; i += 1) {
+      if (uitvoeringsregels[i].id === questionId) {
         questionIndex = i;
         break;
       }
@@ -68,9 +55,9 @@ class QuestionnaireContainer extends React.Component {
     this.setState({
       questionIndex,
     });
-  }
+  };
 
-  onGoToNext(questionId, value) {
+  onGoToNext = (questionId, value) => {
     this.setState(prevState => ({
       questionIndex: prevState.questionIndex + 1,
       userAnswers: {
@@ -78,18 +65,19 @@ class QuestionnaireContainer extends React.Component {
         [questionId]: value,
       },
     }));
-  }
+  };
 
-  setBestemmingsplan(questionId, bestemmingsplan) {
+  setBestemmingsplan = (questionId, bestemmingsplan) => {
     const { onFetchQuestionnaire } = this.props;
 
     this.setState({
       hasBestemmingsplan: true,
     });
-    onFetchQuestionnaire([{ text: bestemmingsplan }]);
-  }
 
-  onGoToPrev() {
+    onFetchQuestionnaire([{ text: bestemmingsplan }]);
+  };
+
+  onGoToPrev = () => {
     const { questionIndex, userAnswers } = this.state;
     const { questionnaire } = this.props;
     if (questionIndex < 1) {
@@ -109,13 +97,12 @@ class QuestionnaireContainer extends React.Component {
         }
       }
     }
-  }
+  };
 
   render() {
     const { questionIndex, userAnswers, hasBestemmingsplan } = this.state;
-
     const {
-      questionnaire,
+      questionnaire: { uitkomsten, uitvoeringsregels },
       loading,
       error,
       addressInput: {
@@ -164,8 +151,6 @@ class QuestionnaireContainer extends React.Component {
       );
     }
 
-    const { uitvoeringsregels } = questionnaire;
-
     if (!uitvoeringsregels) {
       return <div>Helaas zijn er geen vragenlijsten gevonden op deze locatie: {userAddress}</div>;
     }
@@ -191,7 +176,7 @@ class QuestionnaireContainer extends React.Component {
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
 
-        const isTrue = condCheck(cond, userAnswers, questionnaire.uitvoeringsregels);
+        const isTrue = condCheck(cond, userAnswers, uitvoeringsregels);
 
         if (!isTrue) {
           // the conditions are not true, so skip this question
@@ -201,7 +186,7 @@ class QuestionnaireContainer extends React.Component {
       if (type === 'decision') {
         answers.filter(a => {
           if (a.cond) {
-            const isTrue = condCheck(a.cond, userAnswers, questionnaire.uitvoeringsregels);
+            const isTrue = condCheck(a.cond, userAnswers, uitvoeringsregels);
             if (isTrue) {
               this.onGoToNext(questionId, a.value);
               return null;
@@ -211,8 +196,7 @@ class QuestionnaireContainer extends React.Component {
         });
       }
 
-      const hasRegistry = !!registryQuestion;
-      const setAnswer = !!(registryQuestion === 'monument' && monumentStatus !== '');
+      const setAnswer = registryQuestion === 'monument' && monumentStatus !== '';
 
       return (
         <Question
@@ -225,7 +209,6 @@ class QuestionnaireContainer extends React.Component {
           userAnswers={userAnswers}
           media={media}
           answers={answers}
-          hasRegistry={hasRegistry}
           setAnswer={setAnswer}
           required
           showNext
@@ -243,8 +226,8 @@ class QuestionnaireContainer extends React.Component {
           <Paragraph>
             Uitkomst:{' '}
             <strong>
-              {questionnaire.uitkomsten.map(uitkomst =>
-                areAllCondTrue(uitkomst.cond, userAnswers, questionnaire.uitvoeringsregels) ? uitkomst.label : null,
+              {uitkomsten.map(answer =>
+                areAllCondTrue(answer.cond, userAnswers, uitvoeringsregels) ? answer.label : null,
               )}
             </strong>
           </Paragraph>
