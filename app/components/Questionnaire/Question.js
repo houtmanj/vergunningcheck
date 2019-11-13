@@ -42,9 +42,14 @@ const Question = ({
           required: 'Dit veld is verplicht',
         },
       );
+
+      // Set value if question has already been answered to prevent 'fake' requirement
+      if (userAnswers && userAnswers[questionId]) {
+        setValue(questionId, userAnswers[questionId]);
+      }
     }
     return () => unregister(questionId);
-  }, [questionId, register, unregister]);
+  }, [questionId, register, unregister, setValue]);
 
   const handleChange = e => {
     if (e.target.type === 'radio') setValue(e.target.name, e.target.value);
@@ -58,10 +63,6 @@ const Question = ({
       onSubmitProp(questionId, data[questionId]);
     }
   };
-
-  if (userAnswers && userAnswers[questionId]) {
-    setValue(questionId, userAnswers[questionId]);
-  }
 
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
