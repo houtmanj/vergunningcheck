@@ -127,10 +127,7 @@ class AddressInput extends React.Component {
   }
 
   handleSubmit(questionId, answerValue) {
-    // e.preventDefault();
-
     const { bestemmingsplanStatus } = this.props;
-    // const { answerValue } = this.state;
 
     if (bestemmingsplanStatus.length > 0 && answerValue === 'true') {
       history.push('/aanbouw/vragen');

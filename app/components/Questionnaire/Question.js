@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import useForm from 'react-hook-form';
@@ -34,7 +34,7 @@ const Question = ({
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (questionId && required) {
       register(
         { name: questionId },

@@ -29,19 +29,11 @@ const Answers = ({
         {hasPrefilledAnswer && <PrefilledAnswerText />}
         {answers &&
           answers.map(answer => {
-            // // Set answer based on previous user input
-            // let backgroundColor = userAnswer && userAnswer === answer.value ? 'green' : '';
-            // // Overwrite if registry answered question
-            // if (hasRegistry) {
-            //   backgroundColor =
-            //     (setAnswer && answer.value === 'true') || (!setAnswer && answer.value === 'false') ? 'purple' : 'red';
-            // }
+            // // Set answer based on previous user input or from registry source
             const checked =
               (userAnswer && userAnswer === answer.value) ||
               (hasRegistry && setAnswer && answer.value === 'true') ||
               (hasRegistry && !setAnswer && answer.value === 'false');
-            // Check 'vergunningplichtig'
-            // const requiredText = required === answer.optieText ? '*' : '';
             const answerId = `${questionId}-${answer.id}`;
 
             return (
