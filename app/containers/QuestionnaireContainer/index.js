@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import history from 'utils/history';
+import { Paragraph, Heading } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
-import { Content, Overview, Question } from 'components/Questionnaire';
+import { Overview, Question } from 'components/Questionnaire';
 import { fetchQuestionnaire } from './actions';
 
-const StyledContent = styled(Content)`
+const StyledContent = styled(`div`)`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -124,7 +125,12 @@ class QuestionnaireContainer extends React.Component {
     } = this.props;
 
     if (loading) {
-      return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
+      return (
+        <StyledContent>
+          <Heading $as="h3">Laden...</Heading>
+          <Paragraph>Gegevens ophalen</Paragraph>
+        </StyledContent>
+      );
     }
 
     if (error) {
@@ -229,20 +235,21 @@ class QuestionnaireContainer extends React.Component {
     if (questionIndex >= uitvoeringsregels.length) {
       // OVERVIEW
       return (
-        <StyledContent heading="Controleer uw antwoorden">
-          <p>Adres: {userAddress}</p>
-          <p>
+        <StyledContent>
+          <Heading $as="h3">Controleer uw antwoorden</Heading>
+          <Paragraph>Adres: {userAddress}</Paragraph>
+          <Paragraph>
             Uitkomst:{' '}
             <strong>
               {questionnaire.uitkomsten.map(uitkomst =>
                 areAllCondTrue(uitkomst.cond, userAnswers, questionnaire.uitvoeringsregels) ? uitkomst.label : null,
               )}
             </strong>
-          </p>
-          <p>
+          </Paragraph>
+          <Paragraph>
             Hieronder ziet u uw antwoorden terug. U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet
             u wat de vervolgstappen zijn.
-          </p>
+          </Paragraph>
           <Overview
             onGoToQuestion={this.onGoToQuestion}
             userAnswers={userAnswers}

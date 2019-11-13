@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import useForm from 'react-hook-form';
-import { Heading } from '@datapunt/asc-ui';
+import { Heading, Paragraph } from '@datapunt/asc-ui';
 
 import { ExplanationModal } from 'components/Modal';
 import Form from 'components/Form/Form';
@@ -66,7 +66,7 @@ const Question = ({
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
       {heading && <Heading $as={headingAs}>{heading}</Heading>}
-      {paragraph && <ReactMarkdown source={paragraph} />}
+      {paragraph && <ReactMarkdown source={paragraph} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
       {modalText && <ExplanationModal modalText={modalText} />}
       {errors[questionId] && errors[questionId].message}
       <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />

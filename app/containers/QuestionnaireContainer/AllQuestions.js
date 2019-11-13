@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled from '@datapunt/asc-core';
+import { Paragraph } from '@datapunt/asc-ui';
 
 import { questionnaires } from 'shared/services/questionnaire/questionnaire';
 
@@ -21,8 +22,12 @@ const AllQuestions = () => {
       {rule.id}:<br />
       <br />
       <strong>{rule.vraagTekst}</strong>
-      {rule.toelichting && <ReactMarkdown source={rule.toelichting} />}
-      {rule.langeToelichting && <ReactMarkdown source={rule.langeToelichting} />}
+      {rule.toelichting && (
+        <ReactMarkdown source={rule.toelichting} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />
+      )}
+      {rule.langeToelichting && (
+        <ReactMarkdown source={rule.langeToelichting} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />
+      )}
     </QuestionContainer>
   ));
 

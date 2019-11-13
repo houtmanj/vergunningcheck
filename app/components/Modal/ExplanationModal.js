@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Divider, Heading, Icon, TopBar, Modal } from '@datapunt/asc-ui';
+import { Button, Divider, Heading, Icon, TopBar, Modal, Paragraph } from '@datapunt/asc-ui';
 import { Close } from '@datapunt/asc-assets';
 import ReactMarkdown from 'react-markdown';
 import styled from '@datapunt/asc-core';
@@ -39,7 +39,7 @@ const ExplanationModal = ({ modalText }) => {
           </TopBar>
           <Divider />
           <ModalBlock>
-            <ReactMarkdown source={modalText} />
+            <ReactMarkdown source={modalText} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />
           </ModalBlock>
         </div>
       </Modal>
