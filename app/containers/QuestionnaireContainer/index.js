@@ -3,34 +3,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import history from 'utils/history';
+import { Paragraph, Heading } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
-import {
-  Content,
-  Overview,
-  Question,
-  Answers,
-  PrefilledAnswerText,
-  // ImageContainer,
-} from 'components/Questionnaire';
-import Navigation from 'components/Navigation';
+import { Overview, Question } from 'components/Questionnaire';
 import { fetchQuestionnaire } from './actions';
 
-const StyledContent = styled(Content)`
+const StyledContent = styled(`div`)`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 `;
-
-// const RandomizeButton = props => (
-//   <button type="submit" onClick={props.randomizeAnswers()}>
-//     Randomize
-//   </button>
-// );
-// RandomizeButton.propTypes = {
-//   randomizeAnswers: PropTypes.func,
-// };
 
 const getQuestionIdFromIndex = (index, questionnaire) =>
   questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
@@ -43,15 +27,12 @@ class QuestionnaireContainer extends React.Component {
     this.onGoToNext = this.onGoToNext.bind(this);
     this.onGoToPrev = this.onGoToPrev.bind(this);
     this.setBestemmingsplan = this.setBestemmingsplan.bind(this);
-    // this.onRandomizeAnswers = this.onRandomizeAnswers.bind(this);
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       questionIndex: 0,
       userAnswers: {},
-      debug: false,
       hasBestemmingsplan: false,
     };
   }
@@ -61,28 +42,17 @@ class QuestionnaireContainer extends React.Component {
       onFetchQuestionnaire,
       addressInput: { bestemmingsplanStatus },
     } = this.props;
-    const { debug } = this.state;
 
-    setTimeout(() => {
-      if (!bestemmingsplanStatus || !bestemmingsplanStatus.length || debug) {
-        onFetchQuestionnaire([{ text: 'test' }]);
-      } else {
-        onFetchQuestionnaire(bestemmingsplanStatus);
-        this.setState({
-          hasBestemmingsplan: true,
-        });
-      }
-    }, 3);
+    if (bestemmingsplanStatus && bestemmingsplanStatus.length) {
+      onFetchQuestionnaire(bestemmingsplanStatus);
+      this.setState({
+        hasBestemmingsplan: true,
+      });
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-
-    // const data = new FormData(e.target);
-  }
-
-  handleChange() {
-    // this.setState({value: event.target.value});
   }
 
   onGoToQuestion(questionId) {
@@ -101,12 +71,6 @@ class QuestionnaireContainer extends React.Component {
   }
 
   onGoToNext(questionId, value) {
-    // const { userAnswers } = this.state;
-    // console.log('userAnswers:');
-    // console.log({
-    //   ...userAnswers,
-    //   [questionId]: value,
-    // });
     this.setState(prevState => ({
       questionIndex: prevState.questionIndex + 1,
       userAnswers: {
@@ -119,10 +83,10 @@ class QuestionnaireContainer extends React.Component {
   setBestemmingsplan(questionId, bestemmingsplan) {
     const { onFetchQuestionnaire } = this.props;
 
-    onFetchQuestionnaire([{ text: bestemmingsplan }]);
     this.setState({
       hasBestemmingsplan: true,
     });
+    onFetchQuestionnaire([{ text: bestemmingsplan }]);
   }
 
   onGoToPrev() {
@@ -147,35 +111,8 @@ class QuestionnaireContainer extends React.Component {
     }
   }
 
-  // onRandomizeAnswers() {
-  //   const { questionnaire } = this.props;
-  //   const randomAnswers = questionnaire.uitvoeringsregels.reduce((o, key) => {
-  //     const hasConditionAndFailed =
-  //       key.cond && Array.isArray(key.cond) && !condCheck(key.cond, o, questionnaire.uitvoeringsregels);
-  //     const value = !hasConditionAndFailed
-  //       ? key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].value
-  //       : null;
-  //     return {
-  //       ...o,
-  //       [key.id]: value,
-  //     };
-  //   }, {});
-
-  //   this.setState({
-  //     questionIndex: questionnaire.uitvoeringsregels.length,
-  //     userAnswers: {
-  //       ...randomAnswers,
-  //     },
-  //   });
-  // }
-
   render() {
-    const {
-      questionIndex,
-      userAnswers,
-      // debug,
-      hasBestemmingsplan,
-    } = this.state;
+    const { questionIndex, userAnswers, hasBestemmingsplan } = this.state;
 
     const {
       questionnaire,
@@ -188,43 +125,42 @@ class QuestionnaireContainer extends React.Component {
     } = this.props;
 
     if (loading) {
-      return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
+      return (
+        <StyledContent>
+          <Heading $as="h3">Laden...</Heading>
+          <Paragraph>Gegevens ophalen</Paragraph>
+        </StyledContent>
+      );
     }
 
-    if (loading) {
-      return <StyledContent heading="Laden..." paragraph="Gegevens ophalen" />;
+    if (error) {
+      return <div>Helaas is er iets mis gegaan met het ophalen van de vragenlijsten, probeer het nog eens.</div>;
     }
 
     if (!hasBestemmingsplan) {
       return (
         <Question
+          questionId="bestemmingsplan"
           heading="Er is geen bestemmingsplan gevonden. Welk bestemmingsplan wilt u gebruiken?"
           paragraph="Kies een bestemmingsplan waar u mee wilt werken."
-          onSubmit={this.handleSubmit}
-        >
-          {/* <ImageContainer /> */}
-          <Answers
-            questionId="bestemmingsplan"
-            answers={[
-              {
-                id: 1,
-                value: 'dePijp2018',
-                optieText: 'De Pijp',
-              },
-              {
-                id: 2,
-                value: 'rivierenbuurt',
-                optieText: 'Rivierenbuurt',
-              },
-            ]}
-            action={this.setBestemmingsplan}
-          />
-          <Navigation showPrev onGoToPrev={this.onGoToPrev} showNext onGoToNext={this.setBestemmingsplan} disableNext />
-          <p>
-            <em>{questionnaire.name}</em>
-          </p>
-          {/* <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} /> */}
-        </Question>
+          onSubmit={this.setBestemmingsplan}
+          onGoToPrev={this.onGoToPrev}
+          showNext
+          showPrev
+          required
+          answers={[
+            {
+              id: 1,
+              value: 'dePijp2018',
+              optieText: 'De Pijp',
+            },
+            // {
+            //   id: 2,
+            //   value: 'rivierenbuurt',
+            //   optieText: 'Rivierenbuurt',
+            // },
+          ]}
+        />
       );
     }
 
@@ -232,10 +168,6 @@ class QuestionnaireContainer extends React.Component {
 
     if (!uitvoeringsregels) {
       return <div>Helaas zijn er geen vragenlijsten gevonden op deze locatie: {userAddress}</div>;
-    }
-
-    if (error) {
-      return <div>Helaas is er iets mis gegaan met het ophalen van de vragenlijsten, probeer het nog eens.</div>;
     }
 
     const question = uitvoeringsregels[questionIndex];
@@ -246,7 +178,6 @@ class QuestionnaireContainer extends React.Component {
         id: questionId,
         vraagTekst: questionText,
         antwoordOpties: answers,
-        vergunningplichtig: required,
         cond,
         type,
         toelichting: paragraph,
@@ -255,6 +186,7 @@ class QuestionnaireContainer extends React.Component {
       } = question;
 
       // CONDITIONALS
+      // @TODO: Need to move out of the render()
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
 
@@ -278,64 +210,51 @@ class QuestionnaireContainer extends React.Component {
         });
       }
 
-      const hasPrefilledAnswer = answers.filter(answer => answer.prefilled).length > 0;
       const hasRegistry = !!registryQuestion;
       const setAnswer = !!(registryQuestion === 'monument' && monumentStatus !== '');
 
       return (
-        <Question heading={questionText} paragraph={paragraph} modalText={modalText} onSubmit={this.handleSubmit}>
-          {/* <div>ID: {questionId}</div> */}
-          {/* <div>questionIndex: {questionIndex}</div> */}
-          <br />
-          {hasPrefilledAnswer && <PrefilledAnswerText />}
-          <Answers
-            questionId={questionId}
-            userAnswers={userAnswers}
-            answers={answers}
-            required={required}
-            hasRegistry={hasRegistry}
-            setAnswer={setAnswer}
-            action={this.onGoToNext}
-          />
-          <Navigation
-            showPrev
-            onGoToPrev={this.onGoToPrev}
-            showNext
-            disableNext
-            // onGoToNext={this.onGoToNext}
-          />
-          <p>
-            <em>{questionnaire.name}</em>
-          </p>
-          {/* <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} /> */}
-        </Question>
+        <Question
+          heading={questionText}
+          paragraph={paragraph}
+          modalText={modalText}
+          onSubmit={this.onGoToNext}
+          onGoToPrev={this.onGoToPrev}
+          questionId={questionId}
+          userAnswers={userAnswers}
+          answers={answers}
+          hasRegistry={hasRegistry}
+          setAnswer={setAnswer}
+          required
+          showNext
+          showPrev
+        />
       );
     }
 
     if (questionIndex >= uitvoeringsregels.length) {
       // OVERVIEW
       return (
-        <StyledContent heading="Controleer uw antwoorden">
-          <p>Adres: {userAddress}</p>
-          <p>
+        <StyledContent>
+          <Heading $as="h3">Controleer uw antwoorden</Heading>
+          <Paragraph>Adres: {userAddress}</Paragraph>
+          <Paragraph>
             Uitkomst:{' '}
             <strong>
               {questionnaire.uitkomsten.map(uitkomst =>
                 areAllCondTrue(uitkomst.cond, userAnswers, questionnaire.uitvoeringsregels) ? uitkomst.label : null,
               )}
             </strong>
-          </p>
-          <p>
+          </Paragraph>
+          <Paragraph>
             Hieronder ziet u uw antwoorden terug. U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet
             u wat de vervolgstappen zijn.
-          </p>
+          </Paragraph>
           <Overview
             onGoToQuestion={this.onGoToQuestion}
             userAnswers={userAnswers}
             uitvoeringsregels={uitvoeringsregels}
           />
-          <Navigation />
-          {/* <RandomizeButton randomizeAnswers={() => this.onRandomizeAnswers} /> */}
         </StyledContent>
       );
     }

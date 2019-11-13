@@ -5,10 +5,8 @@ import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 import history from 'utils/history';
 
-import { Question, Answers } from 'components/Questionnaire';
-import Navigation from 'components/Navigation';
+import { Question } from 'components/Questionnaire';
 import { AddressResult, AddressInputFields, AddressInputErrors } from 'components/AddressInput/';
-// import { isDevelopment } from 'shared/services/environment';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressInputFields = styled(AddressInputFields)`
@@ -24,7 +22,7 @@ class AddressInput extends React.Component {
     super(props);
     this.onPostcodeInput = this.onPostcodeInput.bind(this);
     this.onStreetNumberInput = this.onStreetNumberInput.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.onGoToPrev = this.onGoToPrev.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateAddressInput = this.validateAddressInput.bind(this);
     this.state = {
@@ -33,7 +31,6 @@ class AddressInput extends React.Component {
       streetNumber: '',
       hasError: false,
       debug: true,
-      answerValue: '',
     };
   }
 
@@ -102,7 +99,6 @@ class AddressInput extends React.Component {
       validPostcode,
       postcode,
       hasError,
-      answerValue: '',
     });
 
     if (validPostcode) {
@@ -127,22 +123,11 @@ class AddressInput extends React.Component {
 
     this.setState({
       hasError,
-      answerValue: '',
     });
   }
 
-  handleChange(e) {
-    const { value } = e.target;
-    this.setState({
-      answerValue: value,
-    });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-
+  handleSubmit(questionId, answerValue) {
     const { bestemmingsplanStatus } = this.props;
-    const { answerValue } = this.state;
 
     if (bestemmingsplanStatus.length > 0 && answerValue === 'true') {
       history.push('/aanbouw/vragen');
@@ -151,6 +136,10 @@ class AddressInput extends React.Component {
         hasError: true,
       });
     }
+  }
+
+  onGoToPrev() {
+    history.push('/aanbouw/inleiding');
   }
 
   render() {
@@ -168,7 +157,7 @@ class AddressInput extends React.Component {
       bestemmingsplanLoading,
     } = this.props;
 
-    const { validPostcode, postcode, streetNumber, hasError, debug } = this.state;
+    const { validPostcode, postcode, streetNumber, debug } = this.state;
 
     const {
       _display: addressLine1,
@@ -183,25 +172,39 @@ class AddressInput extends React.Component {
     const inputError = this.validateAddressInput();
 
     return (
-      <Question heading="Waar wilt u uw aanbouw maken?" onSubmit={this.handleSubmit}>
-        {!loading && inputError && <StyledAddressInputErrors error={inputError} />}
+      <>
+        <Question
+          heading="Waar wilt u uw aanbouw maken?"
+          hideNavigation={!!showAddressResults}
+          showPrev
+          onGoToPrev={this.onGoToPrev}
+          showNext
+          disableNext
+        >
+          {!loading && inputError && <StyledAddressInputErrors error={inputError} />}
 
-        <StyledAddressInputFields onChange={this.onPostcodeInput} onInput={this.onStreetNumberInput} debug={debug} />
+          <StyledAddressInputFields onChange={this.onPostcodeInput} onInput={this.onStreetNumberInput} debug={debug} />
 
-        {streetNumber && loading && (
-          <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
-        )}
+          {streetNumber && loading && (
+            <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
+          )}
+        </Question>
         {showAddressResults && (
           <>
             <AddressResult loading={streetNameLoading} title="Adres:">
               <div>{addressLine1}</div>
               <div>{addressLine2}</div>
+              <br />
+              <br />
             </AddressResult>
-
-            {!inputError && hasError && <StyledAddressInputErrors error="Vul een correct antwoord in" />}
-            <h3>Klopt dit adres?</h3>
-            <Answers
-              questionId="location"
+            <Question
+              questionId="addressVerify"
+              heading="Klopt dit adres"
+              showPrev
+              onGoToPrev={this.onGoToPrev}
+              showNext
+              onSubmit={this.handleSubmit}
+              required
               answers={[
                 {
                   id: '1',
@@ -214,47 +217,41 @@ class AddressInput extends React.Component {
                   value: 'false',
                 },
               ]}
-              onChange={this.handleChange}
-              hideFooter
             />
+            <div>
+              <AddressResult loading={monumentLoading} title="Voorbeeld postcodes:">
+                <p>
+                  1074VE = De Pijp <br />
+                  1079VR = Rivierenbuurt
+                </p>
+              </AddressResult>
+
+              <AddressResult loading={monumentLoading} title="Monument:">
+                {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
+              </AddressResult>
+
+              <AddressResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
+                {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
+              </AddressResult>
+
+              <AddressResult loading={bagLoading} title="Type gebouw:">
+                {buildingType || '...'}
+              </AddressResult>
+
+              <AddressResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
+                {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
+                {bestemmingsplanStatus.length > 0 && (
+                  <ul>
+                    {bestemmingsplanStatus.map(bestemmingsplan => (
+                      <li key={bestemmingsplan.text}>{bestemmingsplan.text}</li>
+                    ))}
+                  </ul>
+                )}
+              </AddressResult>
+            </div>
           </>
         )}
-        <Navigation showNext />
-
-        {/* {isDevelopment && ( */}
-        <>
-          <AddressResult loading={monumentLoading} title="Voorbeeld postcodes:">
-            <p>
-              1074VE = De Pijp <br />
-              1079VR = Rivierenbuurt
-            </p>
-          </AddressResult>
-
-          <AddressResult loading={monumentLoading} title="Monument:">
-            {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
-          </AddressResult>
-
-          <AddressResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
-            {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
-          </AddressResult>
-
-          <AddressResult loading={bagLoading} title="Type gebouw:">
-            {buildingType || '...'}
-          </AddressResult>
-
-          <AddressResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
-            {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
-            {bestemmingsplanStatus.length > 0 && (
-              <ul>
-                {bestemmingsplanStatus.map(bestemmingsplan => (
-                  <li key={bestemmingsplan.text}>{bestemmingsplan.text}</li>
-                ))}
-              </ul>
-            )}
-          </AddressResult>
-        </>
-        {/* )} */}
-      </Question>
+      </>
     );
   }
 }

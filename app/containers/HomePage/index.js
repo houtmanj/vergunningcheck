@@ -11,12 +11,13 @@
 
 import React from 'react';
 import history from 'utils/history';
-import { Question } from 'components/Questionnaire';
-import Navigation from 'components/Navigation';
 import { Heading, Paragraph, List, ListItem, Link } from '@datapunt/asc-ui';
+import Form from 'components/Form/Form';
+import Navigation from 'components/Navigation';
 
 const HomePageText = () => (
   <>
+    <Heading $as="h2">Inleiding</Heading>
     <Paragraph>
       Met de vergunningchecker ziet u of u een omgevingsvergunning nodig hebt. Als u alle vragen beantwoord heeft, geeft
       u dat inzicht waar u rekening mee moet houden.
@@ -70,10 +71,17 @@ const HomePageText = () => (
 );
 
 const HomePage = () => (
-  <Question heading="Inleiding" headingAs="h2" onSubmit={() => history.push('/aanbouw/locatie')}>
+  <>
     <HomePageText />
-    <Navigation showNext />
-  </Question>
+    <Form
+      onSubmit={e => {
+        e.preventDefault();
+        history.push('/aanbouw/locatie');
+      }}
+    >
+      <Navigation showNext />
+    </Form>
+  </>
 );
 
 export default HomePage;

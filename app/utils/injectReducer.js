@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { ReactReduxContext } from 'react-redux';
 
@@ -35,7 +35,8 @@ export default ({ key, reducer }) => WrappedComponent => {
 
 const useInjectReducer = ({ key, reducer }) => {
   const context = React.useContext(ReactReduxContext);
-  React.useEffect(() => {
+
+  useEffect(() => {
     getInjectors(context.store).injectReducer(key, reducer);
   }, []);
 };

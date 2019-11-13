@@ -6,7 +6,6 @@ import { ChevronLeft } from '@datapunt/asc-assets';
 
 const NavigationStyle = styled(`div`)`
   display: flex;
-  // max-width: 620px; // See design system..
   height: 64px;
   margin: 20px 0;
   background-color: rgba(241, 241, 241, 1);
@@ -14,13 +13,7 @@ const NavigationStyle = styled(`div`)`
   align-items: center;
 `;
 
-const Navigation = ({
-  showPrev,
-  onGoToPrev,
-  showNext,
-  disableNext,
-  // onGoToNext
-}) => (
+const Navigation = ({ showPrev, onGoToPrev, showNext, disableNext }) => (
   <NavigationStyle>
     <div>
       {showPrev && (
@@ -37,7 +30,7 @@ const Navigation = ({
     </div>
     <div>
       {showNext && (
-        <Button type="submit" variant="secondary" taskflow disabled={disableNext}>
+        <Button type="submit" variant="secondary" disabled={disableNext} taskflow>
           Volgende
         </Button>
       )}
@@ -45,14 +38,11 @@ const Navigation = ({
   </NavigationStyle>
 );
 
-// Navigation.defaultProps = {
-// };
 Navigation.propTypes = {
   showPrev: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
   disableNext: PropTypes.bool,
-  // onGoToNext: PropTypes.func,
 };
 
 export default Navigation;

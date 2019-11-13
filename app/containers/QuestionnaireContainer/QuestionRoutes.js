@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 
-import { Content, Overview } from 'components/Questionnaire';
+import { Overview } from 'components/Questionnaire';
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
 import { questionnaires } from 'shared/services/questionnaire/questionnaire';
 
 const { dePijp2018: questionnaire } = questionnaires;
-const StyledContent = styled(Content)`
+const StyledContent = styled(`div`)`
   display: flex;
   flex-direction: column;
   width: 100%;
