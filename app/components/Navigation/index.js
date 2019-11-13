@@ -24,7 +24,13 @@ const Navigation = ({
   <NavigationStyle>
     <div>
       {showPrev && (
-        <Button variant="textButton" iconLeft={<ChevronLeft />} iconSize={14} onClick={onGoToPrev}>
+        <Button
+          variant="textButton"
+          iconLeft={<ChevronLeft />}
+          iconSize={14}
+          onClick={onGoToPrev}
+          style={{ marginLeft: 10 }}
+        >
           Vorige
         </Button>
       )}
