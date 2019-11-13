@@ -8,6 +8,7 @@ export default {
       vraagTekst: 'Is het gebouw een tussenpand?',
       toelichting: '',
       id: 'tussenpand',
+      media: [{ id: 1, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' }],
       antwoordOpties: [
         {
           id: '1',
@@ -31,8 +32,12 @@ export default {
       langeToelichting: '',
       media: [
         { id: 1, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
-        { id: 2, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
-        { id: 3, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
+        { id: 2, url: 'https://placekitten.com/g/220/151', description: 'Lorem' },
+        {
+          id: 3,
+          url: 'https://via.placeholder.com/220x151.png',
+          description: 'Lorem ipsum dolor sit amet dolor sit amet',
+        },
       ],
       registerbevraging: 'monument',
       antwoordOpties: [
@@ -56,6 +61,14 @@ export default {
 
       toelichting:
         'Het gaat hier om een beschermd stads- of dorpsgezicht dat door het Rijk is aangewezen. Twijfelt u? Wilt u meer informatie? Neem dan contact op met de gemeente.',
+      media: [
+        { id: 1, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
+        {
+          id: 3,
+          url: 'https://via.placeholder.com/220x151.png',
+          description: 'Lorem ipsum dolor sit amet dolor sit amet',
+        },
+      ],
       antwoordOpties: [
         {
           id: '1',
@@ -134,6 +147,14 @@ export default {
         "Anders gezegd:\nGaat u de aanbouw voor hetzelfde doel gebruiken als het gebouw waar u tegenaan bouwt? Voorbeeld: u gaat de uitbouw van uw woning (gebouw met bestemming 'wonen') ook voor wonen gebruiken.",
       langeToelichting: '',
       child: true,
+      media: [
+        { id: 1, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
+        {
+          id: 3,
+          url: 'https://via.placeholder.com/220x151.png',
+          description: 'Lorem ipsum dolor sit amet dolor sit amet',
+        },
+      ],
       antwoordOpties: [
         {
           id: '1',
@@ -394,6 +415,14 @@ Als u twijfelt: neem contact op met de gemeente.`,
       toelichting: `Anders gezegd: Gaat u de aanbouw voor hetzelfde doel gebruiken als het gebouw waar u tegenaan bouwt? Voorbeeld: u gaat de uitbouw van uw woning (gebouw met bestemming 'wonen') ook voor wonen gebruiken.`,
       langeToelichting: '',
       child: true,
+      media: [
+        { id: 1, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
+        {
+          id: 3,
+          url: 'https://via.placeholder.com/220x151.png',
+          description: 'Lorem ipsum dolor sit amet dolor sit amet',
+        },
+      ],
       cond: ['artikel-2-vraag-1.true', 'artikel-2-vraag-1.false'],
       antwoordOpties: [
         {
@@ -918,6 +947,15 @@ Als u twijfelt: neem contact op met de gemeente.`,
         ['stadsgezicht-zichtbaar.false', 'artikel-3-conclusie.true'],
         'artikel-2-specifiek.false',
         'artikel-2-conclusie.false',
+      ],
+      media: [
+        { id: 1, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
+        { id: 2, url: 'https://placekitten.com/g/220/151', description: 'Lorem' },
+        {
+          id: 3,
+          url: 'https://via.placeholder.com/220x151.png',
+          description: 'Lorem ipsum dolor sit amet dolor sit amet',
+        },
       ],
       // vergunningplichtig: true,
       antwoordOpties: [
