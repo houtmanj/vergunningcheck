@@ -11,20 +11,20 @@ const ModalBlock = styled.div`
   margin: 15px 0;
 `;
 
-const ToelichtingModal = ({ modalText }) => {
-  const [toelichtingShown, toggleToelichtingShown] = useState(false);
+const ExplanationModal = ({ modalText }) => {
+  const [explanationShown, toggleExplanationShown] = useState(false);
 
   return (
     <div>
-      <Button color="primary" onClick={() => toggleToelichtingShown(!toelichtingShown)}>
+      <Button color="primary" onClick={() => toggleExplanationShown(!explanationShown)}>
         Toelichting
       </Button>
       <Modal
         style={{ top: '34%' }}
         aria-labelledby="Toelichting"
         aria-describedby="Toelichting"
-        open={toelichtingShown}
-        onClose={() => toggleToelichtingShown(!toelichtingShown)}
+        open={explanationShown}
+        onClose={() => toggleExplanationShown(!explanationShown)}
       >
         <div style={{ minHeight: '50vh' }}>
           <TopBar>
@@ -32,7 +32,7 @@ const ToelichtingModal = ({ modalText }) => {
               Toelichting
               <Button type="button" size={30} variant="blank">
                 <Icon size={20}>
-                  <Close onClick={() => toggleToelichtingShown(!toelichtingShown)} />
+                  <Close onClick={() => toggleExplanationShown(!explanationShown)} />
                 </Icon>
               </Button>
             </Heading>
@@ -47,8 +47,8 @@ const ToelichtingModal = ({ modalText }) => {
   );
 };
 
-ToelichtingModal.propTypes = {
+ExplanationModal.propTypes = {
   modalText: PropTypes.string,
 };
 
-export default ToelichtingModal;
+export default ExplanationModal;
