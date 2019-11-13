@@ -33,7 +33,6 @@ export default {
         { id: 1, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
         { id: 2, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
         { id: 3, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
-        { id: 4, url: 'https://via.placeholder.com/220x151.png', description: 'Lorem ipsum dolor sit amet' },
       ],
       registerbevraging: 'monument',
       antwoordOpties: [

@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import history from 'utils/history';
 import styled from '@datapunt/asc-core';
-import { Container, Row } from '@datapunt/asc-ui';
 
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
 import { Content, Overview, Question, Answers, PrefilledAnswerText, ImageContainer } from 'components/Questionnaire';
@@ -276,13 +275,7 @@ class QuestionnaireContainer extends React.Component {
         <Question heading={questionText} paragraph={paragraph} modalText={modalText} onSubmit={this.handleSubmit}>
           {/* <div>ID: {questionId}</div> */}
           {/* <div>questionIndex: {questionIndex}</div> */}
-          {media && (
-            <Container>
-              <Row>
-                <ImageContainer media={media} />
-              </Row>
-            </Container>
-          )}
+          {media && <ImageContainer media={media} />}
           <br />
           {hasPrefilledAnswer && <PrefilledAnswerText />}
           <Answers
