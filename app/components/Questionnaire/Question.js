@@ -8,6 +8,7 @@ import { ExplanationModal } from 'components/Modal';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import Answers from './Answers';
+import ImageContainer from './ImageContainer';
 
 const hasKeys = obj =>
   // convert to array, map, and then give the length
@@ -21,6 +22,7 @@ const Question = ({
   paragraph,
   modalText,
   children,
+  media,
   onSubmit: onSubmitProp,
   hideNavigation,
   disableNext,
@@ -68,6 +70,7 @@ const Question = ({
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
       {heading && <Heading $as={headingAs}>{heading}</Heading>}
       {paragraph && <ReactMarkdown source={paragraph} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
+      {media && <ImageContainer media={media} />}
       {modalText && <ExplanationModal modalText={modalText} />}
       {errors[questionId] && errors[questionId].message}
       <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
@@ -91,6 +94,7 @@ Question.propTypes = {
   paragraph: PropTypes.string,
   modalText: PropTypes.string,
   answers: PropTypes.array,
+  media: PropTypes.array,
   userAnswers: PropTypes.object,
   onSubmit: PropTypes.func,
   hideNavigation: PropTypes.bool,

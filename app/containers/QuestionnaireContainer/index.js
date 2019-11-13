@@ -154,11 +154,11 @@ class QuestionnaireContainer extends React.Component {
               value: 'dePijp2018',
               optieText: 'De Pijp',
             },
-            // {
-            //   id: 2,
-            //   value: 'rivierenbuurt',
-            //   optieText: 'Rivierenbuurt',
-            // },
+            {
+              id: 2,
+              value: 'test',
+              optieText: 'Plaatjes',
+            },
           ]}
         />
       );
@@ -179,6 +179,7 @@ class QuestionnaireContainer extends React.Component {
         vraagTekst: questionText,
         antwoordOpties: answers,
         cond,
+        media,
         type,
         toelichting: paragraph,
         langeToelichting: modalText,
@@ -222,6 +223,7 @@ class QuestionnaireContainer extends React.Component {
           onGoToPrev={this.onGoToPrev}
           questionId={questionId}
           userAnswers={userAnswers}
+          media={media}
           answers={answers}
           hasRegistry={hasRegistry}
           setAnswer={setAnswer}

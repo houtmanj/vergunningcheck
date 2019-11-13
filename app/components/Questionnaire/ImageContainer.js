@@ -1,37 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Paragraph } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
-import { breakpoint } from '@datapunt/asc-ui';
 
 const Container = styled(`div`)`
   display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  img {
-    width: 100%;
-    margin-bottom: 20px;
-
-    @media screen and ${breakpoint('min-width', 'tabletS')} {
-      width: 48%;
-    }
-  }
+  flex-direction: 'row';
 `;
 
-const ImageContainer = ({ children }) => (
+const SingleImageContainer = styled(`div`)`
+  width: 30%;
+  margin: 5px;
+`;
+
+const ImageContainer = ({ media }) => (
   <Container>
-    {children}
-    {/* Temp fix: */}
-    <img src="https://via.placeholder.com/220x151.png" alt="" />
-    <img src="https://via.placeholder.com/220x151.png" alt="" />
-    <img src="https://via.placeholder.com/220x151.png" alt="" />
+    {media.map((image, index) => (
+      <SingleImageContainer key={image.id} style={index === 0 ? { marginLeft: 0 } : null}>
+        <img src={image.url} alt={image.description} style={{ maxWidth: '100%' }} />
+        <Paragraph>{image.description}</Paragraph>
+      </SingleImageContainer>
+    ))}
   </Container>
 );
 
 ImageContainer.propTypes = {
-  children: PropTypes.node,
+  media: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      description: PropTypes.string,
+    }),
+  ),
 };
 
 export default ImageContainer;
