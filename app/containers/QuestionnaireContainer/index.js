@@ -201,8 +201,8 @@ class QuestionnaireContainer extends React.Component {
               },
               {
                 id: 2,
-                value: 'rivierenbuurt',
-                optieText: 'Rivierenbuurt',
+                value: 'test',
+                optieText: 'Plaatjes',
               },
             ]}
             action={this.setBestemmingsplan}
