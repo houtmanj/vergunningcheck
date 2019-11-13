@@ -148,11 +148,11 @@ class QuestionnaireContainer extends React.Component {
               value: 'dePijp2018',
               optieText: 'De Pijp',
             },
-            {
-              id: 2,
-              value: 'rivierenbuurt',
-              optieText: 'Rivierenbuurt',
-            },
+            // {
+            //   id: 2,
+            //   value: 'rivierenbuurt',
+            //   optieText: 'Rivierenbuurt',
+            // },
           ]}
         />
       );

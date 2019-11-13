@@ -8,6 +8,10 @@ import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import Answers from './Answers';
 
+const hasKeys = obj =>
+  // convert to array, map, and then give the length
+  Object.entries(obj).map(([key, value]) => [key, value]).length;
+
 const Modal = props => <div style={{ border: '1px solid red', marginBottom: 20 }}>{props.modalText}</div>;
 
 Modal.propTypes = {
@@ -23,6 +27,8 @@ const Question = ({
   modalText,
   children,
   onSubmit: onSubmitProp,
+  hideNavigation,
+  disableNext,
   showNext,
   showPrev,
   onGoToPrev,
@@ -32,6 +38,7 @@ const Question = ({
   ...otherProps
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
+
   React.useEffect(() => {
     if (questionId && required) {
       register(
@@ -49,13 +56,17 @@ const Question = ({
   };
 
   const onSubmit = data => {
-    // is only triggered with validated form
-    if (onSubmitProp) onSubmitProp(questionId, data[questionId]);
-    unregister({});
+    // Is only triggered with validated form
+
+    // Check if data has a key that matches the questionId
+    if ((onSubmitProp && !hasKeys(data)) || (hasKeys(data) && data[questionId])) {
+      onSubmitProp(questionId, data[questionId]);
+    }
   };
-  // if (userAnswers && userAnswers[questionId]) {
-  // setValue(questionId, userAnswers[questionId]);
-  // }
+
+  if (userAnswers && userAnswers[questionId]) {
+    setValue(questionId, userAnswers[questionId]);
+  }
 
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
@@ -65,7 +76,9 @@ const Question = ({
       {errors[questionId] && errors[questionId].message}
       <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
       {children}
-      <Navigation showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
+      {!hideNavigation && (
+        <Navigation showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} disableNext={disableNext} />
+      )}
     </Form>
   );
 };
@@ -84,9 +97,11 @@ Question.propTypes = {
   answers: PropTypes.array,
   userAnswers: PropTypes.object,
   onSubmit: PropTypes.func,
+  hideNavigation: PropTypes.bool,
+  required: PropTypes.bool,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
-  required: PropTypes.bool,
+  disableNext: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   children: PropTypes.any,
 };
