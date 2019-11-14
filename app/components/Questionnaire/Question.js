@@ -75,7 +75,7 @@ const Question = ({
       {media && <ImageContainer media={media} />}
       {modalText && <ExplanationModal modalText={modalText} />}
       <div className={errors[questionId] ? 'error' : null}>
-        <div className="error-label">{errors[questionId] && errors[questionId].message}</div>
+        {errors[questionId] && <div className="error-label">{errors[questionId].message}</div>}
         <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
       </div>
       {children}
