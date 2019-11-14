@@ -10,6 +10,8 @@ import Navigation from 'components/Navigation';
 import Answers from './Answers';
 import ImageContainer from './ImageContainer';
 
+import './style.scss';
+
 const hasKeys = obj =>
   // convert to array, map, and then give the length
   Object.entries(obj).map(([key, value]) => [key, value]).length;
@@ -72,8 +74,10 @@ const Question = ({
       {paragraph && <ReactMarkdown source={paragraph} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
       {media && <ImageContainer media={media} />}
       {modalText && <ExplanationModal modalText={modalText} />}
-      {errors[questionId] && errors[questionId].message}
-      <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
+      <div className={errors[questionId] ? 'error' : null}>
+        <div className="error-label">{errors[questionId] && errors[questionId].message}</div>
+        <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
+      </div>
       {children}
       {!hideNavigation && (
         <Navigation showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} disableNext={disableNext} />

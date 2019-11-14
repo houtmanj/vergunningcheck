@@ -25,7 +25,7 @@ const Answers = ({
 
   return (
     <>
-      <div className={className}>
+      <div className={className} style={{ fontWeight: 400 }}>
         {hasPrefilledAnswer && <PrefilledAnswerText />}
         {answers &&
           answers.map(answer => {
