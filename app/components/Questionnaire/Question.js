@@ -15,21 +15,23 @@ const hasKeys = obj =>
   Object.entries(obj).map(([key, value]) => [key, value]).length;
 
 const Question = ({
-  questionId,
+  question: {
+    id: questionId,
+    vraagTekst: heading,
+    antwoordOpties: answers,
+    media,
+    toelichting: paragraph,
+    langeToelichting: modalText,
+  },
   className,
-  heading,
   headingAs,
-  paragraph,
-  modalText,
   children,
-  media,
   onSubmit: onSubmitProp,
   hideNavigation,
   disableNext,
   showNext,
   showPrev,
   onGoToPrev,
-  answers,
   userAnswers,
   required,
   ...otherProps
@@ -83,18 +85,24 @@ const Question = ({
 };
 
 Question.defaultProps = {
+  question: {
+    id: '',
+    vraagTekst: '',
+  },
   headingAs: 'h3',
 };
 
 Question.propTypes = {
-  questionId: PropTypes.string,
+  question: PropTypes.shape({
+    id: PropTypes.string,
+    vraagTekst: PropTypes.string,
+    antwoordOpties: PropTypes.array,
+    media: PropTypes.array,
+    toelichting: PropTypes.string,
+    langeToelichting: PropTypes.string,
+  }),
   className: PropTypes.string,
-  heading: PropTypes.string,
   headingAs: PropTypes.string,
-  paragraph: PropTypes.string,
-  modalText: PropTypes.string,
-  answers: PropTypes.array,
-  media: PropTypes.array,
   userAnswers: PropTypes.object,
   onSubmit: PropTypes.func,
   hideNavigation: PropTypes.bool,
