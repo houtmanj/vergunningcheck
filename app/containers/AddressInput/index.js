@@ -172,11 +172,12 @@ class AddressInput extends React.Component {
     const inputError = this.validateAddressInput();
 
     const question = {
+      id: 'location',
       vraagTekst: 'Waar wilt u uw aanbouw maken?',
     };
 
     const questionVerify = {
-      id: 'addressVerify',
+      id: 'locationVerify',
       vraagTekst: 'Klopt dit adres',
       antwoordOpties: [
         {
