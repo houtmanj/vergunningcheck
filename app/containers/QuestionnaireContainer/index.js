@@ -6,8 +6,8 @@ import history from 'utils/history';
 import { Paragraph, Heading } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
-import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
-import { Overview, Question } from 'components/Questionnaire';
+import { condCheck } from 'shared/services/questionnaire/conditions';
+import { Question, QuestionOverview } from 'components/Questionnaire';
 import { fetchQuestionnaire } from './actions';
 
 const StyledContent = styled(`div`)`
@@ -80,6 +80,7 @@ class QuestionnaireContainer extends React.Component {
   onGoToPrev = () => {
     const { questionIndex, userAnswers } = this.state;
     const { questionnaire } = this.props;
+
     if (questionIndex < 1) {
       // Return to location question
       history.push('/aanbouw/locatie');
@@ -175,7 +176,6 @@ class QuestionnaireContainer extends React.Component {
       // @TODO: Need to move out of the render()
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
-
         const isTrue = condCheck(cond, userAnswers, uitvoeringsregels);
 
         if (!isTrue) {
@@ -220,27 +220,13 @@ class QuestionnaireContainer extends React.Component {
     if (questionIndex >= uitvoeringsregels.length) {
       // OVERVIEW
       return (
-        <StyledContent>
-          <Heading $as="h3">Controleer uw antwoorden</Heading>
-          <Paragraph>Adres: {userAddress}</Paragraph>
-          <Paragraph>
-            Uitkomst:{' '}
-            <strong>
-              {uitkomsten.map(answer =>
-                areAllCondTrue(answer.cond, userAnswers, uitvoeringsregels) ? answer.label : null,
-              )}
-            </strong>
-          </Paragraph>
-          <Paragraph>
-            Hieronder ziet u uw antwoorden terug. U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet
-            u wat de vervolgstappen zijn.
-          </Paragraph>
-          <Overview
-            onGoToQuestion={this.onGoToQuestion}
-            userAnswers={userAnswers}
-            uitvoeringsregels={uitvoeringsregels}
-          />
-        </StyledContent>
+        <QuestionOverview
+          onGoToQuestion={this.onGoToQuestion}
+          userAddress={userAddress}
+          uitkomsten={uitkomsten}
+          userAnswers={userAnswers}
+          uitvoeringsregels={uitvoeringsregels}
+        />
       );
     }
 

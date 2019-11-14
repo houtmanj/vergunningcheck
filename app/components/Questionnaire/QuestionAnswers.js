@@ -25,7 +25,7 @@ const Change = styled(`div`)`
   width: 60px;
 `;
 
-const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
+const QuestionAnswers = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
   <>
     <MainWrapper>
       <Question>Vraag</Question>
@@ -80,10 +80,10 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
   </>
 );
 
-Overview.propTypes = {
+QuestionAnswers.propTypes = {
   onGoToQuestion: PropTypes.func,
   uitvoeringsregels: PropTypes.array,
   userAnswers: PropTypes.object,
 };
 
-export default Overview;
+export default QuestionAnswers;
