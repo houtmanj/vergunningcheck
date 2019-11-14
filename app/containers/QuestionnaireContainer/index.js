@@ -42,12 +42,12 @@ class QuestionnaireContainer extends React.Component {
 
   onGoToQuestion = questionId => {
     const {
-      questionnaire: { uitvoeringsregels },
+      questionnaire: { uitvoeringsregels: questions },
     } = this.props;
     let questionIndex = 0;
     // Used for() instead of findIndex(), because of https://stackoverflow.com/a/15998003
-    for (let i = 0; i < uitvoeringsregels.length; i += 1) {
-      if (uitvoeringsregels[i].id === questionId) {
+    for (let i = 0; i < questions.length; i += 1) {
+      if (questions[i].id === questionId) {
         questionIndex = i;
         break;
       }
@@ -103,7 +103,7 @@ class QuestionnaireContainer extends React.Component {
   render() {
     const { questionIndex, userAnswers, hasBestemmingsplan } = this.state;
     const {
-      questionnaire: { uitkomsten, uitvoeringsregels },
+      questionnaire: { uitkomsten: output, uitvoeringsregels: questions },
       loading,
       error,
       addressInput: {
@@ -152,11 +152,11 @@ class QuestionnaireContainer extends React.Component {
       );
     }
 
-    if (!uitvoeringsregels) {
+    if (!questions) {
       return <div>Helaas zijn er geen vragenlijsten gevonden op deze locatie: {userAddress}</div>;
     }
 
-    const question = uitvoeringsregels[questionIndex];
+    const question = questions[questionIndex];
 
     if (question) {
       // QUESTION FLOW FROM JSON
@@ -176,7 +176,7 @@ class QuestionnaireContainer extends React.Component {
       // @TODO: Need to move out of the render()
       if (cond && Array.isArray(cond)) {
         // This question has condition(s)
-        const isTrue = condCheck(cond, userAnswers, uitvoeringsregels);
+        const isTrue = condCheck(cond, userAnswers, questions);
 
         if (!isTrue) {
           // the conditions are not true, so skip this question
@@ -184,15 +184,15 @@ class QuestionnaireContainer extends React.Component {
         }
       }
       if (type === 'decision') {
-        answers.filter(a => {
-          if (a.cond) {
-            const isTrue = condCheck(a.cond, userAnswers, uitvoeringsregels);
+        answers.filter(answer => {
+          if (answer.cond) {
+            const isTrue = condCheck(answer.cond, userAnswers, questions);
             if (isTrue) {
-              this.onGoToNext(questionId, a.value);
+              this.onGoToNext(questionId, answer.value);
               return null;
             }
           }
-          return a;
+          return answer;
         });
       }
 
@@ -217,15 +217,15 @@ class QuestionnaireContainer extends React.Component {
       );
     }
 
-    if (questionIndex >= uitvoeringsregels.length) {
+    if (questionIndex >= questions.length) {
       // OVERVIEW
       return (
         <QuestionOverview
           onGoToQuestion={this.onGoToQuestion}
           userAddress={userAddress}
-          uitkomsten={uitkomsten}
+          output={output}
           userAnswers={userAnswers}
-          uitvoeringsregels={uitvoeringsregels}
+          questions={questions}
         />
       );
     }

@@ -15,8 +15,8 @@ const StyledContent = styled(`div`)`
 `;
 
 const Route = props => {
-  const outcome = questionnaire.uitkomsten.filter(uitkomst =>
-    areAllCondTrue(uitkomst.cond, props.route, questionnaire.uitvoeringsregels) ? uitkomst.label : false,
+  const outcome = questionnaire.uitkomsten.filter(output =>
+    areAllCondTrue(output.cond, props.route, questionnaire.uitvoeringsregels) ? output.label : false,
   );
   return (
     <StyledContent>
@@ -25,10 +25,11 @@ const Route = props => {
         <br />
         {outcome.length && <em>Route: {outcome[0].cond.join(' > ')}</em>}
       </p>
-      <QuestionAnswers userAnswers={props.route} uitvoeringsregels={questionnaire.uitvoeringsregels} />
+      <QuestionAnswers userAnswers={props.route} questions={questionnaire.uitvoeringsregels} />
     </StyledContent>
   );
 };
+
 Route.propTypes = {
   route: PropTypes.object,
 };
@@ -41,8 +42,8 @@ const generateAnswer = (key, o) => {
 
   if (key.type === 'decision') {
     return key.antwoordOpties
-      .filter(a => (a.cond ? condCheck(a.cond, o, questionnaire.uitvoeringsregels) : null))
-      .map(a => a.value)[0];
+      .filter(answer => (answer.cond ? condCheck(answer.cond, o, questionnaire.uitvoeringsregels) : null))
+      .map(answer => answer.value)[0];
   }
 
   return key.antwoordOpties[Math.floor(Math.random() * key.antwoordOpties.length)].value;

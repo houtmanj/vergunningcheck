@@ -12,30 +12,30 @@ const Container = styled(`div`)`
   flex-grow: 1;
 `;
 
-const QuestionOverview = ({ userAddress, uitkomsten, onGoToQuestion, userAnswers, uitvoeringsregels }) => (
+const QuestionOverview = ({ userAddress, output, onGoToQuestion, userAnswers, questions }) => (
   <Container>
     <Heading $as="h3">Controleer uw antwoorden</Heading>
     <Paragraph>Adres: {userAddress}</Paragraph>
     <Paragraph>
       Uitkomst:{' '}
       <strong>
-        {uitkomsten.map(answer => (areAllCondTrue(answer.cond, userAnswers, uitvoeringsregels) ? answer.label : null))}
+        {output.map(answer => (areAllCondTrue(answer.cond, userAnswers, questions) ? answer.label : null))}
       </strong>
     </Paragraph>
     <Paragraph>
       Hieronder ziet u uw antwoorden terug. U kunt uw antwoorden eenvoudig wijzigen. Als u op volgende klikt, ziet u wat
       de vervolgstappen zijn.
     </Paragraph>
-    <QuestionAnswers onGoToQuestion={onGoToQuestion} userAnswers={userAnswers} uitvoeringsregels={uitvoeringsregels} />
+    <QuestionAnswers onGoToQuestion={onGoToQuestion} userAnswers={userAnswers} questions={questions} />
   </Container>
 );
 
 QuestionOverview.propTypes = {
   userAddress: PropTypes.string,
-  uitkomsten: PropTypes.array,
+  output: PropTypes.array,
   userAnswers: PropTypes.object,
   onGoToQuestion: PropTypes.func,
-  uitvoeringsregels: PropTypes.array,
+  questions: PropTypes.array,
 };
 
 export default QuestionOverview;
