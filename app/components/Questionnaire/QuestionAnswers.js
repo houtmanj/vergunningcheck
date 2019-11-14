@@ -25,7 +25,7 @@ const Change = styled(`div`)`
   width: 60px;
 `;
 
-const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
+const QuestionAnswers = ({ questions, userAnswers, onGoToQuestion }) => (
   <>
     <MainWrapper>
       <Question>Vraag</Question>
@@ -34,12 +34,12 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
       <Change>Wijzig</Change>
     </MainWrapper>
 
-    {uitvoeringsregels.map((rule, index) => {
+    {questions.map((rule, index) => {
       // if (rule.type === 'decision') return null;
       const userAnswerValue = userAnswers[rule.id];
       const userAnswer = rule.antwoordOpties
-        .filter(antwoord => antwoord.value === userAnswerValue)
-        .map(antwoord => antwoord.optieText);
+        .filter(answer => answer.value === userAnswerValue)
+        .map(answer => answer.optieText);
 
       const answerText = userAnswer.toString();
 
@@ -80,10 +80,10 @@ const Overview = ({ uitvoeringsregels, userAnswers, onGoToQuestion }) => (
   </>
 );
 
-Overview.propTypes = {
+QuestionAnswers.propTypes = {
   onGoToQuestion: PropTypes.func,
-  uitvoeringsregels: PropTypes.array,
+  questions: PropTypes.array,
   userAnswers: PropTypes.object,
 };
 
-export default Overview;
+export default QuestionAnswers;
