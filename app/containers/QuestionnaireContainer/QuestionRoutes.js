@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 
-import { Overview } from 'components/Questionnaire';
+import { QuestionAnswers } from 'components/Questionnaire';
 import { condCheck, areAllCondTrue } from 'shared/services/questionnaire/conditions';
 import { questionnaires } from 'shared/services/questionnaire/questionnaire';
 
@@ -25,7 +25,7 @@ const Route = props => {
         <br />
         {outcome.length && <em>Route: {outcome[0].cond.join(' > ')}</em>}
       </p>
-      <Overview userAnswers={props.route} uitvoeringsregels={questionnaire.uitvoeringsregels} />
+      <QuestionAnswers userAnswers={props.route} uitvoeringsregels={questionnaire.uitvoeringsregels} />
     </StyledContent>
   );
 };
