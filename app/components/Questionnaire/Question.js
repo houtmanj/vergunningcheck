@@ -73,8 +73,8 @@ const Question = ({
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
       {heading && <Heading $as={headingAs}>{heading}</Heading>}
-      {visibleText && <ReactMarkdown source={visibleText} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
       {media && <ImageContainer media={media} />}
+      {visibleText && <ReactMarkdown source={visibleText} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
       {hiddenText && <ExplanationModal modalText={hiddenText} />}
       {errors[questionId] && errors[questionId].message}
       <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
