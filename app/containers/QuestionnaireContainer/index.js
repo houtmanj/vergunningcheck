@@ -137,7 +137,7 @@ class QuestionnaireContainer extends React.Component {
           },
           {
             id: 2,
-            value: 'test',
+            value: 'media',
             optieText: 'Plaatjes',
           },
         ],

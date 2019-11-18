@@ -1,12 +1,12 @@
 import { camelCase } from 'lodash';
 import dePijp2018 from 'shared/content/aanbouw/de-pijp-2018';
 import rivierenbuurt from 'shared/content/aanbouw/rivierenbuurt';
-import test from 'shared/content/aanbouw/test';
+import media from 'shared/content/aanbouw/media';
 
 export const questionnaires = {
   dePijp2018,
   rivierenbuurt,
-  test,
+  media,
 };
 
 const addIndexToQuestions = q => q.map((i, index) => ({ ...i, index }));
