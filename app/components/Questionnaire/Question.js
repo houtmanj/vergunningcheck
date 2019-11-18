@@ -8,7 +8,7 @@ import { ExplanationModal } from 'components/Modal';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import Answers from './Answers';
-import ImageContainer from './ImageContainer';
+import MediaContainer from './MediaContainer';
 
 import './style.scss';
 
@@ -73,7 +73,7 @@ const Question = ({
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
       {heading && <Heading $as={headingAs}>{heading}</Heading>}
-      {media && <ImageContainer media={media} />}
+      {media && <MediaContainer media={media} />}
       {visibleText && <ReactMarkdown source={visibleText} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
       {hiddenText && <ExplanationModal modalText={hiddenText} />}
       {errors[questionId] && errors[questionId].message}
