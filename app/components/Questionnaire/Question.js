@@ -10,6 +10,8 @@ import Navigation from 'components/Navigation';
 import Answers from './Answers';
 import ImageContainer from './ImageContainer';
 
+import './style.scss';
+
 const hasKeys = obj =>
   // convert to array, map, and then give the length
   Object.entries(obj).map(([key, value]) => [key, value]).length;
