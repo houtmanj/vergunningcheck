@@ -113,7 +113,7 @@ Question.propTypes = {
   showPrev: PropTypes.bool,
   disableNext: PropTypes.bool,
   onGoToPrev: PropTypes.func,
-  children: PropTypes.any,
+  children: PropTypes.node,
 };
 
 export default Question;
