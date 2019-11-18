@@ -171,10 +171,32 @@ class AddressInput extends React.Component {
 
     const inputError = this.validateAddressInput();
 
+    const question = {
+      id: 'location',
+      vraagTekst: 'Waar wilt u uw aanbouw maken?',
+    };
+
+    const questionVerify = {
+      id: 'locationVerify',
+      vraagTekst: 'Klopt dit adres',
+      antwoordOpties: [
+        {
+          id: '1',
+          optieText: 'Ja',
+          value: 'true',
+        },
+        {
+          id: '2',
+          optieText: 'Nee',
+          value: 'false',
+        },
+      ],
+    };
+
     return (
       <>
         <Question
-          heading="Waar wilt u uw aanbouw maken?"
+          question={question}
           hideNavigation={!!showAddressResults}
           showPrev
           onGoToPrev={this.onGoToPrev}
@@ -198,25 +220,12 @@ class AddressInput extends React.Component {
               <br />
             </AddressResult>
             <Question
-              questionId="addressVerify"
-              heading="Klopt dit adres"
+              question={questionVerify}
               showPrev
               onGoToPrev={this.onGoToPrev}
               showNext
               onSubmit={this.handleSubmit}
               required
-              answers={[
-                {
-                  id: '1',
-                  optieText: 'Ja',
-                  value: 'true',
-                },
-                {
-                  id: '2',
-                  optieText: 'Nee',
-                  value: 'false',
-                },
-              ]}
             />
             <div>
               <AddressResult loading={monumentLoading} title="Voorbeeld postcodes:">

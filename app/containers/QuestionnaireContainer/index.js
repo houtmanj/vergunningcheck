@@ -108,7 +108,6 @@ class QuestionnaireContainer extends React.Component {
       error,
       addressInput: {
         bagStatus: { _display: userAddress = '' },
-        monumentStatus,
       },
     } = this.props;
 
@@ -126,28 +125,32 @@ class QuestionnaireContainer extends React.Component {
     }
 
     if (!hasBestemmingsplan) {
+      const question = {
+        id: 'bestemmingsplan',
+        vraagTekst: 'Er is geen bestemmingsplan gevonden. Welk bestemmingsplan wilt u gebruiken?',
+        toelichting: 'Kies een bestemmingsplan waar u mee wilt werken.',
+        antwoordOpties: [
+          {
+            id: 1,
+            value: 'dePijp2018',
+            optieText: 'De Pijp',
+          },
+          {
+            id: 2,
+            value: 'test',
+            optieText: 'Plaatjes',
+          },
+        ],
+      };
+
       return (
         <Question
-          questionId="bestemmingsplan"
-          heading="Er is geen bestemmingsplan gevonden. Welk bestemmingsplan wilt u gebruiken?"
-          paragraph="Kies een bestemmingsplan waar u mee wilt werken."
+          question={question}
           onSubmit={this.setBestemmingsplan}
           onGoToPrev={this.onGoToPrev}
           showNext
           showPrev
           required
-          answers={[
-            {
-              id: 1,
-              value: 'dePijp2018',
-              optieText: 'De Pijp',
-            },
-            {
-              id: 2,
-              value: 'test',
-              optieText: 'Plaatjes',
-            },
-          ]}
         />
       );
     }
@@ -160,17 +163,7 @@ class QuestionnaireContainer extends React.Component {
 
     if (question) {
       // QUESTION FLOW FROM JSON
-      const {
-        id: questionId,
-        vraagTekst: questionText,
-        antwoordOpties: answers,
-        cond,
-        media,
-        type,
-        toelichting: paragraph,
-        langeToelichting: modalText,
-        registerbevraging: registryQuestion,
-      } = question;
+      const { id: questionId, antwoordOpties: answers, cond, type } = question;
 
       // CONDITIONALS
       // @TODO: Need to move out of the render()
@@ -195,21 +188,12 @@ class QuestionnaireContainer extends React.Component {
           return answer;
         });
       }
-
-      const setAnswer = registryQuestion === 'monument' && monumentStatus !== '';
-
       return (
         <Question
-          heading={questionText}
-          paragraph={paragraph}
-          modalText={modalText}
           onSubmit={this.onGoToNext}
           onGoToPrev={this.onGoToPrev}
-          questionId={questionId}
+          question={question}
           userAnswers={userAnswers}
-          media={media}
-          answers={answers}
-          setAnswer={setAnswer}
           required
           showNext
           showPrev

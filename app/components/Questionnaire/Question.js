@@ -17,21 +17,23 @@ const hasKeys = obj =>
   Object.entries(obj).map(([key, value]) => [key, value]).length;
 
 const Question = ({
-  questionId,
+  question: {
+    id: questionId,
+    vraagTekst: heading,
+    antwoordOpties: answers,
+    media,
+    toelichting: visibleText,
+    langeToelichting: hiddenText,
+  },
   className,
-  heading,
   headingAs,
-  paragraph,
-  modalText,
   children,
-  media,
   onSubmit: onSubmitProp,
   hideNavigation,
   disableNext,
   showNext,
   showPrev,
   onGoToPrev,
-  answers,
   userAnswers,
   required,
   ...otherProps
@@ -71,13 +73,11 @@ const Question = ({
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
       {heading && <Heading $as={headingAs}>{heading}</Heading>}
-      {paragraph && <ReactMarkdown source={paragraph} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
       {media && <ImageContainer media={media} />}
-      {modalText && <ExplanationModal modalText={modalText} />}
-      <div className={errors[questionId] ? 'error' : null}>
-        {errors[questionId] && <div className="error-label">{errors[questionId].message}</div>}
-        <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
-      </div>
+      {visibleText && <ReactMarkdown source={visibleText} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
+      {hiddenText && <ExplanationModal modalText={hiddenText} />}
+      {errors[questionId] && errors[questionId].message}
+      <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
       {children}
       {!hideNavigation && (
         <Navigation showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} disableNext={disableNext} />
@@ -87,18 +87,24 @@ const Question = ({
 };
 
 Question.defaultProps = {
+  question: {
+    id: '',
+    vraagTekst: '',
+  },
   headingAs: 'h3',
 };
 
 Question.propTypes = {
-  questionId: PropTypes.string,
+  question: PropTypes.shape({
+    id: PropTypes.string,
+    vraagTekst: PropTypes.string,
+    antwoordOpties: PropTypes.array,
+    media: PropTypes.array,
+    toelichting: PropTypes.string,
+    langeToelichting: PropTypes.string,
+  }),
   className: PropTypes.string,
-  heading: PropTypes.string,
   headingAs: PropTypes.string,
-  paragraph: PropTypes.string,
-  modalText: PropTypes.string,
-  answers: PropTypes.array,
-  media: PropTypes.array,
   userAnswers: PropTypes.object,
   onSubmit: PropTypes.func,
   hideNavigation: PropTypes.bool,
@@ -107,7 +113,7 @@ Question.propTypes = {
   showPrev: PropTypes.bool,
   disableNext: PropTypes.bool,
   onGoToPrev: PropTypes.func,
-  children: PropTypes.any,
+  children: PropTypes.node,
 };
 
 export default Question;
