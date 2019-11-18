@@ -1,8 +1,12 @@
+body {
+    overflow-y: scroll;
+}
+
 #header {
-  position: relative;
-  margin: 0;
+    position: relative;
+    margin: 0;
 }
 
 #header nav {
-  justify-content: flex-start;
+    justify-content: flex-start;
 }
