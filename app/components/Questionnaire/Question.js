@@ -20,8 +20,8 @@ const Question = ({
     vraagTekst: heading,
     antwoordOpties: answers,
     media,
-    toelichting: explanation,
-    langeToelichting: modalText,
+    toelichting: visibleText,
+    langeToelichting: hiddenText,
   },
   className,
   headingAs,
@@ -71,9 +71,9 @@ const Question = ({
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
       {heading && <Heading $as={headingAs}>{heading}</Heading>}
-      {explanation && <ReactMarkdown source={explanation} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
+      {visibleText && <ReactMarkdown source={visibleText} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
       {media && <ImageContainer media={media} />}
-      {modalText && <ExplanationModal modalText={modalText} />}
+      {hiddenText && <ExplanationModal modalText={hiddenText} />}
       {errors[questionId] && errors[questionId].message}
       <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
       {children}
