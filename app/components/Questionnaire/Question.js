@@ -76,8 +76,10 @@ const Question = ({
       {media && <MediaContainer media={media} />}
       {visibleText && <ReactMarkdown source={visibleText} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
       {hiddenText && <ExplanationModal modalText={hiddenText} />}
-      {errors[questionId] && errors[questionId].message}
-      <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
+      <div className={errors[questionId] ? 'error' : null}>
+        {errors[questionId] && <div className="error-label">{errors[questionId].message}</div>}
+        <Answers questionId={questionId} onChange={handleChange} answers={answers} userAnswers={userAnswers} />
+      </div>
       {children}
       {!hideNavigation && (
         <Navigation showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} disableNext={disableNext} />
