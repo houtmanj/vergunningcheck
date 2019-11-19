@@ -5,6 +5,8 @@ import styled from '@datapunt/asc-core';
 import { Label } from '@datapunt/asc-ui';
 import PrefilledAnswerText from './PrefilledAnswerText';
 
+import './style.scss';
+
 const StyledFooter = styled.div`
   margin-top: 20px;
 `;
@@ -14,6 +16,7 @@ const Answers = ({
   answers,
   required,
   userAnswers,
+  errors,
   questionId,
   onChange,
   hideFooter,
@@ -25,35 +28,40 @@ const Answers = ({
 
   return (
     <>
-      <div className={className}>
+      <div>
         {hasPrefilledAnswer && <PrefilledAnswerText />}
-        {answers &&
-          answers.map(answer => {
-            // // Set answer based on previous user input or from registry source
-            const checked =
-              (userAnswer && userAnswer === answer.value) ||
-              (hasRegistry && setAnswer && answer.value === 'true') ||
-              (hasRegistry && !setAnswer && answer.value === 'false');
-            const answerId = `${questionId}-${answer.id}`;
+        <div className={errors[questionId] ? 'error' : null}>
+          {errors[questionId] && <div className="error-label">{errors[questionId].message}</div>}
+          <div className={className}>
+            {answers &&
+              answers.map(answer => {
+                // // Set answer based on previous user input or from registry source
+                const checked =
+                  (userAnswer && userAnswer === answer.value) ||
+                  (hasRegistry && setAnswer && answer.value === 'true') ||
+                  (hasRegistry && !setAnswer && answer.value === 'false');
+                const answerId = `${questionId}-${answer.id}`;
 
-            return (
-              <Label htmlFor={answerId} key={answerId} label={answer.optieText}>
-                <input
-                  key={answer.id}
-                  type="radio"
-                  id={answerId}
-                  name={questionId}
-                  answer-id={answer.id}
-                  value={answer.value}
-                  data-id={answer.id}
-                  style={{ marginRight: 10, height: 30 }}
-                  onChange={e => onChange(e)}
-                  defaultChecked={checked}
-                  disabled="disabled"
-                />
-              </Label>
-            );
-          })}
+                return (
+                  <Label htmlFor={answerId} key={answerId} label={answer.optieText}>
+                    <input
+                      key={answer.id}
+                      type="radio"
+                      id={answerId}
+                      name={questionId}
+                      answer-id={answer.id}
+                      value={answer.value}
+                      data-id={answer.id}
+                      style={{ marginRight: 10, height: 30 }}
+                      onChange={e => onChange(e)}
+                      defaultChecked={checked}
+                      disabled="disabled"
+                    />
+                  </Label>
+                );
+              })}
+          </div>
+        </div>
       </div>
       {!hideFooter && required && <StyledFooter>* Vergunning nodig</StyledFooter>}
     </>
@@ -70,6 +78,7 @@ Answers.propTypes = {
   className: PropTypes.string,
   required: PropTypes.string,
   answers: PropTypes.array,
+  errors: PropTypes.array,
   userAnswers: PropTypes.object,
   questionId: PropTypes.string,
   onChange: PropTypes.func,
