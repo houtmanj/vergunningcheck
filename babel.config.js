@@ -3,12 +3,22 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        modules: false,
+        targets: {
+          ie: '11',
+        },
+        useBuiltIns: 'entry',
       },
     ],
     '@babel/preset-react',
   ],
-  plugins: ['styled-components', '@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import'],
+  plugins: [
+    'styled-components',
+    '@babel/transform-async-to-generator',
+    '@babel/transform-arrow-functions',
+    '@babel/transform-modules-commonjs',
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-syntax-dynamic-import',
+  ],
   env: {
     production: {
       only: ['app'],
