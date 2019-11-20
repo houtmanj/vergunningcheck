@@ -27,17 +27,15 @@ module.exports = options => ({
 
       {
         test: /\.(js|jsx)$/, // Transform all .js and .jsx files required somewhere with Babel
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-          // query: {
-          //   presets: ['react', 'es2015'],
-          // },
-          // options: options.babelQuery,
+        // exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
         },
+        // query: {
+        //   presets: ['react', 'es2015'],
+        // },
+        // options: options.babelQuery,
       },
       {
         // Preprocess our own .css files
