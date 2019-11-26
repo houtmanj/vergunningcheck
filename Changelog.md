@@ -345,3 +345,5 @@ website!
 
   - We finally added a **[CoC](CODE_OF_CONDUCT.md)**
   - Windows compatibility has improved massively
+  
+  ...
