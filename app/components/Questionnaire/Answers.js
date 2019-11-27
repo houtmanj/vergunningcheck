@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styled from '@datapunt/asc-core';
-import { Label } from '@datapunt/asc-ui';
+import { Label, Radio, RadioGroup } from '@datapunt/asc-ui';
 import PrefilledAnswerText from './PrefilledAnswerText';
 
 import './style.scss';
@@ -16,11 +16,11 @@ const Answers = ({ className, answers, userAnswers, errors, questionId, onChange
       {hasPrefilledAnswer && <PrefilledAnswerText />}
       <div className={errors[questionId] ? 'error' : null}>
         {errors[questionId] && <div className="error-label">{errors[questionId].message}</div>}
-        <div className={className}>
+        <RadioGroup className={className} name={questionId}>
           {answers &&
             answers.map(answer => {
               // Set answer based on previous user input or from registry source
-              const checked =
+              const defaultChecked =
                 (userAnswer && userAnswer === answer.value) ||
                 (hasRegistry && setAnswer && answer.value === 'true') ||
                 (hasRegistry && !setAnswer && answer.value === 'false');
@@ -28,23 +28,17 @@ const Answers = ({ className, answers, userAnswers, errors, questionId, onChange
 
               return (
                 <Label htmlFor={answerId} key={answerId} label={answer.optieText}>
-                  <input
+                  <Radio
                     key={answer.id}
-                    type="radio"
-                    id={answerId}
-                    name={questionId}
-                    answer-id={answer.id}
                     value={answer.value}
-                    data-id={answer.id}
-                    style={{ marginRight: 10, height: 30 }}
+                    id={answerId}
                     onChange={e => onChange(e)}
-                    defaultChecked={checked}
-                    disabled="disabled"
+                    defaultChecked={defaultChecked}
                   />
                 </Label>
               );
             })}
-        </div>
+        </RadioGroup>
       </div>
     </>
   );
