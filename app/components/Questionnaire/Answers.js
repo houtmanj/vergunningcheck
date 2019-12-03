@@ -29,7 +29,7 @@ const Answers = ({ className, answers, userAnswers, errors, questionId, onChange
               return (
                 <Label htmlFor={answerId} key={answerId} label={answer.optieText}>
                   <Radio
-                    key={answer.id}
+                    key={answerId}
                     value={answer.value}
                     id={answerId}
                     onChange={e => onChange(e)}
@@ -53,7 +53,7 @@ const StyledAnswers = styled(Answers)`
 Answers.propTypes = {
   className: PropTypes.string,
   answers: PropTypes.array,
-  errors: PropTypes.array,
+  errors: PropTypes.any,
   userAnswers: PropTypes.object,
   questionId: PropTypes.string,
   onChange: PropTypes.func,
