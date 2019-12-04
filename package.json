@@ -73,7 +73,7 @@
         "@babel/polyfill": "7.4.3",
         "@datapunt/asc-assets": "^0.17.7",
         "@datapunt/asc-core": "^0.17.7",
-        "@datapunt/asc-ui": "^0.17.8-alpha.2",
+        "@datapunt/asc-ui": "^0.17.8-alpha.15",
         "@svgr/webpack": "^4.3.2",
         "chalk": "2.4.2",
         "compression": "1.7.4",

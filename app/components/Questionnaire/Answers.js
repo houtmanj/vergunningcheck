@@ -20,7 +20,7 @@ const Answers = ({ className, answers, userAnswers, errors, questionId, onChange
           {answers &&
             answers.map(answer => {
               // Set answer based on previous user input or from registry source
-              const defaultChecked =
+              const checked =
                 (userAnswer && userAnswer === answer.value) ||
                 (hasRegistry && setAnswer && answer.value === 'true') ||
                 (hasRegistry && !setAnswer && answer.value === 'false');
@@ -33,7 +33,7 @@ const Answers = ({ className, answers, userAnswers, errors, questionId, onChange
                     value={answer.value}
                     id={answerId}
                     onChange={e => onChange(e)}
-                    defaultChecked={defaultChecked}
+                    checked={checked}
                   />
                 </Label>
               );
