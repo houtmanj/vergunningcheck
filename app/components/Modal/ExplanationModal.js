@@ -16,7 +16,7 @@ const ExplanationModal = ({ modalText }) => {
 
   return (
     <div style={{ marginBottom: '24px' }}>
-      <Button color="primary" onClick={() => toggleExplanationShown(!explanationShown)}>
+      <Button type="button" color="primary" onClick={() => toggleExplanationShown(!explanationShown)}>
         Toelichting
       </Button>
       <Modal
