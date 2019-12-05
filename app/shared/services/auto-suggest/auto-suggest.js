@@ -181,65 +181,63 @@ function getVerblijfsobjectUri(categories, streetNumberFromInput) {
   return '';
 }
 
-function formatAddress(categories) {
-  const indexedCategories = categories
-    .filter(category => category.content.filter(suggestion => suggestion.category === 'Adressen'))
-    .map(category => ({
-      content: category.content.map(suggestion => {
-        const { label, uri } = suggestion;
-        return {
-          category: category.label,
-          label,
-          uri,
-        };
-      }),
-    }));
+// function formatAddress(categories) {
+//   const indexedCategories = categories
+//     .filter(category => category.content.filter(suggestion => suggestion.category === 'Adressen'))
+//     .map(category => ({
+//       content: category.content.map(suggestion => {
+//         const { label, uri } = suggestion;
+//         return {
+//           category: category.label,
+//           label,
+//           uri,
+//         };
+//       }),
+//     }));
+//
+//   if (indexedCategories.length < 1 || !indexedCategories[0].content) return [];
+//   return indexedCategories[0].content;
+// }
 
-  if (indexedCategories.length < 1 || !indexedCategories[0].content) return [];
-  return indexedCategories[0].content;
+function filterByStreetNumber(data, streetNumber) {
+  const filteredStreetNumbers = data.filter(address => address.huisnummer === Number(streetNumber));
+  return filteredStreetNumbers;
 }
 
-function formatStreetname(categories) {
-  const indexedCategories = categories.filter(category =>
-    category.content.filter(suggestion => suggestion.category === 'Straatnamen'),
-  );
+// export function searchForAddress(query) {
+//   // Minimun length for typeahead query in backend is 3 characters
+//   const uri = query && query.length >= 3 && `${SHARED_CONFIG.API_ROOT}typeahead?q=${query}`;
+//   if (uri) {
+//     return getByUri(uri).then(response => formatAddress(response));
+//   }
+//   return {};
+// }
+//
+export async function searchForStreetname(query) {
+  const { postalCode, streetNumber } = query;
+  const uri = `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
 
-  const { _display: label = '' } = indexedCategories[0].content[0];
-
-  return label;
-}
-
-export function searchForAddress(query) {
-  // Minimun length for typeahead query in backend is 3 characters
-  const uri = query && query.length >= 3 && `${SHARED_CONFIG.API_ROOT}typeahead?q=${query}`;
   if (uri) {
-    return getByUri(uri).then(response => formatAddress(response));
+    const data = await getByUri(uri).then(response => filterByStreetNumber(response.results, streetNumber));
+    console.log(data);
+    return data;
   }
-  return {};
+  return [];
 }
 
-export function searchForStreetname(query) {
-  // Minimun length for typeahead query in backend is 3 characters
-  const uri = query && query.length >= 3 && `${SHARED_CONFIG.API_ROOT}typeahead?q=${query}`;
+export async function searchBag(query) {
+  const { postalCode = '', streetNumber = '' } = query;
+  console.log(query);
+  const uri = postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}typeahead?q=${postalCode}+${streetNumber}`;
   if (uri) {
-    return getByUri(uri).then(response => formatStreetname(response));
-  }
-  return {};
-}
-
-export function searchBag(query) {
-  const { postcode = '', streetNumber = '' } = query;
-  const uri = postcode && streetNumber && `${SHARED_CONFIG.API_ROOT}typeahead?q=${postcode}+${streetNumber}`;
-  if (uri) {
-    return (
-      getByUri(uri)
-        .then(response => getVerblijfsobjectUri(response, streetNumber))
-        // verblijfsobject uri: /bag/verblijfsobject/${ID}/
-        .then(verblijfsobjectUri => {
-          if (verblijfsobjectUri) return getByUri(`${SHARED_CONFIG.API_ROOT}${verblijfsobjectUri}`);
-          return false;
-        })
-    );
+    const response2 = await getByUri(uri)
+      .then(response => getVerblijfsobjectUri(response, streetNumber))
+      .then(verblijfsobjectUri => {
+        if (verblijfsobjectUri) return getByUri(`${SHARED_CONFIG.API_ROOT}${verblijfsobjectUri}`);
+        return false;
+      });
+    console.log(response2);
+    return response2;
   }
   return {};
 }

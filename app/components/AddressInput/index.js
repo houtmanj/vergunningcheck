@@ -1,5 +1,4 @@
 import AddressResult from './AddressResult';
-import AddressInputFields from './AddressInputFields';
-import AddressInputErrors from './AddressInputErrors';
+import DebugData from './DebugData';
 
-export { AddressInputFields, AddressResult, AddressInputErrors };
+export { AddressResult, DebugData };
