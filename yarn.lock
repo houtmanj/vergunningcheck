@@ -843,10 +843,10 @@
   dependencies:
     styled-components "^4.3.2"
 
-"@datapunt/asc-ui@^0.17.8-alpha.2":
-  version "0.17.8-alpha.13"
-  resolved "https://registry.yarnpkg.com/@datapunt/asc-ui/-/asc-ui-0.17.8-alpha.13.tgz#f01056ec259addd5189bf883baccf3ef9fdf7435"
-  integrity sha512-JaFWPDrgDFQspeUzw1/TfId5cuwwuiHMZZ5DEoB/RX3M8w4E75SEOdPVfNfhBWVj2mVA9fq8mg8mlis8l+jQyA==
+"@datapunt/asc-ui@^0.17.8-alpha.15":
+  version "0.17.8-alpha.15"
+  resolved "https://registry.yarnpkg.com/@datapunt/asc-ui/-/asc-ui-0.17.8-alpha.15.tgz#22d95afb41a4844420fa4b34704c0a5df824107e"
+  integrity sha512-omu3BbUwsBrAAibpAjpgy5/ActC51Ptw/emwBIzYZ3zXY/FDysec/v4PYI6876kZIYeoXuj+A30iPO/k52GV2A==
   dependencies:
     "@datapunt/asc-assets" "^0.17.7"
     "@datapunt/asc-core" "^0.17.7"

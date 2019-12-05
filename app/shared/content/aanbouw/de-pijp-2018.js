@@ -73,19 +73,19 @@ export default {
         'Openbaar toegankelijk gebied: weg als bedoeld in artikel 1, eerste lid, onder b, van de Wegenverkeerswet 1994, alsmede pleinen, parken, plantsoenen, openbaar vaarwater en ander openbaar gebied dat voor publiek algemeen toegankelijk is, met uitzondering van wegen uitsluitend bedoeld voor de ontsluiting van percelen door langzaam verkeer;',
       langeToelichting: `De wat de voor- en achtergevel zijn kan meestal worden bepaald door plek van de (hoofd)ingang. Die zit in de voorgevel. De achtergevel zit precies aan de andere kant. Als u twijfelt: neem contact op met de gemeente.
         
-        Het gebied achter de achtergevel mag niet grenzen aan openbaar toegankelijk gebied.
-        
-        Daarmee wordt bedoelt: een weg of een vaarweg.
-        
-        Daarmee wordt niet bedoeld:
-        - een weg voor langzaam verkeer (voetpad of fietspad)
-        - een sloot
-        
-        En weer wel:
-        - een weg met voetpad (stoep) en/of fietspad erlangs
-        - een weg met sloot erlangs
-        
-        Als u twijfelt: neem contact op met de gemeente.`,
+Het gebied achter de achtergevel mag niet grenzen aan openbaar toegankelijk gebied.
+
+Daarmee wordt bedoelt: een weg of een vaarweg.
+
+Daarmee wordt niet bedoeld:
+- een weg voor langzaam verkeer (voetpad of fietspad)
+- een sloot
+
+En weer wel:
+- een weg met voetpad (stoep) en/of fietspad erlangs
+- een weg met sloot erlangs
+
+Als u twijfelt: neem contact op met de gemeente.`,
       antwoordOpties: [
         {
           id: '1',
@@ -512,11 +512,11 @@ Als u twijfelt: neem contact op met de gemeente.`,
       id: 'artikel-2-vraag-8',
       toelichting: `Openbaar toegankelijk gebied: weg als bedoeld in artikel 1, eerste lid, onder b, van de Wegenverkeerswet 1994, alsmede pleinen, parken, plantsoenen, openbaar vaarwater en ander openbaar gebied dat voor publiek algemeen toegankelijk is, met uitzondering van wegen uitsluitend bedoeld voor de ontsluiting van percelen door langzaam verkeer;`,
       langeToelichting: `"De wat de voor- en achtergevel zijn kan meestal worden bepaald door plek van de (hoofd)ingang. Die zit in de voorgevel. De achtergevel zit precies aan de andere kant.
-      Als u twijfelt: neem contact op met de gemeente.
-      
-      Het gebied achter de achtergevel mag niet grenzen aan openbaar toegankelijk gebied.
-      
-      Daarmee wordt bedoelt: een weg of een vaarweg."`,
+Als u twijfelt: neem contact op met de gemeente.
+
+Het gebied achter de achtergevel mag niet grenzen aan openbaar toegankelijk gebied.
+
+Daarmee wordt bedoelt: een weg of een vaarweg."`,
       cond: ['artikel-2-vraag-1.true', 'artikel-2-vraag-1.false'],
       antwoordOpties: [
         {
