@@ -1,7 +1,7 @@
 import { call, put, takeLatest, delay } from 'redux-saga/effects';
 
 import {
-  searchForAddress,
+  searchForStreetname,
   searchBag,
   searchForMonument,
   searchForStadsgezicht,
@@ -33,7 +33,7 @@ import {
 
 export function* fetchStreetname(action) {
   try {
-    const streetName = yield call(searchForAddress, action.query);
+    const streetName = yield call(searchForStreetname, action.query);
     yield delay(600);
     yield put({ type: FETCH_STREETNAME_SUCCESS, streetName });
   } catch (error) {
