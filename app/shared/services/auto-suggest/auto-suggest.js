@@ -181,38 +181,10 @@ function getVerblijfsobjectUri(categories, streetNumberFromInput) {
   return '';
 }
 
-// function formatAddress(categories) {
-//   const indexedCategories = categories
-//     .filter(category => category.content.filter(suggestion => suggestion.category === 'Adressen'))
-//     .map(category => ({
-//       content: category.content.map(suggestion => {
-//         const { label, uri } = suggestion;
-//         return {
-//           category: category.label,
-//           label,
-//           uri,
-//         };
-//       }),
-//     }));
-//
-//   if (indexedCategories.length < 1 || !indexedCategories[0].content) return [];
-//   return indexedCategories[0].content;
-// }
-
 function filterByStreetNumber(data, streetNumber) {
-  const filteredStreetNumbers = data.filter(address => address.huisnummer === Number(streetNumber));
-  return filteredStreetNumbers;
+  return data.filter(address => address.huisnummer === Number(streetNumber));
 }
 
-// export function searchForAddress(query) {
-//   // Minimun length for typeahead query in backend is 3 characters
-//   const uri = query && query.length >= 3 && `${SHARED_CONFIG.API_ROOT}typeahead?q=${query}`;
-//   if (uri) {
-//     return getByUri(uri).then(response => formatAddress(response));
-//   }
-//   return {};
-// }
-//
 export async function searchForStreetname(query) {
   const { postalCode, streetNumber } = query;
   const uri = `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
