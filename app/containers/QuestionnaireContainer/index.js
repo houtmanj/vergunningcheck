@@ -77,7 +77,8 @@ class QuestionnaireContainer extends React.Component {
     onFetchQuestionnaire([{ text: bestemmingsplan }]);
   };
 
-  onGoToPrev = () => {
+  onGoToPrev = e => {
+    e.preventDefault();
     const { questionIndex, userAnswers } = this.state;
     const { questionnaire } = this.props;
 
