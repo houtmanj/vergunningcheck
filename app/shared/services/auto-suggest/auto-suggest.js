@@ -39,7 +39,6 @@ function convertXMLtoJS(xml) {
 }
 
 function formatBestemmingPlan(response) {
-  // console.log('formatBestemmingPlan');
   if (response && response.FeatureCollection && response.FeatureCollection.member) {
     const {
       FeatureCollection: { member = [] },
@@ -174,6 +173,7 @@ function getVerblijfsobjectUri(categories, streetNumberFromInput) {
     const streetNameFromApi = label.slice(label.lastIndexOf(' ')).trim();
     return streetNameFromApi === streetNumberFromInput;
   });
+
   if (filteredAddress.length === 1 && filteredAddress[0].uri) {
     return filteredAddress[0].uri;
   }
@@ -185,21 +185,19 @@ function filterByStreetNumber(data, streetNumber) {
   return data.filter(address => address.huisnummer === Number(streetNumber));
 }
 
-export async function searchForStreetname(query) {
+export function searchForAddress(query) {
   const { postalCode, streetNumber } = query;
   const uri = `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
 
-  if (uri) {
-    const data = await getByUri(uri).then(response => filterByStreetNumber(response.results, streetNumber));
-    console.log(data);
-    return data;
+  if (postalCode && streetNumber) {
+    return getByUri(uri).then(response => filterByStreetNumber(response.results, streetNumber));
   }
   return [];
 }
 
 export async function searchBag(query) {
   const { postalCode = '', streetNumber = '' } = query;
-  console.log(query);
+
   const uri = postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}typeahead?q=${postalCode}+${streetNumber}`;
   if (uri) {
     const response2 = await getByUri(uri)
@@ -208,7 +206,6 @@ export async function searchBag(query) {
         if (verblijfsobjectUri) return getByUri(`${SHARED_CONFIG.API_ROOT}${verblijfsobjectUri}`);
         return false;
       });
-    console.log(response2);
     return response2;
   }
   return {};
