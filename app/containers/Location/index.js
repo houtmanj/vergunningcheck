@@ -22,21 +22,24 @@ const question = {
 
 const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetName, onFetchStreetname }) => {
   const [loadingLocation, toggleLoadingLocation] = useState(false);
-  const [toevoeging, addToevoeging] = useState(null);
+  const [suffix, addSuffix] = useState(null);
   const loading = streetNameLoading || bagLoading;
   const { clearError, errors, setError, setValue, register, getValues } = useForm({ mode: 'onChange' });
   const values = getValues();
-  const allFieldsFilled = values.postalCode && values.streetNumber;
+  const allFieldsFilled = !loading && values.postalCode && values.streetNumber;
   const hasErrors = !loading && streetName.length === 0 && Object.entries(errors).length !== 0;
+  const hasSuffix = streetName.length > 1;
+  const hasSuffixNotFilled = hasSuffix && !suffix;
 
   register({ name: 'postalCode' });
   register({ name: 'streetNumber' });
 
-  if (!loadingLocation && Object.keys(errors).length === 0 && errors.constructor === Object && allFieldsFilled) {
+  if (!loadingLocation && !hasErrors && allFieldsFilled) {
     onFetchStreetname(values);
     onFetchBagData(values);
     toggleLoadingLocation(!loadingLocation);
   }
+
   if (allFieldsFilled && !loading && streetName.length === 0) {
     setError(
       'validation',
@@ -47,7 +50,13 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
 
   return (
     <>
-      <Question question={question} showPrev showNext onSubmit={() => history.push('/aanbouw/vragen')}>
+      <Question
+        question={question}
+        showPrev
+        showNext
+        disableNext={!allFieldsFilled || hasErrors || hasSuffixNotFilled}
+        onSubmit={() => history.push('/aanbouw/vragen')}
+      >
         {hasErrors && <StyledAddressInputErrors>{errors?.validation?.message}</StyledAddressInputErrors>}
         <TextField
           className="address-input__input address-input__postcode"
@@ -81,7 +90,7 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
           placeholder="bv. 1"
         />
 
-        {streetName.length > 1 && (
+        {hasSuffix && (
           <>
             <Paragraph>
               Er bestaan meerdere adressen bij {streetName[0].straatnaam} {streetName[0].huisnummer}
@@ -89,10 +98,11 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
             <Paragraph>Toevoeging</Paragraph>
             <select
               onChange={e => {
-                addToevoeging(e.target.value);
+                addSuffix(e.target.value);
+                onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
             >
-              <option>Maak keuze</option>
+              <option value="">Maak keuze</option>
               {streetName.map(house => (
                 <option value={house.toevoeging} key={house.toevoeging}>
                   {house.toevoeging}
@@ -102,11 +112,11 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
           </>
         )}
 
-        {(streetName.length === 1 || toevoeging) && (
+        {(streetName.length === 1 || suffix) && (
           <>
             <Paragraph>Het door jou gekozen adres:</Paragraph>
             <Paragraph>
-              {streetName[0].straatnaam} {toevoeging || streetName[0].huisnummer}
+              {streetName[0].straatnaam} {suffix || streetName[0].huisnummer}
             </Paragraph>
             <Paragraph>
               {streetName[0].postcode} {streetName[0].woonplaats}
