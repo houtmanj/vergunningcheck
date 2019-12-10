@@ -274,51 +274,51 @@ export async function searchBag(query) {
   return {};
 }
 
-// export function searchForStadsgezicht(query) {
-//   const uri =
-//     query &&
-//     `${SHARED_CONFIG.API_ROOT}geosearch/search/?item=unesco&x=${query.coordinates[0]}&y=${query.coordinates[1]}`;
-//   if (uri) {
-//     return getByUri(uri).then(response => {
-//       // Filter specific zones
-//       const stadsgezicht =
-//         response.features.length > 0 &&
-//         response.features.filter(zone => zone.properties.id === 'kernzone' || zone.properties.id === 'bufferzone');
-//       return stadsgezicht.length > 0 ? stadsgezicht[0].properties.display : '';
-//     });
-//   }
-//   return query;
-// }
+export function searchForStadsgezicht(query) {
+  const uri =
+    query &&
+    `${SHARED_CONFIG.API_ROOT}geosearch/search/?item=unesco&x=${query.coordinates[0]}&y=${query.coordinates[1]}`;
+  if (uri) {
+    return getByUri(uri).then(response => {
+      // Filter specific zones
+      const stadsgezicht =
+        response.features.length > 0 &&
+        response.features.filter(zone => zone.properties.id === 'kernzone' || zone.properties.id === 'bufferzone');
+      return stadsgezicht.length > 0 ? stadsgezicht[0].properties.display : '';
+    });
+  }
+  return query;
+}
 
-// export function searchForMonument(query) {
-//   // URI: https://acc.api.data.amsterdam.nl/bag/pand/?verblijfsobjecten__id=0363010012062064
-//   const uri = query && `${SHARED_CONFIG.API_ROOT}bag/pand/?verblijfsobjecten__id=${query}`;
-//   if (uri) {
-//     return (
-//       getByUri(uri)
-//         // get landelijk_id
-//         .then(response => (response.results.length > 0 ? response.results[0].landelijk_id : false))
-//         // get monumenten
-//         .then(id => (id ? getByUri(`${SHARED_CONFIG.API_ROOT}monumenten/monumenten/?betreft_pand=${id}`) : false))
-//         .then(response => (response.results.length > 0 ? response.results[0].monumentstatus : ''))
-//     );
-//   }
-//   return '';
-// }
+export function searchForMonument(query) {
+  // URI: https://acc.api.data.amsterdam.nl/bag/pand/?verblijfsobjecten__id=0363010012062064
+  const uri = query && `${SHARED_CONFIG.API_ROOT}bag/pand/?verblijfsobjecten__id=${query}`;
+  if (uri) {
+    return (
+      getByUri(uri)
+        // get landelijk_id
+        .then(response => (response.results.length > 0 ? response.results[0].landelijk_id : false))
+        // get monumenten
+        .then(id => (id ? getByUri(`${SHARED_CONFIG.API_ROOT}monumenten/monumenten/?betreft_pand=${id}`) : false))
+        .then(response => (response.results.length > 0 ? response.results[0].monumentstatus : ''))
+    );
+  }
+  return '';
+}
 
-// export function searchForBeperking(query) {
-//   // URI: https://acc.api.data.amsterdam.nl/bag/pand/?verblijfsobjecten__id=0363010012062064
-//   const uri = query && `${SHARED_CONFIG.API_ROOT}brk/object/?verblijfsobjecten__id=${query}`;
-//   if (uri) {
-//     return (
-//       getByUri(uri)
-//         // get id (kadastrale_objecten__id)
-//         .then(response => (response.results.length > 0 ? response.results[0].id : false))
-//         // get beperking
-//         // https://api.data.amsterdam.nl/wkpb/beperking/?kadastrale_objecten__id=NL.KAD.OnroerendeZaak.11440755470000
-//         .then(id => (id ? getByUri(`${SHARED_CONFIG.API_ROOT}wkpb/beperking/?kadastrale_objecten__id=${id}`) : false))
-//         .then(response => (response.results.length > 0 ? response.results : []))
-//     );
-//   }
-//   return '';
-// }
+export function searchForBeperking(query) {
+  // URI: https://acc.api.data.amsterdam.nl/bag/pand/?verblijfsobjecten__id=0363010012062064
+  const uri = query && `${SHARED_CONFIG.API_ROOT}brk/object/?verblijfsobjecten__id=${query}`;
+  if (uri) {
+    return (
+      getByUri(uri)
+        // get id (kadastrale_objecten__id)
+        .then(response => (response.results.length > 0 ? response.results[0].id : false))
+        // get beperking
+        // https://api.data.amsterdam.nl/wkpb/beperking/?kadastrale_objecten__id=NL.KAD.OnroerendeZaak.11440755470000
+        .then(id => (id ? getByUri(`${SHARED_CONFIG.API_ROOT}wkpb/beperking/?kadastrale_objecten__id=${id}`) : false))
+        .then(response => (response.results.length > 0 ? response.results : []))
+    );
+  }
+  return '';
+}

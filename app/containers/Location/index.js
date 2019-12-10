@@ -82,6 +82,7 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
           className="address-input__input address-input__streetnumber"
           label="Huisnummer"
           onChange={e => {
+            addSuffix(null);
             toggleLoadingLocation(false);
             setValue(e.target.name, e.target.value);
             clearError('validation');
