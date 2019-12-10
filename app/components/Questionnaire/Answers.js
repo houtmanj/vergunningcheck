@@ -52,9 +52,9 @@ const StyledAnswers = styled(Answers)`
 
 Answers.propTypes = {
   className: PropTypes.string,
-  answers: PropTypes.array,
-  errors: PropTypes.object,
-  userAnswers: PropTypes.object,
+  answers: PropTypes.any,
+  errors: PropTypes.any,
+  userAnswers: PropTypes.any,
   questionId: PropTypes.string,
   onChange: PropTypes.func,
   hasRegistry: PropTypes.bool,

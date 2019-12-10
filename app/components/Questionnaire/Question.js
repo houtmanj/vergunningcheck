@@ -26,6 +26,7 @@ const Question = ({
   className,
   headingAs,
   children,
+  question,
   onSubmit: onSubmitProp,
   hideNavigation,
   disableNext,

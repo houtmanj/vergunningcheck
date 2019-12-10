@@ -27,6 +27,8 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
   const { clearError, errors, setError, setValue, register, getValues } = useForm({ mode: 'onChange' });
   const values = getValues();
   const allFieldsFilled = values.postalCode && values.streetNumber;
+  const hasErrors = !loading && streetName.length === 0 && Object.entries(errors).length !== 0;
+
   register({ name: 'postalCode' });
   register({ name: 'streetNumber' });
 
@@ -35,20 +37,31 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
     onFetchBagData(values);
     toggleLoadingLocation(!loadingLocation);
   }
+  if (allFieldsFilled && !loading && streetName.length === 0) {
+    setError(
+      'validation',
+      'notMatch',
+      'De ingevoerde postcode is niet gevonden in de Amsterdamse database. Probeer opnieuw.',
+    );
+  }
 
   return (
     <>
       <Question question={question} showPrev showNext onSubmit={() => history.push('/aanbouw/vragen')}>
-        {!loading && errors && <StyledAddressInputErrors>{errors?.postalCode?.message}</StyledAddressInputErrors>}
+        {hasErrors && <StyledAddressInputErrors>{errors?.validation?.message}</StyledAddressInputErrors>}
         <TextField
           className="address-input__input address-input__postcode"
           onChange={e => {
             if (!e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)) {
-              setError('postalCode', 'notMatch', 'Geen geldige postcode');
+              setError(
+                'validation',
+                'notMatch',
+                'De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.',
+              );
             } else {
               toggleLoadingLocation(false);
               setValue(e.target.name, e.target.value);
-              clearError(e.target.name);
+              clearError('validation');
             }
           }}
           label="Postcode"
@@ -62,7 +75,7 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
           onChange={e => {
             toggleLoadingLocation(false);
             setValue(e.target.name, e.target.value);
-            clearError(e.target.name);
+            clearError('validation');
           }}
           name="streetNumber"
           placeholder="bv. 1"

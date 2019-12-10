@@ -8,7 +8,7 @@ import { connectRouter } from 'connected-react-router';
 import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import addressInputReducer from 'containers/AddressInput/reducer';
+import addressInputReducer from 'containers/Location/reducer';
 import questionnaireReducer from 'containers/QuestionnaireContainer/reducer';
 
 /**
