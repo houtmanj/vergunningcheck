@@ -23,8 +23,10 @@ const question = {
 const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetName, onFetchStreetname }) => {
   const [loadingLocation, toggleLoadingLocation] = useState(false);
   const [suffix, addSuffix] = useState(null);
-  const loading = streetNameLoading || bagLoading;
+
   const { clearError, errors, setError, setValue, register, getValues } = useForm({ mode: 'onChange' });
+
+  const loading = streetNameLoading || bagLoading;
   const values = getValues();
   const allFieldsFilled = !loading && values.postalCode && values.streetNumber;
   const hasErrors = !loading && streetName.length === 0 && Object.entries(errors).length !== 0;
@@ -40,7 +42,7 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
     toggleLoadingLocation(!loadingLocation);
   }
 
-  if (allFieldsFilled && !loading && streetName.length === 0) {
+  if (allFieldsFilled && streetName.length === 0) {
     setError(
       'validation',
       'notMatch',
