@@ -7,7 +7,7 @@ import {
   searchForStadsgezicht,
   searchForBeperking,
   searchForBestemmingsplan,
-} from 'shared/services/api/api';
+} from 'shared/services/api';
 
 import {
   FETCH_STREETNAME_REQUEST,

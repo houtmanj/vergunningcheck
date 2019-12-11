@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AddressResult from './AddressResult';
-import { fetchBagData, fetchStreetname } from '../../containers/Location/actions';
+import { fetchBagData, fetchStreetname } from '../../containers/LocationPage/actions';
 
 const DebugData = ({
   monumentLoading,
