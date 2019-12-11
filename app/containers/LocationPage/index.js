@@ -63,16 +63,19 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
         <TextField
           className="address-input__input address-input__postcode"
           onChange={e => {
-            if (!e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)) {
-              setError(
-                'validation',
-                'notMatch',
-                'De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.',
-              );
-            } else {
-              toggleLoadingLocation(false);
-              setValue(e.target.name, e.target.value);
-              clearError('validation');
+            if (e.target.value.length > 5) {
+              if (e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)) {
+                console.log('PERFECT!');
+                toggleLoadingLocation(false);
+                setValue(e.target.name, e.target.value);
+                clearError('validation');
+              } else {
+                setError(
+                  'validation',
+                  'notMatch',
+                  'De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.',
+                );
+              }
             }
           }}
           label="Postcode"
