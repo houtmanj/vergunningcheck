@@ -24,59 +24,68 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
   const [loadingLocation, toggleLoadingLocation] = useState(false);
   const [suffix, addSuffix] = useState(null);
 
-  const { clearError, errors, setError, setValue, register, getValues } = useForm({ mode: 'onChange' });
+  const { clearError, errors, setError, setValue, register, getValues } = useForm();
 
   const loading = streetNameLoading || bagLoading;
   const values = getValues();
   const allFieldsFilled = !loading && values.postalCode && values.streetNumber;
   const hasErrors = !loading && streetName.length === 0 && Object.entries(errors).length !== 0;
   const hasSuffix = streetName.length > 1;
-  const hasSuffixNotFilled = hasSuffix && !suffix;
 
   register({ name: 'postalCode' });
   register({ name: 'streetNumber' });
 
-  if (!loadingLocation && !hasErrors && allFieldsFilled) {
+  if (!loadingLocation && !hasErrors && values.postalCode) {
     onFetchStreetname(values);
     onFetchBagData(values);
     toggleLoadingLocation(!loadingLocation);
   }
 
   if (allFieldsFilled && streetName.length === 0) {
-    setError(
-      'validation',
-      'notMatch',
-      'De ingevoerde postcode is niet gevonden in de Amsterdamse database. Probeer opnieuw.',
-    );
+    setError('validation', 'notMatch', 'Er is geen adres gevonden met deze postcode en huisnummer.');
   }
+
+  const onSubmit = () => {
+    if (allFieldsFilled && !hasErrors) {
+      history.push('/aanbouw/vragen');
+    }
+  };
+
+  const validatePostcode = e => {
+    if (e.target.value.length > 5) {
+      if (e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)) {
+        toggleLoadingLocation(false);
+        setValue(e.target.name, e.target.value);
+        clearError('validation');
+      } else {
+        setError(
+          'validation',
+          'notMatch',
+          'De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.',
+        );
+      }
+    }
+  };
+
+  const validateAmsterdam = e => {
+    console.log(streetName);
+    if (
+      !loading &&
+      (streetName.length === 0 || !streetName) &&
+      e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)
+    ) {
+      setError('validation', 'notMatch', 'Dit postcodegebied ligt niet in Amsterdam.');
+    }
+  };
 
   return (
     <>
-      <Question
-        question={question}
-        showPrev
-        showNext
-        disableNext={!allFieldsFilled || hasErrors || hasSuffixNotFilled}
-        onSubmit={() => history.push('/aanbouw/vragen')}
-      >
+      <Question question={question} showPrev showNext onSubmit={onSubmit}>
         {hasErrors && <StyledAddressInputErrors>{errors?.validation?.message}</StyledAddressInputErrors>}
         <TextField
           className="address-input__input address-input__postcode"
-          onChange={e => {
-            if (e.target.value.length > 5) {
-              if (e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)) {
-                toggleLoadingLocation(false);
-                setValue(e.target.name, e.target.value);
-                clearError('validation');
-              } else {
-                setError(
-                  'validation',
-                  'notMatch',
-                  'De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.',
-                );
-              }
-            }
-          }}
+          onChange={validatePostcode}
+          onBlur={validateAmsterdam}
           label="Postcode"
           name="postalCode"
           placeholder="bv. 1074VE"
