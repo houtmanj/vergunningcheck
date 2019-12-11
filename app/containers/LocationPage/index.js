@@ -65,7 +65,6 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
           onChange={e => {
             if (e.target.value.length > 5) {
               if (e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)) {
-                console.log('PERFECT!');
                 toggleLoadingLocation(false);
                 setValue(e.target.name, e.target.value);
                 clearError('validation');
