@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import history from 'utils/history';
 import styled from '@datapunt/asc-core';
@@ -29,6 +29,11 @@ const pages = {
 
 const MenuChildren = () => {
   const { pathname } = useLocation();
+
+  // Scroll to top when `pathname` changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>
