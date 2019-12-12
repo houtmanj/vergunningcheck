@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
-import { Paragraph, TextField } from '@datapunt/asc-ui';
+import { Paragraph, TextField, Select } from '@datapunt/asc-ui';
 
 import history from 'utils/history';
 import { AddressResult, DebugData } from 'components/AddressInput';
@@ -12,6 +12,7 @@ import { Question } from 'components/Questionnaire';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressInputErrors = styled(Paragraph)`
+  margin-top: 20px;
   color: red;
 `;
 
@@ -59,9 +60,10 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
         disableNext={!allFieldsFilled || hasErrors || hasSuffixNotFilled}
         onSubmit={() => history.push('/aanbouw/vragen')}
       >
-        {hasErrors && <StyledAddressInputErrors>{errors?.validation?.message}</StyledAddressInputErrors>}
         <TextField
           className="address-input__input address-input__postcode"
+          label="Postcode"
+          errorMessage={errors?.validation?.message}
           onChange={e => {
             if (!e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)) {
               setError(
@@ -75,11 +77,10 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
               clearError('validation');
             }
           }}
-          label="Postcode"
           name="postalCode"
           placeholder="bv. 1074VE"
+          style={{ marginBottom: '20px' }}
         />
-        <br />
         <TextField
           className="address-input__input address-input__streetnumber"
           label="Huisnummer"
@@ -91,39 +92,43 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
           }}
           name="streetNumber"
           placeholder="bv. 1"
+          style={{ marginBottom: '20px' }}
         />
+        {hasErrors && <StyledAddressInputErrors>{errors?.validation?.message}</StyledAddressInputErrors>}
 
         {hasSuffix && (
           <>
-            <Paragraph>
-              Er bestaan meerdere adressen bij {streetName[0].straatnaam} {streetName[0].huisnummer}
+            <Paragraph style={{ marginBottom: '20px' }}>
+              Er bestaan meerdere adressen met {streetName[0].straatnaam} {streetName[0].huisnummer}
             </Paragraph>
-            <Paragraph>Toevoeging</Paragraph>
-            <select
+            <Select
+              label="Toevoeging"
               onChange={e => {
                 addSuffix(e.target.value);
                 onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
             >
-              <option value="">Maak keuze</option>
+              <option value="">Maak een keuze</option>
               {streetName.map(house => (
                 <option value={house.toevoeging} key={house.toevoeging}>
                   {house.toevoeging}
                 </option>
               ))}
-            </select>
+            </Select>
           </>
         )}
 
         {(streetName.length === 1 || suffix) && (
           <>
-            <Paragraph>Het door jou gekozen adres:</Paragraph>
+            <Paragraph strong style={{ marginTop: '20px', marginBottom: '0px' }}>
+              Dit is het gekozen adres:
+            </Paragraph>
             <Paragraph>
               {streetName[0].straatnaam} {suffix || streetName[0].huisnummer}
+              <br />
+              {streetName[0].postcode} Amsterdam
             </Paragraph>
-            <Paragraph>
-              {streetName[0].postcode} {streetName[0].woonplaats}
-            </Paragraph>
+            <Paragraph>Klik op volgende als dit adres klopt, of pas het aan.</Paragraph>
           </>
         )}
         {loading && <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
