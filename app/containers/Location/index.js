@@ -7,7 +7,7 @@ import styled from '@datapunt/asc-core';
 import { Paragraph, TextField } from '@datapunt/asc-ui';
 
 import history from 'utils/history';
-import { AddressResult, DebugData } from 'components/AddressInput';
+import { AddressResult, DebugData } from 'components/AddressResult';
 import { Question } from 'components/Questionnaire';
 import { fetchStreetname, fetchBagData } from './actions';
 
@@ -20,28 +20,28 @@ const question = {
   vraagTekst: 'Waar wilt u uw aanbouw maken?',
 };
 
-const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetName, onFetchStreetname }) => {
+const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addressResults, onFetchStreetname }) => {
   const [loadingLocation, toggleLoadingLocation] = useState(false);
   const [suffix, addSuffix] = useState(null);
 
   const { clearError, errors, setError, setValue, register, getValues } = useForm();
 
-  const loading = streetNameLoading || bagLoading;
+  const loading = addressResultsLoading || bagLoading;
   const values = getValues();
   const allFieldsFilled = !loading && values.postalCode && values.streetNumber;
-  const hasErrors = !loading && streetName.length === 0 && Object.entries(errors).length !== 0;
-  const hasSuffix = streetName.length > 1;
+  const hasErrors = !loading && addressResults?.length === 0 && Object.entries(errors).length !== 0;
+  const hasSuffix = addressResults?.length > 1;
 
   register({ name: 'postalCode' });
   register({ name: 'streetNumber' });
 
-  if (!loadingLocation && !hasErrors && values.postalCode) {
+  if (!loadingLocation && !hasErrors && allFieldsFilled) {
     onFetchStreetname(values);
     onFetchBagData(values);
     toggleLoadingLocation(!loadingLocation);
   }
 
-  if (allFieldsFilled && streetName.length === 0) {
+  if (allFieldsFilled && addressResults?.length === 0) {
     setError('validation', 'notMatch', 'Er is geen adres gevonden met deze postcode en huisnummer.');
   }
 
@@ -67,17 +67,6 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
     }
   };
 
-  const validateAmsterdam = e => {
-    console.log(streetName);
-    if (
-      !loading &&
-      (streetName.length === 0 || !streetName) &&
-      e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)
-    ) {
-      setError('validation', 'notMatch', 'Dit postcodegebied ligt niet in Amsterdam.');
-    }
-  };
-
   return (
     <>
       <Question question={question} showPrev showNext onSubmit={onSubmit}>
@@ -85,7 +74,6 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
         <TextField
           className="address-input__input address-input__postcode"
           onChange={validatePostcode}
-          onBlur={validateAmsterdam}
           label="Postcode"
           name="postalCode"
           placeholder="bv. 1074VE"
@@ -107,7 +95,7 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
         {hasSuffix && (
           <>
             <Paragraph>
-              Er bestaan meerdere adressen bij {streetName[0].straatnaam} {streetName[0].huisnummer}
+              Er bestaan meerdere adressen bij {addressResults[0].straatnaam} {addressResults[0].huisnummer}
             </Paragraph>
             <Paragraph>Toevoeging</Paragraph>
             <select
@@ -117,7 +105,7 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
               }}
             >
               <option value="">Maak keuze</option>
-              {streetName.map(house => (
+              {addressResults.map(house => (
                 <option value={house.toevoeging} key={house.toevoeging}>
                   {house.toevoeging}
                 </option>
@@ -126,14 +114,14 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
           </>
         )}
 
-        {(streetName.length === 1 || suffix) && (
+        {(addressResults?.length === 1 || suffix) && (
           <>
             <Paragraph>Het door jou gekozen adres:</Paragraph>
             <Paragraph>
-              {streetName[0].straatnaam} {suffix || streetName[0].huisnummer}
+              {addressResults[0].straatnaam} {suffix || addressResults[0].huisnummer}
             </Paragraph>
             <Paragraph>
-              {streetName[0].postcode} {streetName[0].woonplaats}
+              {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
           </>
         )}
@@ -144,19 +132,19 @@ const AddressInput = ({ streetNameLoading, bagLoading, onFetchBagData, streetNam
   );
 };
 
-AddressInput.propTypes = {
-  streetName: PropTypes.any,
-  streetNameLoading: PropTypes.bool,
+LocationPage.propTypes = {
+  addressResults: PropTypes.any,
+  addressResultsLoading: PropTypes.bool,
   bagLoading: PropTypes.bool,
   onFetchStreetname: PropTypes.func.isRequired,
   onFetchBagData: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
-  const { streetNameLoading, streetName, bagFetch, bagLoading, bagStatus, noResults } = state.addressInput;
+  const { addressResultsLoading, addressResults, bagFetch, bagLoading, bagStatus, noResults } = state.location;
   return {
-    streetNameLoading,
-    streetName,
+    addressResultsLoading,
+    addressResults,
     bagFetch,
     bagLoading,
     bagStatus,
@@ -176,4 +164,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AddressInput);
+)(LocationPage);

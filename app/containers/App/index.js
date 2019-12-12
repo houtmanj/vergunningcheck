@@ -9,7 +9,7 @@ import { ChevronLeft } from '@datapunt/asc-assets';
 import { useInjectSaga } from 'utils/injectSaga';
 
 import HomePage from 'containers/HomePage';
-import LocationPage from 'containers/LocationPage';
+import Location from 'containers/Location';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
 import AllQuestions from 'containers/QuestionnaireContainer/AllQuestions';
 import QuestionnaireRoutes from 'containers/QuestionnaireContainer/QuestionRoutes';
@@ -18,11 +18,11 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
-import addressInputSaga from '../LocationPage/saga';
+import locationSaga from '../Location/saga';
 
 import './style.scss';
 
-const addressInputKey = 'addressInput';
+const addressInputKey = 'location';
 const questionnaireKey = 'questionnaire';
 
 const BackgroundFullWidth = styled(`div`)`
@@ -55,7 +55,7 @@ const Content = styled(`div`)`
 `;
 
 export const App = () => {
-  useInjectSaga({ key: addressInputKey, saga: addressInputSaga });
+  useInjectSaga({ key: addressInputKey, saga: locationSaga });
   useInjectSaga({ key: questionnaireKey, saga: questionnaireSaga });
 
   return (
@@ -86,7 +86,7 @@ export const App = () => {
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/aanbouw/inleiding" component={HomePage} />
-                <Route exact path="/aanbouw/locatie" component={LocationPage} />
+                <Route exact path="/aanbouw/locatie" component={Location} />
                 <Route exact path="/aanbouw/alle-vragen" component={AllQuestions} />
                 <Route exact path="/aanbouw/alle-routes" component={QuestionnaireRoutes} />
                 <Route exact path="/aanbouw/*" component={QuestionnaireContainer} />

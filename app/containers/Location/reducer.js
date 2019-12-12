@@ -37,9 +37,9 @@ import {
 // The initial state of the App
 export const initialState = {
   error: false,
-  streetName: '',
-  streetNameLoading: false,
-  streetNameError: false,
+  addressResults: '',
+  addressResultsLoading: false,
+  addressResultsError: false,
   bagFetch: false,
   bagLoading: false,
   bagStatus: {
@@ -71,26 +71,24 @@ export const initialState = {
 /* eslint-disable default-case, no-param-reassign */
 export default (state = initialState, action) =>
   produce(state, draft => {
-    // console.log('ACTION', action);
-
     switch (action.type) {
       case FETCH_STREETNAME_REQUEST:
-        draft.streetNameError = false;
-        draft.streetNameLoading = true;
-        draft.streetName = '';
+        draft.addressResultsError = false;
+        draft.addressResultsLoading = true;
+        draft.addressResults = '';
         draft.monumentStatus = '';
         draft.bagFetch = false;
         draft.bagStatus = initialState.bagStatus;
         break;
       case FETCH_STREETNAME_SUCCESS:
         draft.streetNameError = false;
-        draft.streetNameLoading = false;
-        draft.streetName = action.streetName;
+        draft.addressResultsLoading = false;
+        draft.addressResults = action.addressResults;
         break;
       case FETCH_STREETNAME_FAILURE:
         draft.streetNameError = false;
-        draft.streetNameLoading = false;
-        draft.streetName = action.streetName;
+        draft.addressResultsLoading = false;
+        draft.addressResults = action.addressResults;
         break;
 
       case FETCH_BAG_REQUEST:

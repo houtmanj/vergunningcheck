@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AddressResult from './AddressResult';
-import { fetchBagData, fetchStreetname } from '../../containers/LocationPage/actions';
+import { fetchBagData, fetchStreetname } from '../../containers/Location/actions';
 
 const DebugData = ({
   monumentLoading,
@@ -73,8 +73,8 @@ DebugData.propTypes = {
 
 const mapStateToProps = state => {
   const {
-    streetNameLoading,
-    streetName,
+    addressResultsLoading,
+    addressResults,
     bagFetch,
     bagLoading,
     bagStatus,
@@ -85,10 +85,10 @@ const mapStateToProps = state => {
     bestemmingsplanLoading,
     bestemmingsplanStatus,
     noResults,
-  } = state.addressInput;
+  } = state.location;
   return {
-    streetNameLoading,
-    streetName,
+    addressResultsLoading,
+    addressResults,
     bagFetch,
     bagLoading,
     bagStatus,

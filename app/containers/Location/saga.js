@@ -33,9 +33,10 @@ import {
 
 export function* fetchStreetname(action) {
   try {
-    const streetName = yield call(searchForAddress, action.query);
+    const addressResults = yield call(searchForAddress, action.query);
+    console.log(addressResults);
     yield delay(600);
-    yield put({ type: FETCH_STREETNAME_SUCCESS, streetName });
+    yield put({ type: FETCH_STREETNAME_SUCCESS, addressResults });
   } catch (error) {
     yield put({ type: FETCH_STREETNAME_FAILURE, error });
   }

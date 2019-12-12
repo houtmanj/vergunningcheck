@@ -259,9 +259,11 @@ export function searchForAddress(query) {
 }
 
 export async function searchBag(query) {
-  const { postalCode = '', streetNumber = '' } = query;
+  const { postalCode = '', streetNumber = null } = query;
 
-  const uri = postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}typeahead?q=${postalCode}+${streetNumber}`;
+  const uri =
+    postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
+
   if (uri) {
     const response2 = await getByUri(uri)
       .then(response => getVerblijfsobjectUri(response, streetNumber))

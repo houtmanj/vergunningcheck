@@ -8,7 +8,7 @@ import { connectRouter } from 'connected-react-router';
 import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import addressInputReducer from 'containers/LocationPage/reducer';
+import locationReducer from 'containers/Location/reducer';
 import questionnaireReducer from 'containers/QuestionnaireContainer/reducer';
 
 /**
@@ -19,7 +19,7 @@ export default function createReducer(injectedReducers = {}) {
     router: connectRouter(history),
     global: globalReducer,
     language: languageProviderReducer,
-    addressInput: addressInputReducer,
+    location: locationReducer,
     questionnaire: questionnaireReducer,
     ...injectedReducers,
   });
