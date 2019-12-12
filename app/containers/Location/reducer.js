@@ -37,7 +37,7 @@ import {
 // The initial state of the App
 export const initialState = {
   error: false,
-  addressResults: '',
+  addressResults: [],
   addressResultsLoading: false,
   addressResultsError: false,
   bagFetch: false,
@@ -75,7 +75,7 @@ export default (state = initialState, action) =>
       case FETCH_STREETNAME_REQUEST:
         draft.addressResultsError = false;
         draft.addressResultsLoading = true;
-        draft.addressResults = '';
+        draft.addressResults = [];
         draft.monumentStatus = '';
         draft.bagFetch = false;
         draft.bagStatus = initialState.bagStatus;

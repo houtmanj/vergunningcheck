@@ -26,22 +26,22 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
   const { clearError, errors, setError, setValue, register, getValues } = useForm();
 
-  const loading = addressResultsLoading || bagLoading;
+  const loading = addressResultsLoading || bagLoading || loadingLocation;
   const values = getValues();
   const allFieldsFilled = !loading && values.postalCode && values.streetNumber;
-  const hasErrors = !loading && addressResults?.length === 0 && Object.entries(errors).length !== 0;
+  const hasErrors = !loading && Object.entries(errors).length !== 0;
   const hasSuffix = addressResults?.length > 1;
 
   register({ name: 'postalCode' });
   register({ name: 'streetNumber' });
 
-  if (!loadingLocation && !hasErrors && allFieldsFilled) {
+  if (allFieldsFilled) {
     onFetchStreetname(values);
     onFetchBagData(values);
     toggleLoadingLocation(!loadingLocation);
   }
 
-  if (allFieldsFilled && addressResults?.length === 0) {
+  if (allFieldsFilled && !addressResults) {
     setError('validation', 'notMatch', 'Er is geen adres gevonden met deze postcode en huisnummer.');
   }
 
@@ -118,16 +118,18 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           <>
             <Paragraph>Het door jou gekozen adres:</Paragraph>
             <Paragraph>
-              {addressResults[0].straatnaam} {suffix || addressResults[0].huisnummer}
+              {addressResults[0].straatnaam} {addressResults[0].toevoeging}
             </Paragraph>
             <Paragraph>
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
           </>
         )}
-        {loading && <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
+        {allFieldsFilled && (
+          <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
+        )}
       </Question>
-      {allFieldsFilled && loadingLocation && <DebugData />}
+      {allFieldsFilled && <DebugData />}
     </>
   );
 };
