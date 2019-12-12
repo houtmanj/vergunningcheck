@@ -18,11 +18,11 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
-import addressInputSaga from '../Location/saga';
+import locationSaga from '../Location/saga';
 
 import './style.scss';
 
-const addressInputKey = 'addressInput';
+const addressInputKey = 'location';
 const questionnaireKey = 'questionnaire';
 
 const BackgroundFullWidth = styled(`div`)`
@@ -55,7 +55,7 @@ const Content = styled(`div`)`
 `;
 
 export const App = () => {
-  useInjectSaga({ key: addressInputKey, saga: addressInputSaga });
+  useInjectSaga({ key: addressInputKey, saga: locationSaga });
   useInjectSaga({ key: questionnaireKey, saga: questionnaireSaga });
 
   return (

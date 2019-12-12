@@ -73,8 +73,8 @@ DebugData.propTypes = {
 
 const mapStateToProps = state => {
   const {
-    streetNameLoading,
-    streetName,
+    addressResultsLoading,
+    addressResults,
     bagFetch,
     bagLoading,
     bagStatus,
@@ -85,10 +85,10 @@ const mapStateToProps = state => {
     bestemmingsplanLoading,
     bestemmingsplanStatus,
     noResults,
-  } = state.addressInput;
+  } = state.location;
   return {
-    streetNameLoading,
-    streetName,
+    addressResultsLoading,
+    addressResults,
     bagFetch,
     bagLoading,
     bagStatus,

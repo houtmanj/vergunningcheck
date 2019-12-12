@@ -22,7 +22,6 @@ export const initialState = {
 /* eslint-disable default-case, no-param-reassign */
 export default (state = initialState, action) =>
   produce(state, draft => {
-    // console.log('ACTION', action);
     switch (action.type) {
       case SHOW_GLOBAL_ERROR:
         draft.error = !!action.payload;

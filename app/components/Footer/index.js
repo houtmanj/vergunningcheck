@@ -52,7 +52,7 @@ const FollowLinks = () => (
     </FooterLinkListItem>
     <FooterLinkListItem>
       <Link href="/" variant="with-chevron">
-        Facerbook
+        Facebook
       </Link>
     </FooterLinkListItem>
     <FooterLinkListItem>
