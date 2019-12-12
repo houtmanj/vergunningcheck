@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
-import { Paragraph, TextField } from '@datapunt/asc-ui';
+import { Paragraph, TextField, Select } from '@datapunt/asc-ui';
 
 import history from 'utils/history';
 import { AddressResult, DebugData } from 'components/AddressResult';
@@ -12,6 +12,7 @@ import { Question } from 'components/Questionnaire';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressInputErrors = styled(Paragraph)`
+  margin-top: 20px;
   color: red;
 `;
 
@@ -77,8 +78,8 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           label="Postcode"
           name="postalCode"
           placeholder="bv. 1074VE"
+          style={{ marginBottom: '20px' }}
         />
-        <br />
         <TextField
           className="address-input__input address-input__streetnumber"
           label="Huisnummer"
@@ -90,39 +91,43 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           }}
           name="streetNumber"
           placeholder="bv. 1"
+          style={{ marginBottom: '20px' }}
         />
+        {hasErrors && <StyledAddressInputErrors>{errors?.validation?.message}</StyledAddressInputErrors>}
 
         {hasSuffix && (
           <>
-            <Paragraph>
+            <Paragraph style={{ marginBottom: '20px' }}>
               Er bestaan meerdere adressen bij {addressResults[0].straatnaam} {addressResults[0].huisnummer}
             </Paragraph>
-            <Paragraph>Toevoeging</Paragraph>
-            <select
+            <Select
+              label="Toevoeging"
               onChange={e => {
                 addSuffix(e.target.value);
                 onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
             >
-              <option value="">Maak keuze</option>
+              <option value="">Maak een keuze</option>
               {addressResults.map(house => (
                 <option value={house.toevoeging} key={house.toevoeging}>
                   {house.toevoeging}
                 </option>
               ))}
-            </select>
+            </Select>
           </>
         )}
 
         {(addressResults?.length === 1 || suffix) && (
           <>
-            <Paragraph>Het door jou gekozen adres:</Paragraph>
+            <Paragraph strong style={{ marginTop: '20px', marginBottom: '0px' }}>
+              Dit is het gekozen adres:
+            </Paragraph>
             <Paragraph>
               {addressResults[0].straatnaam} {addressResults[0].toevoeging}
-            </Paragraph>
-            <Paragraph>
+              <br />
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
+            <Paragraph>Klik op volgende als dit adres klopt, of pas het aan.</Paragraph>
           </>
         )}
         {allFieldsFilled && (

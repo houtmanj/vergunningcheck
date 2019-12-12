@@ -311,6 +311,14 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-optional-catch-binding" "^7.7.4"
 
+"@babel/plugin-proposal-optional-chaining@^7.7.4":
+  version "7.7.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.7.5.tgz#f0835f044cef85b31071a924010a2a390add11d4"
+  integrity sha512-sOwFqT8JSchtJeDD+CjmWCaiFoLxY4Ps7NjvwHC/U7l4e9i5pTRNt8nDMIFSOUL+ncFbYSwruHM8WknYItWdXw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/plugin-syntax-optional-chaining" "^7.7.4"
+
 "@babel/plugin-proposal-unicode-property-regex@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-unicode-property-regex/-/plugin-proposal-unicode-property-regex-7.7.4.tgz#7c239ccaf09470dbe1d453d50057460e84517ebb"
@@ -365,6 +373,13 @@
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-optional-catch-binding/-/plugin-syntax-optional-catch-binding-7.7.4.tgz#a3e38f59f4b6233867b4a92dcb0ee05b2c334aa6"
   integrity sha512-4ZSuzWgFxqHRE31Glu+fEr/MirNZOMYmD/0BhBWyLyOOQz/gTAl7QmWm2hX1QxEIXsr2vkdlwxIzTyiYRC4xcQ==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
+"@babel/plugin-syntax-optional-chaining@^7.7.4":
+  version "7.7.4"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-optional-chaining/-/plugin-syntax-optional-chaining-7.7.4.tgz#c91fdde6de85d2eb8906daea7b21944c3610c901"
+  integrity sha512-2MqYD5WjZSbJdUagnJvIdSfkb/ucOC9/1fRJxm7GAxY6YQLWlUvkfxoNbUPcPLHJyetKUDQ4+yyuUyAoc0HriA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
@@ -836,6 +851,15 @@
     "@svgr/core" "^4.3.2"
     svgo "^1.3.0"
 
+"@datapunt/asc-assets@^0.17.8-alpha.18":
+  version "0.17.8-alpha.18"
+  resolved "https://registry.yarnpkg.com/@datapunt/asc-assets/-/asc-assets-0.17.8-alpha.18.tgz#498f2579a98a3ae4be78f586cc005ecb6eca44d9"
+  integrity sha512-fRFfeReY0sXNJ6hB4H9S4r0OIDhXea1vKFr2/l2kxKxNHDoS5IixAxFzlUOBT9nY7gf2Yi1oRo+douBHA2z0wg==
+  dependencies:
+    "@svgr/cli" "^4.3.2"
+    "@svgr/core" "^4.3.2"
+    svgo "^1.3.0"
+
 "@datapunt/asc-core@^0.17.7":
   version "0.17.7"
   resolved "https://registry.yarnpkg.com/@datapunt/asc-core/-/asc-core-0.17.7.tgz#142da00038582d0ca9b211a38d2eb21ffc7f78c6"
@@ -843,10 +867,17 @@
   dependencies:
     styled-components "^4.3.2"
 
-"@datapunt/asc-ui@^0.17.8-alpha.15":
-  version "0.17.8-alpha.15"
-  resolved "https://registry.yarnpkg.com/@datapunt/asc-ui/-/asc-ui-0.17.8-alpha.15.tgz#22d95afb41a4844420fa4b34704c0a5df824107e"
-  integrity sha512-omu3BbUwsBrAAibpAjpgy5/ActC51Ptw/emwBIzYZ3zXY/FDysec/v4PYI6876kZIYeoXuj+A30iPO/k52GV2A==
+"@datapunt/asc-core@^0.17.8-alpha.19":
+  version "0.17.8-alpha.19"
+  resolved "https://registry.yarnpkg.com/@datapunt/asc-core/-/asc-core-0.17.8-alpha.19.tgz#1e31cf3b790d00c9e7fea0be2e220ea71a15616d"
+  integrity sha512-ZLgiygmob8WGFUYiVRJ0VxGgBBVqxWzyM/DDlihrGnISMbNZ5p3zK3h8iGt6EmDvwQKspuEsPL/Oxpg2uFOpxQ==
+  dependencies:
+    styled-components "^4.3.2"
+
+"@datapunt/asc-ui@^0.17.8-alpha.21":
+  version "0.17.8-alpha.21"
+  resolved "https://registry.yarnpkg.com/@datapunt/asc-ui/-/asc-ui-0.17.8-alpha.21.tgz#741fbd3fe817a1921122c3856f553b8481c59cba"
+  integrity sha512-vTar7vX3EFPUi7QWdJd4VOuoKlORc2DUnriF9MCoS/4w7eUJMBvnd/JqszqerPZtQcKYIQ9pAwOTW2n9PSz7OA==
   dependencies:
     "@datapunt/asc-assets" "^0.17.7"
     "@datapunt/asc-core" "^0.17.7"
