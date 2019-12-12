@@ -7,7 +7,7 @@ import {
   searchForStadsgezicht,
   searchForBeperking,
   searchForBestemmingsplan,
-} from 'shared/services/api/api';
+} from 'shared/services/api';
 
 import {
   FETCH_STREETNAME_REQUEST,
@@ -33,10 +33,10 @@ import {
 
 export function* fetchStreetname(action) {
   try {
-    const streetName = yield call(searchForAddress, action.query);
-    yield delay(600);
-    yield put({ type: FETCH_STREETNAME_SUCCESS, streetName });
+    const addressResults = yield call(searchForAddress, action.query);
+    yield put({ type: FETCH_STREETNAME_SUCCESS, addressResults });
   } catch (error) {
+    yield delay(600);
     yield put({ type: FETCH_STREETNAME_FAILURE, error });
   }
 }

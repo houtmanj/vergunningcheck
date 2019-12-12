@@ -36,7 +36,6 @@ export const areAllCondTrue = (cond, userAnswers, questionnaire) =>
   cond.every(condition => {
     const conditionQuestion = condition.split('.')[0];
     const conditionAnswerText = condition.split('.')[1].toLowerCase();
-    // .replace(/['"]+/g, '');
 
     const conditionQuestionData = questionnaire.filter(q => q.id === conditionQuestion);
     // if conditionQuestion exists in datafile && user has already answered
