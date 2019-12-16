@@ -1,111 +1,142 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useForm from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from '@datapunt/asc-core';
-import { Paragraph, TextField, Select } from '@datapunt/asc-ui';
+import { Heading, Paragraph, TextField, Select } from '@datapunt/asc-ui';
 
 import history from 'utils/history';
 import { AddressResult, DebugData } from 'components/AddressResult';
-import { Question } from 'components/Questionnaire';
+import Form from 'components/Form/Form';
+import Navigation from 'components/Navigation';
 import { fetchStreetname, fetchBagData } from './actions';
 
-const StyledAddressInputErrors = styled(Paragraph)`
-  margin-top: 20px;
-  color: red;
-`;
-
-const question = {
-  id: 'location',
-  vraagTekst: 'Waar wilt u uw aanbouw maken?',
-};
-
 const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addressResults, onFetchStreetname }) => {
-  const [loadingLocation, toggleLoadingLocation] = useState(false);
   const [suffix, addSuffix] = useState(null);
 
-  const { clearError, errors, setError, setValue, register, getValues } = useForm();
+  const {
+    clearError,
+    errors,
+    setError,
+    setValue,
+    register,
+    unregister,
+    getValues,
+    handleSubmit,
+    triggerValidation,
+  } = useForm();
 
-  const loading = addressResultsLoading || bagLoading || loadingLocation;
+  const loading = addressResultsLoading || bagLoading;
   const values = getValues();
-  const allFieldsFilled = !loading && values.postalCode && values.streetNumber;
-  const hasErrors = !loading && Object.entries(errors).length !== 0;
-  const hasSuffix = addressResults?.length > 1;
+  const allFieldsFilled = values.postalCode && values.streetNumber && !loading;
 
-  register({ name: 'postalCode' });
-  register({ name: 'streetNumber' });
+  const postCodePattern = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
-  if (allFieldsFilled) {
-    onFetchStreetname(values);
-    onFetchBagData(values);
-    toggleLoadingLocation(!loadingLocation);
-  }
+  register(
+    { name: 'postalCode' },
+    {
+      required: 'Vul een postcode in',
+      pattern: {
+        value: postCodePattern,
+        message: 'De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.',
+      },
+    },
+  );
+  register({ name: 'streetNumber' }, { required: 'Vul een huisnummer in' });
 
-  if (allFieldsFilled && !addressResults) {
-    setError('validation', 'notMatch', 'Er is geen adres gevonden met deze postcode en huisnummer.');
+  useEffect(() => {
+    if (addressResults?.length > 1) {
+      register({ name: 'suffix' }, { required: 'Kies een toevoeging' });
+    }
+
+    return () => unregister('suffix');
+  }, [addressResults]);
+
+  if (allFieldsFilled && !loading && (!addressResults || !addressResults.length)) {
+    setError(
+      'streetNumber',
+      'notMatch',
+      'Er is geen adres gevonden met deze postcode en huisnummer. Probeer het opnieuw.',
+    );
   }
 
   const onSubmit = () => {
-    if (allFieldsFilled && !hasErrors) {
+    if (addressResults?.length > 1 && !suffix) {
+      // Needs suffix and has no suffix
+      triggerValidation('suffix');
+    }
+
+    if (addressResults?.length === 1 || suffix) {
+      // Form is validated, we can proceed
       history.push('/aanbouw/vragen');
     }
   };
 
-  const validatePostcode = e => {
-    if (e.target.value.length > 5) {
-      if (e.target.value.match(/^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i)) {
-        toggleLoadingLocation(false);
-        setValue(e.target.name, e.target.value);
-        clearError('validation');
-      } else {
-        setError(
-          'validation',
-          'notMatch',
-          'De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.',
-        );
-      }
+  const handleBlur = e => {
+    // Trigger validation when user leaves the field
+    if (e.target.value) triggerValidation({ name: e.target.name, value: e.target.value });
+  };
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    const inputValue = value.trim();
+
+    setValue(name, inputValue);
+    clearError(['streetNumber', 'suffix']);
+    addSuffix(null);
+
+    // Trigger validation when user clears a field
+    if (!inputValue) triggerValidation({ name, inputValue });
+
+    const currentValues = getValues();
+
+    if (currentValues.streetNumber && currentValues.postalCode && currentValues.postalCode.match(postCodePattern)) {
+      // Fields are valididated
+      onFetchStreetname(currentValues);
+      onFetchBagData(currentValues);
     }
   };
 
   return (
     <>
-      <Question question={question} showPrev showNext onSubmit={onSubmit}>
-        {hasErrors && <StyledAddressInputErrors>{errors?.validation?.message}</StyledAddressInputErrors>}
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Heading $as="h3">Waar wilt u uw aanbouw maken?</Heading>
         <TextField
           className="address-input__input address-input__postcode"
-          onChange={validatePostcode}
+          onChange={handleChange}
+          onBlur={handleBlur}
           label="Postcode"
           name="postalCode"
           placeholder="bv. 1074VE"
           style={{ marginBottom: '20px' }}
+          errorMessage={errors?.postalCode?.message}
         />
         <TextField
           className="address-input__input address-input__streetnumber"
           label="Huisnummer"
-          onChange={e => {
-            addSuffix(null);
-            toggleLoadingLocation(false);
-            setValue(e.target.name, e.target.value);
-            clearError('validation');
-          }}
+          onChange={handleChange}
+          onBlur={handleBlur}
           name="streetNumber"
           placeholder="bv. 1"
           style={{ marginBottom: '20px' }}
+          errorMessage={errors?.streetNumber?.message}
         />
-        {hasErrors && <StyledAddressInputErrors>{errors?.validation?.message}</StyledAddressInputErrors>}
 
-        {hasSuffix && (
+        {addressResults?.length > 1 && (
           <>
             <Paragraph style={{ marginBottom: '20px' }}>
               Er bestaan meerdere adressen bij {addressResults[0].straatnaam} {addressResults[0].huisnummer}
             </Paragraph>
             <Select
               label="Toevoeging"
+              name="suffix"
+              errorMessage={errors?.suffix?.message}
               onChange={e => {
                 addSuffix(e.target.value);
+                setValue(e.target.name, e.target.value);
                 onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
+              style={{ marginBottom: '20px' }}
             >
               <option value="">Maak een keuze</option>
               {addressResults.map(house => (
@@ -123,18 +154,20 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
               Dit is het gekozen adres:
             </Paragraph>
             <Paragraph>
-              {addressResults[0].straatnaam} {addressResults[0].toevoeging}
+              {addressResults[0].straatnaam} {suffix || addressResults[0].toevoeging}
               <br />
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
             <Paragraph>Klik op volgende als dit adres klopt, of pas het aan.</Paragraph>
           </>
         )}
-        {allFieldsFilled && (
-          <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />
-        )}
-      </Question>
-      {allFieldsFilled && <DebugData />}
+
+        {loading && <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
+
+        <Navigation showPrev showNext />
+      </Form>
+
+      <DebugData allFieldsFilled={allFieldsFilled} />
     </>
   );
 };

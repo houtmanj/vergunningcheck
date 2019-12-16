@@ -12,6 +12,7 @@ const DebugData = ({
   stadsgezichtStatus,
   bestemmingsplanLoading,
   bestemmingsplanStatus,
+  allFieldsFilled,
 }) => (
   <>
     <div>
@@ -22,28 +23,28 @@ const DebugData = ({
         </p>
       </AddressResult>
 
-      <AddressResult loading={monumentLoading} title="Monument:">
-        {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
-      </AddressResult>
+      {allFieldsFilled && (
+        <>
+          <AddressResult loading={monumentLoading} title="Monument:">
+            {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
+          </AddressResult>
 
-      <AddressResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
-        {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
-      </AddressResult>
+          <AddressResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
+            {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
+          </AddressResult>
 
-      {/* <AddressResult loading={bagLoading} title="Type gebouw:"> */}
-      {/*  {buildingType || '...'} */}
-      {/* </AddressResult> */}
-
-      <AddressResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
-        {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
-        {bestemmingsplanStatus.length > 0 && (
-          <ul>
-            {bestemmingsplanStatus.map(bestemmingsplan => (
-              <li key={bestemmingsplan.text}>{bestemmingsplan.text}</li>
-            ))}
-          </ul>
-        )}
-      </AddressResult>
+          <AddressResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
+            {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
+            {bestemmingsplanStatus.length > 0 && (
+              <ul>
+                {bestemmingsplanStatus.map(bestemmingsplan => (
+                  <li key={bestemmingsplan.text}>{bestemmingsplan.text}</li>
+                ))}
+              </ul>
+            )}
+          </AddressResult>
+        </>
+      )}
     </div>
   </>
 );
@@ -69,6 +70,7 @@ DebugData.propTypes = {
   stadsgezichtLoading: PropTypes.bool,
   bestemmingsplanStatus: PropTypes.arrayOf(PropTypes.object),
   bestemmingsplanLoading: PropTypes.bool,
+  allFieldsFilled: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
