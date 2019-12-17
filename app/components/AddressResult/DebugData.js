@@ -87,7 +87,7 @@ const mapStateToProps = state => {
     bestemmingsplanLoading,
     bestemmingsplanStatus,
     noResults,
-  } = state.location;
+  } = state.locationData;
   return {
     addressResultsLoading,
     addressResults,

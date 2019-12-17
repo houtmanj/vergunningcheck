@@ -217,33 +217,6 @@ ${
   return {};
 }
 
-function getVerblijfsobjectUri(categories, streetNumberFromInput) {
-  const indexedCategories = categories.filter(category =>
-    category.content.filter(suggestion => suggestion.category === 'Adressen'),
-  );
-
-  // No returned suggestions
-  if (indexedCategories.length < 1 || indexedCategories[0].content.length < 1) return '';
-
-  const { content } = indexedCategories[0];
-
-  if (content.length === 1) {
-    return content[0].uri;
-  }
-
-  const filteredAddress = content.filter(address => {
-    const { _display: label } = address;
-    const streetNameFromApi = label.slice(label.lastIndexOf(' ')).trim();
-    return streetNameFromApi === streetNumberFromInput;
-  });
-
-  if (filteredAddress.length === 1 && filteredAddress[0].uri) {
-    return filteredAddress[0].uri;
-  }
-
-  return '';
-}
-
 function filterByStreetNumber(data, streetNumber) {
   const streetNumberClean = streetNumber.replace('-', ' ').trim();
 
@@ -274,14 +247,13 @@ export async function searchBag(query) {
   const uri =
     postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
 
-  if (uri) {
-    const response2 = await getByUri(uri)
-      .then(response => getVerblijfsobjectUri(response, streetNumber))
-      .then(verblijfsobjectUri => {
-        if (verblijfsobjectUri) return getByUri(`${SHARED_CONFIG.API_ROOT}${verblijfsobjectUri}`);
-        return false;
-      });
-    return response2;
+  if (uri && postalCode && streetNumber) {
+    const response = await getByUri(uri).then(search =>
+      search?.results.length === 1 && search.results[0].adresseerbaar_object_id
+        ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search.results[0].adresseerbaar_object_id}`)
+        : false,
+    );
+    return response;
   }
   return {};
 }

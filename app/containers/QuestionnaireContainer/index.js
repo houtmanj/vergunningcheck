@@ -17,7 +17,7 @@ const StyledContent = styled(`div`)`
 `;
 
 const getQuestionIdFromIndex = (index, questionnaire) =>
-  questionnaire.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
+  index >= 0 && questionnaire?.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
 
 class QuestionnaireContainer extends React.Component {
   state = {
@@ -29,7 +29,7 @@ class QuestionnaireContainer extends React.Component {
   componentDidMount() {
     const {
       onFetchQuestionnaire,
-      addressInput: { bestemmingsplanStatus },
+      locationData: { bestemmingsplanStatus },
     } = this.props;
 
     if (bestemmingsplanStatus && bestemmingsplanStatus.length) {
@@ -85,6 +85,7 @@ class QuestionnaireContainer extends React.Component {
     if (questionIndex < 1) {
       // Return to location question
       history.push('/aanbouw/locatie');
+      return;
     }
     // Check if prev question exists
     if (getQuestionIdFromIndex(questionIndex - 1, questionnaire)) {
@@ -107,10 +108,9 @@ class QuestionnaireContainer extends React.Component {
       questionnaire: { uitkomsten: output, uitvoeringsregels: questions },
       loading,
       error,
-      addressInput: {
-        bagStatus: { _display: userAddress = '' },
-      },
     } = this.props;
+
+    const userAddress = this.props.locationData?.bagStatus?._display;
 
     if (loading) {
       return (
@@ -220,14 +220,15 @@ class QuestionnaireContainer extends React.Component {
 }
 
 QuestionnaireContainer.defaultProps = {
-  addressInput: {
+  locationData: {
     bestemmingsplanStatus: [],
   },
 };
 
 QuestionnaireContainer.propTypes = {
   onFetchQuestionnaire: PropTypes.func.isRequired,
-  addressInput: PropTypes.shape({
+  locationData: PropTypes.shape({
+    bagStatus: PropTypes.array,
     bestemmingsplanStatus: PropTypes.array,
   }),
   questionnaire: PropTypes.object,
@@ -237,10 +238,10 @@ QuestionnaireContainer.propTypes = {
 
 const mapStateToProps = state => {
   const {
-    addressInput,
+    locationData,
     questionnaire: { loading, error, questionnaire },
   } = state;
-  return { addressInput, questionnaire, error, loading };
+  return { locationData, questionnaire, error, loading };
 };
 
 const mapDispatchToProps = dispatch =>

@@ -79,14 +79,13 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
   const handleChange = e => {
     const { name, value } = e.target;
-    const inputValue = value.trim();
 
-    setValue(name, inputValue);
+    setValue(name, value);
     clearError(['streetNumber', 'suffix']);
     addSuffix(null);
 
     // Trigger validation when user clears a field
-    if (!inputValue) triggerValidation({ name, inputValue });
+    if (!value) triggerValidation({ name, value });
 
     const currentValues = getValues();
 
@@ -181,7 +180,7 @@ LocationPage.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { addressResultsLoading, addressResults, bagFetch, bagLoading, bagStatus, noResults } = state.location;
+  const { addressResultsLoading, addressResults, bagFetch, bagLoading, bagStatus, noResults } = state.locationData;
   return {
     addressResultsLoading,
     addressResults,

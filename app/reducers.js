@@ -19,7 +19,7 @@ export default function createReducer(injectedReducers = {}) {
     router: connectRouter(history),
     global: globalReducer,
     language: languageProviderReducer,
-    location: locationReducer,
+    locationData: locationReducer,
     questionnaire: questionnaireReducer,
     ...injectedReducers,
   });

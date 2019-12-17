@@ -43,7 +43,7 @@ export function* fetchStreetname(action) {
 
 export function* fetchBag(action) {
   try {
-    const bag = yield call(searchBag, action.query.postcode);
+    const bag = yield call(searchBag, action.query);
     if (bag) {
       yield put({ type: FETCH_BAG_SUCCESS, bag });
       yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
