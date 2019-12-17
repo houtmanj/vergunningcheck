@@ -228,7 +228,7 @@ QuestionnaireContainer.defaultProps = {
 QuestionnaireContainer.propTypes = {
   onFetchQuestionnaire: PropTypes.func.isRequired,
   locationData: PropTypes.shape({
-    bagStatus: PropTypes.array,
+    bagStatus: PropTypes.object,
     bestemmingsplanStatus: PropTypes.array,
   }),
   questionnaire: PropTypes.object,

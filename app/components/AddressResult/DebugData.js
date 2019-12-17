@@ -70,7 +70,7 @@ DebugData.propTypes = {
   stadsgezichtLoading: PropTypes.bool,
   bestemmingsplanStatus: PropTypes.arrayOf(PropTypes.object),
   bestemmingsplanLoading: PropTypes.bool,
-  allFieldsFilled: PropTypes.bool,
+  allFieldsFilled: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 const mapStateToProps = state => {
