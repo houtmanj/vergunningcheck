@@ -12,7 +12,7 @@ import Navigation from 'components/Navigation';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addressResults, onFetchStreetname }) => {
-  const [suffix, addSuffix] = useState(null);
+  const [suffix, setSuffix] = useState(null);
 
   const {
     clearError,
@@ -82,7 +82,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
     setValue(name, value);
     clearError(['streetNumber', 'suffix']);
-    addSuffix(null);
+    setSuffix(null);
 
     // Trigger validation when user clears a field
     if (!value) triggerValidation({ name, value });
@@ -131,7 +131,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
               name="suffix"
               errorMessage={errors?.suffix?.message}
               onChange={e => {
-                addSuffix(e.target.value);
+                setSuffix(e.target.value);
                 setValue(e.target.name, e.target.value);
                 onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
