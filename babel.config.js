@@ -6,6 +6,7 @@ module.exports = {
     '@babel/transform-arrow-functions',
     '@babel/transform-modules-commonjs',
     '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-syntax-dynamic-import',
-  ], // same as "@babel/plugin-transform-arrow-functions"
+  ],
 };

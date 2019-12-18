@@ -2,7 +2,7 @@ import { call, select } from 'redux-saga/effects';
 import request from 'utils/request';
 import { makeSelectAccessToken } from 'containers/App/selectors';
 
-import { generateParams, authCall, authPostCall } from './api';
+import { generateParams, authCall, authPostCall } from './index';
 
 jest.mock('containers/App/selectors', () => {
   function mockedMakeSelectAccessToken() {}

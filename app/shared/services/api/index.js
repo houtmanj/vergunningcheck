@@ -1,5 +1,68 @@
+import { call, select } from 'redux-saga/effects';
 import { xml2js } from 'xml-js';
+import request from 'utils/request';
 import SHARED_CONFIG from '../shared-config/shared-config';
+
+import { makeSelectAccessToken } from '../../../containers/App/selectors';
+
+export const generateParams = data =>
+  Object.entries(data)
+    .filter(pair => pair[1])
+    .map(pair => {
+      if (Array.isArray(pair[1])) {
+        return pair[1]
+          .filter(val => val)
+          .map(val => `${pair[0]}=${val}`)
+          .join('&');
+      }
+
+      return pair.map(encodeURIComponent).join('=');
+    })
+    .join('&');
+
+export function* authCall(url, params, authorizationToken) {
+  const headers = {
+    accept: 'application/json',
+  };
+
+  if (authorizationToken) {
+    headers.Authorization = `Bearer ${authorizationToken}`;
+  } else {
+    const token = yield select(makeSelectAccessToken());
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+  }
+
+  const options = {
+    method: 'GET',
+    headers,
+  };
+
+  const fullUrl = `${url}/${params ? `?${generateParams(params)}` : ''}`;
+
+  return yield call(request, fullUrl, options);
+}
+
+export function* authPostCall(url, params) {
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+  const token = yield select(makeSelectAccessToken());
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  const options = {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(params),
+  };
+
+  const fullUrl = `${url}`;
+  return yield call(request, fullUrl, options);
+}
 
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
 
@@ -39,7 +102,6 @@ function convertXMLtoJS(xml) {
 }
 
 function formatBestemmingPlan(response) {
-  // console.log('formatBestemmingPlan');
   if (response && response.FeatureCollection && response.FeatureCollection.member) {
     const {
       FeatureCollection: { member = [] },
@@ -75,17 +137,17 @@ http://schemas.opengis.net/wfs/2.0/wfs.xsd">
     <PropertyName>app:naam</PropertyName>
 ${
   /* eslint-disable
-  Import other properties:
-<PropertyName>app:datum</PropertyName>
-<PropertyName>app:historisch</PropertyName>
-<PropertyName>app:identificatie</PropertyName>
-<PropertyName>app:naamOverheid</PropertyName>
-<PropertyName>app:overheidscode</PropertyName>
-<PropertyName>app:plangebied</PropertyName>
-<PropertyName>app:typePlan</PropertyName>
-<PropertyName>app:versieIMRO</PropertyName>
-eslint-enable
-*/ ''
+      Import other properties:
+    <PropertyName>app:datum</PropertyName>
+    <PropertyName>app:historisch</PropertyName>
+    <PropertyName>app:identificatie</PropertyName>
+    <PropertyName>app:naamOverheid</PropertyName>
+    <PropertyName>app:overheidscode</PropertyName>
+    <PropertyName>app:plangebied</PropertyName>
+    <PropertyName>app:typePlan</PropertyName>
+    <PropertyName>app:versieIMRO</PropertyName>
+    eslint-enable
+    */ ''
 }
     <fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0">
       <fes:And>
@@ -114,17 +176,17 @@ eslint-enable
     <PropertyName>app:naam</PropertyName>
 ${
   /* eslint-disable
-  Import other properties:
-<PropertyName>app:datum</PropertyName>
-<PropertyName>app:historisch</PropertyName>
-<PropertyName>app:identificatie</PropertyName>
-<PropertyName>app:naamOverheid</PropertyName>
-<PropertyName>app:overheidscode</PropertyName>
-<PropertyName>app:plangebied</PropertyName>
-<PropertyName>app:typePlan</PropertyName>
-<PropertyName>app:versieIMRO</PropertyName>
-eslint-enable
-*/ ''
+      Import other properties:
+    <PropertyName>app:datum</PropertyName>
+    <PropertyName>app:historisch</PropertyName>
+    <PropertyName>app:identificatie</PropertyName>
+    <PropertyName>app:naamOverheid</PropertyName>
+    <PropertyName>app:overheidscode</PropertyName>
+    <PropertyName>app:plangebied</PropertyName>
+    <PropertyName>app:typePlan</PropertyName>
+    <PropertyName>app:versieIMRO</PropertyName>
+    eslint-enable
+    */ ''
 }
     <fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0">
       <fes:And>
@@ -155,91 +217,43 @@ eslint-enable
   return {};
 }
 
-function getVerblijfsobjectUri(categories, streetNumberFromInput) {
-  const indexedCategories = categories.filter(category =>
-    category.content.filter(suggestion => suggestion.category === 'Adressen'),
-  );
+function filterByStreetNumber(data, streetNumber) {
+  const streetNumberClean = streetNumber.replace('-', ' ').trim();
 
-  // No returned suggestions
-  if (indexedCategories.length < 1 || indexedCategories[0].content.length < 1) return '';
-
-  const { content } = indexedCategories[0];
-
-  if (content.length === 1) {
-    return content[0].uri;
+  if (data[0].huisnummer && (!data[0].bag_toevoeging && !data[0].bag_huisletter)) {
+    return data.filter(address => address.huisnummer === Number(streetNumberClean));
   }
 
-  const filteredAddress = content.filter(address => {
-    const { _display: label } = address;
-    const streetNameFromApi = label.slice(label.lastIndexOf(' ')).trim();
-    return streetNameFromApi === streetNumberFromInput;
-  });
-  if (filteredAddress.length === 1 && filteredAddress[0].uri) {
-    return filteredAddress[0].uri;
-  }
-
-  return '';
-}
-
-function formatAddress(categories) {
-  const indexedCategories = categories
-    .filter(category => category.content.filter(suggestion => suggestion.category === 'Adressen'))
-    .map(category => ({
-      content: category.content.map(suggestion => {
-        const { label, uri } = suggestion;
-        return {
-          category: category.label,
-          label,
-          uri,
-        };
-      }),
-    }));
-
-  if (indexedCategories.length < 1 || !indexedCategories[0].content) return [];
-  return indexedCategories[0].content;
-}
-
-function formatStreetname(categories) {
-  const indexedCategories = categories.filter(category =>
-    category.content.filter(suggestion => suggestion.category === 'Straatnamen'),
+  return data.filter(() => address =>
+    address.huisnummer === Number(streetNumberClean) || address.toevoeging === streetNumberClean,
   );
-
-  const { _display: label = '' } = indexedCategories[0].content[0];
-
-  return label;
 }
 
 export function searchForAddress(query) {
-  // Minimun length for typeahead query in backend is 3 characters
-  const uri = query && query.length >= 3 && `${SHARED_CONFIG.API_ROOT}typeahead?q=${query}`;
-  if (uri) {
-    return getByUri(uri).then(response => formatAddress(response));
+  const { postalCode, streetNumber } = query;
+  const uri = `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
+  let addressResults = [];
+
+  if (postalCode && streetNumber) {
+    addressResults = getByUri(uri).then(response => filterByStreetNumber(response.results, streetNumber));
   }
-  return {};
+
+  return addressResults;
 }
 
-export function searchForStreetname(query) {
-  // Minimun length for typeahead query in backend is 3 characters
-  const uri = query && query.length >= 3 && `${SHARED_CONFIG.API_ROOT}typeahead?q=${query}`;
-  if (uri) {
-    return getByUri(uri).then(response => formatStreetname(response));
-  }
-  return {};
-}
+export async function searchBag(query) {
+  const { postalCode = '', streetNumber = null } = query;
 
-export function searchBag(query) {
-  const { postcode = '', streetNumber = '' } = query;
-  const uri = postcode && streetNumber && `${SHARED_CONFIG.API_ROOT}typeahead?q=${postcode}+${streetNumber}`;
-  if (uri) {
-    return (
-      getByUri(uri)
-        .then(response => getVerblijfsobjectUri(response, streetNumber))
-        // verblijfsobject uri: /bag/verblijfsobject/${ID}/
-        .then(verblijfsobjectUri => {
-          if (verblijfsobjectUri) return getByUri(`${SHARED_CONFIG.API_ROOT}${verblijfsobjectUri}`);
-          return false;
-        })
+  const uri =
+    postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
+
+  if (uri && postalCode && streetNumber) {
+    const response = await getByUri(uri).then(search =>
+      search?.results.length === 1 && search.results[0].adresseerbaar_object_id
+        ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search.results[0].adresseerbaar_object_id}`)
+        : false,
     );
+    return response;
   }
   return {};
 }
