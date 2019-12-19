@@ -11,10 +11,18 @@ const NavigationStyle = styled(`div`)`
   background-color: rgba(241, 241, 241, 1);
   justify-content: space-between;
   align-items: center;
+  flex-direction: row-reverse;
 `;
 
 const Navigation = ({ showPrev, onGoToPrev, showNext, disableNext }) => (
   <NavigationStyle>
+    <div>
+      {showNext && (
+        <Button type="submit" variant="secondary" disabled={disableNext} taskflow>
+          Volgende
+        </Button>
+      )}
+    </div>
     <div>
       {showPrev && (
         <Button
@@ -25,13 +33,6 @@ const Navigation = ({ showPrev, onGoToPrev, showNext, disableNext }) => (
           style={{ marginLeft: 10 }}
         >
           Vorige
-        </Button>
-      )}
-    </div>
-    <div>
-      {showNext && (
-        <Button type="submit" variant="secondary" disabled={disableNext} taskflow>
-          Volgende
         </Button>
       )}
     </div>
