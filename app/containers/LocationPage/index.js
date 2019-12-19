@@ -56,7 +56,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     setError(
       'streetNumber',
       'notMatch',
-      'Er is geen adres gevonden met deze postcode en huisnummer. Probeer het opnieuw.',
+      'Er is helaas geen adres in Amsterdam gevonden op basis van deze gegevens. Probeer het opnieuw.',
     );
   }
 
