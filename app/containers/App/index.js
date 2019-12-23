@@ -13,7 +13,6 @@ import LocationPage from 'containers/LocationPage';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
 import AllQuestions from 'containers/QuestionnaireContainer/AllQuestions';
 import QuestionnaireRoutes from 'containers/QuestionnaireContainer/QuestionRoutes';
-import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
@@ -85,13 +84,19 @@ export const App = () => {
               </Content>
               <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route exact path="/aanbouw/inleiding" component={HomePage} />
-                <Route exact path="/aanbouw/locatie" component={LocationPage} />
-                <Route exact path="/aanbouw/alle-vragen" component={AllQuestions} />
-                <Route exact path="/aanbouw/alle-routes" component={QuestionnaireRoutes} />
-                <Route exact path="/aanbouw/*" component={QuestionnaireContainer} />
-                <Route exact path="/health" />
-                <Route path="" component={NotFoundPage} />
+                <Route exact path="/:werkzaamheid/inleiding" component={HomePage} />
+                <Route exact path="/:werkzaamheid/locatie" component={LocationPage} />
+                <Route exact path="/:werkzaamheid/alle-vragen" component={AllQuestions} />
+                <Route exact path="/:werkzaamheid/alle-routes" component={QuestionnaireRoutes} />
+                <Route exact path="/:werkzaamheid/*" component={QuestionnaireContainer} />
+                <Route
+                  path=""
+                  component={() => {
+                    window.location.href =
+                      'https://www.omgevingsloket.nl/Particulier/particulier/home/checken?init=true&clear-case=true';
+                    return null;
+                  }}
+                />
               </Switch>
             </Column>
           </Row>
