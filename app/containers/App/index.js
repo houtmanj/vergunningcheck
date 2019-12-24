@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import { Row, Column, Button, themeColor, themeSpacing } from '@datapunt/asc-ui';
@@ -53,10 +54,16 @@ const Content = styled(`div`)`
   width: 100%;
 `;
 
-export const App = () => {
+const routes = {
+  aanbouw: {
+    title: 'Vergunningchecker Aanbouw',
+  },
+};
+
+export const App = props => {
   useInjectSaga({ key: addressInputKey, saga: locationSaga });
   useInjectSaga({ key: questionnaireKey, saga: questionnaireSaga });
-
+  const currentRoute = props.location.pathname.split('/')[1];
   return (
     <BackgroundFullWidth>
       <Container>
@@ -80,15 +87,16 @@ export const App = () => {
                 </StyledButton>
               </Content>
               <Content>
-                <FormTitle>Vergunningchecker Aanbouw</FormTitle>
+                <FormTitle>{routes[currentRoute].title}</FormTitle>
               </Content>
               <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route exact path="/:werkzaamheid/inleiding" component={HomePage} />
-                <Route exact path="/:werkzaamheid/locatie" component={LocationPage} />
-                <Route exact path="/:werkzaamheid/alle-vragen" component={AllQuestions} />
-                <Route exact path="/:werkzaamheid/alle-routes" component={QuestionnaireRoutes} />
-                <Route exact path="/:werkzaamheid/*" component={QuestionnaireContainer} />
+                <Route exact path="/:activityGroup/inleiding" component={HomePage} />
+                <Route exact path="/:activityGroup/locatie" component={LocationPage} />
+                <Route exact path="/:activityGroup/alle-vragen" component={AllQuestions} />
+                <Route exact path="/:activityGroup/alle-routes" component={QuestionnaireRoutes} />
+                <Route exact path="/:activityGroup/*" component={QuestionnaireContainer} />
+                <Route exact path="/health" />
                 <Route
                   path=""
                   component={() => {
@@ -107,4 +115,10 @@ export const App = () => {
   );
 };
 
-export default compose(memo)(App);
+App.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
+};
+
+export default withRouter(compose(memo)(App));
