@@ -58,11 +58,15 @@ const routes = {
   aanbouw: {
     title: 'Vergunningchecker Aanbouw',
   },
+  '': {
+    title: 'Vergunningchecker Aanbouw',
+  },
 };
 
 export const App = props => {
   useInjectSaga({ key: addressInputKey, saga: locationSaga });
   useInjectSaga({ key: questionnaireKey, saga: questionnaireSaga });
+
   const currentRoute = props.location.pathname.split('/')[1];
   return (
     <BackgroundFullWidth>
