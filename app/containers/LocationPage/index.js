@@ -148,17 +148,16 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
         )}
 
         {(addressResults?.length === 1 || suffix) && (
-          <>
-            <Paragraph strong style={{ marginTop: '20px', marginBottom: '0px' }}>
+          <div style={{ background: '#E6E6E6', padding: 30 }}>
+            <Paragraph strong style={{ marginBottom: '0px' }}>
               Dit is het gekozen adres:
             </Paragraph>
-            <Paragraph>
+            <Paragraph style={{ marginBottom: '0px' }}>
               {addressResults[0].straatnaam} {suffix || addressResults[0].toevoeging}
               <br />
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
-            <Paragraph>Klik op volgende als dit adres klopt, of pas het aan.</Paragraph>
-          </>
+          </div>
         )}
 
         {loading && <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
