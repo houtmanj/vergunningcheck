@@ -121,7 +121,6 @@ function formatBestemmingPlan(response) {
 
 export function searchForBestemmingsplan(query) {
   const uri = `https://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&service=WFS&version=1.0.0&typename=ProvinciaalPlangebied`;
-
   if (uri && query) {
     const body = `
 <GetFeature
@@ -249,7 +248,7 @@ export async function searchBag(query) {
 
   if (uri && postalCode && streetNumber) {
     const response = await getByUri(uri).then(search =>
-      search?.results.length === 1 && search.results[0].adresseerbaar_object_id
+      search.results[0].adresseerbaar_object_id
         ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search.results[0].adresseerbaar_object_id}`)
         : false,
     );
