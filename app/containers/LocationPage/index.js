@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Heading, Paragraph, TextField, Select } from '@datapunt/asc-ui';
 
-import history from 'utils/history';
 import { AddressResult, DebugData } from 'components/AddressResult';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
@@ -68,7 +67,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
     if (addressResults?.length === 1 || suffix) {
       // Form is validated, we can proceed
-      history.push('/aanbouw/vragen');
+      window.open('https://www.omgevingsloket.nl/Particulier/particulier/home', '_blank');
     }
   };
 
