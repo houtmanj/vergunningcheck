@@ -1,11 +1,4 @@
-import {
-  selectGlobal,
-  makeSelectUserName,
-  makeSelectAccessToken,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectLocation,
-} from './selectors';
+import { selectGlobal, makeSelectUserName, makeSelectLoading, makeSelectError, makeSelectLocation } from './selectors';
 
 describe('selectGlobal', () => {
   it('should select the global state', () => {
@@ -27,19 +20,6 @@ describe('makeSelectUserName', () => {
       },
     };
     expect(userNameSelector(mockedState)).toEqual(username);
-  });
-});
-
-describe('makeSelectAccessToken', () => {
-  const selector = makeSelectAccessToken();
-  it('should select the token', () => {
-    const accessToken = 'thisistheaccesstoken';
-    const mockedState = {
-      global: {
-        accessToken,
-      },
-    };
-    expect(selector(mockedState)).toEqual(accessToken);
   });
 });
 

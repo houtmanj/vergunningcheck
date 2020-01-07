@@ -75,7 +75,7 @@ Identify problems that occur and try to resolve them by rolling back the respect
 ```js
 import TestPage from 'containers/TestPage/Loadable';
 
-<Route path="/test" component={TestPage} />
+<Route path="/test" component={TestPage} />;
 ```
 
 - Use TestComp on TestPage -> bypass all tests in TestComp and TestPage (set true = true)
@@ -106,15 +106,12 @@ import TestPage from 'containers/TestPage/Loadable';
 **[0] PATCH UPDATES**
 
 ```
- fontfaceobserver                        2.0.8  →    2.0.9
  ip                                      1.1.4  →    1.1.5
  react-redux                             5.0.2  →    5.0.5
  react-router                            3.0.2  →    3.0.5
- react-router-redux                      4.0.7  →    4.0.8
  react-router-scroll                     0.4.1  →    0.4.2
  redux-saga                             0.14.3  →   0.14.8
  whatwg-fetch                            2.0.2  →    2.0.3
- babel-plugin-dynamic-import-node        1.0.0  →    1.0.2
  coveralls                             2.11.15  →  2.11.16
  css-loader                             0.26.1  →   0.26.4
  exports-loader                          0.6.3  →    0.6.4
@@ -144,12 +141,10 @@ import TestPage from 'containers/TestPage/Loadable';
  redux-immutable                                  3.0.11  →                  3.1.0
  redux-saga                                       0.14.8  →                 0.15.3
  babel-cli                                        6.22.2  →                 6.24.1
- babel-core                                       6.22.1  →                 6.24.1
  babel-eslint                                      7.1.1  →                  7.2.3
  babel-loader                                     6.2.10  →                  6.4.1
  babel-plugin-transform-es2015-modules-commonjs   6.22.0  →                 6.24.1
  babel-plugin-transform-react-constant-elements   6.22.0  →                 6.23.0
- babel-plugin-transform-react-remove-prop-types   0.2.12  →                  0.4.5
  babel-preset-env                                  1.4.0  →                  1.5.1
  babel-preset-react                               6.22.0  →                 6.24.1
  babel-preset-stage-0                             6.22.0  →                 6.24.1
