@@ -3,13 +3,19 @@ import useForm from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Heading, Paragraph, TextField, Select } from '@datapunt/asc-ui';
+import { Heading, Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
+import styled from '@datapunt/asc-core';
 
 import history from 'utils/history';
-import { AddressResult, DebugData } from 'components/AddressResult';
+import { AddressResult as AddressLoader, DebugData } from 'components/AddressResult';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { fetchStreetname, fetchBagData } from './actions';
+
+const StyledAddressResult = styled(`div`)`
+  padding: 30px;
+  background-color: ${themeColor('tint', 'level3')};
+`;
 
 const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addressResults, onFetchStreetname }) => {
   const [suffix, setSuffix] = useState(null);
@@ -148,20 +154,19 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
         )}
 
         {(addressResults?.length === 1 || suffix) && (
-          <>
-            <Paragraph strong style={{ marginTop: '20px', marginBottom: '0px' }}>
+          <StyledAddressResult>
+            <Paragraph strong style={{ marginBottom: '0px' }}>
               Dit is het gekozen adres:
             </Paragraph>
-            <Paragraph>
+            <Paragraph style={{ marginBottom: '0px' }}>
               {addressResults[0].straatnaam} {suffix || addressResults[0].toevoeging}
               <br />
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
-            <Paragraph>Klik op volgende als dit adres klopt, of pas het aan.</Paragraph>
-          </>
+          </StyledAddressResult>
         )}
 
-        {loading && <AddressResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
+        {loading && <AddressLoader loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
 
         <Navigation showPrev showNext />
       </Form>
