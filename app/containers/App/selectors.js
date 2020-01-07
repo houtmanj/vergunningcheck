@@ -10,12 +10,6 @@ const makeSelectUserName = () =>
     globalState => globalState.userName,
   );
 
-const makeSelectAccessToken = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.accessToken,
-  );
-
 const makeSelectLoading = () =>
   createSelector(
     selectGlobal,
@@ -49,7 +43,6 @@ const makeSelectIsAuthenticated = () =>
 export {
   selectGlobal,
   makeSelectUserName,
-  makeSelectAccessToken,
   makeSelectLoading,
   makeSelectError,
   makeSelectErrorMessage,
