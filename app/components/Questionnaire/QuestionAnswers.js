@@ -18,7 +18,6 @@ const Question = styled(`div`)`
 const UserAnswer = styled(`div`)`
   width: 100px;
 `;
-
 const Change = styled(`div`)`
   width: 60px;
 `;
