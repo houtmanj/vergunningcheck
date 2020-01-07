@@ -18,9 +18,7 @@ const Question = styled(`div`)`
 const UserAnswer = styled(`div`)`
   width: 100px;
 `;
-// const Result = styled(`div`)`
-//   width: 150px;
-// `;
+
 const Change = styled(`div`)`
   width: 60px;
 `;
@@ -30,12 +28,10 @@ const QuestionAnswers = ({ questions, userAnswers, onGoToQuestion }) => (
     <MainWrapper>
       <Question>Vraag</Question>
       <UserAnswer>Uw antwoord</UserAnswer>
-      {/* <Result>Vergunningsplichtig?</Result> */}
       <Change>Wijzig</Change>
     </MainWrapper>
 
     {questions.map((rule, index) => {
-      // if (rule.type === 'decision') return null;
       const userAnswerValue = userAnswers[rule.id];
       const userAnswer = rule.antwoordOpties
         .filter(answer => answer.value === userAnswerValue)
@@ -46,9 +42,6 @@ const QuestionAnswers = ({ questions, userAnswers, onGoToQuestion }) => (
       if (!answerText) {
         return null;
       }
-
-      // const required = rule.vergunningplichtig;
-      // const resultText = requiredText === answerText ? `⚠️` : `✅`;
 
       return (
         <Wrapper key={rule.id}>
@@ -68,7 +61,6 @@ const QuestionAnswers = ({ questions, userAnswers, onGoToQuestion }) => (
               <em>{userAnswerValue}</em>
             </p>
           </UserAnswer>
-          {/* <Result key={resultText}>{resultText}</Result> */}
           <Change>
             <button onClick={() => onGoToQuestion(rule.id)} type="button" href="#" key={rule.id}>
               Wijzig
