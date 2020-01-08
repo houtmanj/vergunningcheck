@@ -19,9 +19,8 @@ import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
 import locationSaga from '../LocationPage/saga';
-
+import { omgevingsLoketRedirect, routes } from '../../constants';
 import './style.scss';
-import { omgevingsLoketRedirect } from '../../constants';
 
 const addressInputKey = 'location';
 const questionnaireKey = 'questionnaire';
@@ -54,15 +53,6 @@ const Content = styled(`div`)`
   display: block;
   width: 100%;
 `;
-
-const routes = {
-  aanbouw: {
-    title: 'Vergunningchecker Aanbouw',
-  },
-  '': {
-    title: 'Vergunningchecker Aanbouw',
-  },
-};
 
 export const App = props => {
   useInjectSaga({ key: addressInputKey, saga: locationSaga });
