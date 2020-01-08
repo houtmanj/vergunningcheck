@@ -18,7 +18,8 @@ import history from 'utils/history';
 import 'leaflet/dist/leaflet';
 
 // Import from @datapunt
-import { GlobalStyle, ThemeProvider } from '@datapunt/asc-ui';
+import { GlobalStyle as AmsterdamGlobalStyle, ThemeProvider, themeColor } from '@datapunt/asc-ui';
+import { createGlobalStyle } from '@datapunt/asc-core';
 
 // Import root app
 import App from 'containers/App';
@@ -34,9 +35,17 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
+const AppGlobalStyle = createGlobalStyle`
+  body {
+    min-height: 100vh;
+    background-color: ${themeColor('tint', 'level3')};
+  }
+`;
+
 ReactDOM.render(
   <ThemeProvider>
-    <GlobalStyle />
+    <AmsterdamGlobalStyle />
+    <AppGlobalStyle />
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <App />
