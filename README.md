@@ -1,7 +1,6 @@
 # Amsterdam Vergunningschecker
 
-
-Frontend vergunningschecker voor omgevingswet	Frontend vergunningschecker voor de nieuwe omgevingswet
+Frontend vergunningschecker voor de nieuwe omgevingswet
 
 ## Requirements
 

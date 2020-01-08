@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = options => ({
   mode: options.mode,
@@ -25,11 +26,10 @@ module.exports = options => ({
       },
 
       {
-        test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: options.babelQuery,
+        test: /\.(js|jsx)$/, // Transform all .js and .jsx files required somewhere with Babel
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
         },
       },
       {
@@ -52,16 +52,7 @@ module.exports = options => ({
       },
       {
         test: /\.svg$/,
-        use: [
-          {
-            loader: 'svg-url-loader',
-            options: {
-              // Inline files smaller than 10 kB
-              limit: 10 * 1024,
-              noquotes: true,
-            },
-          },
-        ],
+        use: ['@svgr/webpack', 'url-loader'],
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -119,11 +110,26 @@ module.exports = options => ({
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
     }),
+    new CopyWebpackPlugin([
+      {
+        context: 'modules/shared/assets',
+        from: '**/*',
+        to: 'assets',
+      },
+      {
+        from: './node_modules/@datapunt/asc-assets/lib/assets/Fonts',
+        to: 'Fonts',
+      },
+    ]),
   ]),
   resolve: {
     modules: ['node_modules', 'app'],
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
+    alias: {
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+    },
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window

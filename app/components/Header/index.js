@@ -1,84 +1,82 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import CONFIGURATION from 'shared/services/configuration/configuration';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import history from 'utils/history';
+import styled from '@datapunt/asc-core';
+import {
+  Header as HeaderComp,
+  MenuInline,
+  MenuItem,
+  MenuButton,
+  // MenuToggle,
+} from '@datapunt/asc-ui';
 
 import './style.scss';
-import LogoSvg from '../../../node_modules/amsterdam-stijl/dist/images/logos/andreas.svg';
-import LogoPng from '../../../node_modules/amsterdam-stijl/dist/images/logos/andreas.png';
-import LogoPrint from '../../../node_modules/amsterdam-stijl/dist/images/logos/andreas-print.png';
 
-const Header = ({ isAuthenticated, userName, onLoginLogoutButtonClick }) => (
-  <div className="header-component has_header_modern no-print">
-    <div className="row header-wrapper">
-      <div className="col-sm-6 grid-header-logo">
-        <h1 className="sitelogo">
-          <a className="mainlogo" href={CONFIGURATION.ROOT}>
-            <span className="logoset">
-              <img src={LogoSvg} className="screen-logo" alt="Gemeente Amsterdam" />
-              <img src={LogoPng} className="alt-logo" alt="Gemeente Amsterdam" />
-              <img src={LogoPrint} className="print-logo" alt="Gemeente Amsterdam" />
-            </span>
-            <span className="logotexts">
-              <span className="logotext red">Gemeente</span>
-              <span className="logotext red">Amsterdam</span>
-            </span>
-          </a>
-        </h1>
-        <span className="header-title">Amsterdam Vergunningschecker</span>
-      </div>
-      <div className="col-sm-6">
-        <nav>
-          <ul className="links">
-            <li>
-              <span>
-                {isAuthenticated && 'Ingelogd als: '}
-                <b>{userName}</b>
-              </span>
-            </li>
-            {!isAuthenticated ? (
-              <li>
-                <button type="button" onClick={event => onLoginLogoutButtonClick(event, 'datapunt')}>
-                  {'Inloggen'}
-                </button>
-              </li>
-            ) : (
-              ''
-            )}
-            {!isAuthenticated ? (
-              <li>
-                <button type="button" onClick={event => onLoginLogoutButtonClick(event, 'grip')}>
-                  {'Inloggen ADW'}
-                </button>
-              </li>
-            ) : (
-              ''
-            )}
-            {isAuthenticated ? (
-              <li>
-                <button type="button" onClick={onLoginLogoutButtonClick}>
-                  {'Uitloggen'}
-                </button>
-              </li>
-            ) : (
-              ''
-            )}
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
+const StyledHeader = styled(HeaderComp)`
+  max-width: 960px;
+`;
+
+const StyledMenuInline = styled(MenuInline)`
+  margin-left: -10px;
+`;
+
+const pages = {
+  intro: '/aanbouw/inleiding',
+  location: '/aanbouw/locatie',
+  questions: '/aanbouw/vragen',
+  overview: '/aanbouw/conclusie',
+};
+
+const MenuChildren = () => {
+  const { pathname } = useLocation();
+
+  // Scroll to top when `pathname` changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return (
+    <>
+      <MenuItem>
+        <MenuButton onClick={() => history.push(pages.intro)} active={pathname === pages.intro}>
+          Inleiding
+        </MenuButton>
+      </MenuItem>
+      <MenuItem>
+        <MenuButton onClick={() => history.push(pages.location)} active={pathname === pages.location}>
+          Locatie
+        </MenuButton>
+      </MenuItem>
+      <MenuItem>
+        <MenuButton onClick={() => history.push(pages.questions)} active={pathname === pages.questions}>
+          Vragen
+        </MenuButton>
+      </MenuItem>
+      <MenuItem>
+        <MenuButton onClick={() => history.push(pages.overview)} active={pathname === pages.overview}>
+          Conclusie
+        </MenuButton>
+      </MenuItem>
+    </>
+  );
+};
+
+export const Header = () => (
+  <StyledHeader
+    tall
+    backgroundColor="#fff"
+    homeLink="/"
+    navigation={
+      <>
+        <StyledMenuInline showAt="tabletM">
+          <MenuChildren />
+        </StyledMenuInline>
+        {/* <MenuToggle hideAt="tabletM">
+          <MenuChildren />
+        </MenuToggle> */}
+      </>
+    }
+  />
 );
-
-Header.propTypes = {
-  isAuthenticated: PropTypes.bool,
-  onLoginLogoutButtonClick: PropTypes.func,
-  userName: PropTypes.string,
-};
-
-Header.defaultProps = {
-  isAuthenticated: false,
-  onLoginLogoutButtonClick: undefined,
-  userName: '',
-};
 
 export default Header;

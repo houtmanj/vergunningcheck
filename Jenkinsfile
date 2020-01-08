@@ -94,3 +94,29 @@ if (BRANCH == "master") {
         }
     }
 }
+
+
+if (BRANCH == "develop") {
+
+    node {
+        stage('Push acceptance image') {
+            tryStep "image tagging", {
+                def image = docker.image("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}")
+                image.pull()
+                image.push("acceptance")
+            }
+        }
+    }
+
+    node {
+        stage("Deploy to ACC") {
+            tryStep "deployment", {
+                build job: 'Subtask_Openstack_Playbook',
+                parameters: [
+                    [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
+                    [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-vergunningschecker.yml'],
+                ]
+            }
+        }
+    }
+}
