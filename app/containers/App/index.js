@@ -21,6 +21,7 @@ import questionnaireSaga from '../QuestionnaireContainer/saga';
 import locationSaga from '../LocationPage/saga';
 
 import './style.scss';
+import { omgevingsLoketRedirect } from '../../constants';
 
 const addressInputKey = 'location';
 const questionnaireKey = 'questionnaire';
@@ -91,7 +92,7 @@ export const App = props => {
                 </StyledButton>
               </Content>
               <Content>
-                <FormTitle>{routes[currentRoute].title}</FormTitle>
+                <FormTitle>{routes[currentRoute]?.title}</FormTitle>
               </Content>
               <Switch>
                 <Route exact path="/" component={HomePage} />
@@ -104,8 +105,7 @@ export const App = props => {
                 <Route
                   path=""
                   component={() => {
-                    window.location.href =
-                      'https://www.omgevingsloket.nl/Particulier/particulier/home/checken?init=true&clear-case=true';
+                    window.location.href = omgevingsLoketRedirect;
                     return null;
                   }}
                 />
