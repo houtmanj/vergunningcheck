@@ -7,7 +7,7 @@ import { Heading, Paragraph, TextField, Select, themeColor } from '@datapunt/asc
 import styled from '@datapunt/asc-core';
 
 import history from 'utils/history';
-import { AddressResult as AddressLoader, DebugData } from 'components/AddressResult';
+import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { fetchStreetname, fetchBagData } from './actions';
@@ -166,12 +166,12 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           </StyledAddressResult>
         )}
 
-        {loading && <AddressLoader loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
+        {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
 
         <Navigation showPrev showNext />
       </Form>
 
-      <DebugData allFieldsFilled={allFieldsFilled} />
+      {allFieldsFilled && <LocationData />}
     </>
   );
 };
