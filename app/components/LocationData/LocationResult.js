@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Heading } from '@datapunt/asc-ui';
 
-const AddressResult = ({ title, loading, loadingText, children }) => (
+const LocationResult = ({ title, loading, loadingText, children }) => (
   <div>
     {title && <Heading $as="h4">{title}</Heading>}
     {loading && <div>{loadingText}</div>}
@@ -11,15 +11,15 @@ const AddressResult = ({ title, loading, loadingText, children }) => (
   </div>
 );
 
-AddressResult.defaultProps = {
+LocationResult.defaultProps = {
   loadingText: 'Laden...',
 };
 
-AddressResult.propTypes = {
+LocationResult.propTypes = {
   title: PropTypes.string,
   loading: PropTypes.bool,
   loadingText: PropTypes.string,
   children: PropTypes.node,
 };
 
-export default AddressResult;
+export default LocationResult;
