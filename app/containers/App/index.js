@@ -19,7 +19,7 @@ import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
 import locationSaga from '../LocationPage/saga';
-import { omgevingsLoketRedirect, routes } from '../../constants';
+import { ROUTES, EXTERNAL_URLS } from '../../constants';
 import './style.scss';
 
 const addressInputKey = 'location';
@@ -82,7 +82,7 @@ export const App = props => {
                 </StyledButton>
               </Content>
               <Content>
-                <FormTitle>{routes[currentRoute]?.title}</FormTitle>
+                <FormTitle>{ROUTES[currentRoute]?.title}</FormTitle>
               </Content>
               <Switch>
                 <Route exact path="/" component={HomePage} />
@@ -95,7 +95,7 @@ export const App = props => {
                 <Route
                   path=""
                   component={() => {
-                    window.location.href = omgevingsLoketRedirect;
+                    window.location.href = EXTERNAL_URLS.olo;
                     return null;
                   }}
                 />
