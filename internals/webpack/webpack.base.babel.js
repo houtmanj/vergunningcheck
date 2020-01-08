@@ -27,15 +27,10 @@ module.exports = options => ({
 
       {
         test: /\.(js|jsx)$/, // Transform all .js and .jsx files required somewhere with Babel
-        // exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
         },
-        // query: {
-        //   presets: ['react', 'es2015'],
-        // },
-        // options: options.babelQuery,
       },
       {
         // Preprocess our own .css files
@@ -110,7 +105,7 @@ module.exports = options => ({
   },
   plugins: options.plugins.concat([
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
-    // inside your code for any environment checks; Tersidea er will automatically
+    // inside your code for any environment checks; Terser will automatically
     // drop any unreachable code.
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',

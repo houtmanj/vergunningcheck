@@ -1,68 +1,5 @@
-import { call, select } from 'redux-saga/effects';
 import { xml2js } from 'xml-js';
-import request from 'utils/request';
 import SHARED_CONFIG from '../shared-config/shared-config';
-
-import { makeSelectAccessToken } from '../../../containers/App/selectors';
-
-export const generateParams = data =>
-  Object.entries(data)
-    .filter(pair => pair[1])
-    .map(pair => {
-      if (Array.isArray(pair[1])) {
-        return pair[1]
-          .filter(val => val)
-          .map(val => `${pair[0]}=${val}`)
-          .join('&');
-      }
-
-      return pair.map(encodeURIComponent).join('=');
-    })
-    .join('&');
-
-export function* authCall(url, params, authorizationToken) {
-  const headers = {
-    accept: 'application/json',
-  };
-
-  if (authorizationToken) {
-    headers.Authorization = `Bearer ${authorizationToken}`;
-  } else {
-    const token = yield select(makeSelectAccessToken());
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
-  }
-
-  const options = {
-    method: 'GET',
-    headers,
-  };
-
-  const fullUrl = `${url}/${params ? `?${generateParams(params)}` : ''}`;
-
-  return yield call(request, fullUrl, options);
-}
-
-export function* authPostCall(url, params) {
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-
-  const token = yield select(makeSelectAccessToken());
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
-
-  const options = {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(params),
-  };
-
-  const fullUrl = `${url}`;
-  return yield call(request, fullUrl, options);
-}
 
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
 
@@ -121,7 +58,6 @@ function formatBestemmingPlan(response) {
 
 export function searchForBestemmingsplan(query) {
   const uri = `https://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&service=WFS&version=1.0.0&typename=ProvinciaalPlangebied`;
-
   if (uri && query) {
     const body = `
 <GetFeature
@@ -249,7 +185,7 @@ export async function searchBag(query) {
 
   if (uri && postalCode && streetNumber) {
     const response = await getByUri(uri).then(search =>
-      search?.results.length === 1 && search.results[0].adresseerbaar_object_id
+      search.results[0].adresseerbaar_object_id
         ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search.results[0].adresseerbaar_object_id}`)
         : false,
     );
