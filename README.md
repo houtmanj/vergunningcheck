@@ -8,21 +8,21 @@ Frontend vergunningschecker voor de nieuwe omgevingswet
 
 ## Installation
 
-Checkout the develop branch:
-
-    git checkout develop
-
 Install all dependencies:
 
     yarn
 
 ## Development
 
+Create a new feature branch from the `develop` branch.
+
 Start the application:
 
     yarn start
 
-Then, open the application in your browser at [localhost:3000](http://localhost:3000/).
+Open the application in your browser at [localhost:3000](http://localhost:3000/).
+
+Happy developing
 
 ## Techniques used
 - React
