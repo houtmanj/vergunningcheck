@@ -11,9 +11,7 @@
     <link rel="icon" href="/favicon.png" />
     <title>Amsterdam Vergunningschecker</title>
 
-    <!-- begin usabilla live embed code -->
     <script type="text/javascript">
-        /*{literal}<![CDATA[*/
         window.lightningjs || function(c) {
             function g(b, d) {
                 d && (d += (/\?/.test(d) ? "&" : "?") + "lv=1");
@@ -64,7 +62,9 @@
                         i.addEventListener ? i.addEventListener(l, b, !1) : i.attachEvent("on" + l, b);
                         var q = function() {
                             function b() {
-                                return ["<head></head><", c, ' onload="var d=', n, ";d.getElementsByTagName('head')[0].", d, "(d.", g, "('script')).", i, "='", a.l, "'\"></", c, ">"].join("")
+                                return ["<head></head><", c, ' onload="var d=', n, ";d.getElementsByTagName('head')[0].", d,
+                                    "(d.", g, "('script')).", i, "='", a.l, "'\"></", c, ">"
+                                ].join("")
                             }
                             var c = "body",
                                 e = h[c];
@@ -88,7 +88,8 @@
                             try {
                                 f.contentWindow[n].open()
                             } catch (s) {
-                                a.domain = h.domain, p = "javascript:var d=" + n + ".open();d.domain='" + h.domain + "';", f[i] = p + "void(0);"
+                                a.domain = h.domain, p = "javascript:var d=" + n + ".open();d.domain='" + h.domain + "';", f[
+                                    i] = p + "void(0);"
                             }
                             try {
                                 var r = f.contentWindow[n];
@@ -114,30 +115,6 @@
         /*]]>{/literal}*/
     </script>
     <!-- end usabilla live embed code -->
-
-    <!-- Matomo -->
-    <script type="text/javascript">
-        var _paq = _paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-            return false;
-            // @TODO: Need to update this code
-            var u = '//piwik.datapunt.amsterdam.nl/';
-            _paq.push(['setTrackerUrl', u + 'piwik.php']);
-            _paq.push(['setSiteId', '14']);
-            var d = document,
-                g = d.createElement('script'),
-                s = d.getElementsByTagName('script')[0];
-            g.type = 'text/javascript';
-            g.async = true;
-            g.defer = true;
-            g.src = u + 'piwik.js';
-            s.parentNode.insertBefore(g, s);
-        })();
-    </script>
-    <!-- End Matomo Code -->
 </head>
 
 <body>
