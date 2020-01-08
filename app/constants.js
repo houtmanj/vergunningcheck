@@ -13,3 +13,7 @@ export const ROUTES = {
     title: 'Vergunningchecker Aanbouw',
   },
 };
+export const MATOMO_CONFIG = {
+  BASE_URL: 'https://analytics.data.amsterdam.nl/',
+  SITE_ID: 29,
+};

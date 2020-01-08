@@ -72,6 +72,7 @@
         "@datapunt/asc-assets": "^0.17.8-alpha.18",
         "@datapunt/asc-core": "^0.17.8-alpha.19",
         "@datapunt/asc-ui": "^0.17.8-alpha.21",
+        "@datapunt/matomo-tracker-react": "^0.0.16",
         "@svgr/webpack": "^4.3.2",
         "chalk": "2.4.2",
         "compression": "1.7.4",
