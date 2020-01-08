@@ -25,9 +25,6 @@ import './style.scss';
 const addressInputKey = 'location';
 const questionnaireKey = 'questionnaire';
 
-const BackgroundFullWidth = styled(`div`)`
-  background-color: ${themeColor('tint', 'level3')};
-`;
 const Container = styled(`div`)`
   max-width: 1400px;
   width: 100%;
@@ -60,52 +57,50 @@ export const App = props => {
 
   const currentRoute = props.location.pathname.split('/')[1];
   return (
-    <BackgroundFullWidth>
-      <Container>
-        <GlobalError />
-        <Header />
-        <ContentContainer>
-          <Row>
-            <Column
-              wrap
-              span={{
-                small: 1,
-                medium: 2,
-                big: 5,
-                large: 9,
-                xLarge: 9,
-              }}
-            >
-              <Content>
-                <StyledButton variant="textButton" iconLeft={<ChevronLeft />} iconSize={14} onClick={() => {}}>
-                  Terug naar pagina Aanbouw en uitbouw
-                </StyledButton>
-              </Content>
-              <Content>
-                <FormTitle>{ROUTES[currentRoute]?.title}</FormTitle>
-              </Content>
-              <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route exact path="/:activityGroup/inleiding" component={HomePage} />
-                <Route exact path="/:activityGroup/locatie" component={LocationPage} />
-                <Route exact path="/:activityGroup/alle-vragen" component={AllQuestions} />
-                <Route exact path="/:activityGroup/alle-routes" component={QuestionnaireRoutes} />
-                <Route exact path="/:activityGroup/*" component={QuestionnaireContainer} />
-                <Route exact path="/health" />
-                <Route
-                  path=""
-                  component={() => {
-                    window.location.href = EXTERNAL_URLS.olo;
-                    return null;
-                  }}
-                />
-              </Switch>
-            </Column>
-          </Row>
-        </ContentContainer>
-        <Footer />
-      </Container>
-    </BackgroundFullWidth>
+    <Container>
+      <GlobalError />
+      <Header />
+      <ContentContainer>
+        <Row>
+          <Column
+            wrap
+            span={{
+              small: 1,
+              medium: 2,
+              big: 5,
+              large: 9,
+              xLarge: 9,
+            }}
+          >
+            <Content>
+              <StyledButton variant="textButton" iconLeft={<ChevronLeft />} iconSize={14} onClick={() => {}}>
+                Terug naar pagina Aanbouw en uitbouw
+              </StyledButton>
+            </Content>
+            <Content>
+              <FormTitle>{ROUTES[currentRoute]?.title}</FormTitle>
+            </Content>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/:activityGroup/inleiding" component={HomePage} />
+              <Route exact path="/:activityGroup/locatie" component={LocationPage} />
+              <Route exact path="/:activityGroup/alle-vragen" component={AllQuestions} />
+              <Route exact path="/:activityGroup/alle-routes" component={QuestionnaireRoutes} />
+              <Route exact path="/:activityGroup/*" component={QuestionnaireContainer} />
+              <Route exact path="/health" />
+              <Route
+                path=""
+                component={() => {
+                  window.location.href = EXTERNAL_URLS.olo;
+                  return null;
+                }}
+              />
+            </Switch>
+          </Column>
+        </Row>
+      </ContentContainer>
+      <Footer />
+    </Container>
   );
 };
 
