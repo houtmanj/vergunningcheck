@@ -3,7 +3,10 @@ export const REGEX = {
   postalCode: /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i,
 };
 export const EXTERNAL_URLS = {
-  olo: 'https://www.omgevingsloket.nl/Particulier/particulier/home',
+  oloChecker: {
+    intro: 'https://www.omgevingsloket.nl/Particulier/particulier/home/checken',
+    location: 'https://www.omgevingsloket.nl/Particulier/particulier/home/checken/LocatieWerkzaamheden',
+  },
 };
 export const ROUTES = {
   aanbouw: {

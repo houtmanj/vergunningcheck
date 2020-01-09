@@ -71,7 +71,17 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
     if (addressResults?.length === 1 || suffix) {
       // Form is validated, we can proceed
-      window.open(EXTERNAL_URLS.olo, '_blank');
+
+      const oloPostalCode = `facet_locatie_postcode=${values.postalCode}`;
+      const olostreetNumber = `facet_locatie_huisnummer=${values.streetNumber}`;
+      const oloSuffixValue = values.suffix ? values.suffix.replace(values.streetNumber, '').trim() : '';
+      const oloSuffix = oloSuffixValue ? `facet_locatie_huisnummertoevoeging=${oloSuffixValue}` : '';
+
+      // Redirect user to OLO
+      window.open(
+        `${EXTERNAL_URLS.oloChecker.location}?param=postcodecheck&${oloPostalCode}&${olostreetNumber}&${oloSuffix}`,
+        '_blank',
+      );
     }
   };
 

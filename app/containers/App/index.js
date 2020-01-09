@@ -99,7 +99,7 @@ export const App = props => {
               <Route
                 path=""
                 component={() => {
-                  window.location.href = EXTERNAL_URLS.olo;
+                  window.location.href = EXTERNAL_URLS.oloChecker.intro;
                   return null;
                 }}
               />
