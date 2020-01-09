@@ -31,6 +31,7 @@ const Navigation = ({ showPrev, onGoToPrev, showNext, disableNext }) => (
           iconSize={14}
           onClick={onGoToPrev}
           style={{ marginLeft: 10 }}
+            type="button"
         >
           Vorige
         </Button>
