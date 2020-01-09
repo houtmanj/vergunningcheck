@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Heading } from '@datapunt/asc-ui';
+import { Paragraph } from '@datapunt/asc-ui';
 
 const LocationResult = ({ title, loading, loadingText, children }) => (
-  <div>
-    {title && <Heading $as="h4">{title}</Heading>}
-    {loading && <div>{loadingText}</div>}
-    {children && !loading && <div>{children}</div>}
-  </div>
+  <>
+    {title && (
+      <Paragraph strong style={{ marginBottom: '0px' }}>
+        {title}
+      </Paragraph>
+    )}
+    {loading && <Paragraph>{loadingText}</Paragraph>}
+    {children && !loading && <Paragraph>{children}</Paragraph>}
+  </>
 );
 
 LocationResult.defaultProps = {

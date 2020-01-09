@@ -160,25 +160,27 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           </>
         )}
 
-        {(addressResults?.length === 1 || suffix) && (
+        {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
+
+        {((!loading && addressResults?.length === 1) || suffix) && (
           <StyledAddressResult>
             <Paragraph strong style={{ marginBottom: '0px' }}>
               Dit is het gekozen adres:
             </Paragraph>
-            <Paragraph style={{ marginBottom: '0px' }}>
+            <Paragraph>
               {addressResults[0].straatnaam} {suffix || addressResults[0].toevoeging}
               <br />
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
+            <LocationData />
+            <Paragraph style={{ marginBottom: '0px' }}>
+              Als u op Volgende klikt, dan wordt u doorgelinkt naar OLO.
+            </Paragraph>
           </StyledAddressResult>
         )}
 
-        {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
-
         <Navigation showPrev showNext />
       </Form>
-
-      {allFieldsFilled && <LocationData />}
     </>
   );
 };
