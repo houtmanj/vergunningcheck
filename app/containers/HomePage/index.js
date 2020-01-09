@@ -79,7 +79,7 @@ const HomePage = () => (
         history.push('/aanbouw/locatie');
       }}
     >
-      <Navigation showNext />
+      <Navigation page="home" showNext />
     </Form>
   </>
 );
