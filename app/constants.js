@@ -10,7 +10,7 @@ export const ROUTES = {
     title: 'Vergunningchecker Aanbouw',
   },
   '': {
-    title: 'Vergunningchecker',
+    title: 'Vergunningchecker Aanbouw',
   },
 };
 export const MATOMO_CONFIG = {
