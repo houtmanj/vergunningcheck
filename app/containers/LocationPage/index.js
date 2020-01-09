@@ -3,14 +3,15 @@ import useForm from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import history from 'utils/history';
 import { Heading, Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
-import history from 'utils/history';
 import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { fetchStreetname, fetchBagData } from './actions';
+import { EXTERNAL_URLS, REGEX } from '../../constants';
 
 const StyledAddressResult = styled(`div`)`
   padding: 30px;
@@ -36,14 +37,12 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   const values = getValues();
   const allFieldsFilled = values.postalCode && values.streetNumber && !loading;
 
-  const postCodePattern = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
-
   register(
     { name: 'postalCode' },
     {
       required: 'Vul een postcode in',
       pattern: {
-        value: postCodePattern,
+        value: REGEX.postalCode,
         message: 'De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.',
       },
     },
@@ -74,7 +73,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
     if (addressResults?.length === 1 || suffix) {
       // Form is validated, we can proceed
-      history.push('/aanbouw/vragen');
+      window.open(EXTERNAL_URLS.olo, '_blank');
     }
   };
 
@@ -95,8 +94,8 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
     const currentValues = getValues();
 
-    if (currentValues.streetNumber && currentValues.postalCode && currentValues.postalCode.match(postCodePattern)) {
-      // Fields are valididated
+    if (currentValues.streetNumber && currentValues.postalCode && currentValues.postalCode.match(REGEX.postalCode)) {
+      // Fields are validated
       onFetchStreetname(currentValues);
       onFetchBagData(currentValues);
     }
@@ -168,7 +167,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
         {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
 
-        <Navigation showPrev showNext />
+        <Navigation page="location" onGoToPrev={() => history.push('/aanbouw/inleiding')} showPrev showNext />
       </Form>
 
       {allFieldsFilled && <LocationData />}

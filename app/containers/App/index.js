@@ -1,33 +1,30 @@
 import React, { memo } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import { Row, Column, Button, themeColor, themeSpacing } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 import { ChevronLeft } from '@datapunt/asc-assets';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { useInjectSaga } from 'utils/injectSaga';
-
 import HomePage from 'containers/HomePage';
 import LocationPage from 'containers/LocationPage';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
 import AllQuestions from 'containers/QuestionnaireContainer/AllQuestions';
 import QuestionnaireRoutes from 'containers/QuestionnaireContainer/QuestionRoutes';
-import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
 import locationSaga from '../LocationPage/saga';
-
+import { ROUTES, EXTERNAL_URLS } from '../../constants';
 import './style.scss';
 
 const addressInputKey = 'location';
 const questionnaireKey = 'questionnaire';
 
-const BackgroundFullWidth = styled(`div`)`
-  background-color: ${themeColor('tint', 'level3')};
-`;
 const Container = styled(`div`)`
   max-width: 1400px;
   width: 100%;
@@ -54,52 +51,71 @@ const Content = styled(`div`)`
   width: 100%;
 `;
 
-export const App = () => {
+export const App = props => {
   useInjectSaga({ key: addressInputKey, saga: locationSaga });
   useInjectSaga({ key: questionnaireKey, saga: questionnaireSaga });
 
+  const currentRoute = props.location.pathname.split('/')[1];
+  const { trackPageView } = useMatomo();
+
+  // @datapunt Track Page View
+  // Docu: https://github.com/Amsterdam/matomo-tracker/tree/master/packages/react
+  React.useEffect(() => {
+    trackPageView();
+  }, [currentRoute]);
+
   return (
-    <BackgroundFullWidth>
-      <Container>
-        <GlobalError />
-        <Header />
-        <ContentContainer>
-          <Row>
-            <Column
-              wrap
-              span={{
-                small: 1,
-                medium: 2,
-                big: 5,
-                large: 9,
-                xLarge: 9,
-              }}
-            >
-              <Content>
-                <StyledButton variant="textButton" iconLeft={<ChevronLeft />} iconSize={14} onClick={() => {}}>
-                  Terug naar pagina Aanbouw en uitbouw
-                </StyledButton>
-              </Content>
-              <Content>
-                <FormTitle>Vergunningchecker Aanbouw</FormTitle>
-              </Content>
-              <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route exact path="/aanbouw/inleiding" component={HomePage} />
-                <Route exact path="/aanbouw/locatie" component={LocationPage} />
-                <Route exact path="/aanbouw/alle-vragen" component={AllQuestions} />
-                <Route exact path="/aanbouw/alle-routes" component={QuestionnaireRoutes} />
-                <Route exact path="/aanbouw/*" component={QuestionnaireContainer} />
-                <Route exact path="/health" />
-                <Route path="" component={NotFoundPage} />
-              </Switch>
-            </Column>
-          </Row>
-        </ContentContainer>
-        <Footer />
-      </Container>
-    </BackgroundFullWidth>
+    <Container>
+      <GlobalError />
+      <Header />
+      <ContentContainer>
+        <Row>
+          <Column
+            wrap
+            span={{
+              small: 1,
+              medium: 2,
+              big: 5,
+              large: 9,
+              xLarge: 9,
+            }}
+          >
+            <Content>
+              <StyledButton variant="textButton" iconLeft={<ChevronLeft />} iconSize={14} onClick={() => {}}>
+                Terug naar pagina Aanbouw en uitbouw
+              </StyledButton>
+            </Content>
+            <Content>
+              <FormTitle>{ROUTES[currentRoute]?.title}</FormTitle>
+            </Content>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/:activityGroup/inleiding" component={HomePage} />
+              <Route exact path="/:activityGroup/locatie" component={LocationPage} />
+              <Route exact path="/:activityGroup/alle-vragen" component={AllQuestions} />
+              <Route exact path="/:activityGroup/alle-routes" component={QuestionnaireRoutes} />
+              <Route exact path="/:activityGroup/*" component={QuestionnaireContainer} />
+              <Route exact path="/health" />
+              <Route
+                path=""
+                component={() => {
+                  window.location.href = EXTERNAL_URLS.olo;
+                  return null;
+                }}
+              />
+            </Switch>
+          </Column>
+        </Row>
+      </ContentContainer>
+      <Footer />
+    </Container>
   );
 };
 
-export default compose(memo)(App);
+App.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
+};
+
+export default withRouter(compose(memo)(App));

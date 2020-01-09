@@ -83,7 +83,13 @@ const Question = ({
       />
       {children}
       {!hideNavigation && (
-        <Navigation showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} disableNext={disableNext} />
+        <Navigation
+          page="question"
+          showPrev={showPrev}
+          showNext={showNext}
+          onGoToPrev={onGoToPrev}
+          disableNext={disableNext}
+        />
       )}
     </Form>
   );

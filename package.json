@@ -1,6 +1,6 @@
 {
     "name": "vergunningschecker",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Amsterdam Vergunningschecker",
     "repository": {
         "type": "git",
@@ -46,7 +46,8 @@
         "dyson:server": "nodemon --watch test/mock/api --exec babel-node --presets=latest test/mock/api",
         "dyson:sample": "nodemon --watch test/mock/sample --exec babel-node --presets=latest ./test/mock/sample",
         "start:dev": "npm-run-all -p dyson:server start:proxy-dev",
-        "start:proxy-dev": "cross-env NODE_ENV=development node server -- --proxyConfig=proxy.conf.dev.js --port=3001"
+        "start:proxy-dev": "cross-env NODE_ENV=development node server -- --proxyConfig=proxy.conf.dev.js --port=3001",
+        "release": "standard-version"
     },
     "browserslist": [
         "last 2 versions",
@@ -72,6 +73,7 @@
         "@datapunt/asc-assets": "^0.17.8-alpha.18",
         "@datapunt/asc-core": "^0.17.8-alpha.19",
         "@datapunt/asc-ui": "^0.17.8-alpha.21",
+        "@datapunt/matomo-tracker-react": "^0.0.16",
         "@svgr/webpack": "^4.3.2",
         "chalk": "2.4.2",
         "compression": "1.7.4",
@@ -160,6 +162,7 @@
         "rimraf": "2.6.3",
         "sass-loader": "*",
         "shelljs": "0.8.3",
+        "standard-version": "^7.0.1",
         "style-loader": "0.23.1",
         "stylelint": "10.0.1",
         "stylelint-config-recommended": "2.2.0",
