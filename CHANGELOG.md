@@ -8,5 +8,3 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * Added more standard version ([1e9f67e](https://github.com/Amsterdam/Vergunningschecker/commit/1e9f67eb1fc89f8082dd2428c92077df24fd3886))
-
-### [0.0.8](https://github.com/Amsterdam/Vergunningschecker/compare/v0.0.5...v0.0.8) (2020-01-09)
