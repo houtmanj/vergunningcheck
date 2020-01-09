@@ -1,6 +1,6 @@
 {
     "name": "vergunningschecker",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "Amsterdam Vergunningschecker",
     "repository": {
         "type": "git",
