@@ -6,9 +6,9 @@ import { compose } from 'redux';
 import { Row, Column, Button, themeColor, themeSpacing } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 import { ChevronLeft } from '@datapunt/asc-assets';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { useInjectSaga } from 'utils/injectSaga';
-
 import HomePage from 'containers/HomePage';
 import LocationPage from 'containers/LocationPage';
 import QuestionnaireContainer from 'containers/QuestionnaireContainer';
@@ -56,6 +56,14 @@ export const App = props => {
   useInjectSaga({ key: questionnaireKey, saga: questionnaireSaga });
 
   const currentRoute = props.location.pathname.split('/')[1];
+  const { trackPageView } = useMatomo();
+
+  // @datapunt Track Page View
+  // Docu: https://github.com/Amsterdam/matomo-tracker/tree/master/packages/react
+  React.useEffect(() => {
+    trackPageView();
+  }, [currentRoute]);
+
   return (
     <Container>
       <GlobalError />
