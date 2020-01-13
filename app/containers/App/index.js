@@ -13,9 +13,9 @@ import LocationPage from 'containers/LocationPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
+import { GET_TEXT, EXTERNAL_URLS } from 'constants';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
 import locationSaga from '../LocationPage/saga';
-import { GET_TEXT, EXTERNAL_URLS } from '../../constants';
 import './style.scss';
 
 const addressInputKey = 'location';

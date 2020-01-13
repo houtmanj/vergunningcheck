@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import styled from '@datapunt/asc-core';
 import { Header as HeaderComp, MenuInline, MenuItem, MenuButton } from '@datapunt/asc-ui';
-import { PAGES, CURRENT_PAGE } from '../../constants';
+import { PAGES, CURRENT_PAGE } from 'constants';
 import './style.scss';
 
 const StyledHeader = styled(HeaderComp)`
