@@ -3,7 +3,6 @@ import useForm from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import history from 'utils/history';
 import { Heading, Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
