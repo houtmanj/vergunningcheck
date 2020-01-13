@@ -34,7 +34,6 @@ const MenuChildren = () => {
 export const Header = () => (
   <StyledHeader
     tall
-    fullWidth={false}
     backgroundColor="#fff"
     homeLink="https://amsterdam.nl"
     title="Vergunningen"
