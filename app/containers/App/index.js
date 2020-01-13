@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import { Row, Column, themeColor, themeSpacing } from '@datapunt/asc-ui';
@@ -8,12 +8,11 @@ import styled from '@datapunt/asc-core';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { useInjectSaga } from 'utils/injectSaga';
-import HomePage from 'containers/HomePage';
 import LocationPage from 'containers/LocationPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
-import { GET_TEXT, EXTERNAL_URLS } from 'constants';
+import { GET_TEXT, EXTERNAL_URLS, PAGES } from '../../constants';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
 import locationSaga from '../LocationPage/saga';
 import './style.scss';
@@ -78,11 +77,8 @@ export const App = props => {
               <FormTitle>{GET_TEXT?.title}</FormTitle>
             </Content>
             <Switch>
-              {/* Redirect users from activity root to location page */}
-              <Redirect exact from="/:activityGroup" to="/:activityGroup/locatie" />
-              <Route exact path="/" component={HomePage} /> {/* Todo: fix the root route */}
-              <Route exact path="/:activityGroup/" component={LocationPage} />
-              <Route exact path="/:activityGroup/*" component={LocationPage} />
+              <Route exact path="/" component={Content} />
+              <Route exact path={`/:activityGroup/${PAGES.location}`} component={LocationPage} />
               <Route exact path="/health" />
               <Route
                 path=""

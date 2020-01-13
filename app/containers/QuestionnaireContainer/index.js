@@ -8,7 +8,7 @@ import styled from '@datapunt/asc-core';
 
 import { condCheck } from 'shared/services/questionnaire/conditions';
 import { Question, QuestionOverview } from 'components/Questionnaire';
-import { CURRENT_ACTIVITY, PAGES } from 'constants';
+import { CURRENT_ACTIVITY, PAGES } from '../../constants';
 import { fetchQuestionnaire } from './actions';
 
 const StyledContent = styled(`div`)`

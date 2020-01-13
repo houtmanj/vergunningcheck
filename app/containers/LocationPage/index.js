@@ -9,7 +9,7 @@ import styled from '@datapunt/asc-core';
 import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { EXTERNAL_URLS, REGEX, GET_TEXT } from 'constants';
+import { EXTERNAL_URLS, REGEX, GET_TEXT } from '../../constants';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressResult = styled(`div`)`

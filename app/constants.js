@@ -11,9 +11,9 @@ export const EXTERNAL_URLS = {
   },
 };
 
-export const CURRENT_ACTIVITY = window.location.pathname.split('/')[1].toLowerCase();
+export const CURRENT_ACTIVITY = window.location?.pathname.split('/')[1]?.toLowerCase();
 
-export const CURRENT_PAGE = window.location.pathname.split('/')[2].toLowerCase();
+export const CURRENT_PAGE = window.location?.pathname.split('/')[2]?.toLowerCase();
 
 export const PAGES = {
   intro: 'inleiding',
