@@ -160,9 +160,7 @@ function filterByStreetNumber(data, streetNumber) {
     return data.filter(address => address.huisnummer === Number(streetNumberClean));
   }
 
-  return data.filter(() => address =>
-    address.huisnummer === Number(streetNumberClean) || address.toevoeging === streetNumberClean,
-  );
+  return data.filter(address => address.huisnummer === Number(streetNumberClean));
 }
 
 export function searchForAddress(query) {
