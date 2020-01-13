@@ -3,8 +3,10 @@ import useForm from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import history from 'utils/history';
 import { Heading, Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
+
 import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
@@ -179,7 +181,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           </StyledAddressResult>
         )}
 
-        <Navigation showPrev showNext />
+        <Navigation page="location" showNext />
       </Form>
     </>
   );
