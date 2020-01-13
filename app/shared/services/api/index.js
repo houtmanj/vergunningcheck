@@ -160,8 +160,8 @@ function filterByStreetNumber(data, streetNumber) {
     return data.filter(address => address.huisnummer === Number(streetNumberClean));
   }
 
-  return data.filter(() => address =>
-    address.huisnummer === Number(streetNumberClean) || address.toevoeging === streetNumberClean,
+  return data.filter(
+    address => address.huisnummer === Number(streetNumberClean) || address.toevoeging === streetNumberClean,
   );
 }
 
@@ -184,11 +184,13 @@ export async function searchBag(query) {
     postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
 
   if (uri && postalCode && streetNumber) {
-    const response = await getByUri(uri).then(search =>
-      search.results[0].adresseerbaar_object_id
-        ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search.results[0].adresseerbaar_object_id}`)
-        : false,
-    );
+    const response = await getByUri(uri)
+      .then(streetResult => filterByStreetNumber(streetResult.results, streetNumber))
+      .then(search =>
+        search[0].adresseerbaar_object_id
+          ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search[0].adresseerbaar_object_id}`)
+          : false,
+      );
     return response;
   }
   return {};
