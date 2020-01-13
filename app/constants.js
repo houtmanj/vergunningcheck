@@ -15,6 +15,13 @@ export const CURRENT_ACTIVITY = window.location.pathname.split('/')[1].toLowerCa
 
 export const CURRENT_PAGE = window.location.pathname.split('/')[2].toLowerCase();
 
+export const PAGES = {
+  intro: 'inleiding',
+  location: 'locatie',
+  questions: 'vragen',
+  overview: 'conclusie',
+};
+
 export const TEXT = {
   aanbouw: {
     title: 'Vergunningchecker Aanbouw',
@@ -24,13 +31,6 @@ export const TEXT = {
     title: 'Vergunningchecker',
     locationHeading: '',
   },
-};
-
-export const PAGES = {
-  intro: 'inleiding',
-  location: 'locatie',
-  questions: 'vragen',
-  overview: 'conclusie',
 };
 
 export const GET_TEXT = CURRENT_ACTIVITY && TEXT[CURRENT_ACTIVITY] ? TEXT[CURRENT_ACTIVITY] : TEXT.default;
