@@ -9,7 +9,7 @@ import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { fetchStreetname, fetchBagData } from './actions';
-import { EXTERNAL_URLS, REGEX } from '../../constants';
+import { EXTERNAL_URLS, REGEX, GET_TEXT } from '../../constants';
 
 const StyledAddressResult = styled(`div`)`
   padding: 30px;
@@ -112,7 +112,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Heading $as="h3">Waar wilt u uw aanbouw maken?</Heading>
+        <Heading $as="h3">{GET_TEXT?.locationHeading}</Heading>
         <TextField
           className="address-input__input address-input__postcode"
           onChange={handleChange}
