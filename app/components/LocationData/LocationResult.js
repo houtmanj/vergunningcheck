@@ -11,7 +11,7 @@ const LocationResult = ({ title, loading, loadingText, children }) => (
       </Paragraph>
     )}
     {loading && <Paragraph>{loadingText}</Paragraph>}
-    {children && !loading && <Paragraph>{children}</Paragraph>}
+    {children && !loading && children}
   </>
 );
 

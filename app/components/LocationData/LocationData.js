@@ -1,66 +1,65 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { List, ListItem, Paragraph } from '@datapunt/asc-ui';
+
 import LocationResult from './LocationResult';
 
 const LocationData = ({
   monumentLoading,
   monumentStatus,
-  // stadsgezichtLoading,
-  // stadsgezichtStatus,
-  // bestemmingsplanLoading,
-  // bestemmingsplanStatus,
+  stadsgezichtLoading,
+  stadsgezichtStatus,
+  bestemmingsplanLoading,
+  bestemmingsplanStatus,
 }) => (
   <div>
     <LocationResult loading={monumentLoading} title="Monument:">
-      {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
+      <Paragraph>{monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}</Paragraph>
     </LocationResult>
 
-    {/* Temp hide these results: */}
-    {/*
     <LocationResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
-      {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
+      <Paragraph>{stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}</Paragraph>
     </LocationResult>
 
     <LocationResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
-      {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
+      {bestemmingsplanStatus.length === 0 && <Paragraph>Geen bestemmingsplan</Paragraph>}
       {bestemmingsplanStatus.length > 0 && (
-        <ul>
+        <List variant="bullet" style={{ backgroundColor: 'inherit' }}>
           {bestemmingsplanStatus.map(bestemmingsplan => (
-            <li key={bestemmingsplan.text}>{bestemmingsplan.text}</li>
+            <ListItem key={bestemmingsplan.text}>{bestemmingsplan.text}</ListItem>
           ))}
-        </ul>
+        </List>
       )}
     </LocationResult>
-    */}
   </div>
 );
 
 LocationData.propTypes = {
   monumentStatus: PropTypes.string,
   monumentLoading: PropTypes.bool,
-  // stadsgezichtStatus: PropTypes.string,
-  // stadsgezichtLoading: PropTypes.bool,
-  // bestemmingsplanStatus: PropTypes.arrayOf(PropTypes.object),
-  // bestemmingsplanLoading: PropTypes.bool,
+  stadsgezichtStatus: PropTypes.string,
+  stadsgezichtLoading: PropTypes.bool,
+  bestemmingsplanStatus: PropTypes.arrayOf(PropTypes.object),
+  bestemmingsplanLoading: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
   const {
     monumentLoading,
     monumentStatus,
-    // stadsgezichtLoading,
-    // stadsgezichtStatus,
-    // bestemmingsplanLoading,
-    // bestemmingsplanStatus,
+    stadsgezichtLoading,
+    stadsgezichtStatus,
+    bestemmingsplanLoading,
+    bestemmingsplanStatus,
   } = state.locationData;
   return {
     monumentLoading,
     monumentStatus,
-    // stadsgezichtLoading,
-    // stadsgezichtStatus,
-    // bestemmingsplanLoading,
-    // bestemmingsplanStatus,
+    stadsgezichtLoading,
+    stadsgezichtStatus,
+    bestemmingsplanLoading,
+    bestemmingsplanStatus,
   };
 };
 
