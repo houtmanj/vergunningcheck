@@ -22,7 +22,7 @@ export const PAGES = {
   overview: 'conclusie',
 };
 
-export const TEXT = {
+const TEXT = {
   aanbouw: {
     title: 'Vergunningchecker Aanbouw',
     locationHeading: 'Waar wilt u uw aanbouw maken?',
