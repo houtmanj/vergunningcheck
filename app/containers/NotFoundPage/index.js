@@ -5,11 +5,17 @@
  */
 
 import React from 'react';
+import { Heading, Paragraph } from '@datapunt/asc-ui';
 
-const NotFound = () => (
-  <article>
-    <h1>Deze pagina is niet gevonden.</h1>
-  </article>
+const NotFoundPage = () => (
+  <>
+    <div>
+      <Heading $as="h2">Deze pagina is niet gevonden.</Heading>
+    </div>
+    <div>
+      <Paragraph>Helaas</Paragraph>
+    </div>
+  </>
 );
 
-export default NotFound;
+export default NotFoundPage;

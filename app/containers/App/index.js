@@ -1,18 +1,25 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
-
 import { Row, Column, themeColor, themeSpacing } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import LocationPage from 'containers/LocationPage';
+import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
-import { GET_TEXT, EXTERNAL_URLS, PAGES } from '../../constants';
+import {
+  GET_TEXT,
+  EXTERNAL_URLS,
+  PAGES,
+  REDIRECT_TO_OLO,
+  ALLOW_LOCATION_PAGE,
+  GET_CURRENT_TOPIC,
+} from '../../constants';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
 import locationSaga from '../LocationPage/saga';
 import './style.scss';
@@ -77,16 +84,16 @@ export const App = props => {
               <FormTitle>{GET_TEXT?.title}</FormTitle>
             </Content>
             <Switch>
-              <Route exact path="/" component={Content} />
+              {/* REDIRECTS */}
+              {REDIRECT_TO_OLO && window.open(`${EXTERNAL_URLS.oloChecker.intro}`, '_self')}
+              {ALLOW_LOCATION_PAGE && (
+                <Redirect exact from={`/${GET_CURRENT_TOPIC()}`} to={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} />
+              )}
+              {/* ROUTES */}
               <Route exact path={`/:activityGroup/${PAGES.location}`} component={LocationPage} />
               <Route exact path="/health" />
-              <Route
-                path=""
-                component={() => {
-                  window.location.href = EXTERNAL_URLS.oloChecker.intro;
-                  return null;
-                }}
-              />
+              <Route exact path="/" component={Content} />
+              <Route path="" component={NotFoundPage} />
             </Switch>
           </Column>
         </Row>
