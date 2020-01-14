@@ -31,6 +31,9 @@ import {
   FETCH_BESTEMMINGSPLAN_FAILURE,
 } from './constants';
 
+// We don't use `beperkingen` at this point, so why bother loading them
+const allowBeperkingRequest = false;
+
 export function* fetchStreetname(action) {
   try {
     const addressResults = yield call(searchForAddress, action.query);
@@ -48,8 +51,10 @@ export function* fetchBag(action) {
       yield put({ type: FETCH_BAG_SUCCESS, bag });
       yield put({ type: FETCH_BESTEMMINGSPLAN_REQUEST, bag });
       yield put({ type: FETCH_MONUMENT_REQUEST, bag });
-      yield put({ type: FETCH_BEPERKING_REQUEST, bag });
       yield put({ type: FETCH_STADSGEZICHT_REQUEST, bag });
+      if (allowBeperkingRequest) {
+        yield put({ type: FETCH_BEPERKING_REQUEST, bag });
+      }
     } else {
       yield put({ type: FETCH_BAG_NO_RESULTS });
     }
