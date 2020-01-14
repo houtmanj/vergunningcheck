@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 
 import styled from '@datapunt/asc-core';
 import { Header as HeaderComp, MenuInline, MenuItem, MenuButton } from '@datapunt/asc-ui';
-import { PAGES, CURRENT_PAGE } from '../../constants';
+import history from 'utils/history';
+import { PAGES, GET_CURRENT_PAGE, ALLOW_LOCATION_PAGE, GET_CURRENT_TOPIC } from '../../constants';
 import './style.scss';
 
 const StyledHeader = styled(HeaderComp)`
@@ -24,9 +25,16 @@ const MenuChildren = () => {
 
   return (
     <>
-      <MenuItem>
-        <MenuButton active={CURRENT_PAGE === PAGES.location}>Locatie</MenuButton>
-      </MenuItem>
+      {ALLOW_LOCATION_PAGE && (
+        <MenuItem>
+          <MenuButton
+            onClick={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`)}
+            active={GET_CURRENT_PAGE() === PAGES.location}
+          >
+            Locatie
+          </MenuButton>
+        </MenuItem>
+      )}
     </>
   );
 };
@@ -39,7 +47,7 @@ export const Header = () => (
     title="Vergunningen"
     navigation={
       <>
-        <StyledMenuInline showAt="tabletM">
+        <StyledMenuInline>
           <MenuChildren />
         </StyledMenuInline>
       </>
