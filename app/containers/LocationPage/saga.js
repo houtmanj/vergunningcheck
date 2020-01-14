@@ -59,9 +59,8 @@ export function* fetchBag(action) {
 }
 
 export function* fetchMomument(action) {
-  const { verblijfsobjectidentificatie: pandId = '' } = action.bag;
   try {
-    const monument = yield call(searchForMonument, pandId);
+    const monument = yield call(searchForMonument, action.bag);
     yield put({ type: FETCH_MONUMENT_SUCCESS, monument });
   } catch (error) {
     yield put({ type: FETCH_MONUMENT_FAILURE, error });

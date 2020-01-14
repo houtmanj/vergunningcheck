@@ -213,17 +213,11 @@ export function searchForStadsgezicht(query) {
 }
 
 export function searchForMonument(query) {
-  // URI: https://acc.api.data.amsterdam.nl/bag/pand/?verblijfsobjecten__id=0363010012062064
-  const uri = query && `${SHARED_CONFIG.API_ROOT}bag/pand/?verblijfsobjecten__id=${query}`;
+  // URI: https://api.data.amsterdam.nl/monumenten/monumenten/?betreft_nummeraanduiding=0363010012062064
+  const { landelijk_id: id } = query?.hoofdadres;
+  const uri = query && id && `${SHARED_CONFIG.API_ROOT}monumenten/monumenten/?betreft_nummeraanduiding=${id}`;
   if (uri) {
-    return (
-      getByUri(uri)
-        // get landelijk_id
-        .then(response => (response.results.length > 0 ? response.results[0].landelijk_id : false))
-        // get monumenten
-        .then(id => (id ? getByUri(`${SHARED_CONFIG.API_ROOT}monumenten/monumenten/?betreft_pand=${id}`) : false))
-        .then(response => (response.results.length > 0 ? response.results[0].monumentstatus : ''))
-    );
+    return getByUri(uri).then(response => (response.results.length > 0 ? response.results[0].monumentstatus : ''));
   }
   return '';
 }
