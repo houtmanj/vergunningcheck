@@ -114,7 +114,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Heading $as="h3">{GET_TEXT?.locationHeading}</Heading>
-        <Paragraph>Controleer hieronder:</Paragraph>
+        <Paragraph gutterBottom={8}>Controleer hieronder:</Paragraph>
         <List variant="bullet">
           <ListItem>of uw gebouw een monument is</ListItem>
           <ListItem>of uw gebouw binnen een beschermd dorps- en stadsgezicht valt</ListItem>
