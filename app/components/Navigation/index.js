@@ -15,7 +15,7 @@ const NavigationStyle = styled(`div`)`
   flex-direction: row-reverse;
 `;
 
-const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext }) => {
+const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextText }) => {
   const { trackEvent } = useMatomo();
 
   const handleNextClick = () => {
@@ -32,7 +32,7 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext }) => {
       <div>
         {showNext && (
           <Button type="submit" variant="secondary" disabled={disableNext} onClick={handleNextClick} taskflow>
-            Volgende
+            {nextText}
           </Button>
         )}
       </div>
@@ -56,6 +56,7 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext }) => {
 
 Navigation.defaultProps = {
   page: 'undefined-page',
+  nextText: 'Volgende',
 };
 
 Navigation.propTypes = {
@@ -63,6 +64,7 @@ Navigation.propTypes = {
   showPrev: PropTypes.bool,
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
+  nextText: PropTypes.string,
   disableNext: PropTypes.bool,
 };
 

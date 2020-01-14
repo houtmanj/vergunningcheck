@@ -18,11 +18,22 @@ const LocationData = ({
       <Paragraph>{monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}</Paragraph>
     </LocationResult>
 
-    <LocationResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
-      <Paragraph>{stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}</Paragraph>
+    <LocationResult loading={stadsgezichtLoading} title="Beschermd stads- of dorpsgezicht:">
+      {stadsgezichtStatus ? (
+        <Paragraph>Ja. {stadsgezichtStatus}</Paragraph>
+      ) : (
+        <Paragraph>
+          De automatische controle op beschermd stads- of dorpsgezicht is momenteel niet beschikbaar. Controleer
+          handmatig op de{' '}
+          <a href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl" target="_blank">
+            Cultuurhistorische waardenkaart op Amsterdam Maps
+          </a>{' '}
+          of het gebouw in een beschermd stads- of dorpsgezicht ligt.
+        </Paragraph>
+      )}
     </LocationResult>
 
-    <LocationResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
+    <LocationResult loading={bestemmingsplanLoading} title="Bestemmingsplannen:">
       {bestemmingsplanStatus.length === 0 && <Paragraph>Geen bestemmingsplan</Paragraph>}
       {bestemmingsplanStatus.length > 0 && (
         <List variant="bullet" style={{ backgroundColor: 'inherit' }}>
