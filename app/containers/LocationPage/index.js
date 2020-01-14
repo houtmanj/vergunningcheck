@@ -183,9 +183,6 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
             <LocationData />
-            {/* <Paragraph style={{ marginBottom: '0px' }}>
-              Als u op Volgende klikt, dan wordt u doorgelinkt naar het landelijk omgevingsloket.
-            </Paragraph> */}
           </StyledAddressResult>
         )}
 
