@@ -91,7 +91,6 @@ export const App = props => {
               )}
               {/* ROUTES */}
               <Route exact path={`/:activityGroup/${PAGES.location}`} component={LocationPage} />
-              <Route exact path="/:activityGroup/*" component={NotFoundPage} />
               <Route exact path="/health" />
               <Route exact path="/" component={Content} />
               <Route path="" component={NotFoundPage} />
