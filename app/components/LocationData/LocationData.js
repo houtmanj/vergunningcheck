@@ -18,11 +18,13 @@ const LocationData = ({
       <Paragraph>{monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}</Paragraph>
     </LocationResult>
 
-    <LocationResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
-      <Paragraph>{stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}</Paragraph>
+    <LocationResult loading={stadsgezichtLoading} title="Beschermd dorps- en stadsgezicht:">
+      <Paragraph>
+        {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd dorps- of stadsgezicht'}
+      </Paragraph>
     </LocationResult>
 
-    <LocationResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
+    <LocationResult loading={bestemmingsplanLoading} title="Bestemmingsplannen:">
       {bestemmingsplanStatus.length === 0 && <Paragraph>Geen bestemmingsplan</Paragraph>}
       {bestemmingsplanStatus.length > 0 && (
         <List variant="bullet" style={{ backgroundColor: 'inherit' }}>

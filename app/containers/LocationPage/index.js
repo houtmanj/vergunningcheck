@@ -3,7 +3,7 @@ import useForm from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Heading, Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
+import { Heading, Paragraph, TextField, Select, themeColor, List, ListItem } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
 import { LocationResult, LocationData } from 'components/LocationData';
@@ -114,6 +114,15 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Heading $as="h3">{GET_TEXT?.locationHeading}</Heading>
+        <Paragraph>Controleer hieronder:</Paragraph>
+        <List variant="bullet">
+          <ListItem>of uw gebouw een monument is</ListItem>
+          <ListItem>of uw gebouw binnen een beschermd dorps- en stadsgezicht valt</ListItem>
+          <ListItem>binnen welk bestemmingsplan uw gebouw valt</ListItem>
+        </List>
+        <Paragraph>
+          Deze informatie heeft u nodig om het vervolg van de check te doen. Dit doet u op het landelijk omgevingsloket.
+        </Paragraph>
         <TextField
           className="address-input__input address-input__postcode"
           onChange={handleChange}
@@ -174,13 +183,13 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
             <LocationData />
-            <Paragraph style={{ marginBottom: '0px' }}>
-              Als u op Volgende klikt, dan wordt u doorgelinkt naar OLO.
-            </Paragraph>
+            {/* <Paragraph style={{ marginBottom: '0px' }}>
+              Als u op Volgende klikt, dan wordt u doorgelinkt naar het landelijk omgevingsloket.
+            </Paragraph> */}
           </StyledAddressResult>
         )}
 
-        <Navigation page="location" showNext />
+        <Navigation page="location" nextText="Naar omgevingsloket" showNext />
       </Form>
     </>
   );
