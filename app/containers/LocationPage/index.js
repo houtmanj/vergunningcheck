@@ -116,9 +116,9 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
         <Heading $as="h3">{GET_TEXT?.locationHeading}</Heading>
         <Paragraph gutterBottom={8}>Controleer hieronder:</Paragraph>
         <List variant="bullet">
-          <ListItem>of uw gebouw een monument is</ListItem>
-          <ListItem>of uw gebouw binnen een beschermd dorps- en stadsgezicht valt</ListItem>
-          <ListItem>binnen welk bestemmingsplan uw gebouw valt</ListItem>
+          <ListItem>of het gebouw een monument is</ListItem>
+          <ListItem>of het gebouw in een beschermd stads- of dorpsgezicht ligt</ListItem>
+          <ListItem>binnen welke bestemmingsplannen uw activiteit valt</ListItem>
         </List>
         <Paragraph>
           Deze informatie heeft u nodig om het vervolg van de check te doen. Dit doet u op het landelijk omgevingsloket.
