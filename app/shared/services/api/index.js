@@ -154,20 +154,18 @@ ${
 }
 
 function filterByStreetNumber(data, streetNumber) {
-  const streetNumberClean = streetNumber
-    .replace('-', ' ')
-    .split(' ')
-    .trim();
+  const streetNumberClean = streetNumber.replace('-', ' ').trim();
+  const streetNumberSplit = streetNumberClean.split(' ');
   const suffix = streetNumber.replace(/[0-9]/g, '').trim();
 
   if (data[0].huisnummer && (!data[0].bag_toevoeging && !data[0].bag_huisletter)) {
-    return data.filter(address => address.huisnummer === Number(streetNumberClean));
+    return data.filter(address => address.huisnummer === Number(streetNumberSplit[0]));
   }
 
   return data.filter(
     address =>
-      address.huisnummer === Number(streetNumberClean) ||
-      address.toevoeging === `${streetNumberClean[0]} ${suffix || streetNumberClean[1]}`,
+      address.huisnummer === Number(streetNumberSplit[0]) ||
+      address.toevoeging === `${streetNumberSplit[0]} ${suffix || streetNumberSplit[1]}`,
   );
 }
 
