@@ -218,12 +218,32 @@ export function searchForStadsgezicht(query) {
   return query;
 }
 
-export function searchForMonument(query) {
+export function searchForMonumentOUD(query) {
   // URI: https://api.data.amsterdam.nl/monumenten/monumenten/?betreft_nummeraanduiding=0363010012062064
   const { landelijk_id: id } = query?.hoofdadres;
   const uri = query && id && `${SHARED_CONFIG.API_ROOT}monumenten/monumenten/?betreft_nummeraanduiding=${id}`;
   if (uri) {
     return getByUri(uri).then(response => (response.results.length > 0 ? response.results[0].monumentstatus : ''));
+  }
+  return '';
+}
+
+export function searchForMonument(query) {
+  const { landelijk_id: id } = query?.hoofdadres;
+  // URI: https://acc.api.data.amsterdam.nl/monumenten/situeringen/?betreft_nummeraanduiding=0363200012062152
+  const uri = query && id && `${SHARED_CONFIG.API_ROOT}monumenten/situeringen/?betreft_nummeraanduiding=${id}`;
+  if (uri) {
+    return (
+      getByUri(uri)
+        // get monument key
+        .then(response =>
+          response.results.length > 0 ? response.results[0].hoort_bij_monument.identificerende_sleutel_monument : false,
+        )
+        // get monument status
+        // URI: https://acc.api.data.amsterdam.nl/monumenten/monumenten/aef46aca-843e-44a5-b772-6a6d6490bb21/
+        .then(key => (key ? getByUri(`${SHARED_CONFIG.API_ROOT}monumenten/monumenten/${key}`) : false))
+        .then(response => (response.monumentstatus ? response.monumentstatus : ''))
+    );
   }
   return '';
 }
