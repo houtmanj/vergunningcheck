@@ -16,6 +16,7 @@ import {
   GET_TEXT,
   EXTERNAL_URLS,
   PAGES,
+  TOPIC_EXISTS,
   REDIRECT_TO_OLO,
   ALLOW_LOCATION_PAGE,
   GET_CURRENT_TOPIC,
@@ -90,9 +91,11 @@ export const App = props => {
                 <Redirect exact from={`/${GET_CURRENT_TOPIC()}`} to={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} />
               )}
               {/* ROUTES */}
-              <Route exact path={`/:activityGroup/${PAGES.location}`} component={LocationPage} />
+              {TOPIC_EXISTS && (
+                <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} component={LocationPage} />
+              )}
               <Route exact path="/health" />
-              <Route exact path="/" component={Content} />
+              <Route exact path="/" component={NotFoundPage} />
               <Route path="" component={NotFoundPage} />
             </Switch>
           </Column>
