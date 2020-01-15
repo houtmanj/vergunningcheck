@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import useForm from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { Heading, Paragraph, TextField, Select, themeColor, List, ListItem } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
@@ -162,7 +161,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
               style={{ marginBottom: '20px' }}
             >
               <option value="">Maak een keuze</option>
-              {_.map(_.uniqBy(addressResults, 'toevoeging'), house => (
+              {addressResults.map(house => (
                 <option value={house.toevoeging} key={house.toevoeging}>
                   {house.toevoeging}
                 </option>
