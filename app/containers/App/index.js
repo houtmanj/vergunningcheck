@@ -63,6 +63,7 @@ export const App = props => {
   React.useEffect(() => {
     trackPageView();
   }, [currentRoute]);
+
   return (
     <Container>
       <GlobalError />
