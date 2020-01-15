@@ -24,6 +24,24 @@ Open the application in your browser at [localhost:3000](http://localhost:3000/)
 
 Happy developing
 
+## Releasing
+
+When you're ready to release a new version:
+
+Checkout and pull all the changes from the `develop` branch:
+
+    git checkout develop && git pull origin develop
+
+Run the release script:
+
+    yarn run release
+    
+Push the release tags to `develop`:
+
+    git push origin --tags
+    
+Adjust the CHANGELOG if required and merge `develop` with `master`
+
 ## Techniques used
 - React
 - Redux
