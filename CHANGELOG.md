@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.1...v0.1.2) (2020-01-15)
+
+
+### Bug Fixes
+
+* Fixed a issue with non existing routes ([5e351d9](https://github.com/Amsterdam/Vergunningschecker/commit/5e351d97e0de38b26041a01bd9be105fc31f2bd3))
+* Readded blank line ([d1d0d97](https://github.com/Amsterdam/Vergunningschecker/commit/d1d0d970967c48d17a7646a16c0ef28a24472824))
+
 ### [0.1.1](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.0...v0.1.1) (2020-01-15)
 
 ### Features
