@@ -8,6 +8,7 @@ import styled from '@datapunt/asc-core';
 
 import { condCheck } from 'shared/services/questionnaire/conditions';
 import { Question, QuestionOverview } from 'components/Questionnaire';
+import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
 import { fetchQuestionnaire } from './actions';
 
 const StyledContent = styled(`div`)`
@@ -84,7 +85,7 @@ class QuestionnaireContainer extends React.Component {
 
     if (questionIndex < 1) {
       // Return to location question
-      history.push('/aanbouw/locatie');
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
       return;
     }
     // Check if prev question exists

@@ -1,4 +1,5 @@
 import { xml2js } from 'xml-js';
+import _ from 'lodash';
 import SHARED_CONFIG from '../shared-config/shared-config';
 
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
@@ -155,18 +156,23 @@ ${
 
 function filterByStreetNumber(data, streetNumber) {
   const streetNumberClean = streetNumber.replace('-', ' ').trim();
+  const streetNumberSplit = streetNumberClean.split(' ');
+  const suffix = `${streetNumberSplit[0].replace(/\D/g, '')} ${streetNumberSplit[0].replace(/[0-9]/g, '').trim()}`;
+  const dataWithoutDuplicates = _.uniqBy(data, 'toevoeging');
 
-  if (data[0].huisnummer && (!data[0].bag_toevoeging && !data[0].bag_huisletter)) {
-    return data.filter(address => address.huisnummer === Number(streetNumberClean));
+  if (dataWithoutDuplicates[0].huisnummer && (!dataWithoutDuplicates[0].bag_toevoeging && !data[0].bag_huisletter)) {
+    return dataWithoutDuplicates.filter(address => address.huisnummer === Number(streetNumberSplit[0]));
   }
 
-  return data.filter(() => address =>
-    address.huisnummer === Number(streetNumberClean) || address.toevoeging === streetNumberClean,
+  return dataWithoutDuplicates.filter(
+    address =>
+      address.huisnummer === Number(streetNumberSplit[0].replace(/\D/g, '')) || address.toevoeging === `${suffix}`,
   );
 }
 
 export function searchForAddress(query) {
   const { postalCode, streetNumber } = query;
+
   const uri = `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
   let addressResults = [];
 
@@ -184,11 +190,13 @@ export async function searchBag(query) {
     postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
 
   if (uri && postalCode && streetNumber) {
-    const response = await getByUri(uri).then(search =>
-      search.results[0].adresseerbaar_object_id
-        ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search.results[0].adresseerbaar_object_id}`)
-        : false,
-    );
+    const response = await getByUri(uri)
+      .then(streetResult => filterByStreetNumber(streetResult.results, streetNumber))
+      .then(search =>
+        search[0].adresseerbaar_object_id
+          ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search[0].adresseerbaar_object_id}`)
+          : false,
+      );
     return response;
   }
   return {};
@@ -211,17 +219,11 @@ export function searchForStadsgezicht(query) {
 }
 
 export function searchForMonument(query) {
-  // URI: https://acc.api.data.amsterdam.nl/bag/pand/?verblijfsobjecten__id=0363010012062064
-  const uri = query && `${SHARED_CONFIG.API_ROOT}bag/pand/?verblijfsobjecten__id=${query}`;
+  // URI: https://api.data.amsterdam.nl/monumenten/monumenten/?betreft_nummeraanduiding=0363010012062064
+  const { landelijk_id: id } = query?.hoofdadres;
+  const uri = query && id && `${SHARED_CONFIG.API_ROOT}monumenten/monumenten/?betreft_nummeraanduiding=${id}`;
   if (uri) {
-    return (
-      getByUri(uri)
-        // get landelijk_id
-        .then(response => (response.results.length > 0 ? response.results[0].landelijk_id : false))
-        // get monumenten
-        .then(id => (id ? getByUri(`${SHARED_CONFIG.API_ROOT}monumenten/monumenten/?betreft_pand=${id}`) : false))
-        .then(response => (response.results.length > 0 ? response.results[0].monumentstatus : ''))
-    );
+    return getByUri(uri).then(response => (response.results.length > 0 ? response.results[0].monumentstatus : ''));
   }
   return '';
 }

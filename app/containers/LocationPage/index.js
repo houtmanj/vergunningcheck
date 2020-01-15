@@ -3,15 +3,14 @@ import useForm from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import history from 'utils/history';
-import { Heading, Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
+import { Heading, Paragraph, TextField, Select, themeColor, List, ListItem } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
 import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
+import { EXTERNAL_URLS, REGEX, GET_TEXT } from '../../constants';
 import { fetchStreetname, fetchBagData } from './actions';
-import { EXTERNAL_URLS, REGEX } from '../../constants';
 
 const StyledAddressResult = styled(`div`)`
   padding: 30px;
@@ -73,19 +72,29 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
     if (addressResults?.length === 1 || suffix) {
       // Form is validated, we can proceed
-      window.open(EXTERNAL_URLS.olo, '_blank');
+
+      const oloPostalCode = `facet_locatie_postcode=${values.postalCode}`;
+      const olostreetNumber = `facet_locatie_huisnummer=${values.streetNumber}`;
+      const oloSuffixValue = values.suffix ? values.suffix.replace(values.streetNumber, '').trim() : '';
+      const oloSuffix = oloSuffixValue ? `facet_locatie_huisnummertoevoeging=${oloSuffixValue}` : '';
+
+      // Redirect user to OLO
+      window.open(
+        `${EXTERNAL_URLS.oloChecker.location}?param=postcodecheck&${oloPostalCode}&${olostreetNumber}&${oloSuffix}`,
+        '_blank',
+      );
     }
   };
 
   const handleBlur = e => {
     // Trigger validation when user leaves the field
-    if (e.target.value) triggerValidation({ name: e.target.name, value: e.target.value });
+    if (e.target.value) triggerValidation({ name: e.target.name, value: e.target.value.trim() });
   };
 
   const handleChange = e => {
     const { name, value } = e.target;
 
-    setValue(name, value);
+    setValue(name, value.trim());
     clearError(['streetNumber', 'suffix']);
     setSuffix(null);
 
@@ -104,7 +113,16 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Heading $as="h3">Waar wilt u uw aanbouw maken?</Heading>
+        <Heading $as="h3">{GET_TEXT?.locationHeading}</Heading>
+        <Paragraph gutterBottom={8}>Controleer hieronder:</Paragraph>
+        <List variant="bullet">
+          <ListItem>of het gebouw een monument is</ListItem>
+          <ListItem>of het gebouw in een beschermd stads- of dorpsgezicht ligt</ListItem>
+          <ListItem>binnen welke bestemmingsplannen uw activiteit valt</ListItem>
+        </List>
+        <Paragraph>
+          Deze informatie heeft u nodig om het vervolg van de check te doen. Dit doet u op het landelijk omgevingsloket.
+        </Paragraph>
         <TextField
           className="address-input__input address-input__postcode"
           onChange={handleChange}
@@ -152,25 +170,24 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           </>
         )}
 
-        {(addressResults?.length === 1 || suffix) && (
+        {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
+
+        {((!loading && addressResults?.length === 1) || suffix) && (
           <StyledAddressResult>
             <Paragraph strong style={{ marginBottom: '0px' }}>
               Dit is het gekozen adres:
             </Paragraph>
-            <Paragraph style={{ marginBottom: '0px' }}>
+            <Paragraph>
               {addressResults[0].straatnaam} {suffix || addressResults[0].toevoeging}
               <br />
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
+            <LocationData />
           </StyledAddressResult>
         )}
 
-        {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
-
-        <Navigation page="location" onGoToPrev={() => history.push('/aanbouw/inleiding')} showPrev showNext />
+        <Navigation page="location" nextText="Naar omgevingsloket" showNext />
       </Form>
-
-      {allFieldsFilled && <LocationData />}
     </>
   );
 };

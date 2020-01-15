@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { List, ListItem, Paragraph } from '@datapunt/asc-ui';
+
 import LocationResult from './LocationResult';
 
 const LocationData = ({
@@ -13,21 +15,32 @@ const LocationData = ({
 }) => (
   <div>
     <LocationResult loading={monumentLoading} title="Monument:">
-      {monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}
+      <Paragraph>{monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}</Paragraph>
     </LocationResult>
 
-    <LocationResult loading={stadsgezichtLoading} title="Beschermd stadsgezicht:">
-      {stadsgezichtStatus ? `Ja. ${stadsgezichtStatus}` : 'Geen beschermd stadsgezicht'}
+    <LocationResult loading={stadsgezichtLoading} title="Beschermd stads- of dorpsgezicht:">
+      {stadsgezichtStatus ? (
+        <Paragraph>Ja. {stadsgezichtStatus}</Paragraph>
+      ) : (
+        <Paragraph>
+          De automatische controle op beschermd stads- of dorpsgezicht is momenteel niet beschikbaar. Controleer
+          handmatig op de{' '}
+          <a href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl" target="_blank">
+            Cultuurhistorische waardenkaart op Amsterdam Maps
+          </a>{' '}
+          of het gebouw in een beschermd stads- of dorpsgezicht ligt.
+        </Paragraph>
+      )}
     </LocationResult>
 
-    <LocationResult loading={bestemmingsplanLoading} title="Ruimtelijke bestemmingsplannen:">
-      {bestemmingsplanStatus.length === 0 && `Geen bestemmingsplan`}
+    <LocationResult loading={bestemmingsplanLoading} title="Bestemmingsplannen:">
+      {bestemmingsplanStatus.length === 0 && <Paragraph>Geen bestemmingsplan</Paragraph>}
       {bestemmingsplanStatus.length > 0 && (
-        <ul>
+        <List variant="bullet" style={{ backgroundColor: 'inherit' }}>
           {bestemmingsplanStatus.map(bestemmingsplan => (
-            <li key={bestemmingsplan.text}>{bestemmingsplan.text}</li>
+            <ListItem key={bestemmingsplan.text}>{bestemmingsplan.text}</ListItem>
           ))}
-        </ul>
+        </List>
       )}
     </LocationResult>
   </div>

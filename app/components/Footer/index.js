@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@datapunt/asc-core';
 
 import {
+  CompactThemeProvider,
   Footer as FooterComp,
   FooterTop,
   Row,
@@ -18,83 +19,84 @@ import {
   FooterBottomLinkListItem,
 } from '@datapunt/asc-ui';
 
-const ColofonLinks = () => (
+const FirstColumn = () => (
   <FooterLinkList>
-    <FooterLinkListItem>
-      <Link href="/aanbouw/alle-vragen" variant="with-chevron">
-        Alle vragen
-      </Link>
-    </FooterLinkListItem>
-    <FooterLinkListItem>
-      <Link href="/aanbouw/alle-routes" variant="with-chevron">
-        Alle routes
-      </Link>
-    </FooterLinkListItem>
-    <FooterLinkListItem>
-      <Link href="/adres/" variant="with-chevron">
-        Adres informatie
-      </Link>
-    </FooterLinkListItem>
+    <CompactThemeProvider>
+      <Paragraph gutterBottom={12}>
+        Hebt u een vraag en kunt u het antwoord niet vinden op deze website? Neem dan contact met ons op.
+      </Paragraph>
+      <Paragraph strong gutterBottom={0}>
+        Bel het telefoonnummer{' '}
+        <Link href="tel:14020" variant="blank" strong>
+          14 020
+        </Link>
+      </Paragraph>
+      <Paragraph gutterBottom={8}>maandag tot en met vrijdag van 08.00 tot 18.00 uur.</Paragraph>
+      <FooterLinkListItem>
+        <Link
+          href="https://formulieren.amsterdam.nl/tripleforms/DirectRegelen/formulier/nl-NL/evAmsterdam/Klachtenformulier.aspx"
+          variant="with-chevron"
+        >
+          Contactformulier
+        </Link>
+      </FooterLinkListItem>
+      <FooterLinkListItem>
+        <Link href="https://www.amsterdam.nl/contact/" variant="with-chevron">
+          Contactgegevens en openingstijden
+        </Link>
+      </FooterLinkListItem>
+    </CompactThemeProvider>
   </FooterLinkList>
 );
 
-const FollowLinks = () => (
+const SecondColumn = () => (
   <FooterLinkList>
-    <FooterLinkListItem>
-      <Link href="/" variant="with-chevron">
-        Nieuwsbrief OIS
-      </Link>
-    </FooterLinkListItem>
-    <FooterLinkListItem>
-      <Link href="/" variant="with-chevron">
-        Twitter
-      </Link>
-    </FooterLinkListItem>
-    <FooterLinkListItem>
-      <Link href="/" variant="with-chevron">
-        Facebook
-      </Link>
-    </FooterLinkListItem>
-    <FooterLinkListItem>
-      <Link href="/" variant="with-chevron">
-        Linkedin
-      </Link>
-    </FooterLinkListItem>
-    <FooterLinkListItem>
-      <Link href="/" variant="with-chevron">
-        GitHub
-      </Link>
-    </FooterLinkListItem>
+    <CompactThemeProvider>
+      <FooterLinkListItem>
+        <Link href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/" variant="with-chevron">
+          Nieuwsbrief Amsterdam.nl
+        </Link>
+      </FooterLinkListItem>
+      <FooterLinkListItem>
+        <Link href="https://twitter.com/AmsterdamNL" variant="with-chevron">
+          Twitter
+        </Link>
+      </FooterLinkListItem>
+      <FooterLinkListItem>
+        <Link href="https://www.facebook.com/gemeenteamsterdam" variant="with-chevron">
+          Facebook
+        </Link>
+      </FooterLinkListItem>
+      <FooterLinkListItem>
+        <Link href="https://www.instagram.com/gemeenteamsterdam/" variant="with-chevron">
+          Instagram
+        </Link>
+      </FooterLinkListItem>
+      <FooterLinkListItem>
+        <Link href="https://www.linkedin.com/company/gemeente-amsterdam" variant="with-chevron">
+          Linkedin
+        </Link>
+      </FooterLinkListItem>
+      <FooterLinkListItem>
+        <Link href="https://www.amsterdam.nl/bestuur-organisatie/werkenbij/" variant="with-chevron">
+          Werken bij
+        </Link>
+      </FooterLinkListItem>
+    </CompactThemeProvider>
   </FooterLinkList>
 );
 
-const HelpLinks = () => (
+const ThirdColumn = () => (
   <>
-    <Paragraph gutterBottom={8}>
-      Heeft u een vraag en kunt u het antwoord niet vinden op deze website? Of heeft u bevindingen? Neem dan contact met
-      ons op.
-    </Paragraph>
     <FooterLinkList>
-      <FooterLinkListItem>
-        <Link href="/" variant="with-chevron">
-          Veelgestelde vragen
-        </Link>
-      </FooterLinkListItem>
-      <FooterLinkListItem>
-        <Link href="/" variant="with-chevron">
-          Contact opnemen
-        </Link>
-      </FooterLinkListItem>
-      <FooterLinkListItem>
-        <Link href="/" variant="with-chevron">
-          Feedback geven
-        </Link>
-      </FooterLinkListItem>
-      <FooterLinkListItem>
-        <Link href="/" variant="with-chevron">
-          Uitleg gebruik
-        </Link>
-      </FooterLinkListItem>
+      <CompactThemeProvider>
+        <Paragraph>
+          Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur, uitgaan, evenementen en meer vindt u op{' '}
+          <Link href="http://www.iamsterdam.com/" variant="blank" strong>
+            Iamsterdam.com
+          </Link>
+        </Paragraph>
+      </CompactThemeProvider>
     </FooterLinkList>
   </>
 );
@@ -110,44 +112,44 @@ const Footer = () => (
     <FooterTop>
       <ContentContainer>
         <Row>
-          <Column wrap span={{ small: 1, medium: 2, big: 2, large: 4, xLarge: 4 }}>
+          <Column wrap span={{ small: 1, medium: 2, big: 2, large: 5, xLarge: 5 }}>
             <>
-              <FooterToggle title="Ontwikkeling" hideAt="tabletM">
+              <FooterToggle title="Contact" hideAt="tabletM">
                 <FooterContent indent>
-                  <ColofonLinks />
+                  <FirstColumn />
                 </FooterContent>
               </FooterToggle>
               <FooterContent showAt="tabletM">
-                <FooterHeading $as="h3">Ontwikkeling</FooterHeading>
-                <ColofonLinks />
+                <FooterHeading $as="h3">Contact</FooterHeading>
+                <FirstColumn />
               </FooterContent>
             </>
           </Column>
-          <Column wrap span={{ small: 1, medium: 2, big: 2, large: 4, xLarge: 4 }}>
+          <Column wrap span={{ small: 1, medium: 2, big: 2, large: 3, xLarge: 3 }}>
             <>
               <FooterToggle title="Volg de gemeente" hideAt="tabletM">
                 <FooterContent indent>
-                  <FollowLinks />
+                  <SecondColumn />
                 </FooterContent>
               </FooterToggle>
               <FooterContent showAt="tabletM">
                 <FooterHeading $as="h3">Volg de gemeente</FooterHeading>
-                <FollowLinks />
+                <SecondColumn />
               </FooterContent>
             </>
           </Column>
           <Column wrap span={{ small: 1, medium: 2, big: 2, large: 4, xLarge: 4 }}>
             <>
-              <FooterToggle title="Vragen?" hideAt="tabletM">
+              <FooterToggle title="Uit in Amsterdam" hideAt="tabletM">
                 <FooterContent indent>
-                  <HelpLinks />
+                  <ThirdColumn />
                 </FooterContent>
               </FooterToggle>
               <FooterContent showAt="tabletM">
                 <FooterHeading $as="h3" styleAs="h3">
-                  Vragen?
+                  Uit in Amsterdam
                 </FooterHeading>
-                <HelpLinks />
+                <ThirdColumn />
               </FooterContent>
             </>
           </Column>
@@ -160,13 +162,23 @@ const Footer = () => (
           <Column wrap span={{ small: 1, medium: 2, big: 6, large: 10, xLarge: 10 }}>
             <FooterBottomLinkList>
               <FooterBottomLinkListItem>
-                <Link href="/" variant="with-chevron">
-                  Privacy en cookies
+                <Link href="https://www.amsterdam.nl/overdezesite/" variant="with-chevron">
+                  Over deze site
                 </Link>
               </FooterBottomLinkListItem>
               <FooterBottomLinkListItem>
-                <Link href="/" variant="with-chevron">
-                  Over deze site
+                <Link href="https://www.amsterdam.nl/privacy/" variant="with-chevron">
+                  Privacy
+                </Link>
+              </FooterBottomLinkListItem>
+              <FooterBottomLinkListItem>
+                <Link href="https://www.amsterdam.nl/privacy/cookies-site/" variant="with-chevron">
+                  Cookies op deze site
+                </Link>
+              </FooterBottomLinkListItem>
+              <FooterBottomLinkListItem>
+                <Link href="https://www.amsterdam.nl/nieuwsarchief/" variant="with-chevron">
+                  Webarchief
                 </Link>
               </FooterBottomLinkListItem>
             </FooterBottomLinkList>

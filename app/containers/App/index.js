@@ -1,25 +1,27 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
-
-import { Row, Column, Button, themeColor, themeSpacing } from '@datapunt/asc-ui';
+import { Row, Column, themeColor, themeSpacing } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
-import { ChevronLeft } from '@datapunt/asc-assets';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { useInjectSaga } from 'utils/injectSaga';
-import HomePage from 'containers/HomePage';
 import LocationPage from 'containers/LocationPage';
-import QuestionnaireContainer from 'containers/QuestionnaireContainer';
-import AllQuestions from 'containers/QuestionnaireContainer/AllQuestions';
-import QuestionnaireRoutes from 'containers/QuestionnaireContainer/QuestionRoutes';
+import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
+import {
+  GET_TEXT,
+  EXTERNAL_URLS,
+  PAGES,
+  REDIRECT_TO_OLO,
+  ALLOW_LOCATION_PAGE,
+  GET_CURRENT_TOPIC,
+} from '../../constants';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
 import locationSaga from '../LocationPage/saga';
-import { ROUTES, EXTERNAL_URLS } from '../../constants';
 import './style.scss';
 
 const addressInputKey = 'location';
@@ -36,9 +38,6 @@ const ContentContainer = styled(`div`)`
   width: 100%;
   margin: 0 auto;
   background-color: white;
-`;
-const StyledButton = styled(Button)`
-  margin-top: 15px;
 `;
 const FormTitle = styled(`h4`)`
   margin: ${themeSpacing(6, 0)};
@@ -80,29 +79,21 @@ export const App = props => {
               xLarge: 9,
             }}
           >
+            <Content />
             <Content>
-              <StyledButton variant="textButton" iconLeft={<ChevronLeft />} iconSize={14} onClick={() => {}}>
-                Terug naar pagina Aanbouw en uitbouw
-              </StyledButton>
-            </Content>
-            <Content>
-              <FormTitle>{ROUTES[currentRoute]?.title}</FormTitle>
+              <FormTitle>{GET_TEXT?.title}</FormTitle>
             </Content>
             <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route exact path="/:activityGroup/inleiding" component={HomePage} />
-              <Route exact path="/:activityGroup/locatie" component={LocationPage} />
-              <Route exact path="/:activityGroup/alle-vragen" component={AllQuestions} />
-              <Route exact path="/:activityGroup/alle-routes" component={QuestionnaireRoutes} />
-              <Route exact path="/:activityGroup/*" component={QuestionnaireContainer} />
+              {/* REDIRECTS */}
+              {REDIRECT_TO_OLO && window.open(`${EXTERNAL_URLS.oloChecker.intro}`, '_self')}
+              {ALLOW_LOCATION_PAGE && (
+                <Redirect exact from={`/${GET_CURRENT_TOPIC()}`} to={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} />
+              )}
+              {/* ROUTES */}
+              <Route exact path={`/:activityGroup/${PAGES.location}`} component={LocationPage} />
               <Route exact path="/health" />
-              <Route
-                path=""
-                component={() => {
-                  window.location.href = EXTERNAL_URLS.olo;
-                  return null;
-                }}
-              />
+              <Route exact path="/" component={Content} />
+              <Route path="" component={NotFoundPage} />
             </Switch>
           </Column>
         </Row>
