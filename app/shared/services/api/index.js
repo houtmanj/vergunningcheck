@@ -156,7 +156,7 @@ ${
 function filterByStreetNumber(data, streetNumber) {
   const streetNumberClean = streetNumber.replace('-', ' ').trim();
   const streetNumberSplit = streetNumberClean.split(' ');
-  const suffix = streetNumber.replace(/[0-9]/g, '').trim();
+  const suffix = `${streetNumberSplit[0].replace(/\D/g, '')} ${streetNumberSplit[0].replace(/[0-9]/g, '').trim()}`;
 
   if (data[0].huisnummer && (!data[0].bag_toevoeging && !data[0].bag_huisletter)) {
     return data.filter(address => address.huisnummer === Number(streetNumberSplit[0]));
@@ -164,8 +164,7 @@ function filterByStreetNumber(data, streetNumber) {
 
   return data.filter(
     address =>
-      address.huisnummer === Number(streetNumberSplit[0]) ||
-      address.toevoeging === `${streetNumberSplit[0]} ${suffix || streetNumberSplit[1]}`,
+      address.huisnummer === Number(streetNumberSplit[0].replace(/\D/g, '')) || address.toevoeging === `${suffix}`,
   );
 }
 
