@@ -56,7 +56,7 @@ After a new release is merged with `master`, log in to the CI job `VergunningsCh
 
 Make sure the `acceptance` environment is tested before you proceed :ok_hand:!
 
-Select `master` and when the swimlane `Waiting for approval` is active, press it and `approve`.
+Select `master` and wait until the swimlane `Waiting for approval` is active. When active, press it and press `Proceed` in the small popup with the question `Deploy to production?`.
 
 :checkered_flag:
 
