@@ -26,7 +26,7 @@ Happy developing
 
 ## Releasing
 
-When you're ready to release a new version:
+These are the steps when you're ready to release a new version.
 
 Checkout and pull all the changes from the `develop` branch:
 
@@ -36,11 +36,29 @@ Run the release script:
 
     yarn run release
     
-Push the release tags to `develop`:
+Adjust the CHANGELOG if you want
+
+    open CHANGELOG.md
+    
+Push the release tags:
 
     git push origin --tags
-    
-Adjust the CHANGELOG if required and merge `develop` with `master`
+
+Push the release:
+
+    git push
+
+Merge the PR `develop` with `master`
+
+## Deployment
+
+After a new release is merged with `master`, log in to the CI job `VergunningsChecker`.
+
+Make sure the `acceptance` environment is tested before you proceed :ok_hand:!
+
+Select `master` and when the swimlane `Waiting for approval` is active, press it and `approve`.
+
+:checkered_flag:
 
 ## Techniques used
 - React
