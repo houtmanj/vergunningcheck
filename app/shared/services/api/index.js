@@ -1,4 +1,5 @@
 import { xml2js } from 'xml-js';
+import _ from 'lodash';
 import SHARED_CONFIG from '../shared-config/shared-config';
 
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
@@ -155,18 +156,23 @@ ${
 
 function filterByStreetNumber(data, streetNumber) {
   const streetNumberClean = streetNumber.replace('-', ' ').trim();
+  const streetNumberSplit = streetNumberClean.split(' ');
+  const suffix = `${streetNumberSplit[0].replace(/\D/g, '')} ${streetNumberSplit[0].replace(/[0-9]/g, '').trim()}`;
+  const dataWithoutDuplicates = _.uniqBy(data, 'toevoeging');
 
-  if (data[0].huisnummer && (!data[0].bag_toevoeging && !data[0].bag_huisletter)) {
-    return data.filter(address => address.huisnummer === Number(streetNumberClean));
+  if (dataWithoutDuplicates[0].huisnummer && (!dataWithoutDuplicates[0].bag_toevoeging && !data[0].bag_huisletter)) {
+    return dataWithoutDuplicates.filter(address => address.huisnummer === Number(streetNumberSplit[0]));
   }
 
-  return data.filter(
-    address => address.huisnummer === Number(streetNumberClean) || address.toevoeging === streetNumberClean,
+  return dataWithoutDuplicates.filter(
+    address =>
+      address.huisnummer === Number(streetNumberSplit[0].replace(/\D/g, '')) || address.toevoeging === `${suffix}`,
   );
 }
 
 export function searchForAddress(query) {
   const { postalCode, streetNumber } = query;
+
   const uri = `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
   let addressResults = [];
 

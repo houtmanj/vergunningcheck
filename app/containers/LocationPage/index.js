@@ -88,13 +88,13 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
   const handleBlur = e => {
     // Trigger validation when user leaves the field
-    if (e.target.value) triggerValidation({ name: e.target.name, value: e.target.value });
+    if (e.target.value) triggerValidation({ name: e.target.name, value: e.target.value.trim() });
   };
 
   const handleChange = e => {
     const { name, value } = e.target;
 
-    setValue(name, value);
+    setValue(name, value.trim());
     clearError(['streetNumber', 'suffix']);
     setSuffix(null);
 
