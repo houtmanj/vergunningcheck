@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.1...v0.1.2) (2020-01-15)
+
+### Bug Fixes
+
+- Fixed a issue with non existing routes ([5e351d9](https://github.com/Amsterdam/Vergunningschecker/commit/5e351d97e0de38b26041a01bd9be105fc31f2bd3))
+- Fixed monument API bug ([2ddb1c8](https://github.com/Amsterdam/Vergunningschecker/commit/cf9e122e60cfc400d8918d0ce834818a48767330))
+
 ### [0.1.1](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.0...v0.1.1) (2020-01-15)
 
 ### Features
