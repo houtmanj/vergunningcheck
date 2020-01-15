@@ -46,7 +46,7 @@ const TOPICS = {
   },
 };
 
-const TOPIC_EXISTS = TOPICS[GET_CURRENT_TOPIC()];
+export const TOPIC_EXISTS = TOPICS[GET_CURRENT_TOPIC()];
 
 export const REDIRECT_TO_OLO = TOPIC_EXISTS && !TOPICS[GET_CURRENT_TOPIC()]?.status;
 
