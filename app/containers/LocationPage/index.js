@@ -73,14 +73,21 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     if (addressResults?.length === 1 || suffix) {
       // Form is validated, we can proceed
 
+      // Generate OLO parameter "postalCode"
       const oloPostalCode = `facet_locatie_postcode=${values.postalCode}`;
-      const olostreetNumber = `facet_locatie_huisnummer=${values.streetNumber}`;
-      const oloSuffixValue = values.suffix ? values.suffix.replace(values.streetNumber, '').trim() : '';
-      const oloSuffix = oloSuffixValue ? `facet_locatie_huisnummertoevoeging=${oloSuffixValue}` : '';
 
-      // Redirect user to OLO
+      // Generate OLO parameter "suffix" > from suffix input field or from streetnumber input field
+      const suffixFromValues = values?.suffix?.replace(values.streetNumber, '').trim();
+      const oloSuffixValue = suffixFromValues || addressResults[0].toevoeging.trim().split(' ')[1] || '';
+      const oloSuffix = `facet_locatie_huisnummertoevoeging=${oloSuffixValue}`;
+
+      // Generate OLO parameter "streetNumber" > remove everything that's not a number
+      const streetNumberFromValues = values.streetNumber.replace(/[^0-9]/g, '').trim();
+      const oloStreetNumber = `facet_locatie_huisnummer=${streetNumberFromValues}`;
+
+      // Redirect user to OLO with all parameters
       window.open(
-        `${EXTERNAL_URLS.oloChecker.location}?param=postcodecheck&${oloPostalCode}&${olostreetNumber}&${oloSuffix}`,
+        `${EXTERNAL_URLS.oloChecker.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`,
         '_blank',
       );
     }
