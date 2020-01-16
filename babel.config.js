@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ['@babel/env'], // "@babel/preset-env"
+  presets: ['@babel/env', '@babel/preset-react'], // "@babel/preset-env"
   plugins: [
     'styled-components',
     '@babel/transform-async-to-generator',
