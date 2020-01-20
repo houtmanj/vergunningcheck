@@ -82,7 +82,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
       // Generate OLO parameter "suffix"
       const oloSuffixValue = suffix
         ? suffix.replace(addressResults[0].huisnummer, '', suffix).trim()
-        : addressResults[0].bag_toevoeging || addressResults[0].bag_huisletter;
+        : addressResults[0].toevoeging.replace(addressResults[0].huisnummer, '', suffix).trim();
       const oloSuffix = `facet_locatie_huisnummertoevoeging=${oloSuffixValue}`;
 
       // Redirect user to OLO with all parameters
