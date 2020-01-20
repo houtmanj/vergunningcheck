@@ -74,16 +74,16 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
       // Form is validated, we can proceed
 
       // Generate OLO parameter "postalCode"
-      const oloPostalCode = `facet_locatie_postcode=${values.postalCode}`;
+      const oloPostalCode = `facet_locatie_postcode=${addressResults[0].postcode}`;
 
-      // Generate OLO parameter "suffix" > from suffix input field or from streetnumber input field
-      const suffixFromValues = values?.suffix?.replace(values.streetNumber, '').trim();
-      const oloSuffixValue = suffixFromValues || addressResults[0].toevoeging.trim().split(' ')[1] || '';
+      // Generate OLO parameter "streetNumber"
+      const oloStreetNumber = `facet_locatie_huisnummer=${addressResults[0].huisnummer}`;
+
+      // Generate OLO parameter "suffix"
+      const oloSuffixValue = suffix
+        ? suffix.replace(addressResults[0].huisnummer, '', suffix).trim()
+        : addressResults[0].bag_toevoeging || addressResults[0].bag_huisletter;
       const oloSuffix = `facet_locatie_huisnummertoevoeging=${oloSuffixValue}`;
-
-      // Generate OLO parameter "streetNumber" > remove everything that's not a number
-      const streetNumberFromValues = values.streetNumber.replace(/[^0-9]/g, '').trim();
-      const oloStreetNumber = `facet_locatie_huisnummer=${streetNumberFromValues}`;
 
       // Redirect user to OLO with all parameters
       window.open(
@@ -208,14 +208,11 @@ LocationPage.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { addressResultsLoading, addressResults, bagFetch, bagLoading, bagStatus, noResults } = state.locationData;
+  const { addressResultsLoading, addressResults, bagLoading } = state.locationData;
   return {
     addressResultsLoading,
     addressResults,
-    bagFetch,
     bagLoading,
-    bagStatus,
-    noResults,
   };
 };
 
