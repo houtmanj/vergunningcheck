@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
-import { Row, Column, themeColor, themeSpacing } from '@datapunt/asc-ui';
+import { Row, Column, themeColor, themeSpacing, Paragraph } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
@@ -12,6 +12,8 @@ import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
+import packageJson from '../../../package.json';
+
 import {
   GET_TEXT,
   EXTERNAL_URLS,
@@ -27,6 +29,8 @@ import './style.scss';
 
 const addressInputKey = 'location';
 const questionnaireKey = 'questionnaire';
+
+const { version } = packageJson;
 
 const Container = styled(`div`)`
   max-width: 1400px;
@@ -65,44 +69,53 @@ export const App = props => {
   }, [currentRoute]);
 
   return (
-    <Container>
-      <GlobalError />
-      <Header />
-      <ContentContainer>
-        <Row>
-          <Column
-            wrap
-            span={{
-              small: 1,
-              medium: 2,
-              big: 5,
-              large: 9,
-              xLarge: 9,
-            }}
-          >
-            <Content />
-            <Content>
-              <FormTitle>{GET_TEXT?.title}</FormTitle>
-            </Content>
-            <Switch>
-              {/* REDIRECTS */}
-              {REDIRECT_TO_OLO && window.open(`${EXTERNAL_URLS.oloChecker.intro}`, '_self')}
-              {ALLOW_LOCATION_PAGE && (
-                <Redirect exact from={`/${GET_CURRENT_TOPIC()}`} to={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} />
-              )}
-              {/* ROUTES */}
-              {TOPIC_EXISTS && (
-                <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} component={LocationPage} />
-              )}
-              <Route exact path="/health" />
-              <Route exact path="/" component={NotFoundPage} />
-              <Route path="" component={NotFoundPage} />
-            </Switch>
-          </Column>
-        </Row>
-      </ContentContainer>
-      <Footer />
-    </Container>
+    <>
+      <Container>
+        <GlobalError />
+        <Header />
+        <ContentContainer>
+          <Row>
+            <Column
+              wrap
+              span={{
+                small: 1,
+                medium: 2,
+                big: 5,
+                large: 9,
+                xLarge: 9,
+              }}
+            >
+              <Content />
+              <Content>
+                <FormTitle>{GET_TEXT?.title}</FormTitle>
+              </Content>
+              <Switch>
+                {/* REDIRECTS */}
+                {REDIRECT_TO_OLO && window.open(`${EXTERNAL_URLS.oloChecker.intro}`, '_self')}
+                {ALLOW_LOCATION_PAGE && (
+                  <Redirect exact from={`/${GET_CURRENT_TOPIC()}`} to={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} />
+                )}
+                {/* ROUTES */}
+                {TOPIC_EXISTS && (
+                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} component={LocationPage} />
+                )}
+                <Route exact path="/health" />
+                <Route exact path="/" component={NotFoundPage} />
+                <Route path="" component={NotFoundPage} />
+              </Switch>
+            </Column>
+          </Row>
+        </ContentContainer>
+        <Footer />
+      </Container>
+      <div
+        // comment to see app version and environment
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `<!-- \n Version: ${version} \n Environment: ${process.env.NODE_ENV} \n -->`,
+        }}
+      />
+    </>
   );
 };
 
