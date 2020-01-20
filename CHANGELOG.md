@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.2...v0.1.3) (2020-01-20)
+
+### Features
+
+- Update creation of OLO parameters 1/2 ([4c5aec9](https://github.com/Amsterdam/Vergunningschecker/commit/4c5aec92d6e08f5e20faee3e650cee9c27958c98))
+- Updated creation of OLO parameters 2/2 ([ffded22](https://github.com/Amsterdam/Vergunningschecker/commit/ffded227957780bd740b4fcac486ddbb96906aff))
+- Updated maps URL for better result ([8305d08](https://github.com/Amsterdam/Vergunningschecker/commit/8305d08b9f46089b97034a3d1abdf0ae8188cf32))
+
+### [0.1.2](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.1...v0.1.2) (2020-01-15)
+
+### Bug Fixes
+
+- Fixed a issue with non existing routes ([5e351d9](https://github.com/Amsterdam/Vergunningschecker/commit/5e351d97e0de38b26041a01bd9be105fc31f2bd3))
+- Fixed monument API bug ([2ddb1c8](https://github.com/Amsterdam/Vergunningschecker/commit/cf9e122e60cfc400d8918d0ce834818a48767330))
+
 ### [0.1.1](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.0...v0.1.1) (2020-01-15)
 
 ### Features
