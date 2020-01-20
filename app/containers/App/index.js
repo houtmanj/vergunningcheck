@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
-import { Row, Column, themeColor, themeSpacing, Paragraph } from '@datapunt/asc-ui';
+import { Row, Column, themeColor, themeSpacing } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 

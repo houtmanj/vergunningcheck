@@ -2,6 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const OfflinePlugin = require('offline-plugin');
+const RemoveServiceWorkerPlugin = require('webpack-remove-serviceworker-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -80,6 +81,7 @@ module.exports = require('./webpack.base.babel')({
 
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
+
     // new OfflinePlugin({
     //   relativePaths: false,
     //   publicPath: '/',
@@ -101,6 +103,9 @@ module.exports = require('./webpack.base.babel')({
     //   // Removes warning for about `additional` section usage
     //   safeToUseOptionalCaches: true,
     // }),
+
+    // Added RemoveServiceWorkerPlugin to remove old OfflinePlugin
+    new RemoveServiceWorkerPlugin(),
 
     new CompressionPlugin({
       algorithm: 'gzip',
