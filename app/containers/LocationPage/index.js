@@ -73,14 +73,21 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     if (addressResults?.length === 1 || suffix) {
       // Form is validated, we can proceed
 
-      const oloPostalCode = `facet_locatie_postcode=${values.postalCode}`;
-      const olostreetNumber = `facet_locatie_huisnummer=${values.streetNumber}`;
-      const oloSuffixValue = values.suffix ? values.suffix.replace(values.streetNumber, '').trim() : '';
-      const oloSuffix = oloSuffixValue ? `facet_locatie_huisnummertoevoeging=${oloSuffixValue}` : '';
+      // Generate OLO parameter "postalCode"
+      const oloPostalCode = `facet_locatie_postcode=${addressResults[0].postcode}`;
 
-      // Redirect user to OLO
+      // Generate OLO parameter "streetNumber"
+      const oloStreetNumber = `facet_locatie_huisnummer=${addressResults[0].huisnummer}`;
+
+      // Generate OLO parameter "suffix"
+      const oloSuffixValue = suffix
+        ? suffix.replace(addressResults[0].huisnummer, '', suffix).trim()
+        : addressResults[0].toevoeging.replace(addressResults[0].huisnummer, '', suffix).trim();
+      const oloSuffix = `facet_locatie_huisnummertoevoeging=${oloSuffixValue}`;
+
+      // Redirect user to OLO with all parameters
       window.open(
-        `${EXTERNAL_URLS.oloChecker.location}?param=postcodecheck&${oloPostalCode}&${olostreetNumber}&${oloSuffix}`,
+        `${EXTERNAL_URLS.oloChecker.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`,
         '_blank',
       );
     }
@@ -201,14 +208,11 @@ LocationPage.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { addressResultsLoading, addressResults, bagFetch, bagLoading, bagStatus, noResults } = state.locationData;
+  const { addressResultsLoading, addressResults, bagLoading } = state.locationData;
   return {
     addressResultsLoading,
     addressResults,
-    bagFetch,
     bagLoading,
-    bagStatus,
-    noResults,
   };
 };
 

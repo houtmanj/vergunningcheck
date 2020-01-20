@@ -25,7 +25,7 @@ const LocationData = ({
         <Paragraph>
           De automatische controle op beschermd stads- of dorpsgezicht is momenteel niet beschikbaar. Controleer
           handmatig op de{' '}
-          <a href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl" target="_blank">
+          <a href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&amp;L=6,7" target="_blank">
             Cultuurhistorische waardenkaart op Amsterdam Maps
           </a>{' '}
           of het gebouw in een beschermd stads- of dorpsgezicht ligt.
