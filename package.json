@@ -75,7 +75,7 @@
         "@datapunt/asc-ui": "^0.17.8-alpha.21",
         "@datapunt/matomo-tracker-react": "^0.0.16",
         "@svgr/webpack": "^4.3.2",
-        "chalk": "^2.4.2",
+        "chalk": "2.4.2",
         "compression": "1.7.4",
         "connected-react-router": "6.4.0",
         "copy-webpack-plugin": "^5.0.4",

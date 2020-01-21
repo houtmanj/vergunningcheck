@@ -66,13 +66,16 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   }
 
   const onSubmit = () => {
+    const currentValues = getValues();
+
     if (addressResults?.length > 1 && !suffix) {
       // Needs suffix and has no suffix
       triggerValidation('suffix');
     }
 
-    if (addressResults?.length === 1 || suffix) {
+    if (!loading && (addressResults?.length === 1 || suffix)) {
       // Form is validated, we can proceed
+      onFetchStreetname(currentValues);
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
     }
   };
@@ -137,6 +140,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
               onChange={e => {
                 setSuffix(e.target.value);
                 setValue(e.target.name, e.target.value);
+                setValue('streetNumber', e.target.value);
                 onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
               style={{ marginBottom: '20px' }}
@@ -159,9 +163,9 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
               Dit is het gekozen adres:
             </Paragraph>
             <Paragraph>
-              {addressResults[0].straatnaam} {suffix || addressResults[0].toevoeging}
+              {addressResults[0]?.straatnaam} {addressResults[0]?.toevoeging}
               <br />
-              {addressResults[0].postcode} {addressResults[0].woonplaats}
+              {addressResults[0]?.postcode} {addressResults[0]?.woonplaats}
             </Paragraph>
           </StyledAddressResult>
         )}

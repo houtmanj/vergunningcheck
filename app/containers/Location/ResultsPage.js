@@ -20,11 +20,12 @@ const StyledAddressResult = styled(`div`)`
 const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults }) => {
   const loading = addressResultsLoading || bagLoading;
 
-  if (addressResults?.length !== 1) {
+  if (!loading && addressResults?.length !== 1) {
     history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
   }
 
-  const goToOLO = () => {
+  const goToOLO = e => {
+    e.preventDefault();
     if (addressResults?.length === 1) {
       // Form is validated, we can proceed
 
@@ -36,6 +37,7 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
 
       // Generate OLO parameter "suffix"
       const oloSuffixValue = addressResults[0].toevoeging.replace(addressResults[0].huisnummer, '').trim();
+
       const oloSuffix = `facet_locatie_huisnummertoevoeging=${oloSuffixValue}`;
 
       // Redirect user to OLO with all parameters
@@ -68,7 +70,7 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
         <Navigation
           page="location"
           onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`)}
-          onGoToNext={goToOLO}
+          nextText="Naar het omgevingsloket"
           showPrev
           showNext
         />
