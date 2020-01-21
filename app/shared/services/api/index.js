@@ -172,6 +172,7 @@ function filterByStreetNumber(data, streetNumber) {
 
 export function searchForAddress(query) {
   const { postalCode, streetNumber } = query;
+
   const uri = `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
   let addressResults = [];
 
