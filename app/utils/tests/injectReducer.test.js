@@ -50,20 +50,20 @@ describe('injectReducer decorator', () => {
     expect(ComponentWithReducer.displayName).toBe('withReducer(Component)');
     expect(injectReducer({ key: 'test', reducer })(() => null).displayName).toBe('withReducer(Component)');
   });
-});
 
-it('should propagate props', () => {
-  const props = { testProp: 'test' };
-  const renderedComponent = renderer.create(
-    <Provider store={store}>
-      <ComponentWithReducer {...props} />
-    </Provider>,
-  );
-  const {
-    props: { children },
-  } = renderedComponent.getInstance();
+  it('should propagate props', () => {
+    const props = { testProp: 'test' };
+    const renderedComponent = renderer.create(
+      <Provider store={store}>
+        <ComponentWithReducer {...props} />
+      </Provider>,
+    );
+    const {
+      props: { children },
+    } = renderedComponent.getInstance();
 
-  expect(children.props).toEqual(props);
+    expect(children.props).toEqual(props);
+  });
 });
 
 describe('useInjectReducer hook', () => {
