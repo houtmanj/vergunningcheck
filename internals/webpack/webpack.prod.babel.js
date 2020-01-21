@@ -40,8 +40,9 @@ module.exports = require('./webpack.base.babel')({
         sourceMap: true,
       }),
     ],
+    usedExports: true,
     nodeEnv: 'production',
-    sideEffects: true,
+    sideEffects: false,
     concatenateModules: true,
     runtimeChunk: 'single',
     splitChunks: {

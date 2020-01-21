@@ -1,5 +1,5 @@
 import { xml2js } from 'xml-js';
-import _ from 'lodash';
+import uniqBy from 'lodash.uniqby';
 import SHARED_CONFIG from '../shared-config/shared-config';
 
 const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
@@ -57,6 +57,16 @@ function formatBestemmingPlan(response) {
   return [];
 }
 
+// Use these PropertyNames to fetch more details:
+// <PropertyName>app:datum</PropertyName>
+// <PropertyName>app:historisch</PropertyName>
+// <PropertyName>app:identificatie</PropertyName>
+// <PropertyName>app:naamOverheid</PropertyName>
+// <PropertyName>app:overheidscode</PropertyName>
+// <PropertyName>app:plangebied</PropertyName>
+// <PropertyName>app:typePlan</PropertyName>
+// <PropertyName>app:versieIMRO</PropertyName>
+
 export function searchForBestemmingsplan(query) {
   const uri = `https://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&service=WFS&version=1.0.0&typename=ProvinciaalPlangebied`;
   if (uri && query) {
@@ -72,20 +82,6 @@ http://schemas.opengis.net/wfs/2.0/wfs.xsd">
   <Query typeNames="app:Plangebied_PCP" xmlns:app="http://www.deegree.org/app">
     <PropertyName>app:planstatus</PropertyName>
     <PropertyName>app:naam</PropertyName>
-${
-  /* eslint-disable
-      Import other properties:
-    <PropertyName>app:datum</PropertyName>
-    <PropertyName>app:historisch</PropertyName>
-    <PropertyName>app:identificatie</PropertyName>
-    <PropertyName>app:naamOverheid</PropertyName>
-    <PropertyName>app:overheidscode</PropertyName>
-    <PropertyName>app:plangebied</PropertyName>
-    <PropertyName>app:typePlan</PropertyName>
-    <PropertyName>app:versieIMRO</PropertyName>
-    eslint-enable
-    */ ''
-}
     <fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0">
       <fes:And>
         <fes:DWithin>
@@ -111,20 +107,6 @@ ${
   <Query typeNames="app:Bestemmingsplangebied" xmlns:app="http://www.deegree.org/app">
     <PropertyName>app:planstatus</PropertyName>
     <PropertyName>app:naam</PropertyName>
-${
-  /* eslint-disable
-      Import other properties:
-    <PropertyName>app:datum</PropertyName>
-    <PropertyName>app:historisch</PropertyName>
-    <PropertyName>app:identificatie</PropertyName>
-    <PropertyName>app:naamOverheid</PropertyName>
-    <PropertyName>app:overheidscode</PropertyName>
-    <PropertyName>app:plangebied</PropertyName>
-    <PropertyName>app:typePlan</PropertyName>
-    <PropertyName>app:versieIMRO</PropertyName>
-    eslint-enable
-    */ ''
-}
     <fes:Filter xmlns:fes="http://www.opengis.net/fes/2.0">
       <fes:And>
         <fes:DWithin>
@@ -158,9 +140,9 @@ function filterByStreetNumber(data, streetNumber) {
   const streetNumberClean = streetNumber.replace('-', ' ').trim();
   const streetNumberSplit = streetNumberClean.split(' ');
   const suffix = `${streetNumberSplit[0].replace(/\D/g, '')} ${streetNumberSplit[0].replace(/[0-9]/g, '').trim()}`;
-  const dataWithoutDuplicates = _.uniqBy(data, 'toevoeging');
+  const dataWithoutDuplicates = uniqBy(data, 'toevoeging');
 
-  if (dataWithoutDuplicates[0].huisnummer && (!dataWithoutDuplicates[0].bag_toevoeging && !data[0].bag_huisletter)) {
+  if (dataWithoutDuplicates[0].huisnummer && !dataWithoutDuplicates[0].bag_toevoeging && !data[0].bag_huisletter) {
     return dataWithoutDuplicates.filter(address => address.huisnummer === Number(streetNumberSplit[0]));
   }
 
