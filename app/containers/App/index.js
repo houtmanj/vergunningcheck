@@ -84,7 +84,7 @@ export const App = props => {
           >
             <Content />
             <Content>
-              <FormTitle>{GET_TEXT?.title}</FormTitle>
+              <FormTitle>{GET_TEXT?.heading}</FormTitle>
             </Content>
             <Switch>
               {/* REDIRECTS */}

@@ -25,24 +25,52 @@ const TOPICS = {
   'kappen-of-snoeien': {},
   'aanbouw-of-uitbouw-maken': {
     status: STATUS.PRE_LIVE,
+    text: {
+      heading: 'Aanbouw of uitbouw maken',
+      locationHeading: 'Waar wilt u uw aanbouw of uitbouw maken?',
+    },
   },
   'dakkapel-plaatsen': {
     status: STATUS.PRE_LIVE,
+    text: {
+      heading: 'Dakkapel plaatsen',
+      locationHeading: 'Waar wilt u uw dakkapel plaatsen?',
+    },
   },
   'dakraam-plaatsen': {
     status: STATUS.PRE_LIVE,
+    text: {
+      heading: 'Dakraam plaatsen',
+      locationHeading: 'Waar wilt u uw dakraam plaatsen?',
+    },
   },
   'kozijnen-plaatsen-of-vervangen': {
     status: STATUS.PRE_LIVE,
+    text: {
+      heading: 'Konzijnen plaatsen of vervangen',
+      locationHeading: 'Waar wilt u uw kozijnen plaatsen of vervangen?',
+    },
   },
   'zonnepanelen-of-warmtecollectoren-plaatsen': {
     status: STATUS.PRE_LIVE,
+    text: {
+      heading: 'Zonnepanelen of warmtecollectoren plaatsen',
+      locationHeading: 'Waar wilt u uw zonnepanelen of warmtecollectoren plaatsen?',
+    },
   },
   'bouwwerk-slopen': {
     status: STATUS.PRE_LIVE,
+    text: {
+      heading: 'Bouwwerk slopen',
+      locationHeading: 'Waar wilt u een bouwwerk slopen?',
+    },
   },
   'intern-verbouwen': {
     status: STATUS.PRE_LIVE,
+    text: {
+      heading: 'Intern verbouwen',
+      locationHeading: 'Waar wilt u intern verbouwen?',
+    },
   },
 };
 
@@ -61,18 +89,8 @@ export const PAGES = {
   overview: 'conclusie',
 };
 
-const TEXT = {
-  'aanbouw-of-uitbouw-maken': {
-    title: 'Aanbouw of uitbouw maken',
-    locationHeading: 'Waar wilt u uw aanbouw of uitbouw maken?',
-  },
-  default: {
-    title: 'Vergunningchecker',
-    locationHeading: '',
-  },
-};
-
-export const GET_TEXT = GET_CURRENT_TOPIC() && TEXT[GET_CURRENT_TOPIC()] ? TEXT[GET_CURRENT_TOPIC()] : TEXT.default;
+export const GET_TEXT =
+  GET_CURRENT_TOPIC() && TOPICS[GET_CURRENT_TOPIC()] ? TOPICS[GET_CURRENT_TOPIC()].text : TOPICS.default.text;
 
 export const MATOMO_CONFIG = {
   BASE_URL: 'https://analytics.data.amsterdam.nl/',
