@@ -1,4 +1,4 @@
-import { SCOPE } from 'constants';
+import { SCOPE } from '../../constants';
 
 export const FETCH_STREETNAME_REQUEST = `${SCOPE}/LocationPage/FETCH_STREETNAME_REQUEST`;
 export const FETCH_STREETNAME_SUCCESS = `${SCOPE}/LocationPage/FETCH_STREETNAME_SUCCESS`;
