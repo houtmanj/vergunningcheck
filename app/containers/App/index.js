@@ -8,7 +8,6 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import CheckerPage from 'containers/Location/CheckerPage';
-import HomePage from 'containers/HomePage';
 import LocationIntroductionPage from 'containers/Location/IntroductionPage';
 import ResultsPage from 'containers/Location/ResultsPage';
 import NotFoundPage from 'containers/NotFoundPage';

@@ -33,9 +33,7 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
       const oloStreetNumber = `facet_locatie_huisnummer=${addressResults[0].huisnummer}`;
 
       // Generate OLO parameter "suffix"
-      const oloSuffixValue = suffix
-        ? suffix.replace(addressResults[0].huisnummer, '', suffix).trim()
-        : addressResults[0].toevoeging.replace(addressResults[0].huisnummer, '', suffix).trim();
+      const oloSuffixValue = addressResults[0].toevoeging.replace(addressResults[0].huisnummer, '').trim();
       const oloSuffix = `facet_locatie_huisnummertoevoeging=${oloSuffixValue}`;
 
       // Redirect user to OLO with all parameters

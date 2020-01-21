@@ -7,10 +7,10 @@ import { Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
 import history from 'utils/history';
-import { LocationResult, LocationData } from 'components/LocationData';
+import { LocationResult } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { EXTERNAL_URLS, REGEX, GET_CURRENT_TOPIC, PAGES } from '../../constants';
+import { REGEX, GET_CURRENT_TOPIC, PAGES } from '../../constants';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressResult = styled(`div`)`
