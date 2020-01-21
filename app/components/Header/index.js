@@ -32,7 +32,7 @@ const MenuChildren = () => {
               onClick={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`)}
               active={GET_CURRENT_PAGE() === PAGES.locationIntroduction}
             >
-              Inleiding
+              Start
             </MenuButton>
           </MenuItem>
           <MenuItem>

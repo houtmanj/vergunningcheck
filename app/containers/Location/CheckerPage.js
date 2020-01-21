@@ -10,7 +10,7 @@ import history from 'utils/history';
 import { LocationResult } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { REGEX, GET_CURRENT_TOPIC, PAGES } from '../../constants';
+import { REGEX, GET_CURRENT_TOPIC, PAGES, GET_TEXT } from '../../constants';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressResult = styled(`div`)`
@@ -107,6 +107,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <Paragraph>Voer het adres in waar u {GET_TEXT?.topicLocation}.</Paragraph>
         <TextField
           className="address-input__input address-input__postcode"
           onChange={handleChange}

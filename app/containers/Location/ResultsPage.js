@@ -54,7 +54,7 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
         {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
 
         {!loading && addressResults?.length === 1 && (
-          <StyledAddressResult>
+          <>
             <Paragraph strong style={{ marginBottom: '0px' }}>
               Dit is het gekozen adres:
             </Paragraph>
@@ -63,9 +63,12 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
               <br />
               {addressResults[0].postcode} {addressResults[0].woonplaats}
             </Paragraph>
-            <LocationData />
-          </StyledAddressResult>
+          </>
         )}
+
+        <StyledAddressResult>
+          <LocationData />
+        </StyledAddressResult>
 
         <Navigation
           page="location"

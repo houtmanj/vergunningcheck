@@ -10,7 +10,7 @@
  */
 
 import React from 'react';
-import { Heading, Paragraph, List, ListItem } from '@datapunt/asc-ui';
+import { Heading, Paragraph, OrderedList, ListItem } from '@datapunt/asc-ui';
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
@@ -18,16 +18,14 @@ import { GET_CURRENT_TOPIC, GET_TEXT, PAGES } from '../../constants';
 
 const LocationIntroductionText = () => (
   <>
-    <Heading $as="h3">{GET_TEXT?.locationHeading}</Heading>
-    <Paragraph gutterBottom={8}>Controleer hier:</Paragraph>
-    <List variant="bullet">
-      <ListItem>of het gebouw een monument is</ListItem>
-      <ListItem>of het gebouw in een beschermd stads- of dorpsgezicht ligt</ListItem>
-      <ListItem>binnen welke bestemmingsplannen uw activiteit valt</ListItem>
-    </List>
-    <Paragraph>
-      Deze informatie heeft u nodig om het vervolg van de check te doen. Dit doet u op het landelijk omgevingsloket.
-    </Paragraph>
+    <Heading $as="h3">Hoe werkt het?</Heading>
+    <Paragraph gutterBottom={8}>U wilt weten of u een vergunning nodig hebt om {GET_TEXT?.topic}.</Paragraph>
+    <OrderedList>
+      <ListItem>u voert eerst het adres van het gebouw in</ListItem>
+      <ListItem>u krijgt vervolgens informatie over het gebouw te zien.</ListItem>
+      <ListItem>u gebruikt deze informatie om de vergunningcheck te doen op het Omgevingsloket.</ListItem>
+    </OrderedList>
+    <Paragraph>Wilt u direct een vergunning aanvragen dan kan dat ook op het Omgevingsloket.</Paragraph>
   </>
 );
 

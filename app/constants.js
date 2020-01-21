@@ -26,50 +26,57 @@ const TOPICS = {
   'aanbouw-of-uitbouw-maken': {
     status: STATUS.PRE_LIVE,
     text: {
-      heading: 'Aanbouw of uitbouw maken',
-      locationHeading: 'Waar wilt u uw aanbouw of uitbouw maken?',
+      heading: 'Vergunningchecker aanbouw of uitbouw maken',
+      topic: 'een aanbouw of een uitbouw te maken',
+      topicLocation: 'de aanbouw of uitbouw wil gaan maken',
     },
   },
   'dakkapel-plaatsen': {
     status: STATUS.PRE_LIVE,
     text: {
-      heading: 'Dakkapel plaatsen',
-      locationHeading: 'Waar wilt u uw dakkapel plaatsen?',
+      heading: 'Vergunningchecker dakkapel plaatsen',
+      topic: 'een dakkapel te plaatsen',
+      topicLocation: 'de dakkapel wil gaan plaatsen',
     },
   },
   'dakraam-plaatsen': {
     status: STATUS.PRE_LIVE,
     text: {
-      heading: 'Dakraam plaatsen',
-      locationHeading: 'Waar wilt u uw dakraam plaatsen?',
+      heading: 'Vergunningchecker dakraam plaatsen',
+      topic: 'een dakraam te plaatsen',
+      topicLocation: 'het dakraam wil gaan plaatsen',
     },
   },
   'kozijnen-plaatsen-of-vervangen': {
     status: STATUS.PRE_LIVE,
     text: {
-      heading: 'Konzijnen plaatsen of vervangen',
-      locationHeading: 'Waar wilt u uw kozijnen plaatsen of vervangen?',
+      heading: 'Vergunningchecker kozijnen plaatsen of vervangen',
+      topic: 'kozijnen te plaatsen of te vervangen',
+      topicLocation: 'de kozijnen wil gaan plaatsen of vervangen',
     },
   },
   'zonnepanelen-of-warmtecollectoren-plaatsen': {
     status: STATUS.PRE_LIVE,
     text: {
-      heading: 'Zonnepanelen of warmtecollectoren plaatsen',
-      locationHeading: 'Waar wilt u uw zonnepanelen of warmtecollectoren plaatsen?',
+      heading: 'Vergunningchecker zonnepanelen of warmtecollectoren plaatsen',
+      topic: 'zonnepanelen of warmtecollectoren te plaatsen',
+      topicLocation: 'de zonnepanelen of warmtecollectoren wil gaan plaatsen',
     },
   },
   'bouwwerk-slopen': {
     status: STATUS.PRE_LIVE,
     text: {
-      heading: 'Bouwwerk slopen',
-      locationHeading: 'Waar wilt u een bouwwerk slopen?',
+      heading: 'Vergunningchecker bouwwerk slopen',
+      topic: 'een bouwwerk te slopen,',
+      topicLocation: 'het bouwwerk wil gaan slopen',
     },
   },
   'intern-verbouwen': {
     status: STATUS.PRE_LIVE,
     text: {
       heading: 'Intern verbouwen',
-      locationHeading: 'Waar wilt u intern verbouwen?',
+      topic: 'intern te verbouwen',
+      topicLocation: 'intern wil gaan verbouwen',
     },
   },
 };
