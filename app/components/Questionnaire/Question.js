@@ -26,7 +26,6 @@ const Question = ({
   className,
   headingAs,
   children,
-  question,
   onSubmit: onSubmitProp,
   hideNavigation,
   disableNext,
@@ -35,7 +34,6 @@ const Question = ({
   onGoToPrev,
   userAnswers,
   required,
-  ...otherProps
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   useEffect(() => {
@@ -69,7 +67,7 @@ const Question = ({
   };
 
   return (
-    <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
+    <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId}>
       {heading && <Heading $as={headingAs}>{heading}</Heading>}
       {media && <MediaContainer media={media} />}
       {visibleText && <ReactMarkdown source={visibleText} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}

@@ -14,7 +14,7 @@ import { Heading, Paragraph, List, ListItem, Link } from '@datapunt/asc-ui';
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { GET_CURRENT_TOPIC, PAGES } from 'constants';
+import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
 
 const HomePageText = () => (
   <>
