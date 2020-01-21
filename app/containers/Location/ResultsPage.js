@@ -19,9 +19,11 @@ const StyledAddressResult = styled(`div`)`
 
 const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults }) => {
   const loading = addressResultsLoading || bagLoading;
+
   if (addressResults?.length !== 1) {
     history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
   }
+
   const goToOLO = () => {
     if (addressResults?.length === 1) {
       // Form is validated, we can proceed

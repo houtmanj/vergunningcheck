@@ -52,6 +52,20 @@ describe('injectReducer decorator', () => {
   });
 });
 
+it('should propagate props', () => {
+  const props = { testProp: 'test' };
+  const renderedComponent = renderer.create(
+    <Provider store={store}>
+      <ComponentWithReducer {...props} />
+    </Provider>,
+  );
+  const {
+    props: { children },
+  } = renderedComponent.getInstance();
+
+  expect(children.props).toEqual(props);
+});
+
 describe('useInjectReducer hook', () => {
   let store;
   let injectors;
