@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.3...v0.1.4) (2020-01-21)
+
+
+### Features
+
+* Added `RemoveServiceWorkerPlugin` to remove old `OfflinePlugin` ([ba119c4](https://github.com/Amsterdam/Vergunningschecker/commit/ba119c429728b5e30d246b5d8be07e510bba5ef8))
+* Disabled service worker + added dangerous comment ([34314c0](https://github.com/Amsterdam/Vergunningschecker/commit/34314c070fa34424c0e0cf9ac572dd453d77ce23))
+
 ### [0.1.3](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.2...v0.1.3) (2020-01-20)
 
 ### Features
