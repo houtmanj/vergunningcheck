@@ -7,7 +7,10 @@ import styled from '@datapunt/asc-core';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { useInjectSaga } from 'utils/injectSaga';
-import LocationPage from 'containers/LocationPage';
+import CheckerPage from 'containers/Location/CheckerPage';
+import HomePage from 'containers/HomePage';
+import LocationIntroductionPage from 'containers/Location/IntroductionPage';
+import ResultsPage from 'containers/Location/ResultsPage';
 import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -22,7 +25,7 @@ import {
   GET_CURRENT_TOPIC,
 } from '../../constants';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
-import locationSaga from '../LocationPage/saga';
+import locationSaga from '../Location/saga';
 import './style.scss';
 
 const addressInputKey = 'location';
@@ -88,11 +91,23 @@ export const App = props => {
               {/* REDIRECTS */}
               {REDIRECT_TO_OLO && window.open(`${EXTERNAL_URLS.oloChecker.intro}`, '_self')}
               {ALLOW_LOCATION_PAGE && (
-                <Redirect exact from={`/${GET_CURRENT_TOPIC()}`} to={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} />
+                <Redirect
+                  exact
+                  from={`/${GET_CURRENT_TOPIC()}`}
+                  to={`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`}
+                />
               )}
               {/* ROUTES */}
               {TOPIC_EXISTS && (
-                <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} component={LocationPage} />
+                <>
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`}
+                    component={LocationIntroductionPage}
+                  />
+                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} component={CheckerPage} />
+                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`} component={ResultsPage} />
+                </>
               )}
               <Route exact path="/health" />
               <Route exact path="/" component={NotFoundPage} />

@@ -54,7 +54,9 @@ export const ALLOW_LOCATION_PAGE = TOPIC_EXISTS && TOPICS[GET_CURRENT_TOPIC()]?.
 
 export const PAGES = {
   intro: 'inleiding',
+  locationIntroduction: 'locatie-introductie',
   location: 'locatie',
+  locationResult: 'locatie-uitkomst',
   questions: 'vragen',
   overview: 'conclusie',
 };
