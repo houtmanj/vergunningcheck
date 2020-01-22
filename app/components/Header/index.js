@@ -26,14 +26,24 @@ const MenuChildren = () => {
   return (
     <>
       {ALLOW_LOCATION_PAGE && (
-        <MenuItem>
-          <MenuButton
-            onClick={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`)}
-            active={GET_CURRENT_PAGE() === PAGES.location}
-          >
-            Locatie
-          </MenuButton>
-        </MenuItem>
+        <>
+          <MenuItem>
+            <MenuButton
+              onClick={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`)}
+              active={GET_CURRENT_PAGE() === PAGES.locationIntroduction}
+            >
+              Start
+            </MenuButton>
+          </MenuItem>
+          <MenuItem>
+            <MenuButton
+              onClick={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`)}
+              active={GET_CURRENT_PAGE() === PAGES.location}
+            >
+              Locatie
+            </MenuButton>
+          </MenuItem>
+        </>
       )}
     </>
   );

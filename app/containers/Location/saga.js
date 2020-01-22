@@ -1,4 +1,4 @@
-import { call, put, takeLatest, delay } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   searchForAddress,
@@ -37,7 +37,6 @@ const allowBeperkingRequest = false;
 export function* fetchStreetname(action) {
   try {
     const addressResults = yield call(searchForAddress, action.query);
-    yield delay(600);
     yield put({ type: FETCH_STREETNAME_SUCCESS, addressResults });
   } catch (error) {
     yield put({ type: FETCH_STREETNAME_FAILURE, error });

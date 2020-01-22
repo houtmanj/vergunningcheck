@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Navigation from 'components/Navigation';
-import HomePage from '../index';
+import Navigation from 'components/Navigation/';
+import HomePage from '..';
 
 describe('<HomePage />', () => {
   it('should render the page message', () => {
