@@ -166,8 +166,8 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
             <Paragraph strong style={{ marginBottom: '0px' }}>
               Dit is het gekozen adres:
             </Paragraph>
-            <Paragraph>
-              {addressResults[0]?.straatnaam} {addressResults[0]?.toevoeging}
+            <Paragraph gutterBottom={0}>
+              {addressResults[0]?.straatnaam} {suffix || addressResults[0]?.toevoeging}
               <br />
               {addressResults[0]?.postcode} {addressResults[0]?.woonplaats}
             </Paragraph>

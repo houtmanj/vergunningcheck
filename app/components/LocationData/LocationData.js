@@ -36,7 +36,7 @@ const LocationData = ({
     <LocationResult loading={bestemmingsplanLoading} title="Bestemmingsplannen:">
       {bestemmingsplanStatus.length === 0 && <Paragraph>Geen bestemmingsplan</Paragraph>}
       {bestemmingsplanStatus.length > 0 && (
-        <List variant="bullet" style={{ backgroundColor: 'inherit' }}>
+        <List variant="bullet" style={{ backgroundColor: 'inherit', marginBottom: '0' }}>
           {bestemmingsplanStatus.map(bestemmingsplan => (
             <ListItem key={bestemmingsplan.text}>{bestemmingsplan.text}</ListItem>
           ))}

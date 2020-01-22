@@ -79,6 +79,13 @@ const TOPICS = {
       topicLocation: 'intern wil gaan verbouwen',
     },
   },
+  '404': {
+    text: {
+      heading: '',
+      topic: '',
+      topicLocation: '',
+    },
+  },
 };
 
 export const TOPIC_EXISTS = TOPICS[GET_CURRENT_TOPIC()];
@@ -97,7 +104,7 @@ export const PAGES = {
 };
 
 export const GET_TEXT =
-  GET_CURRENT_TOPIC() && TOPICS[GET_CURRENT_TOPIC()] ? TOPICS[GET_CURRENT_TOPIC()].text : TOPICS.default.text;
+  GET_CURRENT_TOPIC() && TOPICS[GET_CURRENT_TOPIC()] ? TOPICS[GET_CURRENT_TOPIC()].text : TOPICS['404'].text;
 
 export const MATOMO_CONFIG = {
   BASE_URL: 'https://analytics.data.amsterdam.nl/',

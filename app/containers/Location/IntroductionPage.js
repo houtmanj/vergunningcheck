@@ -25,7 +25,9 @@ const LocationIntroductionText = () => (
       <ListItem>u krijgt vervolgens informatie over het gebouw te zien.</ListItem>
       <ListItem>u gebruikt deze informatie om de vergunningcheck te doen op het Omgevingsloket.</ListItem>
     </OrderedList>
-    <Paragraph>Wilt u direct een vergunning aanvragen dan kan dat ook op het Omgevingsloket.</Paragraph>
+    <Paragraph gutterBottom={0}>
+      Wilt u direct een vergunning aanvragen dan kan dat ook op het Omgevingsloket.
+    </Paragraph>
   </>
 );
 
