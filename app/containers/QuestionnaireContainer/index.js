@@ -21,12 +21,6 @@ const getQuestionIdFromIndex = (index, questionnaire) =>
   index >= 0 && questionnaire?.uitvoeringsregels[index] ? questionnaire.uitvoeringsregels[index].id : null;
 
 class QuestionnaireContainer extends React.Component {
-  state = {
-    questionIndex: 0,
-    userAnswers: {},
-    hasBestemmingsplan: false,
-  };
-
   componentDidMount() {
     const {
       onFetchQuestionnaire,

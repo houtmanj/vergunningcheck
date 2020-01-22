@@ -60,6 +60,16 @@ Select `master` and wait until the swimlane `Waiting for approval` is active. Wh
 
 :checkered_flag:
 
+## Check Webpack stats
+
+Check the statistics of the bundle sizes.
+
+Run:
+
+    yarn build:stats
+
+And upload the generated `stats.json` to [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/)
+
 ## Techniques used
 
 - React
