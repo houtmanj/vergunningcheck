@@ -70,6 +70,20 @@ Run:
 
 And upload the generated `stats.json` to [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/)
 
+## Run dockerfile locally
+
+Run:
+
+    docker build -t vergunningschecker .
+    docker run -p8083:80 -i -t vergunningschecker
+
+Now open `http://localhost:8083/intern-verbouwen/locatie`
+
+To enter the docker image:
+
+    docker ps
+    docker exec -it [container-id] sh
+
 ## Techniques used
 
 - React
