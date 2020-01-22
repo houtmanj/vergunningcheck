@@ -1,11 +1,11 @@
-import '@babel/polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
-import 'leaflet/dist/leaflet';
 
 // Import from @datapunt
 import { GlobalStyle as AmsterdamGlobalStyle, ThemeProvider, themeColor } from '@datapunt/asc-ui';
@@ -54,6 +54,6 @@ ReactDOM.render(
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
-if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
-}
+// if (process.env.NODE_ENV === 'production') {
+//   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+// }

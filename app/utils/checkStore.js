@@ -1,4 +1,6 @@
-import { conformsTo, isFunction, isObject } from 'lodash';
+import conformsTo from 'lodash.conformsto';
+import isFunction from 'lodash.isfunction';
+import isObject from 'lodash.isobject';
 import invariant from 'invariant';
 
 /**

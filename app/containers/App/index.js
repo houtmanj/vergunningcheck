@@ -14,6 +14,8 @@ import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
+import packageJson from '../../../package.json';
+
 import {
   GET_TEXT,
   EXTERNAL_URLS,
@@ -29,6 +31,8 @@ import './style.scss';
 
 const addressInputKey = 'location';
 const questionnaireKey = 'questionnaire';
+
+const { version } = packageJson;
 
 const Container = styled(`div`)`
   max-width: 1400px;
@@ -116,6 +120,13 @@ export const App = props => {
         </Row>
       </ContentContainer>
       <Footer />
+      <div
+        // comment to see app version and environment
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `<!-- \n Version: ${version} \n Environment: ${process.env.NODE_ENV} \n -->`,
+        }}
+      />
     </Container>
   );
 };

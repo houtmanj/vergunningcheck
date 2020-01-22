@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose, bindActionCreators } from 'redux';
@@ -9,7 +9,7 @@ import { resetGlobalError } from '../App/actions';
 import './style.scss';
 
 export const GlobalError = ({ error, errorMessage, onClose }) => (
-  <Fragment>
+  <>
     {error ? (
       <div className="global-error">
         {errorMessage}
@@ -20,7 +20,7 @@ export const GlobalError = ({ error, errorMessage, onClose }) => (
     ) : (
       ''
     )}
-  </Fragment>
+  </>
 );
 
 GlobalError.defaultProps = {
@@ -45,9 +45,7 @@ export const mapDispatchToProps = dispatch =>
     },
     dispatch,
   );
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(GlobalError);
