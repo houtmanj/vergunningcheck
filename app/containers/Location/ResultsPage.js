@@ -54,7 +54,7 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
       <Form onSubmit={goToOLO}>
         {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
 
-        {!loading && addressResults?.length === 1 && (
+        {!loading && (
           <>
             <Paragraph strong style={{ marginBottom: '0px' }}>
               Dit is het gekozen adres:
@@ -91,7 +91,7 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
         </Paragraph>
 
         <Navigation
-          page="location"
+          page="location-results"
           onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`)}
           nextText="Naar het omgevingsloket"
           showPrev
