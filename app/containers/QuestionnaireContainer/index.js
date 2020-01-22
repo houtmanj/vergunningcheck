@@ -247,7 +247,4 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(QuestionnaireContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionnaireContainer);

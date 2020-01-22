@@ -13,8 +13,9 @@ import { GET_CURRENT_TOPIC, PAGES, EXTERNAL_URLS } from '../../constants';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressResult = styled(`div`)`
+  margin-bottom: 24px;
   padding: 30px;
-  background-color: ${themeColor('tint', 'level3')};
+  border: 1px solid ${themeColor('tint', 'level3')};
 `;
 
 const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults }) => {
@@ -66,9 +67,28 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
           </>
         )}
 
+        <Paragraph>
+          Klopt dit niet?{' '}
+          <a
+            href={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`}
+            onClick={e => {
+              e.preventDefault();
+              history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
+            }}
+          >
+            Wijzig het adres
+          </a>
+        </Paragraph>
+
+        <Paragraph>Wij hebben onderstaande informatie gevonden over dit adres.</Paragraph>
+
         <StyledAddressResult>
           <LocationData />
         </StyledAddressResult>
+
+        <Paragraph gutterBottom={0}>
+          U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.
+        </Paragraph>
 
         <Navigation
           page="location"
@@ -76,6 +96,7 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
           nextText="Naar het omgevingsloket"
           showPrev
           showNext
+          formEnds
         />
       </Form>
     </>
@@ -106,7 +127,4 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LocationResultsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationResultsPage);
