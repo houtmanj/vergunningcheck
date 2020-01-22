@@ -22,6 +22,16 @@ const STATUS = {
 };
 
 const TOPICS = {
+  // Quick hack to test the routs, use: http://localhost:3000/a/
+  a: {
+    status: STATUS.LIVE,
+    sttrPath: '/shared/content/sttr/AanOfUitbouwBouwen.json',
+    text: {
+      heading: 'Vergunningchecker dakkapel plaatsen',
+      topic: 'een dakkapel te plaatsen',
+      topicLocation: 'de dakkapel wil gaan plaatsen',
+    },
+  },
   'kappen-of-snoeien': {},
   'aanbouw-of-uitbouw-maken': {
     status: STATUS.PRE_LIVE,
@@ -94,9 +104,12 @@ export const REDIRECT_TO_OLO = TOPIC_EXISTS && !TOPICS[GET_CURRENT_TOPIC()]?.sta
 
 export const ALLOW_LOCATION_PAGE = TOPIC_EXISTS && TOPICS[GET_CURRENT_TOPIC()]?.status === STATUS.PRE_LIVE;
 
+export const ALLOW_CHECKER = TOPIC_EXISTS && TOPICS[GET_CURRENT_TOPIC()]?.status === STATUS.LIVE;
+
 export const PAGES = {
   intro: 'inleiding',
   locationIntroduction: 'locatie-introductie',
+  checkerIntroduction: 'checker-introductie',
   location: 'locatie',
   locationResult: 'locatie-uitkomst',
   questions: 'vragen',
@@ -105,6 +118,8 @@ export const PAGES = {
 
 export const GET_TEXT =
   GET_CURRENT_TOPIC() && TOPICS[GET_CURRENT_TOPIC()] ? TOPICS[GET_CURRENT_TOPIC()].text : TOPICS['404'].text;
+
+export const GET_STTR = GET_CURRENT_TOPIC() && TOPICS[GET_CURRENT_TOPIC()] ? TOPICS[GET_CURRENT_TOPIC()].sttrPath : '';
 
 export const MATOMO_CONFIG = {
   BASE_URL: 'https://analytics.data.amsterdam.nl/',

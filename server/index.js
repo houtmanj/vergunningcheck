@@ -23,6 +23,9 @@ if (isDev) {
   };
 }
 
+// @TODO: Change this to another static solution
+app.use(express.static('app'));
+
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 

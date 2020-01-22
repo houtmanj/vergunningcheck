@@ -236,3 +236,11 @@ export function searchForBeperking(query) {
   }
   return '';
 }
+
+export function getSttrFile(file) {
+  if (file) {
+    const response = getByUri(file);
+    return response;
+  }
+  return {};
+}

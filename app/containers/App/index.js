@@ -9,6 +9,7 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 import { useInjectSaga } from 'utils/injectSaga';
 import CheckerPage from 'containers/Location/CheckerPage';
 import LocationIntroductionPage from 'containers/Location/IntroductionPage';
+import QuestionPage from 'containers/Checker/QuestionPage';
 import ResultsPage from 'containers/Location/ResultsPage';
 import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
@@ -23,6 +24,7 @@ import {
   TOPIC_EXISTS,
   REDIRECT_TO_OLO,
   ALLOW_LOCATION_PAGE,
+  ALLOW_CHECKER,
   GET_CURRENT_TOPIC,
 } from '../../constants';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
@@ -100,7 +102,19 @@ export const App = props => {
                   to={`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`}
                 />
               )}
+              {ALLOW_CHECKER && (
+                <Redirect
+                  exact
+                  from={`/${GET_CURRENT_TOPIC()}`}
+                  to={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerIntroduction}`}
+                />
+              )}
               {/* ROUTES */}
+              {TOPIC_EXISTS && ALLOW_CHECKER && (
+                <>
+                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerIntroduction}`} component={QuestionPage} />
+                </>
+              )}
               {TOPIC_EXISTS && (
                 <>
                   <Route
