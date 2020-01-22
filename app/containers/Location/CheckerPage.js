@@ -76,6 +76,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     if (!loading && (addressResults?.length === 1 || suffix)) {
       // Form is validated, we can proceed
       onFetchStreetname(currentValues);
+      onFetchBagData(currentValues);
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
     }
   };
