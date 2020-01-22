@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.4...v0.1.5) (2020-01-22)
+
+
+### Features
+
+* Optimized Build by removing full lodash and others ([95648f6](https://github.com/Amsterdam/Vergunningschecker/commit/95648f616d59a204ef2172b7883c39f1641747f6))
+* Upgraded dependencies and fixed its errors ([5b48baf](https://github.com/Amsterdam/Vergunningschecker/commit/5b48baf43bc797281b756d31fbe79b7a222895ba))
+
+
+### Refactors
+
+* fixed new Lint errors and warning ([b286648](https://github.com/Amsterdam/Vergunningschecker/commit/b28664832d840ea807f635f5b454beb22e0d2b83))
+* removed old scripts and packages ([6a50bab](https://github.com/Amsterdam/Vergunningschecker/commit/6a50bab475f88984c8493daaea6afa0c9e1ae6e2))
+* removed unused service ([fcf70a6](https://github.com/Amsterdam/Vergunningschecker/commit/fcf70a66f12d7705b4c6120378cf04ff6143224b))
+
 ### [0.1.4](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.3...v0.1.4) (2020-01-21)
 
 
