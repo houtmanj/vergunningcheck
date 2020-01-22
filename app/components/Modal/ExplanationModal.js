@@ -15,8 +15,8 @@ const ExplanationModal = ({ modalText }) => {
   const [explanationShown, toggleExplanationShown] = useState(false);
 
   return (
-    <div>
-      <Button color="primary" onClick={() => toggleExplanationShown(!explanationShown)}>
+    <div style={{ marginBottom: '24px' }}>
+      <Button type="button" color="primary" onClick={() => toggleExplanationShown(!explanationShown)}>
         Toelichting
       </Button>
       <Modal

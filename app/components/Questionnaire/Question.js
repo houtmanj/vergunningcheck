@@ -34,10 +34,8 @@ const Question = ({
   onGoToPrev,
   userAnswers,
   required,
-  ...otherProps
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
-
   useEffect(() => {
     if (questionId && required) {
       register(
@@ -53,7 +51,7 @@ const Question = ({
       }
     }
     return () => unregister(questionId);
-  }, [questionId, register, unregister, setValue]);
+  }, [questionId]);
 
   const handleChange = e => {
     if (e.target.type === 'radio') setValue(e.target.name, e.target.value);
@@ -69,7 +67,7 @@ const Question = ({
   };
 
   return (
-    <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId} {...otherProps}>
+    <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId}>
       {heading && <Heading $as={headingAs}>{heading}</Heading>}
       {media && <MediaContainer media={media} />}
       {visibleText && <ReactMarkdown source={visibleText} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
@@ -83,7 +81,13 @@ const Question = ({
       />
       {children}
       {!hideNavigation && (
-        <Navigation showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} disableNext={disableNext} />
+        <Navigation
+          page="question"
+          showPrev={showPrev}
+          showNext={showNext}
+          onGoToPrev={onGoToPrev}
+          disableNext={disableNext}
+        />
       )}
     </Form>
   );

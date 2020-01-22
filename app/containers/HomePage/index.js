@@ -10,10 +10,11 @@
  */
 
 import React from 'react';
-import history from 'utils/history';
 import { Heading, Paragraph, List, ListItem, Link } from '@datapunt/asc-ui';
+import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
+import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
 
 const HomePageText = () => (
   <>
@@ -76,10 +77,10 @@ const HomePage = () => (
     <Form
       onSubmit={e => {
         e.preventDefault();
-        history.push('/aanbouw/locatie');
+        history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
       }}
     >
-      <Navigation showNext />
+      <Navigation page="home" showNext />
     </Form>
   </>
 );

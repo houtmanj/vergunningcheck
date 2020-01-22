@@ -9,14 +9,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
-  output: Object.assign(
-    {
-      // Compile into js/build.js
-      path: path.resolve(process.cwd(), 'build'),
-      publicPath: '/',
-    },
-    options.output,
-  ), // Merge with env dependent settings
+  output: {
+    // Compile into js/build.js
+    path: path.resolve(process.cwd(), 'build'),
+    publicPath: '/',
+    ...options.output, // Merge with env dependent settings
+  },
   optimization: options.optimization,
   module: {
     rules: [
@@ -27,15 +25,11 @@ module.exports = options => ({
 
       {
         test: /\.(js|jsx)$/, // Transform all .js and .jsx files required somewhere with Babel
-        // exclude: /node_modules/,
         loader: 'babel-loader',
+        exclude: /node_modules/,
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
         },
-        // query: {
-        //   presets: ['react', 'es2015'],
-        // },
-        // options: options.babelQuery,
       },
       {
         // Preprocess our own .css files

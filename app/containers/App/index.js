@@ -1,34 +1,37 @@
 import React, { memo } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
-
-import { Row, Column, Button, themeColor, themeSpacing } from '@datapunt/asc-ui';
+import { Row, Column, themeColor, themeSpacing } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
-import { ChevronLeft } from '@datapunt/asc-assets';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { useInjectSaga } from 'utils/injectSaga';
-
-import HomePage from 'containers/HomePage';
-import AddressInput from 'containers/AddressInput';
-import AddressInputResults from 'containers/AddressInput/Results';
-import QuestionnaireContainer from 'containers/QuestionnaireContainer';
-import AllQuestions from 'containers/QuestionnaireContainer/AllQuestions';
-import QuestionnaireRoutes from 'containers/QuestionnaireContainer/QuestionRoutes';
+import LocationPage from 'containers/LocationPage';
 import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import GlobalError from 'containers/GlobalError';
-import questionnaireSaga from '../QuestionnaireContainer/saga';
-import addressInputSaga from '../AddressInput/saga';
+import packageJson from '../../../package.json';
 
+import {
+  GET_TEXT,
+  EXTERNAL_URLS,
+  PAGES,
+  TOPIC_EXISTS,
+  REDIRECT_TO_OLO,
+  ALLOW_LOCATION_PAGE,
+  GET_CURRENT_TOPIC,
+} from '../../constants';
+import questionnaireSaga from '../QuestionnaireContainer/saga';
+import locationSaga from '../LocationPage/saga';
 import './style.scss';
 
-const addressInputKey = 'addressInput';
+const addressInputKey = 'location';
 const questionnaireKey = 'questionnaire';
 
-const BackgroundFullWidth = styled(`div`)`
-  background-color: ${themeColor('tint', 'level3')};
-`;
+const { version } = packageJson;
+
 const Container = styled(`div`)`
   max-width: 1400px;
   width: 100%;
@@ -41,9 +44,6 @@ const ContentContainer = styled(`div`)`
   margin: 0 auto;
   background-color: white;
 `;
-const StyledButton = styled(Button)`
-  margin-top: 15px;
-`;
 const FormTitle = styled(`h4`)`
   margin: ${themeSpacing(6, 0)};
   padding-bottom: 6px;
@@ -55,12 +55,21 @@ const Content = styled(`div`)`
   width: 100%;
 `;
 
-export const App = () => {
-  useInjectSaga({ key: addressInputKey, saga: addressInputSaga });
+export const App = props => {
+  useInjectSaga({ key: addressInputKey, saga: locationSaga });
   useInjectSaga({ key: questionnaireKey, saga: questionnaireSaga });
 
+  const currentRoute = props.location.pathname.split('/')[1];
+  const { trackPageView } = useMatomo();
+
+  // @datapunt Track Page View
+  // Docu: https://github.com/Amsterdam/matomo-tracker/tree/master/packages/react
+  React.useEffect(() => {
+    trackPageView();
+  }, [currentRoute]);
+
   return (
-    <BackgroundFullWidth>
+    <>
       <Container>
         <GlobalError />
         <Header />
@@ -76,23 +85,22 @@ export const App = () => {
                 xLarge: 9,
               }}
             >
+              <Content />
               <Content>
-                <StyledButton variant="textButton" iconLeft={<ChevronLeft />} iconSize={14} onClick={() => {}}>
-                  Terug naar pagina Aanbouw en uitbouw
-                </StyledButton>
-              </Content>
-              <Content>
-                <FormTitle>Vergunningchecker Aanbouw</FormTitle>
+                <FormTitle>{GET_TEXT?.title}</FormTitle>
               </Content>
               <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route exact path="/aanbouw/inleiding" component={HomePage} />
-                <Route exact path="/aanbouw/locatie" component={AddressInput} />
-                <Route exact path="/aanbouw/alle-vragen" component={AllQuestions} />
-                <Route exact path="/aanbouw/alle-routes" component={QuestionnaireRoutes} />
-                <Route exact path="/aanbouw/*" component={QuestionnaireContainer} />
-                <Route exact path="/adres" component={AddressInputResults} />
+                {/* REDIRECTS */}
+                {REDIRECT_TO_OLO && window.open(`${EXTERNAL_URLS.oloChecker.intro}`, '_self')}
+                {ALLOW_LOCATION_PAGE && (
+                  <Redirect exact from={`/${GET_CURRENT_TOPIC()}`} to={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} />
+                )}
+                {/* ROUTES */}
+                {TOPIC_EXISTS && (
+                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} component={LocationPage} />
+                )}
                 <Route exact path="/health" />
+                <Route exact path="/" component={NotFoundPage} />
                 <Route path="" component={NotFoundPage} />
               </Switch>
             </Column>
@@ -100,8 +108,21 @@ export const App = () => {
         </ContentContainer>
         <Footer />
       </Container>
-    </BackgroundFullWidth>
+      <div
+        // comment to see app version and environment
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `<!-- \n Version: ${version} \n Environment: ${process.env.NODE_ENV} \n -->`,
+        }}
+      />
+    </>
   );
 };
 
-export default compose(memo)(App);
+App.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
+};
+
+export default withRouter(compose(memo)(App));

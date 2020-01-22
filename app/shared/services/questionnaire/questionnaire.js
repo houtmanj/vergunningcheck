@@ -1,4 +1,4 @@
-import { camelCase } from 'lodash';
+import camelCase from 'lodash.camelcase';
 import dePijp2018 from 'shared/content/aanbouw/de-pijp-2018';
 import rivierenbuurt from 'shared/content/aanbouw/rivierenbuurt';
 import media from 'shared/content/aanbouw/media';

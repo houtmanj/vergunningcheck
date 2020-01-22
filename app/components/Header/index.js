@@ -1,15 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import history from 'utils/history';
-import styled from '@datapunt/asc-core';
-import {
-  Header as HeaderComp,
-  MenuInline,
-  MenuItem,
-  MenuButton,
-  // MenuToggle,
-} from '@datapunt/asc-ui';
 
+import styled from '@datapunt/asc-core';
+import { Header as HeaderComp, MenuInline, MenuItem, MenuButton } from '@datapunt/asc-ui';
+import history from 'utils/history';
+import { PAGES, GET_CURRENT_PAGE, ALLOW_LOCATION_PAGE, GET_CURRENT_TOPIC } from '../../constants';
 import './style.scss';
 
 const StyledHeader = styled(HeaderComp)`
@@ -20,38 +15,26 @@ const StyledMenuInline = styled(MenuInline)`
   margin-left: -10px;
 `;
 
-const pages = {
-  intro: '/aanbouw/inleiding',
-  location: '/aanbouw/locatie',
-  questions: '/aanbouw/vragen',
-  overview: '/aanbouw/conclusie',
-};
-
 const MenuChildren = () => {
   const { pathname } = useLocation();
 
+  // Scroll to top when `pathname` changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
-      <MenuItem>
-        <MenuButton onClick={() => history.push(pages.intro)} active={pathname === pages.intro}>
-          Inleiding
-        </MenuButton>
-      </MenuItem>
-      <MenuItem>
-        <MenuButton onClick={() => history.push(pages.location)} active={pathname === pages.location}>
-          Locatie
-        </MenuButton>
-      </MenuItem>
-      <MenuItem>
-        <MenuButton onClick={() => history.push(pages.questions)} active={pathname === pages.questions}>
-          Vragen
-        </MenuButton>
-      </MenuItem>
-      <MenuItem>
-        <MenuButton onClick={() => history.push(pages.overview)} active={pathname === pages.overview}>
-          Conclusie
-        </MenuButton>
-      </MenuItem>
+      {ALLOW_LOCATION_PAGE && (
+        <MenuItem>
+          <MenuButton
+            onClick={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`)}
+            active={GET_CURRENT_PAGE() === PAGES.location}
+          >
+            Locatie
+          </MenuButton>
+        </MenuItem>
+      )}
     </>
   );
 };
@@ -60,15 +43,13 @@ export const Header = () => (
   <StyledHeader
     tall
     backgroundColor="#fff"
-    homeLink="/"
+    homeLink="https://amsterdam.nl"
+    title="Vergunningen"
     navigation={
       <>
-        <StyledMenuInline showAt="tabletM">
+        <StyledMenuInline>
           <MenuChildren />
         </StyledMenuInline>
-        {/* <MenuToggle hideAt="tabletM">
-          <MenuChildren />
-        </MenuToggle> */}
       </>
     }
   />
