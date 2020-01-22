@@ -1,5 +1,12 @@
 /* eslint no-console: 0 */
 const yargs = require('yargs');
+const fs = require('fs');
+const path = require('path');
+const fetch = require('node-fetch');
+const mkdirp = require('mkdirp');
+const batchPromises = require('batch-promises');
+const sttrbuild = require('./parser');
+
 const { argv } = yargs
   .option('output', {
     alias: 'o',
@@ -15,17 +22,10 @@ if (!OUTPUT_DIR) {
   throw Error('"output" not specified. Please provide --output=./some/path');
 }
 
-const fs = require('fs');
-const path = require('path');
-const fetch = require('node-fetch');
-const mkdirp = require('mkdirp');
-const batchPromises = require('batch-promises');
-
-const sttrbuild = require('./parser');
-
 const MAX_PARALLEL = 6;
-const listUrl = 'https://sttr-builder.eu.meteorapp.com/api/activiteiten/bijwerkzaamheid';
-const detailUrl = 'https://sttr-builder.eu.meteorapp.com/api/conclusie/sttr';
+const sttrApi = `https://sttr-builder${process.env.STTR_ENV === 'production' ? '-staging' : ''}.eu.meteorapp.com/api`;
+const listUrl = `${sttrApi}/activiteiten/bijwerkzaamheid`;
+const detailUrl = `${sttrApi}/conclusie/sttr`;
 const headers = {
   'x-api-key': process.env.STTR_BUILDER_API_KEY,
 };
@@ -92,24 +92,27 @@ function checkStatus(res) {
       })),
     );
 
-  const activitiesDetails = await batchPromises(MAX_PARALLEL, activities.flatMap(a => a.permits), ({ id }) =>
-    fetch(detailUrl, {
-      method: 'post',
-      body: `activiteitId=${id}`,
-      headers: {
-        ...headers,
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-    })
-      .then(checkStatus)
-      .then(res => res.text())
-      .then(xml => ({
-        id,
-        xml,
-      })),
+  const activitiesDetails = await batchPromises(
+    MAX_PARALLEL,
+    activities.flatMap(a => a.permits),
+    ({ id }) =>
+      fetch(detailUrl, {
+        method: 'post',
+        body: `activiteitId=${id}`,
+        headers: {
+          ...headers,
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+      })
+        .then(checkStatus)
+        .then(res => res.text())
+        .then(xml => ({
+          id,
+          xml,
+        })),
   );
 
-  // write activity souroce xml fiiiles
+  // write activity source xml files
   activitiesDetails.forEach(({ id, xml }) => {
     fs.writeFile(path.join(OUTPUT_DIR, `${id}.xml`), xml, err => {
       if (err) throw err;
