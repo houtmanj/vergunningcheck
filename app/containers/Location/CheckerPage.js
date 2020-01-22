@@ -31,7 +31,12 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     getValues,
     handleSubmit,
     triggerValidation,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      postalCode: addressResults[0]?.postcode,
+      streetNumber: addressResults[0]?.toevoeging,
+    },
+  });
 
   const loading = addressResultsLoading || bagLoading;
   const values = getValues();
@@ -211,4 +216,7 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocationPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LocationPage);
