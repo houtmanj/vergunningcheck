@@ -8,14 +8,14 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 const NavigationStyle = styled(`div`)`
   display: flex;
   height: 64px;
-  margin: 20px 0;
+  margin: 20px 0 40px;
   background-color: rgba(241, 241, 241, 1);
   justify-content: space-between;
   align-items: center;
   flex-direction: row-reverse;
 `;
 
-const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextText }) => {
+const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextText, formEnds }) => {
   const { trackEvent } = useMatomo();
 
   const handleNextClick = () => {
@@ -31,7 +31,14 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
     <NavigationStyle>
       <div>
         {showNext && (
-          <Button type="submit" variant="secondary" disabled={disableNext} onClick={handleNextClick} taskflow>
+          <Button
+            type="submit"
+            variant="secondary"
+            disabled={disableNext}
+            onClick={handleNextClick}
+            taskflow={!formEnds}
+            style={{ marginRight: formEnds ? 10 : 25 }}
+          >
             {nextText}
           </Button>
         )}
@@ -57,6 +64,7 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
 Navigation.defaultProps = {
   page: 'undefined-page',
   nextText: 'Volgende',
+  formEnds: false,
 };
 
 Navigation.propTypes = {
@@ -65,6 +73,7 @@ Navigation.propTypes = {
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
   nextText: PropTypes.string,
+  formEnds: PropTypes.bool,
   disableNext: PropTypes.bool,
 };
 

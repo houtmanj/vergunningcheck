@@ -3,13 +3,14 @@ import { useForm } from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Heading, Paragraph, TextField, Select, themeColor, List, ListItem } from '@datapunt/asc-ui';
+import { Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
-import { LocationResult, LocationData } from 'components/LocationData';
+import history from 'utils/history';
+import { LocationResult } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { EXTERNAL_URLS, REGEX, GET_TEXT } from '../../constants';
+import { REGEX, GET_CURRENT_TOPIC, PAGES, GET_TEXT } from '../../constants';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressResult = styled(`div`)`
@@ -30,7 +31,12 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     getValues,
     handleSubmit,
     triggerValidation,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      postalCode: addressResults[0]?.postcode,
+      streetNumber: addressResults[0]?.toevoeging,
+    },
+  });
 
   const loading = addressResultsLoading || bagLoading;
   const values = getValues();
@@ -65,31 +71,18 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   }
 
   const onSubmit = () => {
+    const currentValues = getValues();
+
     if (addressResults?.length > 1 && !suffix) {
       // Needs suffix and has no suffix
       triggerValidation('suffix');
     }
 
-    if (addressResults?.length === 1 || suffix) {
+    if (!loading && (addressResults?.length === 1 || suffix)) {
       // Form is validated, we can proceed
-
-      // Generate OLO parameter "postalCode"
-      const oloPostalCode = `facet_locatie_postcode=${addressResults[0].postcode}`;
-
-      // Generate OLO parameter "streetNumber"
-      const oloStreetNumber = `facet_locatie_huisnummer=${addressResults[0].huisnummer}`;
-
-      // Generate OLO parameter "suffix"
-      const oloSuffixValue = suffix
-        ? suffix.replace(addressResults[0].huisnummer, '', suffix).trim()
-        : addressResults[0].toevoeging.replace(addressResults[0].huisnummer, '', suffix).trim();
-      const oloSuffix = `facet_locatie_huisnummertoevoeging=${oloSuffixValue}`;
-
-      // Redirect user to OLO with all parameters
-      window.open(
-        `${EXTERNAL_URLS.oloChecker.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`,
-        '_blank',
-      );
+      onFetchStreetname(currentValues);
+      onFetchBagData(currentValues);
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
     }
   };
 
@@ -120,21 +113,13 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Heading $as="h3">{GET_TEXT?.locationHeading}</Heading>
-        <Paragraph gutterBottom={8}>Controleer hieronder:</Paragraph>
-        <List variant="bullet">
-          <ListItem>of het gebouw een monument is</ListItem>
-          <ListItem>of het gebouw in een beschermd stads- of dorpsgezicht ligt</ListItem>
-          <ListItem>binnen welke bestemmingsplannen uw activiteit valt</ListItem>
-        </List>
-        <Paragraph>
-          Deze informatie heeft u nodig om het vervolg van de check te doen. Dit doet u op het landelijk omgevingsloket.
-        </Paragraph>
+        <Paragraph>Voer het adres in waar u {GET_TEXT?.topicLocation}.</Paragraph>
         <TextField
           className="address-input__input address-input__postcode"
           onChange={handleChange}
           onBlur={handleBlur}
           label="Postcode"
+          defaultValue={addressResults[0]?.postcode}
           name="postalCode"
           placeholder="bv. 1074VE"
           style={{ marginBottom: '20px' }}
@@ -145,6 +130,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           label="Huisnummer"
           onChange={handleChange}
           onBlur={handleBlur}
+          defaultValue={addressResults[0]?.toevoeging}
           name="streetNumber"
           placeholder="bv. 1"
           style={{ marginBottom: '20px' }}
@@ -163,6 +149,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
               onChange={e => {
                 setSuffix(e.target.value);
                 setValue(e.target.name, e.target.value);
+                setValue('streetNumber', e.target.value);
                 onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
               style={{ marginBottom: '20px' }}
@@ -184,16 +171,20 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
             <Paragraph strong style={{ marginBottom: '0px' }}>
               Dit is het gekozen adres:
             </Paragraph>
-            <Paragraph>
-              {addressResults[0].straatnaam} {suffix || addressResults[0].toevoeging}
+            <Paragraph gutterBottom={0}>
+              {addressResults[0]?.straatnaam} {suffix || addressResults[0]?.toevoeging}
               <br />
-              {addressResults[0].postcode} {addressResults[0].woonplaats}
+              {addressResults[0]?.postcode} {addressResults[0]?.woonplaats}
             </Paragraph>
-            <LocationData />
           </StyledAddressResult>
         )}
 
-        <Navigation page="location" nextText="Naar omgevingsloket" showNext />
+        <Navigation
+          page="location"
+          onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`)}
+          showPrev
+          showNext
+        />
       </Form>
     </>
   );
