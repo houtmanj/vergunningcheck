@@ -5,10 +5,7 @@ const selectGlobal = state => state.global;
 const selectRoute = state => state.route;
 
 const makeSelectUserName = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.userName,
-  );
+  createSelector(selectGlobal, globalState => globalState.userName);
 
 const makeSelectLoading = () =>
   createSelector(
