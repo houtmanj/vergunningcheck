@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -225,7 +225,4 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LocationPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationPage);
