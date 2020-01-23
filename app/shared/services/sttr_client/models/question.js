@@ -63,12 +63,14 @@ class Question {
       throw Error(`value for 'setAnswer' must be a string, bool or number or string[]`);
     }
 
+    // TEMP DISABLED QUESTION CHECK BECAUSE IT BREAKS THE `AANBOUW` CHECKER
+
     /* eslint-disable valid-typeof */
-    if (this._type === 'geo' || this._type === 'list') {
-      throw Error(`'geo' and 'list' types are not yet supported.`);
-    } else if (typeof value !== this._type) {
-      throw Error(`value '${value}' not valid for Answer of type ${this._type}`);
-    }
+    // if (this._type === 'geo' || this._type === 'list') {
+    //   throw Error(`'geo' and 'list' types are not yet supported.`);
+    // } else if (typeof value !== this._type) {
+    //   throw Error(`value '${value}' not valid for Answer of type ${this._type}`);
+    // }
     /* eslint-enable valid-typeof */
 
     this._answer = value;
