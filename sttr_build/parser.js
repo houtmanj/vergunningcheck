@@ -4,12 +4,17 @@ const parser = require('fast-xml-parser');
 const get = require('lodash.get');
 
 /**
- * Convert field-types from 'feel'-spec to our representation
+ * Convert field-types from 'feel'-spec to our representation.
+ * For now we only replace 'feel:' with nothing, but this could
+ * change in the future. Therefore we extract this piece of logic.
+ *
+ * @example
+ * feelTypeMap('feel:boolean'); // would return 'boolean'
  *
  * @param {string} feel the string according to feel spec
  * @returns {string} the resulting type string
  */
-function feel2js(feel) {
+function feelTypeMap(feel) {
   return feel.replace('feel:', '');
 }
 
@@ -55,14 +60,17 @@ class Parser {
 
       const table = xmlDecision['dmn:decisionTable'][0];
       const rules = table['dmn:rule'].reduce((acc, rule) => {
-        const $oe = get(rule, 'dmn:outputEntry.0');
-        const description = get($oe, 'dmn:extensionElements.0.content:conclusieToelichting.0.content:toelichting');
+        const outputEntry = get(rule, 'dmn:outputEntry.0');
+        const description = get(
+          outputEntry,
+          'dmn:extensionElements.0.content:conclusieToelichting.0.content:toelichting',
+        );
         acc.push({
           inputs: rule['dmn:inputEntry'].reduce((inputEntry, ie) => {
             inputEntry.push(ie['dmn:text']);
             return inputEntry;
           }, []),
-          output: $oe['dmn:text'],
+          output: outputEntry['dmn:text'],
           description,
         });
         return acc;
@@ -87,7 +95,7 @@ class Parser {
       const href = el['uitv:uitvoeringsregelRef'][0]['@_href'];
       acc[curr['@_id']] = {
         href,
-        type: feel2js(curr['dmn:variable'][0]['@_typeRef']),
+        type: feelTypeMap(curr['dmn:variable'][0]['@_typeRef']),
       };
       return acc;
     }, {});
