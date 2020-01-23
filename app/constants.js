@@ -104,7 +104,9 @@ export const REDIRECT_TO_OLO = TOPIC_EXISTS && !TOPICS[GET_CURRENT_TOPIC()]?.sta
 
 export const ALLOW_LOCATION_PAGE = TOPIC_EXISTS && TOPICS[GET_CURRENT_TOPIC()]?.status === STATUS.PRE_LIVE;
 
-export const ALLOW_CHECKER = TOPIC_EXISTS && TOPICS[GET_CURRENT_TOPIC()]?.status === STATUS.LIVE;
+// TEMP: DO NOT ALLOW CHECKERS IN PRODUCTION
+export const ALLOW_CHECKER =
+  TOPIC_EXISTS && TOPICS[GET_CURRENT_TOPIC()]?.status === STATUS.LIVE && process.env.NODE_ENV !== 'production';
 
 export const PAGES = {
   intro: 'inleiding',
