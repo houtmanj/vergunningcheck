@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Paragraph, themeColor } from '@datapunt/asc-ui';
@@ -10,7 +9,6 @@ import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { GET_CURRENT_TOPIC, PAGES, EXTERNAL_URLS } from '../../constants';
-import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressResult = styled(`div`)`
   margin-bottom: 24px;
@@ -21,8 +19,9 @@ const StyledAddressResult = styled(`div`)`
 const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults }) => {
   const loading = addressResultsLoading || bagLoading;
 
-  if (!loading && addressResults?.length !== 1) {
+  if (!loading && (!addressResults || addressResults?.length !== 1)) {
     history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
+    return null;
   }
 
   const goToOLO = e => {
@@ -56,39 +55,21 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
 
         {!loading && (
           <>
-            <Paragraph strong style={{ marginBottom: '0px' }}>
-              Dit is het gekozen adres:
-            </Paragraph>
             <Paragraph>
-              {addressResults[0].straatnaam} {addressResults[0].toevoeging}
-              <br />
-              {addressResults[0].postcode} {addressResults[0].woonplaats}
+              Over{' '}
+              <strong>
+                {addressResults[0].straatnaam} {addressResults[0].toevoeging}
+              </strong>{' '}
+              hebben we de volgende informatie gevonden:
             </Paragraph>
           </>
         )}
-
-        <Paragraph>
-          Klopt dit niet?{' '}
-          <a
-            href={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`}
-            onClick={e => {
-              e.preventDefault();
-              history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
-            }}
-          >
-            Wijzig het adres
-          </a>
-        </Paragraph>
-
-        <Paragraph>Wij hebben onderstaande informatie gevonden over dit adres.</Paragraph>
 
         <StyledAddressResult>
           <LocationData />
         </StyledAddressResult>
 
-        <Paragraph gutterBottom={0}>
-          U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.
-        </Paragraph>
+        <Paragraph>U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.</Paragraph>
 
         <Navigation
           page="location-results"
@@ -118,13 +99,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      onFetchBagData: fetchBagData,
-      onFetchStreetname: fetchStreetname,
-    },
-    dispatch,
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(LocationResultsPage);
+export default connect(mapStateToProps)(LocationResultsPage);

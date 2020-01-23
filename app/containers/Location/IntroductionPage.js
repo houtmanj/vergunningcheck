@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Paragraph, OrderedList, ListItem } from '@datapunt/asc-ui';
+import { Heading, Paragraph, List, ListItem } from '@datapunt/asc-ui';
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
@@ -9,14 +9,11 @@ const LocationIntroductionText = () => (
   <>
     <Heading $as="h3">Hoe werkt het?</Heading>
     <Paragraph gutterBottom={8}>U wilt weten of u een vergunning nodig hebt om {GET_TEXT?.topic}.</Paragraph>
-    <OrderedList>
-      <ListItem>u voert eerst het adres van het gebouw in</ListItem>
-      <ListItem>u krijgt vervolgens informatie over het gebouw te zien.</ListItem>
-      <ListItem>u gebruikt deze informatie om de vergunningcheck te doen op het Omgevingsloket.</ListItem>
-    </OrderedList>
-    <Paragraph gutterBottom={0}>
-      Wilt u direct een vergunning aanvragen dan kan dat ook op het Omgevingsloket.
-    </Paragraph>
+    <List variant="bullet">
+      <ListItem>U voert eerst het adres van het gebouw in.</ListItem>
+      <ListItem>Vervolgens krijgt u informatie over het gebouw te zien.</ListItem>
+      <ListItem>U gebruikt deze informatie om de vergunningcheck te doen op het Omgevingsloket.</ListItem>
+    </List>
   </>
 );
 

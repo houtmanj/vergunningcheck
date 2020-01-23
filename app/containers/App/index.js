@@ -9,8 +9,12 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 import { useInjectSaga } from 'utils/injectSaga';
 import CheckerPage from 'containers/Location/CheckerPage';
 import LocationIntroductionPage from 'containers/Location/IntroductionPage';
-import QuestionPage from 'containers/Checker/QuestionPage';
-import ResultsPage from 'containers/Location/ResultsPage';
+import LocationResultsPage from 'containers/Location/ResultsPage';
+import CheckerQuestionsPage from 'containers/Checker/QuestionsPage';
+import CheckerIntroductionPage from 'containers/Checker/IntroductionPage';
+import CheckerLocationPage from 'containers/Checker/LocationPage';
+import CheckerResultsPage from 'containers/Checker/ResultsPage';
+import CheckerDutiesPage from 'containers/Checker/DutiesPage';
 import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -112,7 +116,23 @@ export const App = props => {
               {/* ROUTES */}
               {TOPIC_EXISTS && ALLOW_CHECKER && (
                 <>
-                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerIntroduction}`} component={QuestionPage} />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerIntroduction}`}
+                    component={CheckerIntroductionPage}
+                  />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`}
+                    component={CheckerLocationPage}
+                  />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`}
+                    component={CheckerQuestionsPage}
+                  />
+                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`} component={CheckerResultsPage} />
+                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerDuties}`} component={CheckerDutiesPage} />
                 </>
               )}
               {TOPIC_EXISTS && (
@@ -123,7 +143,11 @@ export const App = props => {
                     component={LocationIntroductionPage}
                   />
                   <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} component={CheckerPage} />
-                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`} component={ResultsPage} />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`}
+                    component={LocationResultsPage}
+                  />
                 </>
               )}
               <Route exact path="/health" />

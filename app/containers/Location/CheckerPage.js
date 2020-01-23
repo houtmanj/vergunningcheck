@@ -14,6 +14,7 @@ import { REGEX, GET_CURRENT_TOPIC, PAGES, GET_TEXT } from '../../constants';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressResult = styled(`div`)`
+  margin-bottom: 15px;
   padding: 30px;
   background-color: ${themeColor('tint', 'level3')};
 `;
@@ -33,8 +34,8 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     triggerValidation,
   } = useForm({
     defaultValues: {
-      postalCode: addressResults[0]?.postcode,
-      streetNumber: addressResults[0]?.toevoeging,
+      postalCode: addressResults && addressResults[0]?.postcode,
+      streetNumber: addressResults && addressResults[0]?.toevoeging,
     },
   });
 
@@ -119,7 +120,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           onChange={handleChange}
           onBlur={handleBlur}
           label="Postcode"
-          defaultValue={addressResults[0]?.postcode}
+          defaultValue={addressResults && addressResults[0]?.postcode}
           name="postalCode"
           placeholder="bv. 1074VE"
           style={{ marginBottom: '20px' }}
@@ -130,13 +131,12 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           label="Huisnummer"
           onChange={handleChange}
           onBlur={handleBlur}
-          defaultValue={addressResults[0]?.toevoeging}
+          defaultValue={addressResults && addressResults[0]?.toevoeging}
           name="streetNumber"
           placeholder="bv. 1"
           style={{ marginBottom: '20px' }}
           errorMessage={errors?.streetNumber?.message}
         />
-
         {addressResults?.length > 1 && (
           <>
             <Paragraph style={{ marginBottom: '20px' }}>
@@ -165,20 +165,21 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
         )}
 
         {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
-
         {((!loading && addressResults?.length === 1) || suffix) && (
-          <StyledAddressResult>
-            <Paragraph strong style={{ marginBottom: '0px' }}>
-              Dit is het gekozen adres:
-            </Paragraph>
-            <Paragraph gutterBottom={0}>
-              {addressResults[0]?.straatnaam} {suffix || addressResults[0]?.toevoeging}
-              <br />
-              {addressResults[0]?.postcode} {addressResults[0]?.woonplaats}
-            </Paragraph>
-          </StyledAddressResult>
+          <>
+            <StyledAddressResult>
+              <Paragraph strong gutterBottom={8}>
+                Dit is het gevonden adres:
+              </Paragraph>
+              <Paragraph gutterBottom={0}>
+                {addressResults[0]?.straatnaam} {suffix || addressResults[0]?.toevoeging}
+                <br />
+                {addressResults[0]?.postcode} {addressResults[0]?.woonplaats}
+              </Paragraph>
+            </StyledAddressResult>
+            <Paragraph>Klopt dit niet? Wijzig dan postcode of huisnummer.</Paragraph>
+          </>
         )}
-
         <Navigation
           page="location"
           onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`)}
