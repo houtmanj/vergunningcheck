@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@datapunt/asc-core';
 import { Button } from '@datapunt/asc-ui';
 import { ChevronLeft } from '@datapunt/asc-assets';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
+import { CheckerContext } from '../../containers/Checker/CheckerContext';
 
 const NavigationStyle = styled(`div`)`
   display: flex;
@@ -19,11 +20,17 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
   const { trackEvent } = useMatomo();
 
   const handleNextClick = () => {
+    const randomId =
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15);
     trackEvent({ category: page, action: 'form-volgende-knop' });
   };
   const handlePrevClick = e => {
     trackEvent({ category: page, action: 'form-vorige-knop' });
-
     if (onGoToPrev) onGoToPrev(e);
   };
 

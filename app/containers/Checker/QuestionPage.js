@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from '@datapunt/asc-ui';
 import history from 'utils/history';
@@ -7,6 +7,7 @@ import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { GET_CURRENT_TOPIC, PAGES, GET_STTR } from '../../constants';
 import getChecker from '../../shared/services/sttr_client';
+import { CheckerContext } from './CheckerContext';
 
 const Question = ({ loading, sttrFile }) => {
   if (loading) {
@@ -47,6 +48,10 @@ const LocationIntroductionPage = () => {
         onSubmit={e => {
           e.preventDefault();
           history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
+
+          const { stack, newStack } = useContext(CheckerContext);
+          newStack({ randomId: 'sadsadads' });
+          console.log(stack);
         }}
       >
         <pre>{JSON.stringify(sttrFile)}</pre>
