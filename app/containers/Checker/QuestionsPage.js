@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import history from 'utils/history';
@@ -7,6 +7,7 @@ import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { GET_CURRENT_TOPIC, PAGES, GET_STTR } from '../../constants';
 import getChecker from '../../shared/services/sttr_client';
+import { CheckerContext } from './CheckerContext';
 import ListInput from './ListInput';
 
 const booleanOptions = [
@@ -68,6 +69,7 @@ Question.propTypes = {
 
 const QuestionsPage = () => {
   const [loading, setLoading] = useState(false);
+  const { stack, newStack } = useContext(CheckerContext);
   const [checker, updateChecker] = useState([]);
   const [question, setQuestion] = useState('');
   const [currentAnswerValue, setCurrentAnswerValue] = useState(question.answer); // only holds primitive
@@ -98,6 +100,8 @@ const QuestionsPage = () => {
       <Form
         onSubmit={e => {
           e.preventDefault();
+          newStack({ randomId: 'sadsadads' });
+          console.log(stack);
           question.setAnswer(currentAnswerValue);
 
           const next = checker.next();
