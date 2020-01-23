@@ -14,6 +14,7 @@ import { REGEX, GET_CURRENT_TOPIC, PAGES, GET_TEXT } from '../../constants';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressResult = styled(`div`)`
+  margin-bottom: 25px;
   padding: 30px;
   background-color: ${themeColor('tint', 'level3')};
 `;
@@ -33,8 +34,8 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     triggerValidation,
   } = useForm({
     defaultValues: {
-      postalCode: addressResults[0]?.postcode,
-      streetNumber: addressResults[0]?.toevoeging,
+      postalCode: addressResults && addressResults[0]?.postcode,
+      streetNumber: addressResults && addressResults[0]?.toevoeging,
     },
   });
 
@@ -42,17 +43,8 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   const values = getValues();
   const allFieldsFilled = values.postalCode && values.streetNumber && !loading;
 
-  register(
-    { name: 'postalCode' },
-    {
-      required: 'Vul een postcode in',
-      pattern: {
-        value: REGEX.postalCode,
-        message: 'De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.',
-      },
-    },
-  );
-  register({ name: 'streetNumber' }, { required: 'Vul een huisnummer in' });
+  register({ name: 'postalCode' });
+  register({ name: 'streetNumber' });
 
   useEffect(() => {
     if (addressResults?.length > 1) {
@@ -71,19 +63,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   }
 
   const onSubmit = () => {
-    const currentValues = getValues();
-
-    if (addressResults?.length > 1 && !suffix) {
-      // Needs suffix and has no suffix
-      triggerValidation('suffix');
-    }
-
-    if (!loading && (addressResults?.length === 1 || suffix)) {
-      // Form is validated, we can proceed
-      onFetchStreetname(currentValues);
-      onFetchBagData(currentValues);
-      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
-    }
+    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`);
   };
 
   const handleBlur = e => {
@@ -119,7 +99,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           onChange={handleChange}
           onBlur={handleBlur}
           label="Postcode"
-          defaultValue={addressResults[0]?.postcode}
+          defaultValue={addressResults && addressResults[0]?.postcode}
           name="postalCode"
           placeholder="bv. 1074VE"
           style={{ marginBottom: '20px' }}
@@ -130,7 +110,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           label="Huisnummer"
           onChange={handleChange}
           onBlur={handleBlur}
-          defaultValue={addressResults[0]?.toevoeging}
+          defaultValue={addressResults && addressResults[0]?.toevoeging}
           name="streetNumber"
           placeholder="bv. 1"
           style={{ marginBottom: '20px' }}
@@ -179,9 +159,11 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           </StyledAddressResult>
         )}
 
+        <Paragraph strong>Je kan hier ook gewoon verder zonder een adres in te vullen.</Paragraph>
+
         <Navigation
-          page="location"
-          onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`)}
+          page={`checker-${PAGES.checkerLocation}`}
+          onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerIntroduction}`)}
           showPrev
           showNext
         />
