@@ -6,6 +6,7 @@ import { getSttrFile } from 'shared/services/api';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { GET_CURRENT_TOPIC, PAGES, GET_STTR } from '../../constants';
+import getChecker from '../../shared/services/sttr_client';
 
 const Question = ({ loading, sttrFile }) => {
   if (loading) {
@@ -31,7 +32,11 @@ const LocationIntroductionPage = () => {
   useEffect(() => {
     (async function getSttr() {
       setLoading(true);
-      setSttrFile(await getSttrFile(GET_STTR));
+      const config = await getSttrFile(GET_STTR);
+
+      console.log(config);
+      console.log(getChecker(config));
+      setSttrFile(config);
       setLoading(false);
     })();
   }, []);
@@ -44,6 +49,7 @@ const LocationIntroductionPage = () => {
           history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
         }}
       >
+        <pre>{JSON.stringify(sttrFile)}</pre>
         <Question loading={loading} sttrFile={sttrFile} />
         <Navigation page="location-intro" showNext />
       </Form>
