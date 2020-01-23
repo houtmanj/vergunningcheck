@@ -10,7 +10,7 @@ describe('sttr_build parser', () => {
   });
 
   test('description', () => {
-    const xml = fs.readFileSync(path.join(__dirname, '__mocks__', 'good-one.dmn')).toString();
+    const xml = fs.readFileSync(path.join(__dirname, '__mocks__', 'tree-felling.dmn')).toString();
     const config = parser(xml);
     expect(config.questions.UitvId0001.description).toBe(
       'Met een tuin of een erf wordt bedoeld de grond die bij een woning of bedrijf hoort.',
@@ -22,7 +22,6 @@ describe('sttr_build parser', () => {
     const mapping = {
       '"NeemContactOpMet"': 'Uitleg bij Neem Contact Op Met.',
       '"Vergunningplicht"': 'Uitleg bij Vergunningplicht.',
-      // '"Toestemmingsvrij"': "Uitleg bij Toestemmingsvrij." // reported this issue with Jan @ flolegal
     };
     expect(config.decisions.dummy.decisionTable.rules.length).toBe(3);
     config.decisions.dummy.decisionTable.rules.map(rule => expect(rule.description).toBe(mapping[rule.output]));
