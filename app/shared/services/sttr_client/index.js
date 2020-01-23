@@ -27,7 +27,6 @@ function getQuestions(questionConfig) {
  * @returns {Decision[]} an array with Decision objects
  */
 function getDecision(id, decisionConfig, questions) {
-  console.log('getDecision', decisionConfig);
   const { requiredInputs, requiredDecisions, decisionTable } = decisionConfig;
   if (!requiredInputs && !requiredDecisions) {
     throw Error("Either 'requiredInputs' or 'requiredDecisions' are needed");
@@ -37,8 +36,6 @@ function getDecision(id, decisionConfig, questions) {
     (requiredInputs &&
       requiredInputs.map(href => {
         const res = questions.find(q => q.ids.includes(href.replace('#input__', 'uitv__')));
-        // questions.find(q => q.id === href.replace("#input__", "uitv__"))
-        console.log('find question for href', href, 'result', res);
         return res.question;
       })) ||
     requiredDecisions;
