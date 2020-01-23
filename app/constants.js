@@ -109,11 +109,13 @@ export const ALLOW_CHECKER = TOPIC_EXISTS && TOPICS[GET_CURRENT_TOPIC()]?.status
 export const PAGES = {
   intro: 'inleiding',
   locationIntroduction: 'locatie-introductie',
-  checkerIntroduction: 'checker-introductie',
   location: 'locatie',
   locationResult: 'locatie-uitkomst',
-  questions: 'vragen',
-  overview: 'conclusie',
+  checkerIntroduction: 'introductie',
+  checkerLocation: 'locatie',
+  checkerQuestions: 'vragen',
+  checkerResult: 'uitkomsten',
+  checkerDuties: 'plichten',
 };
 
 export const GET_TEXT =
