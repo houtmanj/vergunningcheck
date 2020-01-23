@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Heading } from '@datapunt/asc-ui';
+import { Paragraph } from '@datapunt/asc-ui';
 import history from 'utils/history';
 import { getSttrFile } from 'shared/services/api';
 import Form from 'components/Form/Form';
@@ -16,7 +16,8 @@ const Question = ({ loading, sttrFile }) => {
 
   return (
     <div>
-      <Heading>ID: {sttrFile.id}</Heading>
+      <Paragraph>Deze STTR gaan we nu afspelen: </Paragraph>
+      <Paragraph strong>{sttrFile.id}</Paragraph>
     </div>
   );
 };
@@ -26,7 +27,7 @@ Question.propTypes = {
   sttrFile: PropTypes.any,
 };
 
-const LocationIntroductionPage = () => {
+const QuestionsPage = () => {
   const [loading, setLoading] = useState(false);
   const [sttrFile, setSttrFile] = useState([]);
   const { stack, newStack } = useContext(CheckerContext);
@@ -48,18 +49,23 @@ const LocationIntroductionPage = () => {
       <Form
         onSubmit={e => {
           e.preventDefault();
-          history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
 
           newStack({ randomId: 'sadsadads' });
           console.log(stack);
+          history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`);
         }}
       >
         <pre>{JSON.stringify(sttrFile)}</pre>
         <Question loading={loading} sttrFile={sttrFile} />
-        <Navigation page="location-intro" showNext />
+        <Navigation
+          page={`checker-${PAGES.checkerQuestions}`}
+          onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`)}
+          showPrev
+          showNext
+        />
       </Form>
     </>
   );
 };
 
-export default LocationIntroductionPage;
+export default QuestionsPage;
