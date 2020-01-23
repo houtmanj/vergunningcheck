@@ -29,6 +29,7 @@ Question.propTypes = {
 const LocationIntroductionPage = () => {
   const [loading, setLoading] = useState(false);
   const [sttrFile, setSttrFile] = useState([]);
+  const { stack, newStack } = useContext(CheckerContext);
 
   useEffect(() => {
     (async function getSttr() {
@@ -49,7 +50,6 @@ const LocationIntroductionPage = () => {
           e.preventDefault();
           history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`);
 
-          const { stack, newStack } = useContext(CheckerContext);
           newStack({ randomId: 'sadsadads' });
           console.log(stack);
         }}

@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-let reducer = (stack, newStack) => {
+const reducer = (stack, newStack) => {
   if (newStack === null) {
     localStorage.removeItem('stack');
     return [];
@@ -21,5 +22,9 @@ function CheckerProvider(props) {
 
   return <CheckerContext.Provider value={{ stack, newStack }}>{props.children}</CheckerContext.Provider>;
 }
+
+CheckerProvider.propTypes = {
+  children: PropTypes.node,
+};
 
 export { CheckerContext, CheckerProvider };
