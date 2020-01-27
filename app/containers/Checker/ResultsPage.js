@@ -4,9 +4,9 @@ import { Paragraph } from '@datapunt/asc-ui';
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
+import styled from '@datapunt/asc-core';
 import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
 import { CheckerContext } from './CheckerContext';
-import styled from '@datapunt/asc-core';
 
 const Wrapper = styled(`div`)`
   display: flex;
@@ -29,7 +29,6 @@ const Change = styled(`div`)`
 `;
 const ResultsPage = () => {
   const { checker } = useContext(CheckerContext);
-  console.log(checker);
   return (
     <Form
       onSubmit={e => {
