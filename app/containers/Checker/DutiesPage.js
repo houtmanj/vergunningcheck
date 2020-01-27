@@ -14,6 +14,7 @@ const DutiesPage = () => (
   >
     <Paragraph strong>Dit is de plichten pagina</Paragraph>
     <Paragraph style={{ marginBottom: '0px' }}>Klaar ben je</Paragraph>
+
     <Navigation
       page={`checker-${PAGES.checkerDuties}`}
       onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`)}
