@@ -69,8 +69,7 @@ Question.propTypes = {
 
 const QuestionsPage = () => {
   const [loading, setLoading] = useState(false);
-  const { stack, newStack } = useContext(CheckerContext);
-  const [checker, updateChecker] = useState([]);
+  const { checker, updateChecker } = useContext(CheckerContext);
   const [question, setQuestion] = useState('');
   const [currentAnswerValue, setCurrentAnswerValue] = useState(question.answer); // only holds primitive
 
@@ -100,8 +99,6 @@ const QuestionsPage = () => {
       <Form
         onSubmit={e => {
           e.preventDefault();
-          newStack({ randomId: 'sadsadads' });
-          console.log(stack);
           question.setAnswer(currentAnswerValue);
 
           const next = checker.next();
