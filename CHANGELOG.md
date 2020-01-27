@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.5...v0.1.6) (2020-01-27)
+
+
+### Features
+
+- Disallow all robots to our app ([674dbb7](https://github.com/Amsterdam/Vergunningschecker/commit/674dbb781401584f23706c137c0b92f308d8916c))
+
 ### [0.1.5](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.4...v0.1.5) (2020-01-22)
 
 
