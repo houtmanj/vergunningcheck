@@ -4,12 +4,11 @@ import { getSttrFile } from 'shared/services/api';
 import Question from './Question';
 import getChecker from '../../shared/services/sttr_client';
 import { GET_CURRENT_TOPIC, PAGES, GET_STTR } from '../../constants';
-// import { CheckerContext } from './CheckerContext';
+import { CheckerContext } from './CheckerContext';
 
 const QuestionsPage = () => {
   const [loading, setLoading] = useState(false);
-  // const { stack, newStack } = useContext(CheckerContext);
-  const [checker, updateChecker] = useState([]);
+  const { checker, updateChecker } = useContext(CheckerContext);
   const [question, setQuestion] = useState('');
 
   useEffect(() => {
