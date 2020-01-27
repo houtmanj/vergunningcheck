@@ -17,6 +17,7 @@ import { MATOMO_CONFIG } from './constants';
 import configureStore from './configureStore';
 // Load the favicon and the .htaccess fil
 import '!file-loader?name=[name].[ext]!./images/favicon.png';
+import '!file-loader?name=[name].[ext]!./robots.txt';
 import 'file-loader?name=.htaccess!./.htaccess'; // eslint-disable-line import/extensions
 
 // Set Matomo tracker from @datapunt
