@@ -61,7 +61,10 @@ const ResultsPage = () => {
             </p>
           </Question>
           <UserAnswer>
-            {question.answer === 'yes' ? 'ja' : 'nee'} -<button onClick={() => onGoToQuestion(index)}> bewerken</button>
+            {question.answer === 'yes' ? 'ja' : 'nee'} -
+            <button onClick={() => onGoToQuestion(index)} type="button">
+              bewerken
+            </button>
           </UserAnswer>
         </Wrapper>
       ))}
