@@ -120,3 +120,35 @@ if (BRANCH == "develop") {
         }
     }
 }
+
+if (BRANCH == "feature/sttr-checker") {
+
+    node {
+        stage('Push sttr-checker image') {
+            def sttrKey = input(
+                id: 'sttrKey', message: 'sttr key please...', parameters: [
+                    [$class: 'TextParameterDefinition', defaultValue='mb', description: 'vbn', name: 'thakey']
+                ]
+            )
+            echo ("The key is: " + sttrKey)
+
+            tryStep "image tagging", {
+                def image = docker.image("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}")
+                image.pull()
+                image.push("sttr-checker")
+            }
+        }
+    }
+
+    // node {
+    //     stage("Deploy to ACC") {
+    //         tryStep "deployment", {
+    //             build job: 'Subtask_Openstack_Playbook',
+    //             parameters: [
+    //                 [$class: 'StringParameterValue', name: 'INVENTORY', value: 'sttr-checker'],
+    //                 [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-vergunningschecker.yml'],
+    //             ]
+    //         }
+    //     }
+    // }
+}

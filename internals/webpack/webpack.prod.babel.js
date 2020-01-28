@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const OfflinePlugin = require('offline-plugin');
 const RemoveServiceWorkerPlugin = require('webpack-remove-serviceworker-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = require('./webpack.base.babel')({
@@ -20,26 +20,33 @@ module.exports = require('./webpack.base.babel')({
   },
 
   optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          warnings: false,
-          compress: {
-            comparisons: false,
-          },
-          parse: {},
-          mangle: true,
-          output: {
-            comments: false,
-            ascii_only: true,
-          },
-        },
-        parallel: true,
-        cache: true,
-        sourceMap: true,
-      }),
-    ],
+    minimize: false,
+
+    // @TODO: Need to fix the minimizer!
+
+    // minimizer: [
+    //   new TerserPlugin({
+    //     terserOptions: {
+    //       keep_classnames: true,
+    //       warnings: false,
+    //       compress: {
+    //         comparisons: false,
+    //       },
+    //       parse: {},
+    //       // mangle: true,
+    //       mangle: {
+    //         keep_classnames: true,
+    //       },
+    //       output: {
+    //         comments: false,
+    //         ascii_only: true,
+    //       },
+    //     },
+    //     parallel: true,
+    //     cache: true,
+    //     sourceMap: true,
+    //   }),
+    // ],
     usedExports: true,
     nodeEnv: 'production',
     sideEffects: false,
