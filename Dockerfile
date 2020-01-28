@@ -34,7 +34,7 @@ COPY . /deploy/
 ENV NODE_PATH=/deploy/
 ENV NODE_ENV=production
 
-# RUN npm run build
+RUN npm run build
 RUN STTR_BUILDER_API_KEY=$STTR_BUILDER_API_KEY npm run build:sttr
 
 RUN mkdir -p build/shared/content/sttr
