@@ -121,7 +121,8 @@ if (BRANCH == "develop") {
     }
 }
 
-if (BRANCH == "feature/sttr-checker") {
+// if (BRANCH == "feature/sttr-checker") {
+if (BRANCH == "feature/ready-for-acc") {
 
     node {
         stage('Push sttr-checker image') {
