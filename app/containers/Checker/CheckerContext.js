@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, createContext } from 'react';
 import PropTypes from 'prop-types';
 
 const reducer = (checker, updateChecker) => {
@@ -8,7 +8,7 @@ const reducer = (checker, updateChecker) => {
   return updateChecker;
 };
 
-const CheckerContext = React.createContext([]);
+const CheckerContext = createContext([]);
 
 function CheckerProvider(props) {
   const [checker, updateChecker] = useReducer(reducer, []);
