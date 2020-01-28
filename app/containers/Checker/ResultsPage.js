@@ -29,6 +29,12 @@ const Change = styled(`div`)`
 `;
 const ResultsPage = () => {
   const { checker } = useContext(CheckerContext);
+
+  const onGoToQuestion = index => {
+    checker.rewindTo(index - 1);
+    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`);
+  };
+
   return (
     <Form
       onSubmit={e => {
@@ -55,21 +61,16 @@ const ResultsPage = () => {
             </p>
           </Question>
           <UserAnswer>
-            {question.answer}
-            <p>
-              <em>{question.answer}</em>
-            </p>
-          </UserAnswer>
-          <Change>
-            <button type="button" href="#">
-              Wijzig
+            {question.answer === 'yes' ? 'ja' : 'nee'} -
+            <button onClick={() => onGoToQuestion(index)} type="button">
+              bewerken
             </button>
-          </Change>
+          </UserAnswer>
         </Wrapper>
       ))}
       <Navigation
         page={`checker-${PAGES.checkerResult}`}
-        onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`)}
+        onGoToPrev={() => onGoToQuestion(checker.stack.length - 1)}
         showPrev
         showNext
       />

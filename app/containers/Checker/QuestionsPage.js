@@ -13,15 +13,20 @@ const QuestionsPage = () => {
 
   useEffect(() => {
     (async function getSttr() {
-      setLoading(true);
+      if (checker.stack) {
+        const currentQuestion = checker.next();
+        setQuestion(currentQuestion);
+      } else {
+        setLoading(true);
 
-      const config = await getSttrFile(GET_STTR);
-      const initChecker = getChecker(config);
-      const firstQuestion = initChecker.next();
+        const config = await getSttrFile(GET_STTR);
+        const initChecker = getChecker(config);
+        const firstQuestion = initChecker.next();
 
-      updateChecker(initChecker);
-      setQuestion(firstQuestion);
-      setLoading(false);
+        updateChecker(initChecker);
+        setQuestion(firstQuestion);
+        setLoading(false);
+      }
     })();
   }, []);
 
@@ -36,6 +41,7 @@ const QuestionsPage = () => {
     question.setAnswer(value);
 
     const next = checker.next();
+
     if (!next) {
       // Go to Result page
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`);
