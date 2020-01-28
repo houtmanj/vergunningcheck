@@ -127,7 +127,7 @@ if (BRANCH == "feature/sttr-checker") {
         stage('Push sttr-checker image') {
             def sttrKey = input(
                 id: 'sttrKey', message: 'sttr key please...', parameters: [
-                    [$class: 'TextParameterDefinition', defaultValue='mb', description: 'vbn', name: 'thakey']
+                    [$class: 'TextParameterDefinition', defaultValue: 'mb', description: 'vbn', name: 'thakey']
                 ]
             )
             echo ("The key is: " + sttrKey)
