@@ -28,6 +28,15 @@ node {
 //     }
 // }
 
+
+
+stage('Waiting for approval') {
+    slackSend channel: '#ci-channel', color: 'warning', message: 'vergunningschecker is waiting for Production Release - please confirm'
+    timeout(10) {
+        input "Deploy to Production?"
+    }
+}
+
 node {
     stage("Build acceptance image") {
         def sttrKey = input(
@@ -140,12 +149,6 @@ if (BRANCH == "feature/ready-for-acc") {
 
     node {
         stage('Push sttr-checker image') {
-            def sttrKey = input(
-                id: 'sttrKey', message: 'sttr key please...', parameters: [
-                    [$class: 'TextParameterDefinition', defaultValue: 'mb', description: 'vbn', name: 'thakey']
-                ]
-            )
-            echo ("The key is: " + sttrKey)
 
             tryStep "image tagging", {
                 def image = docker.image("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}")
