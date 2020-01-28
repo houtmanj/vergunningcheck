@@ -22,11 +22,25 @@ node {
     }
 }
 
+// node {
+//     stage('Prompt for Key') {
+        
+//     }
+// }
+
 node {
     stage("Build acceptance image") {
+        def sttrKey = input(
+            id: 'sttrKey', message: 'sttr key please...', parameters: [
+                [$class: 'TextParameterDefinition', defaultValue: 'mb', description: 'vbn', name: 'thakey']
+            ]
+        )
+        echo ("The key is: " + sttrKey)
+        
         tryStep "build", {
             def image = docker.build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}",
                 "--shm-size 1G " +
+                "--build-arg STTR_BUILDER_API_KEY=${sttrKey} " +
                 "--build-arg BUILD_ENV=acc " +
                 "--build-arg BUILD_NUMBER=${env.BUILD_NUMBER} " +
                 ". ")
