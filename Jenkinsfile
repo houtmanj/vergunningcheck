@@ -22,21 +22,6 @@ node {
     }
 }
 
-// node {
-//     stage('Prompt for Key') {
-        
-//     }
-// }
-
-
-
-stage('Waiting for approval') {
-    slackSend channel: '#ci-channel', color: 'warning', message: 'vergunningschecker is waiting for Production Release - please confirm'
-    timeout(10) {
-        input "Deploy to Production?"
-    }
-}
-
 node {
     stage("Build acceptance image") {
         def sttrKey = input(
