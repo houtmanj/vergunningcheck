@@ -131,12 +131,10 @@ if (BRANCH == "develop") {
     }
 }
 
-// if (BRANCH == "feature/sttr-checker") {
-if (BRANCH == "feature/ready-for-acc") {
-
+if (BRANCH == "feature/sttr-checker") {
+    
     node {
         stage('Push sttr-checker image') {
-
             tryStep "image tagging", {
                 def image = docker.image("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}")
                 image.pull()
