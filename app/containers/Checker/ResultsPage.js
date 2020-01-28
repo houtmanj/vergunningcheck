@@ -61,11 +61,7 @@ const ResultsPage = () => {
             </p>
           </Question>
           <UserAnswer>
-            {question.answer === 'yes' ? 'ja' : 'nee'} -
-            <a href="#" onClick={() => onGoToQuestion(index)}>
-              {' '}
-              bewerken
-            </a>
+            {question.answer === 'yes' ? 'ja' : 'nee'} -<button onClick={() => onGoToQuestion(index)}> bewerken</button>
           </UserAnswer>
         </Wrapper>
       ))}
