@@ -24,21 +24,23 @@ node {
 
 node {
     stage("Build acceptance image") {
-        def sttrKey = input(
-            id: 'sttrKey', message: 'sttr key please...', parameters: [
-                [$class: 'TextParameterDefinition', defaultValue: 'mb', description: 'vbn', name: 'thakey']
-            ]
-        )
-        echo ("The key is: " + sttrKey)
-        
-        tryStep "build", {
-            def image = docker.build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}",
-                "--shm-size 1G " +
-                "--build-arg STTR_BUILDER_API_KEY=${sttrKey} " +
-                "--build-arg BUILD_ENV=acc " +
-                "--build-arg BUILD_NUMBER=${env.BUILD_NUMBER} " +
-                ". ")
-            image.push()
+        timeout(10) {
+            def sttrKey = input(
+                id: 'sttrKey', message: 'sttr key please...', parameters: [
+                    [$class: 'TextParameterDefinition', defaultValue: 'mb', description: 'vbn', name: 'thakey']
+                ]
+            )
+            echo ("The key is: " + sttrKey)
+            
+            tryStep "build", {
+                def image = docker.build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}",
+                    "--shm-size 1G " +
+                    "--build-arg STTR_BUILDER_API_KEY=${sttrKey} " +
+                    "--build-arg BUILD_ENV=acc " +
+                    "--build-arg BUILD_NUMBER=${env.BUILD_NUMBER} " +
+                    ". ")
+                image.push()
+            }
         }
     }
 }
@@ -138,20 +140,20 @@ if (BRANCH == "feature/ready-for-acc") {
             tryStep "image tagging", {
                 def image = docker.image("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}")
                 image.pull()
-                image.push("sttr-checker")
+                image.push("acceptance")
             }
         }
     }
 
-    // node {
-    //     stage("Deploy to ACC") {
-    //         tryStep "deployment", {
-    //             build job: 'Subtask_Openstack_Playbook',
-    //             parameters: [
-    //                 [$class: 'StringParameterValue', name: 'INVENTORY', value: 'sttr-checker'],
-    //                 [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-vergunningschecker.yml'],
-    //             ]
-    //         }
-    //     }
-    // }
+    node {
+        stage("Deploy to ACC") {
+            tryStep "deployment", {
+                build job: 'Subtask_Openstack_Playbook',
+                parameters: [
+                    [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
+                    [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-vergunningschecker.yml'],
+                ]
+            }
+        }
+    }
 }
