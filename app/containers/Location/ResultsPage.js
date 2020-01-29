@@ -17,6 +17,9 @@ const StyledAddressResult = styled(`div`)`
 `;
 
 const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults }) => {
+  console.log(' : LocationResultsPage -> addressResults', addressResults);
+  console.log(' : LocationResultsPage -> bagLoading', bagLoading);
+  console.log(' : LocationResultsPage -> addressResultsLoading', addressResultsLoading);
   const loading = addressResultsLoading || bagLoading;
 
   if (!loading && (!addressResults || addressResults?.length !== 1)) {
@@ -91,6 +94,7 @@ LocationResultsPage.propTypes = {
 };
 
 const mapStateToProps = state => {
+  console.log(' : state', state.locationData);
   const { addressResultsLoading, addressResults, bagLoading } = state.locationData;
   return {
     addressResultsLoading,
