@@ -4,6 +4,7 @@ import styled from '@datapunt/asc-core';
 import { Button } from '@datapunt/asc-ui';
 import { ChevronLeft } from '@datapunt/asc-assets';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
+import { GET_CURRENT_TOPIC } from '../../constants';
 
 const NavigationStyle = styled(`div`)`
   display: flex;
@@ -19,10 +20,10 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
   const { trackEvent } = useMatomo();
 
   const handleNextClick = () => {
-    trackEvent({ category: page, action: 'form-volgende-knop' });
+    trackEvent({ category: page, action: 'form-volgende-knop', GET_CURRENT_TOPIC });
   };
   const handlePrevClick = e => {
-    trackEvent({ category: page, action: 'form-vorige-knop' });
+    trackEvent({ category: page, action: 'form-vorige-knop', GET_CURRENT_TOPIC });
 
     if (onGoToPrev) onGoToPrev(e);
   };
