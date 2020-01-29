@@ -20,10 +20,10 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
   const { trackEvent } = useMatomo();
 
   const handleNextClick = () => {
-    trackEvent({ category: page, action: 'form-volgende-knop', GET_CURRENT_TOPIC });
+    trackEvent({ category: page, action: 'form-volgende-knop', name: GET_CURRENT_TOPIC() });
   };
   const handlePrevClick = e => {
-    trackEvent({ category: page, action: 'form-vorige-knop', GET_CURRENT_TOPIC });
+    trackEvent({ category: page, action: 'form-vorige-knop', name: GET_CURRENT_TOPIC() });
 
     if (onGoToPrev) onGoToPrev(e);
   };
