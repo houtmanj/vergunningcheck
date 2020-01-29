@@ -4,25 +4,26 @@ import styled from '@datapunt/asc-core';
 import { Button } from '@datapunt/asc-ui';
 import { ChevronLeft } from '@datapunt/asc-assets';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
+import { GET_CURRENT_TOPIC } from '../../constants';
 
 const NavigationStyle = styled(`div`)`
   display: flex;
   height: 64px;
-  margin: 20px 0;
+  margin: 20px 0 40px;
   background-color: rgba(241, 241, 241, 1);
   justify-content: space-between;
   align-items: center;
   flex-direction: row-reverse;
 `;
 
-const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextText }) => {
+const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextText, formEnds }) => {
   const { trackEvent } = useMatomo();
 
   const handleNextClick = () => {
-    trackEvent({ category: page, action: 'form-volgende-knop' });
+    trackEvent({ category: page, action: 'form-volgende-knop', GET_CURRENT_TOPIC });
   };
   const handlePrevClick = e => {
-    trackEvent({ category: page, action: 'form-vorige-knop' });
+    trackEvent({ category: page, action: 'form-vorige-knop', GET_CURRENT_TOPIC });
 
     if (onGoToPrev) onGoToPrev(e);
   };
@@ -31,7 +32,14 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
     <NavigationStyle>
       <div>
         {showNext && (
-          <Button type="submit" variant="secondary" disabled={disableNext} onClick={handleNextClick} taskflow>
+          <Button
+            type="submit"
+            variant="secondary"
+            disabled={disableNext}
+            onClick={handleNextClick}
+            taskflow={!formEnds}
+            style={{ marginRight: formEnds ? 10 : 25 }}
+          >
             {nextText}
           </Button>
         )}
@@ -57,6 +65,7 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
 Navigation.defaultProps = {
   page: 'undefined-page',
   nextText: 'Volgende',
+  formEnds: false,
 };
 
 Navigation.propTypes = {
@@ -65,6 +74,7 @@ Navigation.propTypes = {
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
   nextText: PropTypes.string,
+  formEnds: PropTypes.bool,
   disableNext: PropTypes.bool,
 };
 

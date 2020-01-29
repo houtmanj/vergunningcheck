@@ -1,4 +1,4 @@
-FROM node:10.15-stretch AS builder
+FROM node:11.10-stretch AS builder
 LABEL maintainer="datapunt@amsterdam.nl"
 
 ARG BUILD_ENV=prod
@@ -8,10 +8,10 @@ WORKDIR /deploy
 
 # Run updates and cleanup
 RUN apt-get update && \
-    apt-get install -y \
-      netcat \
-      git && \
-    rm -rf /var/lib/apt/lists/*
+  apt-get install -y \
+  netcat \
+  git && \
+  rm -rf /var/lib/apt/lists/*
 
 #  Changing git URL because network is blocking git protocol...
 RUN git config --global url."https://".insteadOf git://
@@ -21,10 +21,10 @@ COPY package.json yarn.lock /deploy/
 COPY internals /deploy/internals/
 
 RUN npm --production=false \
-        --unsafe-perm \
-        --verbose \
-        install && \
-    npm cache clean --force
+  --unsafe-perm \
+  --verbose \
+  install && \
+  npm cache clean --force
 
 # Build dependencies
 COPY . /deploy/
@@ -44,4 +44,4 @@ COPY default.conf /etc/nginx/conf.d/
 
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-	&& ln -sf /dev/stderr /var/log/nginx/error.log
+  && ln -sf /dev/stderr /var/log/nginx/error.log

@@ -6,7 +6,7 @@ const prettierOptions = JSON.parse(fs.readFileSync(path.resolve(__dirname, '.pre
 module.exports = {
   parser: 'babel-eslint',
   extends: ['airbnb', 'prettier', 'prettier/react'],
-  plugins: ['prettier', 'redux-saga', 'react', 'react-hooks', 'jsx-a11y'],
+  plugins: ['prettier', 'redux-saga', 'react', 'react-hooks', 'jsx-a11y', 'jsdoc'],
   env: {
     jest: true,
     browser: true,
@@ -58,7 +58,7 @@ module.exports = {
     'newline-per-chained-call': 0,
     'no-confusing-arrow': 0,
     'no-console': 1,
-    'no-unused-vars': 2,
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'no-use-before-define': 0,
     'prefer-template': 2,
     'react/destructuring-assignment': 0,
@@ -78,6 +78,37 @@ module.exports = {
     'redux-saga/yield-effects': 2,
     'require-yield': 0,
   },
+  overrides: [
+    {
+      files: ['**/sttr_client/**/*.js'],
+      rules: {
+        'no-underscore-dangle': 0,
+      },
+    },
+    {
+      files: ['**/sttr_client/**/*.js', 'sttr_build/**/*.js'],
+      rules: {
+        'no-warning-comments': 1,
+        'jsdoc/check-alignment': 1,
+        'jsdoc/check-param-names': 1,
+        'jsdoc/check-tag-names': 1,
+        'jsdoc/check-types': 1,
+        'jsdoc/implements-on-classes': 1,
+        'jsdoc/newline-after-description': 1,
+        'jsdoc/no-undefined-types': 1,
+        'jsdoc/require-jsdoc': [1, { require: { ClassDeclaration: true, MethodDefinition: true } }],
+        'jsdoc/require-param': 1,
+        'jsdoc/require-param-description': 1,
+        'jsdoc/require-param-name': 1,
+        'jsdoc/require-param-type': 1,
+        'jsdoc/require-returns': 1,
+        'jsdoc/require-returns-check': 1,
+        'jsdoc/require-returns-description': 1,
+        'jsdoc/require-returns-type': 1,
+        'jsdoc/valid-types': 1,
+      },
+    },
+  ],
   settings: {
     'import/resolver': {
       webpack: {

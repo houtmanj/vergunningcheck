@@ -45,6 +45,7 @@ export const mapDispatchToProps = dispatch =>
     },
     dispatch,
   );
+
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(GlobalError);
