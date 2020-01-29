@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.7...v0.1.8) (2020-01-29)
+
+
+### Bug Fixes
+
+- Properly added name param to trackEvent ([b439c0b](https://github.com/Amsterdam/Vergunningschecker/commit/b439c0b9ee1840b0b0303d1a7e40facce295fb5c))
+
 ### [0.1.7](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.6...v0.1.7) (2020-01-29)
 
 
