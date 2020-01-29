@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.7...v0.1.8) (2020-01-29)
+
+
+### Bug Fixes
+
+* removed package lock ([fd8d267](https://github.com/Amsterdam/Vergunningschecker/commit/fd8d2676252de8829a769af2509bf19d27fdb4c4))
+* typo in function declaration ([b8160a4](https://github.com/Amsterdam/Vergunningschecker/commit/b8160a4319c05c62a9226fd99a180cf70b56ce55))
+
 ### [0.1.7](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.6...v0.1.7) (2020-01-29)
 
 
