@@ -28,7 +28,7 @@ const TOPICS = {
     text: {
       heading: 'Vergunningchecker aanbouw of uitbouw maken',
       topic: 'een aanbouw of een uitbouw te maken',
-      topicLocation: 'de aanbouw of uitbouw wil gaan maken',
+      topicLocation: 'de aanbouw of uitbouw wilt gaan maken',
     },
   },
   'dakkapel-plaatsen': {
@@ -36,7 +36,7 @@ const TOPICS = {
     text: {
       heading: 'Vergunningchecker dakkapel plaatsen',
       topic: 'een dakkapel te plaatsen',
-      topicLocation: 'de dakkapel wil gaan plaatsen',
+      topicLocation: 'de dakkapel wilt gaan plaatsen',
     },
   },
   'dakraam-plaatsen': {
@@ -44,7 +44,7 @@ const TOPICS = {
     text: {
       heading: 'Vergunningchecker dakraam plaatsen',
       topic: 'een dakraam te plaatsen',
-      topicLocation: 'het dakraam wil gaan plaatsen',
+      topicLocation: 'het dakraam wilt gaan plaatsen',
     },
   },
   'kozijnen-plaatsen-of-vervangen': {
@@ -52,7 +52,7 @@ const TOPICS = {
     text: {
       heading: 'Vergunningchecker kozijnen plaatsen of vervangen',
       topic: 'kozijnen te plaatsen of te vervangen',
-      topicLocation: 'de kozijnen wil gaan plaatsen of vervangen',
+      topicLocation: 'de kozijnen wilt gaan plaatsen of vervangen',
     },
   },
   'zonnepanelen-of-warmtecollectoren-plaatsen': {
@@ -60,7 +60,7 @@ const TOPICS = {
     text: {
       heading: 'Vergunningchecker zonnepanelen of warmtecollectoren plaatsen',
       topic: 'zonnepanelen of warmtecollectoren te plaatsen',
-      topicLocation: 'de zonnepanelen of warmtecollectoren wil gaan plaatsen',
+      topicLocation: 'de zonnepanelen of warmtecollectoren wilt gaan plaatsen',
     },
   },
   'bouwwerk-slopen': {
@@ -68,7 +68,7 @@ const TOPICS = {
     text: {
       heading: 'Vergunningchecker bouwwerk slopen',
       topic: 'een bouwwerk te slopen,',
-      topicLocation: 'het bouwwerk wil gaan slopen',
+      topicLocation: 'het bouwwerk wilt gaan slopen',
     },
   },
   'intern-verbouwen': {
@@ -76,7 +76,7 @@ const TOPICS = {
     text: {
       heading: 'Intern verbouwen',
       topic: 'intern te verbouwen',
-      topicLocation: 'intern wil gaan verbouwen',
+      topicLocation: 'intern wilt gaan verbouwen',
     },
   },
   '404': {
