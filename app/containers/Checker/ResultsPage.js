@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Paragraph } from '@datapunt/asc-ui';
+import { Paragraph, Link } from '@datapunt/asc-ui';
 
 import history from 'utils/history';
 import Form from 'components/Form/Form';
@@ -52,20 +52,11 @@ const ResultsPage = () => {
 
       {checker?.stack?.map((question, index) => (
         <Wrapper key={question.id}>
-          <Question>
-            {question.text}
-            <br />
-            {question?.description}
-            <p>
-              <em>{index + 1}:</em>
-            </p>
-          </Question>
-          <UserAnswer>
-            {question.answer === 'yes' ? 'ja' : 'nee'} -
-            <button onClick={() => onGoToQuestion(index)} type="button">
-              bewerken
-            </button>
-          </UserAnswer>
+          <Question>{question.text}</Question>
+          <UserAnswer>{question.answer === 'yes' ? 'ja' : 'nee'}</UserAnswer>
+          <Link onClick={() => onGoToQuestion(index)} type="button" variant="inline">
+            bewerken
+          </Link>
         </Wrapper>
       ))}
       <Navigation
