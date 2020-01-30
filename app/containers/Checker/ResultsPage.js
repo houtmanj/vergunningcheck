@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Paragraph, Link } from '@datapunt/asc-ui';
+import { Paragraph, Button } from '@datapunt/asc-ui';
 
 import history from 'utils/history';
 import Form from 'components/Form/Form';
@@ -54,9 +54,9 @@ const ResultsPage = () => {
         <Wrapper key={question.id}>
           <Question>{question.text}</Question>
           <UserAnswer>{question.answer === 'yes' ? 'ja' : 'nee'}</UserAnswer>
-          <Link onClick={() => onGoToQuestion(index)} variant="inline">
+          <Button onClick={() => onGoToQuestion(index)} variant="textButton">
             bewerken
-          </Link>
+          </Button>
         </Wrapper>
       ))}
       <Navigation
