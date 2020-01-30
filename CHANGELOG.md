@@ -11,7 +11,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 - disable duplicate fetches [#170](https://github.com/Amsterdam/Vergunningschecker/issues/170) ([118cf5b](https://github.com/Amsterdam/Vergunningschecker/commit/118cf5b0f11c738cbd2cb10d18161571e85e6a33))
-- Properly added name param to trackEvent ([b439c0b](https://github.com/Amsterdam/Vergunningschecker/commit/b439c0b9ee1840b0b0303d1a7e40facce295fb5c))
 - removed package lock ([fd8d267](https://github.com/Amsterdam/Vergunningschecker/commit/fd8d2676252de8829a769af2509bf19d27fdb4c4))
 
 ### [0.1.8](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.7...v0.1.8) (2020-01-29)
