@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Paragraph, themeColor } from '@datapunt/asc-ui';
+import { Paragraph, Link } from '@datapunt/asc-ui';
+
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
@@ -20,15 +21,6 @@ const MainWrapper = styled(Wrapper)`
 const Question = styled(`div`)`
   width: 60%;
 `;
-const Link = styled(`a`)`
-  display: inline-block;
-  text-decoration: underline;
-  color: ${themeColor('primary')};
-  &:hover {
-    color: ${themeColor('secondary')};
-  }
-`;
-
 const UserAnswer = styled(`div`)`
   width: 100px;
 `;
