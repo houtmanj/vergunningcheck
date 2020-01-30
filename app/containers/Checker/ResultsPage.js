@@ -54,7 +54,7 @@ const ResultsPage = () => {
         <Wrapper key={question.id}>
           <Question>{question.text}</Question>
           <UserAnswer>{question.answer === 'yes' ? 'ja' : 'nee'}</UserAnswer>
-          <Link onClick={() => onGoToQuestion(index)} variant="inline">
+          <Link onClick={() => onGoToQuestion(index)} href="#" variant="inline">
             bewerken
           </Link>
         </Wrapper>
