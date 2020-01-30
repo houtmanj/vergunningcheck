@@ -44,8 +44,7 @@ const TOPICS = {
   },
   'dakkapel-plaatsen': {
     status: STATUS.LIVE,
-    // Need to change this path!
-    sttrPath: '/shared/content/sttr/AanOfUitbouwBouwen.json',
+    sttrPath: '/shared/content/sttr/DakkapelBouwen.json',
     text: {
       heading: 'Vergunningchecker dakkapel plaatsen',
       topic: 'een dakkapel te plaatsen',
