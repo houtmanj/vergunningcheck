@@ -81,8 +81,12 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
     if (!loading && (addressResults?.length === 1 || suffix)) {
       // Form is validated, we can proceed
-      onFetchStreetname(currentValues);
-      onFetchBagData(currentValues);
+
+      if (suffix) {
+        onFetchStreetname(currentValues);
+        onFetchBagData(currentValues);
+      }
+
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
     }
   };
@@ -150,7 +154,6 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
                 setSuffix(e.target.value);
                 setValue(e.target.name, e.target.value);
                 setValue('streetNumber', e.target.value);
-                onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
               style={{ marginBottom: '20px' }}
             >
