@@ -43,7 +43,8 @@ const TOPICS = {
     },
   },
   'dakkapel-plaatsen': {
-    status: STATUS.PRE_LIVE,
+    status: STATUS.LIVE,
+    sttrPath: '/shared/content/sttr/DakkapelBouwen.json',
     text: {
       heading: 'Vergunningchecker dakkapel plaatsen',
       topic: 'een dakkapel te plaatsen',
