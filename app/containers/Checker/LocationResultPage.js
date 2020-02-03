@@ -8,7 +8,7 @@ import history from 'utils/history';
 import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { GET_CURRENT_TOPIC, PAGES, EXTERNAL_URLS } from '../../constants';
+import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
 
 const StyledAddressResult = styled(`div`)`
   margin-bottom: 24px;
