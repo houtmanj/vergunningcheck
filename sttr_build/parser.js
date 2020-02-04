@@ -113,9 +113,10 @@ class Parser {
     return questions.reduce((acc, curr) => {
       let result;
       if (curr['uitv:geoVerwijzing']) {
-        const q = curr['uitv:geoVerwijzing'][0];
+        const question = curr['uitv:geoVerwijzing'][0];
         result = {
-          identification: q['uitv:locatie'][0]['@_identificatie'],
+          identification: question['uitv:locatie'][0]['@_identificatie'],
+          text: question['uitv:vraagTekst'],
           type: 'geo',
         };
       } else {
