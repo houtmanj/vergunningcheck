@@ -40,12 +40,10 @@ const ResultsPage = () => {
     const conclusion = permit.getDecisionById('dummy');
     if (conclusion.getOutput() === '"Vergunningplicht"') {
       const decisiveDecisions = conclusion.getDecisiveInputs();
-      console.log(decisiveDecisions);
       decisiveDecisions.flatMap(decision => {
-        console.log(decision);
         decision.getDecisiveInputs().map(input => {
-          const index = checker.stack.indexOf(input);
-          return (permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(permit));
+          const index = stack.indexOf(input);
+          permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(permit);
         });
       });
     }
