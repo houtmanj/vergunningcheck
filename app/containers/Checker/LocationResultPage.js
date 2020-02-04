@@ -50,8 +50,6 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
           <LocationData />
         </StyledAddressResult>
 
-        <Paragraph>U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.</Paragraph>
-
         <Navigation
           page="location-results"
           onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.location}`)}
