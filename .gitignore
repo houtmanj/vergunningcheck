@@ -9,6 +9,7 @@ stats.json
 npm-debug.log
 .idea
 yarn-error.log
+.ackrc
 
 #Content / static
 app/shared/content/sttr/
