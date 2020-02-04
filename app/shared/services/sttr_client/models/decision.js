@@ -40,7 +40,7 @@ class Decision {
   }
 
   get answer() {
-    const matchingRule = this.getMatchingRule();
+    const matchingRule = this.getMatchingRules();
     // debug(`Get answer for decision based on underlying rules.`, this, matchingRule);
     return matchingRule ? matchingRule.outputValue : null;
   }
@@ -54,9 +54,15 @@ class Decision {
     // Find the values for our inputs
     // debug('getMatchingRules with this._inputs: ', this._inputs);
 
-    const values = this._inputs.map(({ answer }) => answer);
+    const values = this._inputs.map(({ answer }) => {
+      console.log(answer);
+      return answer;
+    });
     // debug('getMatchingRules with values: ', values);
-    return this._rules.filter(rule => rule.evaluate(values));
+    console.log(values);
+    const response = this._rules.filter(rule => rule.evaluate(values));
+    console.log(response);
+    return response;
   }
 
   // // XXX getMatchingRules is more powerfull then getMatchingRule, consider
@@ -66,9 +72,9 @@ class Decision {
   //  *
   //  * @returns {Rule} the rule
   //  */
-  // getMatchingRule() {
-  //   return this.getMatchingRules().shift() || null;
-  // }
+  getMatchingRule() {
+    return this.getMatchingRules().shift() || null;
+  }
 
   /**
    * Find inputs (Questions or Decisions) that are decisive for (the set of rules?)
@@ -96,6 +102,7 @@ class Decision {
    */
   getOutput() {
     const rule = this.getMatchingRule();
+    console.log(rule);
     return rule ? rule.outputValue : undefined;
   }
 }

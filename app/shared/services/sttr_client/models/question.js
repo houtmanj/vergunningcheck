@@ -62,8 +62,7 @@ class Question {
     if (!Question.isAnswerType(value)) {
       throw Error(`value for 'setAnswer' must be a string, bool or number or string[]`);
     }
-
-    // TEMP DISABLED QUESTION CHECK BECAUSE IT BREAKS THE `AANBOUW` CHECKER
+    console.log('value', value);
 
     /* eslint-disable valid-typeof */
     // if (this._type === 'geo' || this._type === 'list') {

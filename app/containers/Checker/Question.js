@@ -13,12 +13,12 @@ import { PAGES } from '../../constants';
 const booleanOptions = [
   {
     label: 'Nee',
-    formValue: 'no',
+    formValue: false,
     value: false,
   },
   {
     label: 'Ja',
-    formValue: 'yes',
+    formValue: true,
     value: true,
   },
 ];

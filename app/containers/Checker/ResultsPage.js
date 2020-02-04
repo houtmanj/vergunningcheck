@@ -29,11 +29,30 @@ const Change = styled(`div`)`
 `;
 const ResultsPage = () => {
   const { checker } = useContext(CheckerContext);
+  let permitsPerQuestion = [];
 
   const onGoToQuestion = index => {
     checker.rewindTo(index - 1);
     history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`);
   };
+
+  checker.permits.forEach(permit => {
+    const conclusion = permit.getDecisionById('dummy');
+    if (conclusion.getOutput() === '"Vergunningplicht"') {
+      const decisiveDecisions = conclusion.getDecisiveInputs();
+      console.log(decisiveDecisions);
+      decisiveDecisions.flatMap(decision => {
+        console.log(decision);
+        decision.getDecisiveInputs().map(input => {
+          const index = checker.stack.indexOf(input);
+          console.log(index);
+          permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(permit);
+          console.log(permitsPerQuestion);
+        });
+      });
+    }
+  });
+  console.log('permitIdsPerQuestion', permitsPerQuestion);
 
   return (
     <Form
@@ -49,16 +68,29 @@ const ResultsPage = () => {
         <UserAnswer>Uw antwoord</UserAnswer>
         <Change>Wijzig</Change>
       </MainWrapper>
-
-      {checker?.stack?.map((question, index) => (
-        <Wrapper key={question.id}>
-          <Question>{question.text}</Question>
-          <UserAnswer>{question.answer === 'yes' ? 'ja' : 'nee'}</UserAnswer>
-          <Button onClick={() => onGoToQuestion(index)} variant="textButton">
-            bewerken
-          </Button>
-        </Wrapper>
-      ))}
+      {checker?.stack?.map((question, index) => {
+        const isDecisiveForPermits = permitsPerQuestion[index] || [];
+        console.log(index, isDecisiveForPermits);
+        return (
+          <div key={question.id}>
+            <Wrapper>
+              <Question>{question.text}</Question>
+              <UserAnswer>{question.answer === 'yes' ? 'ja' : 'nee'}</UserAnswer>
+              <Button onClick={() => onGoToQuestion(index)} variant="textButton">
+                bewerken
+              </Button>
+            </Wrapper>
+            {isDecisiveForPermits.map(permit => (
+              <Wrapper>
+                <Paragraph>
+                  {' '}
+                  basis van dit antwoord bent u vergunningsplichtig voor <strong>{permit.name}</strong>
+                </Paragraph>
+              </Wrapper>
+            ))}
+          </div>
+        );
+      })}
       <Navigation
         page={`checker-${PAGES.checkerResult}`}
         onGoToPrev={() => onGoToQuestion(checker.stack.length - 1)}
