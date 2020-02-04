@@ -45,9 +45,8 @@ const ResultsPage = () => {
         console.log(decision);
         decision.getDecisiveInputs().map(input => {
           const index = checker.stack.indexOf(input);
-          console.log(index);
-          console.log(permitsPerQuestion);
-          return (permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(permit));
+          const response = (permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(permit));
+          return response;
         });
       });
     }
