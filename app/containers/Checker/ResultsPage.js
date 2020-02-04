@@ -29,7 +29,7 @@ const Change = styled(`div`)`
 `;
 const ResultsPage = () => {
   const { checker } = useContext(CheckerContext);
-  let permitsPerQuestion = [];
+  const permitsPerQuestion = [];
 
   const onGoToQuestion = index => {
     checker.rewindTo(index - 1);
