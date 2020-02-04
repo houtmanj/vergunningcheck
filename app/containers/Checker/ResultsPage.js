@@ -29,7 +29,7 @@ const Change = styled(`div`)`
 `;
 const ResultsPage = () => {
   const { checker } = useContext(CheckerContext);
-  let permitsPerQuestion = [];
+  const permitsPerQuestion = [];
 
   const onGoToQuestion = index => {
     checker.rewindTo(index - 1);
@@ -46,8 +46,8 @@ const ResultsPage = () => {
         decision.getDecisiveInputs().map(input => {
           const index = checker.stack.indexOf(input);
           console.log(index);
-          permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(permit);
           console.log(permitsPerQuestion);
+          return (permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(permit));
         });
       });
     }
