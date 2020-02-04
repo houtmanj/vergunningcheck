@@ -58,7 +58,7 @@ const QuestionsPage = () => {
       setQuestion(prev);
     } else {
       // Go back to Location page
-      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
     }
   };
 
