@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import history from 'utils/history';
 import { LocationResult } from 'components/LocationData';
@@ -14,6 +15,7 @@ import { REGEX, GET_CURRENT_TOPIC, PAGES, GET_TEXT } from '../../constants';
 import { fetchStreetname, fetchBagData } from './actions';
 
 const StyledAddressResult = styled(`div`)`
+  margin-bottom: 15px;
   padding: 30px;
   background-color: ${themeColor('tint', 'level3')};
 `;
@@ -33,13 +35,14 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     triggerValidation,
   } = useForm({
     defaultValues: {
-      postalCode: addressResults[0]?.postcode,
-      streetNumber: addressResults[0]?.toevoeging,
+      postalCode: addressResults && addressResults[0]?.postcode,
+      streetNumber: addressResults && addressResults[0]?.toevoeging,
     },
   });
 
   const loading = addressResultsLoading || bagLoading;
   const values = getValues();
+  const { trackEvent } = useMatomo();
   const allFieldsFilled = values.postalCode && values.streetNumber && !loading;
 
   register(
@@ -80,8 +83,19 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
     if (!loading && (addressResults?.length === 1 || suffix)) {
       // Form is validated, we can proceed
-      onFetchStreetname(currentValues);
-      onFetchBagData(currentValues);
+
+      if (suffix) {
+        onFetchStreetname(currentValues);
+        onFetchBagData(currentValues);
+      }
+
+      trackEvent({
+        category: 'location',
+        action: 'postcode',
+        name: GET_CURRENT_TOPIC(),
+        value: currentValues.postalCode.substring(0, 4),
+      });
+
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
     }
   };
@@ -119,7 +133,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           onChange={handleChange}
           onBlur={handleBlur}
           label="Postcode"
-          defaultValue={addressResults[0]?.postcode}
+          defaultValue={addressResults && addressResults[0]?.postcode}
           name="postalCode"
           placeholder="bv. 1074VE"
           style={{ marginBottom: '20px' }}
@@ -130,13 +144,12 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
           label="Huisnummer"
           onChange={handleChange}
           onBlur={handleBlur}
-          defaultValue={addressResults[0]?.toevoeging}
+          defaultValue={addressResults && addressResults[0]?.toevoeging}
           name="streetNumber"
           placeholder="bv. 1"
           style={{ marginBottom: '20px' }}
           errorMessage={errors?.streetNumber?.message}
         />
-
         {addressResults?.length > 1 && (
           <>
             <Paragraph style={{ marginBottom: '20px' }}>
@@ -150,7 +163,6 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
                 setSuffix(e.target.value);
                 setValue(e.target.name, e.target.value);
                 setValue('streetNumber', e.target.value);
-                onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
               style={{ marginBottom: '20px' }}
             >
@@ -165,20 +177,21 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
         )}
 
         {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
-
         {((!loading && addressResults?.length === 1) || suffix) && (
-          <StyledAddressResult>
-            <Paragraph strong style={{ marginBottom: '0px' }}>
-              Dit is het gekozen adres:
-            </Paragraph>
-            <Paragraph gutterBottom={0}>
-              {addressResults[0]?.straatnaam} {suffix || addressResults[0]?.toevoeging}
-              <br />
-              {addressResults[0]?.postcode} {addressResults[0]?.woonplaats}
-            </Paragraph>
-          </StyledAddressResult>
+          <>
+            <StyledAddressResult>
+              <Paragraph strong gutterBottom={8}>
+                Dit is het gevonden adres:
+              </Paragraph>
+              <Paragraph gutterBottom={0}>
+                {addressResults[0]?.straatnaam} {suffix || addressResults[0]?.toevoeging}
+                <br />
+                {addressResults[0]?.postcode} {addressResults[0]?.woonplaats}
+              </Paragraph>
+            </StyledAddressResult>
+            <Paragraph>Klopt dit niet? Wijzig dan postcode of huisnummer.</Paragraph>
+          </>
         )}
-
         <Navigation
           page="location"
           onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`)}
