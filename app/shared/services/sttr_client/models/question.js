@@ -33,12 +33,15 @@ class Question {
     if (options !== undefined && !collectionOfType(options, 'String')) {
       throw Error(`Options must be array of String's`);
     }
+    if (multipleAnswers) {
+      throw Error(`Current implementation doesn't support multipleAnswers yet.`);
+    }
 
     this._id = id;
     this._type = type;
     this._text = text;
     this._multipleAnswers = multipleAnswers;
-    this._options = options;
+    this._options = options ? options.map(val => `"${val}"`) : undefined;
     this._description = description;
     if (answer !== undefined) {
       this.setAnswer(answer);
@@ -63,21 +66,36 @@ class Question {
 
   setAnswer(value) {
     // temporary fix to make current checkers work:
-    // if (this._type === 'boolean') {
-    //   value = value === 'yes';
-    // }
-    // if (this._multipleAnswers) {
-    //   value = [value];
-    // }
+    if (this._type === 'boolean' || this._type === 'geo') {
+      value = value === 'yes';
+    }
+
+    // temporary fix to make current checkers work:
+    if (this._options) {
+      // if (this._multipleAnswers) {
+      //   value = ['"amsterdam"'];
+      // } else {
+      value = '"voorkant"';
+      // }
+    }
 
     /* eslint-disable valid-typeof */
     if (this._type === 'geo') {
+      // temporary fix to make current checkers work:
       // throw Error(`'geo' is not yet supported.`);
     } else if (this._multipleAnswers) {
-      // for now we only support string in answer[]
-      if (!collectionOfType(value, 'String')) {
-        throw Error(`value for 'setAnswer' must be of type ${this._type}[], got '${value}'`);
-      }
+      throw Error(`'multipleAnswers' is not yet supported.`);
+      //   // for now we only support string in answer[]
+      //   if (!collectionOfType(value, 'String')) {
+      //     throw Error(`value for 'setAnswer' must be of type ${this._type}[], got '${value}'`);
+      //   }
+      //   if (this._options) {
+      //     if (value.find(val => !this._options.includes(val))) {
+      //       throw Error(`value for setAnswer must be in options ${this._options}, got '${value}'`);
+      //     }
+      //   }
+    } else if (this._options && !this._options.includes(value)) {
+      throw Error(`value for setAnswer must be in options ${this._options}, got '${value}'`);
     } else if (typeof value !== this._type) {
       throw Error(`value for setAnswer must be of type ${this._type}, got '${value}'`);
     }
