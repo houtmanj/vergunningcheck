@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.10](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.9...v0.1.10) (2020-02-05)
+
+
+### Bug Fixes
+
+* Ie fix ([47beefb](https://github.com/Amsterdam/Vergunningschecker/commit/47beefb7cf59f38500f2fbdee8089c42ef7bf5b8))
+
 ### [0.1.9](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.7...v0.1.9) (2020-01-30)
 
 ### Features
