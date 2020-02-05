@@ -71,16 +71,16 @@ class Question {
     // }
 
     /* eslint-disable valid-typeof */
-    if (this._type === 'geo') {
-      // throw Error(`'geo' is not yet supported.`);
-    } else if (this._multipleAnswers) {
-      // for now we only support string in answer[]
-      if (!collectionOfType(value, 'String')) {
-        throw Error(`value for 'setAnswer' must be of type ${this._type}[], got '${value}'`);
-      }
-    } else if (typeof value !== this._type) {
-      throw Error(`value for setAnswer must be of type ${this._type}, got '${value}'`);
-    }
+    // if (this._type === 'geo') {
+    //   // throw Error(`'geo' is not yet supported.`);
+    // } else if (this._multipleAnswers) {
+    //   // for now we only support string in answer[]
+    //   if (!collectionOfType(value, 'String')) {
+    //     throw Error(`value for 'setAnswer' must be of type ${this._type}[], got '${value}'`);
+    //   }
+    // } else if (typeof value !== this._type) {
+    //   throw Error(`value for setAnswer must be of type ${this._type}, got '${value}'`);
+    // }
     /* eslint-enable valid-typeof */
 
     this._answer = value;

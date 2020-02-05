@@ -13,12 +13,12 @@ import { PAGES } from '../../constants';
 const booleanOptions = [
   {
     label: 'Nee',
-    formValue: 'no',
+    formValue: false,
     value: false,
   },
   {
     label: 'Ja',
-    formValue: 'yes',
+    formValue: true,
     value: true,
   },
 ];
@@ -28,7 +28,15 @@ const hasKeys = obj =>
   Object.entries(obj).map(([key, value]) => [key, value]).length;
 
 const Question = ({
-  question: { id: questionId, text: questionTitle, answer: currentAnswer, description, longDescription },
+  question: {
+    id: questionId,
+    type: questionType,
+    text: questionTitle,
+    _options: questionAnswers,
+    answer: currentAnswer,
+    description,
+    longDescription,
+  },
   className,
   headingAs,
   children,
@@ -42,8 +50,8 @@ const Question = ({
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
 
-  // For now we render only booleanOptions
-  const answers = booleanOptions;
+  const listAnswers = questionAnswers?.map(answer => ({ label: answer, formValue: answer, value: answer }));
+  const answers = questionType === 'string' ? listAnswers : booleanOptions;
 
   useEffect(() => {
     if (questionId && required) {
