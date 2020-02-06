@@ -113,23 +113,37 @@ class Parser {
     return questions.reduce((acc, curr) => {
       let result;
       if (curr['uitv:geoVerwijzing']) {
-        const q = curr['uitv:geoVerwijzing'][0];
+        const question = curr['uitv:geoVerwijzing'][0];
         result = {
-          identification: q['uitv:locatie'][0]['@_identificatie'],
+          identification: question['uitv:locatie'][0]['@_identificatie'],
+          text: question['uitv:vraagTekst'],
           type: 'geo',
         };
       } else {
+        // list or boolean
         const question = curr['uitv:vraag'][0];
+        const sttrType = question['uitv:gegevensType'];
+
         const desc = curr['content:uitvoeringsregelToelichting'];
         let description;
         if (desc && desc.length > 0) {
           description = desc[0]['content:toelichting'].trim();
         }
+
         result = {
           text: question['uitv:vraagTekst'],
-          type: question['uitv:gegevensType'],
           description,
         };
+
+        if (sttrType === 'list') {
+          if (question['uitv:opties'][0]['uitv:optieType'] !== 'enkelAntwoord') {
+            result.collection = true;
+          }
+          result.options = question['uitv:opties'][0]['uitv:optie'].map(option => option['uitv:optieText']);
+        }
+
+        // because of current sttr 'list'-implementation we only accept lists of strings
+        result.type = sttrType === 'list' ? 'string' : sttrType;
       }
       result.id = curr['@_id'];
       const sha = hash(result);

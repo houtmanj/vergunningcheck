@@ -39,9 +39,12 @@ class Decision {
     return this._id;
   }
 
+  /**
+   * Return the outputValue for the first matching rule
+   */
   get answer() {
-    const matchingRule = this.getMatchingRules();
     // debug(`Get answer for decision based on underlying rules.`, this, matchingRule);
+    const matchingRule = this.getMatchingRules().shift() || null;
     return matchingRule ? matchingRule.outputValue : null;
   }
 
@@ -54,26 +57,8 @@ class Decision {
     // Find the values for our inputs
     // debug('getMatchingRules with this._inputs: ', this._inputs);
 
-    const values = this._inputs.map(({ answer }) => {
-      console.log(answer);
-      return answer;
-    });
-    // debug('getMatchingRules with values: ', values);
-    console.log(values);
-    const response = this._rules.filter(rule => rule.evaluate(values));
-    console.log(response);
-    return response;
-  }
-
-  // // XXX getMatchingRules is more powerfull then getMatchingRule, consider
-  // // phasing out getMatchingRule
-  // /**
-  //  * Get the first matching rule.
-  //  *
-  //  * @returns {Rule} the rule
-  //  */
-  getMatchingRule() {
-    return this.getMatchingRules().shift() || null;
+    const values = this._inputs.map(({ answer }) => answer);
+    return this._rules.filter(rule => rule.evaluateNew(values).length !== 0);
   }
 
   /**
@@ -101,8 +86,7 @@ class Decision {
    * @returns {string|undefined} - the outputValue of the matching rule or undefined
    */
   getOutput() {
-    const rule = this.getMatchingRule();
-    console.log(rule);
+    const rule = this.getMatchingRules().shift();
     return rule ? rule.outputValue : undefined;
   }
 }

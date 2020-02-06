@@ -49,7 +49,6 @@ const ResultsPage = () => {
       });
     }
   });
-  console.log('permitIdsPerQuestion', permitsPerQuestion);
 
   return (
     <Form
@@ -72,17 +71,14 @@ const ResultsPage = () => {
           <div key={question.id}>
             <Wrapper>
               <Question>{question.text}</Question>
-              <UserAnswer>{question.answer === 'yes' ? 'ja' : 'nee'}</UserAnswer>
+              <UserAnswer>{question.answer}</UserAnswer>
               <Button onClick={() => onGoToQuestion(index)} variant="textButton">
                 bewerken
               </Button>
             </Wrapper>
             {isDecisiveForPermits.map(permit => (
               <Wrapper>
-                <Paragraph>
-                  {' '}
-                  basis van dit antwoord bent u vergunningsplichtig voor <strong>{permit.name}</strong>
-                </Paragraph>
+                <Paragraph strong> Op basis van dit antwoord bent u vergunningsplichtig voor {permit.name}</Paragraph>
               </Wrapper>
             ))}
           </div>

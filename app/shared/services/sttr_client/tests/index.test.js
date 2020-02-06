@@ -216,7 +216,7 @@ describe('sttr client', () => {
     expect(files.length > 0).toBe(true);
 
     files
-      .filter(file => file.indexOf('activities') === -1 && file.indexOf('.json') !== -1)
+      .filter(file => file.indexOf('topics') === -1 && file.indexOf('.json') !== -1)
       // .map(e => {
       // 	debug("starting file", new Date(), e);
       // 	return e;
