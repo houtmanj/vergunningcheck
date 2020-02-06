@@ -94,14 +94,14 @@ class Question {
       //       throw Error(`value for setAnswer must be in options ${this._options}, got '${value}'`);
       //     }
       //   }
-    } else if (this._options && !this._options.includes(value)) {
-      throw Error(`value for setAnswer must be in options ${this._options}, got '${value}'`);
-    } else if (typeof value !== this._type) {
-      throw Error(`value for setAnswer must be of type ${this._type}, got '${value}'`);
+    } else if (this._options && !this._options.includes(responseValue)) {
+      throw Error(`value for setAnswer must be in options ${this._options}, got '${responseValue}'`);
+    } else if (typeof responseValue !== this._type) {
+      throw Error(`value for setAnswer must be of type ${this._type}, got '${responseValue}'`);
     }
     /* eslint-enable valid-typeof */
 
-    this._answer = value;
+    this._answer = responseValue;
   }
 
   get answer() {
