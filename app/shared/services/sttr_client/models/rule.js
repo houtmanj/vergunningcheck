@@ -39,14 +39,14 @@ class Rule {
   }
 
   /**
-   * Find index of matching input conditions for provided values.
+   * Find indexes of matching input conditions for provided values.
    *
    * @param {(boolean|string|number)[]} values a list of values to compare with
    * @returns {number[]} indexes of matching values
    */
   evaluateNew(values) {
     if (!collectionOfSimpleTypes(values)) {
-      throw Error("'values' should be an array");
+      throw Error(`'values' should be an array of simple types, got ${values}`);
     }
     const result = this.inputConditions.reduce((acc, curr, index) => {
       let res = acc;
@@ -61,21 +61,6 @@ class Rule {
       return res;
     }, []);
     return result === false ? [] : result;
-  }
-
-  /**
-   * Evaluate if this rule matches the provided values.
-   *
-   * @param {(boolean|string|number)[]} values a list of values to compare with
-   * @returns {boolean} if this rule matches the given values
-   */
-  evaluate(values) {
-    if (!collectionOfSimpleTypes(values)) {
-      throw Error("'values' should be an array");
-    }
-    return !Object.keys(this.inputConditions).find(
-      index => this.inputConditions[index] !== '-' && this.inputConditions[index] !== values[index],
-    );
   }
 }
 

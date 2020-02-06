@@ -11,9 +11,9 @@ const Rule = require('./models/rule');
  * @returns {Question[]} an array with Question objects
  */
 function getQuestions(questionConfig) {
-  return Object.entries(questionConfig).map(([hash, { text, ids, type, description }]) => ({
+  return Object.entries(questionConfig).map(([hash, { text, ids, type, collection, options, description }]) => ({
     ids,
-    question: new Question(hash, type, text, description),
+    question: new Question(hash, type, text, description, undefined, options, collection),
   }));
 }
 
