@@ -19,6 +19,7 @@ import configureStore from './configureStore';
 import '!file-loader?name=[name].[ext]!./images/favicon.png';
 import 'file-loader?name=.htaccess!./.htaccess';
 import { CheckerProvider } from './containers/Checker/CheckerContext';
+import { QuestionProvider } from './containers/Checker/QuestionContext';
 
 // Set Matomo tracker from @datapunt
 const instance = createInstance({
@@ -44,11 +45,13 @@ ReactDOM.render(
       <AmsterdamGlobalStyle />
       <AppGlobalStyle />
       <Provider store={store}>
-        <CheckerProvider>
-          <ConnectedRouter history={history}>
-            <App />
-          </ConnectedRouter>
-        </CheckerProvider>
+        <QuestionProvider>
+          <CheckerProvider>
+            <ConnectedRouter history={history}>
+              <App />
+            </ConnectedRouter>
+          </CheckerProvider>
+        </QuestionProvider>
       </Provider>
     </ThemeProvider>
   </MatomoProvider>,
