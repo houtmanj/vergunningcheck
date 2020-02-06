@@ -65,16 +65,17 @@ class Question {
   }
 
   setAnswer(value) {
+    let responseValue = value;
     // temporary fix to make current checkers work:
     if (this._type === 'boolean' || this._type === 'geo') {
-      value = value === 'yes';
+      responseValue = value === 'yes';
     }
     // temporary fix to make current checkers work:
     if (this._options) {
       // if (this._multipleAnswers) {
       //   value = ['"amsterdam"'];
       // } else {
-      value = '"voorkant"';
+      responseValue = '"voorkant"';
       // }
     }
 
