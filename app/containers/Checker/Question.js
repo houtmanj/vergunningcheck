@@ -123,7 +123,7 @@ Question.propTypes = {
     id: PropTypes.string,
     text: PropTypes.string,
     type: PropTypes.string,
-    options: PropTypes.array,
+    _options: PropTypes.array,
     description: PropTypes.string,
     longDescription: PropTypes.string,
     answer: PropTypes.string,
