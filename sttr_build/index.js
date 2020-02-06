@@ -70,13 +70,13 @@ function checkStatus(res) {
 }
 
 (async () => {
-  const activities = await fetch(listUrl, { headers })
+  const topics = await fetch(listUrl, { headers })
     .then(checkStatus)
     .then(getJSON)
     .then(json => {
-      fs.writeFile(path.join(OUTPUT_DIR, 'activities.source.json'), jsonString(json), err => {
+      fs.writeFile(path.join(OUTPUT_DIR, 'topics.source.json'), jsonString(json), err => {
         if (err) throw err;
-        console.log('activities.source.json has been saved!');
+        console.log('topics.source.json has been saved!');
       });
       return json;
     })
@@ -92,9 +92,9 @@ function checkStatus(res) {
       })),
     );
 
-  const activitiesDetails = await batchPromises(
+  const permitsXML = await batchPromises(
     MAX_PARALLEL,
-    activities.flatMap(a => a.permits),
+    topics.flatMap(t => t.permits),
     ({ id }) =>
       fetch(detailUrl, {
         method: 'post',
@@ -113,20 +113,20 @@ function checkStatus(res) {
   );
 
   // write activity source xml files
-  activitiesDetails.forEach(({ id, xml }) => {
+  permitsXML.forEach(({ id, xml }) => {
     fs.writeFile(path.join(OUTPUT_DIR, `${id}.xml`), xml, err => {
       if (err) throw err;
       console.log(`${id}.xml has been saved!`);
     });
   });
 
-  activities.forEach(({ id, file, name, permits }) => {
+  topics.forEach(({ id, file, name, permits }) => {
     const data = {
       id,
       name,
       permits: permits
         .filter(({ id: permitId }) => DISABLED.indexOf(permitId) === -1)
-        .map(permit => sttrbuild(activitiesDetails.find(activity => activity.id === permit.id).xml)),
+        .map(permit => sttrbuild(permitsXML.find(p => p.id === permit.id).xml)),
     };
     fs.writeFile(path.join(OUTPUT_DIR, file), jsonString(data), err => {
       if (err) throw err;
@@ -136,9 +136,9 @@ function checkStatus(res) {
 
   // writie activities.json
   fs.writeFile(
-    path.join(OUTPUT_DIR, 'activities.json'),
+    path.join(OUTPUT_DIR, 'topics.json'),
     jsonString(
-      activities.map(({ id, name, file }) => ({
+      topics.map(({ id, name, file }) => ({
         id,
         name,
         file,
@@ -146,7 +146,7 @@ function checkStatus(res) {
     ),
     err => {
       if (err) throw err;
-      console.log('activities.json has been saved!');
+      console.log('topics.json has been saved!');
     },
   );
 })();
