@@ -122,6 +122,8 @@ Question.propTypes = {
   question: PropTypes.shape({
     id: PropTypes.string,
     text: PropTypes.string,
+    type: PropTypes.string,
+    options: PropTypes.array,
     description: PropTypes.string,
     longDescription: PropTypes.string,
     answer: PropTypes.string,
