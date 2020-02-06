@@ -63,6 +63,7 @@ const QuestionsPage = () => {
     }
   };
 
+  console.log(question);
   return (
     <Question question={question} onSubmit={onQuestionNext} onGoToPrev={onQuestionPrev} showNext showPrev required />
   );
