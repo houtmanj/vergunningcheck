@@ -35,6 +35,14 @@ const ResultsPage = () => {
     history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`);
   };
 
+  // Something like this can be used to show the conclusions
+  // const conclusions = checker.permits.map(permit => {
+  //   const decision = permit.getDecisionById('dummy');
+  //   const rules = decision.getMatchingRules();
+  //   return rules[0].description;
+  // });
+  // console.log('Conclusions', conclusions);
+
   return (
     <Form
       onSubmit={e => {
@@ -49,7 +57,6 @@ const ResultsPage = () => {
         <UserAnswer>Uw antwoord</UserAnswer>
         <Change>Wijzig</Change>
       </MainWrapper>
-
       {checker?.stack?.map((question, index) => (
         <Wrapper key={question.id}>
           <Question>
