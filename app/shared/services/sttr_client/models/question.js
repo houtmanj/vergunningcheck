@@ -64,12 +64,12 @@ class Question {
   }
 
   setAnswer(value) {
-    // temporary fix to make current checkers work:
+    // START temporary fix to make current checkers work:
+    /* eslint-disable no-param-reassign */
     if (this._type === 'boolean' || this._type === 'geo') {
       value = value === 'yes';
     }
 
-    // temporary fix to make current checkers work:
     if (this._options) {
       // if (this._multipleAnswers) {
       //   value = ['"amsterdam"'];
@@ -77,6 +77,8 @@ class Question {
       value = '"voorkant"';
       // }
     }
+    /* eslint-enable no-param-reassign */
+    // END temporary fix to make current checkers work:
 
     /* eslint-disable valid-typeof */
     if (this._type === 'geo') {

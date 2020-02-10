@@ -1,4 +1,3 @@
-const hash = require('object-hash');
 const parser = require('fast-xml-parser');
 const get = require('lodash.get');
 
