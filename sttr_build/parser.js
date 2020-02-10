@@ -1,5 +1,4 @@
 const hash = require('object-hash');
-
 const parser = require('fast-xml-parser');
 const get = require('lodash.get');
 
@@ -110,7 +109,7 @@ class Parser {
     const rules = this.xmlExtensionElements['uitv:uitvoeringsregels'][0];
     const questions = rules['uitv:uitvoeringsregel'];
 
-    return questions.reduce((acc, curr) => {
+    return questions.map(curr => {
       let result;
       if (curr['uitv:geoVerwijzing']) {
         const question = curr['uitv:geoVerwijzing'][0];
@@ -146,10 +145,9 @@ class Parser {
         result.type = sttrType === 'list' ? 'string' : sttrType;
       }
       result.id = curr['@_id'];
-      const sha = hash(result);
-      acc[sha] = result;
-      return acc;
-    }, {});
+      result.uuid = curr['uitv:herbruikbaarId'];
+      return result;
+    });
   }
 
   /**
