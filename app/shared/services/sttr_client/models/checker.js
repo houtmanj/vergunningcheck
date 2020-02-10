@@ -54,6 +54,26 @@ class Checker {
     return this.stack[this.stack.length - 1];
   }
 
+  _getRelevantOpenQuestions() {
+    // todo: filter duplicate questions
+    // todo: optimization would be to return only first value
+    return this.permits
+      .reduce((acc, permit) => {
+        const conclusion = permit.getDecisionById('dummy');
+        conclusion._inputs
+          .filter(d => d.getMatchingRules().length === 0)
+          .forEach(decision => {
+            decision.getQuestions().forEach(input => {
+              if (this.stack.indexOf(input) === -1) {
+                acc.push(input);
+              }
+            });
+          });
+        return acc;
+      }, [])
+      .filter(uniqueFilter);
+  }
+
   /**
    * Our current implementation of getNextQuestion basically returns any question that is
    * not answered no matter if they make any impact on the outcome. So user always has to
@@ -62,7 +82,8 @@ class Checker {
    * @returns {Question|null} - the next question for this checker
    */
   _getNextQuestion() {
-    return this._questions.find(question => !this.stack.includes(question));
+    return this._getRelevantOpenQuestions().shift();
+    // return this._questions.find(question => !this.stack.includes(question));
   }
 
   /**

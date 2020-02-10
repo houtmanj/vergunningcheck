@@ -25,7 +25,7 @@ const TOPICS = {
   // Quick hack to test the routs, use: http://localhost:3000/a/
   a: {
     status: STATUS.LIVE,
-    sttrPath: '/shared/content/sttr/AanOfUitbouwBouwen.json',
+    sttrPath: '/shared/content/sttr/DakkapelBouwen.json',
     // sttrPath: '/shared/content/sttr/ReclamePlaatsen.json', // Simpele Demo Checker for Frontend
     text: {
       heading: 'Vergunningchecker dakkapel plaatsen',

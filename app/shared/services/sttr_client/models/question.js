@@ -75,7 +75,7 @@ class Question {
       // if (this._multipleAnswers) {
       //   value = ['"amsterdam"'];
       // } else {
-      value = '"voorkant"';
+      value = '"achterkant"';
       // }
     }
 
