@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React from 'react';
 
 export default ({ checker }) => {
   const decisionId = 'dummy';
   window.checker = checker;
+  if (!checker.permits) return <></>;
   return (
     <>
       {checker.permits.map(permit => {
@@ -47,8 +49,8 @@ export default ({ checker }) => {
               {decisiveDecisions.map(decision => decision.getDecisiveInputs().map(question => question.text))}
             </p>
             <h3>Notes:</h3>
-            {matchineRules.map(({ description }) => (
-              <p>- {description}</p>
+            {matchineRules.map(({ description, inputConditions, outputValue }) => (
+              <p key={{ inputConditions, outputValue }}>{description}</p>
             ))}
 
             <div className="details" style={{ display: 'none' }}>
