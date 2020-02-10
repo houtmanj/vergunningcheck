@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React from 'react';
 
 export default ({ checker }) => {
   const decisionId = 'dummy';
   window.checker = checker;
+  if (!checker.permits) return <></>;
   return (
     <>
       {checker.permits.map(permit => {
