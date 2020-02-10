@@ -6,6 +6,7 @@ import getChecker from '../../shared/services/sttr_client';
 import { GET_CURRENT_TOPIC, PAGES, GET_STTR } from '../../constants';
 import { CheckerContext } from './CheckerContext';
 import { QuestionContext } from './QuestionContext';
+import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
 
 const QuestionsPage = () => {
   const [loading, setLoading] = useState(false);
@@ -64,7 +65,10 @@ const QuestionsPage = () => {
   };
 
   return (
-    <Question question={question} onSubmit={onQuestionNext} onGoToPrev={onQuestionPrev} showNext showPrev required />
+    <>
+      <Question question={question} onSubmit={onQuestionNext} onGoToPrev={onQuestionPrev} showNext showPrev required />
+      {process.env.NODE_env !== 'production' && <DebugDecisionTable checker={checker} />}
+    </>
   );
 };
 

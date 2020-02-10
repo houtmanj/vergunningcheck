@@ -47,8 +47,8 @@ export default ({ checker }) => {
               {decisiveDecisions.map(decision => decision.getDecisiveInputs().map(question => question.text))}
             </p>
             <h3>Notes:</h3>
-            {matchineRules.map(({ description }) => (
-              <p>- {description}</p>
+            {matchineRules.map(({ description, inputConditions, outputValue }) => (
+              <p key={{ inputConditions, outputValue }}>- {description}</p>
             ))}
 
             <div className="details" style={{ display: 'none' }}>
