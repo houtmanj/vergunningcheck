@@ -27,9 +27,9 @@ const TOPICS = {
     status: STATUS.LIVE,
     sttrPath: '/shared/content/sttr/AanOfUitbouwBouwen.json',
     text: {
-      heading: 'aaa',
-      topic: 'aaaa aa',
-      topicLocation: 'aaa aaa aaa',
+      heading: 'Vergunningchecker aanbouw of uitbouw bouwen',
+      topic: 'een aanbouw of uitbouw wilt bouwen',
+      topicLocation: 'de aanbouw of uitbouw wil gaan bouwen',
     },
   },
   'kappen-of-snoeien': {},
