@@ -54,6 +54,7 @@ const Question = ({
   const answers = questionType === 'string' ? listAnswers : booleanOptions;
 
   useEffect(() => {
+    console.log(currentAnswer);
     if (questionId && required) {
       register(
         { name: questionId },
@@ -76,7 +77,6 @@ const Question = ({
 
   const onSubmit = data => {
     // Is only triggered with validated form
-
     // Check if data has a key that matches the questionId
     if ((onSubmitProp && !hasKeys(data)) || (hasKeys(data) && data[questionId])) {
       onSubmitProp(data[questionId]);

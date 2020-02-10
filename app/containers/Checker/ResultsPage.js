@@ -50,6 +50,16 @@ const ResultsPage = () => {
     }
   });
 
+  // Something like this can be used to show the conclusions
+  const conclusions = checker?.permits.map(permit => {
+    const decision = permit.getDecisionById('dummy');
+    const rules = decision.getMatchingRules();
+    console.log(rules);
+    return rules[0].description;
+  });
+  console.log('Conclusions', conclusions);
+  console.log('permitsPerQuestion', permitsPerQuestion);
+
   return (
     <Form
       onSubmit={e => {
@@ -67,6 +77,7 @@ const ResultsPage = () => {
       {checker?.stack?.map((question, index) => {
         const isDecisiveForPermits = permitsPerQuestion[index] || [];
         console.log(index, isDecisiveForPermits);
+        console.log(index, question.answer);
         return (
           <div key={question.id}>
             <Wrapper>
