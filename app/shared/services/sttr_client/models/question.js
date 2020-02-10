@@ -65,6 +65,7 @@ class Question {
   }
 
   setAnswer(value) {
+    /* eslint-disable no-param-reassign */
     // temporary fix to make current checkers work:
     if (this._type === 'boolean' || this._type === 'geo') {
       value = value === 'yes';
@@ -78,6 +79,7 @@ class Question {
       value = '"achterkant"';
       // }
     }
+    /* eslint-enable no-param-reassign */
 
     /* eslint-disable valid-typeof */
     if (this._type === 'geo') {
