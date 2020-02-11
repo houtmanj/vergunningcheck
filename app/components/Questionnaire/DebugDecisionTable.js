@@ -50,7 +50,7 @@ export default ({ checker }) => {
             </p>
             <h3>Notes:</h3>
             {matchineRules.map(({ description, inputConditions, outputValue }) => (
-              <p key={{ inputConditions, outputValue }}>{description}</p>
+              <p key={{ inputConditions, outputValue }}>- {description}</p>
             ))}
 
             <div className="details" style={{ display: 'none' }}>
