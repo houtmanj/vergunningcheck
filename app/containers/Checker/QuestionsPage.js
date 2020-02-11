@@ -40,7 +40,7 @@ const QuestionsPage = () => {
   }
 
   const onQuestionNext = value => {
-    if (question._options) {
+    if (question.options) {
       question.setAnswer(value);
     } else {
       const responseObj = booleanOptions.find(o => o.formValue === value);
