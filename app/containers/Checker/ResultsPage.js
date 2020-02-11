@@ -7,7 +7,7 @@ import Navigation from 'components/Navigation';
 import styled from '@datapunt/asc-core';
 import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
 import { CheckerContext } from './CheckerContext';
-import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
+// import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
 import { booleanOptions } from './Question';
 
 const Wrapper = styled(`div`)`
@@ -96,7 +96,7 @@ const ResultsPage = () => {
           </div>
         );
       })}
-      {/*<DebugDecisionTable checker={checker} />*/}
+      {/* <DebugDecisionTable checker={checker} /> */}
       <Navigation
         page={`checker-${PAGES.checkerResult}`}
         onGoToPrev={() => onGoToQuestion(checker.stack.length - 1)}
