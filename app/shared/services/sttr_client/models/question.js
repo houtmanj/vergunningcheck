@@ -54,6 +54,7 @@ class Question {
   get id() {
     return this._id;
   }
+
   get uuid() {
     return this._uuid;
   }
@@ -74,7 +75,7 @@ class Question {
     // START temporary fix to make current checkers work:
     /* eslint-disable no-param-reassign */
     if (this._type === 'boolean' || this._type === 'geo') {
-      //value = value === 'yes';
+      // value = value === 'yes';
     }
 
     if (this._options) {
