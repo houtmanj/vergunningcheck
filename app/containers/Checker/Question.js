@@ -10,15 +10,15 @@ import Navigation from 'components/Navigation';
 import Answers from './Answers';
 import { PAGES } from '../../constants';
 
-const booleanOptions = [
+export const booleanOptions = [
   {
     label: 'Nee',
-    formValue: false,
+    formValue: 'no',
     value: false,
   },
   {
     label: 'Ja',
-    formValue: true,
+    formValue: 'yes',
     value: true,
   },
 ];
@@ -37,6 +37,7 @@ const Question = ({
     description,
     longDescription,
   },
+  question,
   className,
   headingAs,
   children,
@@ -48,13 +49,12 @@ const Question = ({
   onGoToPrev,
   required,
 }) => {
-  const { handleSubmit, register, unregister, setValue, errors } = useForm();
-
+  const { handleSubmit, register, unregister, setValue, errors, getValues } = useForm();
   const listAnswers = questionAnswers?.map(answer => ({ label: answer, formValue: answer, value: answer }));
   const answers = questionType === 'string' ? listAnswers : booleanOptions;
+  let answer;
 
   useEffect(() => {
-    console.log(currentAnswer);
     if (questionId && required) {
       register(
         { name: questionId },
@@ -64,8 +64,13 @@ const Question = ({
       );
 
       // Set value if question has already been answered to prevent 'fake' requirement
-      if (currentAnswer) {
-        setValue(questionId, currentAnswer);
+      if (currentAnswer !== undefined) {
+        if (questionAnswers) {
+          setValue(questionId, currentAnswer);
+        } else {
+          const responseObj = booleanOptions.find(o => o.value === currentAnswer);
+          setValue(questionId, responseObj.formValue);
+        }
       }
     }
     return () => unregister(questionId);
@@ -83,6 +88,13 @@ const Question = ({
     }
   };
 
+  if (questionAnswers) {
+    answer = currentAnswer;
+  } else {
+    const responseObj = booleanOptions.find(o => o.value === currentAnswer);
+    answer = responseObj?.formValue;
+  }
+
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId}>
       {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
@@ -93,7 +105,7 @@ const Question = ({
         onChange={handleChange}
         errors={errors}
         answers={answers}
-        currentAnswer={currentAnswer}
+        currentAnswer={answer}
       />
       {children}
       {!hideNavigation && (

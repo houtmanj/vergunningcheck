@@ -26,11 +26,10 @@ const TOPICS = {
   a: {
     status: STATUS.LIVE,
     sttrPath: '/shared/content/sttr/AanOfUitbouwBouwen.json',
-    // sttrPath: '/shared/content/sttr/DakkapelBouwen.json', // Simpele Demo Checker for Frontend
     text: {
-      heading: 'Vergunningchecker dakkapel plaatsen',
-      topic: 'een dakkapel te plaatsen',
-      topicLocation: 'de dakkapel wil gaan plaatsen',
+      heading: 'Vergunningchecker aanbouw of uitbouw bouwen',
+      topic: 'een aanbouw of uitbouw wilt bouwen',
+      topicLocation: 'de aanbouw of uitbouw wil gaan bouwen',
     },
   },
   'kappen-of-snoeien': {},

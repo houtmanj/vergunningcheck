@@ -9,7 +9,6 @@ const DESC_MAX_LENGTH = 2048;
  */
 class Question {
   /**
-   * @param {string} id - unique identifier
    * @param {string} type - data type of the question, eg. 'boolean', or 'geo'
    * @param {string} text - the question itself
    * @param {string} [description] - a description for this question (mind the max-length)
@@ -17,9 +16,9 @@ class Question {
    * @param {string[]} [options] a list of options for the answer
    * @param {boolean} [multipleAnswers=false] indicates if answer should be a list
    */
-  constructor(id, type, text, description, answer, options, multipleAnswers = false) {
-    if (!isString(id)) {
-      throw Error(`'id' for Question must be a string`);
+  constructor({ id, type, text, description, answer, options, uuid, multipleAnswers = false }) {
+    if (id !== undefined && !isString(id)) {
+      throw Error(`'id' for Question must be a string (got "${id}"`);
     }
     if (['boolean', 'string', 'number', 'geo'].indexOf(type) === -1) {
       throw Error(`Unsupported type for Question (${type})`);
@@ -29,6 +28,9 @@ class Question {
     }
     if (description !== undefined && (!isString(description) || [...description].length > DESC_MAX_LENGTH)) {
       throw Error(`'description' must be a string with max. ${DESC_MAX_LENGTH} chars`);
+    }
+    if (uuid !== undefined && !isString(uuid)) {
+      throw Error(`'uuid' for Question must be a string`);
     }
     if (options !== undefined && !collectionOfType(options, 'String')) {
       throw Error(`Options must be array of String's`);
@@ -40,6 +42,7 @@ class Question {
     this._id = id;
     this._type = type;
     this._text = text;
+    this._uuid = uuid;
     this._multipleAnswers = multipleAnswers;
     this._options = options ? options.map(val => `"${val}"`) : undefined;
     this._description = description;
@@ -50,6 +53,9 @@ class Question {
 
   get id() {
     return this._id;
+  }
+  get uuid() {
+    return this._uuid;
   }
 
   get type() {
@@ -65,19 +71,21 @@ class Question {
   }
 
   setAnswer(value) {
-    let responseValue = value;
-    // temporary fix to make current checkers work:
+    // START temporary fix to make current checkers work:
+    /* eslint-disable no-param-reassign */
     if (this._type === 'boolean' || this._type === 'geo') {
-      responseValue = value === 'yes';
+      //value = value === 'yes';
     }
-    // temporary fix to make current checkers work:
+
     if (this._options) {
       // if (this._multipleAnswers) {
       //   value = ['"amsterdam"'];
       // } else {
-      responseValue = '"voorkant"';
+      // value = '"voorkant"';
       // }
     }
+    /* eslint-enable no-param-reassign */
+    // END temporary fix to make current checkers work:
 
     /* eslint-disable valid-typeof */
     if (this._type === 'geo') {
@@ -94,14 +102,14 @@ class Question {
       //       throw Error(`value for setAnswer must be in options ${this._options}, got '${value}'`);
       //     }
       //   }
-    } else if (this._options && !this._options.includes(responseValue)) {
-      throw Error(`value for setAnswer must be in options ${this._options}, got '${responseValue}'`);
-    } else if (typeof responseValue !== this._type) {
-      throw Error(`value for setAnswer must be of type ${this._type}, got '${responseValue}'`);
+    } else if (this._options && !this._options.includes(value)) {
+      throw Error(`value for setAnswer must be in options ${this._options}, got '${value}'`);
+    } else if (typeof value !== this._type) {
+      throw Error(`value for setAnswer must be of type ${this._type}, got '${value}'`);
     }
     /* eslint-enable valid-typeof */
 
-    this._answer = responseValue;
+    this._answer = value;
   }
 
   get answer() {

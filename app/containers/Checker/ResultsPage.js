@@ -7,6 +7,8 @@ import Navigation from 'components/Navigation';
 import styled from '@datapunt/asc-core';
 import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
 import { CheckerContext } from './CheckerContext';
+import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
+import { booleanOptions } from './Question';
 
 const Wrapper = styled(`div`)`
   display: flex;
@@ -32,7 +34,7 @@ const ResultsPage = () => {
   const permitsPerQuestion = [];
 
   const onGoToQuestion = index => {
-    checker.rewindTo(index - 1);
+    checker.rewindTo(index);
     history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`);
   };
 
@@ -51,19 +53,17 @@ const ResultsPage = () => {
   });
 
   // Something like this can be used to show the conclusions
-  const conclusions = checker?.permits.map(permit => {
-    const decision = permit.getDecisionById('dummy');
-    const rules = decision.getMatchingRules();
-    console.log(rules);
-    return rules[0].description;
-  });
-  console.log('Conclusions', conclusions);
-  console.log('permitsPerQuestion', permitsPerQuestion);
+  // const conclusions = checker?.permits.map(permit => {
+  //   const decision = permit.getDecisionById('dummy');
+  //   const rules = decision.getMatchingRules();
+  //   return rules[0].description;
+  // });
 
   return (
     <Form
       onSubmit={e => {
         e.preventDefault();
+        alert('form submit');
         history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerDuties}`);
       }}
     >
@@ -76,13 +76,15 @@ const ResultsPage = () => {
       </MainWrapper>
       {checker?.stack?.map((question, index) => {
         const isDecisiveForPermits = permitsPerQuestion[index] || [];
-        console.log(index, isDecisiveForPermits);
-        console.log(index, question.answer);
         return (
           <div key={question.id}>
             <Wrapper>
               <Question>{question.text}</Question>
-              <UserAnswer>{question.answer}</UserAnswer>
+              {question._options ? (
+                <UserAnswer>{question.answer}</UserAnswer>
+              ) : (
+                <UserAnswer>{booleanOptions.find(option => option.value === question.answer).label}</UserAnswer>
+              )}
               <Button onClick={() => onGoToQuestion(index)} variant="textButton">
                 bewerken
               </Button>
@@ -95,6 +97,7 @@ const ResultsPage = () => {
           </div>
         );
       })}
+      <DebugDecisionTable checker={checker} />
       <Navigation
         page={`checker-${PAGES.checkerResult}`}
         onGoToPrev={() => onGoToQuestion(checker.stack.length - 1)}
