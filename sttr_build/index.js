@@ -23,7 +23,8 @@ if (!OUTPUT_DIR) {
 }
 
 const MAX_PARALLEL = 6;
-const sttrApi = `https://sttr-builder${process.env.STTR_ENV === 'production' ? '' : '-staging'}.eu.meteorapp.com/api`;
+const sttrApi = `https://sttr-builder-staging.eu.meteorapp.com/api`;
+// const sttrApi = `https://sttr-builder${process.env.STTR_ENV === 'production' ? '' : '-staging'}.eu.meteorapp.com/api`;
 const listUrl = `${sttrApi}/activiteiten/bijwerkzaamheid`;
 const detailUrl = `${sttrApi}/conclusie/sttr`;
 const headers = {

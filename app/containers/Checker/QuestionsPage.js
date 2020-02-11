@@ -71,7 +71,7 @@ const QuestionsPage = () => {
   return (
     <>
       <Question question={question} onSubmit={onQuestionNext} onGoToPrev={onQuestionPrev} showNext showPrev required />
-      {process.env.NODE_env !== 'production' && <DebugDecisionTable checker={checker} />}
+      <DebugDecisionTable checker={checker} />
     </>
   );
 };
