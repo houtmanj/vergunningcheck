@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
+import { Paragraph, TextField, Select, themeColor, Heading } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
 import history from 'utils/history';
@@ -93,6 +93,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <Heading $as="h4">Invullen adres</Heading>
         <Paragraph>Voer het adres in waar u {GET_TEXT?.topicLocation}.</Paragraph>
         <TextField
           className="address-input__input address-input__postcode"
@@ -158,8 +159,6 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
             </Paragraph>
           </StyledAddressResult>
         )}
-
-        <Paragraph strong>Je kan hier ook gewoon verder zonder een adres in te vullen.</Paragraph>
 
         <Navigation
           page={`checker-${PAGES.checkerLocation}`}

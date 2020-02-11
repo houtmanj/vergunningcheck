@@ -27,67 +27,75 @@ const TOPICS = {
     status: STATUS.LIVE,
     sttrPath: '/shared/content/sttr/DakkapelBouwen.json',
     text: {
+      entity: 'dakkapel',
       heading: 'Vergunningchecker dakkapel plaatsen',
       topic: 'een dakkapel te plaatsen',
-      topicLocation: 'de dakkapel wil gaan plaatsen',
+      topicLocation: 'de dakkapel wilt gaan plaatsen',
     },
   },
   'kappen-of-snoeien': {},
   'aanbouw-of-uitbouw-maken': {
     status: STATUS.PRE_LIVE,
     text: {
+      entity: 'aanbouw of uitbouw',
       heading: 'Vergunningchecker aanbouw of uitbouw maken',
       topic: 'een aanbouw of een uitbouw te maken',
-      topicLocation: 'de aanbouw of uitbouw wil gaan maken',
+      topicLocation: 'de aanbouw of uitbouw wilt gaan maken',
     },
   },
   'dakkapel-plaatsen': {
     status: STATUS.LIVE,
     sttrPath: '/shared/content/sttr/DakkapelBouwen.json',
     text: {
+      entity: 'dakkapel',
       heading: 'Vergunningchecker dakkapel plaatsen',
       topic: 'een dakkapel te plaatsen',
-      topicLocation: 'de dakkapel wil gaan plaatsen',
+      topicLocation: 'de dakkapel wilt gaan plaatsen',
     },
   },
   'dakraam-plaatsen': {
     status: STATUS.PRE_LIVE,
     text: {
+      entity: 'dakraam',
       heading: 'Vergunningchecker dakraam plaatsen',
       topic: 'een dakraam te plaatsen',
-      topicLocation: 'het dakraam wil gaan plaatsen',
+      topicLocation: 'het dakraam wilt gaan plaatsen',
     },
   },
   'kozijnen-plaatsen-of-vervangen': {
     status: STATUS.PRE_LIVE,
     text: {
+      entity: 'kozijn',
       heading: 'Vergunningchecker kozijnen plaatsen of vervangen',
       topic: 'kozijnen te plaatsen of te vervangen',
-      topicLocation: 'de kozijnen wil gaan plaatsen of vervangen',
+      topicLocation: 'de kozijnen wilt gaan plaatsen of vervangen',
     },
   },
   'zonnepanelen-of-warmtecollectoren-plaatsen': {
     status: STATUS.PRE_LIVE,
     text: {
+      entity: 'zonnepaneel of warmtecollector',
       heading: 'Vergunningchecker zonnepanelen of warmtecollectoren plaatsen',
       topic: 'zonnepanelen of warmtecollectoren te plaatsen',
-      topicLocation: 'de zonnepanelen of warmtecollectoren wil gaan plaatsen',
+      topicLocation: 'de zonnepanelen of warmtecollectoren wilt gaan plaatsen',
     },
   },
   'bouwwerk-slopen': {
     status: STATUS.PRE_LIVE,
     text: {
+      entity: 'bouwwerk slopen',
       heading: 'Vergunningchecker bouwwerk slopen',
       topic: 'een bouwwerk te slopen,',
-      topicLocation: 'het bouwwerk wil gaan slopen',
+      topicLocation: 'het bouwwerk wilt gaan slopen',
     },
   },
   'intern-verbouwen': {
     status: STATUS.PRE_LIVE,
     text: {
+      entity: '',
       heading: 'Intern verbouwen',
       topic: 'intern te verbouwen',
-      topicLocation: 'intern wil gaan verbouwen',
+      topicLocation: 'intern wilt gaan verbouwen',
     },
   },
   '404': {

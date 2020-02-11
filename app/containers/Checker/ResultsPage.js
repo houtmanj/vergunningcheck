@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Paragraph, Button } from '@datapunt/asc-ui';
+import { Paragraph, Button, Heading } from '@datapunt/asc-ui';
 
 import history from 'utils/history';
 import Form from 'components/Form/Form';
@@ -25,6 +25,9 @@ const Question = styled(`div`)`
 `;
 const UserAnswer = styled(`div`)`
   width: 100px;
+`;
+const UserResult = styled(`div`)`
+  font-weight: bold;
 `;
 const Change = styled(`div`)`
   width: 60px;
@@ -53,11 +56,12 @@ const ResultsPage = () => {
   });
 
   // Something like this can be used to show the conclusions
-  // const conclusions = checker?.permits.map(permit => {
-  //   const decision = permit.getDecisionById('dummy');
-  //   const rules = decision.getMatchingRules();
-  //   return rules[0].description;
-  // });
+  const conclusions = checker?.permits.map(permit => {
+    const decision = permit.getDecisionById('dummy');
+    const rules = decision.getMatchingRules();
+    console.log(rules[0].description);
+    return rules[0].description;
+  });
 
   return (
     <Form
@@ -66,8 +70,10 @@ const ResultsPage = () => {
         history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerDuties}`);
       }}
     >
-      <Paragraph strong>Hier staan dan de antwoorden op de vragen:</Paragraph>
-      <Paragraph style={{ marginBottom: '0px' }}>Daarna krijg je de plichten pagina</Paragraph>
+      <Paragraph strong>
+        Hieronder kunt u per vraag uw gegeven antwoord teruglezen en eventueel wijzigen. Als u een wijziging doet moet u
+        alle volgende vragen opnieuw beantwoorden.
+      </Paragraph>
       <MainWrapper>
         <Question>Vraag</Question>
         <UserAnswer>Uw antwoord</UserAnswer>
@@ -90,7 +96,10 @@ const ResultsPage = () => {
             </Wrapper>
             {isDecisiveForPermits.map(permit => (
               <Wrapper>
-                <Paragraph strong> Op basis van dit antwoord bent u vergunningsplichtig voor {permit.name}</Paragraph>
+                <UserResult>
+                  {' '}
+                  Op basis van dit antwoord bent u vergunningsplichtig voor {permit.name.toLowerCase()}
+                </UserResult>
               </Wrapper>
             ))}
           </div>
