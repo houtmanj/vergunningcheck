@@ -9,6 +9,11 @@ import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import Answers from './Answers';
 import { PAGES } from '../../constants';
+import styled from '@datapunt/asc-core';
+
+const Image = styled(`img`)`
+  width: 35vw;
+`;
 
 export const booleanOptions = [
   {
@@ -97,7 +102,9 @@ const Question = ({
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId}>
       {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
-      {description && <ReactMarkdown source={description} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
+      {description && (
+        <ReactMarkdown source={description} renderers={{ paragraph: Paragraph, image: Image }} linkTarget="_blank" />
+      )}
       {longDescription && <ExplanationModal modalText={longDescription} />}
       <Answers
         questionId={questionId}

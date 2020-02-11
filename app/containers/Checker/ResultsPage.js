@@ -85,7 +85,7 @@ const ResultsPage = () => {
             <Wrapper>
               <Question>{question.text}</Question>
               {question.options ? (
-                <UserAnswer>{question.answer}</UserAnswer>
+                <UserAnswer>{question.answer.replace(/['"]+/g, '')}</UserAnswer>
               ) : (
                 <UserAnswer>{booleanOptions.find(option => option.value === question.answer).label}</UserAnswer>
               )}
