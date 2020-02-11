@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { useForm } from 'react-hook-form';
 import { Heading, Paragraph } from '@datapunt/asc-ui';
+import styled from '@datapunt/asc-core';
 
 import { ExplanationModal } from 'components/Modal';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import Answers from './Answers';
 import { PAGES } from '../../constants';
-import styled from '@datapunt/asc-core';
 
 const Image = styled(`img`)`
   width: 35vw;
