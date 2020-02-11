@@ -43,7 +43,6 @@ class Decision {
    * Return the outputValue for the first matching rule
    */
   get answer() {
-    // debug(`Get answer for decision based on underlying rules.`, this, matchingRule);
     const matchingRule = this.getMatchingRules().shift() || null;
     return matchingRule ? matchingRule.outputValue : null;
   }
