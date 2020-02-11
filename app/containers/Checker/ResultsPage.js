@@ -63,7 +63,6 @@ const ResultsPage = () => {
     <Form
       onSubmit={e => {
         e.preventDefault();
-        alert('form submit');
         history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerDuties}`);
       }}
     >

@@ -37,7 +37,6 @@ const Question = ({
     description,
     longDescription,
   },
-  question,
   className,
   headingAs,
   children,
@@ -49,7 +48,7 @@ const Question = ({
   onGoToPrev,
   required,
 }) => {
-  const { handleSubmit, register, unregister, setValue, errors, getValues } = useForm();
+  const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map(answer => ({ label: answer, formValue: answer, value: answer }));
   const answers = questionType === 'string' ? listAnswers : booleanOptions;
   let answer;

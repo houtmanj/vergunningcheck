@@ -44,10 +44,6 @@ const QuestionsPage = () => {
       question.setAnswer(value);
     } else {
       const responseObj = booleanOptions.find(o => o.formValue === value);
-      if (!responseObj) {
-        debugger;
-      }
-
       question.setAnswer(responseObj.value);
     }
     const next = checker.next();
