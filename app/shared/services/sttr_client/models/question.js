@@ -16,7 +16,10 @@ class Question {
    * @param {string[]} [options] a list of options for the answer
    * @param {boolean} [multipleAnswers=false] indicates if answer should be a list
    */
-  constructor({ type, text, description, answer, options, uuid, multipleAnswers = false }) {
+  constructor({ id, type, text, description, answer, options, uuid, multipleAnswers = false }) {
+    if (id !== undefined && !isString(id)) {
+      throw Error(`'id' for Question must be a string (got "${id}"`);
+    }
     if (['boolean', 'string', 'number', 'geo'].indexOf(type) === -1) {
       throw Error(`Unsupported type for Question (${type})`);
     }
@@ -36,6 +39,7 @@ class Question {
       throw Error(`Current implementation doesn't support multipleAnswers yet.`);
     }
 
+    this._id = id;
     this._type = type;
     this._text = text;
     this._uuid = uuid;
@@ -45,6 +49,10 @@ class Question {
     if (answer !== undefined) {
       this.setAnswer(answer);
     }
+  }
+
+  get id() {
+    return this._id;
   }
 
   get uuid() {
@@ -57,6 +65,10 @@ class Question {
 
   get text() {
     return this._text;
+  }
+
+  get options() {
+    return this._options;
   }
 
   get description() {

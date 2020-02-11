@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import history from 'utils/history';
 import { getSttrFile } from 'shared/services/api';
-import Question from './Question';
+import Question, { booleanOptions } from './Question';
 import getChecker from '../../shared/services/sttr_client';
 import { GET_CURRENT_TOPIC, PAGES, GET_STTR } from '../../constants';
 import { CheckerContext } from './CheckerContext';
@@ -16,7 +16,7 @@ const QuestionsPage = () => {
   useEffect(() => {
     (async function getSttr() {
       if (checker.stack) {
-        const currentQuestion = checker.next();
+        const currentQuestion = checker.stack[checker.stack.length - 1];
         setQuestion(currentQuestion);
       } else {
         setLoading(true);
@@ -40,8 +40,12 @@ const QuestionsPage = () => {
   }
 
   const onQuestionNext = value => {
-    question.setAnswer(value);
-
+    if (question.options) {
+      question.setAnswer(value);
+    } else {
+      const responseObj = booleanOptions.find(o => o.formValue === value);
+      question.setAnswer(responseObj.value);
+    }
     const next = checker.next();
 
     if (!next) {
