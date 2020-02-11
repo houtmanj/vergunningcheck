@@ -52,13 +52,6 @@ const ResultsPage = () => {
     }
   });
 
-  // Something like this can be used to show the conclusions
-  // const conclusions = checker?.permits.map(permit => {
-  //   const decision = permit.getDecisionById('dummy');
-  //   const rules = decision.getMatchingRules();
-  //   return rules[0].description;
-  // });
-
   return (
     <Form
       onSubmit={e => {

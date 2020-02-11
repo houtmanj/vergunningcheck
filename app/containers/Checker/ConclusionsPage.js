@@ -20,7 +20,7 @@ const ConclusionsPage = () => {
         e.preventDefault();
       }}
     >
-      <Heading $as="h1">Conclusie</Heading>
+      <Heading $as="h1">Conclusies</Heading>
 
       <Paragraph>Op basis van uw antwoorden ....</Paragraph>
 
