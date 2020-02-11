@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import history from 'utils/history';
 import { getSttrFile } from 'shared/services/api';
 import Question from './Question';
-import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
 import getChecker from '../../shared/services/sttr_client';
 import { GET_CURRENT_TOPIC, PAGES, GET_STTR } from '../../constants';
 import { CheckerContext } from './CheckerContext';
