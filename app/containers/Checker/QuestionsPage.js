@@ -71,7 +71,7 @@ const QuestionsPage = () => {
   return (
     <>
       <Question question={question} onSubmit={onQuestionNext} onGoToPrev={onQuestionPrev} showNext showPrev required />
-      <DebugDecisionTable checker={checker} />
+      {/*<DebugDecisionTable checker={checker} />*/}
     </>
   );
 };

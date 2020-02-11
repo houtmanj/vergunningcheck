@@ -96,7 +96,7 @@ const ResultsPage = () => {
           </div>
         );
       })}
-      <DebugDecisionTable checker={checker} />
+      {/*<DebugDecisionTable checker={checker} />*/}
       <Navigation
         page={`checker-${PAGES.checkerResult}`}
         onGoToPrev={() => onGoToQuestion(checker.stack.length - 1)}
