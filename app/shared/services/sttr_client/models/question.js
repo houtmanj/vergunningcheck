@@ -16,7 +16,10 @@ class Question {
    * @param {string[]} [options] a list of options for the answer
    * @param {boolean} [multipleAnswers=false] indicates if answer should be a list
    */
-  constructor({ type, text, description, answer, options, uuid, multipleAnswers = false }) {
+  constructor({ id, type, text, description, answer, options, uuid, multipleAnswers = false }) {
+    if (id !== undefined && !isString(id)) {
+      throw Error(`'id' for Question must be a string (got "${id}"`);
+    }
     if (['boolean', 'string', 'number', 'geo'].indexOf(type) === -1) {
       throw Error(`Unsupported type for Question (${type})`);
     }
@@ -36,6 +39,7 @@ class Question {
       throw Error(`Current implementation doesn't support multipleAnswers yet.`);
     }
 
+    this._id = id;
     this._type = type;
     this._text = text;
     this._uuid = uuid;
@@ -45,6 +49,10 @@ class Question {
     if (answer !== undefined) {
       this.setAnswer(answer);
     }
+  }
+
+  get id() {
+    return this._id;
   }
 
   get uuid() {
@@ -59,6 +67,10 @@ class Question {
     return this._text;
   }
 
+  get options() {
+    return this._options;
+  }
+
   get description() {
     return this._description;
   }
@@ -67,14 +79,14 @@ class Question {
     // START temporary fix to make current checkers work:
     /* eslint-disable no-param-reassign */
     if (this._type === 'boolean' || this._type === 'geo') {
-      value = value === 'yes';
+      // value = value === 'yes';
     }
 
     if (this._options) {
       // if (this._multipleAnswers) {
       //   value = ['"amsterdam"'];
       // } else {
-      value = '"voorkant"';
+      // value = '"voorkant"';
       // }
     }
     /* eslint-enable no-param-reassign */
