@@ -116,7 +116,7 @@ export const PAGES = {
   checkerLocation: 'locatie',
   checkerQuestions: 'vragen',
   checkerResult: 'uitkomsten',
-  checkerDuties: 'plichten',
+  checkerConclusions: 'conclusies',
 };
 
 export const GET_TEXT =

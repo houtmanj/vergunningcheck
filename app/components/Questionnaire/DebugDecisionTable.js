@@ -7,7 +7,7 @@ export default ({ checker }) => {
   if (!checker.permits) return <></>;
   const relevantOpenQuestions = checker._getRelevantOpenQuestions();
   return (
-    <>
+    <div id="debugtable" style={{ display: 'none' }}>
       <div style={{ display: 'block' }}>
         <h1>Questions</h1>
         <table cellPadding="1" cellSpacing="1">
@@ -40,7 +40,7 @@ export default ({ checker }) => {
       {checker.permits.map(permit => {
         const conclusionString = permit.getOutputByDecisionId(decisionId);
         const conclusion = permit.getDecisionById(decisionId);
-        const matchineRules = conclusion.getMatchingRules();
+        const conclusionMatchingRules = conclusion.getMatchingRules();
         const decisiveDecisions = conclusion.getDecisiveInputs();
 
         return (
@@ -109,23 +109,12 @@ export default ({ checker }) => {
               {decisiveDecisions.map(decision => decision.getDecisiveInputs().map(question => question.text))}
             </p>
             <h3>Notes:</h3>
-            {matchineRules.map(({ description, inputConditions, outputValue }) => (
+            {conclusionMatchingRules.map(({ description, inputConditions, outputValue }) => (
               <p key={{ inputConditions, outputValue }}>- {description}</p>
             ))}
-
-            <div className="details" style={{ display: 'none' }}>
-              <h1>Overview</h1>
-              <div>
-                {/* <Overview decision={conclusion} stack={checker.stack} /> */}
-
-                <pre>
-                  <code>{JSON.stringify(conclusion, ';', 2)}</code>
-                </pre>
-              </div>
-            </div>
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
