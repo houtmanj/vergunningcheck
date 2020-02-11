@@ -4,8 +4,8 @@ import React from 'react';
 export default ({ checker }) => {
   const decisionId = 'dummy';
   window.checker = checker;
-  const relevantOpenQuestions = checker._getRelevantOpenQuestions();
   if (!checker.permits) return <></>;
+  const relevantOpenQuestions = checker._getRelevantOpenQuestions();
   return (
     <>
       <div style={{ display: 'block' }}>
