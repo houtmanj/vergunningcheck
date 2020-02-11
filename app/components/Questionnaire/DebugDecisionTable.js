@@ -4,45 +4,105 @@ import React from 'react';
 export default ({ checker }) => {
   const decisionId = 'dummy';
   window.checker = checker;
+  const relevantOpenQuestions = checker._getRelevantOpenQuestions();
   if (!checker.permits) return <></>;
   return (
     <>
+      <div style={{ display: 'block' }}>
+        <h1>Questions</h1>
+        <table cellPadding="1" cellSpacing="1">
+          <thead>
+            <tr>
+              <th>Vraag</th>
+              <th>Antwoord</th>
+            </tr>
+          </thead>
+          <tbody>
+            {checker.stack.map(q => (
+              <tr key={q.id}>
+                <td>{q.text}</td>
+                <td>{q.answer !== undefined ? q.answer.toString() : <em>[current]</em>}</td>
+              </tr>
+            ))}
+            {relevantOpenQuestions.map(q => (
+              <tr key={q.id}>
+                <td>{q.text}</td>
+                <td>
+                  <em>...</em>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h1>Permits</h1>
       {checker.permits.map(permit => {
         const conclusionString = permit.getOutputByDecisionId(decisionId);
         const conclusion = permit.getDecisionById(decisionId);
         const matchineRules = conclusion.getMatchingRules();
         const decisiveDecisions = conclusion.getDecisiveInputs();
+
         return (
           <div key={permit.name}>
-            <h1>{permit.name}</h1>
-            <table>
-              <tbody>
-                {permit._decisions.map((decision, i) => {
-                  const rules = decision.getMatchingRules();
-                  const questions = decision.getDecisiveInputs();
-                  return (
-                    <tr key={decision.id}>
-                      <td>Decision {decision.id === 'dummy' ? decision.id : i}</td>
-                      <td>
-                        {rules.length > 0 ? (
-                          rules.map(rule => <div key={rule.id}>{rule.outputValue}</div>)
-                        ) : (
-                          <em>[unknown]</em>
-                        )}
-                      </td>
-                      <td>
-                        {questions.map(input => (
-                          <div>
-                            Vraag ({input.type}) "{input.text}"
-                          </div>
-                        ))}
-                      </td>
-                      <td>{JSON.stringify(rules)}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <h2>{permit.name}</h2>
+            {permit._decisions.map((decision, i) => {
+              const matchingRules = decision.getMatchingRules();
+              const rules = decision._rules;
+              const questions = decision._inputs;
+              const decisiveInputs = decision.getDecisiveInputs();
+              return (
+                <div key={decision.id}>
+                  <h3>
+                    Decision {decision.id === 'dummy' ? decision.id : i} ({matchingRules.length !== 0 && 'CONCLUSIVE'})
+                  </h3>
+                  <div style={{ marginLeft: '2em' }}>
+                    <div>
+                      <strong>Vragen</strong>
+                      <ol>
+                        {questions.map(q => {
+                          return (
+                            <li key={q.id} style={{ fontWeight: decisiveInputs.indexOf(q) > -1 ? 'bold' : 'normal' }}>
+                              {q.text}
+                              <br />
+                              Antwoord:{' '}
+                              {q.answer !== undefined ? <b>{JSON.stringify(q.answer)}</b> : <em>undefined</em>}
+                            </li>
+                          );
+                        })}
+                      </ol>
+                    </div>
+                    <div>
+                      <strong>Rules:</strong>
+                      <ol>
+                        {rules.map(r => {
+                          return (
+                            <li
+                              key={r.inputConditions + r.outputValue}
+                              style={{ fontWeight: matchingRules.indexOf(r) > -1 ? 'bold' : 'normal' }}
+                            >
+                              inputConditions: {JSON.stringify(r.inputConditions)}
+                              <br />
+                              outputValue: {r.outputValue}
+                            </li>
+                          );
+                        })}
+                      </ol>
+                    </div>
+                    {/* <div>
+                      {decisiveInputs.map(input => (
+                        <div>
+                          Vraag ({input.type}) "{input.text}"
+                        </div>
+                      ))}
+                    </div> */}
+
+                    {/* <div>{JSON.stringify(rules)}</div> */}
+                  </div>
+                </div>
+              );
+            })}
+
             <p>
               <b>{conclusionString || <em>[unknown]</em>}</b>
               .<br />

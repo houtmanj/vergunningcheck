@@ -76,22 +76,6 @@ class Question {
   }
 
   setAnswer(value) {
-    // START temporary fix to make current checkers work:
-    /* eslint-disable no-param-reassign */
-    if (this._type === 'boolean' || this._type === 'geo') {
-      // value = value === 'yes';
-    }
-
-    if (this._options) {
-      // if (this._multipleAnswers) {
-      //   value = ['"amsterdam"'];
-      // } else {
-      // value = '"voorkant"';
-      // }
-    }
-    /* eslint-enable no-param-reassign */
-    // END temporary fix to make current checkers work:
-
     /* eslint-disable valid-typeof */
     if (this._type === 'geo') {
       // temporary fix to make current checkers work:
