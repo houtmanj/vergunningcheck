@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { EXTERNAL_URLS, GET_CURRENT_TOPIC, PAGES } from '../../constants';
 import { CheckerContext } from './CheckerContext';
 import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
+import PropTypes from 'prop-types';
 
 const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
@@ -79,6 +80,16 @@ const ConclusionsPage = ({ addressResults }) => {
       <DebugDecisionTable checker={checker} />
     </Form>
   );
+};
+
+ConclusionsPage.propTypes = {
+  addressResults: PropTypes.arrayOf(
+    PropTypes.shape({
+      postcode: PropTypes.string,
+      huisnummer: PropTypes.string,
+      toevoeging: PropTypes.string,
+    }),
+  ),
 };
 
 const mapStateToProps = state => {
