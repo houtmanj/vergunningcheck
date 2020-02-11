@@ -25,11 +25,11 @@ const TOPICS = {
   // Quick hack to test the routs, use: http://localhost:3000/a/
   a: {
     status: STATUS.LIVE,
-    sttrPath: '/shared/content/sttr/AanOfUitbouwBouwen.json',
+    sttrPath: '/shared/content/sttr/DakkapelBouwen.json',
     text: {
-      heading: 'Vergunningchecker aanbouw of uitbouw bouwen',
-      topic: 'een aanbouw of uitbouw wilt bouwen',
-      topicLocation: 'de aanbouw of uitbouw wil gaan bouwen',
+      heading: 'Vergunningchecker dakkapel plaatsen',
+      topic: 'een dakkapel te plaatsen',
+      topicLocation: 'de dakkapel wil gaan plaatsen',
     },
   },
   'kappen-of-snoeien': {},
