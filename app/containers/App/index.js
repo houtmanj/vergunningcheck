@@ -13,6 +13,7 @@ import LocationResultsPage from 'containers/Location/ResultsPage';
 import CheckerQuestionsPage from 'containers/Checker/QuestionsPage';
 import CheckerIntroductionPage from 'containers/Checker/IntroductionPage';
 import CheckerLocationPage from 'containers/Checker/LocationPage';
+import CheckerLocationResultPage from 'containers/Checker/LocationResultPage';
 import CheckerResultsPage from 'containers/Checker/ResultsPage';
 import CheckerDutiesPage from 'containers/Checker/DutiesPage';
 import NotFoundPage from 'containers/NotFoundPage';
@@ -125,6 +126,11 @@ export const App = props => {
                     exact
                     path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`}
                     component={CheckerLocationPage}
+                  />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`}
+                    component={CheckerLocationResultPage}
                   />
                   <Route
                     exact

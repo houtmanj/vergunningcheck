@@ -11,9 +11,9 @@ const Rule = require('./models/rule');
  * @returns {Question[]} an array with Question objects
  */
 function getQuestions(questionConfig) {
-  return Object.entries(questionConfig).map(([hash, { text, ids, type, collection, options, description }]) => ({
+  return questionConfig.map(({ uuid, text, type, collection, options, description, ids }) => ({
     ids,
-    question: new Question(hash, type, text, description, undefined, options, collection),
+    question: new Question({ type, text, description, collection, options, uuid }),
   }));
 }
 
@@ -55,19 +55,19 @@ function getDecision(id, decisionConfig, questions) {
  */
 function getChecker(config) {
   const { permits: permitsConfig } = config;
-  const x = permitsConfig.reduce((acc, curr) => {
-    Object.entries(curr.questions).forEach(([hash, question]) => {
-      const { id, ...rest } = question;
-      if (acc[hash]) {
-        acc[hash].ids.push(id);
+  const x = permitsConfig.reduce((acc, permitConfig) => {
+    permitConfig.questions.forEach(question => {
+      const previousByUUID = question.uuid ? acc.find(q => q.uuid === question.uuid) : null;
+      if (previousByUUID) {
+        previousByUUID.ids.push(question.id);
       } else {
-        acc[hash] = { ...rest, ids: [id] };
+        acc.push({ ...question, ids: [question.id] });
       }
     });
     return acc;
-  }, {});
-  const allQuestions = getQuestions(x);
+  }, []);
 
+  const allQuestions = getQuestions(x);
   const permits = permitsConfig.map(permit => {
     const { questions, decisions, name } = permit;
 

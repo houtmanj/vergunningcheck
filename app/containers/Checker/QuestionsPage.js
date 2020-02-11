@@ -6,11 +6,13 @@ import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTabl
 import getChecker from '../../shared/services/sttr_client';
 import { GET_CURRENT_TOPIC, PAGES, GET_STTR } from '../../constants';
 import { CheckerContext } from './CheckerContext';
+import { QuestionContext } from './QuestionContext';
+import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
 
 const QuestionsPage = () => {
   const [loading, setLoading] = useState(false);
   const { checker, updateChecker } = useContext(CheckerContext);
-  const [question, setQuestion] = useState('');
+  const { question, setQuestion } = useContext(QuestionContext);
 
   useEffect(() => {
     (async function getSttr() {
@@ -34,7 +36,7 @@ const QuestionsPage = () => {
   if (loading) {
     return <div>Laden...</div>;
   }
-  if (!checker || !question) {
+  if (!checker) {
     return <div>Error! Geen checker...</div>;
   }
 
@@ -59,14 +61,14 @@ const QuestionsPage = () => {
       setQuestion(prev);
     } else {
       // Go back to Location page
-      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
     }
   };
 
   return (
     <>
       <Question question={question} onSubmit={onQuestionNext} onGoToPrev={onQuestionPrev} showNext showPrev required />
-      {process.env.NODE_ENV !== 'production' && <DebugDecisionTable checker={checker} />}
+      {process.env.NODE_env !== 'production' && <DebugDecisionTable checker={checker} />}
     </>
   );
 };

@@ -63,7 +63,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   }
 
   const onSubmit = () => {
-    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`);
+    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
   };
 
   const handleBlur = e => {
