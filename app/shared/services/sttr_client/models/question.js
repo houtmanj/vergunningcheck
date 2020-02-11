@@ -67,6 +67,10 @@ class Question {
     return this._text;
   }
 
+  get options() {
+    return this._options;
+  }
+
   get description() {
     return this._description;
   }

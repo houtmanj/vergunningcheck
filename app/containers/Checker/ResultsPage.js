@@ -79,7 +79,7 @@ const ResultsPage = () => {
           <div key={question.id}>
             <Wrapper>
               <Question>{question.text}</Question>
-              {question._options ? (
+              {question.options ? (
                 <UserAnswer>{question.answer}</UserAnswer>
               ) : (
                 <UserAnswer>{booleanOptions.find(option => option.value === question.answer).label}</UserAnswer>
