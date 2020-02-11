@@ -5,52 +5,28 @@ import ReactMarkdown from 'react-markdown';
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { connect } from 'react-redux';
 import { EXTERNAL_URLS, GET_CURRENT_TOPIC, PAGES } from '../../constants';
 import { CheckerContext } from './CheckerContext';
 import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
+import { connect } from 'react-redux';
 
 const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
-const ConclusionsPage = ({ addressResults }) => {
+const ContactGemeentePage = () => {
   const { checker } = useContext(CheckerContext);
 
-  const goToOLO = e => {
-    e.preventDefault();
-    if (addressResults?.length === 1) {
-      // Form is validated, we can proceed
-
-      // Generate OLO parameter "postalCode"
-      const oloPostalCode = `facet_locatie_postcode=${addressResults[0].postcode}`;
-
-      // Generate OLO parameter "streetNumber"
-      const oloStreetNumber = `facet_locatie_huisnummer=${addressResults[0].huisnummer}`;
-
-      // Generate OLO parameter "suffix"
-      const oloSuffixValue = addressResults[0].toevoeging.replace(addressResults[0].huisnummer, '').trim();
-
-      const oloSuffix = `facet_locatie_huisnummertoevoeging=${oloSuffixValue}`;
-
-      // Redirect user to OLO with all parameters
-      window.open(
-        `${EXTERNAL_URLS.oloChecker.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`,
-        '_blank',
-      );
-    }
-  };
-
   return (
-    <Form onSubmit={goToOLO}>
+    <Form onSubmit={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`)}>
       <Heading $as="h1">Conclusie</Heading>
 
-      <Paragraph>Op basis van uw antwoorden ....</Paragraph>
+      <Paragraph>Op basis van uw antwoorden</Paragraph>
 
       {checker.permits.map(permit => {
         const conclusionString = permit.getOutputByDecisionId('dummy');
         const conclusion = permit.getDecisionById('dummy');
         const conclusionMatchingRules = conclusion.getMatchingRules();
         const displayConclusions = conclusionMatchingRules
-          .filter(rule => rule.outputValue !== '"NeemContactOpMet"')
+          .filter(rule => rule.outputValue === '"NeemContactOpMet"')
           .map(rule => rule.description)
           .filter(uniqueFilter);
 
@@ -70,10 +46,10 @@ const ConclusionsPage = ({ addressResults }) => {
 
       <Navigation
         page={`checker-${PAGES.checkerConclusions}`}
-        onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`)}
+        onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`)}
         showPrev
         showNext
-        nextText="Naar het omgevingsloket"
+        nextText="Opnieuw checken"
         formEnds
       />
       <DebugDecisionTable checker={checker} />
@@ -81,9 +57,4 @@ const ConclusionsPage = ({ addressResults }) => {
   );
 };
 
-const mapStateToProps = state => {
-  const { addressResults } = state.locationData;
-  return { addressResults };
-};
-
-export default connect(mapStateToProps)(ConclusionsPage);
+export default ContactGemeentePage;

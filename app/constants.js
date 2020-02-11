@@ -125,6 +125,7 @@ export const PAGES = {
   checkerQuestions: 'vragen',
   checkerResult: 'uitkomsten',
   checkerConclusions: 'conclusies',
+  checkerContactAmsterdam: 'neem-contact-op-met-de-gemeente',
 };
 
 export const GET_TEXT =
