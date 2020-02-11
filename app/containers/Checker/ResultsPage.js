@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Paragraph, Button, Heading } from '@datapunt/asc-ui';
+import { Paragraph, Button } from '@datapunt/asc-ui';
 
 import history from 'utils/history';
 import Form from 'components/Form/Form';
@@ -56,12 +56,11 @@ const ResultsPage = () => {
   });
 
   // Something like this can be used to show the conclusions
-  const conclusions = checker?.permits.map(permit => {
-    const decision = permit.getDecisionById('dummy');
-    const rules = decision.getMatchingRules();
-    console.log(rules[0].description);
-    return rules[0].description;
-  });
+  // const conclusions = checker?.permits.map(permit => {
+  //   const decision = permit.getDecisionById('dummy');
+  //   const rules = decision.getMatchingRules();
+  //   return rules[0].description;
+  // });
 
   return (
     <Form

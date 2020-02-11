@@ -63,7 +63,19 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
   }
 
   const onSubmit = () => {
-    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
+    const currentValues = getValues();
+
+    if (addressResults?.length > 1 && !suffix) {
+      // Needs suffix and has no suffix
+      triggerValidation('suffix');
+    }
+
+    if (!loading && (addressResults?.length === 1 || suffix)) {
+      // Form is validated, we can proceed
+      onFetchStreetname(currentValues);
+      onFetchBagData(currentValues);
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
+    }
   };
 
   const handleBlur = e => {
