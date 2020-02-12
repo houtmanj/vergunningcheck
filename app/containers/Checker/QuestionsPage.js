@@ -56,6 +56,7 @@ const QuestionsPage = () => {
     if (needContactPermits) {
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerContactAmsterdam}`);
     }
+
     const next = checker.next();
 
     if (!next) {
