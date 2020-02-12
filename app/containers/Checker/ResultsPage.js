@@ -97,7 +97,8 @@ const ResultsPage = () => {
               <Wrapper>
                 <UserResult>
                   {' '}
-                  Op basis van dit antwoord bent u vergunningsplichtig voor {permit.name.toLowerCase()}
+                  Op basis van dit antwoord bent u vergunningsplichtig voor{' '}
+                  {permit.name.replace('Conclusie', '').toLowerCase()}
                 </UserResult>
               </Wrapper>
             ))}
