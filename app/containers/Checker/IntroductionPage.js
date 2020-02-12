@@ -9,8 +9,6 @@ import { GET_CURRENT_TOPIC, GET_TEXT, PAGES } from '../../constants';
 const BulletList = styled(List)`
   li {
     list-style-type: none;
-    counter-reset: my-sec-counter;
-    counter-reset: my-awesome-counter 0;
   }
   li:before {
     content: '';
