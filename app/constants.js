@@ -6,6 +6,7 @@ export const REGEX = {
 
 export const EXTERNAL_URLS = {
   oloChecker: {
+    omgevingsloket: 'https://www.omgevingsloket.nl/',
     intro: 'https://www.omgevingsloket.nl/Particulier/particulier/home/checken',
     location: 'https://www.omgevingsloket.nl/Particulier/particulier/home/checken/LocatieWerkzaamheden',
   },
