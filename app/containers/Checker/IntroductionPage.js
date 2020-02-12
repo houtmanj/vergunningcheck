@@ -21,6 +21,11 @@ const BulletList = styled(List)`
     padding-right: 0;
   }
 `;
+const OrderList = styled(OrderedList)`
+   {
+    counter-reset: item 2;
+  }
+`;
 
 const IntroductionText = () => (
   <>
@@ -37,10 +42,12 @@ const IntroductionText = () => (
           </BulletList>
         </div>
       </ListItem>
+    </OrderedList>
+    <OrderList>
       <ListItem>Daarna gebruikt u deze informatie om de vergunningcheck dakkapel te doen</ListItem>
       <ListItem>U leest of u een vergunning nodig hebt. Wij vertellen u hoe u een aanvraag doet</ListItem>
       <ListItem>Wij vertellen u waar u verder op moet letten als u de dakkapel gaat plaatsen.</ListItem>
-    </OrderedList>
+    </OrderList>
     <Heading $as="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">
       <ListItem>
