@@ -6,6 +6,7 @@ export default ({ checker }) => {
   window.checker = checker;
   if (!checker.permits) return <></>;
   const relevantOpenQuestions = checker._getUpcomingQuestions();
+
   return (
     <div id="debugtable" style={{ display: 'none' }}>
       <div style={{ display: 'block' }}>
