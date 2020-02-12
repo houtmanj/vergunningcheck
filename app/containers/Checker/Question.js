@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { useForm } from 'react-hook-form';
 import { Heading, Paragraph } from '@datapunt/asc-ui';
+import styled from '@datapunt/asc-core';
 
 import { ExplanationModal } from 'components/Modal';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import Answers from './Answers';
 import { PAGES } from '../../constants';
+
+const Image = styled(`img`)`
+  max-width: 100%;
+`;
 
 export const booleanOptions = [
   {
@@ -97,7 +102,9 @@ const Question = ({
   return (
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId}>
       {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
-      {description && <ReactMarkdown source={description} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />}
+      {description && (
+        <ReactMarkdown source={description} renderers={{ paragraph: Paragraph, image: Image }} linkTarget="_blank" />
+      )}
       {longDescription && <ExplanationModal modalText={longDescription} />}
       <Answers
         questionId={questionId}

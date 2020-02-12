@@ -13,7 +13,7 @@ const Answers = ({ className, answers, currentAnswer, errors, questionId, onChan
           const { label, formValue } = answer;
           const answerId = `${questionId}-${formValue}`;
           return (
-            <Label htmlFor={answerId} key={answerId} label={label}>
+            <Label htmlFor={answerId} key={answerId} label={label.replace(/['"]+/g, '')}>
               <Radio
                 key={answerId}
                 value={formValue}
