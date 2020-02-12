@@ -13,6 +13,7 @@ import { PAGES } from '../../constants';
 
 const Image = styled(`img`)`
   max-width: 100%;
+  border: 1px solid #aaa;
 `;
 
 export const booleanOptions = [
