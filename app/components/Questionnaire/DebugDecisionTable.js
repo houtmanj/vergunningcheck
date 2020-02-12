@@ -5,7 +5,7 @@ export default ({ checker }) => {
   const decisionId = 'dummy';
   window.checker = checker;
   if (!checker.permits) return <></>;
-  const relevantOpenQuestions = checker._getRelevantOpenQuestions();
+  const relevantOpenQuestions = checker._getUpcomingQuestions();
   return (
     <>
       <div style={{ display: 'block' }}>
@@ -18,17 +18,17 @@ export default ({ checker }) => {
             </tr>
           </thead>
           <tbody>
-            {checker.stack.map(q => (
-              <tr key={q.id}>
+            {checker.stack.map((q, i) => (
+              <tr key={q.id} style={{ fontWeight: checker.stack[checker.stack.length - 1] === q ? 'bold' : 'normal' }}>
                 <td>{q.text}</td>
-                <td>{q.answer !== undefined ? q.answer.toString() : <em>[current]</em>}</td>
+                <td>{q.answer !== undefined && q.answer.toString()}</td>
               </tr>
             ))}
             {relevantOpenQuestions.map(q => (
               <tr key={q.id}>
                 <td>{q.text}</td>
                 <td>
-                  <em>...</em>
+                  <em>{q.answer !== undefined ? q.answer.toString() : '...'}</em>
                 </td>
               </tr>
             ))}
@@ -89,15 +89,6 @@ export default ({ checker }) => {
                         })}
                       </ol>
                     </div>
-                    {/* <div>
-                      {decisiveInputs.map(input => (
-                        <div>
-                          Vraag ({input.type}) "{input.text}"
-                        </div>
-                      ))}
-                    </div> */}
-
-                    {/* <div>{JSON.stringify(rules)}</div> */}
                   </div>
                 </div>
               );
