@@ -1,9 +1,26 @@
 import React from 'react';
 import { Heading, OrderedList, List, ListItem } from '@datapunt/asc-ui';
+import styled from '@datapunt/asc-core';
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
+
+const BulletList = styled(List)`
+  li {
+    list-style-type: disc;
+  }
+  li:before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #000000;
+    left: -19px;
+    top: 7px;
+    padding-right: 0;
+  }
+`;
 
 const IntroductionText = () => (
   <>
@@ -13,11 +30,11 @@ const IntroductionText = () => (
       <ListItem>
         Vervolgens krijgt u te zien:
         <div>
-          <List variant="bullet">
+          <BulletList variant="bullet">
             <ListItem>of het gebouw een monument is</ListItem>
             <ListItem>of het gebouw in een beschermd stads- of dorpsgezicht ligt</ListItem>
             <ListItem>welk bestemmingsplan er geldt</ListItem>
-          </List>
+          </BulletList>
         </div>
       </ListItem>
       <ListItem>Daarna gebruikt u deze informatie om de vergunningcheck dakkapel te doen</ListItem>
