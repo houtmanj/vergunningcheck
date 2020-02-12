@@ -15,18 +15,12 @@ const BulletList = styled(List)`
   li:before {
     content: '';
     position: absolute;
-    counter-reset: my-awesome-counter 0;
     width: 8px;
     height: 8px;
     background-color: #000000;
     left: -19px;
     top: 7px;
     padding-right: 0;
-  }
-`;
-const OrderList = styled(OrderedList)`
-   {
-    counter-reset: item 2;
   }
 `;
 
@@ -45,12 +39,10 @@ const IntroductionText = () => (
           </BulletList>
         </div>
       </ListItem>
-    </OrderedList>
-    <OrderList>
       <ListItem>Daarna gebruikt u deze informatie om de vergunningcheck dakkapel te doen</ListItem>
       <ListItem>U leest of u een vergunning nodig hebt. Wij vertellen u hoe u een aanvraag doet</ListItem>
       <ListItem>Wij vertellen u waar u verder op moet letten als u de dakkapel gaat plaatsen.</ListItem>
-    </OrderList>
+    </OrderedList>
     <Heading $as="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">
       <ListItem>
