@@ -12,7 +12,7 @@ import Answers from './Answers';
 import { PAGES } from '../../constants';
 
 const Image = styled(`img`)`
-  width: 35vw;
+  max-width: 100%;
 `;
 
 export const booleanOptions = [

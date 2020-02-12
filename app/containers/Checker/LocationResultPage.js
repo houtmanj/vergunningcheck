@@ -52,10 +52,7 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
 
         {!loading && (
           <>
-            <Paragraph>
-              U hebt deze informatie nodig om de vergunningcheck {GET_TEXT?.entity} te doen. De informatie over de
-              bestemmingsplannen is pas nodig bij een aanvraag omgevingsvergunning.
-            </Paragraph>
+            <Paragraph>{GET_TEXT?.locationResultsPageDescription}</Paragraph>
             <Paragraph>
               Gaat u meer dan 1 {GET_TEXT?.entity} plaatsen? Doe dan per {GET_TEXT?.entity} de vergunningcheck.
             </Paragraph>

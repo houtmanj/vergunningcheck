@@ -3,7 +3,7 @@ import { Heading, OrderedList, List, ListItem } from '@datapunt/asc-ui';
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
+import { GET_CURRENT_TOPIC, GET_TEXT, PAGES } from '../../constants';
 
 const IntroductionText = () => (
   <>
@@ -27,12 +27,12 @@ const IntroductionText = () => (
     <Heading $as="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">
       <ListItem>
-        Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis? Bel dan de
-        gemeente op 14 020, maandag tot en met vrijdag van 08.oo uur tot 18.00 uur
+        {GET_TEXT?.locationPageIntro} Bel dan de gemeente op 14 020, maandag tot en met vrijdag van 08.oo uur tot 18.00
+        uur
       </ListItem>
       <ListItem>
         Gaat u de woning splitsen in 2 of meer woningen? Bel dan de gemeente op 14 020, maandag tot en met vrijdag van
-        08.oo uur tot 18.00 uur.
+        08.00 uur tot 18.00 uur.
       </ListItem>
     </List>
   </>

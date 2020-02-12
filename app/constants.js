@@ -31,6 +31,10 @@ const TOPICS = {
       heading: 'Vergunningchecker dakkapel plaatsen',
       topic: 'een dakkapel te plaatsen',
       topicLocation: 'de dakkapel wilt gaan plaatsen',
+      locationPageIntro:
+        'Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
+      locationResultsPageDescription:
+        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig bij een aanvraag omgevingsvergunning.',
     },
   },
   'kappen-of-snoeien': {},
@@ -51,6 +55,10 @@ const TOPICS = {
       heading: 'Vergunningchecker dakkapel plaatsen',
       topic: 'een dakkapel te plaatsen',
       topicLocation: 'de dakkapel wilt gaan plaatsen',
+      locationPageIntro:
+        'Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
+      locationResultsPageDescription:
+        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig bij een aanvraag omgevingsvergunning.',
     },
   },
   'dakraam-plaatsen': {
