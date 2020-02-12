@@ -146,3 +146,16 @@ export const MATOMO_CONFIG = {
   BASE_URL: 'https://analytics.data.amsterdam.nl/',
   SITE_ID: 29,
 };
+
+export const booleanOptions = [
+  {
+    label: 'Nee',
+    formValue: 'no',
+    value: false,
+  },
+  {
+    label: 'Ja',
+    formValue: 'yes',
+    value: true,
+  },
+];

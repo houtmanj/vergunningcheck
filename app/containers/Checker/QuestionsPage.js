@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import history from 'utils/history';
 import { getSttrFile } from 'shared/services/api';
-import Question, { booleanOptions } from './Question';
+import Question from './Question';
 import getChecker from '../../shared/services/sttr_client';
-import { GET_CURRENT_TOPIC, PAGES, GET_STTR } from '../../constants';
+import { GET_CURRENT_TOPIC, PAGES, GET_STTR, booleanOptions } from '../../constants';
 import { CheckerContext } from './CheckerContext';
 import { QuestionContext } from './QuestionContext';
 import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
