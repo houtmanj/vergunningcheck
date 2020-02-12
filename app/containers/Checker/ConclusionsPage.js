@@ -18,26 +18,8 @@ const ConclusionsPage = ({ addressResults }) => {
 
   const goToOLO = e => {
     e.preventDefault();
-    if (addressResults?.length === 1) {
-      // Form is validated, we can proceed
-
-      // Generate OLO parameter "postalCode"
-      const oloPostalCode = `facet_locatie_postcode=${addressResults[0].postcode}`;
-
-      // Generate OLO parameter "streetNumber"
-      const oloStreetNumber = `facet_locatie_huisnummer=${addressResults[0].huisnummer}`;
-
-      // Generate OLO parameter "suffix"
-      const oloSuffixValue = addressResults[0].toevoeging.replace(addressResults[0].huisnummer, '').trim();
-
-      const oloSuffix = `facet_locatie_huisnummertoevoeging=${oloSuffixValue}`;
-
-      // Redirect user to OLO with all parameters
-      window.open(
-        `${EXTERNAL_URLS.oloChecker.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`,
-        '_blank',
-      );
-    }
+    // Redirect user to OLO with all parameters
+    window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank');
   };
 
   return (
