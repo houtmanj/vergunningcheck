@@ -58,7 +58,7 @@ const ConclusionsPage = ({ addressResults }) => {
         return (
           <div key={permit.name}>
             <Heading $as="h2">
-              {permit.name}: {conclusionString}
+              {permit.name.replace('Conclusie', '')}: {conclusionString}
             </Heading>
             {displayConclusions.map(text => (
               <div key={text}>

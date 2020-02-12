@@ -8,7 +8,7 @@ import { GET_CURRENT_TOPIC, GET_TEXT, PAGES } from '../../constants';
 
 const BulletList = styled(List)`
   li {
-    list-style-type: disc;
+    list-style-type: none;
   }
   li:before {
     content: '';
