@@ -7,7 +7,7 @@ import Navigation from 'components/Navigation';
 import styled from '@datapunt/asc-core';
 import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
 import { CheckerContext } from './CheckerContext';
-// import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
+import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
 import { booleanOptions } from './Question';
 
 const Wrapper = styled(`div`)`
@@ -25,6 +25,9 @@ const Question = styled(`div`)`
 `;
 const UserAnswer = styled(`div`)`
   width: 100px;
+`;
+const UserResult = styled(`div`)`
+  font-weight: bold;
 `;
 const Change = styled(`div`)`
   width: 60px;
@@ -63,11 +66,13 @@ const ResultsPage = () => {
     <Form
       onSubmit={e => {
         e.preventDefault();
-        history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerDuties}`);
+        history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerConclusions}`);
       }}
     >
-      <Paragraph strong>Hier staan dan de antwoorden op de vragen:</Paragraph>
-      <Paragraph style={{ marginBottom: '0px' }}>Daarna krijg je de plichten pagina</Paragraph>
+      <Paragraph strong>
+        Hieronder kunt u per vraag uw gegeven antwoord teruglezen en eventueel wijzigen. Als u een wijziging doet moet u
+        alle volgende vragen opnieuw beantwoorden.
+      </Paragraph>
       <MainWrapper>
         <Question>Vraag</Question>
         <UserAnswer>Uw antwoord</UserAnswer>
@@ -80,7 +85,7 @@ const ResultsPage = () => {
             <Wrapper>
               <Question>{question.text}</Question>
               {question.options ? (
-                <UserAnswer>{question.answer}</UserAnswer>
+                <UserAnswer>{question.answer.replace(/['"]+/g, '')}</UserAnswer>
               ) : (
                 <UserAnswer>{booleanOptions.find(option => option.value === question.answer).label}</UserAnswer>
               )}
@@ -90,19 +95,22 @@ const ResultsPage = () => {
             </Wrapper>
             {isDecisiveForPermits.map(permit => (
               <Wrapper>
-                <Paragraph strong> Op basis van dit antwoord bent u vergunningsplichtig voor {permit.name}</Paragraph>
+                <UserResult>
+                  {' '}
+                  Op basis van dit antwoord bent u vergunningsplichtig voor {permit.name.toLowerCase()}
+                </UserResult>
               </Wrapper>
             ))}
           </div>
         );
       })}
-      {/* <DebugDecisionTable checker={checker} /> */}
       <Navigation
         page={`checker-${PAGES.checkerResult}`}
         onGoToPrev={() => onGoToQuestion(checker.stack.length - 1)}
         showPrev
         showNext
       />
+      <DebugDecisionTable checker={checker} />
     </Form>
   );
 };

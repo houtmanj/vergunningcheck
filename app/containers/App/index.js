@@ -15,7 +15,7 @@ import CheckerIntroductionPage from 'containers/Checker/IntroductionPage';
 import CheckerLocationPage from 'containers/Checker/LocationPage';
 import CheckerLocationResultPage from 'containers/Checker/LocationResultPage';
 import CheckerResultsPage from 'containers/Checker/ResultsPage';
-import CheckerDutiesPage from 'containers/Checker/DutiesPage';
+import CheckerConclusionsPage from 'containers/Checker/ConclusionsPage';
 import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -138,7 +138,11 @@ export const App = props => {
                     component={CheckerQuestionsPage}
                   />
                   <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`} component={CheckerResultsPage} />
-                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerDuties}`} component={CheckerDutiesPage} />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerConclusions}`}
+                    component={CheckerConclusionsPage}
+                  />
                 </>
               )}
               {TOPIC_EXISTS && (

@@ -8,7 +8,7 @@ import history from 'utils/history';
 import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { GET_CURRENT_TOPIC, PAGES } from '../../constants';
+import { GET_CURRENT_TOPIC, GET_TEXT, PAGES } from '../../constants';
 
 const StyledAddressResult = styled(`div`)`
   margin-bottom: 24px;
@@ -49,6 +49,15 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
         <StyledAddressResult>
           <LocationData />
         </StyledAddressResult>
+
+        {!loading && (
+          <>
+            <Paragraph>{GET_TEXT?.locationResultsPageDescription}</Paragraph>
+            <Paragraph>
+              Gaat u meer dan 1 {GET_TEXT?.entity} plaatsen? Doe dan per {GET_TEXT?.entity} de vergunningcheck.
+            </Paragraph>
+          </>
+        )}
 
         <Navigation
           page="location-results"

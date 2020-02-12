@@ -26,7 +26,6 @@ module.exports = options => ({
       {
         test: /\.(js|jsx)$/, // Transform all .js and .jsx files required somewhere with Babel
         loader: 'babel-loader',
-        exclude: /node_modules/,
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
         },
