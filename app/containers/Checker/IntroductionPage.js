@@ -25,7 +25,7 @@ const BulletList = styled(List)`
 const IntroductionText = () => (
   <>
     <Heading $as="h3">Hoe het werkt:</Heading>
-    <OrderedList>
+    <OrderedList style={{ marginBottom: '-24px' }}>
       <ListItem>U voert op de volgende pagina eerst het adres van het gebouw in.</ListItem>
       <ListItem>
         Vervolgens krijgt u te zien:
