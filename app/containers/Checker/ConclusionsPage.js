@@ -13,7 +13,7 @@ import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTabl
 
 const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
-const ConclusionsPage = ({ addressResults }) => {
+const ConclusionsPage = () => {
   const { checker } = useContext(CheckerContext);
 
   const goToOLO = e => {
@@ -64,19 +64,4 @@ const ConclusionsPage = ({ addressResults }) => {
   );
 };
 
-ConclusionsPage.propTypes = {
-  addressResults: PropTypes.arrayOf(
-    PropTypes.shape({
-      postcode: PropTypes.string,
-      huisnummer: PropTypes.string,
-      toevoeging: PropTypes.string,
-    }),
-  ),
-};
-
-const mapStateToProps = state => {
-  const { addressResults } = state.locationData;
-  return { addressResults };
-};
-
-export default connect(mapStateToProps)(ConclusionsPage);
+export default ConclusionsPage;
