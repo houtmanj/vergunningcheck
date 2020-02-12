@@ -54,14 +54,15 @@ class Checker {
     return this.stack[this.stack.length - 1];
   }
 
-  _getRelevantOpenQuestions() {
+  _getUpcomingQuestions() {
     // todo: filter duplicate questions
     // todo: optimization would be to return only first value
     return this.permits
       .reduce((acc, permit) => {
         const conclusion = permit.getDecisionById('dummy');
+        const inputReducer = input => (this.stack.includes(input) ? input : {});
         conclusion._inputs
-          .filter(d => d.getMatchingRules().length === 0)
+          .filter(d => d.getMatchingRules(inputReducer).length === 0)
           .forEach(decision => {
             decision.getQuestions().forEach(input => {
               if (this.stack.indexOf(input) === -1) {
@@ -82,7 +83,7 @@ class Checker {
    * @returns {Question|null} - the next question for this checker
    */
   _getNextQuestion() {
-    return this._getRelevantOpenQuestions().shift();
+    return this._getUpcomingQuestions().shift();
     // return this._questions.find(question => !this.stack.includes(question));
   }
 
