@@ -5,8 +5,6 @@ import ReactMarkdown from 'react-markdown';
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { EXTERNAL_URLS, GET_CURRENT_TOPIC, PAGES } from '../../constants';
 import { CheckerContext } from './CheckerContext';
 import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
