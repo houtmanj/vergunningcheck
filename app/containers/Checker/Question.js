@@ -13,6 +13,7 @@ import { PAGES } from '../../constants';
 
 const Image = styled(`img`)`
   max-width: 100%;
+  border: 1px solid #aaa;
 `;
 
 export const booleanOptions = [
@@ -87,6 +88,7 @@ const Question = ({
   const onSubmit = data => {
     // Is only triggered with validated form
     // Check if data has a key that matches the questionId
+    window.scrollTo(0, 0);
     if ((onSubmitProp && !hasKeys(data)) || (hasKeys(data) && data[questionId])) {
       onSubmitProp(data[questionId]);
     }
