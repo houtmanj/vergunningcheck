@@ -52,11 +52,10 @@ class Decision {
    *
    * @returns {Rule[]} the rules
    */
-  getMatchingRules() {
+  getMatchingRules(inputReducer) {
     // Find the values for our inputs
-    // debug('getMatchingRules with this._inputs: ', this._inputs);
-
-    const values = this._inputs.map(({ answer }) => answer);
+    const inputs = inputReducer ? this._inputs.map(inputReducer) : this._inputs;
+    const values = inputs.map(({ answer }) => answer);
     return this._rules.filter(rule => rule.evaluateNew(values).length !== 0);
   }
 
