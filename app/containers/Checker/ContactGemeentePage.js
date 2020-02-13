@@ -14,14 +14,18 @@ const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 const ContactGemeentePage = () => {
   const { checker } = useContext(CheckerContext);
 
+  const onGoBack = () => {
+    checker.previous();
+    history.goBack();
+  };
+
   return (
     <Form onSubmit={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`)}>
       <Heading $as="h1">Conclusie</Heading>
 
-      <Paragraph>Op basis van uw antwoorden</Paragraph>
+      <Paragraph>Op basis van uw antwoorden vind u hieronder wat voor uw activiteit van toepassing is.</Paragraph>
 
       {checker.permits.map(permit => {
-        const conclusionString = permit.getOutputByDecisionId('dummy');
         const conclusion = permit.getDecisionById('dummy');
         const conclusionMatchingRules = conclusion.getMatchingRules();
         const displayConclusions = conclusionMatchingRules
@@ -29,11 +33,10 @@ const ContactGemeentePage = () => {
           .map(rule => rule.description)
           .filter(uniqueFilter);
 
+        if (displayConclusions.length === 0) return false;
         return (
           <div key={permit.name}>
-            <Heading $as="h2">
-              {permit.name}: {conclusionString}
-            </Heading>
+            <Heading $as="h2">Neem contact op met de gemeente</Heading>
             {displayConclusions.map(text => (
               <div key={text}>
                 <ReactMarkdown source={text} renderers={{ paragraph: Paragraph }} linkTarget="_blank" />
@@ -45,7 +48,7 @@ const ContactGemeentePage = () => {
 
       <Navigation
         page={`checker-${PAGES.checkerConclusions}`}
-        onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`)}
+        onGoToPrev={onGoBack}
         showPrev
         showNext
         nextText="Opnieuw checken"
