@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Paragraph, Button } from '@datapunt/asc-ui';
+import styled from '@datapunt/asc-core';
+import { Alert } from '@datapunt/asc-assets';
 
 import history from 'utils/history';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import styled from '@datapunt/asc-core';
 import { GET_CURRENT_TOPIC, PAGES, booleanOptions } from '../../constants';
-import { Alert } from '@datapunt/asc-assets';
 import { CheckerContext } from './CheckerContext';
 import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
 
