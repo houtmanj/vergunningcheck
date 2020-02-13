@@ -6,6 +6,7 @@ import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import styled from '@datapunt/asc-core';
 import { GET_CURRENT_TOPIC, PAGES, booleanOptions } from '../../constants';
+import { Alert } from '@datapunt/asc-assets';
 import { CheckerContext } from './CheckerContext';
 import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
 
@@ -27,6 +28,7 @@ const UserAnswer = styled(`div`)`
 `;
 const UserResult = styled(`div`)`
   font-weight: bold;
+  flex-direction: 'row';
 `;
 const Change = styled(`div`)`
   width: 60px;
@@ -93,13 +95,13 @@ const ResultsPage = () => {
               </Button>
             </Wrapper>
             {isDecisiveForPermits.map(permit => (
-              <Wrapper>
-                <UserResult>
-                  {' '}
+              <UserResult>
+                <Alert style={{ width: '30px', marginBottom: '-8px', fill: '#ec0000' }} />
+                <p style={{ marginBottom: '15px', marginLeft: '7px', display: 'inline-block' }}>
                   Op basis van dit antwoord bent u vergunningsplichtig voor{' '}
                   {permit.name.replace('Conclusie', '').toLowerCase()}
-                </UserResult>
-              </Wrapper>
+                </p>
+              </UserResult>
             ))}
           </div>
         );

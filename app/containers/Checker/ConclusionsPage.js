@@ -24,7 +24,7 @@ const ConclusionsPage = () => {
     <Form onSubmit={goToOLO}>
       <Heading $as="h1">Conclusies</Heading>
 
-      <Paragraph>Op basis van uw antwoorden vind u hieronder wat voor uw activiteit van toepassing is.</Paragraph>
+      <Paragraph>Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van toepassing is.</Paragraph>
 
       {checker.permits.map(permit => {
         const conclusionString = permit.getOutputByDecisionId('dummy');

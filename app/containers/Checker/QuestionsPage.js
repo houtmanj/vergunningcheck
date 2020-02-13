@@ -46,6 +46,17 @@ const QuestionsPage = () => {
       const responseObj = booleanOptions.find(o => o.formValue === value);
       question.setAnswer(responseObj.value);
     }
+
+    const needContactPermits = checker.permits.find(permit => {
+      const conclusion = permit.getDecisionById('dummy');
+      const conclusionMatchingRules = conclusion.getMatchingRules();
+      return conclusionMatchingRules.find(rule => rule.outputValue === '"NeemContactOpMet"');
+    });
+
+    if (needContactPermits) {
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerContactAmsterdam}`);
+    }
+
     const next = checker.next();
 
     if (!next) {
