@@ -14,6 +14,11 @@ const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 const ContactGemeentePage = () => {
   const { checker } = useContext(CheckerContext);
 
+  const onGoBack = () => {
+    checker.previous();
+    history.goBack();
+  };
+
   return (
     <Form onSubmit={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`)}>
       <Heading $as="h1">Conclusie</Heading>
@@ -43,7 +48,7 @@ const ContactGemeentePage = () => {
 
       <Navigation
         page={`checker-${PAGES.checkerConclusions}`}
-        onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`)}
+        onGoToPrev={onGoBack}
         showPrev
         showNext
         nextText="Opnieuw checken"
