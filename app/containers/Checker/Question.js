@@ -9,25 +9,12 @@ import { ExplanationModal } from 'components/Modal';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import Answers from './Answers';
-import { PAGES } from '../../constants';
+import { PAGES, booleanOptions } from '../../constants';
 
 const Image = styled(`img`)`
   max-width: 100%;
   border: 1px solid #aaa;
 `;
-
-export const booleanOptions = [
-  {
-    label: 'Nee',
-    formValue: 'no',
-    value: false,
-  },
-  {
-    label: 'Ja',
-    formValue: 'yes',
-    value: true,
-  },
-];
 
 const hasKeys = obj =>
   // convert to array, map, and then give the length
