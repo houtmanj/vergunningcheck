@@ -1,15 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
+import slugify from 'slugify';
 import history from 'utils/history';
-import { getSttrFile } from 'shared/services/api';
 import Question from './Question';
-import getChecker from '../../shared/services/sttr_client';
-import { GET_CURRENT_TOPIC, PAGES, GET_STTR, booleanOptions } from '../../constants';
+import { GET_CURRENT_TOPIC, PAGES, booleanOptions } from '../../constants';
 import { CheckerContext } from './CheckerContext';
 import { QuestionContext } from './QuestionContext';
 import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
 
 const QuestionsPage = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const { checker, updateChecker } = useContext(CheckerContext);
   const { question, setQuestion } = useContext(QuestionContext);
 
@@ -18,16 +17,6 @@ const QuestionsPage = () => {
       if (checker.stack) {
         const currentQuestion = checker.stack[checker.stack.length - 1];
         setQuestion(currentQuestion);
-      } else {
-        setLoading(true);
-
-        const config = await getSttrFile(GET_STTR);
-        const initChecker = getChecker(config);
-        const firstQuestion = initChecker.next();
-
-        updateChecker(initChecker);
-        setQuestion(firstQuestion);
-        setLoading(false);
       }
     })();
   }, []);
@@ -64,6 +53,7 @@ const QuestionsPage = () => {
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`);
     } else {
       // Go to Next question
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(next.text)}`);
       setQuestion(next);
       updateChecker(checker);
     }

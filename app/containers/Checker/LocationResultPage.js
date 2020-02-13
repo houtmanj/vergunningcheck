@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Paragraph, themeColor } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
-
+import slugify from 'slugify';
+import { getSttrFile } from 'shared/services/api';
 import history from 'utils/history';
 import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { GET_CURRENT_TOPIC, GET_TEXT, PAGES } from '../../constants';
+import { GET_CURRENT_TOPIC, GET_TEXT, PAGES, GET_STTR } from '../../constants';
+import { CheckerContext } from './CheckerContext';
+import getChecker from '../../shared/services/sttr_client';
+import { QuestionContext } from './QuestionContext';
 
 const StyledAddressResult = styled(`div`)`
   margin-bottom: 24px;
@@ -18,15 +22,23 @@ const StyledAddressResult = styled(`div`)`
 
 const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults }) => {
   const loading = addressResultsLoading || bagLoading;
+  const { updateChecker } = useContext(CheckerContext);
+  const { setQuestion } = useContext(QuestionContext);
 
   if (!loading && (!addressResults || addressResults?.length !== 1)) {
     history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`);
     return null;
   }
 
-  const goToQuestions = e => {
+  const goToQuestions = async e => {
     e.preventDefault();
-    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`);
+    const config = await getSttrFile(GET_STTR);
+    const initChecker = getChecker(config);
+    const firstQuestion = initChecker.next();
+
+    updateChecker(initChecker);
+    setQuestion(firstQuestion);
+    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(firstQuestion.text)}`);
   };
 
   return (

@@ -135,7 +135,7 @@ export const App = props => {
                   />
                   <Route
                     exact
-                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`}
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/:question`}
                     component={CheckerQuestionsPage}
                   />
                   <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`} component={CheckerResultsPage} />
