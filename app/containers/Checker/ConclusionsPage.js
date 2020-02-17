@@ -17,8 +17,7 @@ const ConclusionsPage = () => {
   const goToOLO = e => {
     e.preventDefault();
     authorized
-      ? // Redirect user to OLO with all parameters
-        window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank')
+      ? window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank')
       : history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
   };
 
@@ -36,7 +35,6 @@ const ConclusionsPage = () => {
           .map(rule => rule.description)
           .filter(uniqueFilter);
 
-        console.log(conclusionString);
         if (conclusionString === '"Toestemmingsvrij"') {
           authorized = false;
         }
