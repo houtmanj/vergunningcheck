@@ -97,7 +97,7 @@ const ResultsPage = () => {
             {isDecisiveForPermits.map(permit => (
               <UserResult>
                 <Alert style={{ width: '30px', marginBottom: '-8px', fill: '#ec0000' }} />
-                <p style={{ marginBottom: '15px', marginLeft: '7px', display: 'inline-block' }}>
+                <p style={{ marginBottom: '25px', marginLeft: '7px', display: 'inline-block' }}>
                   Op basis van dit antwoord bent u vergunningsplichtig voor{' '}
                   {permit.name.replace('Conclusie', '').toLowerCase()}
                 </p>

@@ -13,11 +13,13 @@ const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
 const ConclusionsPage = () => {
   const { checker } = useContext(CheckerContext);
-
+  let authorized = true;
   const goToOLO = e => {
     e.preventDefault();
-    // Redirect user to OLO with all parameters
-    window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank');
+    authorized
+      ? // Redirect user to OLO with all parameters
+        window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank')
+      : history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
   };
 
   return (
@@ -25,7 +27,6 @@ const ConclusionsPage = () => {
       <Heading $as="h1">Conclusies</Heading>
 
       <Paragraph>Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van toepassing is.</Paragraph>
-
       {checker.permits.map(permit => {
         const conclusionString = permit.getOutputByDecisionId('dummy');
         const conclusion = permit.getDecisionById('dummy');
@@ -34,6 +35,11 @@ const ConclusionsPage = () => {
           .filter(rule => rule.outputValue !== '"NeemContactOpMet"')
           .map(rule => rule.description)
           .filter(uniqueFilter);
+
+        console.log(conclusionString);
+        if (conclusionString === '"Toestemmingsvrij"') {
+          authorized = false;
+        }
 
         return (
           <div key={permit.name}>
@@ -54,7 +60,7 @@ const ConclusionsPage = () => {
         onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`)}
         showPrev
         showNext
-        nextText="Naar het omgevingsloket"
+        nextText={authorized ? 'Naar het omgevingsloket' : 'Opnieuw checken'}
         formEnds
       />
       <DebugDecisionTable checker={checker} />
