@@ -77,7 +77,7 @@ const ResultsPage = () => {
       <MainWrapper>
         <Question>Vraag</Question>
         <UserAnswer>Uw antwoord</UserAnswer>
-        <Change>Wijzig</Change>
+        <Change />
       </MainWrapper>
       {checker?.stack?.map((question, index) => {
         const isDecisiveForPermits = permitsPerQuestion[index] || [];
@@ -91,7 +91,7 @@ const ResultsPage = () => {
                 <UserAnswer>{booleanOptions.find(option => option.value === question.answer).label}</UserAnswer>
               )}
               <Button onClick={() => onGoToQuestion(index)} variant="textButton">
-                bewerken
+                Wijzig
               </Button>
             </Wrapper>
             {isDecisiveForPermits.map(permit => (
