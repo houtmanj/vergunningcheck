@@ -25,7 +25,7 @@ const LocationData = ({
         <Paragraph>
           Wij kunnen op dit moment niet uit ons systeem halen of het gebouw in een beschermd stads- of dorpsgezicht
           ligt. Controleer dit zelf op de{' '}
-          <a href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&amp;L=6,7" target="_blank">
+          <a href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&amp;L=6,7,8,9,10" target="_blank">
             Cultuurhistorische waardenkaart op Amsterdam Maps
           </a>
         </Paragraph>
