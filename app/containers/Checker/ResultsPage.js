@@ -77,7 +77,7 @@ const ResultsPage = () => {
       <MainWrapper>
         <Question>Vraag</Question>
         <UserAnswer>Uw antwoord</UserAnswer>
-        <Change>Wijzig</Change>
+        <Change />
       </MainWrapper>
       {checker?.stack?.map((question, index) => {
         const isDecisiveForPermits = permitsPerQuestion[index] || [];
@@ -91,13 +91,13 @@ const ResultsPage = () => {
                 <UserAnswer>{booleanOptions.find(option => option.value === question.answer).label}</UserAnswer>
               )}
               <Button onClick={() => onGoToQuestion(index)} variant="textButton">
-                bewerken
+                Wijzig
               </Button>
             </Wrapper>
             {isDecisiveForPermits.map(permit => (
               <UserResult>
                 <Alert style={{ width: '30px', marginBottom: '-8px', fill: '#ec0000' }} />
-                <p style={{ marginBottom: '15px', marginLeft: '7px', display: 'inline-block' }}>
+                <p style={{ marginBottom: '25px', marginLeft: '7px', display: 'inline-block' }}>
                   Op basis van dit antwoord bent u vergunningsplichtig voor{' '}
                   {permit.name.replace('Conclusie', '').toLowerCase()}
                 </p>
