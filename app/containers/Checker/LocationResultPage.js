@@ -22,7 +22,7 @@ const StyledAddressResult = styled(`div`)`
 
 const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults }) => {
   const loading = addressResultsLoading || bagLoading;
-  const { updateChecker } = useContext(CheckerContext);
+  const { checker, updateChecker } = useContext(CheckerContext);
   const { setQuestion } = useContext(QuestionContext);
 
   if (!loading && (!addressResults || addressResults?.length !== 1)) {
@@ -32,13 +32,19 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
 
   const goToQuestions = async e => {
     e.preventDefault();
-    const config = await getSttrFile(GET_STTR);
-    const initChecker = getChecker(config);
-    const firstQuestion = initChecker.next();
 
-    updateChecker(initChecker);
-    setQuestion(firstQuestion);
-    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(firstQuestion.text)}`);
+    if (!checker.stack) {
+      const config = await getSttrFile(GET_STTR);
+      const initChecker = getChecker(config);
+      const firstQuestion = initChecker.next();
+
+      updateChecker(initChecker);
+      setQuestion(firstQuestion);
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(firstQuestion.text)}`);
+    } else {
+      const slug = checker.next();
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(slug.text)}`);
+    }
   };
 
   return (

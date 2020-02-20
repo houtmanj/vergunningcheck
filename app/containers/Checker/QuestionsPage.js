@@ -12,15 +12,6 @@ const QuestionsPage = () => {
   const { checker, updateChecker } = useContext(CheckerContext);
   const { question, setQuestion } = useContext(QuestionContext);
 
-  useEffect(() => {
-    (async function getSttr() {
-      if (checker.stack) {
-        const currentQuestion = checker.stack[checker.stack.length - 1];
-        setQuestion(currentQuestion);
-      }
-    })();
-  }, []);
-
   if (loading) {
     return <div>Laden...</div>;
   }
@@ -29,6 +20,7 @@ const QuestionsPage = () => {
   }
 
   const onQuestionNext = value => {
+    console.log('test');
     if (question.options) {
       question.setAnswer(value);
     } else {
@@ -47,6 +39,7 @@ const QuestionsPage = () => {
     }
 
     const next = checker.next();
+    console.log(next);
 
     if (!next) {
       // Go to Result page

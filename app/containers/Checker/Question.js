@@ -76,7 +76,9 @@ const Question = ({
     // Is only triggered with validated form
     // Check if data has a key that matches the questionId
     window.scrollTo(0, 0);
+    console.log(data);
     if ((onSubmitProp && !hasKeys(data)) || (hasKeys(data) && data[questionId])) {
+      console.log('val hij hier in? ');
       onSubmitProp(data[questionId]);
     }
   };
