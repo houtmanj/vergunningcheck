@@ -187,8 +187,6 @@ export async function searchBag(query) {
   const uri =
     postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
 
-  console.log(SHARED_CONFIG);
-
   if (uri && postalCode && streetNumber) {
     const response = await getByUri(uri)
       .then(streetResult => filterByStreetNumber(streetResult.results, streetNumber))
