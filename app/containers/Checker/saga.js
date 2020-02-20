@@ -79,8 +79,6 @@ export function* fetchBeperking(action) {
     const beperking = yield call(searchForBeperking, pandId);
     yield put({ type: FETCH_BEPERKING_SUCCESS, beperking });
   } catch (error) {
-    console.log(error);
-
     yield put({ type: FETCH_BEPERKING_FAILURE, error });
   }
 }

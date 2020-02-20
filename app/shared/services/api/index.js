@@ -192,9 +192,7 @@ export async function searchBag(query) {
       .then(streetResult => filterByStreetNumber(streetResult.results, streetNumber))
       .then(search =>
         search[0].adresseerbaar_object_id
-          ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search[0].adresseerbaar_object_id}`).catch(e => {
-              throw e;
-            })
+          ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search[0].adresseerbaar_object_id}`)
           : false,
       );
     return response;
