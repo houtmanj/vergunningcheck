@@ -2,7 +2,20 @@ import { xml2js } from 'xml-js';
 import uniqBy from 'lodash.uniqby';
 import SHARED_CONFIG from '../shared-config/shared-config';
 
-const getByUri = (uri, params) => fetch(uri, params).then(response => response.json());
+const getByUri = (uri, params) =>
+  fetch(uri, params)
+    .then(validateResponse)
+    .then(response => response.json())
+    .catch(error => {
+      throw error;
+    });
+
+function validateResponse(response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+}
 
 const preparePostCall = (url, body) => {
   const options = {
@@ -156,13 +169,16 @@ export function searchForAddress(query) {
   const { postalCode, streetNumber } = query;
 
   const uri = `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
-  let addressResults = [];
 
   if (postalCode && streetNumber) {
-    addressResults = getByUri(uri).then(response => filterByStreetNumber(response.results, streetNumber));
+    return getByUri(uri)
+      .then(response => filterByStreetNumber(response.results, streetNumber))
+      .catch(err => {
+        throw err;
+      });
   }
 
-  return addressResults;
+  return addressResults || [];
 }
 
 export async function searchBag(query) {
@@ -171,12 +187,16 @@ export async function searchBag(query) {
   const uri =
     postalCode && streetNumber && `${SHARED_CONFIG.API_ROOT}atlas/search/adres/?q=${postalCode}+${streetNumber}`;
 
+  console.log(SHARED_CONFIG);
+
   if (uri && postalCode && streetNumber) {
     const response = await getByUri(uri)
       .then(streetResult => filterByStreetNumber(streetResult.results, streetNumber))
       .then(search =>
         search[0].adresseerbaar_object_id
-          ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search[0].adresseerbaar_object_id}`)
+          ? getByUri(`${SHARED_CONFIG.API_ROOT}bag/verblijfsobject/${search[0].adresseerbaar_object_id}`).catch(e => {
+              throw e;
+            })
           : false,
       );
     return response;
@@ -189,13 +209,17 @@ export function searchForStadsgezicht(query) {
     query &&
     `${SHARED_CONFIG.API_ROOT}geosearch/search/?item=unesco&x=${query.coordinates[0]}&y=${query.coordinates[1]}`;
   if (uri) {
-    return getByUri(uri).then(response => {
-      // Filter specific zones
-      const stadsgezicht =
-        response.features.length > 0 &&
-        response.features.filter(zone => zone.properties.id === 'kernzone' || zone.properties.id === 'bufferzone');
-      return stadsgezicht.length > 0 ? stadsgezicht[0].properties.display : '';
-    });
+    return getByUri(uri)
+      .then(response => {
+        // Filter specific zones
+        const stadsgezicht =
+          response.features.length > 0 &&
+          response.features.filter(zone => zone.properties.id === 'kernzone' || zone.properties.id === 'bufferzone');
+        return stadsgezicht.length > 0 ? stadsgezicht[0].properties.display : '';
+      })
+      .catch(e => {
+        throw e;
+      });
   }
   return query;
 }
@@ -215,6 +239,9 @@ export function searchForMonument(query) {
         .then(key => (key ? getByUri(`${SHARED_CONFIG.API_ROOT}monumenten/monumenten/${key}`) : false))
         // get monument status
         .then(response => (response.monumentstatus ? response.monumentstatus : ''))
+        .catch(e => {
+          throw e;
+        })
     );
   }
   return '';
@@ -232,6 +259,9 @@ export function searchForBeperking(query) {
         // https://api.data.amsterdam.nl/wkpb/beperking/?kadastrale_objecten__id=NL.KAD.OnroerendeZaak.11440755470000
         .then(id => (id ? getByUri(`${SHARED_CONFIG.API_ROOT}wkpb/beperking/?kadastrale_objecten__id=${id}`) : false))
         .then(response => (response.results.length > 0 ? response.results : []))
+        .catch(e => {
+          throw e;
+        })
     );
   }
   return '';
