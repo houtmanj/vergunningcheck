@@ -178,7 +178,7 @@ export function searchForAddress(query) {
       });
   }
 
-  return addressResults || [];
+  return false;
 }
 
 export async function searchBag(query) {
