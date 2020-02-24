@@ -38,6 +38,7 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
       const initChecker = getChecker(config);
       const firstQuestion = initChecker.next();
 
+      console.log(initChecker);
       updateChecker(initChecker);
       setQuestion(firstQuestion);
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(firstQuestion.text)}`);
@@ -57,7 +58,7 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
             <Paragraph>
               Over{' '}
               <strong>
-                {addressResults[0].straatnaam} {addressResults[0].toevoeging}
+                {addressResults[0]?.straatnaam} {addressResults[0]?.toevoeging}
               </strong>{' '}
               hebben we de volgende informatie gevonden:
             </Paragraph>
