@@ -217,6 +217,7 @@ export function searchForMonument(query) {
         .then(response => (response.monumentstatus ? response.monumentstatus : ''))
     );
   }
+  return false;
 }
 
 export function searchForBeperking(query) {

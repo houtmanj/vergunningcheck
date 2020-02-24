@@ -60,6 +60,7 @@ const LocationData = ({
 LocationData.propTypes = {
   monumentStatus: PropTypes.string,
   monumentLoading: PropTypes.bool,
+  error: PropTypes.bool,
   stadsgezichtStatus: PropTypes.string,
   stadsgezichtLoading: PropTypes.bool,
   bestemmingsplanStatus: PropTypes.arrayOf(PropTypes.object),
