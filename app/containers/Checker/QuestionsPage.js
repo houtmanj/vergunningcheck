@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import slugify from 'slugify';
 import history from 'utils/history';
 import Question from './Question';
@@ -20,7 +20,6 @@ const QuestionsPage = () => {
   }
 
   const onQuestionNext = value => {
-    console.log('test');
     if (question.options) {
       question.setAnswer(value);
     } else {
@@ -39,7 +38,6 @@ const QuestionsPage = () => {
     }
 
     const next = checker.next();
-    console.log(next);
 
     if (!next) {
       // Go to Result page
