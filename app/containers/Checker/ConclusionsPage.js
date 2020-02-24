@@ -18,9 +18,11 @@ const ConclusionsPage = () => {
   const goToOLO = e => {
     e.preventDefault();
 
-    authorized
-      ? window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank')
-      : history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
+    if (authorized) {
+      window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank');
+    } else {
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
+    }
   };
 
   return (
