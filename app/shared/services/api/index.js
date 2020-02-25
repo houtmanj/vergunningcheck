@@ -240,7 +240,7 @@ export function searchForMonument(query) {
         })
     );
   }
-  return '';
+  return false;
 }
 
 export function searchForBeperking(query) {

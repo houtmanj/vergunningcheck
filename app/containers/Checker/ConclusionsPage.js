@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Paragraph, Heading } from '@datapunt/asc-ui';
 
 import ReactMarkdown from 'react-markdown';
@@ -13,12 +13,16 @@ const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
 const ConclusionsPage = () => {
   const { checker } = useContext(CheckerContext);
-  let authorized = true;
+  const [authorized, setAuthorized] = useState(true);
+
   const goToOLO = e => {
     e.preventDefault();
-    authorized
-      ? window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank')
-      : history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
+
+    if (authorized) {
+      window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank');
+    } else {
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
+    }
   };
 
   return (
@@ -36,7 +40,7 @@ const ConclusionsPage = () => {
           .filter(uniqueFilter);
 
         if (conclusionString === '"Toestemmingsvrij"') {
-          authorized = false;
+          setAuthorized(false);
         }
 
         return (
