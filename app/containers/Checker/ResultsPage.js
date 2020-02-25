@@ -28,6 +28,7 @@ const UserAnswer = styled(`div`)`
 `;
 const UserResult = styled(`div`)`
   font-weight: bold;
+  display: flex;
   flex-direction: 'row';
 `;
 const Change = styled(`div`)`
@@ -55,13 +56,6 @@ const ResultsPage = () => {
       });
     }
   });
-
-  // Something like this can be used to show the conclusions
-  // const conclusions = checker?.permits.map(permit => {
-  //   const decision = permit.getDecisionById('dummy');
-  //   const rules = decision.getMatchingRules();
-  //   return rules[0].description;
-  // });
 
   return (
     <Form
@@ -96,7 +90,7 @@ const ResultsPage = () => {
             </Wrapper>
             {isDecisiveForPermits.map(permit => (
               <UserResult>
-                <Alert style={{ width: '30px', marginBottom: '-8px', fill: '#ec0000' }} />
+                <Alert style={{ width: '20%', maxWidth: '30px', marginBottom: '8px', fill: '#ec0000' }} />
                 <p style={{ marginBottom: '25px', marginLeft: '7px', display: 'inline-block' }}>
                   Op basis van dit antwoord bent u vergunningsplichtig voor{' '}
                   {permit.name.replace('Conclusie', '').toLowerCase()}
