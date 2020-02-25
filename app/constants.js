@@ -64,6 +64,7 @@ const TOPICS = {
   },
   'dakraam-plaatsen': {
     status: STATUS.LIVE,
+    sttrPath: '/shared/content/sttr/DakkapelBouwen.json',
     text: {
       entity: 'dakraam',
       heading: 'Vergunningchecker dakraam plaatsen',
