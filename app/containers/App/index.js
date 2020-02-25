@@ -52,6 +52,7 @@ const ContentContainer = styled(`div`)`
   max-width: 960px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 20px;
   background-color: white;
 `;
 const FormTitle = styled(`h4`)`
