@@ -1,3 +1,5 @@
+import { getEnvironment } from './shared/services/environment';
+
 export const SCOPE = 'Vergunningchecker';
 
 export const REGEX = {
@@ -35,7 +37,7 @@ const TOPICS = {
       locationPageIntro:
         'Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
       locationResultsPageDescription:
-        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig bij een aanvraag omgevingsvergunning.',
+        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat aanvragen.',
     },
   },
   'kappen-of-snoeien': {},
@@ -59,16 +61,20 @@ const TOPICS = {
       locationPageIntro:
         'Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
       locationResultsPageDescription:
-        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig bij een aanvraag omgevingsvergunning.',
+        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas als u een omgevingsvergunning gaat aanvragen.',
     },
   },
   'dakraam-plaatsen': {
-    status: STATUS.PRE_LIVE,
+    status: getEnvironment() === 'PRODUCTION' ? STATUS.PRE_LIVE : STATUS.LIVE,
     text: {
       entity: 'dakraam',
       heading: 'Vergunningchecker dakraam plaatsen',
       topic: 'een dakraam te plaatsen',
       topicLocation: 'het dakraam wilt gaan plaatsen',
+      locationPageIntro:
+        'Wilt u de dakraam plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
+      locationResultsPageDescription:
+        'U hebt deze informatie nodig om de vergunningcheck dakraam te doen. De informatie over de bestemmingsplannen is pas nodig bij een aanvraag omgevingsvergunning.',
     },
   },
   'kozijnen-plaatsen-of-vervangen': {
