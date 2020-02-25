@@ -1,5 +1,3 @@
-import { getEnvironment } from './shared/services/environment';
-
 export const SCOPE = 'Vergunningchecker';
 
 export const REGEX = {
@@ -65,7 +63,7 @@ const TOPICS = {
     },
   },
   'dakraam-plaatsen': {
-    status: getEnvironment() === 'PRODUCTION' ? STATUS.PRE_LIVE : STATUS.LIVE,
+    status: STATUS.LIVE,
     text: {
       entity: 'dakraam',
       heading: 'Vergunningchecker dakraam plaatsen',
