@@ -61,7 +61,7 @@ export const initialState = {
     verblijfsobjectidentificatie: '',
   },
   monumentLoading: false,
-  monumentStatus: '',
+  monumentStatus: 'error',
   stadsgezichtLoading: false,
   stadsgezichtStatus: '',
   beperkingLoading: false,
@@ -78,7 +78,7 @@ export default (state = initialState, action) =>
         draft.addressResultsError = false;
         draft.addressResultsLoading = true;
         draft.addressResults = [];
-        draft.monumentStatus = '';
+        draft.monumentStatus = 'error';
         draft.bagFetch = false;
         draft.bagStatus = initialState.bagStatus;
         break;
@@ -98,7 +98,7 @@ export default (state = initialState, action) =>
         draft.bagFetch = true;
         draft.bagLoading = true;
         draft.bagStatus = initialState.bagStatus;
-        draft.monumentStatus = '';
+        draft.monumentStatus = 'error';
         draft.noResults = false;
         break;
       case FETCH_BAG_SUCCESS:
@@ -122,16 +122,17 @@ export default (state = initialState, action) =>
       case FETCH_MONUMENT_REQUEST:
         draft.error = false;
         draft.monumentLoading = true;
-        draft.monumentStatus = '';
+        draft.monumentStatus = 'error';
         break;
       case FETCH_MONUMENT_SUCCESS:
         draft.monumentLoading = false;
+        console.log('monumentStatus', action.monument);
         draft.monumentStatus = action.monument;
         break;
       case FETCH_MONUMENT_FAILURE:
         draft.error = true;
         draft.monumentLoading = false;
-        draft.monumentStatus = '';
+        draft.monumentStatus = 'error';
         break;
 
       case FETCH_STADSGEZICHT_REQUEST:

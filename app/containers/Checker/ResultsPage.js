@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Paragraph, Button } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 import { Alert } from '@datapunt/asc-assets';
+import slugify from 'slugify';
 
 import history from 'utils/history';
 import Form from 'components/Form/Form';
@@ -38,9 +39,9 @@ const ResultsPage = () => {
   const { checker } = useContext(CheckerContext);
   const permitsPerQuestion = [];
 
-  const onGoToQuestion = index => {
+  const onGoToQuestion = (index, question) => {
     checker.rewindTo(index);
-    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`);
+    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(question)}`);
   };
 
   checker.permits.forEach(permit => {
@@ -84,7 +85,7 @@ const ResultsPage = () => {
               ) : (
                 <UserAnswer>{booleanOptions.find(option => option.value === question.answer).label}</UserAnswer>
               )}
-              <Button onClick={() => onGoToQuestion(index)} variant="textButton">
+              <Button onClick={() => onGoToQuestion(index, question.text)} variant="textButton">
                 Wijzig
               </Button>
             </Wrapper>
