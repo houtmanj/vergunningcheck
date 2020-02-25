@@ -9,7 +9,14 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 import { useInjectSaga } from 'utils/injectSaga';
 import CheckerPage from 'containers/Location/CheckerPage';
 import LocationIntroductionPage from 'containers/Location/IntroductionPage';
-import ResultsPage from 'containers/Location/ResultsPage';
+import LocationResultsPage from 'containers/Location/ResultsPage';
+import CheckerQuestionsPage from 'containers/Checker/QuestionsPage';
+import CheckerIntroductionPage from 'containers/Checker/IntroductionPage';
+import CheckerLocationPage from 'containers/Checker/LocationPage';
+import ContactGemeentePage from 'containers/Checker/ContactGemeentePage';
+import CheckerLocationResultPage from 'containers/Checker/LocationResultPage';
+import CheckerResultsPage from 'containers/Checker/ResultsPage';
+import CheckerConclusionsPage from 'containers/Checker/ConclusionsPage';
 import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -23,6 +30,7 @@ import {
   TOPIC_EXISTS,
   REDIRECT_TO_OLO,
   ALLOW_LOCATION_PAGE,
+  ALLOW_CHECKER,
   GET_CURRENT_TOPIC,
 } from '../../constants';
 import questionnaireSaga from '../QuestionnaireContainer/saga';
@@ -100,7 +108,49 @@ export const App = props => {
                   to={`/${GET_CURRENT_TOPIC()}/${PAGES.locationIntroduction}`}
                 />
               )}
+              {ALLOW_CHECKER && (
+                <Redirect
+                  exact
+                  from={`/${GET_CURRENT_TOPIC()}`}
+                  to={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerIntroduction}`}
+                />
+              )}
               {/* ROUTES */}
+              {TOPIC_EXISTS && ALLOW_CHECKER && (
+                <>
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerIntroduction}`}
+                    component={CheckerIntroductionPage}
+                  />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`}
+                    component={CheckerLocationPage}
+                  />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`}
+                    component={CheckerLocationResultPage}
+                  />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}`}
+                    component={CheckerQuestionsPage}
+                  />
+                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`} component={CheckerResultsPage} />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerConclusions}`}
+                    component={CheckerConclusionsPage}
+                  />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.checkerContactAmsterdam}`}
+                    component={ContactGemeentePage}
+                  />
+                </>
+              )}
               {TOPIC_EXISTS && (
                 <>
                   <Route
@@ -109,7 +159,11 @@ export const App = props => {
                     component={LocationIntroductionPage}
                   />
                   <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.location}`} component={CheckerPage} />
-                  <Route exact path={`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`} component={ResultsPage} />
+                  <Route
+                    exact
+                    path={`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`}
+                    component={LocationResultsPage}
+                  />
                 </>
               )}
               <Route exact path="/health" />

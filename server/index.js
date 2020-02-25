@@ -21,6 +21,8 @@ if (isDev) {
     key,
     cert,
   };
+  // Start server to load local STTR files
+  app.use(express.static('app'));
 }
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here

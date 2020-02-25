@@ -8,4 +8,8 @@ stats.json
 .DS_Store
 npm-debug.log
 .idea
-.yarn-error.log
+yarn-error.log
+.ackrc
+
+#Content / static
+app/shared/content/sttr/

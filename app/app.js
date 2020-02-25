@@ -15,10 +15,11 @@ import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
 import App from 'containers/App';
 import { MATOMO_CONFIG } from './constants';
 import configureStore from './configureStore';
-// Load the favicon and the .htaccess fil
+// Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.png';
-import '!file-loader?name=[name].[ext]!./robots.txt';
-import 'file-loader?name=.htaccess!./.htaccess'; // eslint-disable-line import/extensions
+import 'file-loader?name=.htaccess!./.htaccess';
+import { CheckerProvider } from './containers/Checker/CheckerContext';
+import { QuestionProvider } from './containers/Checker/QuestionContext';
 
 // Set Matomo tracker from @datapunt
 const instance = createInstance({
@@ -44,9 +45,13 @@ ReactDOM.render(
       <AmsterdamGlobalStyle />
       <AppGlobalStyle />
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
+        <QuestionProvider>
+          <CheckerProvider>
+            <ConnectedRouter history={history}>
+              <App />
+            </ConnectedRouter>
+          </CheckerProvider>
+        </QuestionProvider>
       </Provider>
     </ThemeProvider>
   </MatomoProvider>,
