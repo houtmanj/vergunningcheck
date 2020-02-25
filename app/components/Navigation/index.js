@@ -23,7 +23,7 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
     trackEvent({ category: page, action: 'form-volgende-knop', name: GET_CURRENT_TOPIC() });
   };
   const handlePrevClick = e => {
-    trackEvent({ category: page, action: 'form-vorige-knop' });
+    trackEvent({ category: page, action: 'form-vorige-knop', name: GET_CURRENT_TOPIC() });
     if (onGoToPrev) onGoToPrev(e);
   };
 
