@@ -38,13 +38,13 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
       const initChecker = getChecker(config);
       const firstQuestion = initChecker.next();
 
-      console.log(initChecker);
       updateChecker(initChecker);
       setQuestion(firstQuestion);
-      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(firstQuestion.text)}`);
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(firstQuestion?.text?.toLowerCase())}`);
     } else {
-      const slug = checker.next();
-      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(slug.text)}`);
+      checker.rewindTo(0);
+      const question = checker._last;
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(question?.text?.toLowerCase())}`);
     }
   };
 
@@ -52,7 +52,6 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
     <>
       <Form onSubmit={goToQuestions}>
         {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
-
         {!loading && (
           <>
             <Paragraph>

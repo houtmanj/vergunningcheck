@@ -44,7 +44,7 @@ const QuestionsPage = () => {
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`);
     } else {
       // Go to Next question
-      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(next.text)}`);
+      history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(next?.text?.toLowerCase())}`);
       setQuestion(next);
       updateChecker(checker);
     }
