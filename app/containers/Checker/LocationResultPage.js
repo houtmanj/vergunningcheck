@@ -90,7 +90,7 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
 };
 
 LocationResultPage.propTypes = {
-  addressResults: PropTypes.any,
+  addressResults: PropTypes.array,
   addressResultsLoading: PropTypes.bool,
   bagLoading: PropTypes.bool,
 };

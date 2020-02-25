@@ -12,15 +12,20 @@ import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTabl
 const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
 const ContactGemeentePage = () => {
-  const { checker } = useContext(CheckerContext);
+  const { checker, updateChecker } = useContext(CheckerContext);
 
   const onGoBack = () => {
     checker.previous();
     history.goBack();
   };
 
+  const onSubmit = () => {
+    updateChecker([]);
+    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
+  };
+
   return (
-    <Form onSubmit={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`)}>
+    <Form onSubmit={() => onSubmit()}>
       <Heading $as="h1">Conclusie</Heading>
 
       <Paragraph>Op basis van uw antwoorden vind u hieronder wat voor uw activiteit van toepassing is.</Paragraph>
