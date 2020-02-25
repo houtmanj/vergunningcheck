@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Paragraph, TextField, Select, themeColor } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import history from 'utils/history';
 import { LocationResult } from 'components/LocationData';
@@ -41,6 +42,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
   const loading = addressResultsLoading || bagLoading;
   const values = getValues();
+  const { trackEvent } = useMatomo();
   const allFieldsFilled = values.postalCode && values.streetNumber && !loading;
 
   register(
@@ -81,8 +83,19 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
     if (!loading && (addressResults?.length === 1 || suffix)) {
       // Form is validated, we can proceed
-      onFetchStreetname(currentValues);
-      onFetchBagData(currentValues);
+
+      if (suffix) {
+        onFetchStreetname(currentValues);
+        onFetchBagData(currentValues);
+      }
+
+      trackEvent({
+        category: 'location',
+        action: 'postcode',
+        name: GET_CURRENT_TOPIC(),
+        value: currentValues.postalCode.substring(0, 4),
+      });
+
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
     }
   };
@@ -150,7 +163,6 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
                 setSuffix(e.target.value);
                 setValue(e.target.name, e.target.value);
                 setValue('streetNumber', e.target.value);
-                onFetchBagData({ postalCode: values.postalCode, streetNumber: e.target.value });
               }}
               style={{ marginBottom: '20px' }}
             >
