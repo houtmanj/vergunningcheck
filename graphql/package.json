@@ -1,6 +1,9 @@
 {
   "name": "vergunningen-graphql",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=13"
+  },
   "private": true,
   "description": "",
   "main": "server.js",
