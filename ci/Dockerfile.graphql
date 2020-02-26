@@ -1,0 +1,22 @@
+FROM node:alpine AS base
+LABEL maintainer="datapunt@amsterdam.nl"
+
+# It would be more secure to run under user 'node'
+# USER node
+
+WORKDIR /app/
+COPY graphql/package.json graphql/package-lock.json ./
+
+# Test
+# FROM base AS builder
+# RUN npm ci
+# COPY graphql/ .
+# RUN npm run test
+
+# Release
+FROM base
+ARG NODE_ENV
+RUN npm ci
+COPY graphql/ .
+ENV PORT=80
+CMD node .

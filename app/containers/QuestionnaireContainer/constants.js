@@ -1,5 +1,0 @@
-import { SCOPE } from '../../constants';
-
-export const FETCH_QUESTIONNAIRE_REQUEST = `${SCOPE}/Questionnaire/FETCH_QUESTIONNAIRE_REQUEST`;
-export const FETCH_QUESTIONNAIRE_SUCCES = `${SCOPE}/Questionnaire/FETCH_QUESTIONNAIRE_SUCCES`;
-export const FETCH_QUESTIONNAIRE_FAILURE = `${SCOPE}/Questionnaire/FETCH_QUESTIONNAIRE_FAILURE`;

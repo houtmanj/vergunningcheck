@@ -1,0 +1,67 @@
+{
+  "name": "chappie1-cra",
+  "version": "1.0.0-alpha",
+  "private": true,
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.3",
+    "@datapunt/asc-assets": "^0.18.1",
+    "@datapunt/asc-core": "^0.18.1",
+    "@datapunt/asc-ui": "^0.18.2",
+    "@datapunt/matomo-tracker-react": "0.0.16",
+    "apollo-boost": "^0.4.7",
+    "config": "^3.2.5",
+    "graphql": "^14.6.0",
+    "graphql.macro": "^1.4.2",
+    "lodash.isboolean": "^3.0.3",
+    "lodash.isnumber": "^3.0.3",
+    "lodash.isstring": "^4.0.1",
+    "named-urls": "^2.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-hook-form": "^4.9.6",
+    "react-markdown": "^4.3.1",
+    "react-router-dom": "^5.1.2",
+    "slugify": "^1.3.6",
+    "styled-components": "^4.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "sttr": "node scripts/sttr_build --output=./public/sttr",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/node": "^13.7.2",
+    "@types/react-router-dom": "^5.1.3",
+    "batch-promises": "0.0.3",
+    "fast-xml-parser": "^3.16.0",
+    "lodash.get": "^4.4.2",
+    "node-fetch": "^2.6.0",
+    "react-scripts": "3.3.1",
+    "typescript": "^3.7.5",
+    "yargs": "^15.1.0"
+  },
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

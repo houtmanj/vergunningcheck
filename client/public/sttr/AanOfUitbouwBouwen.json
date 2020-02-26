@@ -1,0 +1,331 @@
+{
+  "id": "AanOfUitbouwBouwen",
+  "name": "Aan of uitbouw bouwen",
+  "permits": [
+    {
+      "name": "Conclusie Permit 1",
+      "questions": [
+        {
+          "text": "Ga je werken aan of bij een Gemeentelijk monument?",
+          "description": "Als je deze vraag met JA beantwoord ben je vergunningplichtig",
+          "type": "boolean",
+          "id": "uitv__ea0999b4-a35b-4454-8ee5-7cbd40ceb6f4",
+          "uuid": "monument"
+        }
+      ],
+      "inputs": {
+        "input__ea0999b4-a35b-4454-8ee5-7cbd40ceb6f4": {
+          "href": "#uitv__ea0999b4-a35b-4454-8ee5-7cbd40ceb6f4",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_78cf0328-468d-473e-9c2a-6833f2db5d11": {
+          "requiredInputs": [
+            "#input__ea0999b4-a35b-4454-8ee5-7cbd40ceb6f4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_78cf0328-468d-473e-9c2a-6833f2db5d11"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "Permit 1: Dit is de tekst die staat bij de conclusie van VERGUNNINGPLICHTIG!!"
+              },
+              {
+                "inputs": [
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "Permit 1: Gefeliciteerd! Deze tekst staat bij de conclusie van TOESTEMMINGSVRIJ!"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Conclusie Permit 2",
+      "questions": [
+        {
+          "text": "Aan welke kant komt de zon op?",
+          "description": "Kies aan welke kant de zon opkomt.",
+          "options": [
+            "voorkant",
+            "achterkant",
+            "zijkant"
+          ],
+          "type": "string",
+          "id": "uitv__b12ccf8a-e9be-4ec6-a5da-a5dd021005d5"
+        },
+        {
+          "text": "De monument vraag",
+          "description": "Deze vraag zou door het gebruik van het \"HerbruikbaarId\" niet getoond moeten worden en automatisch ingevuld moeten worden",
+          "type": "boolean",
+          "id": "uitv__d372c500-e275-4812-b59a-4bddee4abcb6",
+          "uuid": "monument"
+        },
+        {
+          "text": "Wordt de aanbouw hoger dan 5 m?",
+          "description": "Toelichting: Hoger dan 5 meter?",
+          "type": "boolean",
+          "id": "uitv__ee17d8c0-7ffe-4a92-91ff-ac30382da137"
+        },
+        {
+          "identification": "nl.imow-gm0363.gebied.2",
+          "text": "Woon je in ....?",
+          "type": "geo",
+          "id": "uitv__783e28ac-2f57-4af2-9b38-f18e80d36688"
+        },
+        {
+          "text": "Ben je ouder dan 18 jaar?",
+          "description": "Om te controleren of je een vergunning nodig hebt dient u 18 jaar of ouder te zijn.",
+          "type": "boolean",
+          "id": "uitv__13faf0cf-6494-4368-a69d-31cc3b518ee7"
+        }
+      ],
+      "inputs": {
+        "input__b12ccf8a-e9be-4ec6-a5da-a5dd021005d5": {
+          "href": "#uitv__b12ccf8a-e9be-4ec6-a5da-a5dd021005d5",
+          "type": "string"
+        },
+        "input__d372c500-e275-4812-b59a-4bddee4abcb6": {
+          "href": "#uitv__d372c500-e275-4812-b59a-4bddee4abcb6",
+          "type": "boolean"
+        },
+        "input__ee17d8c0-7ffe-4a92-91ff-ac30382da137": {
+          "href": "#uitv__ee17d8c0-7ffe-4a92-91ff-ac30382da137",
+          "type": "boolean"
+        },
+        "input__783e28ac-2f57-4af2-9b38-f18e80d36688": {
+          "href": "#uitv__783e28ac-2f57-4af2-9b38-f18e80d36688",
+          "type": "string"
+        },
+        "input__13faf0cf-6494-4368-a69d-31cc3b518ee7": {
+          "href": "#uitv__13faf0cf-6494-4368-a69d-31cc3b518ee7",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_894c9d49-766b-43cd-8718-741eb2f697e7": {
+          "requiredInputs": [
+            "#input__13faf0cf-6494-4368-a69d-31cc3b518ee7"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false
+                ],
+                "output": "\"NeemContactOpMet\""
+              },
+              {
+                "inputs": [
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_d2ac81c1-b563-452f-b486-70e1d37d9539": {
+          "requiredInputs": [
+            "#input__d372c500-e275-4812-b59a-4bddee4abcb6"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_ede7ca24-cac1-4069-9719-8128096f15be": {
+          "requiredInputs": [
+            "#input__ee17d8c0-7ffe-4a92-91ff-ac30382da137"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_72451c4b-1d48-45e1-bd26-6dd6d4bc0450": {
+          "requiredInputs": [
+            "#input__783e28ac-2f57-4af2-9b38-f18e80d36688"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"deels\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"ja\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"nee\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c0e96eaf-df8d-469e-8b6d-82cb70b33055": {
+          "requiredInputs": [
+            "#input__b12ccf8a-e9be-4ec6-a5da-a5dd021005d5"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"voorkant\""
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  "\"achterkant\""
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "\"zijkant\""
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_894c9d49-766b-43cd-8718-741eb2f697e7",
+            "#_d2ac81c1-b563-452f-b486-70e1d37d9539",
+            "#_ede7ca24-cac1-4069-9719-8128096f15be",
+            "#_72451c4b-1d48-45e1-bd26-6dd6d4bc0450",
+            "#_c0e96eaf-df8d-469e-8b6d-82cb70b33055"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"NeemContactOpMet\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"NeemContactOpMet\"",
+                "description": "Neem even contact op met je gemeente voor meer info."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "Balen! Je hebt een vergunning nodig"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "Balen! Je hebt een vergunning nodig"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "Balen! Je hebt een vergunning nodig"
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "Balen! Je hebt een vergunning nodig"
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "Yes! Je mag gaan bouwen want je bent toestemmingsvrij!"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

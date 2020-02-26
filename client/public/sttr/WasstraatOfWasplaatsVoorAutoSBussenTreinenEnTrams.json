@@ -1,0 +1,3711 @@
+{
+  "id": "WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams",
+  "name": "Wasstraat of wasplaats voor auto's",
+  "permits": [
+    {
+      "name": "Conclusie Dakraam bouwen",
+      "questions": [
+        {
+          "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
+          "type": "boolean",
+          "id": "uitv__bb667703-d5b0-4385-8b8a-e6c72f41d350"
+        },
+        {
+          "text": "Staat het gebouw waarop u het dakraam gaat plaatsen, in een beschermd stads- of dorpsgezicht?",
+          "description": "Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
+          "type": "boolean",
+          "id": "uitv__bc91339f-a16d-4eca-abb7-2c70d830ddf8"
+        },
+        {
+          "text": "Het gebouw waarop u het dakraam gaat plaatsen staat in een beschermd stads- of dorpsgezicht. Ligt het dak waar u het dakraam in gaat plaatsen aan de achterkant van het gebouw?",
+          "type": "boolean",
+          "id": "uitv__1026b5d7-ef08-41e5-9d36-296b477d7277"
+        },
+        {
+          "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/4_a_OTG_Dakraam-Achterkant-weg.png)\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoord u de vraag met ja.",
+          "type": "boolean",
+          "id": "uitv__8202a657-8145-4428-b82d-554c2c2209bb"
+        },
+        {
+          "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-water.png)\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoord u de vraag met ja.",
+          "type": "boolean",
+          "id": "uitv__13dd6310-3575-4bbd-b4ac-5bb709d52c2b"
+        },
+        {
+          "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-plantsoen.png)\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoord u de vraag met ja.",
+          "type": "boolean",
+          "id": "uitv__c1e426a0-4772-4be0-8d2a-d9c645ad3ca6"
+        },
+        {
+          "text": "Waar gaat u een dakraam plaatsen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Voorkant.png)\n\nvoorkant  \n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Zijkant.png)\n\nzijkant  \n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Achterkant.png)\n\nachterkant  \n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Platdak.png)\n\nop plat dak",
+          "options": [
+            "aan de voorkant",
+            "aan de zijkant",
+            "aan de achterkant",
+            "op een plat dak"
+          ],
+          "type": "string",
+          "id": "uitv__b89af977-9608-47be-b4b6-5ef8c3d6f2a2"
+        },
+        {
+          "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_weg.png)\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoord u de vraag met 'ja'.",
+          "type": "boolean",
+          "id": "uitv__c2125fec-9152-4c88-afbf-9d34e19ca67f"
+        },
+        {
+          "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_water.png)\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoord u de vraag met 'ja'.",
+          "type": "boolean",
+          "id": "uitv__57d4931a-4a5d-4867-85da-a33b008ff06b"
+        },
+        {
+          "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_plantsoen.png)\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoord u de vraag met ja.",
+          "type": "boolean",
+          "id": "uitv__cbc2ccec-906d-4af3-a8a7-53e8108eef6b"
+        },
+        {
+          "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een gebied waar geen regels gelden voor het uiterlijk van gebouwen?",
+          "description": "We noemen die gebieden welstandsvrij. Controleer [op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=3,13) of het gebouw in een welstandsvrij gebied ligt.",
+          "type": "boolean",
+          "id": "uitv__a9c6f493-59fb-4427-a23e-1fe27871bd9d"
+        },
+        {
+          "text": "Wordt het dakraam hoger dan 60 centimeter gemeten vanaf het dak?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D.png)",
+          "type": "boolean",
+          "id": "uitv__ef29b738-88cb-4749-b85a-07957396b758"
+        },
+        {
+          "text": "Steekt het dakraam buiten het dakvlak?",
+          "description": "visual toevoegen",
+          "type": "boolean",
+          "id": "uitv__3b8fce70-4d3c-4b93-800e-5d393be22666"
+        },
+        {
+          "text": "Worden de afstanden van het dakraam tot aan alle randen van het dak meer dan 50 centimeter? U meet deze afstanden tot de zijkanten en tot de onder- en bovenzijde van uw dak.",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/11_Dakraam_afstand_tot_randen_schuin_dak.png)",
+          "type": "boolean",
+          "id": "uitv__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+        },
+        {
+          "text": "Wordt het dakraam hoger dan 60 centimeter gemeten vanaf het platte dak?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_plat_dak.png)",
+          "type": "boolean",
+          "id": "uitv__7f06028e-b1e2-4316-a187-4907f9df779f"
+        },
+        {
+          "text": "Worden de afstanden van het dakraam tot aan alle randen van uw dak meer dan 50 centimeter?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/11_Dakraam_schuin_dak_afstand_tot_randen_b.png)",
+          "type": "boolean",
+          "id": "uitv__f0dac721-c904-4824-8eed-88a6714bee95"
+        }
+      ],
+      "inputs": {
+        "input__bb667703-d5b0-4385-8b8a-e6c72f41d350": {
+          "href": "#uitv__bb667703-d5b0-4385-8b8a-e6c72f41d350",
+          "type": "boolean"
+        },
+        "input__bc91339f-a16d-4eca-abb7-2c70d830ddf8": {
+          "href": "#uitv__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+          "type": "boolean"
+        },
+        "input__1026b5d7-ef08-41e5-9d36-296b477d7277": {
+          "href": "#uitv__1026b5d7-ef08-41e5-9d36-296b477d7277",
+          "type": "boolean"
+        },
+        "input__8202a657-8145-4428-b82d-554c2c2209bb": {
+          "href": "#uitv__8202a657-8145-4428-b82d-554c2c2209bb",
+          "type": "boolean"
+        },
+        "input__13dd6310-3575-4bbd-b4ac-5bb709d52c2b": {
+          "href": "#uitv__13dd6310-3575-4bbd-b4ac-5bb709d52c2b",
+          "type": "boolean"
+        },
+        "input__c1e426a0-4772-4be0-8d2a-d9c645ad3ca6": {
+          "href": "#uitv__c1e426a0-4772-4be0-8d2a-d9c645ad3ca6",
+          "type": "boolean"
+        },
+        "input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2": {
+          "href": "#uitv__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+          "type": "string"
+        },
+        "input__c2125fec-9152-4c88-afbf-9d34e19ca67f": {
+          "href": "#uitv__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+          "type": "boolean"
+        },
+        "input__57d4931a-4a5d-4867-85da-a33b008ff06b": {
+          "href": "#uitv__57d4931a-4a5d-4867-85da-a33b008ff06b",
+          "type": "boolean"
+        },
+        "input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b": {
+          "href": "#uitv__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
+          "type": "boolean"
+        },
+        "input__a9c6f493-59fb-4427-a23e-1fe27871bd9d": {
+          "href": "#uitv__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+          "type": "boolean"
+        },
+        "input__ef29b738-88cb-4749-b85a-07957396b758": {
+          "href": "#uitv__ef29b738-88cb-4749-b85a-07957396b758",
+          "type": "boolean"
+        },
+        "input__3b8fce70-4d3c-4b93-800e-5d393be22666": {
+          "href": "#uitv__3b8fce70-4d3c-4b93-800e-5d393be22666",
+          "type": "boolean"
+        },
+        "input__dc4dff42-a81d-4731-aa87-0e27bda8234d": {
+          "href": "#uitv__dc4dff42-a81d-4731-aa87-0e27bda8234d",
+          "type": "boolean"
+        },
+        "input__7f06028e-b1e2-4316-a187-4907f9df779f": {
+          "href": "#uitv__7f06028e-b1e2-4316-a187-4907f9df779f",
+          "type": "boolean"
+        },
+        "input__f0dac721-c904-4824-8eed-88a6714bee95": {
+          "href": "#uitv__f0dac721-c904-4824-8eed-88a6714bee95",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_7477acb7-cf16-499c-b014-84330323ad10": {
+          "requiredInputs": [
+            "#input__bb667703-d5b0-4385-8b8a-e6c72f41d350"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_d62cfa62-22aa-4ef8-bc1f-324afc136ca5": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__1026b5d7-ef08-41e5-9d36-296b477d7277"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b5b94e82-df8a-4d64-b686-0fc93f36572b": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
+            "#input__8202a657-8145-4428-b82d-554c2c2209bb"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  false,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_a04523e3-a4ae-4439-b233-11c6faed7af8": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__7f06028e-b1e2-4316-a187-4907f9df779f"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"op een plat dak\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de zijkant\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_2bf45a87-04b8-452d-acdc-5c758b677576": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de achterkant\"",
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de zijkant\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f0c0fa54-a21e-4e4f-885c-282cbf28e56e": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de voorkant\"",
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de zijkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  false,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_b8215ce2-9443-4bdf-9946-9dcf44084350": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de achterkant\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de zijkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_7b2248a5-f22f-4db7-8034-dd21d2ed2632": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de voorkant\"",
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de zijkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_2cde1865-7769-4564-b064-da04eda38026": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
+            "#input__8202a657-8145-4428-b82d-554c2c2209bb",
+            "#input__13dd6310-3575-4bbd-b4ac-5bb709d52c2b"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c06982c2-ed21-4f04-8e2f-51ff82e8912f": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__7f06028e-b1e2-4316-a187-4907f9df779f",
+            "#input__f0dac721-c904-4824-8eed-88a6714bee95"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"op een plat dak\"",
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de zijkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_7ea0942f-0bf7-416a-9f06-b124328d3024": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_794f1bab-fbd6-4c04-9b3a-7572713b3b81": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
+            "#input__8202a657-8145-4428-b82d-554c2c2209bb",
+            "#input__13dd6310-3575-4bbd-b4ac-5bb709d52c2b",
+            "#input__c1e426a0-4772-4be0-8d2a-d9c645ad3ca6"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true,
+                  true,
+                  false,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  false,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_3a2cbc47-e346-454c-a007-24a74321f016": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de voorkant\"",
+                  true,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de zijkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_5c2cf416-45be-4495-9779-3e91cc3d685a": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de voorkant\"",
+                  false,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de zijkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_8dc11bd9-06cf-45e8-bc32-4b41e1bd474d": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_c40cef10-c5ab-4d63-8000-71228634e53d": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  true,
+                  true,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_712a2893-6ec4-42e2-a5da-a7d19439bb05": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_61c574f5-1683-4764-9479-63c87f46f2ff": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  true,
+                  false,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_291ae64a-dcc6-4913-baf7-5ac69de26d80": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_45b855ad-d342-4773-8042-c34538c5fb59": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  false,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_9104ae3d-1e73-4d12-9dab-620f864f3109": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  false,
+                  true,
+                  false,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_56f4737c-3fb5-4cb9-a605-6ee2a3edece3": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  false,
+                  false,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_cf94be61-5bbc-4439-8086-29714e58c56d": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_a2853597-1917-4853-b461-05b55a7f79f2": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  true,
+                  false,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_de2a63ff-e03d-4b75-9fd0-279a1ccb09ec": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  true,
+                  true,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_79e595e3-368a-4b19-bccb-cac0ede061fa": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  false,
+                  true,
+                  false,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_0654d393-6c7d-4c51-8174-093bce0830b4": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  false,
+                  "\"aan de zijkant\"",
+                  false,
+                  false,
+                  true,
+                  true,
+                  false,
+                  false
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de voorkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"aan de achterkant\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"op een plat dak\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  false,
+                  "-",
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true,
+                  "-"
+                ],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  true
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_7477acb7-cf16-499c-b014-84330323ad10",
+            "#_d62cfa62-22aa-4ef8-bc1f-324afc136ca5",
+            "#_b5b94e82-df8a-4d64-b686-0fc93f36572b",
+            "#_a04523e3-a4ae-4439-b233-11c6faed7af8",
+            "#_2bf45a87-04b8-452d-acdc-5c758b677576",
+            "#_f0c0fa54-a21e-4e4f-885c-282cbf28e56e",
+            "#_b8215ce2-9443-4bdf-9946-9dcf44084350",
+            "#_7b2248a5-f22f-4db7-8034-dd21d2ed2632",
+            "#_2cde1865-7769-4564-b064-da04eda38026",
+            "#_c06982c2-ed21-4f04-8e2f-51ff82e8912f",
+            "#_7ea0942f-0bf7-416a-9f06-b124328d3024",
+            "#_794f1bab-fbd6-4c04-9b3a-7572713b3b81",
+            "#_3a2cbc47-e346-454c-a007-24a74321f016",
+            "#_5c2cf416-45be-4495-9779-3e91cc3d685a",
+            "#_8dc11bd9-06cf-45e8-bc32-4b41e1bd474d",
+            "#_c40cef10-c5ab-4d63-8000-71228634e53d",
+            "#_712a2893-6ec4-42e2-a5da-a7d19439bb05",
+            "#_61c574f5-1683-4764-9479-63c87f46f2ff",
+            "#_291ae64a-dcc6-4913-baf7-5ac69de26d80",
+            "#_45b855ad-d342-4773-8042-c34538c5fb59",
+            "#_9104ae3d-1e73-4d12-9dab-620f864f3109",
+            "#_56f4737c-3fb5-4cb9-a605-6ee2a3edece3",
+            "#_cf94be61-5bbc-4439-8086-29714e58c56d",
+            "#_a2853597-1917-4853-b461-05b55a7f79f2",
+            "#_de2a63ff-e03d-4b75-9fd0-279a1ccb09ec",
+            "#_79e595e3-368a-4b19-bccb-cac0ede061fa",
+            "#_0654d393-6c7d-4c51-8174-093bce0830b4"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U hebt geen vergunning nodig voor het plaatsen van het dakraam, daklicht of lichtstraat. Wél moet u op een aantal dingen letten voordat u gaat bouwen. Uw aannemer kan u daarbij helpen.\n\n**Waar u verder op moet letten:**\n\n*   U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.\n*   U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.\n\nDenk ook aan:\n\n*   Het plaatsen van een container op straat of het reserveren van een parkeervak.\n*   Het afvoeren van bouw- en sloopafval.\n*   Het risico dat u asbest tegenkomt.\n*   Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.\n*   De gevolgen van het plaatsen van een dakraam op de WOZ-waarde van uw huis."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
