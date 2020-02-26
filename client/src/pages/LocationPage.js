@@ -30,7 +30,6 @@ const LocationPage = ({ topic }) => {
     }
   };
 
-  console.log("rendder locatinopage with finder");
   return (
     <Layout>
       <Heading $as="h4">Invullen adres</Heading>
