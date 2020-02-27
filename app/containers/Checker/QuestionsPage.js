@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import slugify from 'slugify';
 import history from 'utils/history';
+import getChecker from '../../shared/services/sttr_client';
 import Question from './Question';
 import { GET_CURRENT_TOPIC, PAGES, booleanOptions, GET_STTR } from '../../constants';
 import { CheckerContext } from './CheckerContext';
 import { getSttrFile } from 'shared/services/api';
 import { QuestionContext } from './QuestionContext';
 import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTable';
-import getChecker from '../../shared/services/sttr_client';
 
 const QuestionsPage = () => {
   const [loading, setLoading] = useState(false);

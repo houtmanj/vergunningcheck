@@ -13,7 +13,7 @@ const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
 const ConclusionsPage = () => {
   const { checker } = useContext(CheckerContext);
-  const [authorized, setAuthorized] = useState(true);
+  let authorized = true;
 
   const goToOLO = e => {
     e.preventDefault();
@@ -40,11 +40,11 @@ const ConclusionsPage = () => {
           .filter(uniqueFilter);
 
         if (conclusionString === '"Toestemmingsvrij"') {
-          setAuthorized(false);
+          authorized = false;
         }
 
         return (
-          <div key={`${permit.name} ${index}`}>
+          <div key={`${permit.name}-${index}`}>
             <Heading $as="h2">
               {permit.name.replace('Conclusie', '')}: {conclusionString.replace(/['"]+/g, '')}
             </Heading>
