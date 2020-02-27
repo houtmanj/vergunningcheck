@@ -41,7 +41,7 @@ const ResultsPage = () => {
 
   const onGoToQuestion = (index, question) => {
     checker.rewindTo(index);
-    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(question)}`);
+    history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(question.toLowerCase())}`);
   };
 
   checker.permits.forEach(permit => {
@@ -103,7 +103,7 @@ const ResultsPage = () => {
       })}
       <Navigation
         page={`checker-${PAGES.checkerResult}`}
-        onGoToPrev={() => onGoToQuestion(checker.stack.length - 1)}
+        onGoToPrev={() => onGoToQuestion(checker.stack.length - 1, checker._last?.text)}
         showPrev
         showNext
       />
