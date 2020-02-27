@@ -1,6 +1,8 @@
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
 
+import dotenv from "dotenv-flow";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
@@ -17,6 +19,8 @@ import * as serviceWorker from "./serviceWorker";
 import Router from "./components/Router";
 
 import "@datapunt/asc-assets/lib/assets/fonts.css";
+
+dotenv.config();
 
 const AppGlobalStyle = createGlobalStyle`
   body {

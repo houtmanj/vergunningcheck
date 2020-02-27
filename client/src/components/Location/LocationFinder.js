@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Paragraph, Select } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";

@@ -1,8 +1,10 @@
+/**
+ * WARNING: this file is shared across all development environments
+ * including all developers.
+ */
+
 module.exports = {
-  loaders: {
-    datapunt: {
-      // host: "http://acc.api.data.amsterdam.nl",
-      cacheTimeout: 600
-    }
+  graphql: {
+    graphiql: true
   }
 };

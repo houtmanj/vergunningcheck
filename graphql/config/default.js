@@ -1,7 +1,7 @@
 module.exports = {
   port: 4000,
   path: "graphql",
-  graphql: { graphiql: true },
+  graphql: { graphiql: false },
   cache: {
     dataLoaderEnabled: true,
     requestCacheEnabled: true,
