@@ -19,13 +19,16 @@ export default ({ checker }) => {
           </thead>
           <tbody>
             {checker.stack.map((q, i) => (
-              <tr key={q.id} style={{ fontWeight: checker.stack[checker.stack.length - 1] === q ? 'bold' : 'normal' }}>
+              <tr
+                key={`question-${q.id}-${i}`}
+                style={{ fontWeight: checker.stack[checker.stack.length - 1] === q ? 'bold' : 'normal' }}
+              >
                 <td>{q.text}</td>
                 <td>{q.answer !== undefined && q.answer.toString()}</td>
               </tr>
             ))}
-            {relevantOpenQuestions.map(q => (
-              <tr key={q.id}>
+            {relevantOpenQuestions.map((q, i) => (
+              <tr key={`open-${q.id}-${i}`}>
                 <td>{q.text}</td>
                 <td>
                   <em>{q.answer !== undefined ? q.answer.toString() : '...'}</em>
@@ -52,7 +55,7 @@ export default ({ checker }) => {
               const questions = decision._inputs;
               const decisiveInputs = decision.getDecisiveInputs();
               return (
-                <div key={decision.id}>
+                <div key={`descicion - ${decision.id} ${i}`}>
                   <h3>
                     Decision {decision.id === 'dummy' ? decision.id : i} ({matchingRules.length !== 0 && 'CONCLUSIVE'})
                   </h3>
@@ -60,16 +63,13 @@ export default ({ checker }) => {
                     <div>
                       <strong>Vragen</strong>
                       <ol>
-                        {questions.map(q => {
-                          return (
-                            <li key={q.id} style={{ fontWeight: decisiveInputs.indexOf(q) > -1 ? 'bold' : 'normal' }}>
-                              {q.text}
-                              <br />
-                              Antwoord:{' '}
-                              {q.answer !== undefined ? <b>{JSON.stringify(q.answer)}</b> : <em>undefined</em>}
-                            </li>
-                          );
-                        })}
+                        {questions.map(q => (
+                          <li key={q.id} style={{ fontWeight: decisiveInputs.indexOf(q) > -1 ? 'bold' : 'normal' }}>
+                            {q.text}
+                            <br />
+                            Antwoord: {q.answer !== undefined ? <b>{JSON.stringify(q.answer)}</b> : <em>undefined</em>}
+                          </li>
+                        ))}
                       </ol>
                     </div>
                     <div>

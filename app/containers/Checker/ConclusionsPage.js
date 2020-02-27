@@ -30,7 +30,7 @@ const ConclusionsPage = () => {
       <Heading $as="h1">Conclusies</Heading>
 
       <Paragraph>Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van toepassing is.</Paragraph>
-      {checker.permits.map(permit => {
+      {checker.permits.map((permit, index) => {
         const conclusionString = permit.getOutputByDecisionId('dummy');
         const conclusion = permit.getDecisionById('dummy');
         const conclusionMatchingRules = conclusion.getMatchingRules();
@@ -44,9 +44,9 @@ const ConclusionsPage = () => {
         }
 
         return (
-          <div key={permit.name}>
+          <div key={`${permit.name} ${index}`}>
             <Heading $as="h2">
-              {permit.name.replace('Conclusie', '')}: {conclusionString}
+              {permit.name.replace('Conclusie', '')}: {conclusionString.replace(/['"]+/g, '')}
             </Heading>
             {displayConclusions.map(text => (
               <div key={text}>

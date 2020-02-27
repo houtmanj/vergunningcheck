@@ -30,9 +30,9 @@ const Question = ({
     description,
     longDescription,
   },
+  question,
   className,
   headingAs,
-  children,
   onSubmit: onSubmitProp,
   hideNavigation,
   disableNext,
@@ -41,6 +41,7 @@ const Question = ({
   onGoToPrev,
   required,
 }) => {
+  console.log(question);
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map(answer => ({ label: answer, formValue: answer, value: answer }));
   const answers = questionType === 'string' ? listAnswers : booleanOptions;
@@ -102,7 +103,6 @@ const Question = ({
         answers={answers}
         currentAnswer={answer}
       />
-      {children}
       {!hideNavigation && (
         <Navigation
           page={`checker-${PAGES.checkerQuestions}`}
@@ -133,7 +133,7 @@ Question.propTypes = {
     options: PropTypes.array,
     description: PropTypes.string,
     longDescription: PropTypes.string,
-    answer: PropTypes.string,
+    answer: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   }),
   className: PropTypes.string,
   headingAs: PropTypes.string,

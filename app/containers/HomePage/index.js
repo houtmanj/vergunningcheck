@@ -20,8 +20,8 @@ const HomePageText = () => (
   <>
     <Heading $as="h2">Inleiding</Heading>
     <Paragraph>
-      Met de vergunningchecker ziet u of u een omgevingsvergunning nodig hebt. Als u alle vragen beantwoord heeft, geeft
-      u dat inzicht waar u rekening mee moet houden.
+      Met de vergunningchecker ziet u of u een omgevingsvergunning nodig hebt. Als u alle vragen beantwoordt heeft,
+      geeft u dat inzicht waar u rekening mee moet houden.
     </Paragraph>
     <Heading $as="h3">Proclaimer</Heading>
     <Paragraph>
