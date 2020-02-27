@@ -40,14 +40,14 @@ export default ({ checker }) => {
       </div>
 
       <h1>Permits</h1>
-      {checker.permits.map(permit => {
+      {checker.permits.map((permit, index) => {
         const conclusionString = permit.getOutputByDecisionId(decisionId);
         const conclusion = permit.getDecisionById(decisionId);
         const conclusionMatchingRules = conclusion.getMatchingRules();
         const decisiveDecisions = conclusion.getDecisiveInputs();
 
         return (
-          <div key={permit.name}>
+          <div key={`${permit.name} - ${index}`}>
             <h2>{permit.name}</h2>
             {permit._decisions.map((decision, i) => {
               const matchingRules = decision.getMatchingRules();

@@ -126,7 +126,6 @@ export default (state = initialState, action) =>
         break;
       case FETCH_MONUMENT_SUCCESS:
         draft.monumentLoading = false;
-        console.log('monumentStatus', action.monument);
         draft.monumentStatus = action.monument;
         break;
       case FETCH_MONUMENT_FAILURE:

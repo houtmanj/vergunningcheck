@@ -30,7 +30,6 @@ const Question = ({
     description,
     longDescription,
   },
-  question,
   className,
   headingAs,
   onSubmit: onSubmitProp,
@@ -41,7 +40,6 @@ const Question = ({
   onGoToPrev,
   required,
 }) => {
-  console.log(question);
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
   const listAnswers = questionAnswers?.map(answer => ({ label: answer, formValue: answer, value: answer }));
   const answers = questionType === 'string' ? listAnswers : booleanOptions;
