@@ -44,9 +44,9 @@ const IntroductionText = () => (
       </ListItem>
     </OrderedList>
     <OrderList>
-      <ListItem>Wij stellen u een aantal vragen over het gebouw en de dakkapel.</ListItem>
+      <ListItem>Wij stellen u een aantal vragen over het gebouw en de {GET_TEXT?.entity}.</ListItem>
       <ListItem>U leest of u een vergunning nodig hebt. Wij vertellen u hoe u een aanvraag doet.</ListItem>
-      <ListItem>Wij vertellen u waar u verder op moet letten als u de dakkapel gaat plaatsen.</ListItem>
+      <ListItem>Wij vertellen u waar u verder op moet letten als u de {GET_TEXT?.entity} gaat plaatsen.</ListItem>
     </OrderList>
     <Heading $as="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">

@@ -32,7 +32,6 @@ const Question = ({
   },
   className,
   headingAs,
-  children,
   onSubmit: onSubmitProp,
   hideNavigation,
   disableNext,
@@ -102,7 +101,6 @@ const Question = ({
         answers={answers}
         currentAnswer={answer}
       />
-      {children}
       {!hideNavigation && (
         <Navigation
           page={`checker-${PAGES.checkerQuestions}`}
@@ -133,7 +131,7 @@ Question.propTypes = {
     options: PropTypes.array,
     description: PropTypes.string,
     longDescription: PropTypes.string,
-    answer: PropTypes.string,
+    answer: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   }),
   className: PropTypes.string,
   headingAs: PropTypes.string,
@@ -144,7 +142,6 @@ Question.propTypes = {
   showPrev: PropTypes.bool,
   disableNext: PropTypes.bool,
   onGoToPrev: PropTypes.func,
-  children: PropTypes.node,
 };
 
 export default Question;

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Paragraph, Heading } from '@datapunt/asc-ui';
 
 import ReactMarkdown from 'react-markdown';
@@ -13,7 +13,7 @@ const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
 const ConclusionsPage = () => {
   const { checker } = useContext(CheckerContext);
-  const [authorized, setAuthorized] = useState(true);
+  let authorized = true;
 
   const goToOLO = e => {
     e.preventDefault();
@@ -40,13 +40,13 @@ const ConclusionsPage = () => {
           .filter(uniqueFilter);
 
         if (conclusionString === '"Toestemmingsvrij"') {
-          setAuthorized(false);
+          authorized = false;
         }
 
         return (
-          <div key={permit.name}>
+          <div key={`${permit.name} - ${conclusionString}`}>
             <Heading $as="h2">
-              {permit.name.replace('Conclusie', '')}: {conclusionString}
+              {permit.name.replace('Conclusie', '')}: {conclusionString.replace(/['"]+/g, '')}
             </Heading>
             {displayConclusions.map(text => (
               <div key={text}>
