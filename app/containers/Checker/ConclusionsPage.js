@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Paragraph, Heading } from '@datapunt/asc-ui';
 
 import ReactMarkdown from 'react-markdown';
@@ -30,7 +30,7 @@ const ConclusionsPage = () => {
       <Heading $as="h1">Conclusies</Heading>
 
       <Paragraph>Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van toepassing is.</Paragraph>
-      {checker.permits.map((permit, index) => {
+      {checker.permits.map(permit => {
         const conclusionString = permit.getOutputByDecisionId('dummy');
         const conclusion = permit.getDecisionById('dummy');
         const conclusionMatchingRules = conclusion.getMatchingRules();
@@ -44,7 +44,7 @@ const ConclusionsPage = () => {
         }
 
         return (
-          <div key={`${permit.name}-${index}`}>
+          <div key={`${permit.name}`}>
             <Heading $as="h2">
               {permit.name.replace('Conclusie', '')}: {conclusionString.replace(/['"]+/g, '')}
             </Heading>
