@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Install / run
+
+```bash
+npm i
+npm start
+```
+
+To override local configuration, ie. change the graphql endpoint, please
+copy `./env.dist.local` to `./env.local`.
+
 ## Available Scripts
 
 In the project directory, you can run:

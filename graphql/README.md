@@ -1,3 +1,13 @@
+# Install / run
+
+```bash
+npm i
+npm run dev
+```
+
+To override local configuration, ie. changing the api's you use, please
+copy `./config/local.dist.js` to `./config/local.js`.
+
 # Requests / data needs
 
 adresseerbaar_object_id": "0363010000783024
