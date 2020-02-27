@@ -44,7 +44,7 @@ const ConclusionsPage = () => {
         }
 
         return (
-          <div key={`${permit.name}`}>
+          <div key={`${permit.name} - ${conclusionString}`}>
             <Heading $as="h2">
               {permit.name.replace('Conclusie', '')}: {conclusionString.replace(/['"]+/g, '')}
             </Heading>
