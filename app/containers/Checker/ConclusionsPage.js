@@ -12,8 +12,8 @@ import DebugDecisionTable from '../../components/Questionnaire/DebugDecisionTabl
 const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
 const ConclusionsPage = () => {
-  const { checker } = useContext(CheckerContext);
-  let authorized = true;
+  const { checker, updateChecker } = useContext(CheckerContext);
+  let authorized = false;
 
   const goToOLO = e => {
     e.preventDefault();
@@ -21,6 +21,7 @@ const ConclusionsPage = () => {
     if (authorized) {
       window.open(`${EXTERNAL_URLS.oloChecker.omgevingsloket}`, '_blank');
     } else {
+      updateChecker([]);
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
     }
   };
@@ -39,8 +40,9 @@ const ConclusionsPage = () => {
           .map(rule => rule.description)
           .filter(uniqueFilter);
 
-        if (conclusionString === '"Toestemmingsvrij"') {
-          authorized = false;
+        if (conclusionString !== '"Toestemmingsvrij"') {
+          authorized = true;
+          console.log('set authorized on false');
         }
 
         return (
