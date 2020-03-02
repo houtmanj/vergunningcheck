@@ -3,9 +3,9 @@ LABEL maintainer="datapunt@amsterdam.nl"
 
 WORKDIR /app/
 
-COPY client/package.json client/package-lock.json ./
+COPY apps/client/package*.json ./
 RUN npm ci
-COPY client/ ./
+COPY apps/client/ ./
 
 ARG NODE_ENV
 ARG STTR_BUILDER_API_KEY
@@ -14,10 +14,10 @@ RUN npm run sttr
 RUN npm run build
 
 # TODO: yarn 2 not avail yet.
-# COPY client/package.json client/yarn.lock ./
+# COPY apps/client/package.json apps/client/yarn.lock ./
 # RUN yarn --frozen-lockfile
-# COPY client/src ./src
-# COPY client/public ./public
+# COPY apps/client/src ./src
+# COPY apps/client/public ./public
 # RUN yarn build
 
 # RUN npm run test?

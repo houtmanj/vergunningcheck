@@ -1,4 +1,0 @@
-public/sttr
-build/
-node_modules/
-.env*.local

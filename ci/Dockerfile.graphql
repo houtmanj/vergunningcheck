@@ -5,18 +5,18 @@ LABEL maintainer="datapunt@amsterdam.nl"
 # USER node
 
 WORKDIR /app/
-COPY graphql/package.json graphql/package-lock.json ./
+COPY apps/graphql/package*.json ./
 
 # Test
 # FROM base AS builder
 # RUN npm ci
-# COPY graphql/ .
+# COPY apps/graphql/ .
 # RUN npm run test
 
 # Release
 FROM base
 ARG NODE_ENV
 RUN npm ci
-COPY graphql/ .
+COPY apps/graphql/ .
 ENV PORT=80
 CMD node .

@@ -1,0 +1,3 @@
+public/sttr
+build/
+.env*.local

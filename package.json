@@ -1,41 +1,25 @@
 {
-  "name": "chappie1-cra",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest",
-    "lint": "eslint ."
+  "name": "chappie-1.0",
+  "private": true,
+  "engines": {
+    "node": "13.1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "start": "lerna run --parallel --no-bail start",
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "postinstall": "lerna bootstrap"
+  },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.21.0",
-    "@typescript-eslint/parser": "^2.21.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.18.3",
-    "eslint-plugin-react-hooks": "^1.7.0",
-    "babel-jest": "^24.9.0",
+    "@types/lodash.isstring": "^4.0.6",
     "husky": "^4.2.3",
-    "jest": "^24.9.0",
-    "lint-staged": "^10.0.8",
-    "prettier": "^1.19.1",
-    "typescript": "^3.8.2"
+    "lerna": "^3.20.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": [
+        "lerna run --concurrency 1 --stream precommit"
+      ]
     }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix",
-      "jest --bail --findRelatedTests"
-    ]
   }
 }

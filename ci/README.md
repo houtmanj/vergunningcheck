@@ -5,12 +5,6 @@ PORT=8080 docker-compose -f ci/docker-compose.yml build
 PORT=8080 docker-compose -f ci/docker-compose.yml up --scale graphql=2 --scale client=2
 ```
 
-Clean up old containers:
-
-```sh
-...
-```
-
 # Docker
 
 Tip; enter your docker image:
