@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.1.12](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.11...v0.1.12) (2020-03-03)
 
+- Fix robots.txt
+- Fix build jobs
+- Updated STTR files
+
 ### [0.1.11](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.10...v0.1.11) (2020-03-03)
 
 ### Features
