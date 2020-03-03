@@ -16,6 +16,11 @@ const Image = styled(`img`)`
   border: 1px solid #aaa;
 `;
 
+// IE11 Fix
+const StyledParagraph = styled(Paragraph)`
+  flex-shrink: 0;
+`;
+
 const hasKeys = obj =>
   // convert to array, map, and then give the length
   Object.entries(obj).map(([key, value]) => [key, value]).length;
@@ -91,7 +96,11 @@ const Question = ({
     <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId}>
       {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
       {description && (
-        <ReactMarkdown source={description} renderers={{ paragraph: Paragraph, image: Image }} linkTarget="_blank" />
+        <ReactMarkdown
+          source={description}
+          renderers={{ paragraph: StyledParagraph, image: Image }}
+          linkTarget="_blank"
+        />
       )}
       {longDescription && <ExplanationModal modalText={longDescription} />}
       <Answers
