@@ -37,8 +37,8 @@ ENV NODE_ENV=production
 RUN npm run build
 # RUN STTR_BUILDER_API_KEY=$STTR_BUILDER_API_KEY npm run build:sttr
 
-# RUN mkdir -p build/shared/content/sttr
-# RUN cp app/shared/content/sttr/* build/shared/content/sttr/
+RUN mkdir -p build/shared/content/sttr
+RUN cp app/shared/content/sttr/* build/shared/content/sttr/
 
 # Deploy
 FROM nginx:stable-alpine
