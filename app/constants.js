@@ -59,11 +59,11 @@ const TOPICS = {
       locationPageIntro:
         'Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
       locationResultsPageDescription:
-        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas als u een omgevingsvergunning gaat aanvragen.',
+        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat aanvragen.',
     },
   },
   'dakraam-plaatsen': {
-    status: STATUS.LIVE,
+    status: STATUS.PRE_LIVE, // Temporarary back to PRE_LIVE
     sttrPath: '/shared/content/sttr/WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams.json',
     text: {
       entity: 'dakraam',
