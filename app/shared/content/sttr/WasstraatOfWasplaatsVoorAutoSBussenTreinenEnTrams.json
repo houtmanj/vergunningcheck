@@ -19,7 +19,7 @@
         }
       },
       "decisions": {
-        "_bcd2f750-7355-43e5-8c23-6a4bd2c06fbc": {
+        "_2eb25878-6095-4ffb-b456-4f270e3b3775": {
           "requiredInputs": ["#input__0635d451-dff1-4994-aa09-c53876406e78"],
           "decisionTable": {
             "rules": [
@@ -35,7 +35,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_bcd2f750-7355-43e5-8c23-6a4bd2c06fbc"],
+          "requiredDecisions": ["#_2eb25878-6095-4ffb-b456-4f270e3b3775"],
           "decisionTable": {
             "rules": [
               {
