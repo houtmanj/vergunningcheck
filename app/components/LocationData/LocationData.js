@@ -8,47 +8,59 @@ import LocationResult from './LocationResult';
 const LocationData = ({
   monumentLoading,
   monumentStatus,
+  error,
   stadsgezichtLoading,
   stadsgezichtStatus,
   bestemmingsplanLoading,
   bestemmingsplanStatus,
-}) => (
-  <div>
-    <LocationResult loading={monumentLoading} title="Monument:">
-      <Paragraph>{monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument'}</Paragraph>
-    </LocationResult>
+}) => {
+  let statusCheckMonument;
 
-    <LocationResult loading={stadsgezichtLoading} title="Beschermd stads- of dorpsgezicht:">
-      {stadsgezichtStatus ? (
-        <Paragraph>Ja. {stadsgezichtStatus}</Paragraph>
-      ) : (
-        <Paragraph>
-          De automatische controle op beschermd stads- of dorpsgezicht is momenteel niet beschikbaar. Controleer
-          handmatig op de{' '}
-          <a href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&amp;L=6,7" target="_blank">
-            Cultuurhistorische waardenkaart op Amsterdam Maps
-          </a>{' '}
-          of het gebouw in een beschermd stads- of dorpsgezicht ligt.
-        </Paragraph>
-      )}
-    </LocationResult>
+  if (monumentStatus === 'error') {
+    statusCheckMonument = `Er is iets mis gegaan met de verbinding`;
+  } else {
+    statusCheckMonument = monumentStatus ? `Ja. ${monumentStatus}` : 'Geen monument';
+  }
 
-    <LocationResult loading={bestemmingsplanLoading} title="Bestemmingsplannen:">
-      {bestemmingsplanStatus.length === 0 && <Paragraph>Geen bestemmingsplan</Paragraph>}
-      {bestemmingsplanStatus.length > 0 && (
-        <List variant="bullet" style={{ backgroundColor: 'inherit', marginBottom: '0' }}>
-          {bestemmingsplanStatus.map(bestemmingsplan => (
-            <ListItem key={bestemmingsplan.text}>{bestemmingsplan.text}</ListItem>
-          ))}
-        </List>
-      )}
-    </LocationResult>
-  </div>
-);
+  return (
+    <div>
+      <LocationResult loading={monumentLoading} title="Monument:">
+        <Paragraph>{statusCheckMonument}</Paragraph>
+      </LocationResult>
+
+      <LocationResult loading={stadsgezichtLoading} title="Beschermd stads- of dorpsgezicht:">
+        {stadsgezichtStatus ? (
+          <Paragraph>Ja. {stadsgezichtStatus}</Paragraph>
+        ) : (
+          <Paragraph>
+            Wij kunnen op dit moment niet uit ons systeem halen of het gebouw in een beschermd stads- of dorpsgezicht
+            ligt. Controleer dit zelf op de{' '}
+            <a href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&amp;L=6,7,8,9,10" target="_blank">
+              Cultuurhistorische waardenkaart op Amsterdam Maps
+            </a>
+          </Paragraph>
+        )}
+      </LocationResult>
+
+      <LocationResult loading={bestemmingsplanLoading} title="Bestemmingsplannen:">
+        {error && <Paragraph>Er is iets mis gegaan met de verbinding.</Paragraph>}
+        {bestemmingsplanStatus.length === 0 && !error && <Paragraph>Geen bestemmingsplan</Paragraph>}
+        {bestemmingsplanStatus.length > 0 && (
+          <List variant="bullet" style={{ backgroundColor: 'inherit', marginBottom: '0' }}>
+            {bestemmingsplanStatus.map(bestemmingsplan => (
+              <ListItem key={bestemmingsplan.text}>{bestemmingsplan.text}</ListItem>
+            ))}
+          </List>
+        )}
+      </LocationResult>
+    </div>
+  );
+};
 
 LocationData.propTypes = {
   monumentStatus: PropTypes.string,
   monumentLoading: PropTypes.bool,
+  error: PropTypes.bool,
   stadsgezichtStatus: PropTypes.string,
   stadsgezichtLoading: PropTypes.bool,
   bestemmingsplanStatus: PropTypes.arrayOf(PropTypes.object),
@@ -61,6 +73,7 @@ const mapStateToProps = state => {
     monumentStatus,
     stadsgezichtLoading,
     stadsgezichtStatus,
+    error,
     bestemmingsplanLoading,
     bestemmingsplanStatus,
   } = state.locationData;
@@ -69,6 +82,7 @@ const mapStateToProps = state => {
     monumentStatus,
     stadsgezichtLoading,
     stadsgezichtStatus,
+    error,
     bestemmingsplanLoading,
     bestemmingsplanStatus,
   };

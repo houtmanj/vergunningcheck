@@ -2,12 +2,76 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.1.10](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.9...v0.1.10) (2020-02-05)
+### [0.1.11](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.10...v0.1.11) (2020-03-03)
 
+### Features
+
+- added a scroll to top ([bc83559](https://github.com/Amsterdam/Vergunningschecker/commit/bc835596ea642ccce5f830c3d9594975cb4c39e3))
+- Added building and fetching STTR file ([c732734](https://github.com/Amsterdam/Vergunningschecker/commit/c732734ba4a5e39c9da44cd033e74bf73a5bf70e))
+- Added context api stack ([f941151](https://github.com/Amsterdam/Vergunningschecker/commit/f941151ef1461bc88e8682498714896d60f2d045))
+- Added context to the results page ([96cbfa6](https://github.com/Amsterdam/Vergunningschecker/commit/96cbfa633f1c3a4dbfa7f9f02ee16bc488f04615))
+- Added Question Form and ASC Components ([13794fe](https://github.com/Amsterdam/Vergunningschecker/commit/13794fe143193590672dc0bbef44f0c5c922c15a))
+- Added question player based on `sttr-demo` ([e801d5f](https://github.com/Amsterdam/Vergunningschecker/commit/e801d5faf276263ef5cea2430155e4ca8b556215))
+- Added the dakraamplaatsen route on dev and production ([b794de9](https://github.com/Amsterdam/Vergunningschecker/commit/b794de9a747848054ef782f07f2eecbc483e7f75))
+- added the location result page ([e3995c5](https://github.com/Amsterdam/Vergunningschecker/commit/e3995c5b2dda4d8de429bf1cc1a876ee3f64223f))
+- added the neem contact op met route ([24c1100](https://github.com/Amsterdam/Vergunningschecker/commit/24c1100d9abafc092a2d738370dc666a5a33218b))
+- certein fixes ([37ae019](https://github.com/Amsterdam/Vergunningschecker/commit/37ae019f55f33eaa220098acf113af3398e56182))
+- Disabled the question type checker because it breaks the `Aanbouw` checker ([b022966](https://github.com/Amsterdam/Vergunningschecker/commit/b0229664da27f29d8bb30a815d4033f7413b0775))
+- Do not allow live checkers in Production ([82afe34](https://github.com/Amsterdam/Vergunningschecker/commit/82afe346de2d47c9eb5155754c53fea008747282))
+- Fixed full checker flow ([0adc8fc](https://github.com/Amsterdam/Vergunningschecker/commit/0adc8fcdbc673dbc89a0b16ec3cea784261f56b1))
+- List question support ([dda2303](https://github.com/Amsterdam/Vergunningschecker/commit/dda230347f904ebfbe3250b1f87258363e284e07))
+- Neem contact op fall out toegevoegd ([dd96285](https://github.com/Amsterdam/Vergunningschecker/commit/dd96285e3cdcc55b86a19a11b6a9c4ff193358b0))
+- Push STTR Checker to ACC ([ee3aa07](https://github.com/Amsterdam/Vergunningschecker/commit/ee3aa07c83903270f35d9bb47dd51a2ae01f87c7))
+- Removed use context from duties ([e67b2a4](https://github.com/Amsterdam/Vergunningschecker/commit/e67b2a4ef9b5a05649fd1f23ae2f5748a68b452b))
+- Reset list counter ([25a0a8e](https://github.com/Amsterdam/Vergunningschecker/commit/25a0a8e93832fea13bc64ce82cd14845397843e6))
+- Small improvements to the answer page ([7ae6100](https://github.com/Amsterdam/Vergunningschecker/commit/7ae610083da2c3ffa6c1fedb7ab07636285c42ba))
 
 ### Bug Fixes
 
-* Ie fix ([47beefb](https://github.com/Amsterdam/Vergunningschecker/commit/47beefb7cf59f38500f2fbdee8089c42ef7bf5b8))
+- added proptypes to conclusions ([cb65dae](https://github.com/Amsterdam/Vergunningschecker/commit/cb65dae9e495046c97e5fea230724b1e7ef3d284))
+- Added useContext ([9194237](https://github.com/Amsterdam/Vergunningschecker/commit/91942375ad777c2a555439cae8088a45a7e6dcb8))
+- Also added the question to context ([40ffb7c](https://github.com/Amsterdam/Vergunningschecker/commit/40ffb7c67a91230911d4ef0fc75fc95af3f93bac))
+- Correct fall out on toestemmingsvrij ([af8fdc3](https://github.com/Amsterdam/Vergunningschecker/commit/af8fdc3b13361078a0fb1885805394503d93f8bd))
+- Fix olo redirect ([1f814c1](https://github.com/Amsterdam/Vergunningschecker/commit/1f814c1b52cf9058a8685ecc3b8241857e78affc))
+- Fix rewind to and concolusiepagina ([5500709](https://github.com/Amsterdam/Vergunningschecker/commit/5500709360b7094bdd8fddb91cb6c7031ec284ec))
+- Fixed a bug with handling boolean / list answers ([f2e0d07](https://github.com/Amsterdam/Vergunningschecker/commit/f2e0d071ff739f8551bb41d8005485d79f87f5de))
+- Fixed a bug with setting boolean options ([07c81a8](https://github.com/Amsterdam/Vergunningschecker/commit/07c81a89aced13148a08d3814efa15beab2fa1dd))
+- Fixed a concolusion bug ([a285a51](https://github.com/Amsterdam/Vergunningschecker/commit/a285a5193201c4d0241dbdd4dc2d7d5935b86bbf))
+- Fixed going back in the flow ([6ac02d4](https://github.com/Amsterdam/Vergunningschecker/commit/6ac02d4d67c30e4c706f421693161565a4f44404))
+- fixed issue regarding opening checker ([6c02323](https://github.com/Amsterdam/Vergunningschecker/commit/6c02323c4dd0296025e913537d7e3293e7512729))
+- Fixed merge conflicts ([17fb0ed](https://github.com/Amsterdam/Vergunningschecker/commit/17fb0edadd9a5761a60445e655f6d91f4973da12))
+- Fixed prev button on results ([576d3e7](https://github.com/Amsterdam/Vergunningschecker/commit/576d3e7617907009293fdcaa54c49a296a973312))
+- Fixed the redirect to the olo ([f145309](https://github.com/Amsterdam/Vergunningschecker/commit/f145309fe49a49711d89be08bf4e82373ff4e71e))
+- IE11 fix with image size ([76e1f39](https://github.com/Amsterdam/Vergunningschecker/commit/76e1f39e69c0bbbfdfd239b89161bbdae605f0e1))
+- Maps bug ([7bdc646](https://github.com/Amsterdam/Vergunningschecker/commit/7bdc64603e94fc123564be1a6bdb68a1959e00db))
+- Readded link to olo ([f89fb85](https://github.com/Amsterdam/Vergunningschecker/commit/f89fb8584b18e23be2d30243097c34bd86255ca7))
+- Removed duplicate useEffect ([2a7d155](https://github.com/Amsterdam/Vergunningschecker/commit/2a7d155dd56c336b9bf6341d5f323fe6f86e0bc7))
+- STTR build now fetching from Flo Legals staging ([d2afe3a](https://github.com/Amsterdam/Vergunningschecker/commit/d2afe3ab0f59cb31aea6436b9c5bf1507bdb10cb))
+- Temp disabled the 'dakraam' topic ([f41ea50](https://github.com/Amsterdam/Vergunningschecker/commit/f41ea5096ef03d7e6bd3d707fc964a7b86e0a2fa))
+- Typo in dakkapel location Results Page Description ([f80d066](https://github.com/Amsterdam/Vergunningschecker/commit/f80d066d0303c5bb9182115a23e9701d66bee13b))
+- Updated the checker fix ([0186d33](https://github.com/Amsterdam/Vergunningschecker/commit/0186d33d5e001ec4c553618747ac80cae7af4d01))
+- When going back in the checker show the location result page ([37041f4](https://github.com/Amsterdam/Vergunningschecker/commit/37041f423a1050a7802080c69b6942da7e55eecd))
+
+### Refactors
+
+- changed a -> button ([3589e52](https://github.com/Amsterdam/Vergunningschecker/commit/3589e52f41cd04303845a1bf3fa36a53c77afc9a))
+- Fixed merge conflict ([8868cba](https://github.com/Amsterdam/Vergunningschecker/commit/8868cba2bd973983dd99b109e6095c6079c87166))
+- moved to react ([b6e79d6](https://github.com/Amsterdam/Vergunningschecker/commit/b6e79d68d5aac05eaeab2187d4b07b3ce2fb3da1))
+- Removed unused files ([cd5becc](https://github.com/Amsterdam/Vergunningschecker/commit/cd5becc4b924de097e892f8207ee180224841c67))
+
+### Styling
+
+- Added better mobile styling on results page ([083d352](https://github.com/Amsterdam/Vergunningschecker/commit/083d352292f10694ec1ba7a419ef78b50ff40c6c))
+- Added more styling to the results page ([79a203b](https://github.com/Amsterdam/Vergunningschecker/commit/79a203b0b0088366e3adaaf98461b419e2ab43d7))
+- Changed certain text ([ec707b9](https://github.com/Amsterdam/Vergunningschecker/commit/ec707b93667a5293ad6083580e7b289c6845c46b))
+- Removed omgevingsloket notice from sttr flow ([b7cdde4](https://github.com/Amsterdam/Vergunningschecker/commit/b7cdde4c663b35c34ca0901302dcd8d0b8d5fd20))
+- Replaced link -> button ([baf8745](https://github.com/Amsterdam/Vergunningschecker/commit/baf87455e217fb70dfaa2f933db55343a44edaff))
+
+### [0.1.10](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.9...v0.1.10) (2020-02-05)
+
+### Bug Fixes
+
+- Ie fix ([47beefb](https://github.com/Amsterdam/Vergunningschecker/commit/47beefb7cf59f38500f2fbdee8089c42ef7bf5b8))
 
 ### [0.1.9](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.7...v0.1.9) (2020-01-30)
 

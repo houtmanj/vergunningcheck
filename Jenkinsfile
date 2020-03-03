@@ -24,13 +24,15 @@ node {
 
 node {
     stage("Build acceptance image") {
-        tryStep "build", {
-            def image = docker.build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}",
-                "--shm-size 1G " +
-                "--build-arg BUILD_ENV=acc " +
-                "--build-arg BUILD_NUMBER=${env.BUILD_NUMBER} " +
-                ". ")
-            image.push()
+        timeout(10) {
+            tryStep "build", {
+                def image = docker.build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}",
+                    "--shm-size 1G " +
+                    "--build-arg BUILD_ENV=acc " +
+                    "--build-arg BUILD_NUMBER=${env.BUILD_NUMBER} " +
+                    ". ")
+                image.push()
+            }
         }
     }
 }
@@ -100,6 +102,56 @@ if (BRANCH == "develop") {
 
     node {
         stage('Push acceptance image') {
+            tryStep "image tagging", {
+                def image = docker.image("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}")
+                image.pull()
+                image.push("acceptance")
+            }
+        }
+    }
+
+    node {
+        stage("Deploy to ACC") {
+            tryStep "deployment", {
+                build job: 'Subtask_Openstack_Playbook',
+                parameters: [
+                    [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
+                    [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-vergunningschecker.yml'],
+                ]
+            }
+        }
+    }
+}
+
+if (BRANCH == "feature/sttr-checker") {
+    
+    node {
+        stage('Push sttr-checker image') {
+            tryStep "image tagging", {
+                def image = docker.image("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}")
+                image.pull()
+                image.push("acceptance")
+            }
+        }
+    }
+
+    node {
+        stage("Deploy to ACC") {
+            tryStep "deployment", {
+                build job: 'Subtask_Openstack_Playbook',
+                parameters: [
+                    [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
+                    [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-vergunningschecker.yml'],
+                ]
+            }
+        }
+    }
+}
+
+if (BRANCH == "feature/sttr-checker-demo") {
+    
+    node {
+        stage('Push sttr-checker image') {
             tryStep "image tagging", {
                 def image = docker.image("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}")
                 image.pull()

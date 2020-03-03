@@ -1,15 +1,18 @@
-const hash = require('object-hash');
-
 const parser = require('fast-xml-parser');
 const get = require('lodash.get');
 
 /**
- * Convert field-types from 'feel'-spec to our representation
+ * Convert field-types from 'feel'-spec to our representation.
+ * For now we only replace 'feel:' with nothing, but this could
+ * change in the future. Therefore we extract this piece of logic.
+ *
+ * @example
+ * feelTypeMap('feel:boolean'); // would return 'boolean'
  *
  * @param {string} feel the string according to feel spec
  * @returns {string} the resulting type string
  */
-function feel2js(feel) {
+function feelTypeMap(feel) {
   return feel.replace('feel:', '');
 }
 
@@ -55,14 +58,17 @@ class Parser {
 
       const table = xmlDecision['dmn:decisionTable'][0];
       const rules = table['dmn:rule'].reduce((acc, rule) => {
-        const $oe = get(rule, 'dmn:outputEntry.0');
-        const description = get($oe, 'dmn:extensionElements.0.content:conclusieToelichting.0.content:toelichting');
+        const outputEntry = get(rule, 'dmn:outputEntry.0');
+        const description = get(
+          outputEntry,
+          'dmn:extensionElements.0.content:conclusieToelichting.0.content:toelichting',
+        );
         acc.push({
           inputs: rule['dmn:inputEntry'].reduce((inputEntry, ie) => {
             inputEntry.push(ie['dmn:text']);
             return inputEntry;
           }, []),
-          output: $oe['dmn:text'],
+          output: outputEntry['dmn:text'],
           description,
         });
         return acc;
@@ -87,7 +93,7 @@ class Parser {
       const href = el['uitv:uitvoeringsregelRef'][0]['@_href'];
       acc[curr['@_id']] = {
         href,
-        type: feel2js(curr['dmn:variable'][0]['@_typeRef']),
+        type: feelTypeMap(curr['dmn:variable'][0]['@_typeRef']),
       };
       return acc;
     }, {});
@@ -102,32 +108,45 @@ class Parser {
     const rules = this.xmlExtensionElements['uitv:uitvoeringsregels'][0];
     const questions = rules['uitv:uitvoeringsregel'];
 
-    return questions.reduce((acc, curr) => {
+    return questions.map(curr => {
       let result;
       if (curr['uitv:geoVerwijzing']) {
-        const q = curr['uitv:geoVerwijzing'][0];
+        const question = curr['uitv:geoVerwijzing'][0];
         result = {
-          identification: q['uitv:locatie'][0]['@_identificatie'],
+          identification: question['uitv:locatie'][0]['@_identificatie'],
+          text: question['uitv:vraagTekst'],
           type: 'geo',
         };
       } else {
+        // list or boolean
         const question = curr['uitv:vraag'][0];
+        const sttrType = question['uitv:gegevensType'];
+
         const desc = curr['content:uitvoeringsregelToelichting'];
         let description;
         if (desc && desc.length > 0) {
           description = desc[0]['content:toelichting'].trim();
         }
+
         result = {
           text: question['uitv:vraagTekst'],
-          type: question['uitv:gegevensType'],
           description,
         };
+
+        if (sttrType === 'list') {
+          if (question['uitv:opties'][0]['uitv:optieType'] !== 'enkelAntwoord') {
+            result.collection = true;
+          }
+          result.options = question['uitv:opties'][0]['uitv:optie'].map(option => option['uitv:optieText']);
+        }
+
+        // because of current sttr 'list'-implementation we only accept lists of strings
+        result.type = sttrType === 'list' ? 'string' : sttrType;
       }
       result.id = curr['@_id'];
-      const sha = hash(result);
-      acc[sha] = result;
-      return acc;
-    }, {});
+      result.uuid = curr['uitv:herbruikbaarId'];
+      return result;
+    });
   }
 
   /**

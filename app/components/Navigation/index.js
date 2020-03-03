@@ -24,7 +24,6 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
   };
   const handlePrevClick = e => {
     trackEvent({ category: page, action: 'form-vorige-knop', name: GET_CURRENT_TOPIC() });
-
     if (onGoToPrev) onGoToPrev(e);
   };
 
