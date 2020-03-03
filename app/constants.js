@@ -50,7 +50,7 @@ const TOPICS = {
   },
   'dakkapel-plaatsen': {
     status: STATUS.LIVE,
-    sttrPath: '/shared/content/sttr/DakkapelBouwen.json',
+    sttrPath: '/shared/content/sttr/OefenDakkapelPlaatsenOfVeranderen.json',
     text: {
       entity: 'dakkapel',
       heading: 'Vergunningchecker dakkapel plaatsen',

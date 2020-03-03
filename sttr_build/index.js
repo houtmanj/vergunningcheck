@@ -22,9 +22,10 @@ if (!OUTPUT_DIR) {
   throw Error('"output" not specified. Please provide --output=./some/path');
 }
 
+const env = process.env.STTR_ENV === 'production' ? 'PROD' : 'STAGING';
+console.log('using environment', env);
 const MAX_PARALLEL = 6;
-const sttrApi = `https://sttr-builder-staging.eu.meteorapp.com/api`;
-// const sttrApi = `https://sttr-builder${process.env.STTR_ENV === 'production' ? '' : '-staging'}.eu.meteorapp.com/api`;
+const sttrApi = `https://sttr-builder${env === 'PROD' ? '' : '-staging'}.eu.meteorapp.com/api`;
 const listUrl = `${sttrApi}/activiteiten/bijwerkzaamheid`;
 const detailUrl = `${sttrApi}/conclusie/sttr`;
 const headers = {
@@ -82,7 +83,7 @@ function checkStatus(res) {
       return json;
     })
     .then(json =>
-      json.map(({ URN: id, naam: name, activiteiten: permits }) => ({
+      json.map(({ [env === 'PROD' ? 'urn' : 'URN']: id, naam: name, activiteiten: permits }) => ({
         id,
         name: name.trim(),
         file: `${id}.json`,

@@ -1,0 +1,26 @@
+[
+  {
+    "urn": "WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams",
+    "naam": "Wasstraat of wasplaats voor auto's, bussen, treinen en trams",
+    "activiteiten": [
+      {
+        "id": "mpQ4YsJWhRTzxkM8n",
+        "naam": "Bouwen van bijbehorend bouwwerk"
+      }
+    ]
+  },
+  {
+    "urn": "OefenDakkapelPlaatsenOfVeranderen",
+    "naam": "OEFEN Dakkapel plaatsen of veranderen",
+    "activiteiten": [
+      {
+        "id": "WKPxKx4YBJ5fqYSni",
+        "naam": "Dakkapel monument"
+      },
+      {
+        "id": "Aa2EX3YprpZQ65non",
+        "naam": "Dakkapel bouwen\t"
+      }
+    ]
+  }
+]

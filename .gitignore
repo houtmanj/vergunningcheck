@@ -11,5 +11,3 @@ npm-debug.log
 yarn-error.log
 .ackrc
 
-#Content / static
-app/shared/content/sttr/
