@@ -19,7 +19,7 @@
         }
       },
       "decisions": {
-        "_30fcb565-2d99-465d-8c90-c0ff3294d14c": {
+        "_6f42814e-de8e-4563-a5e5-df49be102b9a": {
           "requiredInputs": ["#input__797c410f-2502-4626-9b14-7be7c49b0751"],
           "decisionTable": {
             "rules": [
@@ -35,7 +35,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_30fcb565-2d99-465d-8c90-c0ff3294d14c"],
+          "requiredDecisions": ["#_6f42814e-de8e-4563-a5e5-df49be102b9a"],
           "decisionTable": {
             "rules": [
               {
@@ -65,7 +65,8 @@
         {
           "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "type": "boolean",
-          "id": "uitv__e3f23320-186c-4507-b6a6-84170426cc0a"
+          "id": "uitv__e3f23320-186c-4507-b6a6-84170426cc0a",
+          "uuid": "monument"
         },
         {
           "text": "Aan welke kant van het gebouw gaat u de dakkapel plaatsen?",
@@ -118,31 +119,31 @@
         },
         {
           "text": "Krijgt de dakkapel een plat dak?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/7_a_platdak_v2.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/7_a_platdak_v2.png)",
           "type": "boolean",
           "id": "uitv__01938ee8-1007-4b10-b672-6ebb050df5bf"
         },
         {
           "text": "Wordt de dakkapel hoger dan 1,75 meter?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/8_a_hoogte_dakkapel_3D-_v2.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_a_hoogte_dakkapel_3D-_v2.png)",
           "type": "boolean",
           "id": "uitv__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
         },
         {
           "text": "Wordt de afstand van het laagste punt van het dak tot de onderkant van de dakkapel tussen de 50 en 100 centimeter?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/9_a_afstand_tot_onderkant_3D_v2.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/9_a_afstand_tot_onderkant_3D_v2.png)",
           "type": "boolean",
           "id": "uitv__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
         },
         {
           "text": "Wordt de afstand tussen de bovenkant van de dakkapel en de bovenkant van het dak meer dan 50 centimeter?",
-          "description": "Toelichting 'bovenkant van het dak': het gaat om het hoogste punt van het dak van het gebouw. U rekent een schoorsteen, schotel of antenne niet mee.\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/10_a_afstand_tot_bovenkant_3D-_v2.png)",
+          "description": "Toelichting 'bovenkant van het dak': het gaat om het hoogste punt van het dak van het gebouw. U rekent een schoorsteen, schotel of antenne niet mee.\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/10_a_afstand_tot_bovenkant_3D-_v2.png)",
           "type": "boolean",
           "id": "uitv__4420be2f-e8ca-46e8-9eec-e9036076fbff"
         },
         {
           "text": "Worden de afstanden tussen de zijkanten van de dakkapel en de zijkanten van uw dak meer dan 50 centimeter?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/11_a_afstand_tot_dakrand_2D-v4.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/11_a_afstand_tot_dakrand_2D-v4.png)",
           "type": "boolean",
           "id": "uitv__e097c508-67a8-408c-9e9b-b813eda85db0"
         }
@@ -210,7 +211,7 @@
         }
       },
       "decisions": {
-        "_9e9b62e9-3c09-4aa9-803a-b9120a975112": {
+        "_8671e262-4c07-4118-af71-23395d750d7d": {
           "requiredInputs": ["#input__e097c508-67a8-408c-9e9b-b813eda85db0"],
           "decisionTable": {
             "rules": [
@@ -225,7 +226,7 @@
             ]
           }
         },
-        "_e68eb31b-5cf0-4410-9626-626cbefc1542": {
+        "_527c3d35-d015-4eba-a351-281504145cd1": {
           "requiredInputs": ["#input__51fe2afb-ebfa-48e0-b81d-822c38eaf87a"],
           "decisionTable": {
             "rules": [
@@ -240,82 +241,7 @@
             ]
           }
         },
-        "_1e091214-7353-47d6-8837-547cdd0ce58e": {
-          "requiredInputs": ["#input__01938ee8-1007-4b10-b672-6ebb050df5bf"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_30554d17-6741-4fd6-8255-9b648ddbd5f9": {
-          "requiredInputs": ["#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_d17d9b28-8c1a-4122-85a3-2a44ecab78b7": {
-          "requiredInputs": ["#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_31495311-4869-45ad-9b62-39c34f6abe60": {
-          "requiredInputs": ["#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_3c09cb54-6ba5-4ed7-9a73-084265b9a52f": {
-          "requiredInputs": ["#input__e3f23320-186c-4507-b6a6-84170426cc0a"],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_6b606443-605f-4dcb-b587-9b31f8df9185": {
+        "_6ea008a7-1a93-42fd-9d58-9c1c98a683f5": {
           "requiredInputs": ["#input__2af9eafd-fd78-439f-a06c-bb7566c21154"],
           "decisionTable": {
             "rules": [
@@ -334,33 +260,82 @@
             ]
           }
         },
-        "_6c3c08b9-6b50-4552-b144-689011ae8f0c": {
-          "requiredInputs": [
-            "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
-            "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7"
-          ],
+        "_e519ee2c-3b92-45c7-b57d-04645fd819e5": {
+          "requiredInputs": ["#input__01938ee8-1007-4b10-b672-6ebb050df5bf"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"achterkant\"", true],
+                "inputs": [false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": ["\"voorkant\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["\"zijkant\"", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false],
+                "inputs": [true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_4a815e9b-d807-478b-a614-34e0d0eabe1e": {
+        "_649184b7-abfd-4949-97e0-689ea2d6050a": {
+          "requiredInputs": ["#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_3fd0e7e3-631f-498c-bdbe-a83e629d928c": {
+          "requiredInputs": ["#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f57b7eb5-6691-47ca-abd8-4b6059e7f57b": {
+          "requiredInputs": ["#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_f5711ade-d7a0-4774-a453-77931412a432": {
+          "requiredInputs": ["#input__e3f23320-186c-4507-b6a6-84170426cc0a"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_fd5f593d-c396-4c44-b2ab-fd35104efe5c": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
@@ -386,7 +361,7 @@
             ]
           }
         },
-        "_5be85c7a-04ea-4d19-9466-f022d220ec7c": {
+        "_48346cfd-ebdc-4304-9d7a-9abb4c138064": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
@@ -417,7 +392,7 @@
             ]
           }
         },
-        "_ad1b8b81-5a4f-4f28-8000-9cccf0e4a2be": {
+        "_b9afa632-9412-4a13-9c12-1e7fa60c77e0": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
@@ -448,7 +423,7 @@
             ]
           }
         },
-        "_66d667cc-ba93-4ae6-a703-775a2f3fa0f4": {
+        "_7a471206-6ba4-4252-bb55-d6fc896bee3c": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
@@ -484,7 +459,7 @@
             ]
           }
         },
-        "_eafebefa-3c62-44dc-a32c-1fdf452f3ff8": {
+        "_59abea69-26a2-4637-9616-65e479393acd": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
@@ -520,7 +495,7 @@
             ]
           }
         },
-        "_b897890c-d103-4c00-8599-608cfdcc315c": {
+        "_9095413b-5bc0-4be2-8115-c727e1427357": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
@@ -563,342 +538,95 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_9e9b62e9-3c09-4aa9-803a-b9120a975112",
-            "#_e68eb31b-5cf0-4410-9626-626cbefc1542",
-            "#_1e091214-7353-47d6-8837-547cdd0ce58e",
-            "#_30554d17-6741-4fd6-8255-9b648ddbd5f9",
-            "#_d17d9b28-8c1a-4122-85a3-2a44ecab78b7",
-            "#_31495311-4869-45ad-9b62-39c34f6abe60",
-            "#_3c09cb54-6ba5-4ed7-9a73-084265b9a52f",
-            "#_6b606443-605f-4dcb-b587-9b31f8df9185",
-            "#_6c3c08b9-6b50-4552-b144-689011ae8f0c",
-            "#_4a815e9b-d807-478b-a614-34e0d0eabe1e",
-            "#_5be85c7a-04ea-4d19-9466-f022d220ec7c",
-            "#_ad1b8b81-5a4f-4f28-8000-9cccf0e4a2be",
-            "#_66d667cc-ba93-4ae6-a703-775a2f3fa0f4",
-            "#_eafebefa-3c62-44dc-a32c-1fdf452f3ff8",
-            "#_b897890c-d103-4c00-8599-608cfdcc315c"
+            "#_8671e262-4c07-4118-af71-23395d750d7d",
+            "#_527c3d35-d015-4eba-a351-281504145cd1",
+            "#_6ea008a7-1a93-42fd-9d58-9c1c98a683f5",
+            "#_e519ee2c-3b92-45c7-b57d-04645fd819e5",
+            "#_649184b7-abfd-4949-97e0-689ea2d6050a",
+            "#_3fd0e7e3-631f-498c-bdbe-a83e629d928c",
+            "#_f57b7eb5-6691-47ca-abd8-4b6059e7f57b",
+            "#_f5711ade-d7a0-4774-a453-77931412a432",
+            "#_fd5f593d-c396-4c44-b2ab-fd35104efe5c",
+            "#_48346cfd-ebdc-4304-9d7a-9abb4c138064",
+            "#_b9afa632-9412-4a13-9c12-1e7fa60c77e0",
+            "#_7a471206-6ba4-4252-bb55-d6fc896bee3c",
+            "#_59abea69-26a2-4637-9616-65e479393acd",
+            "#_9095413b-5bc0-4be2-8115-c727e1427357"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["\"Vergunningplicht\"", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"Vergunningplicht\"",
                 "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "inputs": [
-                  "-",
-                  "\"NeemContactOpMet\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "\"NeemContactOpMet\"", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"NeemContactOpMet\"",
                 "description": "U woont in een welstandsvrij gebied. Daarvoor gelden andere regels. U kunt hiervoor contact opnemen met de gemeente. Bel 14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur."
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Vergunningplicht\"", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "\"Vergunningplicht\"", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "\"Vergunningplicht\"", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "\"Vergunningplicht\"", "-", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "\"Vergunningplicht\"", "-", "-", "-", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "\"Vergunningplicht\"", "-", "-", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "\"Vergunningplicht\"", "-", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", "\"Vergunningplicht\"", "-", "-", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "\"Vergunningplicht\"", "-", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "\"Vergunningplicht\"", "-", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "\"Vergunningplicht\"", "-"],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\"",
                 "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
                 "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\""
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",
@@ -915,7 +643,7 @@
                   "\"no hit\""
                 ],
                 "output": "\"Toestemmingsvrij\"",
-                "description": "U hebt geen vergunning nodig voor het plaatsen van de dakkapel. Wél moet u op een aantal dingen letten voordat u gaat bouwen. Uw aannemer kan u daarbij helpen.\n\n**Waar u verder op moet letten:**\n\n*   U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.\n*   U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.\n\nDenk ook aan:\n\n*   Het plaatsen van een container op straat of het reserveren van een parkeervak.\n*   Het afvoeren van bouw- en sloopafval.\n*   Het risico dat u asbest tegenkomt.\n*   Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.\n*   De gevolgen van het plaatsen van een dakkapel op de WOZ-waarde van uw huis."
+                "description": "U hebt geen vergunning nodig voor het plaatsen van de dakkapel. Wél moet u op een aantal dingen letten voordat u gaat bouwen. Uw aannemer kan u daarbij helpen.\n\n**Waar u verder op moet letten:**\n\n*   U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.\n*   U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.\n\nDenk ook aan:\n\n*   Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.\n*   Het afvoeren van bouw- en sloopafval.\n*   Het risico dat u asbest tegenkomt.\n*   Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.\n*   De gevolgen van het plaatsen van een dakkapel op de WOZ-waarde van uw huis."
               }
             ]
           }
