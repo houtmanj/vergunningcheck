@@ -28,7 +28,7 @@ const ContactGemeentePage = () => {
     <Form onSubmit={() => onSubmit()}>
       <Heading $as="h1">Conclusie</Heading>
 
-      <Paragraph>Op basis van uw antwoorden vind u hieronder wat voor uw activiteit van toepassing is.</Paragraph>
+      <Paragraph>Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit van toepassing is.</Paragraph>
 
       {checker.permits.map(permit => {
         const conclusion = permit.getDecisionById('dummy');
