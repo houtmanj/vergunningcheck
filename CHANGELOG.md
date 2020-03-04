@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.13](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.12...v0.1.13) (2020-03-04)
+
+### Bug Fixes
+
+- Bug in IE11 with IntroductionText ([71f2f8d](https://github.com/Amsterdam/Vergunningschecker/commit/71f2f8d10bb9b2754d593bc4918546bfd3a1f27c))
+- Lint error fixes ([8d0f33d](https://github.com/Amsterdam/Vergunningschecker/commit/8d0f33d563bd8a0b4a9040bb48315adade5b7939))
+- Typo in Contact page ([f07e01c](https://github.com/Amsterdam/Vergunningschecker/commit/f07e01cefc6e4af4b9ba3eb2570674520e546f3f))
+
 ### [0.1.12](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.11...v0.1.12) (2020-03-03)
 
 - Fix robots.txt
