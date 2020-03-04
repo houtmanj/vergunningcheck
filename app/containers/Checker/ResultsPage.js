@@ -103,7 +103,7 @@ const ResultsPage = () => {
       })}
       <Navigation
         page={`checker-${PAGES.checkerResult}`}
-        onGoToPrev={() => onGoToQuestion(checker.stack.length - 1, checker._last?.text)}
+        onGoToPrev={() => onGoToQuestion(checker.stack.length - 1, checker._last?.text)} // eslint-disable-line no-underscore-dangle
         showPrev
         showNext
       />

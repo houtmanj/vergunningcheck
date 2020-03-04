@@ -43,6 +43,7 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(firstQuestion?.text?.toLowerCase())}`);
     } else {
       checker.rewindTo(0);
+      // eslint-disable-next-line no-underscore-dangle
       const question = checker._last;
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(question?.text?.toLowerCase())}`);
     }
