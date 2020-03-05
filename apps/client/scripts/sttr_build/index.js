@@ -23,9 +23,12 @@ if (!OUTPUT_DIR) {
 }
 
 const MAX_PARALLEL = 6;
+const env = process.env.STTR_ENV === "production" ? "PROD" : "STAGING";
+console.log("using environment", env);
 const sttrApi = `https://sttr-builder${
-  process.env.STTR_ENV === "production" ? "" : "-staging"
+  env === "PROD" ? "" : "-staging"
 }.eu.meteorapp.com/api`;
+
 const listUrl = `${sttrApi}/activiteiten/bijwerkzaamheid`;
 const detailUrl = `${sttrApi}/conclusie/sttr`;
 const headers = {
@@ -87,15 +90,21 @@ function checkStatus(res) {
       return json;
     })
     .then(json =>
-      json.map(({ URN: id, naam: name, activiteiten: permits }) => ({
-        id,
-        name: name.trim(),
-        file: `${id}.json`,
-        permits: permits.map(({ id: permitId, naam: permitName }) => ({
-          id: permitId,
-          name: permitName.trim()
-        }))
-      }))
+      json.map(
+        ({
+          [env === "PROD" ? "urn" : "URN"]: id,
+          naam: name,
+          activiteiten: permits
+        }) => ({
+          id,
+          name: name.trim(),
+          file: `${id}.json`,
+          permits: permits.map(({ id: permitId, naam: permitName }) => ({
+            id: permitId,
+            name: permitName.trim()
+          }))
+        })
+      )
     );
 
   const permitsXML = await batchPromises(

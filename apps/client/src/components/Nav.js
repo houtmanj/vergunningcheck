@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Button } from "@datapunt/asc-ui";
 import { ChevronLeft } from "@datapunt/asc-assets";
@@ -6,6 +6,7 @@ import { useMatomo } from "@datapunt/matomo-tracker-react";
 import { NavStyle } from "./NavStyle";
 import { useRouteMatch } from "react-router-dom";
 import { routeConfig } from "../routes";
+import Context from "../context";
 
 const Nav = ({
   showPrev,
@@ -15,16 +16,27 @@ const Nav = ({
   nextText,
   formEnds
 }) => {
+  const {
+    topic: { slug: name }
+  } = useContext(Context);
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
   const route = routeConfig.find(route => route.path === path);
   const category = route.matamoPage || route.name;
 
   const handleNextClick = () => {
-    trackEvent({ category, action: "form-volgende-knop" });
+    trackEvent({
+      category,
+      action: "form-volgende-knop",
+      name
+    });
   };
   const handlePrevClick = e => {
-    trackEvent({ category, action: "form-vorige-knop" });
+    trackEvent({
+      category,
+      action: "form-vorige-knop",
+      name
+    });
     if (onGoToPrev) onGoToPrev(e);
   };
 
