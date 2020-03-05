@@ -8,7 +8,6 @@ import AddressPage from "./pages/AddressPage";
 import QuestionsPage from "./pages/QuestionsPage";
 import ConclusionPage from "./pages/ConclusionPage";
 import ResultsPage from "./pages/ResultsPage";
-import ContactPage from "./pages/ContactPage";
 
 // System pages
 import NotFoundPage from "./pages/NotFoundPage";
@@ -66,11 +65,6 @@ export const routeConfig = [
     name: "conclusion",
     path: "/:slug/conclusie",
     component: ConclusionPage
-  },
-  {
-    name: "contact",
-    path: "/:slug/contact",
-    component: ContactPage
   },
   {
     name: "notfound",

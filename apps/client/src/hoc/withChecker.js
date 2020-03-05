@@ -15,6 +15,8 @@ const withChecker = Component =>
 
     const { topic } = rest;
     if (!context.address) {
+      // TODO: doesn't withAddress already guarantee this? :-/
+      console.warn("Address not found, redirecting to location page");
       return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
     }
 

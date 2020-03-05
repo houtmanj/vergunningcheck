@@ -9,6 +9,7 @@ const withFinalChecker = Component =>
       permit => !permit.getOutputByDecisionId("dummy")
     );
     if (unfinishedPermit) {
+      console.warn("Checker not final, redirecting to question page");
       return (
         <Redirect to={geturl(routes.questions, { slug: props.topic.slug })} />
       );

@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph, Button } from "@datapunt/asc-ui";
+import { Alert } from "@datapunt/asc-assets";
 import withFinalChecker from "../hoc/withFinalChecker";
 import { routes, geturl, getslug } from "../routes";
 
@@ -72,7 +73,7 @@ const ResultsPage = ({ topic, checker }) => {
         <MainWrapper>
           <Question>Vraag</Question>
           <UserAnswer>Uw antwoord</UserAnswer>
-          <Change>Wijzig</Change>
+          <Change />
         </MainWrapper>
         {checker?.stack?.map((question, index) => {
           const isDecisiveForPermits = permitsPerQuestion[index] || [];
@@ -97,17 +98,30 @@ const ResultsPage = ({ topic, checker }) => {
                   onClick={() => onGoToQuestion(index)}
                   variant="textButton"
                 >
-                  bewerken
+                  Wijzig
                 </Button>
               </Wrapper>
               {isDecisiveForPermits.map(permit => (
-                <Wrapper>
-                  <UserResult>
-                    {" "}
+                <UserResult>
+                  <Alert
+                    style={{
+                      width: "20%",
+                      maxWidth: "30px",
+                      marginBottom: "8px",
+                      fill: "#ec0000"
+                    }}
+                  />
+                  <p
+                    style={{
+                      marginBottom: "25px",
+                      marginLeft: "7px",
+                      display: "inline-block"
+                    }}
+                  >
                     Op basis van dit antwoord bent u vergunningsplichtig voor{" "}
                     {permit.name.replace("Conclusie", "").toLowerCase()}
-                  </UserResult>
-                </Wrapper>
+                  </p>
+                </UserResult>
               ))}
             </div>
           );

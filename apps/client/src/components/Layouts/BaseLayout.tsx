@@ -13,11 +13,10 @@ import Footer from "../Footer";
 import HiddenDebugInfo from "../HiddenDebugInfo";
 
 export interface BaseLayoutProps {
-  heading: string;
   children: React.ReactNode;
 }
 
-function BaseLayout({ heading, children }: BaseLayoutProps) {
+function BaseLayout({ children }: BaseLayoutProps) {
   const { topic } = useContext(Context);
   const title = topic ? <FormTitle>{topic.text?.heading}</FormTitle> : null;
   // const showNavLink = !topic || !topic.sttrPath;
