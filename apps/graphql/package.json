@@ -8,7 +8,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon .",
+    "start:prod": "node .",
     "test": "jest",
     "precommit": "lint-staged",
     "lint": "eslint ."
@@ -29,6 +30,7 @@
     "graphql-tools": "^4.0.6",
     "helmet": "^3.21.2",
     "lodash": "^4.17.15",
+    "lodash.uniqby": "^4.7.0",
     "lru-cache": "^5.1.1",
     "lru_map": "^0.3.3",
     "morgan": "^1.9.1",
