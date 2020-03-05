@@ -79,7 +79,7 @@ const Question = ({
       }
     }
     return () => unregister(questionId);
-  }, [currentAnswer, questionAnswers, questionId, register, required, setValue, unregister]);
+  });
 
   const handleChange = e => {
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
