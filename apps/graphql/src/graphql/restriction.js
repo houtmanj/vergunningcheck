@@ -5,7 +5,7 @@ const typeDefs = gql`
   union Restriction = Monument | CityScape
 
   extend type Address {
-    restrictions: [Restriction]!
+    restrictions: [Restriction!]!
   }
 `;
 
@@ -31,9 +31,16 @@ const resolvers = {
         bag.accommodation
           .load(_adressableObjectId)
           .then(acc => monument.situation.load([acc.mainAddressNationalId]))
-          .then(sits =>
-            monument.monument.load(sits.map(sit => sit.monumentId))
-          ),
+          .then(situations => {
+            const situation = situations.shift();
+
+            debug("monumentId", situation);
+            if (situation && situation.monumentId) {
+              return monument.monument.load(situation.monumentId);
+            }
+            return [];
+            // throw new Error("not found ??");
+          }),
         bag.accommodation
           .load(_adressableObjectId)
           .then(({ lat, lon }) => {
