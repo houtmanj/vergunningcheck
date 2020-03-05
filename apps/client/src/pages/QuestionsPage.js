@@ -6,7 +6,7 @@ import withChecker from "../hoc/withChecker";
 import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
-import ErrorPage from "./ErrorPage";
+// import ErrorPage from "./ErrorPage";
 
 const QuestionsPage = ({ topic, checker }) => {
   const params = useParams();
@@ -17,6 +17,8 @@ const QuestionsPage = ({ topic, checker }) => {
 
   const { question: questionSlug } = params;
   const currSlug = getslug(question.text);
+
+  // Update URL based on question text
   if (!questionSlug || questionSlug !== currSlug) {
     return (
       <Redirect
@@ -28,9 +30,11 @@ const QuestionsPage = ({ topic, checker }) => {
     );
   }
   const { slug } = topic;
-  if (!checker) {
-    return <ErrorPage error={new Error("Error! Geen checker...")}></ErrorPage>;
-  }
+
+  // @TODO: We shouldn't need this check because of withChecker()
+  // if (!checker) {
+  //   return <ErrorPage error={new Error("Error! Geen checker...")}></ErrorPage>;
+  // }
 
   const needContactPermits = () =>
     checker.permits.find(permit => {
@@ -50,7 +54,7 @@ const QuestionsPage = ({ topic, checker }) => {
     }
 
     if (needContactPermits()) {
-      history.push(geturl(routes.contact, { slug }));
+      history.push(geturl(routes.conclusion, { slug }));
     } else {
       const next = checker.next();
 
@@ -60,7 +64,6 @@ const QuestionsPage = ({ topic, checker }) => {
       } else {
         // Go to Next question
         setQuestion(next);
-        // updateChecker(checker);
       }
     }
   };

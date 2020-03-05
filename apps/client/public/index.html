@@ -3,10 +3,6 @@
   <head>
     <meta charset="utf-8" />
 
-    <!-- <% if (process.env.NODE_ENV === "development") { %>
-    <script src="..."></script>
-    <% } %> -->
-
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
@@ -30,7 +26,13 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Amsterdam Vergunningschecker</title>
+
+    <% if (process.env.NODE_ENV === "development") { %>
+    <!-- Dynamic polyfill for fixing IE11 on localhost, without having to build the app -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=EventSource%2CPromise%2Ces2015%2Ces5"></script>
+    <% } %>
   </head>
+
   <body>
     <noscript
       >U heeft JavaScript nodig om deze checker te kunnen gebruiken.</noscript

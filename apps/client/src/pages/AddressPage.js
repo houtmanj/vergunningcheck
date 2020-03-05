@@ -33,14 +33,14 @@ const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
 const AddressPage = ({ topic, address }) => {
   const history = useHistory();
   const { slug } = topic;
-  const useOlo = !topic.sttrFile;
+  const useSTTR = !!topic.sttrFile;
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (useOlo) {
-      window.open(getOloUrl(address), "_blank");
-    } else {
+    if (useSTTR) {
       history.push(geturl(routes.questions, { slug }));
+    } else {
+      window.open(getOloUrl(address), "_blank");
     }
   };
   return (
@@ -58,14 +58,23 @@ const AddressPage = ({ topic, address }) => {
           <AddressData address={address} />
         </StyledAddressResult>
 
-        <Paragraph>
-          U hebt deze informatie nodig om de vergunningcheck te doen op het
-          Omgevingsloket.
-        </Paragraph>
-
+        {useSTTR ? (
+          <>
+            <Paragraph>{topic.text?.locationResultsPageDescription}</Paragraph>
+            <Paragraph>
+              Gaat u meer dan 1 {topic.text?.entity} plaatsen? Doe dan per{" "}
+              {topic.text?.entity} de vergunningcheck.
+            </Paragraph>
+          </>
+        ) : (
+          <Paragraph>
+            U hebt deze informatie nodig om de vergunningcheck te doen op het
+            Omgevingsloket.
+          </Paragraph>
+        )}
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
-          nextText={useOlo ? "Naar het omgevingsloket" : undefined}
+          nextText={!useSTTR ? "Naar het omgevingsloket" : undefined}
           showPrev
           showNext
         />
