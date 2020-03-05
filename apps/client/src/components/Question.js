@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
 import { useForm } from "react-hook-form";
-import { Heading, Paragraph } from "@datapunt/asc-ui";
+import { StyledParagraph } from "./QuestionStyles";
+import { Heading } from "@datapunt/asc-ui";
 
 import Modal from "./Modal";
 import Form from "./Form";
@@ -39,7 +40,6 @@ const Question = ({
   },
   className,
   headingAs,
-  children,
   onSubmit: onSubmitProp,
   hideNavigation,
   disableNext,
@@ -79,7 +79,7 @@ const Question = ({
       }
     }
     return () => unregister(questionId);
-  });
+  }, [currentAnswer, questionAnswers, questionId, register, required, setValue, unregister]);
 
   const handleChange = e => {
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
@@ -114,7 +114,7 @@ const Question = ({
       {description && (
         <ReactMarkdown
           source={description}
-          renderers={{ paragraph: Paragraph, image: Visual }}
+          renderers={{ paragraph: StyledParagraph, image: Visual }}
           linkTarget="_blank"
         />
       )}
@@ -126,7 +126,6 @@ const Question = ({
         answers={answers}
         currentAnswer={answer}
       />
-      {children}
       {!hideNavigation && (
         <Nav
           showPrev={showPrev}
@@ -156,12 +155,7 @@ Question.propTypes = {
     options: PropTypes.array,
     description: PropTypes.string,
     longDescription: PropTypes.string,
-    answer: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.string)
-    ])
+    answer: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
   }),
   className: PropTypes.string,
   headingAs: PropTypes.string,
@@ -171,8 +165,7 @@ Question.propTypes = {
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
   disableNext: PropTypes.bool,
-  onGoToPrev: PropTypes.func,
-  children: PropTypes.node
+  onGoToPrev: PropTypes.func
 };
 
 export default Question;

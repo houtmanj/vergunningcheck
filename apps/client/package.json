@@ -28,6 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:prod": "npm run build; serve -s build/",
     "build": "react-scripts build",
     "sttr": "node scripts/sttr_build --output=./public/sttr",
     "test": "react-scripts test",
@@ -69,7 +70,7 @@
     "*.{js,ts,tsx}": [
       "prettier --write",
       "eslint --fix",
-      "jest --bail --findRelatedTests"
+      "react-scripts test --bail --findRelatedTests --watchAll=false"
     ]
   },
   "description": "",

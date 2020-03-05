@@ -85,27 +85,39 @@ const LocationFinder = props => {
       {error && <Error error={error} />}
 
       {exactMatch && <Teaser {...exactMatch} />}
+      {postalCode &&
+        houseNumberFull &&
+        !loading &&
+        !exactMatch &&
+        matches.length === 0 && <p>Er is geen adres gevonden</p>}
 
-      {postalCode && houseNumberFull && !exactMatch && (
-        <>
-          <Paragraph strong>Kies een adres:</Paragraph>
+      {postalCode &&
+        houseNumberFull &&
+        !loading &&
+        !exactMatch &&
+        matches.length > 0 && (
+          <>
+            <Paragraph strong>Kies een adres:</Paragraph>
 
-          <Select
-            label="Toevoeging"
-            name="suffix"
-            onChange={e => {
-              setHouseNumberFull(e.target.value);
-            }}
-          >
-            <option value="">Maak een keuze</option>
-            {matches.map(match => (
-              <option value={match.houseNumberFull} key={match.houseNumberFull}>
-                {match.houseNumberFull}
-              </option>
-            ))}
-          </Select>
-        </>
-      )}
+            <Select
+              label="Toevoeging"
+              name="suffix"
+              onChange={e => {
+                setHouseNumberFull(e.target.value);
+              }}
+            >
+              <option value="">Maak een keuze</option>
+              {matches.map(match => (
+                <option
+                  value={match.houseNumberFull}
+                  key={match.houseNumberFull}
+                >
+                  {match.houseNumberFull}
+                </option>
+              ))}
+            </Select>
+          </>
+        )}
     </>
   );
   // }
