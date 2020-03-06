@@ -59,7 +59,6 @@ const LocationFinder = props => {
         label="Postcode"
         defaultValue={postalCode}
         name="postalCode"
-        placeholder="bijv. 1074VE"
         errorMessage={validate("postalCode", postalCode, true)}
       />
       <StyledTextField
@@ -71,7 +70,6 @@ const LocationFinder = props => {
         onBlur={handleBlur}
         defaultValue={houseNumberFull}
         name="houseNumberFull"
-        placeholder="bijv. 1"
         errorMessage={validate("houseNumberFull", houseNumberFull, true)}
       />
 

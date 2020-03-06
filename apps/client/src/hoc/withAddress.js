@@ -9,6 +9,7 @@ const withAddress = Component =>
     const { address } = useContext(Context);
     const { topic } = rest;
     if (!address) {
+      console.warn("No address found, redirecting to location page");
       return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
     }
     return <Component address={address} {...rest} />;

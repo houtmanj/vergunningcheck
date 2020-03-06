@@ -5,6 +5,7 @@ import { Paragraph, Heading } from "@datapunt/asc-ui";
 
 import Context from "../context";
 import { geturl, routes } from "../routes";
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 
 import Layout from "../components/Layouts/DefaultLayout";
 import Form from "../components/Form";
@@ -12,6 +13,7 @@ import Nav from "../components/Nav";
 import LocationFinder from "../components/Location/LocationFinder";
 
 const LocationPage = ({ topic }) => {
+  const { trackEvent } = useMatomo();
   const context = useContext(Context);
   const history = useHistory();
   const [address, setAddress] = useState(null);
@@ -23,6 +25,13 @@ const LocationPage = ({ topic }) => {
   const onSubmit = e => {
     e.preventDefault();
     if (address) {
+      trackEvent({
+        category: "location",
+        action: "postcode",
+        name: slug,
+        value: address.postalCode.substring(0, 4)
+      });
+
       context.address = address;
       history.push(geturl(routes.address, { slug }));
     } else {

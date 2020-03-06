@@ -43,12 +43,14 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie 11"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "ie 11"
     ]
   },
   "devDependencies": {
@@ -62,7 +64,7 @@
     "lint-staged": "^10.0.8",
     "lodash.get": "^4.4.2",
     "node-fetch": "^2.6.0",
-    "react-scripts": "3.3.1",
+    "react-scripts": "^3.2.0",
     "typescript": "^3.7.5",
     "yargs": "^15.1.0"
   },

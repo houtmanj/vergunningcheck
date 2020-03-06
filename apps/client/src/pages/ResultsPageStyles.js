@@ -21,7 +21,10 @@ export const UserAnswer = styled.div`
 `;
 
 export const UserResult = styled.div`
+  display: flex;
   font-weight: bold;
+  /* TODO: Should we enable this? */
+  /* flex-direction: row; */
 `;
 
 export const Change = styled.div`

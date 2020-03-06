@@ -15,6 +15,8 @@ const withTopic = Component => () => {
 
   if (params.get("resetChecker")) {
     context.checker = null;
+    // TODO: Remove this warning?
+    console.warn("Resseting checker, redirecting to intro page");
     return <Redirect to={geturl(routes.intro, { slug: topic.slug })} />;
   }
 
