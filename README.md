@@ -5,6 +5,9 @@ This repo contains 2 apps, `client` and `graphql`.
 We use lerna under the hood to install deps and run on both apps.
 But you can also run and configure then individually!
 
+[![pipeline status](https://gitlab.com/afjlambert1/vergunningschecker/badges/chappie1.0/pipeline.svg)](https://gitlab.com/afjlambert1/vergunningschecker/-/commits/chappie1.0)
+[![coverage report](https://gitlab.com/afjlambert1/vergunningschecker/badges/chappie1.0/coverage.svg)](https://gitlab.com/afjlambert1/vergunningschecker/-/commits/chappie1.0)
+
 ## Install / run
 
 ```bash
