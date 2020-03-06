@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { geturl, routes, getslug } from "../routes";
+import { Helmet } from "react-helmet";
 
 import withChecker from "../hoc/withChecker";
 import Layout from "../components/Layouts/DefaultLayout";
@@ -30,7 +31,6 @@ const QuestionsPage = ({ topic, checker }) => {
     );
   }
   const { slug } = topic;
-
   // @TODO: We shouldn't need this check because of withChecker()
   // if (!checker) {
   //   return <ErrorPage error={new Error("Error! Geen checker...")}></ErrorPage>;
@@ -80,6 +80,11 @@ const QuestionsPage = ({ topic, checker }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>
+          {topic.text.heading} - {question.text}
+        </title>
+      </Helmet>
       <Question
         question={question}
         onSubmit={onQuestionNext}
