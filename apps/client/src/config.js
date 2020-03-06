@@ -15,13 +15,14 @@ export const OLO = {
 };
 
 const topics = [
-  // {
-  //   slug: 'some-blaat',
-  //   redirectToOlo: true,
-  // },
+  {
+    slug: "kappen-of-snoeien",
+    redirectToOlo: true
+  },
   {
     slug: "dakkapel-plaatsen",
-    sttrFile: "DakkapelBouwen.json",
+    sttrFile:
+      STAGE === "production" ? "OefenDakkapelPlaatsenOfVeranderen.json" : null,
     text: {
       heading: "Vergunningchecker dakkapel plaatsen",
       topic: "een dakkapel te plaatsen",

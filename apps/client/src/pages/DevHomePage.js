@@ -19,9 +19,11 @@ const DevHomePage = () => (
       <tbody>
         {topics
           .sort(a => !!a.sttrFile && -1) // make sure sttr flow is on top
-          .map(({ slug, sttrFile }) => (
+          .map(({ slug, sttrFile, redirectToOlo }) => (
             <tr key={slug}>
-              <td>{sttrFile ? "Checker" : "OLO"}</td>
+              <td>
+                {redirectToOlo ? "Redirect" : sttrFile ? "Checker" : "OLO"}
+              </td>
               <td>
                 <Link to={geturl(routes.intro, { slug })}>{slug}</Link>
               </td>

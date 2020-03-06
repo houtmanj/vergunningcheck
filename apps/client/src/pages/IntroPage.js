@@ -1,5 +1,11 @@
 import React from "react";
-import { Heading, OrderedList, List, ListItem } from "@datapunt/asc-ui";
+import {
+  Heading,
+  OrderedList,
+  List,
+  ListItem,
+  Paragraph
+} from "@datapunt/asc-ui";
 import { routes, geturl } from "../routes";
 import withTopic from "../hoc/withTopic";
 
@@ -8,7 +14,18 @@ import Nav from "../components/Nav";
 import Layout from "../components/Layouts/DefaultLayout";
 import { StyledList } from "./IntroPageStyles";
 
-const IntroPage = ({ topic: { text, slug } }) => {
+const IntroPage = ({ topic: { text, slug, redirectToOlo } }) => {
+  if (redirectToOlo) {
+    return (
+      <Layout>
+        <Paragraph>Uw wordt doorgestuurd naar het omgevingslokel.</Paragraph>
+        <Paragraph>
+          ... XXX measure with matamo, do actual redirect ...
+        </Paragraph>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <Heading $as="h3">Hoe het werkt:</Heading>

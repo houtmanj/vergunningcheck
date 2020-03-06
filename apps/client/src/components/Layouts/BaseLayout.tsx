@@ -47,11 +47,20 @@ function BaseLayout({ children }: BaseLayoutProps) {
             </Content>
           </Column>
         </Row>
-        <HiddenDebugInfo>
+
+        <HiddenDebugInfo title="Environment">
           <p>GraphQL: {process.env.REACT_APP_GRAPHQL_API_URL}</p>
           <p>App Version: {process.env.REACT_APP_VERSION}</p>
-          <p>Environment: {process.env.NODE_ENV}</p>
+          <p>Node environment: {process.env.NODE_ENV}</p>
+          <p>STTR stage: {process.env.REACT_APP_STTR_STAGE}</p>
         </HiddenDebugInfo>
+        {topic && (
+          <HiddenDebugInfo title="Topic">
+            <p>slug: {topic.slug}</p>
+            <p>redirectToOlo: {JSON.stringify(!!topic.redirectToOlo)}</p>
+            <p>sttrFile: {topic.sttrFile}</p>
+          </HiddenDebugInfo>
+        )}
       </ContentContainer>
       <Footer />
       <div
