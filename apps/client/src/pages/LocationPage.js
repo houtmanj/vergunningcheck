@@ -19,8 +19,6 @@ const LocationPage = ({ topic }) => {
   const [address, setAddress] = useState(null);
 
   const { slug, text } = topic;
-  const postalCode = context?.address?.postalCode;
-  const houseNumberFull = context?.address?.houseNumberFull;
 
   const onSubmit = e => {
     e.preventDefault();
@@ -46,8 +44,8 @@ const LocationPage = ({ topic }) => {
       <Form onSubmit={onSubmit}>
         <LocationFinder
           onChange={setAddress}
-          postalCode={postalCode}
-          houseNumberFull={houseNumberFull}
+          postalCode={context.address?.postalCode}
+          houseNumberFull={context.address?.houseNumberFull}
         />
         <Nav
           onGoToPrev={() => history.push(geturl(routes.intro, { slug }))}
