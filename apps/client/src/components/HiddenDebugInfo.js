@@ -1,11 +1,9 @@
 import React from "react";
+import { HiddenDiv, Title } from "./HiddenDebugInfoStyles";
 
 export default ({ children, title }) => (
-  <div
-    className="hiddendebuginfo"
-    style={{ display: "none", background: "#eee", padding: "1em" }}
-  >
-    <p style={{ fontWeight: "bold", fontSize: "1.2em" }}>{title}</p>
+  <HiddenDiv className="hiddendebuginfo">
+    <Title>{title}</Title>
     {children}
-  </div>
+  </HiddenDiv>
 );
