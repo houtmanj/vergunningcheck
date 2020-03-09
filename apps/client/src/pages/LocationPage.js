@@ -11,6 +11,7 @@ import Layout from "../components/Layouts/DefaultLayout";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import LocationFinder from "../components/Location/LocationFinder";
+import Helmet from "react-helmet";
 
 const LocationPage = ({ topic }) => {
   const { trackEvent } = useMatomo();
@@ -41,6 +42,9 @@ const LocationPage = ({ topic }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Invullen adres - {topic.text.heading}</title>
+      </Helmet>
       <Heading $as="h4">Invullen adres</Heading>
       <Paragraph>Voer het adres in waar u {text.topicLocation}.</Paragraph>
       <Form onSubmit={onSubmit}>

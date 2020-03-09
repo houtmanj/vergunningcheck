@@ -12,6 +12,7 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 
 import { StyledAddressResult } from "./AddressPageStyles";
+import Helmet from "react-helmet";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   // Form is validated, we can proceed
@@ -45,6 +46,9 @@ const AddressPage = ({ topic, address }) => {
   };
   return (
     <Layout>
+      <Helmet>
+        <title>Uw adresgegevens - {topic.text.heading}</title>
+      </Helmet>
       <Form onSubmit={handleSubmit}>
         <Paragraph>
           Over{" "}

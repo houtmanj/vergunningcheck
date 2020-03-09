@@ -7,10 +7,14 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 import Layout from "../components/Layouts/DefaultLayout";
 import { StyledList } from "./IntroPageStyles";
+import Helmet from "react-helmet";
 
 const IntroPage = ({ topic: { text, slug } }) => {
   return (
     <Layout>
+      <Helmet>
+        <title>Inleiding - {text.heading}</title>
+      </Helmet>
       <Heading $as="h3">Hoe het werkt:</Heading>
       <OrderedList>
         <ListItem>
