@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Heading,
-  OrderedList,
-  List,
-  ListItem,
-  Paragraph
-} from "@datapunt/asc-ui";
+import { Heading, OrderedList, List, ListItem } from "@datapunt/asc-ui";
 import { routes, geturl } from "../routes";
 import withTopic from "../hoc/withTopic";
 import withOloRedirect from "../hoc/withOloRedirect";
