@@ -83,7 +83,7 @@ function checkStatus(res) {
       return json;
     })
     .then(json =>
-      json.map(({ [env === 'PROD' ? 'urn' : 'URN']: id, naam: name, activiteiten: permits }) => ({
+      json.map(({ urn: id, naam: name, activiteiten: permits }) => ({
         id,
         name: name.trim(),
         file: `${id}.json`,
