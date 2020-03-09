@@ -90,21 +90,15 @@ function checkStatus(res) {
       return json;
     })
     .then(json =>
-      json.map(
-        ({
-          [env === "PROD" ? "urn" : "URN"]: id,
-          naam: name,
-          activiteiten: permits
-        }) => ({
-          id,
-          name: name.trim(),
-          file: `${id}.json`,
-          permits: permits.map(({ id: permitId, naam: permitName }) => ({
-            id: permitId,
-            name: permitName.trim()
-          }))
-        })
-      )
+      json.map(({ urn: id, naam: name, activiteiten: permits }) => ({
+        id,
+        name: name.trim(),
+        file: `${id}.json`,
+        permits: permits.map(({ id: permitId, naam: permitName }) => ({
+          id: permitId,
+          name: permitName.trim()
+        }))
+      }))
     );
 
   const permitsXML = await batchPromises(
