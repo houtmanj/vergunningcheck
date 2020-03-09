@@ -6,48 +6,44 @@ import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import { GET_CURRENT_TOPIC, GET_TEXT, PAGES } from '../../constants';
 
-const BulletList = styled(List)`
+const StyledList = styled(List)`
+  margin-top: 5px;
+  margin-bottom: 0;
+
   li {
+    position: relative;
     list-style-type: none;
+    counter-increment: unset;
   }
-  li:before {
+  li::before {
     content: '';
     position: absolute;
     width: 8px;
     height: 8px;
     background-color: #000000;
     left: -19px;
-    top: 7px;
+    top: 8px;
     padding-right: 0;
-  }
-`;
-const OrderList = styled(OrderedList)`
-   {
-    counter-reset: item 2;
   }
 `;
 
 const IntroductionText = () => (
   <>
     <Heading $as="h3">Hoe het werkt:</Heading>
-    <OrderedList style={{ marginBottom: '-24px' }}>
+    <OrderedList>
       <ListItem>U voert op de volgende pagina eerst het adres van het gebouw in.</ListItem>
       <ListItem>
         Vervolgens krijgt u te zien:
-        <div>
-          <BulletList variant="bullet">
-            <ListItem>of het gebouw een monument is.</ListItem>
-            <ListItem>of het gebouw in een beschermd stads- of dorpsgezicht ligt.</ListItem>
-            <ListItem>welk bestemmingsplan er geldt.</ListItem>
-          </BulletList>
-        </div>
+        <StyledList variant="bullet">
+          <ListItem>of het gebouw een monument is.</ListItem>
+          <ListItem>of het gebouw in een beschermd stads- of dorpsgezicht ligt.</ListItem>
+          <ListItem>welk bestemmingsplan er geldt.</ListItem>
+        </StyledList>
       </ListItem>
-    </OrderedList>
-    <OrderList>
       <ListItem>Wij stellen u een aantal vragen over het gebouw en de {GET_TEXT?.entity}.</ListItem>
       <ListItem>U leest of u een vergunning nodig hebt. Wij vertellen u hoe u een aanvraag doet.</ListItem>
       <ListItem>Wij vertellen u waar u verder op moet letten als u de {GET_TEXT?.entity} gaat plaatsen.</ListItem>
-    </OrderList>
+    </OrderedList>
     <Heading $as="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">
       <ListItem>
