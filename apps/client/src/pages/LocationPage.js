@@ -11,6 +11,7 @@ import Layout from "../components/Layouts/DefaultLayout";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import LocationFinder from "../components/Location/LocationFinder";
+import Helmet from "react-helmet";
 
 const LocationPage = ({ topic }) => {
   const { trackEvent } = useMatomo();
@@ -19,8 +20,6 @@ const LocationPage = ({ topic }) => {
   const [address, setAddress] = useState(null);
 
   const { slug, text } = topic;
-  const postalCode = context?.address?.postalCode;
-  const houseNumberFull = context?.address?.houseNumberFull;
 
   const onSubmit = e => {
     e.preventDefault();
@@ -41,13 +40,16 @@ const LocationPage = ({ topic }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Invullen adres - {topic.text.heading}</title>
+      </Helmet>
       <Heading $as="h4">Invullen adres</Heading>
       <Paragraph>Voer het adres in waar u {text.topicLocation}.</Paragraph>
       <Form onSubmit={onSubmit}>
         <LocationFinder
           onChange={setAddress}
-          postalCode={postalCode}
-          houseNumberFull={houseNumberFull}
+          postalCode={context.address?.postalCode}
+          houseNumberFull={context.address?.houseNumberFull}
         />
         <Nav
           onGoToPrev={() => history.push(geturl(routes.intro, { slug }))}

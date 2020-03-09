@@ -10,6 +10,7 @@ import Layout from "../components/Layouts/DefaultLayout";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
+import Helmet from "react-helmet";
 
 const outcomes = {
   NEED_PERMIT: '"Vergunningplicht"',
@@ -56,6 +57,9 @@ const ConclusionsPage = ({ topic, checker }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Conclusie - {topic.text.heading}</title>
+      </Helmet>
       <Form onSubmit={handleSubmit}>
         <Heading $as="h1">Conclusies</Heading>
 

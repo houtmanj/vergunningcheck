@@ -18,6 +18,7 @@ import {
   UserResult,
   Change
 } from "./ResultsPageStyles";
+import Helmet from "react-helmet";
 
 const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
@@ -50,15 +51,11 @@ const ResultsPage = ({ topic, checker }) => {
     }
   });
 
-  // Something like this can be used to show the conclusions
-  // const conclusions = checker?.permits.map(permit => {
-  //   const decision = permit.getDecisionById('dummy');
-  //   const rules = decision.getMatchingRules();
-  //   return rules[0].description;
-  // });
-
   return (
     <Layout>
+      <Helmet>
+        <title>Uitkomsten - {topic.text.heading}</title>
+      </Helmet>
       <Form
         onSubmit={e => {
           e.preventDefault();
