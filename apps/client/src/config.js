@@ -1,30 +1,30 @@
+const STTR_ENV = process.env.REACT_APP_STTR_ENV; // shorthand
+
 export const matamo = {
   urlBase: "https://analytics.data.amsterdam.nl/",
   siteId: 29
 };
 
-const oloDomain =
-  process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl";
+const oloHome =
+  process.env.REACT_APP_OLO_URL || "https://www.omgevingsloket.nl/";
 
 export const OLO = {
-  home: "https://www.omgevingsloket.nl/",
-  intro: `${oloDomain}/Particulier/particulier/home/checken`,
-  location: `${oloDomain}/Particulier/particulier/home/checken/LocatieWerkzaamheden`
+  home: oloHome,
+  intro: `${oloHome}Particulier/particulier/home/checken`,
+  location: `${oloHome}Particulier/particulier/home/checken/LocatieWerkzaamheden`
 };
 
-export const topics = [
+const topics = [
   {
-    slug: "test",
-    sttrFile: "AanOfUitbouwBouwen.json",
-    text: {
-      heading: "Vergunningchecker dakkapel plaatsen",
-      topic: "een dakkapel te plaatsen",
-      topicLocation: "de dakkapel wilt gaan plaatsen"
-    }
+    slug: "kappen-of-snoeien",
+    redirectToOlo: true
   },
   {
     slug: "dakkapel-plaatsen",
-    sttrFile: "DakkapelBouwen.json",
+    sttrFile:
+      STTR_ENV === "production"
+        ? "OefenDakkapelPlaatsenOfVeranderen.json"
+        : null,
     text: {
       heading: "Vergunningchecker dakkapel plaatsen",
       topic: "een dakkapel te plaatsen",
@@ -33,7 +33,9 @@ export const topics = [
   },
   {
     slug: "dakraam-plaatsen",
-    sttrFile: "WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams.json",
+    sttrFile:
+      STTR_ENV !== "production" &&
+      "WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams.json",
     text: {
       heading: "Vergunningchecker dakraam plaatsen",
       topic: "een dakraam te plaatsen",
@@ -81,3 +83,17 @@ export const topics = [
     }
   }
 ];
+
+if (STTR_ENV !== "production") {
+  topics.push({
+    slug: "test",
+    sttrFile: "AanOfUitbouwBouwen.json",
+    text: {
+      heading: "Vergunningchecker dakkapel plaatsen",
+      topic: "een dakkapel te plaatsen",
+      topicLocation: "de dakkapel wilt gaan plaatsen"
+    }
+  });
+}
+
+export { topics };

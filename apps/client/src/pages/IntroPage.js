@@ -2,6 +2,7 @@ import React from "react";
 import { Heading, OrderedList, List, ListItem } from "@datapunt/asc-ui";
 import { routes, geturl } from "../routes";
 import withTopic from "../hoc/withTopic";
+import withOloRedirect from "../hoc/withOloRedirect";
 
 import Form from "../components/Form";
 import Nav from "../components/Nav";
@@ -57,4 +58,4 @@ const IntroPage = ({ topic: { text, slug } }) => {
   );
 };
 
-export default withTopic(IntroPage);
+export default withOloRedirect(withTopic(IntroPage));
