@@ -11,7 +11,7 @@ const RedirectPage = () => {
   return (
     <Layout>
       <Paragraph>
-        Uw wordt binnen enkele ogenblikken doorgestuurd naar het omgevingslokel.
+        Uw wordt binnen enkele ogenblikken doorgestuurd naar het omgevingsloket.
       </Paragraph>
     </Layout>
   );
