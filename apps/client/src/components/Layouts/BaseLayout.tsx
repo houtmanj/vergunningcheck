@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { Row, Column } from "@datapunt/asc-ui";
 import {
   Container,
@@ -24,6 +25,9 @@ function BaseLayout({ children }: BaseLayoutProps) {
 
   return (
     <Container>
+      <Helmet>
+        <title>Amsterdam Vergunningchecker</title>
+      </Helmet>
       <Header showLinks={showNavLink} />
       <ContentContainer>
         <Row>
