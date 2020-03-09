@@ -8,24 +8,14 @@ import {
 } from "@datapunt/asc-ui";
 import { routes, geturl } from "../routes";
 import withTopic from "../hoc/withTopic";
+import withOloRedirect from "../hoc/withOloRedirect";
 
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import Layout from "../components/Layouts/DefaultLayout";
 import { StyledList } from "./IntroPageStyles";
 
-const IntroPage = ({ topic: { text, slug, redirectToOlo } }) => {
-  if (redirectToOlo) {
-    return (
-      <Layout>
-        <Paragraph>Uw wordt doorgestuurd naar het omgevingslokel.</Paragraph>
-        <Paragraph>
-          ... XXX measure with matamo, do actual redirect ...
-        </Paragraph>
-      </Layout>
-    );
-  }
-
+const IntroPage = ({ topic: { text, slug } }) => {
   return (
     <Layout>
       <Heading $as="h3">Hoe het werkt:</Heading>
@@ -74,4 +64,4 @@ const IntroPage = ({ topic: { text, slug, redirectToOlo } }) => {
   );
 };
 
-export default withTopic(IntroPage);
+export default withOloRedirect(withTopic(IntroPage));

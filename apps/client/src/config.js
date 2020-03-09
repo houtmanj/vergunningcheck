@@ -1,4 +1,4 @@
-const STAGE = process.env.REACT_APP_STTR_STAGE; // shorthand
+const STTR_ENV = process.env.REACT_APP_STTR_ENV; // shorthand
 
 export const matamo = {
   urlBase: "https://analytics.data.amsterdam.nl/",
@@ -22,7 +22,9 @@ const topics = [
   {
     slug: "dakkapel-plaatsen",
     sttrFile:
-      STAGE === "production" ? "OefenDakkapelPlaatsenOfVeranderen.json" : null,
+      STTR_ENV === "production"
+        ? "OefenDakkapelPlaatsenOfVeranderen.json"
+        : null,
     text: {
       heading: "Vergunningchecker dakkapel plaatsen",
       topic: "een dakkapel te plaatsen",
@@ -32,7 +34,7 @@ const topics = [
   {
     slug: "dakraam-plaatsen",
     sttrFile:
-      STAGE !== "production" &&
+      STTR_ENV !== "production" &&
       "WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams.json",
     text: {
       heading: "Vergunningchecker dakraam plaatsen",
@@ -82,7 +84,7 @@ const topics = [
   }
 ];
 
-if (STAGE !== "production") {
+if (STTR_ENV !== "production") {
   topics.push({
     slug: "test",
     sttrFile: "AanOfUitbouwBouwen.json",
