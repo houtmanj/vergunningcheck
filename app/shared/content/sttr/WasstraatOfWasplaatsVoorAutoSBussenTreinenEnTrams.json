@@ -18,7 +18,7 @@
           "id": "uitv__bc91339f-a16d-4eca-abb7-2c70d830ddf8"
         },
         {
-          "text": "Het gebouw waarop u het dakraam gaat plaatsen staat in een beschermd stads- of dorpsgezicht. Ligt het dak waar u het dakraam in gaat plaatsen aan de achterkant van het gebouw?",
+          "text": "Gaat u het dakraam plaatsen aan de achterkant van het gebouw?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Achterkant.png)",
           "type": "boolean",
           "id": "uitv__1026b5d7-ef08-41e5-9d36-296b477d7277"
@@ -48,14 +48,14 @@
           "id": "uitv__5f2c7e62-b2c0-492f-88ee-57da311998a0"
         },
         {
-          "text": "Wordt het dakraam hoger dan 60 centimeter gemeten vanaf het platte dak?",
+          "text": "Steekt het dakraam meer dan 60 centimeter uit het platte dak?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_plat_dak.png)",
           "type": "boolean",
           "id": "uitv__7f06028e-b1e2-4316-a187-4907f9df779f"
         },
         {
           "text": "Worden de afstanden van het dakraam tot aan alle randen van uw dak meer dan 50 centimeter?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/11_Dakraam_schuin_dak_afstand_tot_randen_b.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/11_Dakraam_schuin_dak_afstand_tot_randen_b.png)\n\nU meet deze afstanden tot de randen van uw dak.",
           "type": "boolean",
           "id": "uitv__f0dac721-c904-4824-8eed-88a6714bee95"
         },
@@ -86,15 +86,9 @@
         },
         {
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een gebied waar gemeentelijke regels gelden voor het uiterlijk van gebouwen?",
-          "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk voor gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. Controleer [op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=3,13) of het gebouw in een welstandsvrij gebied ligt.",
+          "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk van gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. Controleer [op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) of het gebouw in een welstandsvrij gebied ligt.",
           "type": "boolean",
           "id": "uitv__a9c6f493-59fb-4427-a23e-1fe27871bd9d"
-        },
-        {
-          "text": "Wordt het dakraam hoger dan 60 centimeter gemeten vanaf het dak?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D.png)",
-          "type": "boolean",
-          "id": "uitv__ef29b738-88cb-4749-b85a-07957396b758"
         },
         {
           "text": "Steekt het dakraam uit het dakvlak?",
@@ -103,8 +97,14 @@
           "id": "uitv__3b8fce70-4d3c-4b93-800e-5d393be22666"
         },
         {
-          "text": "Worden de afstanden van het dakraam tot aan alle randen van het dak meer dan 50 centimeter? U meet deze afstanden tot de zijkanten en tot de onder- en bovenzijde van uw dak.",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/11_Dakraam_afstand_tot_randen_schuin_dak.png)",
+          "text": "Steekt het dakraam meer dan 60 centimeter uit het dak?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D.png)",
+          "type": "boolean",
+          "id": "uitv__ef29b738-88cb-4749-b85a-07957396b758"
+        },
+        {
+          "text": "Worden de afstanden van het dakraam tot aan alle randen van het dak meer dan 50 centimeter?",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/11_Dakraam_afstand_tot_randen_schuin_dak.png)\n\nU meet deze afstanden tot de zijkanten en tot de onder- en bovenzijde van uw dak.",
           "type": "boolean",
           "id": "uitv__dc4dff42-a81d-4731-aa87-0e27bda8234d"
         }
@@ -166,12 +166,12 @@
           "href": "#uitv__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
           "type": "boolean"
         },
-        "input__ef29b738-88cb-4749-b85a-07957396b758": {
-          "href": "#uitv__ef29b738-88cb-4749-b85a-07957396b758",
-          "type": "boolean"
-        },
         "input__3b8fce70-4d3c-4b93-800e-5d393be22666": {
           "href": "#uitv__3b8fce70-4d3c-4b93-800e-5d393be22666",
+          "type": "boolean"
+        },
+        "input__ef29b738-88cb-4749-b85a-07957396b758": {
+          "href": "#uitv__ef29b738-88cb-4749-b85a-07957396b758",
           "type": "boolean"
         },
         "input__dc4dff42-a81d-4731-aa87-0e27bda8234d": {
@@ -180,7 +180,7 @@
         }
       },
       "decisions": {
-        "_a461b341-b4ae-4a9a-ab91-3e0f0a01e024": {
+        "_a3876767-0296-4346-8545-a442434e561b": {
           "requiredInputs": ["#input__bb667703-d5b0-4385-8b8a-e6c72f41d350"],
           "decisionTable": {
             "rules": [
@@ -195,7 +195,7 @@
             ]
           }
         },
-        "_693a0b80-053c-4bc4-9be7-5b13b2cf3a05": {
+        "_19cfbebc-35a1-409d-a4e6-1a3b0ee48720": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__1026b5d7-ef08-41e5-9d36-296b477d7277"
@@ -217,7 +217,7 @@
             ]
           }
         },
-        "_e70052eb-31a7-4b14-b951-a38d301c278c": {
+        "_4192bfcd-0aa2-4316-a2a2-90633c7f55b3": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
@@ -244,7 +244,34 @@
             ]
           }
         },
-        "_94d1b4ed-3716-442d-8847-dc00a7a0eadb": {
+        "_a1f1253e-4827-4ad4-83ef-cebb41c661ec": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, false],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_1982dd8a-09cb-46d1-869e-720c401aa834": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -271,39 +298,7 @@
             ]
           }
         },
-        "_0ad170c0-4143-4519-a1f9-e02a6dd287ca": {
-          "requiredInputs": [
-            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
-            "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
-            "#input__8202a657-8145-4428-b82d-554c2c2209bb",
-            "#input__13dd6310-3575-4bbd-b4ac-5bb709d52c2b"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [true, true, false, true],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", false],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
-        "_6b4497c5-81fa-43a5-961a-5b610802a3e4": {
+        "_07aad2c6-06ea-4419-8932-71eab2e74a07": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -335,25 +330,25 @@
             ]
           }
         },
-        "_95d74793-90fa-43df-bd52-e88a36a965b8": {
+        "_d2017e3c-f748-43cc-98a3-0da6be4d0931": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
-            "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
-            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
-            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+            "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
+            "#input__8202a657-8145-4428-b82d-554c2c2209bb",
+            "#input__13dd6310-3575-4bbd-b4ac-5bb709d52c2b"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, false, true],
+                "inputs": [true, true, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-"],
+                "inputs": [false, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-"],
+                "inputs": ["-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -367,44 +362,43 @@
             ]
           }
         },
-        "_58d67442-9e6f-4e6d-aa41-fed03c521025": {
+        "_729c9db9-44ab-41c4-899f-91c845a04fea": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
-            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
-            "#input__ef29b738-88cb-4749-b85a-07957396b758",
-            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, false, false, false],
+                "inputs": [false, false, "\"achterkant\"", true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [true, "-", "-", "-", "-"],
+                "inputs": [true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", true, "-", "-", "-"],
+                "inputs": ["-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", true, "-", "-"],
+                "inputs": ["-", "-", "\"voorkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", true, "-"],
+                "inputs": ["-", "-", "\"zijkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", true],
+                "inputs": ["-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_dc56f8cc-4766-4799-9866-d28c995a5b5a": {
+        "_5f5366ff-7b0c-4607-8117-b92ed0519ea2": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
@@ -441,7 +435,48 @@
             ]
           }
         },
-        "_fd7e389b-829f-44f3-a4fa-3bae6606f562": {
+        "_d1527e26-5d03-4085-8ce7-bcfdb9b41867": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, "\"voorkant\"", false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"zijkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"achterkant\"", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_506ed660-baf0-4453-9e02-ba1cfb77d083": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -482,19 +517,61 @@
             ]
           }
         },
-        "_97fe44a2-8360-4e4b-9deb-bea4a8a97b71": {
+        "_1e2159bf-0f49-41e2-a69e-0a1a0c530af5": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
-            "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
-            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
-            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
-            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666",
-            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+            "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
+            "#input__8202a657-8145-4428-b82d-554c2c2209bb",
+            "#input__13dd6310-3575-4bbd-b4ac-5bb709d52c2b",
+            "#input__c1e426a0-4772-4be0-8d2a-d9c645ad3ca6",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, "\"voorkant\"", true, false, false],
+                "inputs": [true, true, false, false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_43b4840f-1ce8-426c-bbd5-a4d880f46c0a": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, "\"zijkant\"", true, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -506,7 +583,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "\"zijkant\"", "-", "-", "-"],
+                "inputs": ["-", "-", "\"voorkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -522,13 +599,13 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", true],
+                "inputs": ["-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_9b1accff-b95a-417f-8091-c2fb0d1ce695": {
+        "_9c79813e-c40a-499e-938f-4fc2070d9fc4": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -574,7 +651,105 @@
             ]
           }
         },
-        "_efac69f9-56d9-4d68-b827-d01bb25af77e": {
+        "_c4baf29e-8d8c-496a-a961-2025a4aad77e": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
+            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
+            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [false, false, "\"zijkant\"", false, false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"voorkant\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "\"achterkant\"", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_d4aefd3a-6472-4fd5-b8db-edf705ff2771": {
+          "requiredInputs": [
+            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
+            "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
+            "#input__8202a657-8145-4428-b82d-554c2c2209bb",
+            "#input__13dd6310-3575-4bbd-b4ac-5bb709d52c2b",
+            "#input__c1e426a0-4772-4be0-8d2a-d9c645ad3ca6",
+            "#input__ef29b738-88cb-4749-b85a-07957396b758",
+            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true, true, false, false, false, false, true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false, "-", "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", false, "-", "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", true, "-", "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
+                "output": "\"no hit\""
+              },
+              {
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "_4b2e5ba3-62be-4869-9891-cd0acc7f15ec": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -625,20 +800,20 @@
             ]
           }
         },
-        "_fe141b41-afe2-4353-8b68-b1d684ac6858": {
+        "_f0bb62a6-4e9e-40b5-be64-06e527680748": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
             "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
             "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
+            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
             "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
-            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666",
-            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, "\"zijkant\"", true, true, false, false],
+                "inputs": [false, false, "\"zijkant\"", false, true, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -658,7 +833,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", false, "-", "-", "-"],
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -670,27 +845,27 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", true],
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_79041fd2-cb12-41cc-b99a-4f0680fcafaa": {
+        "_b8c6b0ce-ab46-44b7-a9c3-932447833766": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
             "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
             "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
             "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
+            "#input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
             "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
-            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666",
-            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
+            "#input__ef29b738-88cb-4749-b85a-07957396b758"
           ],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [false, false, "\"zijkant\"", false, true, true, false, false],
+                "inputs": [false, false, "\"zijkant\"", false, false, true, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -714,7 +889,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", false, "-", "-", "-"],
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -726,13 +901,13 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_bb3fdb4e-0931-4bb5-93b8-3bae871d9681": {
+        "_735eb052-0086-4103-943f-51d3971c3a96": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -788,86 +963,28 @@
             ]
           }
         },
-        "_3fb99e04-5a02-4986-84e7-379458089cca": {
-          "requiredInputs": [
-            "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
-            "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
-            "#input__b89af977-9608-47be-b4b6-5ef8c3d6f2a2",
-            "#input__c2125fec-9152-4c88-afbf-9d34e19ca67f",
-            "#input__57d4931a-4a5d-4867-85da-a33b008ff06b",
-            "#input__cbc2ccec-906d-4af3-a8a7-53e8108eef6b",
-            "#input__a9c6f493-59fb-4427-a23e-1fe27871bd9d",
-            "#input__3b8fce70-4d3c-4b93-800e-5d393be22666",
-            "#input__dc4dff42-a81d-4731-aa87-0e27bda8234d"
-          ],
-          "decisionTable": {
-            "rules": [
-              {
-                "inputs": [false, false, "\"zijkant\"", false, false, true, true, false, false],
-                "output": "\"Vergunningplicht\""
-              },
-              {
-                "inputs": [true, "-", "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", true, "-", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "\"voorkant\"", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "\"achterkant\"", "-", "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", true, "-", "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", true, "-", "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", false, "-", "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", false, "-", "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", true, "-"],
-                "output": "\"no hit\""
-              },
-              {
-                "inputs": ["-", "-", "-", "-", "-", "-", "-", "-", true],
-                "output": "\"no hit\""
-              }
-            ]
-          }
-        },
         "dummy": {
           "requiredDecisions": [
-            "#_a461b341-b4ae-4a9a-ab91-3e0f0a01e024",
-            "#_693a0b80-053c-4bc4-9be7-5b13b2cf3a05",
-            "#_e70052eb-31a7-4b14-b951-a38d301c278c",
-            "#_94d1b4ed-3716-442d-8847-dc00a7a0eadb",
-            "#_0ad170c0-4143-4519-a1f9-e02a6dd287ca",
-            "#_6b4497c5-81fa-43a5-961a-5b610802a3e4",
-            "#_95d74793-90fa-43df-bd52-e88a36a965b8",
-            "#_58d67442-9e6f-4e6d-aa41-fed03c521025",
-            "#_dc56f8cc-4766-4799-9866-d28c995a5b5a",
-            "#_fd7e389b-829f-44f3-a4fa-3bae6606f562",
-            "#_97fe44a2-8360-4e4b-9deb-bea4a8a97b71",
-            "#_9b1accff-b95a-417f-8091-c2fb0d1ce695",
-            "#_efac69f9-56d9-4d68-b827-d01bb25af77e",
-            "#_fe141b41-afe2-4353-8b68-b1d684ac6858",
-            "#_79041fd2-cb12-41cc-b99a-4f0680fcafaa",
-            "#_bb3fdb4e-0931-4bb5-93b8-3bae871d9681",
-            "#_3fb99e04-5a02-4986-84e7-379458089cca"
+            "#_a3876767-0296-4346-8545-a442434e561b",
+            "#_19cfbebc-35a1-409d-a4e6-1a3b0ee48720",
+            "#_4192bfcd-0aa2-4316-a2a2-90633c7f55b3",
+            "#_a1f1253e-4827-4ad4-83ef-cebb41c661ec",
+            "#_1982dd8a-09cb-46d1-869e-720c401aa834",
+            "#_07aad2c6-06ea-4419-8932-71eab2e74a07",
+            "#_d2017e3c-f748-43cc-98a3-0da6be4d0931",
+            "#_729c9db9-44ab-41c4-899f-91c845a04fea",
+            "#_5f5366ff-7b0c-4607-8117-b92ed0519ea2",
+            "#_d1527e26-5d03-4085-8ce7-bcfdb9b41867",
+            "#_506ed660-baf0-4453-9e02-ba1cfb77d083",
+            "#_1e2159bf-0f49-41e2-a69e-0a1a0c530af5",
+            "#_43b4840f-1ce8-426c-bbd5-a4d880f46c0a",
+            "#_9c79813e-c40a-499e-938f-4fc2070d9fc4",
+            "#_c4baf29e-8d8c-496a-a961-2025a4aad77e",
+            "#_d4aefd3a-6472-4fd5-b8db-edf705ff2771",
+            "#_4b2e5ba3-62be-4869-9891-cd0acc7f15ec",
+            "#_f0bb62a6-4e9e-40b5-be64-06e527680748",
+            "#_b8c6b0ce-ab46-44b7-a9c3-932447833766",
+            "#_735eb052-0086-4103-943f-51d3971c3a96"
           ],
           "decisionTable": {
             "rules": [
@@ -889,6 +1006,9 @@
                   "-",
                   "-",
                   "-",
+                  "-",
+                  "-",
+                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -896,6 +1016,87 @@
               },
               {
                 "inputs": [
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
                   "-",
                   "\"Vergunningplicht\"",
                   "-",
@@ -921,27 +1122,6 @@
                 "inputs": [
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
                   "-",
                   "-",
                   "-",
@@ -949,51 +1129,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
                   "-",
                   "-",
                   "-",
@@ -1027,6 +1162,9 @@
                   "-",
                   "-",
                   "-",
+                  "-",
+                  "-",
+                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -1034,6 +1172,87 @@
               },
               {
                 "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -1065,27 +1284,6 @@
                   "-",
                   "-",
                   "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
                   "-",
                   "-",
                   "-",
@@ -1093,51 +1291,6 @@
                   "-",
                   "-",
                   "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
-                "output": "\"Vergunningplicht\"",
-                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
-              },
-              {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "\"Vergunningplicht\"",
                   "-",
                   "-",
                   "-",
@@ -1165,6 +1318,9 @@
                   "-",
                   "-",
                   "-",
+                  "-",
+                  "-",
+                  "-",
                   "-"
                 ],
                 "output": "\"Vergunningplicht\"",
@@ -1172,6 +1328,87 @@
               },
               {
                 "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "-",
+                  "\"Vergunningplicht\"",
+                  "-",
+                  "-",
+                  "-",
+                  "-"
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U hebt een vergunning nodig voor het onderdeel bouwen. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "-",
+                  "-",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -1209,6 +1446,9 @@
                   "-",
                   "-",
                   "-",
+                  "-",
+                  "-",
+                  "-",
                   "\"Vergunningplicht\"",
                   "-",
                   "-"
@@ -1233,6 +1473,9 @@
                   "-",
                   "-",
                   "-",
+                  "-",
+                  "-",
+                  "-",
                   "\"Vergunningplicht\"",
                   "-"
                 ],
@@ -1241,6 +1484,9 @@
               },
               {
                 "inputs": [
+                  "-",
+                  "-",
+                  "-",
                   "-",
                   "-",
                   "-",
@@ -1280,10 +1526,64 @@
                   "\"no hit\"",
                   "\"no hit\"",
                   "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
+                  "\"no hit\"",
                   "\"no hit\""
                 ],
                 "output": "\"Toestemmingsvrij\"",
                 "description": "U hebt geen vergunning nodig voor het plaatsen van het dakraam, daklicht of lichtstraat. Wél moet u op een aantal dingen letten voordat u gaat bouwen. Uw aannemer kan u daarbij helpen.\n\n**Waar u verder op moet letten:**\n\n*   U moet voldoen aan de eisen van het Bouwbesluit. In het Bouwbesluit staan ook eisen voor de brandveiligheid.\n*   U moet rekening houden met beschermde flora en fauna. Bijvoorbeeld een nest zwaluwen onder de dakpannen.\n\nDenk ook aan:\n\n*   Het plaatsen van een hijskraan of container op straat of het reserveren van een parkeervak.\n*   Het afvoeren van bouw- en sloopafval.\n*   Het risico dat u asbest tegenkomt.\n*   Het burenrecht. Denk hierbij bijvoorbeeld aan uitzicht op het terrein van de buren.\n*   De gevolgen van het plaatsen van een dakraam op de WOZ-waarde van uw huis."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Conclusie Het wijzigen van een monument bij een dakraam",
+      "questions": [
+        {
+          "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
+          "type": "boolean",
+          "id": "uitv__65b0660a-9d93-4be0-8198-8a191aedfbf6",
+          "uuid": "monument"
+        }
+      ],
+      "inputs": {
+        "input__65b0660a-9d93-4be0-8198-8a191aedfbf6": {
+          "href": "#uitv__65b0660a-9d93-4be0-8198-8a191aedfbf6",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_33617125-9eaa-47bb-ae15-30d1d6913ad0": {
+          "requiredInputs": ["#input__65b0660a-9d93-4be0-8198-8a191aedfbf6"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [true],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [false],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": ["#_33617125-9eaa-47bb-ae15-30d1d6913ad0"],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": ["\"Vergunningplicht\""],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een dakraam plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": ["\"no hit\""],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
               }
             ]
           }

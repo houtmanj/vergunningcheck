@@ -73,7 +73,7 @@ const TOPICS = {
       locationPageIntro:
         'Wilt u de dakraam plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
       locationResultsPageDescription:
-        'U hebt deze informatie nodig om de vergunningcheck dakraam te doen. De informatie over de bestemmingsplannen is pas nodig bij een aanvraag omgevingsvergunning.',
+        'U hebt deze informatie nodig om de vergunningcheck dakraam te doen. De informatie over de bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat aanvragen.',
     },
   },
   'kozijnen-plaatsen-of-vervangen': {
