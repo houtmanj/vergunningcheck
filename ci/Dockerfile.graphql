@@ -16,7 +16,7 @@ COPY apps/graphql/package*.json ./
 # Release
 FROM base
 ARG NODE_ENV
-RUN npm ci
+RUN npm ci --no-color -q
 COPY apps/graphql/ .
 ENV PORT=80
 CMD node .

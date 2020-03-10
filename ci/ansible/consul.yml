@@ -1,0 +1,12 @@
+---
+# This task is used by all the deploy-*.yml playbooks
+- include_tasks: roles/consul/tasks/service.yml
+  vars:
+    consul__service_name: "{{ app_name }}"
+    consul__service_port: "{{ app_port }}"
+    consul__action: "{{ action }}"
+    consul__check_name: "Basic connectivity"
+    consul__check_notes: "Checks if the API is up and can connect to its dependent services"
+    consul__check_http: "{{ health_page | default(omit) }}"
+    consul__check_script: "{{ health_script | default(omit) }}"
+    consul__check_interval: "30s"
