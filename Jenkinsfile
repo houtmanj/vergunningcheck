@@ -15,6 +15,9 @@ def tryStep(String message, Closure block) {
 }
 
 node {
+  stage("Checkout") {
+      checkout scm
+  }
   stage("Build image") {
     try {
       tryStep "Build graphql image", {
