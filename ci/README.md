@@ -13,6 +13,13 @@ Tip; enter your docker image:
 docker run -it amsterdam/chappie-client sh
 ```
 
+## Client + GraphQL via PM2
+
+```sh
+docker build --build-arg NODE_ENV=production -t amsterdam/chappie -f ci/Dockerfile .
+docker run -p8080:80 -it --init amsterdam/chappie
+```
+
 ## Client
 
 ```sh

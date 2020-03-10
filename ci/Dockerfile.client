@@ -4,14 +4,11 @@ LABEL maintainer="datapunt@amsterdam.nl"
 WORKDIR /app/
 
 COPY apps/client/package*.json ./
-RUN npm ci
+RUN npm ci --no-color -q
 COPY apps/client/ ./
 
 ARG NODE_ENV
-ARG STTR_BUILDER_API_KEY
-ARG STTR_ENV
-RUN npm run sttr
-RUN npm run build
+RUN npm run build --no-color
 
 # TODO: yarn 2 not avail yet.
 # COPY apps/client/package.json apps/client/yarn.lock ./
