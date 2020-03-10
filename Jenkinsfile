@@ -12,13 +12,13 @@ def tryStep(String message, Closure block) {
 }
 
 node {
-  // stage("Checkout") {
-  //     checkout scm
-  // }
+  stage("Checkout") {
+      checkout scm
+  }
   stage("Build image") {
     tryStep "Build image", {
       docker
-        .build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER} . ")
+        .build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER} .")
         .push()
     }
   }
