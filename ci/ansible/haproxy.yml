@@ -1,0 +1,21 @@
+---
+- name: Disable in HAProxy
+  haproxy:
+    host: "{{ ansible_hostname }}"
+    state: disabled
+    backend: "{{ haproxy_cluster }}"
+    wait: yes
+  delegate_to: "{{ item }}"
+  with_items: "{{ groups.loadbalancers }}"
+  become: yes
+  when: action == 'disable'
+- name: Enable in HAProxy
+  haproxy:
+    host: "{{ ansible_hostname }}"
+    state: enabled
+    backend: "{{ haproxy_cluster }}"
+    wait: yes
+  delegate_to: "{{ item }}"
+  with_items: "{{ groups.loadbalancers }}"
+  become: yes
+  when: action == 'enable'
