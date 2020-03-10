@@ -52,7 +52,7 @@ const ConclusionsPage = ({ topic, checker }) => {
   // {
   //   permitName: 'Dakkapel bouwen',
   //   conclusion: outcomes.NEED_PERMIT,
-  //   conclusionText: 'U bent vergunningsplichtig.'
+  //   conclusionText: 'U bent vergunningplichtig.'
   // }, {
   //   permitName: 'Dakkapel monument',
   //   conclusion: outcomes.PERMIT_FREE,
