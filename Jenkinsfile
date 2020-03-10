@@ -1,6 +1,6 @@
 #!groovy
 
-def sendMessage(String message, String status, String color) {
+def sendMessage(String message, String status, String color = "good") {
   slackSend message: "${env.JOB_NAME}: ${message} ${status} ${env.BUILD_URL}", channel: "#ci-chappie", color: color
   slackSend message: "${env.JOB_NAME}: ${message} ${status} ${env.BUILD_URL}", channel: "#ci-channel", color: color
 }
@@ -9,7 +9,7 @@ def tryStep(String message, Closure block) {
   try {
     block()
   } catch (Throwable t) {
-    slackMessage message, "warning", "warning"
+    sendMessage message, "warning", "warning"
     throw t
   }
 }
@@ -31,9 +31,9 @@ node {
           .push()
       }
     } catch (Throwable t) {
-      slackSend "Build failed", "failed", "danger"
+      sendMessage "Build failed", "failed", "danger"
     } finally {
-      slackSend "Build succeeded", "success"
+      sendMessage "Build succeeded", "success"
     }
   }
 }
