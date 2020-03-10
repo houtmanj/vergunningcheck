@@ -9,7 +9,7 @@ def tryStep(String message, Closure block) {
   try {
     block()
   } catch (Throwable t) {
-    slackMessage message, "failure", "warning"
+    slackMessage message, "warning", "warning"
     throw t
   }
 }
@@ -28,8 +28,8 @@ node {
           .push()
       }
     } catch (Throwable t) {
-      slackSend "Build failed", "danger"
-    } finally() {
+      slackSend "Build failed", "failed", "danger"
+    } finally {
       slackSend "Build succeeded", "success"
     }
   }
