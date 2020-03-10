@@ -93,7 +93,7 @@ const ResultsPage = () => {
               <UserResult>
                 <Alert style={{ width: '20%', maxWidth: '30px', marginBottom: '8px', fill: '#ec0000' }} />
                 <p style={{ marginBottom: '25px', marginLeft: '7px', display: 'inline-block' }}>
-                  Op basis van dit antwoord bent u vergunningsplichtig voor{' '}
+                  Op basis van dit antwoord bent u vergunningplichtig voor{' '}
                   {permit.name.replace('Conclusie', '').toLowerCase()}
                 </p>
               </UserResult>
