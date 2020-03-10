@@ -27,9 +27,9 @@ const topics = [
         : null,
     text: {
       heading: "Vergunningchecker dakkapel plaatsen",
-      topic: "een dakkapel te plaatsen",
-      topicLocation: "de dakkapel wilt gaan plaatsen"
-    }
+      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen"
+    },
+    intro: "DakkapelIntro"
   },
   {
     slug: "dakraam-plaatsen",
@@ -38,48 +38,46 @@ const topics = [
       "WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams.json",
     text: {
       heading: "Vergunningchecker dakraam plaatsen",
-      topic: "een dakraam te plaatsen",
-      topicLocation: "het dakraam wilt gaan plaatsen"
-    }
+      locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen"
+    },
+    intro: "DakraamIntro"
   },
   {
     slug: "aanbouw-of-uitbouw-maken",
     text: {
       heading: "Vergunningchecker aanbouw of uitbouw maken",
-      topic: "een aanbouw of een uitbouw te maken",
-      topicLocation: "de aanbouw of uitbouw wilt gaan maken"
+      locationIntro:
+        "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken"
     }
   },
   {
     slug: "kozijnen-plaatsen-of-vervangen",
     text: {
       heading: "Vergunningchecker kozijnen plaatsen of vervangen",
-      topic: "kozijnen te plaatsen of te vervangen",
-      topicLocation: "de kozijnen wilt gaan plaatsen of vervangen"
+      locationIntro:
+        "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen"
     }
   },
   {
     slug: "zonnepanelen-of-warmtecollectoren-plaatsen",
     text: {
       heading: "Vergunningchecker zonnepanelen of warmtecollectoren plaatsen",
-      topic: "zonnepanelen of warmtecollectoren te plaatsen",
-      topicLocation: "de zonnepanelen of warmtecollectoren wilt gaan plaatsen"
+      locationIntro:
+        "Voer het adres in waar u de zonnepanelen of warmtecollectoren wilt gaan plaatsen"
     }
   },
   {
     slug: "bouwwerk-slopen",
     text: {
       heading: "Vergunningchecker bouwwerk slopen",
-      topic: "een bouwwerk te slopen,",
-      topicLocation: "het bouwwerk wilt gaan slopen"
+      locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen"
     }
   },
   {
     slug: "intern-verbouwen",
     text: {
-      heading: "Intern verbouwen",
-      topic: "intern te verbouwen",
-      topicLocation: "intern wilt gaan verbouwen"
+      heading: "Vergunningchecker intern verbouwen",
+      locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen"
     }
   }
 ];
@@ -90,8 +88,7 @@ if (STTR_ENV !== "production") {
     sttrFile: "AanOfUitbouwBouwen.json",
     text: {
       heading: "Vergunningchecker dakkapel plaatsen",
-      topic: "een dakkapel te plaatsen",
-      topicLocation: "de dakkapel wilt gaan plaatsen"
+      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen"
     }
   });
 }

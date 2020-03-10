@@ -3,14 +3,24 @@
 .gitignore
 */.vscode
 */docker-compose.*yml
+**/*.DS_Store
+**/*.md
+**/*.test.js
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.js
+**/*.spec.ts
+**/*.spec.tsx
+**/__mocks__
+**/__snapshots__
 
 # Skip dependency directories
-*/node_modules/
+**/node_modules
 */.yarn/
 
 # Skip our build directory
-client/build
-client/.env.local
+apps/client/build
+apps/client/.env.local
 
 # Skip unwanted files
 *.md
