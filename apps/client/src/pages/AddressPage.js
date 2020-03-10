@@ -62,21 +62,16 @@ const AddressPage = ({ topic, address }) => {
           <AddressData address={address} />
         </StyledAddressResult>
 
-        {useSTTR ? (
+        <Paragraph>
+          U hebt deze informatie nodig om de vergunningcheck te doen. De
+          informatie over de bestemmingsplannen is pas nodig als u een
+          omgevingsvergunning gaat aanvragen.
+        </Paragraph>
+
+        {useSTTR && (
           <>
-            <Paragraph>{topic.text?.locationResultsPageDescription}</Paragraph>
-            <Paragraph>
-              Gaat u meer dan 1 {topic.text?.entity} plaatsen? Doe dan per{" "}
-              {topic.text?.entity} de vergunningcheck.
-            </Paragraph>
+            <Paragraph>{topic.text?.addressPage}</Paragraph>
           </>
-        ) : (
-          <Paragraph>
-            U hebt deze informatie nodig om de vergunningcheck{" "}
-            {topic.text?.entity} te doen. De informatie over de
-            bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat
-            aanvragen.
-          </Paragraph>
         )}
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
