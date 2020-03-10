@@ -22,12 +22,10 @@ const ConclusionsPage = ({ topic, checker }) => {
   const { slug } = topic;
 
   // find conclusions we want to display to the user
-  // if outcome = contact then we return an array of len = 1
-  // otherwise we return the descriptions for different permits
-  const displayConclusions = checker.permits.map(permit => {
+  const conclusions = checker.permits.map(permit => {
+    const outcome = permit.getOutputByDecisionId("dummy").replace(/['"]+/g, "");
     const dummyDecision = permit.getDecisionById("dummy");
     const matchingRules = dummyDecision.getMatchingRules();
-    const outcome = permit.getOutputByDecisionId("dummy");
 
     return {
       outcome,
@@ -39,12 +37,15 @@ const ConclusionsPage = ({ topic, checker }) => {
     };
   });
 
-  const contactPermit = displayConclusions.find(
-    ({ outcome }) => outcome === outcomes.NEED_CONTACT
-  );
-  const needsPermit = !!displayConclusions.find(
+  const needsPermit = !!conclusions.find(
     ({ outcome }) => outcome === outcomes.NEED_PERMIT
   );
+  const contactConclusion = conclusions.find(
+    ({ outcome }) => outcome === outcomes.NEED_CONTACT
+  );
+  const displayConclusions = contactConclusion
+    ? [contactConclusion]
+    : conclusions;
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -68,7 +69,7 @@ const ConclusionsPage = ({ topic, checker }) => {
           toepassing is.
         </Paragraph>
 
-        {(contactPermit || displayConclusions).map(({ title, description }) => (
+        {displayConclusions.map(({ title, description }) => (
           <>
             <Heading $as="h2">{title}</Heading>
             <ReactMarkdown
