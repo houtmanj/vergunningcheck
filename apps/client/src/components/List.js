@@ -1,7 +1,7 @@
 import styled from "@datapunt/asc-core";
 import { List } from "@datapunt/asc-ui";
 
-export const StyledList = styled(List)`
+export default styled(List)`
   margin-top: 5px;
   margin-bottom: 0;
 
