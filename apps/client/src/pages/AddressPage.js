@@ -72,8 +72,10 @@ const AddressPage = ({ topic, address }) => {
           </>
         ) : (
           <Paragraph>
-            U hebt deze informatie nodig om de vergunningcheck te doen op het
-            Omgevingsloket.
+            U hebt deze informatie nodig om de vergunningcheck{" "}
+            {topic.text?.entity} te doen. De informatie over de
+            bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat
+            aanvragen.
           </Paragraph>
         )}
         <Nav
