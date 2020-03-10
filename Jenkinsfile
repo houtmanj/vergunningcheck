@@ -16,9 +16,9 @@ node {
   //     checkout scm
   // }
   stage("Build image") {
-    tryStep "Build image", {
+    tryStep "Build graphql image", {
       docker
-        .build("build.app.amsterdam.nl:5000/ois/vergunningschecker:${env.BUILD_NUMBER}-${env.BUILD_NUMBER}", ".")
+        .build("build.app.amsterdam.nl:5000/ois/chappie-graphql:${env.BRANCH_NAME}-${env.BUILD_NUMBER}", "-f ci/Dockerfile.graphql .")
         .push()
     }
   }
