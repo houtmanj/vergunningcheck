@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Paragraph, themeColor } from '@datapunt/asc-ui';
@@ -8,7 +9,7 @@ import history from 'utils/history';
 import { LocationResult, LocationData } from 'components/LocationData';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
-import { GET_CURRENT_TOPIC, PAGES, EXTERNAL_URLS } from '../../constants';
+import { GET_CURRENT_TOPIC, PAGES, EXTERNAL_URLS, GET_TEXT } from '../../constants';
 
 const StyledAddressResult = styled(`div`)`
   margin-bottom: 24px;
@@ -50,6 +51,9 @@ const LocationResultsPage = ({ addressResultsLoading, bagLoading, addressResults
 
   return (
     <>
+      <Helmet>
+        <title>Uw adresgegevens - {GET_TEXT?.heading}</title>
+      </Helmet>
       <Form onSubmit={goToOLO}>
         {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
 
