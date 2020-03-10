@@ -2,15 +2,20 @@ import React from "react";
 import { Heading, OrderedList, List, ListItem } from "@datapunt/asc-ui";
 import { routes, geturl } from "../routes";
 import withTopic from "../hoc/withTopic";
+import withOloRedirect from "../hoc/withOloRedirect";
 
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import Layout from "../components/Layouts/DefaultLayout";
 import { StyledList } from "./IntroPageStyles";
+import Helmet from "react-helmet";
 
 const IntroPage = ({ topic: { text, slug } }) => {
   return (
     <Layout>
+      <Helmet>
+        <title>Inleiding - {text.heading}</title>
+      </Helmet>
       <Heading $as="h3">Hoe het werkt:</Heading>
       <OrderedList>
         <ListItem>
@@ -57,4 +62,4 @@ const IntroPage = ({ topic: { text, slug } }) => {
   );
 };
 
-export default withTopic(IntroPage);
+export default withOloRedirect(withTopic(IntroPage));

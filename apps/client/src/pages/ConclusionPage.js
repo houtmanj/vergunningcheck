@@ -10,6 +10,7 @@ import Layout from "../components/Layouts/DefaultLayout";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
+import Helmet from "react-helmet";
 
 const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
 
@@ -73,6 +74,9 @@ const ConclusionsPage = ({ topic, checker }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Conclusie - {topic.text.heading}</title>
+      </Helmet>
       <Form onSubmit={handleSubmit}>
         <Heading $as="h1">Conclusies</Heading>
 
@@ -89,7 +93,7 @@ const ConclusionsPage = ({ topic, checker }) => {
               renderers={{ paragraph: Paragraph }}
               linkTarget="_blank"
             />
-          </>      
+          </>
         )} */}
 
         <Nav
