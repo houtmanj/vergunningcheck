@@ -12,8 +12,6 @@ import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Helmet from "react-helmet";
 
-const uniqueFilter = (value, index, self) => self.indexOf(value) === index;
-
 const outcomes = {
   NEED_PERMIT: '"Vergunningplicht"',
   NEED_CONTACT: '"NeemContactOpMet"',
@@ -23,49 +21,35 @@ const ConclusionsPage = ({ topic, checker }) => {
   const history = useHistory();
   const { slug } = topic;
 
-  const needContact = !!checker.permits.find(
-    permit => permit.getOutputByDecisionId("dummy") === outcomes.NEED_CONTACT
-  );
-
-  const needPermit = !!checker.permits.find(
-    permit => permit.getOutputByDecisionId("dummy") === outcomes.NEED_PERMIT
-  );
-
   // find conclusions we want to display to the user
-  // if outcome = contact then we return an array of len = 1
-  // otherwise we return the descriptions for different permits
-  // const displayConclusions = checker.permits.reduce((acc, permit) => {
-  //   const dummyDecision = permit.getDecisionById("dummy");
-  //   const matchingRules = dummyDecision.getMatchingRules();
+  const conclusions = checker.permits.map(permit => {
+    const outcome = permit.getOutputByDecisionId("dummy").replace(/['"]+/g, "");
+    const dummyDecision = permit.getDecisionById("dummy");
+    const matchingRules = dummyDecision.getMatchingRules();
 
-  //   if (permit.getOutputByDecisionId("dummy") === outcomes.NEED_CONTACT) {
-  //     return [matchingRules[0].description];
-  //   }
-  //   acc.push(matchingRules.map(rule => rule.description));
-  // }, []);
+    return {
+      outcome,
+      title:
+        outcome === outcomes.NEED_CONTACT
+          ? "Neem contact op met de gemeente"
+          : `${permit.name}: ${outcome}`,
+      description: matchingRules[0].description
+    };
+  });
 
-  // const iets = [{
-  //   permitName: 'Dakkapel bouwen',
-  //   title: 'Neem contact op met de gemeente'
-  //   conclusion: outcomes.NEED_CONTACT,
-  // },
-  // {
-  //   permitName: 'Dakkapel bouwen',
-  //   conclusion: outcomes.NEED_PERMIT,
-  //   conclusionText: 'U bent vergunningplichtig.'
-  // }, {
-  //   permitName: 'Dakkapel monument',
-  //   conclusion: outcomes.PERMIT_FREE,
-  //   conclusionText: 'U bent vrij...'
-  // }]
-
-  // const needsContact = !!iets.find(({conclusion}) = conclusion === outcomes.NEED_CONTACT);
-  // const needsPermit = !!iets.find(({conclusion}) = conclusion === outcomes.NEED_PERMIT);
+  const needsPermit = !!conclusions.find(
+    ({ outcome }) => outcome === outcomes.NEED_PERMIT
+  );
+  const contactConclusion = conclusions.find(
+    ({ outcome }) => outcome === outcomes.NEED_CONTACT
+  );
+  const displayConclusions = contactConclusion
+    ? [contactConclusion]
+    : conclusions;
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    if (needPermit) {
+    if (needsPermit) {
       window.open(OLO.home, "_blank");
     } else {
       history.push(geturl(routes.intro, { slug }) + "?resetChecker=true");
@@ -85,22 +69,22 @@ const ConclusionsPage = ({ topic, checker }) => {
           toepassing is.
         </Paragraph>
 
-        {/* {displayConclusions.map(conclusion => (
+        {displayConclusions.map(({ title, description }) => (
           <>
-            <Heading $as="h2">{conclusion.title}</Heading>
+            <Heading $as="h2">{title}</Heading>
             <ReactMarkdown
-              source={conclusion.text}
+              source={description}
               renderers={{ paragraph: Paragraph }}
               linkTarget="_blank"
             />
           </>
-        )} */}
+        ))}
 
         <Nav
           onGoToPrev={() => history.push(geturl(routes.results, { slug }))}
           showPrev
           showNext
-          nextText={needPermit ? "Naar het omgevingsloket" : "Opnieuw checken"}
+          nextText={needsPermit ? "Naar het omgevingsloket" : "Opnieuw checken"}
           formEnds
         />
         <DebugDecisionTable checker={checker} />
