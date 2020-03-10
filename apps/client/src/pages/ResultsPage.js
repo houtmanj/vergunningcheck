@@ -115,7 +115,7 @@ const ResultsPage = ({ topic, checker }) => {
                       display: "inline-block"
                     }}
                   >
-                    Op basis van dit antwoord bent u vergunningsplichtig voor{" "}
+                    Op basis van dit antwoord bent u vergunningplichtig voor{" "}
                     {permit.name.replace("Conclusie", "").toLowerCase()}
                   </p>
                 </UserResult>

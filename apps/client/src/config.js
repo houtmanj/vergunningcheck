@@ -22,7 +22,9 @@ const topics = [
     sttrFile: "dakkapel.json",
     text: {
       heading: "Vergunningchecker dakkapel plaatsen",
-      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen"
+      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
+      addressPage:
+        "Gaat u meer dan 1 dakkapel plaatsen? Doe dan per dakkapel de vergunningcheck."
     },
     intro: "DakkapelIntro"
   },
@@ -31,7 +33,9 @@ const topics = [
     sttrFile: "dakraam.json",
     text: {
       heading: "Vergunningchecker dakraam plaatsen",
-      locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen"
+      locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
+      addressPage:
+        "Gaat u meer dan 1 dakraam plaatsen? Doe dan per dakraam de vergunningcheck."
     },
     intro: "DakraamIntro"
   },
