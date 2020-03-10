@@ -4,6 +4,7 @@ import { Header, MenuInline } from "@datapunt/asc-ui";
 export const StyledHeader = styled(Header)`
   max-width: 960px;
   margin: 0;
+  z-index: unset;
   nav {
     justify-content: flex-start;
   }
