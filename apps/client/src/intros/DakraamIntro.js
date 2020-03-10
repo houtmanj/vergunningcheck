@@ -1,6 +1,12 @@
 import React from "react";
-import { Heading, OrderedList, ListItem, Paragraph } from "@datapunt/asc-ui";
-import List from "../components/List";
+import {
+  Heading,
+  OrderedList,
+  List,
+  ListItem,
+  Paragraph
+} from "@datapunt/asc-ui";
+import ListInsideOrderedList from "../components/List";
 
 export default () => (
   <>
@@ -11,13 +17,13 @@ export default () => (
       </ListItem>
       <ListItem>
         Vervolgens krijgt u te zien:
-        <List variant="bullet">
+        <ListInsideOrderedList variant="bullet" style={{ marginBottom: 0 }}>
           <ListItem>of het gebouw een monument is.</ListItem>
           <ListItem>
             of het gebouw in een beschermd stads- of dorpsgezicht ligt.
           </ListItem>
           <ListItem>welk bestemmingsplan er geldt.</ListItem>
-        </List>
+        </ListInsideOrderedList>
       </ListItem>
       <ListItem>
         Wij stellen u een aantal vragen over het gebouw en het dakraam.
@@ -37,7 +43,7 @@ export default () => (
     </Paragraph>
 
     <Heading $as="h4">Onderhoud:</Heading>
-    <Paragraph>
+    <Paragraph gutterBottom={12}>
       Gaat u een bestaand dakraam, daklicht of lichtstraat vervangen? Onderhoud
       is vergunningvrij als het nieuwe dakraam gelijk blijft aan het bestaande
       dakraam. Voorbeelden:
