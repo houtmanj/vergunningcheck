@@ -39,7 +39,8 @@ const ResultsPage = () => {
   const { checker } = useContext(CheckerContext);
   const permitsPerQuestion = [];
 
-  const onGoToQuestion = (index, question) => {
+  const onGoToQuestion = (e, index, question) => {
+    e.preventDefault();
     checker.rewindTo(index);
     history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerQuestions}/${slugify(question.toLowerCase())}`);
   };
@@ -85,7 +86,7 @@ const ResultsPage = () => {
               ) : (
                 <UserAnswer>{booleanOptions.find(option => option.value === question.answer).label}</UserAnswer>
               )}
-              <Button onClick={() => onGoToQuestion(index, question.text)} variant="textButton">
+              <Button onClick={e => onGoToQuestion(e, index, question.text)} variant="textButton">
                 Wijzig
               </Button>
             </Wrapper>
@@ -103,7 +104,7 @@ const ResultsPage = () => {
       })}
       <Navigation
         page={`checker-${PAGES.checkerResult}`}
-        onGoToPrev={() => onGoToQuestion(checker.stack.length - 1, checker._last?.text)} // eslint-disable-line no-underscore-dangle
+        onGoToPrev={e => onGoToQuestion(e, checker.stack.length - 1, checker._last?.text)} // eslint-disable-line no-underscore-dangle
         showPrev
         showNext
       />
