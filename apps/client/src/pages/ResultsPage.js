@@ -36,17 +36,15 @@ const ResultsPage = ({ topic, checker }) => {
   };
 
   checker.permits.forEach(permit => {
-    const conclusion = permit.getDecisionById("dummy");
-    if (conclusion.getOutput() === '"Vergunningplicht"') {
-      const decisiveDecisions = conclusion.getDecisiveInputs();
-      decisiveDecisions.flatMap(decision => {
-        decision.getDecisiveInputs().map(input => {
-          const index = checker.stack.indexOf(input);
-          permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(
-            permit
-          );
-          return true;
-        });
+    const conclusionDecision = permit.getDecisionById("dummy");
+    if (conclusionDecision.getOutput() === '"Vergunningplicht"') {
+      const decisiveDecisions = conclusionDecision.getDecisiveInputs();
+      decisiveDecisions.forEach(decision => {
+        const decisiveQuestion = decision.getDecisiveInputs().pop();
+        const index = checker.stack.indexOf(decisiveQuestion);
+        permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(
+          permit
+        );
       });
     }
   });
