@@ -63,7 +63,7 @@ const TOPICS = {
     },
   },
   'dakraam-plaatsen': {
-    status: STATUS.PRE_LIVE, // PRE_LIVE on PROD; LIVE on ACC;
+    status: STATUS.LIVE, // PRE_LIVE on PROD; LIVE on ACC;
     sttrPath: '/shared/content/sttr/WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams.json',
     text: {
       entity: 'dakraam',
