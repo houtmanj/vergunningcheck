@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.14](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.13...v0.1.14) (2020-03-11)
+
+### Features
+
+- Added page titles via Helmet ([2b657be](https://github.com/Amsterdam/Vergunningschecker/commit/2b657bec4b1520ce883b5e273b9222a5e5b58b27))
+- updated trackevents for ConclusionsPage ([a244d95](https://github.com/Amsterdam/Vergunningschecker/commit/a244d952d68b4fed1967c27e466e13b4f21ff572))
+- enabled dakraam on ACC for UX test ([cd248fa](https://github.com/Amsterdam/Vergunningschecker/commit/cd248fa83e797c769e25ca4d6d7684b3e84f3a9f))
+
+### Bug Fixes
+
+- added preventdefault to buttons ([b165535](https://github.com/Amsterdam/Vergunningschecker/commit/b16553595618e027a33718c2c6cb016769bf2b39))
+- typos and text changes for `dakraam` ([7057ef3](https://github.com/Amsterdam/Vergunningschecker/commit/7057ef3b1d7b6794301fccf21c235e93ccaf8a44))
+- Updated Dakraam STTR / JSON ([0f5fc5e](https://github.com/Amsterdam/Vergunningschecker/commit/0f5fc5e5246f16a348f7c513eb9561e10c7c0b55))
+
 ### [0.1.13](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.12...v0.1.13) (2020-03-04)
 
 ### Bug Fixes

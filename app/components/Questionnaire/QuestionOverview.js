@@ -1,10 +1,12 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { Heading, Paragraph } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
 import { areAllCondTrue } from 'shared/services/questionnaire/conditions';
 import QuestionAnswers from 'components/Questionnaire/QuestionAnswers';
+import { GET_TEXT } from '../../constants';
 
 const Container = styled(`div`)`
   display: flex;
@@ -14,6 +16,9 @@ const Container = styled(`div`)`
 
 const QuestionOverview = ({ userAddress, output, onGoToQuestion, userAnswers, questions }) => (
   <Container>
+    <Helmet>
+      <title>Uitkomsten - {GET_TEXT?.heading}</title>
+    </Helmet>
     <Heading $as="h3">Controleer uw antwoorden</Heading>
     <Paragraph>Adres: {userAddress}</Paragraph>
     <Paragraph>
