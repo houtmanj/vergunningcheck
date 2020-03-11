@@ -12,13 +12,24 @@ import Rule from "./models/rule";
  */
 function getQuestions(questionConfig) {
   return questionConfig.map(
-    ({ id, uuid, text, type, collection, options, description, ids }) => ({
+    ({
+      id,
+      uuid,
+      text,
+      type,
+      collection,
+      options,
+      description,
+      longDescription,
+      ids
+    }) => ({
       ids,
       question: new Question({
         id,
         type,
         text,
         description,
+        longDescription,
         collection,
         options,
         uuid

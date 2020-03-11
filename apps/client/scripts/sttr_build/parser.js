@@ -126,13 +126,17 @@ class Parser {
 
         const desc = curr["content:uitvoeringsregelToelichting"];
         let description;
+        let longDescription;
         if (desc && desc.length > 0) {
-          description = desc[0]["content:toelichting"].trim();
+          description = (desc[0]["content:toelichting"] || "").trim();
+          longDescription =
+            (desc[0]["content:langeToelichting"] || "").trim() || undefined;
         }
 
         result = {
           text: question["uitv:vraagTekst"],
-          description
+          description,
+          longDescription
         };
 
         if (sttrType === "list") {
