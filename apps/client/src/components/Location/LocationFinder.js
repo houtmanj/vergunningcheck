@@ -5,7 +5,6 @@ import { loader } from "graphql.macro";
 import { StyledTextField } from "./LocationFinderStyles";
 import Error from "../Error";
 import Teaser from "./Teaser";
-// import debounce from "lodash-es/debounce";
 
 const findAddress = loader("./LocationFinder.graphql");
 
@@ -27,6 +26,14 @@ const LocationFinder = props => {
   const { onChange } = props;
   const matches = data?.findAddress?.matches || [];
   const exactMatch = data?.findAddress?.exactMatch;
+  const noAddressFound =
+    postalCode &&
+    houseNumberFull &&
+    !loading &&
+    !exactMatch &&
+    matches.length === 0;
+  const multipleAddessFound =
+    postalCode && houseNumberFull && !loading && matches.length > 0;
 
   if (postalCode && houseNumberFull && !loading && (data || error)) {
     onChange(exactMatch);
@@ -43,6 +50,8 @@ const LocationFinder = props => {
       }
     }
   };
+
+  console.log(data);
 
   const handleBlur = e => {
     setTouched({ ...touched, [e.target.name]: true });
@@ -70,7 +79,11 @@ const LocationFinder = props => {
         onBlur={handleBlur}
         defaultValue={houseNumberFull}
         name="houseNumberFull"
-        errorMessage={validate("houseNumberFull", houseNumberFull, true)}
+        errorMessage={
+          noAddressFound
+            ? "Er is helaas geen adres in Amsterdam gevonden op basis van deze gegevens. Probeer het opnieuw."
+            : validate("houseNumberFull", houseNumberFull, true)
+        }
       />
 
       {loading && (
@@ -82,20 +95,16 @@ const LocationFinder = props => {
 
       {error && <Error error={error} />}
 
-      {exactMatch && <Teaser {...exactMatch} />}
-      {postalCode &&
-        houseNumberFull &&
-        !loading &&
-        !exactMatch &&
-        matches.length === 0 && <p>Er is geen adres gevonden</p>}
-
-      {postalCode &&
-        houseNumberFull &&
-        !loading &&
-        !exactMatch &&
-        matches.length > 0 && (
+      {console.log(exactMatch?.houseNumberFull)}
+      {console.log(matches[0]?.houseNumber)}
+      {console.log(matches[0]?.houseNumber === exactMatch?.houseNumberFull)}
+      {multipleAddessFound &&
+        exactMatch?.houseNumberFull !== matches[0]?.houseNumber && (
           <>
-            <Paragraph strong>Kies een adres:</Paragraph>
+            <Paragraph>
+              Er bestaan meerdere adressen bij {matches[0]?.streetName}{" "}
+              {matches[0]?.houseNumber}
+            </Paragraph>
 
             <Select
               label="Toevoeging"
@@ -116,9 +125,10 @@ const LocationFinder = props => {
             </Select>
           </>
         )}
+
+      {exactMatch && <Teaser {...exactMatch} />}
     </>
   );
-  // }
 };
 
 export default LocationFinder;
