@@ -3,7 +3,6 @@ const yargs = require("yargs");
 const fs = require("fs");
 const path = require("path");
 const fetch = require("node-fetch");
-const mkdirp = require("mkdirp");
 const batchPromises = require("batch-promises");
 const sttrbuild = require("./parser");
 
@@ -24,19 +23,16 @@ if (!OUTPUT_DIR) {
 
 const MAX_PARALLEL = 6;
 const env = process.env.STTR_ENV === "production" ? "PROD" : "STAGING";
-console.log("using environment", env);
 const sttrApi = `https://sttr-builder${
   env === "PROD" ? "" : "-staging"
 }.eu.meteorapp.com/api`;
-
 const listUrl = `${sttrApi}/activiteiten/bijwerkzaamheid`;
 const detailUrl = `${sttrApi}/conclusie/sttr`;
 const headers = {
   "x-api-key": process.env.STTR_BUILDER_API_KEY
 };
 
-const DISABLED = ["MtNRm9GhSkdPavHJa"];
-mkdirp(OUTPUT_DIR);
+console.log("Using environment", env);
 
 /**
  * @param {object} obj - an object to convert to json-string
@@ -44,16 +40,6 @@ mkdirp(OUTPUT_DIR);
  */
 function jsonString(obj) {
   return JSON.stringify(obj, ";", 2);
-}
-
-/**
- * Get json from response
- *
- * @param {any} res - the response object from node-fetch
- * @returns {object} a json string
- */
-function getJSON(res) {
-  return res.json();
 }
 
 /**
@@ -75,50 +61,37 @@ function checkStatus(res) {
 }
 
 (async () => {
-  const topics = await fetch(listUrl, { headers })
-    .then(checkStatus)
-    .then(getJSON)
+  fetch(listUrl, { headers })
+    .then(res => res.json())
     .then(json => {
-      fs.writeFile(
-        path.join(OUTPUT_DIR, "topics.source.json"),
-        jsonString(json),
-        err => {
-          if (err) throw err;
-          console.log("topics.source.json has been saved!");
-        }
-      );
-      return json;
-    })
-    .then(json =>
-      json.map(({ urn: id, naam: name, activiteiten: permits }) => ({
-        id,
-        name: name.trim(),
-        file: `${id}.json`,
-        permits: permits.map(({ id: permitId, naam: permitName }) => ({
-          id: permitId,
-          name: permitName.trim()
-        }))
-      }))
-    );
+      const target = path.join(OUTPUT_DIR, "topics.source.json");
+      fs.writeFile(target, jsonString(json), err => {
+        if (err) throw err;
+        console.log(`${target} has been saved`);
+      });
+    });
 
-  const permitsXML = await batchPromises(
-    MAX_PARALLEL,
-    topics.flatMap(t => t.permits),
-    ({ id }) =>
-      fetch(detailUrl, {
-        method: "post",
-        body: `activiteitId=${id}`,
-        headers: {
-          ...headers,
-          "content-type": "application/x-www-form-urlencoded"
-        }
+  const topics = require("./config");
+  const permitIds = Object.values(topics).flatMap(t => t.map(a => a.id));
+
+  const permitsXML = await batchPromises(MAX_PARALLEL, permitIds, id =>
+    fetch(detailUrl, {
+      method: "post",
+      body: `activiteitId=${id}`,
+      headers: {
+        ...headers,
+        "content-type": "application/x-www-form-urlencoded"
+      }
+    })
+      .then(checkStatus)
+      .then(res => res.text())
+      .then(xml => ({
+        id,
+        xml
+      }))
+      .catch(e => {
+        console.error("Failed to get xml for ", id, e);
       })
-        .then(checkStatus)
-        .then(res => res.text())
-        .then(xml => ({
-          id,
-          xml
-        }))
   );
 
   // write activity source xml files
@@ -129,33 +102,17 @@ function checkStatus(res) {
     });
   });
 
-  topics.forEach(({ id, file, name, permits }) => {
+  Object.entries(topics).forEach(([id, permits]) => {
+    const file = `${id}.json`;
     const data = {
       id,
-      name,
-      permits: permits
-        .filter(({ id: permitId }) => DISABLED.indexOf(permitId) === -1)
-        .map(permit => sttrbuild(permitsXML.find(p => p.id === permit.id).xml))
+      permits: permits.map(permit =>
+        sttrbuild(permitsXML.find(p => p.id === permit.id).xml)
+      )
     };
     fs.writeFile(path.join(OUTPUT_DIR, file), jsonString(data), err => {
       if (err) throw err;
       console.log(`'${file}' has been saved!`);
     });
   });
-
-  // writie activities.json
-  fs.writeFile(
-    path.join(OUTPUT_DIR, "topics.json"),
-    jsonString(
-      topics.map(({ id, name, file }) => ({
-        id,
-        name,
-        file
-      }))
-    ),
-    err => {
-      if (err) throw err;
-      console.log("topics.json has been saved!");
-    }
-  );
 })();

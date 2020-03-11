@@ -7,7 +7,7 @@ const withOloRedirect = Component => () => {
   const { slug } = useParams();
   const topic = topics.find(t => t.slug === slug);
 
-  if (topic.redirectToOlo) {
+  if (topic && topic.redirectToOlo) {
     return <RedirectPage topic={topic} />;
   }
 
