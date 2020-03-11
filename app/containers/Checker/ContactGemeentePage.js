@@ -56,7 +56,7 @@ const ContactGemeentePage = () => {
         onGoToPrev={onGoBack}
         showPrev
         showNext
-        nextText="Opnieuw checken"
+        nextText="Begin opnieuw"
         formEnds
       />
       <DebugDecisionTable checker={checker} />

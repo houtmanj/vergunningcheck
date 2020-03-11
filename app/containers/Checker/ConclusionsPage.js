@@ -69,7 +69,7 @@ const ConclusionsPage = () => {
           onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`)}
           showPrev
           showNext
-          nextText={authorized ? 'Naar het omgevingsloket' : 'Opnieuw checken'}
+          nextText={authorized ? 'Naar het omgevingsloket' : 'Begin opnieuw'}
           formEnds
         />
         <DebugDecisionTable checker={checker} />
