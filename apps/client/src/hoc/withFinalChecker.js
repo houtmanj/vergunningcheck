@@ -5,10 +5,10 @@ import withChecker from "./withChecker";
 
 const withFinalChecker = Component =>
   withChecker(props => {
-    const unfinishedPermit = props.checker.permits.find(
-      permit => !permit.getOutputByDecisionId("dummy")
+    const finishedPermit = props.checker.permits.find(
+      permit => !!permit.getOutputByDecisionId("dummy")
     );
-    if (unfinishedPermit) {
+    if (!finishedPermit) {
       console.warn("Checker not final, redirecting to question page");
       return (
         <Redirect to={geturl(routes.questions, { slug: props.topic.slug })} />
