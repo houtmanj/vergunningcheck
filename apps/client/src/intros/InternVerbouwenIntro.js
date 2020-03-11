@@ -1,5 +1,5 @@
 import React from "react";
-import DefaultIntroFooter from "../components/DefaultIntroFooter";
+import DefaultIntroFooter from "../components/DefaultIntro";
 
 export default () => (
   <DefaultIntroFooter>
