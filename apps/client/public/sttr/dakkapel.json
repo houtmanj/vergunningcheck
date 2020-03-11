@@ -8,6 +8,7 @@
           "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "type": "boolean",
           "id": "uitv__797c410f-2502-4626-9b14-7be7c49b0751",
+          "prio": 10,
           "uuid": "monument"
         }
       ],
@@ -18,7 +19,7 @@
         }
       },
       "decisions": {
-        "_6525e0f8-3ed9-4b12-aa05-7e973bb7a109": {
+        "_f3b5cff5-3530-488b-be39-3f0ca68f0d79": {
           "requiredInputs": [
             "#input__797c410f-2502-4626-9b14-7be7c49b0751"
           ],
@@ -41,7 +42,7 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_6525e0f8-3ed9-4b12-aa05-7e973bb7a109"
+            "#_f3b5cff5-3530-488b-be39-3f0ca68f0d79"
           ],
           "decisionTable": {
             "rules": [
@@ -71,12 +72,14 @@
           "text": "Staat het gebouw waarop u de dakkapel gaat plaatsen in een gebied waar gemeentelijke regels gelden voor het uiterlijk van gebouwen?",
           "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk voor gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. Controleer [op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) of het gebouw in een welstandsvrij gebied ligt.",
           "type": "boolean",
-          "id": "uitv__51fe2afb-ebfa-48e0-b81d-822c38eaf87a"
+          "id": "uitv__51fe2afb-ebfa-48e0-b81d-822c38eaf87a",
+          "prio": 10
         },
         {
           "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "type": "boolean",
           "id": "uitv__e3f23320-186c-4507-b6a6-84170426cc0a",
+          "prio": 20,
           "uuid": "monument"
         },
         {
@@ -88,79 +91,92 @@
             "achterkant"
           ],
           "type": "string",
-          "id": "uitv__2af9eafd-fd78-439f-a06c-bb7566c21154"
+          "id": "uitv__2af9eafd-fd78-439f-a06c-bb7566c21154",
+          "prio": 30
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_a_OTG_Zijkant-weg_v2.png)\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
-          "id": "uitv__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
+          "id": "uitv__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
+          "prio": 40
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_c_OTG_Zijkant-water_v2.png)\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
-          "id": "uitv__76fea73f-9000-4c9a-92e3-fc1003f6de60"
+          "id": "uitv__76fea73f-9000-4c9a-92e3-fc1003f6de60",
+          "prio": 50
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_b_OTG_Zijkant-plantsoen_v2.png)\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
-          "id": "uitv__2cf98565-883d-4eb0-9bb8-175ed6fc2f24"
+          "id": "uitv__2cf98565-883d-4eb0-9bb8-175ed6fc2f24",
+          "prio": 60
         },
         {
           "text": "Staat het gebouw waarop u de dakkapel gaat plaatsen in een beschermd stads- of dorpsgezicht?",
           "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
           "type": "boolean",
-          "id": "uitv__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7"
+          "id": "uitv__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
+          "prio": 70
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad, waar iedereen mag komen?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/6_a_OTG_Achterkant-weg_v2.png)\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
-          "id": "uitv__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7"
+          "id": "uitv__d1d50b2c-29d4-4d80-af46-d7d9d57cceb7",
+          "prio": 80
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/6_c_OTG_Achterkant-water_v2.png)\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
-          "id": "uitv__1c4854f4-ea25-450b-a7f4-734203024943"
+          "id": "uitv__1c4854f4-ea25-450b-a7f4-734203024943",
+          "prio": 90
         },
         {
           "text": "U gaat de dakkapel plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/6_b_OTG_Achterkant-plantsoen_v2.png)\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
-          "id": "uitv__69f71c11-edb3-4949-8951-1861308beb03"
+          "id": "uitv__69f71c11-edb3-4949-8951-1861308beb03",
+          "prio": 100
         },
         {
           "text": "Krijgt de dakkapel een plat dak?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/7_a_platdak_v2.png)",
           "type": "boolean",
-          "id": "uitv__01938ee8-1007-4b10-b672-6ebb050df5bf"
+          "id": "uitv__01938ee8-1007-4b10-b672-6ebb050df5bf",
+          "prio": 110
         },
         {
           "text": "Wordt de dakkapel hoger dan 1,75 meter?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_a_hoogte_dakkapel_3D-_v2.png)",
           "type": "boolean",
-          "id": "uitv__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
+          "id": "uitv__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6",
+          "prio": 120
         },
         {
           "text": "Wordt de afstand van het laagste punt van het dak tot de onderkant van de dakkapel tussen de 50 en 100 centimeter?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/9_a_afstand_tot_onderkant_3D_v2.png)",
           "type": "boolean",
-          "id": "uitv__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
+          "id": "uitv__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a",
+          "prio": 130
         },
         {
           "text": "Wordt de afstand tussen de bovenkant van de dakkapel en de bovenkant van het dak meer dan 50 centimeter?",
           "description": "Toelichting 'bovenkant van het dak': het gaat om het hoogste punt van het dak van het gebouw. U rekent een schoorsteen, schotel of antenne niet mee.\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/10_a_afstand_tot_bovenkant_3D-_v2.png)",
           "type": "boolean",
-          "id": "uitv__4420be2f-e8ca-46e8-9eec-e9036076fbff"
+          "id": "uitv__4420be2f-e8ca-46e8-9eec-e9036076fbff",
+          "prio": 140
         },
         {
           "text": "Worden de afstanden tussen de zijkanten van de dakkapel en de zijkanten van uw dak meer dan 50 centimeter?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/11_a_afstand_tot_dakrand_2D-v4.png)",
           "type": "boolean",
-          "id": "uitv__e097c508-67a8-408c-9e9b-b813eda85db0"
+          "id": "uitv__e097c508-67a8-408c-9e9b-b813eda85db0",
+          "prio": 150
         }
       ],
       "inputs": {
@@ -226,7 +242,7 @@
         }
       },
       "decisions": {
-        "_f5fbe3b4-7d59-4642-8669-73a7629cd4aa": {
+        "_a33e6954-46d1-4bdd-886a-eadb1368eb89": {
           "requiredInputs": [
             "#input__e097c508-67a8-408c-9e9b-b813eda85db0"
           ],
@@ -247,7 +263,7 @@
             ]
           }
         },
-        "_7911065f-84ab-4424-b167-4a7464a3931d": {
+        "_5e202e03-8aed-4f2a-b57b-23925ff87341": {
           "requiredInputs": [
             "#input__51fe2afb-ebfa-48e0-b81d-822c38eaf87a"
           ],
@@ -268,7 +284,7 @@
             ]
           }
         },
-        "_687af538-d2b5-48c3-8f73-bcf694ff7004": {
+        "_e563edc2-ca95-4061-aa17-b0f31ad98d9c": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154"
           ],
@@ -295,7 +311,7 @@
             ]
           }
         },
-        "_c38d7154-6282-4f9f-8c47-e5f558151595": {
+        "_4994278e-ab1e-485e-8002-f365c84ced0b": {
           "requiredInputs": [
             "#input__01938ee8-1007-4b10-b672-6ebb050df5bf"
           ],
@@ -316,7 +332,7 @@
             ]
           }
         },
-        "_f0f3a8f7-2d97-4177-bdc3-41d6ebed2e7f": {
+        "_e3e5e224-ed94-4f9e-b3cd-c529a847dbea": {
           "requiredInputs": [
             "#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
           ],
@@ -337,7 +353,7 @@
             ]
           }
         },
-        "_bd7e3634-5e74-4754-80c9-e445cae89eb5": {
+        "_f355d339-2c2d-4353-a84f-56c8ac920d32": {
           "requiredInputs": [
             "#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
           ],
@@ -358,7 +374,7 @@
             ]
           }
         },
-        "_60a6f8d0-f2e9-466e-8607-bc001ca4b55c": {
+        "_87e5b3af-cc1a-4a8d-bec2-04d4cf7f5219": {
           "requiredInputs": [
             "#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"
           ],
@@ -379,7 +395,7 @@
             ]
           }
         },
-        "_8a2af8a9-2e9f-4b12-b4fe-e98f28bdf196": {
+        "_0f345694-119f-45e0-a928-7da61bcce614": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a"
           ],
@@ -400,7 +416,7 @@
             ]
           }
         },
-        "_89f19417-7f1b-4562-8a91-d3d291f801f0": {
+        "_17334658-b631-4de7-876d-b5ba0199f94c": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
@@ -438,7 +454,7 @@
             ]
           }
         },
-        "_716d52ad-e977-4756-b272-6f4bc51c407c": {
+        "_2e1a4f35-de77-46d5-9b85-1a627fc862c2": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
@@ -489,7 +505,7 @@
             ]
           }
         },
-        "_3cca2084-4fda-42ba-8e2b-63edb1ba3857": {
+        "_9dfd060f-7bdb-4444-bb9f-04b547a04589": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
@@ -540,7 +556,7 @@
             ]
           }
         },
-        "_6f90b18a-9fbf-4b34-bae9-62b5bc46e367": {
+        "_42dec09f-2d94-4727-b2dd-9e8c37e40e3e": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
@@ -606,7 +622,7 @@
             ]
           }
         },
-        "_b53a653a-c5b2-48d7-8d72-a8f9bf763a8c": {
+        "_033040e1-bf17-4906-a33b-e201eb6cee88": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
@@ -672,7 +688,7 @@
             ]
           }
         },
-        "_991058be-a899-4616-82e5-e9a06ff02fde": {
+        "_ca20304e-c457-4cdf-a142-1578b980129c": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
@@ -757,20 +773,20 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_f5fbe3b4-7d59-4642-8669-73a7629cd4aa",
-            "#_7911065f-84ab-4424-b167-4a7464a3931d",
-            "#_687af538-d2b5-48c3-8f73-bcf694ff7004",
-            "#_c38d7154-6282-4f9f-8c47-e5f558151595",
-            "#_f0f3a8f7-2d97-4177-bdc3-41d6ebed2e7f",
-            "#_bd7e3634-5e74-4754-80c9-e445cae89eb5",
-            "#_60a6f8d0-f2e9-466e-8607-bc001ca4b55c",
-            "#_8a2af8a9-2e9f-4b12-b4fe-e98f28bdf196",
-            "#_89f19417-7f1b-4562-8a91-d3d291f801f0",
-            "#_716d52ad-e977-4756-b272-6f4bc51c407c",
-            "#_3cca2084-4fda-42ba-8e2b-63edb1ba3857",
-            "#_6f90b18a-9fbf-4b34-bae9-62b5bc46e367",
-            "#_b53a653a-c5b2-48d7-8d72-a8f9bf763a8c",
-            "#_991058be-a899-4616-82e5-e9a06ff02fde"
+            "#_a33e6954-46d1-4bdd-886a-eadb1368eb89",
+            "#_5e202e03-8aed-4f2a-b57b-23925ff87341",
+            "#_e563edc2-ca95-4061-aa17-b0f31ad98d9c",
+            "#_4994278e-ab1e-485e-8002-f365c84ced0b",
+            "#_e3e5e224-ed94-4f9e-b3cd-c529a847dbea",
+            "#_f355d339-2c2d-4353-a84f-56c8ac920d32",
+            "#_87e5b3af-cc1a-4a8d-bec2-04d4cf7f5219",
+            "#_0f345694-119f-45e0-a928-7da61bcce614",
+            "#_17334658-b631-4de7-876d-b5ba0199f94c",
+            "#_2e1a4f35-de77-46d5-9b85-1a627fc862c2",
+            "#_9dfd060f-7bdb-4444-bb9f-04b547a04589",
+            "#_42dec09f-2d94-4727-b2dd-9e8c37e40e3e",
+            "#_033040e1-bf17-4906-a33b-e201eb6cee88",
+            "#_ca20304e-c457-4cdf-a142-1578b980129c"
           ],
           "decisionTable": {
             "rules": [
