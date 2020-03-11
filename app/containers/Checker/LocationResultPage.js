@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Paragraph, themeColor } from '@datapunt/asc-ui';
@@ -51,6 +52,9 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
 
   return (
     <>
+      <Helmet>
+        <title>Uw adresgegevens - {GET_TEXT?.heading}</title>
+      </Helmet>
       <Form onSubmit={goToQuestions}>
         {loading && <LocationResult loading={loading} loadingText="De resultaten worden ingeladen." title="Laden..." />}
         {!loading && (

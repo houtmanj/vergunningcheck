@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { Heading, OrderedList, List, ListItem, Paragraph } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 import history from 'utils/history';
@@ -106,6 +107,9 @@ const IntroductionTextDakraam = () => (
 
 const IntroductionPage = () => (
   <>
+    <Helmet>
+      <title>Inleiding - {GET_TEXT?.heading}</title>
+    </Helmet>
     <Form
       onSubmit={e => {
         e.preventDefault();

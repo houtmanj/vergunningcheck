@@ -180,7 +180,7 @@
         }
       },
       "decisions": {
-        "_a3876767-0296-4346-8545-a442434e561b": {
+        "_ea24f58e-7fdd-4799-b842-2a1e06a0df28": {
           "requiredInputs": ["#input__bb667703-d5b0-4385-8b8a-e6c72f41d350"],
           "decisionTable": {
             "rules": [
@@ -195,7 +195,7 @@
             ]
           }
         },
-        "_19cfbebc-35a1-409d-a4e6-1a3b0ee48720": {
+        "_f4c93d32-f02d-4a35-bab9-4d9b25cdfe0a": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__1026b5d7-ef08-41e5-9d36-296b477d7277"
@@ -217,7 +217,7 @@
             ]
           }
         },
-        "_4192bfcd-0aa2-4316-a2a2-90633c7f55b3": {
+        "_1d4f695d-2100-4943-9d13-5628bdaf62c9": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
@@ -244,7 +244,7 @@
             ]
           }
         },
-        "_a1f1253e-4827-4ad4-83ef-cebb41c661ec": {
+        "_c1a75877-9966-481f-b647-120de3cfac3b": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -271,7 +271,7 @@
             ]
           }
         },
-        "_1982dd8a-09cb-46d1-869e-720c401aa834": {
+        "_aa5ae256-61a3-497e-b153-ea325e120074": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -298,7 +298,7 @@
             ]
           }
         },
-        "_07aad2c6-06ea-4419-8932-71eab2e74a07": {
+        "_c22b2a41-1637-4159-a2f6-98d6f8b08281": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -330,7 +330,7 @@
             ]
           }
         },
-        "_d2017e3c-f748-43cc-98a3-0da6be4d0931": {
+        "_f956e925-789c-42fc-a688-498686eae44b": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
@@ -362,7 +362,7 @@
             ]
           }
         },
-        "_729c9db9-44ab-41c4-899f-91c845a04fea": {
+        "_02b3592f-4ef5-45e9-8869-3dd294b34e7e": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -398,7 +398,7 @@
             ]
           }
         },
-        "_5f5366ff-7b0c-4607-8117-b92ed0519ea2": {
+        "_567cb619-6378-4961-80d7-b8e0b77da3f5": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
@@ -435,7 +435,7 @@
             ]
           }
         },
-        "_d1527e26-5d03-4085-8ce7-bcfdb9b41867": {
+        "_ea674aec-9be9-41a7-84ac-d1a238891620": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -476,7 +476,7 @@
             ]
           }
         },
-        "_506ed660-baf0-4453-9e02-ba1cfb77d083": {
+        "_385bd342-26f9-4902-b2fc-9cb648e621d1": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -517,7 +517,7 @@
             ]
           }
         },
-        "_1e2159bf-0f49-41e2-a69e-0a1a0c530af5": {
+        "_869324d6-02fc-449f-9394-aa6877ebde8e": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
@@ -559,7 +559,7 @@
             ]
           }
         },
-        "_43b4840f-1ce8-426c-bbd5-a4d880f46c0a": {
+        "_bb33c5d8-4aa7-4478-a47d-2f6ba422d2d2": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -605,7 +605,7 @@
             ]
           }
         },
-        "_9c79813e-c40a-499e-938f-4fc2070d9fc4": {
+        "_af0294df-cdcf-451e-9cf5-a730babdefa5": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -651,7 +651,7 @@
             ]
           }
         },
-        "_c4baf29e-8d8c-496a-a961-2025a4aad77e": {
+        "_44912202-9ea0-459b-8d8f-5ca592f7196e": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -702,7 +702,7 @@
             ]
           }
         },
-        "_d4aefd3a-6472-4fd5-b8db-edf705ff2771": {
+        "_970310b1-38ab-40b9-b578-7766d8945090": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__1026b5d7-ef08-41e5-9d36-296b477d7277",
@@ -715,7 +715,7 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [true, true, false, false, false, false, true],
+                "inputs": [true, true, false, false, false, false, false],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -743,13 +743,13 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "-", "-", "-", "-", "-", false],
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_4b2e5ba3-62be-4869-9891-cd0acc7f15ec": {
+        "_9a98bc62-8c19-49c0-872d-3e883ce4159d": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -800,7 +800,7 @@
             ]
           }
         },
-        "_f0bb62a6-4e9e-40b5-be64-06e527680748": {
+        "_d6759841-e23f-4e0c-8503-82f15a0e7336": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -851,7 +851,7 @@
             ]
           }
         },
-        "_b8c6b0ce-ab46-44b7-a9c3-932447833766": {
+        "_ba93dc70-fc73-4495-b47d-ced11f745ba4": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -907,7 +907,7 @@
             ]
           }
         },
-        "_735eb052-0086-4103-943f-51d3971c3a96": {
+        "_8f08aee1-d3a0-4c82-aca7-7e25d6c5cbbd": {
           "requiredInputs": [
             "#input__bc91339f-a16d-4eca-abb7-2c70d830ddf8",
             "#input__5f2c7e62-b2c0-492f-88ee-57da311998a0",
@@ -965,26 +965,26 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_a3876767-0296-4346-8545-a442434e561b",
-            "#_19cfbebc-35a1-409d-a4e6-1a3b0ee48720",
-            "#_4192bfcd-0aa2-4316-a2a2-90633c7f55b3",
-            "#_a1f1253e-4827-4ad4-83ef-cebb41c661ec",
-            "#_1982dd8a-09cb-46d1-869e-720c401aa834",
-            "#_07aad2c6-06ea-4419-8932-71eab2e74a07",
-            "#_d2017e3c-f748-43cc-98a3-0da6be4d0931",
-            "#_729c9db9-44ab-41c4-899f-91c845a04fea",
-            "#_5f5366ff-7b0c-4607-8117-b92ed0519ea2",
-            "#_d1527e26-5d03-4085-8ce7-bcfdb9b41867",
-            "#_506ed660-baf0-4453-9e02-ba1cfb77d083",
-            "#_1e2159bf-0f49-41e2-a69e-0a1a0c530af5",
-            "#_43b4840f-1ce8-426c-bbd5-a4d880f46c0a",
-            "#_9c79813e-c40a-499e-938f-4fc2070d9fc4",
-            "#_c4baf29e-8d8c-496a-a961-2025a4aad77e",
-            "#_d4aefd3a-6472-4fd5-b8db-edf705ff2771",
-            "#_4b2e5ba3-62be-4869-9891-cd0acc7f15ec",
-            "#_f0bb62a6-4e9e-40b5-be64-06e527680748",
-            "#_b8c6b0ce-ab46-44b7-a9c3-932447833766",
-            "#_735eb052-0086-4103-943f-51d3971c3a96"
+            "#_ea24f58e-7fdd-4799-b842-2a1e06a0df28",
+            "#_f4c93d32-f02d-4a35-bab9-4d9b25cdfe0a",
+            "#_1d4f695d-2100-4943-9d13-5628bdaf62c9",
+            "#_c1a75877-9966-481f-b647-120de3cfac3b",
+            "#_aa5ae256-61a3-497e-b153-ea325e120074",
+            "#_c22b2a41-1637-4159-a2f6-98d6f8b08281",
+            "#_f956e925-789c-42fc-a688-498686eae44b",
+            "#_02b3592f-4ef5-45e9-8869-3dd294b34e7e",
+            "#_567cb619-6378-4961-80d7-b8e0b77da3f5",
+            "#_ea674aec-9be9-41a7-84ac-d1a238891620",
+            "#_385bd342-26f9-4902-b2fc-9cb648e621d1",
+            "#_869324d6-02fc-449f-9394-aa6877ebde8e",
+            "#_bb33c5d8-4aa7-4478-a47d-2f6ba422d2d2",
+            "#_af0294df-cdcf-451e-9cf5-a730babdefa5",
+            "#_44912202-9ea0-459b-8d8f-5ca592f7196e",
+            "#_970310b1-38ab-40b9-b578-7766d8945090",
+            "#_9a98bc62-8c19-49c0-872d-3e883ce4159d",
+            "#_d6759841-e23f-4e0c-8503-82f15a0e7336",
+            "#_ba93dc70-fc73-4495-b47d-ced11f745ba4",
+            "#_8f08aee1-d3a0-4c82-aca7-7e25d6c5cbbd"
           ],
           "decisionTable": {
             "rules": [
@@ -1543,7 +1543,7 @@
       "name": "Conclusie Het wijzigen van een monument bij een dakraam",
       "questions": [
         {
-          "text": "Gaat u de dakkapel plaatsen op het dak van een gemeentelijk of rijksmonument?",
+          "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "type": "boolean",
           "id": "uitv__65b0660a-9d93-4be0-8198-8a191aedfbf6",
           "uuid": "monument"
@@ -1556,7 +1556,7 @@
         }
       },
       "decisions": {
-        "_33617125-9eaa-47bb-ae15-30d1d6913ad0": {
+        "_e19fda00-22e7-4b61-9149-a0edef39345f": {
           "requiredInputs": ["#input__65b0660a-9d93-4be0-8198-8a191aedfbf6"],
           "decisionTable": {
             "rules": [
@@ -1572,7 +1572,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_33617125-9eaa-47bb-ae15-30d1d6913ad0"],
+          "requiredDecisions": ["#_e19fda00-22e7-4b61-9149-a0edef39345f"],
           "decisionTable": {
             "rules": [
               {
