@@ -89,60 +89,9 @@ describe("Rule", () => {
       "'values' should be an array"
     );
   });
-  test("evaluate", () => {
-    // non-match values
-    expect(new Rule([true, false], "yes").evaluate([true])).toBe(false);
-    expect(new Rule([false, true], "yes").evaluate([true])).toBe(false);
-    expect(new Rule([true, false], "yes").evaluate([false])).toBe(false);
-    expect(new Rule([false, true], "yes").evaluate([false])).toBe(false);
-    expect(new Rule([true], "yes").evaluate([false])).toBe(false);
-    expect(new Rule([false], "yes").evaluate([true])).toBe(false);
 
-    // matches
-    expect(new Rule([true], "yes").evaluate([true])).toBe(true);
-    expect(new Rule([false], "yes").evaluate([false])).toBe(true);
-    expect(new Rule([true, false], "yes").evaluate([true, false])).toBe(true);
-    expect(new Rule([false, true], "yes").evaluate([false, true])).toBe(true);
+  xtest("'-' support", () => {});
 
-    // partial non-matches
-    expect(new Rule([true, false], "yes").evaluate([true])).toBe(false);
-    expect(new Rule([false, true], "yes").evaluate([false])).toBe(false);
-    expect(new Rule([true], "yes").evaluate([])).toBe(false);
-    expect(new Rule([false], "yes").evaluate([])).toBe(false);
-
-    // partial match values
-    expect(new Rule([true], "yes").evaluate([true, false])).toBe(true);
-    expect(new Rule([false], "yes").evaluate([false, true])).toBe(true);
-    expect(new Rule([true, false], "yes").evaluate([true, false, "x"])).toBe(
-      true
-    );
-    expect(new Rule([true, "x"], "yes").evaluate([true, "x", "y"])).toBe(true);
-
-    // check types
-    expect(new Rule(["x"], "yes").evaluate([false, true])).toBe(false);
-    expect(new Rule([true, false], "yes").evaluate([true, "false"])).toBe(
-      false
-    );
-    expect(new Rule([true], "yes").evaluate(["true"])).toBe(false);
-
-    // error cases
-    expect(() => new Rule([true], "yes").evaluate(undefined)).toThrow(
-      "'values' should be an array"
-    );
-    expect(() => new Rule([true], "yes").evaluate({})).toThrow(
-      "'values' should be an array"
-    );
-    expect(() => new Rule([true], "yes").evaluate(null)).toThrow(
-      "'values' should be an array"
-    );
-    expect(() => new Rule([true], "yes").evaluate(false)).toThrow(
-      "'values' should be an array"
-    );
-  });
-
-  // test("'-' support", () => {
-
-  // });
   test("description", () => {
     expect(
       new Rule([true], true, "My very clear description.").description

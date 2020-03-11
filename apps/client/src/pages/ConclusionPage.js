@@ -22,20 +22,22 @@ const ConclusionsPage = ({ topic, checker }) => {
   const { slug } = topic;
 
   // find conclusions we want to display to the user
-  const conclusions = checker.permits.map(permit => {
-    const outcome = permit.getOutputByDecisionId("dummy").replace(/['"]+/g, "");
-    const dummyDecision = permit.getDecisionById("dummy");
-    const matchingRules = dummyDecision.getMatchingRules();
+  const conclusions = checker.permits
+    .filter(permit => !!permit.getOutputByDecisionId("dummy"))
+    .map(permit => {
+      const outcome = permit.getOutputByDecisionId("dummy");
+      const dummyDecision = permit.getDecisionById("dummy");
+      const matchingRules = dummyDecision.getMatchingRules();
 
-    return {
-      outcome,
-      title:
-        outcome === outcomes.NEED_CONTACT
-          ? "Neem contact op met de gemeente"
-          : `${permit.name}: ${outcome}`,
-      description: matchingRules[0].description
-    };
-  });
+      return {
+        outcome,
+        title:
+          outcome === outcomes.NEED_CONTACT
+            ? "Neem contact op met de gemeente"
+            : `${permit.name}: ${outcome.replace(/['"]+/g, "")}`,
+        description: matchingRules[0].description
+      };
+    });
 
   const needsPermit = !!conclusions.find(
     ({ outcome }) => outcome === outcomes.NEED_PERMIT
@@ -62,7 +64,7 @@ const ConclusionsPage = ({ topic, checker }) => {
         <title>Conclusie - {topic.text.heading}</title>
       </Helmet>
       <Form onSubmit={handleSubmit}>
-        <Heading $as="h1">Conclusies</Heading>
+        <Heading $as="h1">Conclusie</Heading>
 
         <Paragraph>
           Op basis van uw antwoorden vind u hieronder wat voor uw activiteit van
