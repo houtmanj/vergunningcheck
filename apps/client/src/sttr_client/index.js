@@ -20,6 +20,7 @@ function getQuestions(questionConfig) {
       collection,
       options,
       description,
+      longDescription,
       ids,
       prio
     }) => ({
@@ -29,6 +30,7 @@ function getQuestions(questionConfig) {
         type,
         text,
         description,
+        longDescription,
         collection,
         options,
         uuid,

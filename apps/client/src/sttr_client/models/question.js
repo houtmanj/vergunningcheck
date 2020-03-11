@@ -33,6 +33,7 @@ class Question {
    * @param {string} type - data type of the question, eg. 'boolean', or 'geo'
    * @param {string} text - the question itself
    * @param {string} [description] - a description for this question (mind the max-length)
+   * @param {string} [longDescription] - a longer description for this question (mind the max-length)
    * @param {(boolean|string|number|string[])} [answer] the values inputs should have
    * @param {string[]} [options] a list of options for the answer
    * @param {boolean} [multipleAnswers=false] indicates if answer should be a list
@@ -42,6 +43,7 @@ class Question {
     type,
     text,
     description,
+    longDescription,
     answer,
     options,
     uuid,
@@ -68,6 +70,15 @@ class Question {
         `'description' must be a string with max. ${DESC_MAX_LENGTH} chars`
       );
     }
+    if (
+      longDescription !== undefined &&
+      (!isString(longDescription) ||
+        [...longDescription].length > DESC_MAX_LENGTH)
+    ) {
+      throw Error(
+        `'longDescription' must be a string with max. ${DESC_MAX_LENGTH} chars`
+      );
+    }
     if (uuid !== undefined && !isString(uuid)) {
       throw Error(`'uuid' for Question must be a string`);
     }
@@ -88,6 +99,7 @@ class Question {
     this._multipleAnswers = multipleAnswers;
     this._options = options ? options.map(val => `"${val}"`) : undefined;
     this._description = description;
+    this._longDescription = longDescription;
     if (answer !== undefined) {
       this.setAnswer(answer);
     }
@@ -121,6 +133,10 @@ class Question {
 
   get description() {
     return this._description;
+  }
+
+  get longDescription() {
+    return this._longDescription;
   }
 
   setAnswer(value) {
