@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { Paragraph, TextField, Select, themeColor, Heading } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
@@ -104,6 +105,9 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
   return (
     <>
+      <Helmet>
+        <title>Invullen adres - {GET_TEXT?.heading}</title>
+      </Helmet>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Heading $as="h4">Invullen adres</Heading>
         <Paragraph>Voer het adres in waar u {GET_TEXT?.topicLocation}.</Paragraph>

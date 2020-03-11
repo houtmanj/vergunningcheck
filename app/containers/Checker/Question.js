@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { useForm } from 'react-hook-form';
@@ -9,7 +10,7 @@ import { ExplanationModal } from 'components/Modal';
 import Form from 'components/Form/Form';
 import Navigation from 'components/Navigation';
 import Answers from './Answers';
-import { PAGES, booleanOptions } from '../../constants';
+import { PAGES, booleanOptions, GET_TEXT } from '../../constants';
 
 const Image = styled(`img`)`
   max-width: 100%;
@@ -93,33 +94,40 @@ const Question = ({
   }
 
   return (
-    <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId}>
-      {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
-      {description && (
-        <ReactMarkdown
-          source={description}
-          renderers={{ paragraph: StyledParagraph, image: Image }}
-          linkTarget="_blank"
+    <>
+      <Helmet>
+        <title>
+          {GET_TEXT?.heading} - {questionTitle}
+        </title>
+      </Helmet>
+      <Form className={className} onSubmit={handleSubmit(onSubmit)} data-id={questionId}>
+        {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
+        {description && (
+          <ReactMarkdown
+            source={description}
+            renderers={{ paragraph: StyledParagraph, image: Image }}
+            linkTarget="_blank"
+          />
+        )}
+        {longDescription && <ExplanationModal modalText={longDescription} />}
+        <Answers
+          questionId={questionId}
+          onChange={handleChange}
+          errors={errors}
+          answers={answers}
+          currentAnswer={answer}
         />
-      )}
-      {longDescription && <ExplanationModal modalText={longDescription} />}
-      <Answers
-        questionId={questionId}
-        onChange={handleChange}
-        errors={errors}
-        answers={answers}
-        currentAnswer={answer}
-      />
-      {!hideNavigation && (
-        <Navigation
-          page={`checker-${PAGES.checkerQuestions}`}
-          showPrev={showPrev}
-          showNext={showNext}
-          onGoToPrev={onGoToPrev}
-          disableNext={disableNext}
-        />
-      )}
-    </Form>
+        {!hideNavigation && (
+          <Navigation
+            page={`checker-${PAGES.checkerQuestions}`}
+            showPrev={showPrev}
+            showNext={showNext}
+            onGoToPrev={onGoToPrev}
+            disableNext={disableNext}
+          />
+        )}
+      </Form>
+    </>
   );
 };
 
