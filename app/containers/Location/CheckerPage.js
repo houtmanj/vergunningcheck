@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Helmet from 'react-helmet';
 import { useForm } from 'react-hook-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -126,6 +127,9 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
 
   return (
     <>
+      <Helmet>
+        <title>Invullen adres - {GET_TEXT?.heading}</title>
+      </Helmet>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Paragraph>Voer het adres in waar u {GET_TEXT?.topicLocation}.</Paragraph>
         <TextField
