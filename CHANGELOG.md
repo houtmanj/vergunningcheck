@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 - Added page titles via Helmet ([2b657be](https://github.com/Amsterdam/Vergunningschecker/commit/2b657bec4b1520ce883b5e273b9222a5e5b58b27))
+- updated trackevents for ConclusionsPage ([a244d95](https://github.com/Amsterdam/Vergunningschecker/commit/a244d952d68b4fed1967c27e466e13b4f21ff572))
 - enabled dakraam on ACC for UX test ([cd248fa](https://github.com/Amsterdam/Vergunningschecker/commit/cd248fa83e797c769e25ca4d6d7684b3e84f3a9f))
 
 ### Bug Fixes
