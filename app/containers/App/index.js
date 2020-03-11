@@ -70,14 +70,13 @@ export const App = props => {
   useInjectSaga({ key: addressInputKey, saga: locationSaga });
   useInjectSaga({ key: questionnaireKey, saga: questionnaireSaga });
 
-  const currentRoute = props.location.pathname.split('/')[1];
   const { trackPageView } = useMatomo();
 
   // @datapunt Track Page View
   // Docu: https://github.com/Amsterdam/matomo-tracker/tree/master/packages/react
   React.useEffect(() => {
     trackPageView();
-  }, [currentRoute]);
+  }, [props.location.pathname]);
 
   return (
     <Container>
