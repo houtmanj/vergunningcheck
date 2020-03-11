@@ -45,7 +45,8 @@ const topics = [
       heading: "Vergunningchecker aanbouw of uitbouw maken",
       locationIntro:
         "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken"
-    }
+    },
+    intro: "AanbouwIntro"
   },
   {
     slug: "kozijnen-plaatsen-of-vervangen",
@@ -53,7 +54,8 @@ const topics = [
       heading: "Vergunningchecker kozijnen plaatsen of vervangen",
       locationIntro:
         "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen"
-    }
+    },
+    intro: "KozijnenIntro"
   },
   {
     slug: "zonnepanelen-of-warmtecollectoren-plaatsen",
@@ -61,21 +63,24 @@ const topics = [
       heading: "Vergunningchecker zonnepanelen of warmtecollectoren plaatsen",
       locationIntro:
         "Voer het adres in waar u de zonnepanelen of warmtecollectoren wilt gaan plaatsen"
-    }
+    },
+    intro: "ZonnepanelenIntro"
   },
   {
     slug: "bouwwerk-slopen",
     text: {
       heading: "Vergunningchecker bouwwerk slopen",
       locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen"
-    }
+    },
+    intro: "BouwwerkSlopenIntro"
   },
   {
     slug: "intern-verbouwen",
     text: {
       heading: "Vergunningchecker intern verbouwen",
       locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen"
-    }
+    },
+    intro: "InternVerbouwenIntro"
   }
 ];
 
@@ -86,7 +91,8 @@ if (process.env.REACT_APP_STTR_ENV !== "production") {
     text: {
       heading: "Vergunningchecker dakkapel plaatsen",
       locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen"
-    }
+    },
+    intro: "AanbouwIntro"
   });
 }
 

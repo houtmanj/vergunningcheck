@@ -9,12 +9,8 @@ import Nav from "../components/Nav";
 import Layout from "../components/Layouts/DefaultLayout";
 import Helmet from "react-helmet";
 
-const DefaultIntro = () => <p>...</p>;
-
 const IntroPage = ({ topic: { text, slug, intro } }) => {
-  const Intro = intro
-    ? React.lazy(() => import(`../intros/${intro}`))
-    : DefaultIntro;
+  const Intro = React.lazy(() => import(`../intros/${intro}`));
   return (
     <Layout>
       <Helmet>
