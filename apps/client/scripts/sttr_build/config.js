@@ -51,6 +51,12 @@ module.exports = {
         id: "rpqSbyPsSK29JcAm9",
         name: "Het wijzigen van een monument bij een dakraam"
       }
+    ],
+    outcomes: [
+      {
+        id: "p3a48QBHA48YkZrRs",
+        name: "Testing different outcomes/conclusions"
+      }
     ]
   }
 }[process.env.STTR_ENV];

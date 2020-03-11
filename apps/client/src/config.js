@@ -86,13 +86,13 @@ const topics = [
 
 if (process.env.REACT_APP_STTR_ENV !== "production") {
   topics.push({
-    slug: "test",
-    sttrFile: "AanOfUitbouwBouwen.json",
+    slug: "test-outcomes",
+    sttrFile: "outcomes.json",
     text: {
-      heading: "Vergunningchecker dakkapel plaatsen",
-      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen"
+      heading: "Testing different outcomes/conclusions",
+      locationIntro: "Pick a random address..."
     },
-    intro: "AanbouwIntro"
+    intro: "DebugIntro"
   });
 }
 
