@@ -13,6 +13,7 @@ const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 const LocationFinder = props => {
   const [postalCode, setPostalCode] = useState(props.postalCode);
   const [houseNumberFull, setHouseNumberFull] = useState(props.houseNumberFull);
+  const [tempHouseNumber, setTempHouseNumber] = useState(props.houseNumberFull);
   const [touched, setTouched] = useState({});
 
   const { loading, error, data } = useQuery(findAddress, {
@@ -97,36 +98,39 @@ const LocationFinder = props => {
 
       {console.log(exactMatch?.houseNumberFull)}
       {console.log(matches[0]?.houseNumber)}
+      {console.log("temp", tempHouseNumber)}
       {console.log(matches[0]?.houseNumber === exactMatch?.houseNumberFull)}
-      {multipleAddessFound &&
-        exactMatch?.houseNumberFull !== matches[0]?.houseNumber && (
-          <>
-            <Paragraph>
-              Er bestaan meerdere adressen bij {matches[0]?.streetName}{" "}
-              {matches[0]?.houseNumber}
-            </Paragraph>
+      {multipleAddessFound && (
+        <>
+          <Paragraph>
+            Er bestaan meerdere adressen bij {matches[0]?.streetName}{" "}
+            {matches[0]?.houseNumber}
+          </Paragraph>
 
-            <Select
-              label="Toevoeging"
-              name="suffix"
-              onChange={e => {
-                setHouseNumberFull(e.target.value);
-              }}
-            >
-              <option value="">Maak een keuze</option>
-              {matches.map(match => (
-                <option
-                  value={match.houseNumberFull}
-                  key={match.houseNumberFull}
-                >
-                  {match.houseNumberFull}
-                </option>
-              ))}
-            </Select>
-          </>
-        )}
+          <Select
+            label="Toevoeging"
+            name="suffix"
+            onChange={e => {
+              setTempHouseNumber(e.target.value);
+            }}
+          >
+            <option value="">Maak een keuze</option>
+            {matches.map((match, index) => (
+              <option value={index} key={match.houseNumberFull}>
+                {match.houseNumberFull}
+              </option>
+            ))}
+          </Select>
+        </>
+      )}
 
-      {exactMatch && <Teaser {...exactMatch} />}
+      {(exactMatch || tempHouseNumber) && (
+        <Teaser
+          {...(exactMatch
+            ? { ...exactMatch }
+            : { ...matches[tempHouseNumber] })}
+        />
+      )}
     </>
   );
 };
