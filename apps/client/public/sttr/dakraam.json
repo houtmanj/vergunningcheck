@@ -7,7 +7,8 @@
         {
           "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "type": "boolean",
-          "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72"
+          "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
+          "prio": 10
         }
       ],
       "inputs": {
@@ -17,7 +18,7 @@
         }
       },
       "decisions": {
-        "_084f353b-de22-4041-a7eb-8648da7e843a": {
+        "_a97ced3f-b9b9-469f-898c-2b0be888dfd0": {
           "requiredInputs": [
             "#input__a165828d-8708-4db6-92c4-9c767ad7cc72"
           ],
@@ -40,7 +41,7 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_084f353b-de22-4041-a7eb-8648da7e843a"
+            "#_a97ced3f-b9b9-469f-898c-2b0be888dfd0"
           ],
           "decisionTable": {
             "rules": [

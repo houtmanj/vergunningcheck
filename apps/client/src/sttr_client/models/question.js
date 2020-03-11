@@ -1,5 +1,6 @@
 import isString from "lodash.isstring";
 import { collectionOfType } from "../util";
+import isNumber from "lodash.isnumber";
 
 const DESC_MAX_LENGTH = 2048;
 
@@ -46,6 +47,7 @@ class Question {
     answer,
     options,
     uuid,
+    prio,
     multipleAnswers = false
   }) {
     if (id !== undefined && !isString(id)) {
@@ -56,6 +58,9 @@ class Question {
     }
     if (text !== undefined && !isString(text)) {
       throw Error(`'text' for Question must be a string (got "${text}"`);
+    }
+    if (prio === undefined || !isNumber(prio)) {
+      throw Error(`'prio' for Question must be a number (got "${prio}"`);
     }
     if (
       description !== undefined &&
@@ -90,6 +95,7 @@ class Question {
     this._type = type;
     this._text = text;
     this._uuid = uuid;
+    this._prio = prio;
     this._multipleAnswers = multipleAnswers;
     this._options = options ? options.map(val => `"${val}"`) : undefined;
     this._description = description;
@@ -103,6 +109,10 @@ class Question {
 
   get id() {
     return this._id;
+  }
+
+  get prio() {
+    return this._prio;
   }
 
   get uuid() {

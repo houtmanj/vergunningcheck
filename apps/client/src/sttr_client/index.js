@@ -21,7 +21,8 @@ function getQuestions(questionConfig) {
       options,
       description,
       longDescription,
-      ids
+      ids,
+      prio
     }) => ({
       ids,
       question: new Question({
@@ -32,7 +33,8 @@ function getQuestions(questionConfig) {
         longDescription,
         collection,
         options,
-        uuid
+        uuid,
+        prio
       })
     })
   );
@@ -81,6 +83,9 @@ function getDecision(id, decisionConfig, questions) {
  */
 function getChecker(config) {
   const { permits: permitsConfig } = config;
+  if (!permitsConfig || permitsConfig.length === 0) {
+    throw new Error("Permits cannot be empty.");
+  }
   const x = permitsConfig.reduce((acc, permitConfig) => {
     permitConfig.questions.forEach(question => {
       const previousByUUID = question.uuid

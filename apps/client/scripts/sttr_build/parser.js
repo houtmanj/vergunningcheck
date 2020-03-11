@@ -153,6 +153,7 @@ class Parser {
         result.type = sttrType === "list" ? "string" : sttrType;
       }
       result.id = curr["@_id"];
+      result.prio = curr["inter:prioriteit"];
       result.uuid = curr["uitv:herbruikbaarId"];
       return result;
     });
