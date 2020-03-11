@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import slugify from 'slugify';
 import styled from '@datapunt/asc-core';
 import { Button } from '@datapunt/asc-ui';
 import { ChevronLeft } from '@datapunt/asc-assets';
@@ -20,7 +21,8 @@ const Navigation = ({ page, showPrev, onGoToPrev, showNext, disableNext, nextTex
   const { trackEvent } = useMatomo();
 
   const handleNextClick = () => {
-    trackEvent({ category: page, action: 'form-volgende-knop', name: GET_CURRENT_TOPIC() });
+    const action = formEnds ? slugify(nextText.toLowerCase()) : 'form-volgende-knop';
+    trackEvent({ category: page, action, name: GET_CURRENT_TOPIC() });
   };
   const handlePrevClick = e => {
     trackEvent({ category: page, action: 'form-vorige-knop', name: GET_CURRENT_TOPIC() });
