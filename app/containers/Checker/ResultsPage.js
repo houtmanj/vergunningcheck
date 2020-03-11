@@ -68,7 +68,7 @@ const ResultsPage = () => {
     >
       <Paragraph strong>
         Hieronder kunt u per vraag uw gegeven antwoord teruglezen en eventueel wijzigen. Als u een wijziging doet moet u
-        alle volgende vragen opnieuw beantwoorden.
+        misschien enkele vragen opnieuw beantwoorden.
       </Paragraph>
       <MainWrapper>
         <Question>Vraag</Question>
