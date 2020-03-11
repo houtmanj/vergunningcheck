@@ -2,12 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.15](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.13...v0.1.15) (2020-03-11)
+
+### Bug Fixes
+- update useEffect to trigger trackPageView ([633cb60](https://github.com/Amsterdam/Vergunningschecker/commit/633cb6013650a8a7b7c68190a2efa44f7bfef72d))
+
 ### [0.1.14](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.13...v0.1.14) (2020-03-11)
 
 ### Features
 
 - Added page titles via Helmet ([2b657be](https://github.com/Amsterdam/Vergunningschecker/commit/2b657bec4b1520ce883b5e273b9222a5e5b58b27))
-- updated trackevents for ConclusionsPage ([a244d95](https://github.com/Amsterdam/Vergunningschecker/commit/a244d952d68b4fed1967c27e466e13b4f21ff572))
+- enabled dakraam on ACC for UX test ([cd248fa](https://github.com/Amsterdam/Vergunningschecker/commit/cd248fa83e797c769e25ca4d6d7684b3e84f3a9f))
+- updated trackevents for ConclusionsPage ([89765b9](https://github.com/Amsterdam/Vergunningschecker/commit/89765b9206a1cba80f3acb45d123f9b12af2676d))
 - enabled dakraam on ACC for UX test ([cd248fa](https://github.com/Amsterdam/Vergunningschecker/commit/cd248fa83e797c769e25ca4d6d7684b3e84f3a9f))
 
 ### Bug Fixes
