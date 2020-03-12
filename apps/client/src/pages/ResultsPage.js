@@ -62,8 +62,8 @@ const ResultsPage = ({ topic, checker }) => {
       >
         <Paragraph strong>
           Hieronder kunt u per vraag uw gegeven antwoord teruglezen en eventueel
-          wijzigen. Als u een wijziging doet moet u alle volgende vragen opnieuw
-          beantwoorden.
+          wijzigen. Als u een wijziging doet moet u misschien enkele vragen
+          opnieuw beantwoorden.
         </Paragraph>
         <MainWrapper>
           <Question>Vraag</Question>
