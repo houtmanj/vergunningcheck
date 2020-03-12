@@ -49,6 +49,10 @@ const ConclusionsPage = ({ topic, checker }) => {
     ? [contactConclusion]
     : conclusions;
 
+  const previousUrl = contactConclusion
+    ? geturl(routes.questions, { slug })
+    : geturl(routes.results, { slug });
+
   const handleSubmit = e => {
     e.preventDefault();
     if (needsPermit) {
@@ -83,7 +87,7 @@ const ConclusionsPage = ({ topic, checker }) => {
         ))}
 
         <Nav
-          onGoToPrev={() => history.push(geturl(routes.results, { slug }))}
+          onGoToPrev={() => history.push(previousUrl)}
           showPrev
           showNext
           nextText={needsPermit ? "Naar het omgevingsloket" : "Opnieuw checken"}
