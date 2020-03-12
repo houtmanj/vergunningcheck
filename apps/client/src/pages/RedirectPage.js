@@ -15,9 +15,13 @@ const RedirectPage = () => {
   });
 
   return (
-    <Layout>
+    <Layout heading="Een ogenblik geduld alstublieft">
       <Paragraph>
-        Uw wordt binnen enkele ogenblikken doorgestuurd naar het omgevingsloket.
+        Wij sturen u automatisch door naar de website van het{" "}
+        <a title="landelijke Omgevingsloket" href={OLO.intro}>
+          landelijke Omgevingsloket
+        </a>
+        .
       </Paragraph>
     </Layout>
   );
