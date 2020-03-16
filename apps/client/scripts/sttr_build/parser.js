@@ -125,14 +125,17 @@ class Parser {
         const sttrType = question["uitv:gegevensType"];
 
         const desc = curr["content:uitvoeringsregelToelichting"];
-        let description;
-        if (desc && desc.length > 0) {
-          description = desc[0]["content:toelichting"].trim();
-        }
 
         result = {
           text: question["uitv:vraagTekst"],
-          description
+          description:
+            desc && desc.length && desc[0]["content:toelichting"]
+              ? desc[0]["content:toelichting"].trim()
+              : undefined,
+          longDescription:
+            desc && desc.length && desc[0]["content:langeToelichting"]
+              ? desc[0]["content:langeToelichting"].trim()
+              : undefined
         };
 
         if (sttrType === "list") {
@@ -150,6 +153,7 @@ class Parser {
         result.type = sttrType === "list" ? "string" : sttrType;
       }
       result.id = curr["@_id"];
+      result.prio = curr["inter:prioriteit"];
       result.uuid = curr["uitv:herbruikbaarId"];
       return result;
     });

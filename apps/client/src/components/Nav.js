@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import slugify from "slugify";
 import { Button } from "@datapunt/asc-ui";
 import { ChevronLeft } from "@datapunt/asc-assets";
 import { useMatomo } from "@datapunt/matomo-tracker-react";
@@ -25,9 +26,12 @@ const Nav = ({
   const category = route.matamoPage || route.name;
 
   const handleNextClick = () => {
+    const action = formEnds
+      ? slugify(nextText.toLowerCase())
+      : "form-volgende-knop";
     trackEvent({
       category,
-      action: "form-volgende-knop",
+      action,
       name
     });
   };

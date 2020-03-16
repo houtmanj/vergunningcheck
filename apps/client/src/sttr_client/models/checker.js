@@ -75,7 +75,8 @@ class Checker {
           });
         return acc;
       }, [])
-      .filter(uniqueFilter);
+      .filter(uniqueFilter)
+      .sort((a, b) => a.prio - b.prio);
   }
 
   /**

@@ -1,5 +1,6 @@
 import isString from "lodash.isstring";
 import { collectionOfType } from "../util";
+import isNumber from "lodash.isnumber";
 
 const DESC_MAX_LENGTH = 2048;
 
@@ -32,6 +33,7 @@ class Question {
    * @param {string} type - data type of the question, eg. 'boolean', or 'geo'
    * @param {string} text - the question itself
    * @param {string} [description] - a description for this question (mind the max-length)
+   * @param {string} [longDescription] - a longer description for this question (mind the max-length)
    * @param {(boolean|string|number|string[])} [answer] the values inputs should have
    * @param {string[]} [options] a list of options for the answer
    * @param {boolean} [multipleAnswers=false] indicates if answer should be a list
@@ -41,9 +43,11 @@ class Question {
     type,
     text,
     description,
+    longDescription,
     answer,
     options,
     uuid,
+    prio,
     multipleAnswers = false
   }) {
     if (id !== undefined && !isString(id)) {
@@ -55,12 +59,24 @@ class Question {
     if (text !== undefined && !isString(text)) {
       throw Error(`'text' for Question must be a string (got "${text}"`);
     }
+    if (prio === undefined || !isNumber(prio)) {
+      throw Error(`'prio' for Question must be a number (got "${prio}"`);
+    }
     if (
       description !== undefined &&
       (!isString(description) || [...description].length > DESC_MAX_LENGTH)
     ) {
       throw Error(
         `'description' must be a string with max. ${DESC_MAX_LENGTH} chars`
+      );
+    }
+    if (
+      longDescription !== undefined &&
+      (!isString(longDescription) ||
+        [...longDescription].length > DESC_MAX_LENGTH)
+    ) {
+      throw Error(
+        `'longDescription' must be a string with max. ${DESC_MAX_LENGTH} chars`
       );
     }
     if (uuid !== undefined && !isString(uuid)) {
@@ -79,9 +95,11 @@ class Question {
     this._type = type;
     this._text = text;
     this._uuid = uuid;
+    this._prio = prio;
     this._multipleAnswers = multipleAnswers;
     this._options = options ? options.map(val => `"${val}"`) : undefined;
     this._description = description;
+    this._longDescription = longDescription;
     if (answer !== undefined) {
       this.setAnswer(answer);
     }
@@ -91,6 +109,10 @@ class Question {
 
   get id() {
     return this._id;
+  }
+
+  get prio() {
+    return this._prio;
   }
 
   get uuid() {
@@ -111,6 +133,10 @@ class Question {
 
   get description() {
     return this._description;
+  }
+
+  get longDescription() {
+    return this._longDescription;
   }
 
   setAnswer(value) {

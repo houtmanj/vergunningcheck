@@ -1,0 +1,19 @@
+import React from "react";
+import { List, ListItem, Heading, Paragraph } from "@datapunt/asc-ui";
+
+export default ({ children }) => (
+  <>
+    <Heading $as="h3">Hoe werkt het?</Heading>
+    <Paragraph gutterBottom={8}>{children}</Paragraph>
+    <List variant="bullet">
+      <ListItem>U voert eerst het adres van het gebouw in.</ListItem>
+      <ListItem>
+        Vervolgens krijgt u informatie over het gebouw te zien.
+      </ListItem>
+      <ListItem>
+        U gebruikt deze informatie om de vergunningcheck te doen op het
+        Omgevingsloket.
+      </ListItem>
+    </List>
+  </>
+);

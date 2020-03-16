@@ -41,10 +41,10 @@ const LocationPage = ({ topic }) => {
   return (
     <Layout>
       <Helmet>
-        <title>Invullen adres - {topic.text.heading}</title>
+        <title>Invullen adres - {text.heading}</title>
       </Helmet>
       <Heading $as="h4">Invullen adres</Heading>
-      <Paragraph>Voer het adres in waar u {text.topicLocation}.</Paragraph>
+      <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={onSubmit}>
         <LocationFinder
           onChange={setAddress}

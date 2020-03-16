@@ -12,16 +12,29 @@ import Rule from "./models/rule";
  */
 function getQuestions(questionConfig) {
   return questionConfig.map(
-    ({ id, uuid, text, type, collection, options, description, ids }) => ({
+    ({
+      id,
+      uuid,
+      text,
+      type,
+      collection,
+      options,
+      description,
+      longDescription,
+      ids,
+      prio
+    }) => ({
       ids,
       question: new Question({
         id,
         type,
         text,
         description,
+        longDescription,
         collection,
         options,
-        uuid
+        uuid,
+        prio
       })
     })
   );
@@ -70,6 +83,9 @@ function getDecision(id, decisionConfig, questions) {
  */
 function getChecker(config) {
   const { permits: permitsConfig } = config;
+  if (!permitsConfig || permitsConfig.length === 0) {
+    throw new Error("Permits cannot be empty.");
+  }
   const x = permitsConfig.reduce((acc, permitConfig) => {
     permitConfig.questions.forEach(question => {
       const previousByUUID = question.uuid

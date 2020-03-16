@@ -4,151 +4,61 @@ import Question from "./question";
 import Rule from "./rule";
 import Decision from "./decision";
 
-const getQuestions = () => [
-  new Question("aaa", "boolean", "Are you older then 18 years?"),
-  new Question("bbb", "boolean", "Do you live in the Netherlands?")
-];
+const q1 = new Question({
+  id: "aaa",
+  type: "boolean",
+  text: "Are you having fun?",
+  prio: 10
+});
+const q2 = new Question({
+  id: "bbb",
+  type: "boolean",
+  text: "Do you live in Alkmaar?",
+  prio: 20
+});
 
-describe("Checker", () => {
-  test("simple sttr checker", () => {
-    const questions = getQuestions();
-    const checker = new Checker(
-      new Permit("drivers-license", [
-        new Decision("a", questions, [
-          new Rule([false], "no"),
-          new Rule([true, false], "not sure"),
-          new Rule([true, true], "yes")
-        ])
-      ])
+describe("Checker recursive", () => {
+  test("initialization", () => {
+    const d1 = new Decision(
+      "a",
+      [q1],
+      [new Rule([true], "fun!"), new Rule([false], "boring")]
     );
+    const d2 = new Decision(
+      "b",
+      [q1, q2],
+      [new Rule([true, false], "non local"), new Rule([true, true], "local")]
+    );
+    const d3 = new Decision(
+      "dummy",
+      [d1, d2],
+      [
+        new Rule(["boring"], "Maybe you should move?"),
+        new Rule(["fun!", "non local"], "Hi Robin or Sven"),
+        new Rule(["fun!", "local"], "Hi André")
+      ]
+    );
+    const checker = new Checker([new Permit("some permit", [d1, d2, d3])]);
+
     let question = checker.next();
-    expect(checker.getOutput()).toBe(undefined);
-
-    // Change the values a bit on the first question
-    question.setAnswer(false);
-    expect(checker.getOutput()).toBe("no");
-    question.setAnswer(true);
-    expect(checker.getOutput()).toBe(undefined);
-
-    // Answer and move to next question
-    question = checker.next();
-    expect(checker.getOutput()).toBe(undefined);
-    question.setAnswer(false);
-    expect(checker.getOutput()).toBe("not sure");
-    question.setAnswer(true);
-    expect(checker.getOutput()).toBe("yes");
-
-    question = checker.next();
-    expect(question).toBe(null);
-  });
-
-  test("next", () => {
-    const questions = getQuestions();
-    const checker = new Checker(
-      new Permit("some permit", [
-        new Decision("ab", questions, [
-          new Rule([false], "no"),
-          new Rule([true, false], "not sure"),
-          new Rule([true, true], "yes")
-        ])
-      ])
-    );
-    const question = checker.next(); // first
-    expect(question).toBe(questions[0]);
-    expect(question.answer).toBe(undefined);
-    expect(checker.getOutput()).toBe(undefined);
-
-    expect(() => checker.next()).toThrow("Please answer the question first");
-  });
-  test("rewindTo", () => {
-    const questions = getQuestions();
-    const checker = new Checker(
-      new Permit("some permit", [
-        new Decision("x3", questions, [
-          new Rule([false], "no"),
-          new Rule([true, false], "not sure"),
-          new Rule([true, true], "yes")
-        ])
-      ])
-    );
-    let question = checker.next();
+    expect(question).toBe(q1);
     question.setAnswer(true);
     question = checker.next();
-    question.setAnswer(false);
-    question = checker.rewindTo(1); // also known as _current in this case
-    expect(question).toBe(questions[1]);
+    question.setAnswer(true);
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe("Hi André");
+
     question = checker.rewindTo(0);
-    expect(question).toBe(questions[0]);
-  });
-
-  test("remember answers", () => {
-    const questions = getQuestions();
-    const checker = new Checker(
-      new Permit("some permit", [
-        new Decision("1a", questions, [
-          new Rule([false], "no"),
-          new Rule([true, false], "not sure"),
-          new Rule([true, true], "yes")
-        ])
-      ])
-    );
-    // set some answers
-    let question = checker.next();
     question.setAnswer(true);
     question = checker.next();
     question.setAnswer(false);
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
+      "Hi Robin or Sven"
+    );
 
-    // rewind 1 question and validate answers still there
-    question = checker.previous();
-    expect(question.answer).toBe(true);
-    question = checker.next();
-    expect(question.answer).toBe(false);
-
-    // rewind with goto should also preserve answers
     question = checker.rewindTo(0);
-    expect(question.answer).toBe(true);
-    question = checker.next();
-    expect(question.answer).toBe(false);
-  });
-  test("previous", () => {
-    const questions = getQuestions();
-    const checker = new Checker(
-      new Permit("some permit", [
-        new Decision("cc", questions, [
-          new Rule([false], "no"),
-          new Rule([true, false], "not sure"),
-          new Rule([true, true], "yes")
-        ])
-      ])
+    question.setAnswer(false);
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
+      "Maybe you should move?"
     );
-    let question = checker.next(); // first
-    question.setAnswer(true);
-    question = checker.next(); // second
-    expect(question).toBe(questions[1]);
-    question = checker.previous();
-    expect(question).toBe(questions[0]);
-    expect(() => checker.previous()).toThrow(
-      "'rewindTo' index out of bounds of current question stack."
-    );
-  });
-  test("done + previous", () => {
-    const questions = getQuestions();
-    const checker = new Checker(
-      new Permit("some permit", [
-        new Decision("cc", questions, [
-          new Rule([false], "no"),
-          new Rule([true, false], "not sure"),
-          new Rule([true, true], "yes")
-        ])
-      ])
-    );
-    let question = checker.next();
-    question.setAnswer(true);
-    question = checker.next();
-    question.setAnswer(true);
-    question = checker.next();
-    expect(question).toBe(null);
-    question = checker.previous();
-    expect(question).toBe(questions[1]);
   });
 });

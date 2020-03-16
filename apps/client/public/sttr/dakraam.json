@@ -1,0 +1,68 @@
+{
+  "id": "dakraam",
+  "permits": [
+    {
+      "name": "Conclusie Het wijzigen van een monument bij een dakraam",
+      "questions": [
+        {
+          "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
+          "type": "boolean",
+          "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
+          "prio": 10
+        }
+      ],
+      "inputs": {
+        "input__a165828d-8708-4db6-92c4-9c767ad7cc72": {
+          "href": "#uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
+          "type": "boolean"
+        }
+      },
+      "decisions": {
+        "_a97ced3f-b9b9-469f-898c-2b0be888dfd0": {
+          "requiredInputs": [
+            "#input__a165828d-8708-4db6-92c4-9c767ad7cc72"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  true
+                ],
+                "output": "\"Vergunningplicht\""
+              },
+              {
+                "inputs": [
+                  false
+                ],
+                "output": "\"no hit\""
+              }
+            ]
+          }
+        },
+        "dummy": {
+          "requiredDecisions": [
+            "#_a97ced3f-b9b9-469f-898c-2b0be888dfd0"
+          ],
+          "decisionTable": {
+            "rules": [
+              {
+                "inputs": [
+                  "\"Vergunningplicht\""
+                ],
+                "output": "\"Vergunningplicht\"",
+                "description": "U wilt een dakraam plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
+              },
+              {
+                "inputs": [
+                  "\"no hit\""
+                ],
+                "output": "\"Toestemmingsvrij\"",
+                "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
