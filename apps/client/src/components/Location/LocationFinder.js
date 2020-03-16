@@ -5,6 +5,7 @@ import { loader } from "graphql.macro";
 import { StyledTextField } from "./LocationFinderStyles";
 import Error from "../Error";
 import Teaser from "./Teaser";
+// import debounce from "lodash-es/debounce";
 
 const findAddress = loader("./LocationFinder.graphql");
 
@@ -13,7 +14,6 @@ const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 const LocationFinder = props => {
   const [postalCode, setPostalCode] = useState(props.postalCode);
   const [houseNumberFull, setHouseNumberFull] = useState(props.houseNumberFull);
-  const [tempHouseNumber, setTempHouseNumber] = useState(props.houseNumberFull);
   const [touched, setTouched] = useState({});
 
   const { loading, error, data } = useQuery(findAddress, {
@@ -27,14 +27,6 @@ const LocationFinder = props => {
   const { onChange } = props;
   const matches = data?.findAddress?.matches || [];
   const exactMatch = data?.findAddress?.exactMatch;
-  const noAddressFound =
-    postalCode &&
-    houseNumberFull &&
-    !loading &&
-    !exactMatch &&
-    matches.length === 0;
-  const multipleAddessFound =
-    postalCode && houseNumberFull && !loading && matches.length > 0;
 
   if (postalCode && houseNumberFull && !loading && (data || error)) {
     onChange(exactMatch);
@@ -51,8 +43,6 @@ const LocationFinder = props => {
       }
     }
   };
-
-  console.log(data);
 
   const handleBlur = e => {
     setTouched({ ...touched, [e.target.name]: true });
@@ -80,11 +70,7 @@ const LocationFinder = props => {
         onBlur={handleBlur}
         defaultValue={houseNumberFull}
         name="houseNumberFull"
-        errorMessage={
-          noAddressFound
-            ? "Er is helaas geen adres in Amsterdam gevonden op basis van deze gegevens. Probeer het opnieuw."
-            : validate("houseNumberFull", houseNumberFull, true)
-        }
+        errorMessage={validate("houseNumberFull", houseNumberFull, true)}
       />
 
       {loading && (
@@ -96,43 +82,43 @@ const LocationFinder = props => {
 
       {error && <Error error={error} />}
 
-      {console.log(exactMatch?.houseNumberFull)}
-      {console.log(matches[0]?.houseNumber)}
-      {console.log("temp", tempHouseNumber)}
-      {console.log(matches[0]?.houseNumber === exactMatch?.houseNumberFull)}
-      {multipleAddessFound && (
-        <>
-          <Paragraph>
-            Er bestaan meerdere adressen bij {matches[0]?.streetName}{" "}
-            {matches[0]?.houseNumber}
-          </Paragraph>
+      {exactMatch && <Teaser {...exactMatch} />}
+      {postalCode &&
+        houseNumberFull &&
+        !loading &&
+        !exactMatch &&
+        matches.length === 0 && <p>Er is geen adres gevonden</p>}
 
-          <Select
-            label="Toevoeging"
-            name="suffix"
-            onChange={e => {
-              setTempHouseNumber(e.target.value);
-            }}
-          >
-            <option value="">Maak een keuze</option>
-            {matches.map((match, index) => (
-              <option value={index} key={match.houseNumberFull}>
-                {match.houseNumberFull}
-              </option>
-            ))}
-          </Select>
-        </>
-      )}
+      {postalCode &&
+        houseNumberFull &&
+        !loading &&
+        !exactMatch &&
+        matches.length > 0 && (
+          <>
+            <Paragraph strong>Kies een adres:</Paragraph>
 
-      {(exactMatch || tempHouseNumber) && (
-        <Teaser
-          {...(exactMatch
-            ? { ...exactMatch }
-            : { ...matches[tempHouseNumber] })}
-        />
-      )}
+            <Select
+              label="Toevoeging"
+              name="suffix"
+              onChange={e => {
+                setHouseNumberFull(e.target.value);
+              }}
+            >
+              <option value="">Maak een keuze</option>
+              {matches.map(match => (
+                <option
+                  value={match.houseNumberFull}
+                  key={match.houseNumberFull}
+                >
+                  {match.houseNumberFull}
+                </option>
+              ))}
+            </Select>
+          </>
+        )}
     </>
   );
+  // }
 };
 
 export default LocationFinder;
