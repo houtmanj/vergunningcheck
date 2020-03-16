@@ -1,5 +1,3 @@
-const STTR_ENV = process.env.REACT_APP_STTR_ENV; // shorthand
-
 export const matamo = {
   urlBase: "https://analytics.data.amsterdam.nl/",
   siteId: 29
@@ -21,78 +19,80 @@ const topics = [
   },
   {
     slug: "dakkapel-plaatsen",
-    sttrFile:
-      STTR_ENV === "production"
-        ? "OefenDakkapelPlaatsenOfVeranderen.json"
-        : null,
+    sttrFile: "dakkapel.json",
     text: {
       heading: "Vergunningchecker dakkapel plaatsen",
-      topic: "een dakkapel te plaatsen",
-      topicLocation: "de dakkapel wilt gaan plaatsen"
-    }
+      locationIntro: "Voer het adres in waar u de dakkapel wilt gaan plaatsen",
+      addressPage:
+        "Gaat u meer dan 1 dakkapel plaatsen? Doe dan per dakkapel de vergunningcheck."
+    },
+    intro: "DakkapelIntro"
   },
   {
     slug: "dakraam-plaatsen",
-    sttrFile:
-      STTR_ENV !== "production" &&
-      "WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams.json",
+    sttrFile: "dakraam.json",
     text: {
       heading: "Vergunningchecker dakraam plaatsen",
-      topic: "een dakraam te plaatsen",
-      topicLocation: "het dakraam wilt gaan plaatsen"
-    }
+      locationIntro: "Voer het adres in waar u het dakraam wilt gaan plaatsen",
+      addressPage:
+        "Gaat u meer dan 1 dakraam plaatsen? Doe dan per dakraam de vergunningcheck."
+    },
+    intro: "DakraamIntro"
   },
   {
     slug: "aanbouw-of-uitbouw-maken",
     text: {
       heading: "Vergunningchecker aanbouw of uitbouw maken",
-      topic: "een aanbouw of een uitbouw te maken",
-      topicLocation: "de aanbouw of uitbouw wilt gaan maken"
-    }
+      locationIntro:
+        "Voer het adres in waar u de aanbouw of uitbouw wilt gaan maken"
+    },
+    intro: "AanbouwIntro"
   },
   {
     slug: "kozijnen-plaatsen-of-vervangen",
     text: {
       heading: "Vergunningchecker kozijnen plaatsen of vervangen",
-      topic: "kozijnen te plaatsen of te vervangen",
-      topicLocation: "de kozijnen wilt gaan plaatsen of vervangen"
-    }
+      locationIntro:
+        "Voer het adres in waar u de kozijnen wilt gaan plaatsen of vervangen"
+    },
+    intro: "KozijnenIntro"
   },
   {
     slug: "zonnepanelen-of-warmtecollectoren-plaatsen",
     text: {
       heading: "Vergunningchecker zonnepanelen of warmtecollectoren plaatsen",
-      topic: "zonnepanelen of warmtecollectoren te plaatsen",
-      topicLocation: "de zonnepanelen of warmtecollectoren wilt gaan plaatsen"
-    }
+      locationIntro:
+        "Voer het adres in waar u de zonnepanelen of warmtecollectoren wilt gaan plaatsen"
+    },
+    intro: "ZonnepanelenIntro"
   },
   {
     slug: "bouwwerk-slopen",
     text: {
       heading: "Vergunningchecker bouwwerk slopen",
-      topic: "een bouwwerk te slopen,",
-      topicLocation: "het bouwwerk wilt gaan slopen"
-    }
+      locationIntro: "Voer het adres in waar u het bouwwerk wilt gaan slopen"
+    },
+    intro: "BouwwerkSlopenIntro"
   },
   {
     slug: "intern-verbouwen",
     text: {
-      heading: "Intern verbouwen",
-      topic: "intern te verbouwen",
-      topicLocation: "intern wilt gaan verbouwen"
-    }
+      heading: "Vergunningchecker intern verbouwen",
+      locationIntro: "Voer het adres in waar u intern wilt gaan verbouwen"
+    },
+    intro: "InternVerbouwenIntro"
   }
 ];
 
-if (STTR_ENV !== "production") {
+if (process.env.REACT_APP_STTR_ENV !== "production") {
   topics.push({
-    slug: "test",
-    sttrFile: "AanOfUitbouwBouwen.json",
+    slug: "test-outcomes",
+    sttrFile: "outcomes.json",
     text: {
-      heading: "Vergunningchecker dakkapel plaatsen",
-      topic: "een dakkapel te plaatsen",
-      topicLocation: "de dakkapel wilt gaan plaatsen"
-    }
+      heading: "Testing different outcomes/conclusions",
+      locationIntro: "Pick a random address..."
+    },
+    intro: "DebugIntro"
   });
 }
 

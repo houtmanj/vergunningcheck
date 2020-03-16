@@ -36,17 +36,15 @@ const ResultsPage = ({ topic, checker }) => {
   };
 
   checker.permits.forEach(permit => {
-    const conclusion = permit.getDecisionById("dummy");
-    if (conclusion.getOutput() === '"Vergunningplicht"') {
-      const decisiveDecisions = conclusion.getDecisiveInputs();
-      decisiveDecisions.flatMap(decision => {
-        decision.getDecisiveInputs().map(input => {
-          const index = checker.stack.indexOf(input);
-          permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(
-            permit
-          );
-          return true;
-        });
+    const conclusionDecision = permit.getDecisionById("dummy");
+    if (conclusionDecision.getOutput() === '"Vergunningplicht"') {
+      const decisiveDecisions = conclusionDecision.getDecisiveInputs();
+      decisiveDecisions.forEach(decision => {
+        const decisiveQuestion = decision.getDecisiveInputs().pop();
+        const index = checker.stack.indexOf(decisiveQuestion);
+        permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(
+          permit
+        );
       });
     }
   });
@@ -64,8 +62,8 @@ const ResultsPage = ({ topic, checker }) => {
       >
         <Paragraph strong>
           Hieronder kunt u per vraag uw gegeven antwoord teruglezen en eventueel
-          wijzigen. Als u een wijziging doet moet u alle volgende vragen opnieuw
-          beantwoorden.
+          wijzigen. Als u een wijziging doet moet u misschien enkele vragen
+          opnieuw beantwoorden.
         </Paragraph>
         <MainWrapper>
           <Question>Vraag</Question>
@@ -115,7 +113,7 @@ const ResultsPage = ({ topic, checker }) => {
                       display: "inline-block"
                     }}
                   >
-                    Op basis van dit antwoord bent u vergunningsplichtig voor{" "}
+                    Op basis van dit antwoord bent u vergunningplichtig voor{" "}
                     {permit.name.replace("Conclusie", "").toLowerCase()}
                   </p>
                 </UserResult>

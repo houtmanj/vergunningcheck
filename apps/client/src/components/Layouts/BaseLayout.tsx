@@ -15,11 +15,13 @@ import HiddenDebugInfo from "../HiddenDebugInfo";
 
 export interface BaseLayoutProps {
   children: React.ReactNode;
+  heading: String;
 }
 
-function BaseLayout({ children }: BaseLayoutProps) {
+function BaseLayout({ children, heading }: BaseLayoutProps) {
   const { topic } = useContext(Context);
-  const title = topic ? <FormTitle>{topic.text?.heading}</FormTitle> : null;
+  const title = heading || topic?.text?.heading || null;
+
   // const showNavLink = !topic || !topic.sttrPath;
   const showNavLink = false;
 
@@ -42,7 +44,7 @@ function BaseLayout({ children }: BaseLayoutProps) {
             }}
           >
             <Content>
-              {title}
+              {title && <FormTitle>{title}</FormTitle>}
               {children}
             </Content>
           </Column>

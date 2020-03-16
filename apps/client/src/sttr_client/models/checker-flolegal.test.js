@@ -5,17 +5,28 @@ import Rule from "./rule";
 import Decision from "./decision";
 
 const getQuestions = () => [
-  new Question(
-    "aaa",
-    "boolean",
-    "Do you live in a well-being area (welstandsgebied)?"
-  )
+  new Question({
+    id: "aaa",
+    type: "boolean",
+    text: "Do you live in a well-being area (welstandsgebied)?",
+    prio: 10
+  })
 ];
 
 describe("STTR specific", () => {
   test('"-" and "no hit" support', () => {
-    const q1 = new Question("aaa", "boolean", "Do you need a permit?");
-    const q2 = new Question("bbb", "boolean", "Are you sure?");
+    const q1 = new Question({
+      id: "aaa",
+      type: "boolean",
+      text: "Do you need a permit?",
+      prio: 10
+    });
+    const q2 = new Question({
+      id: "bbb",
+      type: "boolean",
+      text: "Are you sure?",
+      prio: 20
+    });
     const d1 = new Decision(
       "d1",
       [q1, q2],
@@ -33,32 +44,22 @@ describe("STTR specific", () => {
         new Rule(["no-permit-required"], "You don't need a permit.")
       ]
     );
-    const checker = new Checker(new Permit("some permit", [d1, dummy]));
+    const checker = new Checker([new Permit("some permit", [dummy])]);
     let question = checker.next();
     question.setAnswer(true);
-    expect(checker.getOutputByDecisionId("dummy")).toBe("You need a permit.");
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
+      "You need a permit."
+    );
     question.setAnswer(false);
-    expect(checker.getOutputByDecisionId("dummy")).toBe(undefined);
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(undefined);
     question = checker.next();
     question.setAnswer(true);
-    expect(checker.getOutputByDecisionId("dummy")).toBe(
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
       "You don't need a permit."
     );
     question.setAnswer(false);
-    expect(checker.getOutputByDecisionId("dummy")).toBe("You need a permit.");
-  });
-
-  test("Stop on status Contact", () => {
-    const questions = getQuestions();
-    const checker = new Checker(
-      new Permit("some permit", [
-        new Decision("cc", questions, [
-          new Rule([true], ""),
-          new Rule([true], "not sure")
-        ])
-      ])
+    expect(checker.permits[0].getOutputByDecisionId("dummy")).toBe(
+      "You need a permit."
     );
-    const question = checker.next();
-    question.setAnswer(true);
   });
 });

@@ -1,5 +1,6 @@
 import React from "react";
 
+import Loading from "../components/Loading";
 import Layout from "../components/Layouts/BaseLayout";
 import Helmet from "react-helmet";
 
@@ -8,7 +9,7 @@ const IntroPage = () => (
     <Helmet>
       <title>Laden... - Amsterdam Vergunningchecker</title>
     </Helmet>
-    <p>Laden...</p>
+    <Loading />
   </Layout>
 );
 
