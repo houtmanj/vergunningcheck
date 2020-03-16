@@ -75,7 +75,10 @@ export const App = props => {
   // @datapunt Track Page View
   // Docu: https://github.com/Amsterdam/matomo-tracker/tree/master/packages/react
   React.useEffect(() => {
-    trackPageView();
+    if (props.location.pathname.split('/')[2]) {
+      // Don't track root redirects (/dakraam-plaatsen), only track subpages (/dakraam-plaatsen/introductie)
+      trackPageView();
+    }
   }, [props.location.pathname]);
 
   return (
