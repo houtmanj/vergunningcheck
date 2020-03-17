@@ -2,9 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.16](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.15...v0.1.16) (2020-03-17)
+
+### Features
+
+- added "redirect naar OLO" to matomo tracking ([63a8fc9](https://github.com/Amsterdam/Vergunningschecker/commit/63a8fc93cb317c9740c1024e10717e7e4448ba67))
+- added postcode tracking per topic ([774a24e](https://github.com/Amsterdam/Vergunningschecker/commit/774a24e0e6d654a6d275a4345d59e90263b57c9e))
+- updated texts for dakraam ux-test ([7ab9cdb](https://github.com/Amsterdam/Vergunningschecker/commit/7ab9cdbdf3b238296e74e878bd9f1861b1098e7e))
+
+### Bug Fixes
+
+- Don't track root redirects, only track subpages ([2e3206e](https://github.com/Amsterdam/Vergunningschecker/commit/2e3206e420e41e9c811ba8e7ab4bc9c56ee3f0cb))
+
+### [0.1.14](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.13...v0.1.14) (2020-03-11)
+
 ### [0.1.15](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.13...v0.1.15) (2020-03-11)
 
 ### Bug Fixes
+
 - update useEffect to trigger trackPageView ([633cb60](https://github.com/Amsterdam/Vergunningschecker/commit/633cb6013650a8a7b7c68190a2efa44f7bfef72d))
 
 ### [0.1.14](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.13...v0.1.14) (2020-03-11)
