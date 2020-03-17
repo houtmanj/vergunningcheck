@@ -38,7 +38,11 @@ const TOPICS = {
         'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat aanvragen.',
     },
   },
-  'kappen-of-snoeien': {},
+  'kappen-of-snoeien': {
+    text: {
+      heading: 'Vergunningchecker kappen of snoeien',
+    },
+  },
   'aanbouw-of-uitbouw-maken': {
     status: STATUS.PRE_LIVE,
     text: {

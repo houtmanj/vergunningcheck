@@ -61,6 +61,9 @@ const IntroductionText = () => (
 
 const IntroductionTextDakraam = () => (
   <>
+    <Paragraph gutterBottom={20}>
+      U kunt de vergunningcheck gebruiken voor dakramen, daklichten en lichtstraten.
+    </Paragraph>
     <Heading $as="h3">Hoe het werkt:</Heading>
     <OrderedList>
       <ListItem>U voert op de volgende pagina eerst het adres van het gebouw in.</ListItem>
@@ -76,9 +79,6 @@ const IntroductionTextDakraam = () => (
       <ListItem>U leest of u een vergunning nodig hebt. Wij vertellen u hoe u een aanvraag doet.</ListItem>
       <ListItem>Wij vertellen u waar u verder op moet letten als u het dakraam gaat plaatsen.</ListItem>
     </OrderedList>
-    <Paragraph gutterBottom={20}>
-      U kunt de vergunningcheck gebruiken voor dakramen, daklichten en lichtstraten.
-    </Paragraph>
 
     <Heading $as="h4">Onderhoud:</Heading>
     <Paragraph>

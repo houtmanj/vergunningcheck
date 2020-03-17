@@ -47,7 +47,6 @@ const ConclusionsPage = () => {
 
           if (conclusionString !== '"Toestemmingsvrij"') {
             authorized = true;
-            console.log('set authorized on false');
           }
 
           return (
@@ -69,7 +68,7 @@ const ConclusionsPage = () => {
           onGoToPrev={() => history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerResult}`)}
           showPrev
           showNext
-          nextText={authorized ? 'Naar het omgevingsloket' : 'Opnieuw checken'}
+          nextText={authorized ? 'Naar het omgevingsloket' : 'Begin opnieuw'}
           formEnds
         />
         <DebugDecisionTable checker={checker} />

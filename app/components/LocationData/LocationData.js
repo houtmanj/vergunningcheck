@@ -30,7 +30,7 @@ const LocationData = ({
 
       <LocationResult loading={stadsgezichtLoading} title="Beschermd stads- of dorpsgezicht:">
         {stadsgezichtStatus ? (
-          <Paragraph>Ja. {stadsgezichtStatus}</Paragraph>
+          <Paragraph>Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.</Paragraph>
         ) : (
           <Paragraph>
             Wij kunnen op dit moment niet uit ons systeem halen of het gebouw in een beschermd stads- of dorpsgezicht
