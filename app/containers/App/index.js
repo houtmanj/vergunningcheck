@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
@@ -75,7 +76,10 @@ export const App = props => {
   // @datapunt Track Page View
   // Docu: https://github.com/Amsterdam/matomo-tracker/tree/master/packages/react
   React.useEffect(() => {
-    trackPageView();
+    if (REDIRECT_TO_OLO || props.location.pathname.split('/')[2]) {
+      // Only track direct redirects to OLO or pages part of a flow, like (/dakraam-plaatsen/introductie)
+      trackPageView();
+    }
   }, [props.location.pathname]);
 
   return (
@@ -100,7 +104,17 @@ export const App = props => {
             </Content>
             <Switch>
               {/* REDIRECTS */}
-              {REDIRECT_TO_OLO && window.open(`${EXTERNAL_URLS.oloChecker.intro}`, '_self')}
+              {REDIRECT_TO_OLO && (
+                <Helmet>
+                  <title>Redirect naar OLO - {GET_TEXT?.heading}</title>
+                </Helmet>
+              )}
+              {REDIRECT_TO_OLO &&
+                setTimeout(() => {
+                  // Timout makes sure Matomo tracker is loaded on page
+                  window.open(`${EXTERNAL_URLS.oloChecker.intro}`, '_self');
+                }, 200)}
+
               {ALLOW_LOCATION_PAGE && (
                 <Redirect
                   exact

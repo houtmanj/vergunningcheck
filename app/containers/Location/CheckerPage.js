@@ -91,10 +91,9 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
       }
 
       trackEvent({
-        category: 'location',
-        action: 'postcode',
-        name: GET_CURRENT_TOPIC(),
-        value: currentValues.postalCode.substring(0, 4),
+        category: 'postcode-input',
+        action: `postcode - ${GET_CURRENT_TOPIC()}`,
+        name: currentValues.postalCode.substring(0, 4),
       });
 
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);

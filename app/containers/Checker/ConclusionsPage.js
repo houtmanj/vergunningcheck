@@ -47,7 +47,6 @@ const ConclusionsPage = () => {
 
           if (conclusionString !== '"Toestemmingsvrij"') {
             authorized = true;
-            console.log('set authorized on false');
           }
 
           return (
