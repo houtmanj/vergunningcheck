@@ -14,8 +14,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 - Don't track root redirects, only track subpages ([2e3206e](https://github.com/Amsterdam/Vergunningschecker/commit/2e3206e420e41e9c811ba8e7ab4bc9c56ee3f0cb))
 
-### [0.1.14](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.13...v0.1.14) (2020-03-11)
-
 ### [0.1.15](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.13...v0.1.15) (2020-03-11)
 
 ### Bug Fixes
