@@ -99,6 +99,11 @@ To enter the docker image:
 - BEM namespaces (http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
 - [GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html) without tags and a release branch
 
+## Netlify
+
+Added [Netlify](https://www.netlify.com/)
+
 ## Thanks to
 
 [<img src="https://github.com/Amsterdam/atlas/blob/develop/public/images/browserstack-logo@2x.png" height="60" title="BrowserStack Logo" alt="BrowserStack Logo" />](https://www.browserstack.com/)
+
