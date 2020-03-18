@@ -34,3 +34,5 @@ npm start
 - css sourcemaps (some issues exist in development, in prod it works, see https://github.com/facebook/create-react-app/issues/6399)
 - reload support doen we nog niet (localstorage aka sessions ondersteunen)
 
+## Netlify
+Added [Netlify](https://netlify.com)
