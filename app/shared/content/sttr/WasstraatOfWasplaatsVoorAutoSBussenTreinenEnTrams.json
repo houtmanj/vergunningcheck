@@ -8,7 +8,8 @@
         {
           "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "type": "boolean",
-          "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72"
+          "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72",
+          "uuid": "monument-dakraam-bouwen"
         }
       ],
       "inputs": {
@@ -18,7 +19,7 @@
         }
       },
       "decisions": {
-        "_e8bb3ac5-952c-4b2a-8ea7-ba0ab7c90108": {
+        "_c4df457c-bc0e-4395-a47e-bcd8878bc59f": {
           "requiredInputs": ["#input__a165828d-8708-4db6-92c4-9c767ad7cc72"],
           "decisionTable": {
             "rules": [
@@ -34,7 +35,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_e8bb3ac5-952c-4b2a-8ea7-ba0ab7c90108"],
+          "requiredDecisions": ["#_c4df457c-bc0e-4395-a47e-bcd8878bc59f"],
           "decisionTable": {
             "rules": [
               {
@@ -58,7 +59,8 @@
         {
           "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "type": "boolean",
-          "id": "uitv__1403b7ef-97be-4d7e-9f41-7838d5833804"
+          "id": "uitv__1403b7ef-97be-4d7e-9f41-7838d5833804",
+          "uuid": "monument-dakraam-bouwen"
         },
         {
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een beschermd stads- of dorpsgezicht?",
@@ -105,6 +107,7 @@
         {
           "text": "Worden de afstanden van het dakraam tot aan alle randen van uw dak meer dan 50 centimeter?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/12_Dakraam_afstand_tot_randen_plat_dak_v3.png)\n\nU meet deze afstanden tot de randen van uw dak.",
+          "longDescription": "Een van de voorwaarden om het dakraam vergunningvrij te mogen plaatsen is dat deze meer dan 50 centimeter van alle dakranden wordt geplaatst. Hierdoor wordt het dakraam minder zichtbaar voor de omgeving en hebben de buren er minder last van.",
           "type": "boolean",
           "id": "uitv__e1e70be6-dc15-4b9b-9ef3-ebe8eddc63ad"
         },
@@ -229,7 +232,7 @@
         }
       },
       "decisions": {
-        "_fa8628bd-d5bd-4959-a2fc-dcc55e922b76": {
+        "_f630bc9a-9939-4f40-b58a-8af7ba0a8076": {
           "requiredInputs": ["#input__1403b7ef-97be-4d7e-9f41-7838d5833804"],
           "decisionTable": {
             "rules": [
@@ -244,7 +247,7 @@
             ]
           }
         },
-        "_7e20a73c-d9bf-4e1c-baf7-937c2be7b9e6": {
+        "_ceb68e2f-71d7-4651-97e0-35a20064214b": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1"
@@ -266,7 +269,7 @@
             ]
           }
         },
-        "_ba854315-0321-4e90-bbbb-7d202ba47146": {
+        "_7b77908b-92e0-46a1-a29c-b1e974898a98": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -293,7 +296,7 @@
             ]
           }
         },
-        "_b999e8ca-d165-4dba-a3fe-01c1a98d8bc4": {
+        "_c56120f5-ce5a-46b2-b5b0-f9517104e9c1": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -320,7 +323,7 @@
             ]
           }
         },
-        "_1095674a-78fe-4646-aa5a-9297805c4a3b": {
+        "_b0aac886-d53e-419b-ad3e-a3c0224bc162": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -347,7 +350,7 @@
             ]
           }
         },
-        "_7c6bdc58-0bbd-44ce-8766-9c7e0906ae3d": {
+        "_269860b6-bded-4291-8b9c-40bc10b67ec4": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -379,7 +382,7 @@
             ]
           }
         },
-        "_30293e28-986a-4ec6-b9ee-909b2c588292": {
+        "_c6c7ed2a-6390-4b84-80b0-5a640197c215": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -411,7 +414,7 @@
             ]
           }
         },
-        "_bbf09a01-5177-4928-add9-efde7d3109e8": {
+        "_da4660c8-08bf-4554-b136-e9ce616fe5d0": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -447,7 +450,7 @@
             ]
           }
         },
-        "_88f19945-9bdd-4f40-ae6f-acc3aa22863d": {
+        "_bde42133-eb45-483e-b706-572f3c4e722d": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -484,7 +487,7 @@
             ]
           }
         },
-        "_5869fafd-8e87-4006-a2e5-f06948ac7f59": {
+        "_474b7bc2-1c3d-434b-b686-20f5a2c56653": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -525,7 +528,7 @@
             ]
           }
         },
-        "_54773a2e-afe8-4c09-b99e-88c5a01a743b": {
+        "_df77be5c-2bd3-49e1-a354-9f794cab0d40": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -566,7 +569,7 @@
             ]
           }
         },
-        "_f7df1892-e41e-415e-bd04-14f111bf9843": {
+        "_14c6f3e3-b17b-494d-9cb5-510635253741": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -608,7 +611,7 @@
             ]
           }
         },
-        "_627dcb83-79d7-4899-8aca-c28e2dc057d8": {
+        "_50eda8f8-ead2-498b-abd4-3eabe535d4a4": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -654,7 +657,7 @@
             ]
           }
         },
-        "_1d2f4005-9db3-401d-840a-59b98e0ec1d0": {
+        "_6713709c-92bc-4101-a3b4-d8d45e37a448": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -700,7 +703,7 @@
             ]
           }
         },
-        "_85de8a21-bb74-475d-8626-b610bd21509c": {
+        "_462878a7-cd64-45a6-ad55-e9053f74f15d": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -751,7 +754,7 @@
             ]
           }
         },
-        "_c15ae65b-efab-4dc9-aed3-b22c53f3f77b": {
+        "_1332f371-52e6-4f8f-bbfd-e932d401593a": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -798,7 +801,7 @@
             ]
           }
         },
-        "_0629fd1b-dfec-4a8f-9287-cd999c808a0c": {
+        "_61a740e1-d9a8-4e42-99ae-aac22f4694ad": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -849,7 +852,7 @@
             ]
           }
         },
-        "_e64c62da-a061-4965-a1d4-bce5bf80530d": {
+        "_6f69cb0f-7eff-4eea-9c75-b58b0bc3c3c5": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -900,7 +903,7 @@
             ]
           }
         },
-        "_d545c6a6-e18b-46d1-9981-12287340a5e5": {
+        "_2c93e366-4bfe-4771-bc6c-77a690ea7a53": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -956,7 +959,7 @@
             ]
           }
         },
-        "_57971f4f-6982-41ce-b995-111ecf8e2629": {
+        "_9b879ad7-81cb-480d-aad4-97760d5b63f0": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -1014,26 +1017,26 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_fa8628bd-d5bd-4959-a2fc-dcc55e922b76",
-            "#_7e20a73c-d9bf-4e1c-baf7-937c2be7b9e6",
-            "#_ba854315-0321-4e90-bbbb-7d202ba47146",
-            "#_b999e8ca-d165-4dba-a3fe-01c1a98d8bc4",
-            "#_1095674a-78fe-4646-aa5a-9297805c4a3b",
-            "#_7c6bdc58-0bbd-44ce-8766-9c7e0906ae3d",
-            "#_30293e28-986a-4ec6-b9ee-909b2c588292",
-            "#_bbf09a01-5177-4928-add9-efde7d3109e8",
-            "#_88f19945-9bdd-4f40-ae6f-acc3aa22863d",
-            "#_5869fafd-8e87-4006-a2e5-f06948ac7f59",
-            "#_54773a2e-afe8-4c09-b99e-88c5a01a743b",
-            "#_f7df1892-e41e-415e-bd04-14f111bf9843",
-            "#_627dcb83-79d7-4899-8aca-c28e2dc057d8",
-            "#_1d2f4005-9db3-401d-840a-59b98e0ec1d0",
-            "#_85de8a21-bb74-475d-8626-b610bd21509c",
-            "#_c15ae65b-efab-4dc9-aed3-b22c53f3f77b",
-            "#_0629fd1b-dfec-4a8f-9287-cd999c808a0c",
-            "#_e64c62da-a061-4965-a1d4-bce5bf80530d",
-            "#_d545c6a6-e18b-46d1-9981-12287340a5e5",
-            "#_57971f4f-6982-41ce-b995-111ecf8e2629"
+            "#_f630bc9a-9939-4f40-b58a-8af7ba0a8076",
+            "#_ceb68e2f-71d7-4651-97e0-35a20064214b",
+            "#_7b77908b-92e0-46a1-a29c-b1e974898a98",
+            "#_c56120f5-ce5a-46b2-b5b0-f9517104e9c1",
+            "#_b0aac886-d53e-419b-ad3e-a3c0224bc162",
+            "#_269860b6-bded-4291-8b9c-40bc10b67ec4",
+            "#_c6c7ed2a-6390-4b84-80b0-5a640197c215",
+            "#_da4660c8-08bf-4554-b136-e9ce616fe5d0",
+            "#_bde42133-eb45-483e-b706-572f3c4e722d",
+            "#_474b7bc2-1c3d-434b-b686-20f5a2c56653",
+            "#_df77be5c-2bd3-49e1-a354-9f794cab0d40",
+            "#_14c6f3e3-b17b-494d-9cb5-510635253741",
+            "#_50eda8f8-ead2-498b-abd4-3eabe535d4a4",
+            "#_6713709c-92bc-4101-a3b4-d8d45e37a448",
+            "#_462878a7-cd64-45a6-ad55-e9053f74f15d",
+            "#_1332f371-52e6-4f8f-bbfd-e932d401593a",
+            "#_61a740e1-d9a8-4e42-99ae-aac22f4694ad",
+            "#_6f69cb0f-7eff-4eea-9c75-b58b0bc3c3c5",
+            "#_2c93e366-4bfe-4771-bc6c-77a690ea7a53",
+            "#_9b879ad7-81cb-480d-aad4-97760d5b63f0"
           ],
           "decisionTable": {
             "rules": [
