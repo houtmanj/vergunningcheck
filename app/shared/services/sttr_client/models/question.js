@@ -33,7 +33,7 @@ class Question {
       longDescription !== undefined &&
       (!isString(longDescription) || [...longDescription].length > DESC_MAX_LENGTH)
     ) {
-      throw Error(`'description' must be a string with max. ${DESC_MAX_LENGTH} chars`);
+      throw Error(`'longDescription' must be a string with max. ${DESC_MAX_LENGTH} chars`);
     }
     if (uuid !== undefined && !isString(uuid)) {
       throw Error(`'uuid' for Question must be a string`);
