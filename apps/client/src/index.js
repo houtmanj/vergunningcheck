@@ -22,6 +22,10 @@ import "@datapunt/asc-assets/lib/assets/fonts.css";
 
 dotenv.config();
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 const AppGlobalStyle = createGlobalStyle`
   body {
     min-height: 100vh;
