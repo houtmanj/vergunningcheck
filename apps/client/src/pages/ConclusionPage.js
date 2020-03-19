@@ -71,8 +71,8 @@ const ConclusionsPage = ({ topic, checker }) => {
         <Heading $as="h1">Conclusie</Heading>
 
         <Paragraph>
-          Op basis van uw antwoorden vind u hieronder wat voor uw activiteit van
-          toepassing is.
+          Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit
+          van toepassing is.
         </Paragraph>
 
         {displayConclusions.map(({ title, description }) => (

@@ -51,7 +51,7 @@ const Nav = ({
           <Button
             type="submit"
             variant="secondary"
-            disabled={disableNext}
+            // disabled={disableNext}
             onClick={handleNextClick}
             taskflow={!formEnds}
             style={{ marginRight: formEnds ? 10 : 25 }}

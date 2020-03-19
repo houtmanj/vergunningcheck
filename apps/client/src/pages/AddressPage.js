@@ -63,9 +63,13 @@ const AddressPage = ({ topic, address }) => {
         </StyledAddressResult>
 
         <Paragraph>
-          U hebt deze informatie nodig om de vergunningcheck te doen. De
-          informatie over de bestemmingsplannen is pas nodig als u een
-          omgevingsvergunning gaat aanvragen.
+          {useSTTR
+            ? `
+            U hebt deze informatie nodig om de vergunningcheck te doen. De
+            informatie over de bestemmingsplannen is pas nodig als u een
+            omgevingsvergunning gaat aanvragen.
+            `
+            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.`}
         </Paragraph>
 
         {useSTTR && (
@@ -76,6 +80,7 @@ const AddressPage = ({ topic, address }) => {
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
           nextText={!useSTTR ? "Naar het omgevingsloket" : undefined}
+          formEnds={!useSTTR}
           showPrev
           showNext
         />
