@@ -16,7 +16,7 @@ class Question {
    * @param {string[]} [options] a list of options for the answer
    * @param {boolean} [multipleAnswers=false] indicates if answer should be a list
    */
-  constructor({ id, type, text, description, answer, options, uuid, multipleAnswers = false }) {
+  constructor({ id, type, text, description, longDescription, answer, options, uuid, multipleAnswers = false }) {
     if (id !== undefined && !isString(id)) {
       throw Error(`'id' for Question must be a string (got "${id}"`);
     }
@@ -27,6 +27,12 @@ class Question {
       throw Error(`'text' for Question must be a string (got "${text}"`);
     }
     if (description !== undefined && (!isString(description) || [...description].length > DESC_MAX_LENGTH)) {
+      throw Error(`'description' must be a string with max. ${DESC_MAX_LENGTH} chars`);
+    }
+    if (
+      longDescription !== undefined &&
+      (!isString(longDescription) || [...longDescription].length > DESC_MAX_LENGTH)
+    ) {
       throw Error(`'description' must be a string with max. ${DESC_MAX_LENGTH} chars`);
     }
     if (uuid !== undefined && !isString(uuid)) {
@@ -46,6 +52,7 @@ class Question {
     this._multipleAnswers = multipleAnswers;
     this._options = options ? options.map(val => `"${val}"`) : undefined;
     this._description = description;
+    this._longDescription = longDescription;
     if (answer !== undefined) {
       this.setAnswer(answer);
     }
@@ -73,6 +80,10 @@ class Question {
 
   get description() {
     return this._description;
+  }
+
+  get longDescription() {
+    return this._longDescription;
   }
 
   setAnswer(value) {
