@@ -62,7 +62,7 @@ const IntroductionText = () => (
 const IntroductionTextDakraam = () => (
   <>
     <Paragraph gutterBottom={20}>
-      U kunt de vergunningcheck gebruiken voor dakramen, daklichten en lichtstraten.
+      U kunt deze vergunningcheck gebruiken voor dakramen, daklichten en lichtstraten.
     </Paragraph>
     <Heading $as="h3">Hoe het werkt:</Heading>
     <OrderedList>
@@ -83,13 +83,14 @@ const IntroductionTextDakraam = () => (
     <Heading $as="h4">Onderhoud:</Heading>
     <Paragraph>
       Gaat u een bestaand dakraam, daklicht of lichtstraat vervangen? Onderhoud is vergunningvrij als het nieuwe dakraam
-      gelijk blijft aan het bestaande dakraam. Voorbeelden:
+      gelijk blijft aan het bestaande dakraam. Dit geldt niet voor een illegaal geplaatst dakraam. Voorbeelden van
+      vergunningvrij onderhoud:
     </Paragraph>
     <List variant="bullet">
-      <ListItem>de positie van het dakraam</ListItem>
-      <ListItem>de maten van het dakraam</ListItem>
-      <ListItem>de detaillering van het raamhout</ListItem>
-      <ListItem>de kleur van het dakraam</ListItem>
+      <ListItem>de positie van het dakraam blijft gelijk</ListItem>
+      <ListItem>de maten van het dakraam blijft gelijk</ListItem>
+      <ListItem>de detaillering van het raamhout blijft gelijk</ListItem>
+      <ListItem>de kleur van het dakraam blijft gelijk</ListItem>
     </List>
     <Paragraph>
       Het bestaande dakraam, daklicht of lichtstraat moet wel met vergunning of vergunningvrij geplaatst zijn.
