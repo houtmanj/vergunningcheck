@@ -35,8 +35,9 @@ export default () => (
     <Heading $as="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">
       <ListItem>
-        Bel dan de gemeente op 14 020, maandag tot en met vrijdag van 08.00 uur
-        tot 18.00 uur
+        Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een
+        blokhut of een vakantiehuis? Bel dan de gemeente op 14 020, maandag tot
+        en met vrijdag van 08.00 uur tot 18.00 uur
       </ListItem>
       <ListItem>
         Gaat u de woning splitsen in 2 of meer woningen? Bel dan de gemeente op
