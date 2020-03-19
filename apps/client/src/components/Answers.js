@@ -2,13 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "@datapunt/asc-core";
 import { Label, Radio, RadioGroup } from "@datapunt/asc-ui";
-import { StyledAnswerErrorText } from "./AnswersStyles";
+import { StyledAnswerErrorText, StyledAnswer } from "./AnswersStyles";
 
-const error = {
-  color: "red",
-  borderLeft: "2px solid red",
-  paddingLeft: "15px"
-};
 const Answers = ({
   className,
   answers,
@@ -17,7 +12,7 @@ const Answers = ({
   questionId,
   onChange
 }) => (
-  <div style={errors[questionId] && error}>
+  <StyledAnswer hasError={errors[questionId]}>
     {errors[questionId] && (
       <StyledAnswerErrorText>
         {errors[questionId].message}
@@ -45,7 +40,7 @@ const Answers = ({
           );
         })}
     </RadioGroup>
-  </div>
+  </StyledAnswer>
 );
 
 const StyledAnswers = styled(Answers)`
