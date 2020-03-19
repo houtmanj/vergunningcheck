@@ -8,7 +8,7 @@
         {
           "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "type": "boolean",
-          "id": "uitv__a165828d-8708-4db6-92c4-9c767ad7cc72"
+          "uuid": "monument-dakraam-bouwen"
         }
       ],
       "inputs": {
@@ -58,7 +58,7 @@
         {
           "text": "Gaat u het dakraam plaatsen op het dak van een gemeentelijk of rijksmonument?",
           "type": "boolean",
-          "id": "uitv__1403b7ef-97be-4d7e-9f41-7838d5833804"
+          "uuid": "monument-dakraam-bouwen"
         },
         {
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een beschermd stads- of dorpsgezicht?",
