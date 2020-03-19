@@ -92,9 +92,6 @@ const IntroductionTextDakraam = () => (
       <ListItem>de detaillering van het raamhout blijft gelijk</ListItem>
       <ListItem>de kleur van het dakraam blijft gelijk</ListItem>
     </List>
-    <Paragraph>
-      Het bestaande dakraam, daklicht of lichtstraat moet wel met vergunning of vergunningvrij geplaatst zijn.
-    </Paragraph>
 
     <Heading $as="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">
