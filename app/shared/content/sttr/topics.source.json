@@ -22,5 +22,19 @@
         "naam": "Dakkapel bouwen\t"
       }
     ]
+  },
+  {
+    "urn": "WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams",
+    "naam": "Wasstraat of wasplaats voor auto's, bussen, treinen en trams",
+    "activiteiten": [
+      {
+        "id": "hMwHKR7Wz4FP8Dm4x",
+        "naam": "Het wijzigen van een monument bij een dakraam"
+      },
+      {
+        "id": "dRy4PfDs7jQPc9gMG",
+        "naam": "Dakraam bouwen"
+      }
+    ]
   }
 ]
