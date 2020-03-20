@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.17](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.16...v0.1.17) (2020-03-20)
+
+### Features
+
+- added dakraam sttr checker ([39d4de1](https://github.com/Amsterdam/Vergunningschecker/commit/39d4de1d7c5c5a99970036727902e540b8d0842d))
+- Added Netlify config ([129cd78](https://github.com/Amsterdam/Vergunningschecker/commit/129cd782abe3ad7a018e666a48ed73f95b0d3c5e))
+- Dakraam status is LIVE ([b820660](https://github.com/Amsterdam/Vergunningschecker/commit/b8206605fbb457faf4eaa5c296d9659977542e0b))
+
+### Bug Fixes
+
+- Added uuid (herhaalid) to some questions ([94477e9](https://github.com/Amsterdam/Vergunningschecker/commit/94477e92896ae97c3ca3e6e66c1363b73f7e1243))
+- Dakkapel typos ([eeebfa3](https://github.com/Amsterdam/Vergunningschecker/commit/eeebfa34dcf6072d4b34f3be37063db248d9cd4d))
+- Updated texts ([2097d76](https://github.com/Amsterdam/Vergunningschecker/commit/2097d76e26f321ca1f6bd200486125602e62a946))
+
 ### [0.1.16](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.15...v0.1.16) (2020-03-17)
 
 ### Features
