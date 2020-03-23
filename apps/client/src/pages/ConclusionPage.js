@@ -28,7 +28,6 @@ const ConclusionsPage = ({ topic, checker }) => {
       const outcome = permit.getOutputByDecisionId("dummy");
       const dummyDecision = permit.getDecisionById("dummy");
       const matchingRules = dummyDecision.getMatchingRules();
-      console.log(" : ConclusionsPage -> matchingRules", matchingRules);
 
       return {
         outcome,

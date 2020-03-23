@@ -7,7 +7,7 @@ import Layout from "../components/Layouts/DefaultLayout";
 const RedirectPage = ({ topic }) => {
   useEffect(() => {
     const redirect = setTimeout(() => {
-      // window.open(OLO.intro, "_self");
+      window.open(OLO.intro, "_self");
     }, 2000);
 
     return () => {
