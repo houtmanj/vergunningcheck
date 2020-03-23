@@ -18,7 +18,9 @@ const AddressData = ({ address }) => {
 
       <AddressResult title="Beschermd stads- of dorpsgezicht:">
         {cityScape ? (
-          <Paragraph>Ja. {cityScape}</Paragraph>
+          <Paragraph>
+            Ja. Het gebouw ligt in een beschermd stads- of dorpsgezicht.
+          </Paragraph>
         ) : (
           <Paragraph>
             Wij kunnen op dit moment niet uit ons systeem halen of het gebouw in

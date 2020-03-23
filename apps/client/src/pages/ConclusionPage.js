@@ -90,7 +90,7 @@ const ConclusionsPage = ({ topic, checker }) => {
           onGoToPrev={() => history.push(previousUrl)}
           showPrev
           showNext
-          nextText={needsPermit ? "Naar het omgevingsloket" : "Opnieuw checken"}
+          nextText={needsPermit ? "Naar het omgevingsloket" : "Begin opnieuw"}
           formEnds
         />
         <DebugDecisionTable checker={checker} />
