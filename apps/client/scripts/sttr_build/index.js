@@ -5,6 +5,7 @@ const path = require("path");
 const fetch = require("node-fetch");
 const batchPromises = require("batch-promises");
 const sttrbuild = require("./parser");
+const topics = require("./config");
 
 const { argv } = yargs
   .option("output", {
@@ -26,7 +27,7 @@ const env = process.env.STTR_ENV === "production" ? "PROD" : "STAGING";
 const sttrApi = `https://sttr-builder${
   env === "PROD" ? "" : "-staging"
 }.eu.meteorapp.com/api`;
-const listUrl = `${sttrApi}/activiteiten/bijwerkzaamheid`;
+const listUrl = `${sttrApi}/activiteiten`;
 const detailUrl = `${sttrApi}/conclusie/sttr`;
 const headers = {
   "x-api-key": process.env.STTR_BUILDER_API_KEY
@@ -61,7 +62,7 @@ function checkStatus(res) {
 }
 
 (async () => {
-  fetch(listUrl, { headers })
+  const permitIds = await fetch(listUrl, { headers })
     .then(res => res.json())
     .then(json => {
       const target = path.join(OUTPUT_DIR, "topics.source.json");
@@ -69,10 +70,8 @@ function checkStatus(res) {
         if (err) throw err;
         console.log(`${target} has been saved`);
       });
+      return json.map(({ _id }) => _id);
     });
-
-  const topics = require("./config");
-  const permitIds = Object.values(topics).flatMap(t => t.map(a => a.id));
 
   const permitsXML = await batchPromises(MAX_PARALLEL, permitIds, id =>
     fetch(detailUrl, {

@@ -19,7 +19,7 @@
         }
       },
       "decisions": {
-        "_f3b5cff5-3530-488b-be39-3f0ca68f0d79": {
+        "_bd13fe5c-cc89-49ed-b047-8b946ddfd728": {
           "requiredInputs": [
             "#input__797c410f-2502-4626-9b14-7be7c49b0751"
           ],
@@ -42,7 +42,7 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_f3b5cff5-3530-488b-be39-3f0ca68f0d79"
+            "#_bd13fe5c-cc89-49ed-b047-8b946ddfd728"
           ],
           "decisionTable": {
             "rules": [
@@ -70,7 +70,7 @@
       "questions": [
         {
           "text": "Staat het gebouw waarop u de dakkapel gaat plaatsen in een gebied waar gemeentelijke regels gelden voor het uiterlijk van gebouwen?",
-          "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk voor gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. Controleer [op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) of het gebouw in een welstandsvrij gebied ligt.",
+          "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk van gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. [Op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) staan de gebieden waar geen regels gelden. Valt u daar buiten, beantwoordt dan de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__51fe2afb-ebfa-48e0-b81d-822c38eaf87a",
           "prio": 10
@@ -86,9 +86,9 @@
           "text": "Aan welke kant van het gebouw gaat u de dakkapel plaatsen?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/3_a_Voorkant_v2.png)\n\nVoorkant\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/3_b_Zijkant_v2.png)\n\nZijkant\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/3_c_Achterkant_1_v2.png)\n\nAchterkant",
           "options": [
-            "voorkant",
-            "zijkant",
-            "achterkant"
+            "Voorkant",
+            "Zijkant",
+            "Achterkant"
           ],
           "type": "string",
           "id": "uitv__2af9eafd-fd78-439f-a06c-bb7566c21154",
@@ -242,7 +242,7 @@
         }
       },
       "decisions": {
-        "_a33e6954-46d1-4bdd-886a-eadb1368eb89": {
+        "_eb7d4bfc-f9f0-4ac5-b169-545da7175dcd": {
           "requiredInputs": [
             "#input__e097c508-67a8-408c-9e9b-b813eda85db0"
           ],
@@ -263,7 +263,7 @@
             ]
           }
         },
-        "_5e202e03-8aed-4f2a-b57b-23925ff87341": {
+        "_413b3395-a2b5-432f-9689-665391a04657": {
           "requiredInputs": [
             "#input__51fe2afb-ebfa-48e0-b81d-822c38eaf87a"
           ],
@@ -284,7 +284,7 @@
             ]
           }
         },
-        "_e563edc2-ca95-4061-aa17-b0f31ad98d9c": {
+        "_fba722a7-1d89-461c-ac55-5bcde9cd8bac": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154"
           ],
@@ -292,26 +292,26 @@
             "rules": [
               {
                 "inputs": [
-                  "\"voorkant\""
+                  "\"Voorkant\""
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
-                  "\"zijkant\""
+                  "\"Zijkant\""
                 ],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
-                  "\"achterkant\""
+                  "\"Achterkant\""
                 ],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_4994278e-ab1e-485e-8002-f365c84ced0b": {
+        "_6839a4fa-c7d3-496d-8bcc-910506338ef3": {
           "requiredInputs": [
             "#input__01938ee8-1007-4b10-b672-6ebb050df5bf"
           ],
@@ -332,7 +332,7 @@
             ]
           }
         },
-        "_e3e5e224-ed94-4f9e-b3cd-c529a847dbea": {
+        "_b9970df5-f3a0-434b-bb39-e19564496d3a": {
           "requiredInputs": [
             "#input__6eb1e6a6-24c6-46c8-9ef8-a6a3cc6171a6"
           ],
@@ -353,7 +353,7 @@
             ]
           }
         },
-        "_f355d339-2c2d-4353-a84f-56c8ac920d32": {
+        "_92447464-8985-4bab-b7fa-68562ea1d9b0": {
           "requiredInputs": [
             "#input__bbadbcf5-6e57-4ac0-aeb2-71bea7d3432a"
           ],
@@ -374,7 +374,7 @@
             ]
           }
         },
-        "_87e5b3af-cc1a-4a8d-bec2-04d4cf7f5219": {
+        "_b0da41fa-391b-4b67-bd10-88d9710df311": {
           "requiredInputs": [
             "#input__4420be2f-e8ca-46e8-9eec-e9036076fbff"
           ],
@@ -395,7 +395,7 @@
             ]
           }
         },
-        "_0f345694-119f-45e0-a928-7da61bcce614": {
+        "_20121625-2eba-4601-a546-853e14f848bb": {
           "requiredInputs": [
             "#input__e3f23320-186c-4507-b6a6-84170426cc0a"
           ],
@@ -416,7 +416,7 @@
             ]
           }
         },
-        "_17334658-b631-4de7-876d-b5ba0199f94c": {
+        "_aa371a3d-e40c-4e69-a7cc-efe6013d26c8": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705"
@@ -425,21 +425,21 @@
             "rules": [
               {
                 "inputs": [
-                  "\"zijkant\"",
+                  "\"Zijkant\"",
                   true
                 ],
                 "output": "\"Vergunningplicht\""
               },
               {
                 "inputs": [
-                  "\"voorkant\"",
+                  "\"Voorkant\"",
                   "-"
                 ],
                 "output": "\"no hit\""
               },
               {
                 "inputs": [
-                  "\"achterkant\"",
+                  "\"Achterkant\"",
                   "-"
                 ],
                 "output": "\"no hit\""
@@ -454,7 +454,7 @@
             ]
           }
         },
-        "_2e1a4f35-de77-46d5-9b85-1a627fc862c2": {
+        "_ecdfbdac-9ba1-42ce-bad8-658c236747b6": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
@@ -464,7 +464,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"zijkant\"",
+                  "\"Zijkant\"",
                   false,
                   true
                 ],
@@ -472,7 +472,7 @@
               },
               {
                 "inputs": [
-                  "\"voorkant\"",
+                  "\"Voorkant\"",
                   "-",
                   "-"
                 ],
@@ -480,7 +480,7 @@
               },
               {
                 "inputs": [
-                  "\"achterkant\"",
+                  "\"Achterkant\"",
                   "-",
                   "-"
                 ],
@@ -505,7 +505,7 @@
             ]
           }
         },
-        "_9dfd060f-7bdb-4444-bb9f-04b547a04589": {
+        "_18f791bd-849a-44c2-8d64-2b993b478ff3": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
@@ -515,7 +515,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"achterkant\"",
+                  "\"Achterkant\"",
                   true,
                   true
                 ],
@@ -523,7 +523,7 @@
               },
               {
                 "inputs": [
-                  "\"voorkant\"",
+                  "\"Voorkant\"",
                   "-",
                   "-"
                 ],
@@ -531,7 +531,7 @@
               },
               {
                 "inputs": [
-                  "\"zijkant\"",
+                  "\"Zijkant\"",
                   "-",
                   "-"
                 ],
@@ -556,7 +556,7 @@
             ]
           }
         },
-        "_42dec09f-2d94-4727-b2dd-9e8c37e40e3e": {
+        "_f61cf196-7a8b-4243-a27f-cfdbef359a52": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__8aa1d6f9-95a2-4d57-81ed-d4f2f73f1705",
@@ -567,7 +567,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"zijkant\"",
+                  "\"Zijkant\"",
                   false,
                   false,
                   true
@@ -576,7 +576,7 @@
               },
               {
                 "inputs": [
-                  "\"voorkant\"",
+                  "\"Voorkant\"",
                   "-",
                   "-",
                   "-"
@@ -585,7 +585,7 @@
               },
               {
                 "inputs": [
-                  "\"achterkant\"",
+                  "\"Achterkant\"",
                   "-",
                   "-",
                   "-"
@@ -622,7 +622,7 @@
             ]
           }
         },
-        "_033040e1-bf17-4906-a33b-e201eb6cee88": {
+        "_6ee52572-487a-4852-8148-8ce116e9f73a": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
@@ -633,7 +633,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"achterkant\"",
+                  "\"Achterkant\"",
                   true,
                   false,
                   true
@@ -642,7 +642,7 @@
               },
               {
                 "inputs": [
-                  "\"voorkant\"",
+                  "\"Voorkant\"",
                   "-",
                   "-",
                   "-"
@@ -651,7 +651,7 @@
               },
               {
                 "inputs": [
-                  "\"zijkant\"",
+                  "\"Zijkant\"",
                   "-",
                   "-",
                   "-"
@@ -688,7 +688,7 @@
             ]
           }
         },
-        "_ca20304e-c457-4cdf-a142-1578b980129c": {
+        "_47b65356-95ee-4f13-a514-7b81363e4e97": {
           "requiredInputs": [
             "#input__2af9eafd-fd78-439f-a06c-bb7566c21154",
             "#input__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7",
@@ -700,7 +700,7 @@
             "rules": [
               {
                 "inputs": [
-                  "\"achterkant\"",
+                  "\"Achterkant\"",
                   true,
                   false,
                   false,
@@ -710,7 +710,7 @@
               },
               {
                 "inputs": [
-                  "\"voorkant\"",
+                  "\"Voorkant\"",
                   "-",
                   "-",
                   "-",
@@ -720,7 +720,7 @@
               },
               {
                 "inputs": [
-                  "\"zijkant\"",
+                  "\"Zijkant\"",
                   "-",
                   "-",
                   "-",
@@ -773,20 +773,20 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_a33e6954-46d1-4bdd-886a-eadb1368eb89",
-            "#_5e202e03-8aed-4f2a-b57b-23925ff87341",
-            "#_e563edc2-ca95-4061-aa17-b0f31ad98d9c",
-            "#_4994278e-ab1e-485e-8002-f365c84ced0b",
-            "#_e3e5e224-ed94-4f9e-b3cd-c529a847dbea",
-            "#_f355d339-2c2d-4353-a84f-56c8ac920d32",
-            "#_87e5b3af-cc1a-4a8d-bec2-04d4cf7f5219",
-            "#_0f345694-119f-45e0-a928-7da61bcce614",
-            "#_17334658-b631-4de7-876d-b5ba0199f94c",
-            "#_2e1a4f35-de77-46d5-9b85-1a627fc862c2",
-            "#_9dfd060f-7bdb-4444-bb9f-04b547a04589",
-            "#_42dec09f-2d94-4727-b2dd-9e8c37e40e3e",
-            "#_033040e1-bf17-4906-a33b-e201eb6cee88",
-            "#_ca20304e-c457-4cdf-a142-1578b980129c"
+            "#_eb7d4bfc-f9f0-4ac5-b169-545da7175dcd",
+            "#_413b3395-a2b5-432f-9689-665391a04657",
+            "#_fba722a7-1d89-461c-ac55-5bcde9cd8bac",
+            "#_6839a4fa-c7d3-496d-8bcc-910506338ef3",
+            "#_b9970df5-f3a0-434b-bb39-e19564496d3a",
+            "#_92447464-8985-4bab-b7fa-68562ea1d9b0",
+            "#_b0da41fa-391b-4b67-bd10-88d9710df311",
+            "#_20121625-2eba-4601-a546-853e14f848bb",
+            "#_aa371a3d-e40c-4e69-a7cc-efe6013d26c8",
+            "#_ecdfbdac-9ba1-42ce-bad8-658c236747b6",
+            "#_18f791bd-849a-44c2-8d64-2b993b478ff3",
+            "#_f61cf196-7a8b-4243-a27f-cfdbef359a52",
+            "#_6ee52572-487a-4852-8148-8ce116e9f73a",
+            "#_47b65356-95ee-4f13-a514-7b81363e4e97"
           ],
           "decisionTable": {
             "rules": [
