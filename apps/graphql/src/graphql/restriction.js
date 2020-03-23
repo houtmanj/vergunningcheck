@@ -16,7 +16,7 @@ const resolvers = {
       _,
       { loaders: { bag, monument, geoSearch } }
     ) => {
-      debug(`query bag.${type.toLowerCase()} id=${_adressableObjectId}`);
+      // debug(`query bag.${type.toLowerCase()} id=${_adressableObjectId}`);
       debug(`query bag.accomodation id=${_adressableObjectId}`);
       //   debug(
       //     `using bagSearch._adressableObjectId we find BAG object by querying its @href`
@@ -34,7 +34,7 @@ const resolvers = {
           .then(situations => {
             const situation = situations.shift();
 
-            debug("monumentId", situation);
+            debug("first situation", situation);
             if (situation && situation.monumentId) {
               return monument.monument.load(situation.monumentId);
             }

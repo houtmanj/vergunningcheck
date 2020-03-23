@@ -19,6 +19,7 @@ app.use(
     ':remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'
   )
 );
+
 // Error handling
 app.use(function(err, req, res, next) {
   console.error(err);
