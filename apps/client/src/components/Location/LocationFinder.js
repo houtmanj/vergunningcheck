@@ -13,20 +13,30 @@ const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const LocationFinder = props => {
   const [postalCode, setPostalCode] = useState(props.postalCode);
+  const [houseNumber, setHouseNumber] = useState(props.houseNumber);
   const [houseNumberFull, setHouseNumberFull] = useState(props.houseNumberFull);
   const [touched, setTouched] = useState({});
 
   const { loading, error, data } = useQuery(findAddress, {
     variables: {
       postalCode,
-      houseNumberFull
+      houseNumberFull,
+      extraHouseNumberFull: houseNumber,
+      queryExtra: houseNumber !== houseNumberFull
     },
     skip: !postalCode || !houseNumberFull
   });
 
   const { onChange } = props;
-  const matches = data?.findAddress?.matches || [];
   const exactMatch = data?.findAddress?.exactMatch;
+
+  const matches = data?.findAddress?.matches || [];
+  const extraMatches = data?.extraAddress?.matches || [];
+  const matchesToMap = extraMatches.length
+    ? extraMatches
+    : matches.length > 1
+    ? matches
+    : null;
 
   if (postalCode && houseNumberFull && !loading && (data || error)) {
     onChange(exactMatch);
@@ -65,6 +75,7 @@ const LocationFinder = props => {
         label="Huisnummer"
         onChange={e => {
           setHouseNumberFull(e.target.value);
+          setHouseNumber(e.target.value);
         }}
         required={true}
         onBlur={handleBlur}
@@ -73,6 +84,38 @@ const LocationFinder = props => {
         errorMessage={validate("houseNumberFull", houseNumberFull, true)}
       />
 
+      {postalCode &&
+        houseNumberFull &&
+        !loading &&
+        !exactMatch &&
+        matches.length === 0 && <p>Er is geen adres gevonden</p>}
+
+      {postalCode && houseNumberFull && matchesToMap && (
+        <>
+          <Paragraph>
+            Er bestaan meerdere adressen bij {matchesToMap[0]?.streetName}{" "}
+            {matchesToMap[0]?.houseNumber}
+          </Paragraph>
+          <Select
+            label="Kies een toevoeging"
+            name="suffix"
+            value={exactMatch?.houseNumberFull}
+            onChange={e => {
+              setHouseNumberFull(e.target.value);
+              e.preventDefault();
+            }}
+            style={{ marginBottom: "24px" }}
+          >
+            <option value={houseNumber}>Maak een keuze</option>
+            {matchesToMap.map(match => (
+              <option value={match.houseNumberFull} key={match.houseNumberFull}>
+                {match.houseNumberFull}
+              </option>
+            ))}
+          </Select>
+        </>
+      )}
+
       {loading && (
         <>
           <Paragraph strong>Laden...</Paragraph>
@@ -80,42 +123,18 @@ const LocationFinder = props => {
         </>
       )}
 
-      {error && <Error error={error} />}
+      {exactMatch && !loading && (
+        <>
+          {/* <Paragraph strong>Kies een adres:</Paragraph> */}
+          <Teaser {...exactMatch} />
+        </>
+      )}
 
-      {exactMatch && <Teaser {...exactMatch} />}
-      {postalCode &&
-        houseNumberFull &&
-        !loading &&
-        !exactMatch &&
-        matches.length === 0 && <p>Er is geen adres gevonden</p>}
-
-      {postalCode &&
-        houseNumberFull &&
-        !loading &&
-        !exactMatch &&
-        matches.length > 0 && (
-          <>
-            <Paragraph strong>Kies een adres:</Paragraph>
-
-            <Select
-              label="Toevoeging"
-              name="suffix"
-              onChange={e => {
-                setHouseNumberFull(e.target.value);
-              }}
-            >
-              <option value="">Maak een keuze</option>
-              {matches.map(match => (
-                <option
-                  value={match.houseNumberFull}
-                  key={match.houseNumberFull}
-                >
-                  {match.houseNumberFull}
-                </option>
-              ))}
-            </Select>
-          </>
-        )}
+      {error && (
+        <>
+          <Error error={error} />
+        </>
+      )}
     </>
   );
   // }
