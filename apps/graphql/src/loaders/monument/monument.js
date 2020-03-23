@@ -8,10 +8,10 @@ const {
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 
-const loader = {
+let loader = {
   reducer: ({ monumentstatus }) => {
     if (!monumentstatus) {
-      throw Error("Monument status not found!");
+      throw new Error("Monument status not found!");
     }
     return {
       _type: "Monument",
@@ -23,18 +23,12 @@ const loader = {
     };
   },
   load: id => {
-    // console.log(id);
-    debug("Load monument for id", id);
-    return id
-      ? fetchJson(getUrl(`${URL}monumenten/${id}`)).then(loader.reducer)
-      : null;
+    return fetchJson(getUrl(`${URL}monumenten/${id}`)).then(loader.reducer);
   },
-  cached: key => withCache(`momument:${key}`, () => loader.load(key), TTL)
+  cached: key =>
+    withCache(`momument:monument:${key}`, () => loader.load(key), TTL)
 };
 
 module.exports = {
-  load: async keys => {
-    console.log("module:load keys", keys);
-    return keys.map(loader.cached);
-  }
+  load: async keys => keys.map(loader.cached)
 };

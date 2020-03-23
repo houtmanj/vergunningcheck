@@ -5,9 +5,13 @@
  * file in this directory.
  */
 module.exports = {
+  cache: {
+    redis: false
+  },
   loaders: {
     datapunt: {
-      host: "http://acc.api.data.amsterdam.nl"
+      host: "http://acc.api.data.amsterdam.nl",
+      CACHE_TIMEOUT: 10
     }
   },
   graphql: {
