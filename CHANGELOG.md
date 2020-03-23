@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.18](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.17...v0.1.18) (2020-03-23)
+
+### Features
+
+- Updated STTR checker and added longDescription ([163aeb0](https://github.com/Amsterdam/Vergunningschecker/commit/163aeb0ee0051e2855b1851b51206c96e9a695e5))
+
 ### [0.1.17](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.16...v0.1.17) (2020-03-20)
 
 ### Features
