@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
@@ -12,7 +13,6 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 
 import { StyledAddressResult } from "./AddressPageStyles";
-import Helmet from "react-helmet";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   // Form is validated, we can proceed
