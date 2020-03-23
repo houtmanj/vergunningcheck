@@ -1,6 +1,6 @@
 import styled, { css } from "@datapunt/asc-core";
 
-export const StyledAnswer = styled(`div`)`
+export const StyledAnswer = styled.div`
   ${props =>
     props.hasError &&
     css`
@@ -10,7 +10,7 @@ export const StyledAnswer = styled(`div`)`
     `}
 `;
 
-export const StyledAnswerErrorText = styled(`div`)`
+export const StyledAnswerErrorText = styled.div`
   font-weight: 800;
   margin: 10px 0;
 `;

@@ -22,6 +22,7 @@ import "@datapunt/asc-assets/lib/assets/fonts.css";
 
 dotenv.config();
 
+// Enabling hot reloading (injecting style changes without hard reload)
 if (module.hot) {
   module.hot.accept();
 }
