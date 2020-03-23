@@ -103,7 +103,7 @@ function getSameHouseNumbers(queryHouseNumberFull, addressList) {
   const res = dataWithoutDuplicates.filter(
     a => a.houseNumber === queryHouseNumber
   );
-  debug(`getSameHouseNumbers`, res);
+  // debug(`getSameHouseNumbers`, res);
   return res;
   // if (dataWithoutDuplicates[0].huisnummer && !dataWithoutDuplicates[0].bag_toevoeging && !data[0].bag_huisletter) {
   //   return dataWithoutDuplicates.filter(address => address.huisnummer === Number(cleanNumber));
@@ -132,7 +132,7 @@ const resolve = (args, bagSearch, one) => {
   return bagSearch.load(key).then(addressList => {
     if (one) {
       const res = getExactMatch(houseNumberFull, addressList);
-      debug(`getExactMatch`, res);
+      // debug(`getExactMatch`, res);
       return res.length === 1
         ? res[0]
         : addressList.length === 1

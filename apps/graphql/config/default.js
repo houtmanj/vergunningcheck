@@ -6,7 +6,9 @@ module.exports = {
     dataLoaderEnabled: true,
     requestCacheEnabled: true,
     dnsCacheEnabled: true,
-    withCacheEnabled: true
+    redis: {
+      url: process.env.REDIS_URL
+    }
   },
   loaders: {
     datapunt: {

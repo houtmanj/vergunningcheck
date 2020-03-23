@@ -6,7 +6,7 @@ const {
 } = require("config").loaders.datapunt;
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 
-const loader = {
+let loader = {
   reducer: ({ hoort_bij_monument }) => {
     if (!hoort_bij_monument) {
       throw new Error("hoort_bij_monument not found!");
