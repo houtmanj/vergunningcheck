@@ -4,9 +4,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.1.18](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.17...v0.1.18) (2020-03-23)
 
-### Bug Fixes
+### Features
 
-- Updated intro texts ([107a42e](https://github.com/Amsterdam/Vergunningschecker/commit/107a42eba88f3519a76f3f21f68c570c9f950370))
+- Updated STTR checker and added longDescription ([163aeb0](https://github.com/Amsterdam/Vergunningschecker/commit/163aeb0ee0051e2855b1851b51206c96e9a695e5))
 
 ### [0.1.17](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.16...v0.1.17) (2020-03-20)
 
