@@ -52,7 +52,6 @@ const LocationPage = ({ topic }) => {
         />
         <Nav
           onGoToPrev={() => history.push(geturl(routes.intro, { slug }))}
-          disableNext={!address}
           showPrev
           showNext
         />
