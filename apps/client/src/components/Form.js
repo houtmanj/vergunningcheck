@@ -1,12 +1,6 @@
 import React from "react";
-import styled from "@datapunt/asc-core";
 import { useHistory } from "react-router-dom";
-
-const StyledForm = styled.form`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-`;
+import { StyledForm } from "./FormStyles";
 
 const Form = ({ children, onSubmit, action, ...rest }) => {
   const history = useHistory();

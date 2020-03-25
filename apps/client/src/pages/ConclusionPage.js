@@ -34,7 +34,10 @@ const ConclusionsPage = ({ topic, checker }) => {
         title:
           outcome === outcomes.NEED_CONTACT
             ? "Neem contact op met de gemeente"
-            : `${permit.name}: ${outcome.replace(/['"]+/g, "")}`,
+            : `${permit.name.replace("Conclusie", "")}: ${outcome.replace(
+                /['"]+/g,
+                ""
+              )}`,
         description: matchingRules[0].description
       };
     });
@@ -71,8 +74,8 @@ const ConclusionsPage = ({ topic, checker }) => {
         <Heading $as="h1">Conclusie</Heading>
 
         <Paragraph>
-          Op basis van uw antwoorden vind u hieronder wat voor uw activiteit van
-          toepassing is.
+          Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit
+          van toepassing is.
         </Paragraph>
 
         {displayConclusions.map(({ title, description }) => (

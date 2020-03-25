@@ -10,6 +10,10 @@ import ListInsideOrderedList from "../components/ListInsideOrderedList";
 
 export default () => (
   <>
+    <Paragraph gutterBottom={20}>
+      U kunt deze vergunningcheck gebruiken voor dakramen, daklichten en
+      lichtstraten.
+    </Paragraph>
     <Heading $as="h3">Hoe het werkt:</Heading>
     <OrderedList>
       <ListItem>
@@ -37,27 +41,20 @@ export default () => (
         plaatsen.
       </ListItem>
     </OrderedList>
-    <Paragraph>
-      U kunt de vergunningcheck gebruiken voor dakramen, daklichten en
-      lichtstraten.
-    </Paragraph>
 
     <Heading $as="h4">Onderhoud:</Heading>
     <Paragraph gutterBottom={12}>
       Gaat u een bestaand dakraam, daklicht of lichtstraat vervangen? Onderhoud
       is vergunningvrij als het nieuwe dakraam gelijk blijft aan het bestaande
-      dakraam. Voorbeelden:
+      dakraam. Dit geldt niet voor een illegaal geplaatst dakraam. Voorbeelden
+      van vergunningvrij onderhoud:
     </Paragraph>
-    <List variant="bullet">
-      <ListItem>de positie van het dakraam</ListItem>
-      <ListItem>de maten van het dakraam</ListItem>
-      <ListItem>de detaillering van het raamhout</ListItem>
-      <ListItem>de kleur van het dakraam</ListItem>
+    <List variant="bullet" style={{ marginBottom: "8px" }}>
+      <ListItem>de positie van het dakraam blijft gelijk</ListItem>
+      <ListItem>de maten van het dakraam blijft gelijk</ListItem>
+      <ListItem>de detaillering van het raamhout blijft gelijk</ListItem>
+      <ListItem>de kleur van het dakraam blijft gelijk</ListItem>
     </List>
-    <Paragraph>
-      Het bestaande dakraam, daklicht of lichtstraat moet wel met vergunning of
-      vergunningvrij geplaatst zijn.
-    </Paragraph>
 
     <Heading $as="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">

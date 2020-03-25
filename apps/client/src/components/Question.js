@@ -42,7 +42,6 @@ const Question = ({
   headingAs,
   onSubmit: onSubmitProp,
   hideNavigation,
-  disableNext,
   showNext,
   showPrev,
   onGoToPrev,
@@ -127,12 +126,7 @@ const Question = ({
         currentAnswer={answer}
       />
       {!hideNavigation && (
-        <Nav
-          showPrev={showPrev}
-          showNext={showNext}
-          onGoToPrev={onGoToPrev}
-          disableNext={disableNext}
-        />
+        <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
       )}
     </Form>
   );
@@ -164,7 +158,6 @@ Question.propTypes = {
   required: PropTypes.bool,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
-  disableNext: PropTypes.bool,
   onGoToPrev: PropTypes.func
 };
 
