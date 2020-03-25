@@ -23,21 +23,6 @@ const STATUS = {
 };
 
 const TOPICS = {
-  // Quick hack to test the routs, use: http://localhost:3000/a/
-  a: {
-    status: STATUS.LIVE,
-    sttrPath: '/shared/content/sttr/DakkapelBouwen.json',
-    text: {
-      entity: 'dakkapel',
-      heading: 'Vergunningchecker dakkapel plaatsen',
-      topic: 'een dakkapel te plaatsen',
-      topicLocation: 'de dakkapel wilt gaan plaatsen',
-      locationPageIntro:
-        'Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
-      locationResultsPageDescription:
-        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat aanvragen.',
-    },
-  },
   'kappen-of-snoeien': {
     text: {
       heading: 'Vergunningchecker kappen of snoeien',
@@ -80,6 +65,16 @@ const TOPICS = {
         'U hebt deze informatie nodig om de vergunningcheck dakraam te doen. De informatie over de bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat aanvragen.',
     },
   },
+  'zonnepanelen-of-warmtecollectoren-plaatsen': {
+    status: STATUS.LIVE, // LIVE ON ACC, PRE_LIVE ON PROD
+    sttrPath: '/shared/content/sttr/OefenHekOfSchuttingPlaatsenVeranderenOfVerwijderen.json',
+    text: {
+      entity: 'zonnepaneel of warmtecollector',
+      heading: 'Vergunningchecker zonnepanelen of warmtecollectoren plaatsen',
+      topic: 'zonnepanelen of warmtecollectoren te plaatsen',
+      topicLocation: 'de zonnepanelen of warmtecollectoren wilt gaan plaatsen',
+    },
+  },
   'kozijnen-plaatsen-of-vervangen': {
     status: STATUS.PRE_LIVE,
     text: {
@@ -87,15 +82,6 @@ const TOPICS = {
       heading: 'Vergunningchecker kozijnen plaatsen of vervangen',
       topic: 'kozijnen te plaatsen of te vervangen',
       topicLocation: 'de kozijnen wilt gaan plaatsen of vervangen',
-    },
-  },
-  'zonnepanelen-of-warmtecollectoren-plaatsen': {
-    status: STATUS.PRE_LIVE,
-    text: {
-      entity: 'zonnepaneel of warmtecollector',
-      heading: 'Vergunningchecker zonnepanelen of warmtecollectoren plaatsen',
-      topic: 'zonnepanelen of warmtecollectoren te plaatsen',
-      topicLocation: 'de zonnepanelen of warmtecollectoren wilt gaan plaatsen',
     },
   },
   'bouwwerk-slopen': {
