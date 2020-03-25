@@ -48,7 +48,8 @@ const TOPICS = {
       locationPageIntro:
         'Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
       locationResultsPageDescription:
-        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat aanvragen.',
+        'U hebt deze informatie nodig om de vergunningcheck dakkapel te doen. De informatie over de bestemmingsplannen is pas nodig als u een vergunning gaat aanvragen.',
+      locationResultsPageDescription2: 'Gaat u meer dan 1 dakkapel plaatsen? Doe dan per dakkapel de vergunningcheck.',
     },
   },
   'dakraam-plaatsen': {
@@ -62,7 +63,8 @@ const TOPICS = {
       locationPageIntro:
         'Wilt u de dakraam plaatsen op een woonwagen, een tijdelijk gebouw, een blokhut of een vakantiehuis?',
       locationResultsPageDescription:
-        'U hebt deze informatie nodig om de vergunningcheck dakraam te doen. De informatie over de bestemmingsplannen is pas nodig als u een omgevingsvergunning gaat aanvragen.',
+        'U hebt deze informatie nodig om de vergunningcheck dakraam te doen. De informatie over de bestemmingsplannen is pas nodig als u een vergunning gaat aanvragen.',
+      locationResultsPageDescription2: 'Gaat u meer dan 1 dakraam plaatsen? Doe dan per dakraam de vergunningcheck.',
     },
   },
   'zonnepanelen-of-warmtecollectoren-plaatsen': {
@@ -73,6 +75,10 @@ const TOPICS = {
       heading: 'Vergunningchecker zonnepanelen of warmtecollectoren plaatsen',
       topic: 'zonnepanelen of warmtecollectoren te plaatsen',
       topicLocation: 'de zonnepanelen of warmtecollectoren wilt gaan plaatsen',
+      locationResultsPageDescription:
+        'U hebt deze informatie nodig om de vergunningcheck zonnepanelen of warmtecollectoren te doen. De informatie over de bestemmingsplannen is pas nodig als u een vergunning gaat aanvragen.',
+      locationResultsPageDescription2:
+        'Gaat u zonnepanelen op meer dan 1 dak plaatsen? Doe dan per dak de vergunningcheck. Gaat u zowel zonnepanelen als een warmtecollector plaatsen? Doe dan voor voor zowel zonnepanelen als warmtecollector een vergunningcheck.',
     },
   },
   'kozijnen-plaatsen-of-vervangen': {

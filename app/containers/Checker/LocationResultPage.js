@@ -76,9 +76,7 @@ const LocationResultPage = ({ addressResultsLoading, bagLoading, addressResults 
         {!loading && (
           <>
             <Paragraph>{GET_TEXT?.locationResultsPageDescription}</Paragraph>
-            <Paragraph>
-              Gaat u meer dan 1 {GET_TEXT?.entity} plaatsen? Doe dan per {GET_TEXT?.entity} de vergunningcheck.
-            </Paragraph>
+            <Paragraph>{GET_TEXT?.locationResultsPageDescription2}</Paragraph>
           </>
         )}
 

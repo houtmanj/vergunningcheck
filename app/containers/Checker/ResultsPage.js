@@ -4,6 +4,7 @@ import { Paragraph, Button } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 import { Alert } from '@datapunt/asc-assets';
 import slugify from 'slugify';
+import uniqBy from 'lodash.uniqby';
 
 import history from 'utils/history';
 import Form from 'components/Form/Form';
@@ -81,7 +82,8 @@ const ResultsPage = () => {
           <Change />
         </MainWrapper>
         {checker?.stack?.map((question, index) => {
-          const isDecisiveForPermits = permitsPerQuestion[index] || [];
+          const isDecisiveForPermits = uniqBy(permitsPerQuestion[index], 'name') || [];
+
           return (
             <div key={question.id}>
               <Wrapper>
