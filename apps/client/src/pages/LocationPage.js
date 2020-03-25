@@ -25,10 +25,9 @@ const LocationPage = ({ topic }) => {
     e.preventDefault();
     if (address) {
       trackEvent({
-        category: "location",
-        action: "postcode",
-        name: slug,
-        value: address.postalCode.substring(0, 4)
+        category: "postcode-input",
+        action: `postcode - ${slug.replace("-", " ")}`,
+        name: address.postalCode.substring(0, 4)
       });
 
       context.address = address;
@@ -53,7 +52,6 @@ const LocationPage = ({ topic }) => {
         />
         <Nav
           onGoToPrev={() => history.push(geturl(routes.intro, { slug }))}
-          disableNext={!address}
           showPrev
           showNext
         />

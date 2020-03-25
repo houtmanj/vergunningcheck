@@ -11,13 +11,13 @@ module.exports = {
     //   }
     // ],
     dakraam: [
-      // {
-      //   id: "mpQ4YsJWhRTzxkM8n",
-      //   naam: "Bouwen van bijbehorend bouwwerk"
-      // },
       {
         id: "hMwHKR7Wz4FP8Dm4x",
         naam: "Het wijzigen van een monument bij een dakraam"
+      },
+      {
+        id: "dRy4PfDs7jQPc9gMG",
+        naam: "Dakraam bouwen"
       }
     ],
     dakkapel: [

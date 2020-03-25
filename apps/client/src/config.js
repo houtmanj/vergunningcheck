@@ -15,7 +15,10 @@ export const OLO = {
 const topics = [
   {
     slug: "kappen-of-snoeien",
-    redirectToOlo: true
+    redirectToOlo: true,
+    text: {
+      heading: "Vergunningchecker kappen of snoeien"
+    }
   },
   {
     slug: "dakkapel-plaatsen",
