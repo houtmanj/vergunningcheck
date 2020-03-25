@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { useForm } from 'react-hook-form';
-import { Heading, Paragraph } from '@datapunt/asc-ui';
+import { Heading, Paragraph, List, ListItem } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
 
 import { ExplanationModal } from 'components/Modal';
@@ -21,6 +21,9 @@ const Image = styled(`img`)`
 const StyledParagraph = styled(Paragraph)`
   flex-shrink: 0;
 `;
+
+// List from Markdown
+const MarkDownList = ({ children }) => <List variant="bullet">{children}</List>;
 
 const hasKeys = obj =>
   // convert to array, map, and then give the length
@@ -105,7 +108,12 @@ const Question = ({
         {description && (
           <ReactMarkdown
             source={description}
-            renderers={{ paragraph: StyledParagraph, image: Image }}
+            renderers={{
+              paragraph: StyledParagraph,
+              image: Image,
+              list: MarkDownList,
+              listItem: ListItem,
+            }}
             linkTarget="_blank"
           />
         )}
@@ -129,6 +137,10 @@ const Question = ({
       </Form>
     </>
   );
+};
+
+MarkDownList.propTypes = {
+  children: PropTypes.node,
 };
 
 Question.defaultProps = {

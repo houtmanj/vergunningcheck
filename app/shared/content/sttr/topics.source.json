@@ -1,11 +1,39 @@
 [
   {
-    "urn": "WasstraatOfWasplaatsVoorAutoSBussenTreinenEnTrams",
-    "naam": "Wasstraat of wasplaats voor auto's, bussen, treinen en trams",
+    "urn": "OefenAanbouwOfBijgebouwBouwen",
+    "naam": "OEFEN Aanbouw of bijgebouw bouwen",
+    "activiteiten": [
+      {
+        "id": "WzTvyyRGkp2pf79aQ",
+        "naam": "Aanbouw bouwen"
+      },
+      {
+        "id": "FMbPHJhi3B3mwb7pT",
+        "naam": "test"
+      }
+    ]
+  },
+  {
+    "urn": "TankstationStartenOfVeranderen",
+    "naam": "Tankstation starten of veranderen",
     "activiteiten": [
       {
         "id": "mpQ4YsJWhRTzxkM8n",
         "naam": "Bouwen van bijbehorend bouwwerk"
+      }
+    ]
+  },
+  {
+    "urn": "OefenHekOfSchuttingPlaatsenVeranderenOfVerwijderen",
+    "naam": "OEFEN Hek of schutting plaatsen, veranderen of verwijderen",
+    "activiteiten": [
+      {
+        "id": "TRhZrFexMjBW42Ky6",
+        "naam": "Zonnepaneel en warmtecollector monument"
+      },
+      {
+        "id": "skPG9qqTqWyX9tSY7",
+        "naam": "Zonnepaneel en warmtecollector bouwen"
       }
     ]
   },

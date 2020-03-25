@@ -28,7 +28,7 @@ const StyledList = styled(List)`
   }
 `;
 
-const IntroductionText = () => (
+const IntroductionTextDakkapel = () => (
   <>
     <Heading $as="h3">Hoe het werkt:</Heading>
     <OrderedList>
@@ -103,6 +103,31 @@ const IntroductionTextDakraam = () => (
   </>
 );
 
+const IntroductionTextZonnepaneel = () => (
+  <>
+    <Paragraph gutterBottom={20}>
+      U kunt deze vergunningcheck gebruiken voor zonnepanelen en warmtecollectoren.
+    </Paragraph>
+    <Heading $as="h3">Hoe het werkt:</Heading>
+    <OrderedList>
+      <ListItem>U voert op de volgende pagina eerst het adres van het gebouw in.</ListItem>
+      <ListItem>
+        Vervolgens krijgt u te zien:
+        <StyledList variant="bullet">
+          <ListItem>of het gebouw een monument is.</ListItem>
+          <ListItem>of het gebouw in een beschermd stads- of dorpsgezicht ligt.</ListItem>
+          <ListItem>welk bestemmingsplan er geldt.</ListItem>
+        </StyledList>
+      </ListItem>
+      <ListItem>Wij stellen u een aantal vragen over het gebouw en de zonnepanelen of warmtecollector.</ListItem>
+      <ListItem>U leest of u een vergunning nodig hebt. Wij vertellen u hoe u een aanvraag doet.</ListItem>
+      <ListItem>
+        Wij vertellen u waar u verder op moet letten als u de zonnepanelen of warmtecollector gaat plaatsen.
+      </ListItem>
+    </OrderedList>
+  </>
+);
+
 const IntroductionPage = () => (
   <>
     <Helmet>
@@ -114,7 +139,9 @@ const IntroductionPage = () => (
         history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.checkerLocation}`);
       }}
     >
-      {GET_TEXT?.entity === 'dakraam' ? <IntroductionTextDakraam /> : <IntroductionText />}
+      {GET_TEXT?.entity === 'dakkapel' && <IntroductionTextDakkapel />}
+      {GET_TEXT?.entity === 'dakraam' && <IntroductionTextDakraam />}
+      {GET_TEXT?.entity === 'zonnepaneel of warmtecollector' && <IntroductionTextZonnepaneel />}
       <Navigation page={`checker-${PAGES.checkerIntroduction}`} showNext />
     </Form>
   </>
