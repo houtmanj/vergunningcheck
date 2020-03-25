@@ -47,7 +47,6 @@ const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
             onClick={handleNextClick}
             taskflow={!formEnds}
             style={{ marginRight: formEnds ? 10 : 25 }}
-            disabled
           >
             {nextText}
           </Button>
