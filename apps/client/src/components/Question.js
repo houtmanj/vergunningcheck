@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
 import { useForm } from "react-hook-form";
-import { StyledParagraph } from "./QuestionStyles";
-import { Heading } from "@datapunt/asc-ui";
+import { StyledParagraph, MarkDownList } from "./QuestionStyles";
+import { Heading, ListItem } from "@datapunt/asc-ui";
 
 import Modal from "./Modal";
 import Form from "./Form";
@@ -113,7 +113,12 @@ const Question = ({
       {description && (
         <ReactMarkdown
           source={description}
-          renderers={{ paragraph: StyledParagraph, image: Visual }}
+          renderers={{
+            paragraph: StyledParagraph,
+            image: Visual,
+            list: MarkDownList,
+            listItem: ListItem
+          }}
           linkTarget="_blank"
         />
       )}

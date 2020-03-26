@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Paragraph, Button } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
+import uniqBy from "lodash.uniqby";
 import withFinalChecker from "../hoc/withFinalChecker";
 import { routes, geturl, getslug } from "../routes";
 
@@ -71,7 +72,8 @@ const ResultsPage = ({ topic, checker }) => {
           <Change />
         </MainWrapper>
         {checker?.stack?.map((question, index) => {
-          const isDecisiveForPermits = permitsPerQuestion[index] || [];
+          const isDecisiveForPermits =
+            uniqBy(permitsPerQuestion[index], "name") || [];
           return (
             <div key={question.id}>
               <Wrapper>
