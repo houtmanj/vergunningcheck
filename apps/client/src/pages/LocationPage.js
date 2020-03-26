@@ -53,14 +53,17 @@ const LocationPage = ({ topic }) => {
       <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
-          onChange={setAddress}
+          setAddress={setAddress}
           postalCode={context.address?.postalCode}
           houseNumberFull={context.address?.houseNumberFull}
           houseNumber={context.address?.houseNumberFull}
           errors={errors}
         />
         <Nav
-          onGoToPrev={() => history.push(geturl(routes.intro, { slug }))}
+          onGoToPrev={() => {
+            context.address = address;
+            history.push(geturl(routes.intro, { slug }));
+          }}
           showPrev
           showNext
         />

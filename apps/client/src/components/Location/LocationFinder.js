@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Paragraph, Select } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
@@ -14,6 +14,7 @@ const LocationFinder = props => {
   const [houseNumber, setHouseNumber] = useState(props.houseNumber);
   const [houseNumberFull, setHouseNumberFull] = useState(props.houseNumberFull);
   const [touched, setTouched] = useState({});
+  const { setAddress } = props;
 
   // GraphQL query
   const { loading, error, data } = useQuery(findAddress, {
@@ -26,7 +27,13 @@ const LocationFinder = props => {
     skip: !postalCode || !houseNumberFull || !houseNumber
   });
 
-  const { onChange } = props;
+  // Prevent setState error
+  useEffect(() => {
+    if (postalCode && houseNumberFull && !loading && (data || error)) {
+      setAddress(data?.findAddress?.exactMatch);
+    }
+  });
+
   const exactMatch = data?.findAddress?.exactMatch;
   const findAddressMatches = data?.findAddress?.matches || [];
   const extraAddressMatches = data?.extraAddress?.matches || [];
@@ -44,10 +51,6 @@ const LocationFinder = props => {
     !loading &&
     !exactMatch &&
     !findAddressMatches.length;
-
-  if (postalCode && houseNumberFull && !loading && (data || error)) {
-    onChange(exactMatch);
-  }
 
   // Validate forms
   const validate = (name, value, required) => {
