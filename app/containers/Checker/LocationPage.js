@@ -6,6 +6,7 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { Paragraph, TextField, Select, themeColor, Heading } from '@datapunt/asc-ui';
 import styled from '@datapunt/asc-core';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import history from 'utils/history';
 import { LocationResult } from 'components/LocationData';
@@ -40,6 +41,7 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
     },
   });
 
+  const { trackEvent } = useMatomo();
   const loading = addressResultsLoading || bagLoading;
   const values = getValues();
   const allFieldsFilled = values.postalCode && values.streetNumber && !loading;
@@ -75,6 +77,13 @@ const LocationPage = ({ addressResultsLoading, bagLoading, onFetchBagData, addre
       // Form is validated, we can proceed
       onFetchStreetname(currentValues);
       onFetchBagData(currentValues);
+
+      trackEvent({
+        category: 'postcode-input',
+        action: `postcode - ${GET_CURRENT_TOPIC()}`,
+        name: currentValues.postalCode.substring(0, 4),
+      });
+
       history.push(`/${GET_CURRENT_TOPIC()}/${PAGES.locationResult}`);
     }
   };

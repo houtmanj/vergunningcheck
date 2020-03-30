@@ -64,7 +64,7 @@
         },
         {
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een beschermd stads- of dorpsgezicht?",
-          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
+          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10&T=2) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
           "type": "boolean",
           "id": "uitv__db3e3c46-1efc-404a-8520-94974c5a1061"
         },
