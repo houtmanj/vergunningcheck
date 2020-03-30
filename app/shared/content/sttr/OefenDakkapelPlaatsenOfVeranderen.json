@@ -95,7 +95,7 @@
         },
         {
           "text": "Staat het gebouw waarop u de dakkapel gaat plaatsen in een beschermd stads- of dorpsgezicht?",
-          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
+          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10&T=2) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
           "type": "boolean",
           "id": "uitv__81fd4cd4-0dfb-4e98-8c26-69db1ce88fd7"
         },
