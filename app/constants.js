@@ -68,7 +68,7 @@ const TOPICS = {
     },
   },
   'zonnepanelen-of-warmtecollectoren-plaatsen': {
-    status: STATUS.LIVE, // LIVE ON ACC, PRE_LIVE ON PROD
+    status: STATUS.PRE_LIVE, // LIVE ON ACC, PRE_LIVE ON PROD
     sttrPath: '/shared/content/sttr/OefenHekOfSchuttingPlaatsenVeranderenOfVerwijderen.json',
     text: {
       entity: 'zonnepaneel of warmtecollector',
