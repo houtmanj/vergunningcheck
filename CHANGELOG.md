@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file. See [standa
 - added location Results Page Description 2 ([52ab292](https://github.com/Amsterdam/Vergunningschecker/commit/52ab29292bcd128506447c51a1d3b9fce71299b4))
 - added matomo trackevent to STTR flow as well ([0b4297c](https://github.com/Amsterdam/Vergunningschecker/commit/0b4297ce956f4d91d6f2aedae0464ef0e45c7164))
 - added uniqBy to permit results ([0b8c1a6](https://github.com/Amsterdam/Vergunningschecker/commit/0b8c1a6756de33a9cd74d16337471de6801e8e0b))
-- Added zonnepaneel ([a58ca7f](https://github.com/Amsterdam/Vergunningschecker/commit/a58ca7ff89ce02d306fb597f0587e039a3051a5f))
+- Added zonnepaneel (on ACC) ([a58ca7f](https://github.com/Amsterdam/Vergunningschecker/commit/a58ca7ff89ce02d306fb597f0587e039a3051a5f))
 - Updated maps URLs ([307f341](https://github.com/Amsterdam/Vergunningschecker/commit/307f34179eee0c12e5b880cdf641b7298ad27a0b))
 
 ### [0.1.18](https://github.com/Amsterdam/Vergunningschecker/compare/v0.1.17...v0.1.18) (2020-03-23)
