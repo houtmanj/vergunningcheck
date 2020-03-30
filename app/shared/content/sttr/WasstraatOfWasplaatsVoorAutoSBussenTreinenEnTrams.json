@@ -19,7 +19,7 @@
         }
       },
       "decisions": {
-        "_700df325-7661-4968-bb73-6523ce7e0010": {
+        "_07f98125-7777-4944-abe9-51401e9ec939": {
           "requiredInputs": ["#input__a165828d-8708-4db6-92c4-9c767ad7cc72"],
           "decisionTable": {
             "rules": [
@@ -35,7 +35,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_700df325-7661-4968-bb73-6523ce7e0010"],
+          "requiredDecisions": ["#_07f98125-7777-4944-abe9-51401e9ec939"],
           "decisionTable": {
             "rules": [
               {
@@ -64,37 +64,37 @@
         },
         {
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een beschermd stads- of dorpsgezicht?",
-          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
+          "description": "Dit zijn gebieden die de overheid beschermt omdat ze door hun uiterlijk of geschiedenis veel waarde hebben. Bijvoorbeeld de binnenstad van Amsterdam. Controleer [op de kaart](https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&L=6,7,8,9,10&T=2) of het gebouw in een beschermd stads- of dorpsgezicht ligt.",
           "type": "boolean",
           "id": "uitv__db3e3c46-1efc-404a-8520-94974c5a1061"
         },
         {
           "text": "Gaat u het dakraam plaatsen aan de achterkant van het gebouw?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Achterkant.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/5_a_Achterkant.png)",
           "type": "boolean",
           "id": "uitv__ee8c045e-b188-4285-8a60-f6b115f692e1"
         },
         {
           "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/4_a_OTG_Dakraam-Achterkant-weg.png)\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met 'ja'.",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_a_OTG_Dakraam-Achterkant-weg.png)\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__13eea7b4-8965-4a08-9e58-53b7ce506682"
         },
         {
           "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-water.png)\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met 'ja'.",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-water.png)\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__e27d16fb-f4dd-496a-9212-8550153875e4"
         },
         {
           "text": "U gaat het dakraam plaatsen aan de achterkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-plantsoen.png)\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met 'ja'.",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/4_a_OTG_Dakraam_Achterkant-plantsoen.png)\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__461052be-8046-4d9e-9c0d-c4989650e765"
         },
         {
           "text": "Gaat u het dakraam plaatsen op een plat dak?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Platdak.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/5_a_Platdak.png)",
           "type": "boolean",
           "id": "uitv__ef6f95f6-bd48-498c-9b19-52d20d8ba364"
         },
@@ -113,50 +113,50 @@
         },
         {
           "text": "Waar gaat u een dakraam plaatsen?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Voorkant.png)\n\nVoorkant\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Zijkant.png)\n\nZijkant\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/5_a_Achterkant.png)\n\nAchterkant",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/5_a_Voorkant.png)\n\nVoorkant\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/5_a_Zijkant.png)\n\nZijkant\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/5_a_Achterkant.png)\n\nAchterkant",
           "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27"
         },
         {
           "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een straat, fietspad of voetpad waar iedereen mag komen?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_weg.png)\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, beantwoordt u de vraag met 'ja'.",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_weg.png)\n\nAls er direct achter uw tuin een straat, fietspad of voetpad ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__6eab41f3-c3b3-4b30-bc39-a68c36b49f32"
         },
         {
           "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een gracht, kanaal of ander vaarwater waar iedereen mag komen?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_water.png)\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, beantwoordt u de vraag met 'ja'.",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_water.png)\n\nAls er direct achter uw tuin een gracht, kanaal of ander vaarwater ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__a7e982de-940d-4e30-a300-8858c4a7de1a"
         },
         {
           "text": "U gaat het dakraam plaatsen aan de zijkant van het gebouw. Ligt die kant aan een plein, park of parkeerplaats waar iedereen mag komen?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_plantsoen.png)\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, beantwoordt u de vraag met 'ja'.",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_OTG_Dakraam_Zijkant_plantsoen.png)\n\nAls er direct achter uw tuin een plein, park of parkeerplaats ligt, dan beantwoordt u de vraag met 'ja'.",
           "type": "boolean",
           "id": "uitv__68f23f69-4ecb-41db-8a79-e32eef011782"
         },
         {
           "text": "Staat het gebouw waarop u het dakraam gaat plaatsen in een gebied waar gemeentelijke regels gelden voor het uiterlijk van gebouwen?",
-          "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk van gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. [Op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) staan de gebieden waar geen regels gelden. Valt u daar buiten, beantwoordt dan de vraag met ‘ja’.",
+          "description": "In bijna heel Amsterdam gelden regels voor het uiterlijk van gebouwen. In een klein aantal gebieden gelden er geen regels. We noemen die gebieden welstandsvrij. [Op de kaart](https://maps.amsterdam.nl/welstand/?LANG=nl&L=11) staan de gebieden waar geen regels gelden. Valt u daar buiten, dan beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__869431f0-45a4-4f55-b984-63b1ff6fffb2"
         },
         {
           "text": "Steekt het dakraam uit het dakvlak?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D_a.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D_a.png)",
           "type": "boolean",
           "id": "uitv__1f671af8-95bb-493c-b6fc-d886507aeb26"
         },
         {
           "text": "Steekt het dakraam meer dan 60 centimeter uit het dak?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/10_Dakraam_uitsteken_schuin_dak_3D.png)",
           "type": "boolean",
           "id": "uitv__f00d3f88-c82a-4b43-aa54-07f718a397b4"
         },
         {
           "text": "Worden de afstanden van het dakraam tot aan alle randen van het dak meer dan 50 centimeter?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder-staging.flolegal.app/00000001002564440000/11_Dakraam_afstand_tot_randen_schuin_dak.png)\n\nU meet deze afstanden tot de zijkanten en tot de onder- en bovenzijde van uw dak.",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/11_Dakraam_afstand_tot_randen_schuin_dak.png)\n\nU meet deze afstanden tot de zijkanten en tot de onder- en bovenzijde van uw dak.",
           "longDescription": "Een van de voorwaarden om het dakraam vergunningvrij te mogen plaatsen is dat deze meer dan 50 centimeter van alle dakranden wordt geplaatst. Hierdoor wordt het dakraam minder zichtbaar voor de omgeving en hebben de buren er minder last van.",
           "type": "boolean",
           "id": "uitv__3d1da624-b4f0-4207-9244-b1c809258b90"
@@ -233,7 +233,7 @@
         }
       },
       "decisions": {
-        "_718f1776-8ff9-475f-87dc-64e8a90860ed": {
+        "_fe20c0a2-c0f4-4beb-ab39-a131ccda8b6a": {
           "requiredInputs": ["#input__1403b7ef-97be-4d7e-9f41-7838d5833804"],
           "decisionTable": {
             "rules": [
@@ -248,7 +248,7 @@
             ]
           }
         },
-        "_d874aec7-3304-4a67-813b-d90479866f5b": {
+        "_4329ed06-6e32-4919-8609-0086cfaec5c1": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1"
@@ -270,7 +270,7 @@
             ]
           }
         },
-        "_2b510055-76c0-4304-aeb5-952fe05f6b51": {
+        "_3ff58af7-1f78-4910-9f9e-48d8c690ccc8": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -297,7 +297,7 @@
             ]
           }
         },
-        "_6281c4d4-978d-4cec-b6e3-e85b9c7a72db": {
+        "_d3bc81e8-17ac-45a2-b94e-ac60d055ea1b": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -324,7 +324,7 @@
             ]
           }
         },
-        "_70a7fd08-a33f-42c8-a6cb-8017ec0eb296": {
+        "_470cfa01-8465-47b8-88bd-ac4a0d24b7fe": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -351,7 +351,7 @@
             ]
           }
         },
-        "_a1c910ae-cc90-429c-92f0-a45428af8d79": {
+        "_79d94c8f-1f29-4331-af32-0969034f8032": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -383,7 +383,7 @@
             ]
           }
         },
-        "_26d811f2-60ad-49d8-a206-3588bc79faa4": {
+        "_3bd01d4f-06e1-4ae5-9cca-b21d36e7a9fc": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -415,7 +415,7 @@
             ]
           }
         },
-        "_29e69d09-1364-4a1c-8056-444d0b17e8d9": {
+        "_ca2972bc-761c-48be-8ea4-d4073e8c440e": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -451,7 +451,7 @@
             ]
           }
         },
-        "_1886c5d3-0efa-4b8b-89f5-a36f142718e0": {
+        "_76ad1d91-3b51-45c5-8141-eb9786966ebf": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -488,7 +488,7 @@
             ]
           }
         },
-        "_c0a0ca7b-28f8-4d09-a731-73e7cdc8974e": {
+        "_c4ebf32f-5ea5-4d8d-b174-47208deb472b": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -529,7 +529,7 @@
             ]
           }
         },
-        "_bdc50d62-68cb-4c61-9fac-61d1de023d59": {
+        "_9392a3b6-5e1a-439c-899e-8f11c936fadd": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -570,7 +570,7 @@
             ]
           }
         },
-        "_924ba9cd-0a1e-4a26-b97c-d5b498d62f5e": {
+        "_aac26c1e-075b-4115-b76f-53146c94361f": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -612,7 +612,7 @@
             ]
           }
         },
-        "_49b0dc46-58bd-4e1b-8181-0fc833cd4faf": {
+        "_56dfc6af-943b-40e2-b56b-cc796bd688c6": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -658,7 +658,7 @@
             ]
           }
         },
-        "_d8042118-804b-4294-910c-09c2ae6a26f5": {
+        "_7b89e838-5635-41e6-9a40-ded67455628a": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -704,7 +704,7 @@
             ]
           }
         },
-        "_661ee73a-70d5-4bcf-8e77-440d63efc7b5": {
+        "_4cc423f8-707b-4f60-a13f-ab5ebbe21e3b": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -755,7 +755,7 @@
             ]
           }
         },
-        "_b33bfb61-1b61-4e97-a70e-c64f9e3ac844": {
+        "_835e32a7-3212-4ca1-addd-813a34ecf0ba": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -802,7 +802,7 @@
             ]
           }
         },
-        "_6c40bbcb-7f59-489a-a01e-055bbd775e39": {
+        "_ba468f02-08d7-4d73-b273-02f5df21c683": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -853,7 +853,7 @@
             ]
           }
         },
-        "_fce36180-c5ce-4f9a-bfea-495e13f42df3": {
+        "_a9ff0f3c-15ac-4f95-a011-2d7799a7d193": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -904,7 +904,7 @@
             ]
           }
         },
-        "_00bf95fe-9eb4-415d-bc38-c522c0808dd1": {
+        "_569b6778-8a04-4b7f-931c-b6665aff0851": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -960,7 +960,7 @@
             ]
           }
         },
-        "_fc6939ab-77a8-4179-b25b-10137fdee39c": {
+        "_a3376409-eca5-4cfe-a966-51f2652bc33d": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -1018,26 +1018,26 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_718f1776-8ff9-475f-87dc-64e8a90860ed",
-            "#_d874aec7-3304-4a67-813b-d90479866f5b",
-            "#_2b510055-76c0-4304-aeb5-952fe05f6b51",
-            "#_6281c4d4-978d-4cec-b6e3-e85b9c7a72db",
-            "#_70a7fd08-a33f-42c8-a6cb-8017ec0eb296",
-            "#_a1c910ae-cc90-429c-92f0-a45428af8d79",
-            "#_26d811f2-60ad-49d8-a206-3588bc79faa4",
-            "#_29e69d09-1364-4a1c-8056-444d0b17e8d9",
-            "#_1886c5d3-0efa-4b8b-89f5-a36f142718e0",
-            "#_c0a0ca7b-28f8-4d09-a731-73e7cdc8974e",
-            "#_bdc50d62-68cb-4c61-9fac-61d1de023d59",
-            "#_924ba9cd-0a1e-4a26-b97c-d5b498d62f5e",
-            "#_49b0dc46-58bd-4e1b-8181-0fc833cd4faf",
-            "#_d8042118-804b-4294-910c-09c2ae6a26f5",
-            "#_661ee73a-70d5-4bcf-8e77-440d63efc7b5",
-            "#_b33bfb61-1b61-4e97-a70e-c64f9e3ac844",
-            "#_6c40bbcb-7f59-489a-a01e-055bbd775e39",
-            "#_fce36180-c5ce-4f9a-bfea-495e13f42df3",
-            "#_00bf95fe-9eb4-415d-bc38-c522c0808dd1",
-            "#_fc6939ab-77a8-4179-b25b-10137fdee39c"
+            "#_fe20c0a2-c0f4-4beb-ab39-a131ccda8b6a",
+            "#_4329ed06-6e32-4919-8609-0086cfaec5c1",
+            "#_3ff58af7-1f78-4910-9f9e-48d8c690ccc8",
+            "#_d3bc81e8-17ac-45a2-b94e-ac60d055ea1b",
+            "#_470cfa01-8465-47b8-88bd-ac4a0d24b7fe",
+            "#_79d94c8f-1f29-4331-af32-0969034f8032",
+            "#_3bd01d4f-06e1-4ae5-9cca-b21d36e7a9fc",
+            "#_ca2972bc-761c-48be-8ea4-d4073e8c440e",
+            "#_76ad1d91-3b51-45c5-8141-eb9786966ebf",
+            "#_c4ebf32f-5ea5-4d8d-b174-47208deb472b",
+            "#_9392a3b6-5e1a-439c-899e-8f11c936fadd",
+            "#_aac26c1e-075b-4115-b76f-53146c94361f",
+            "#_56dfc6af-943b-40e2-b56b-cc796bd688c6",
+            "#_7b89e838-5635-41e6-9a40-ded67455628a",
+            "#_4cc423f8-707b-4f60-a13f-ab5ebbe21e3b",
+            "#_835e32a7-3212-4ca1-addd-813a34ecf0ba",
+            "#_ba468f02-08d7-4d73-b273-02f5df21c683",
+            "#_a9ff0f3c-15ac-4f95-a011-2d7799a7d193",
+            "#_569b6778-8a04-4b7f-931c-b6665aff0851",
+            "#_a3376409-eca5-4cfe-a966-51f2652bc33d"
           ],
           "decisionTable": {
             "rules": [
