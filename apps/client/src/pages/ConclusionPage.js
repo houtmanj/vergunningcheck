@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
-import withFinalChecker from "../hoc/withFinalChecker";
+import withConclusion from "../hoc/withConclusion";
 
 import Layout from "../components/Layouts/DefaultLayout";
 import Form from "../components/Form";
@@ -99,4 +99,4 @@ const ConclusionsPage = ({ topic, checker }) => {
   );
 };
 
-export default withFinalChecker(ConclusionsPage);
+export default withConclusion(ConclusionsPage);

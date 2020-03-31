@@ -19,6 +19,7 @@ function getQuestions(questionConfig) {
       type,
       collection,
       options,
+      autofill,
       description,
       longDescription,
       ids,
@@ -33,6 +34,7 @@ function getQuestions(questionConfig) {
         longDescription,
         collection,
         options,
+        autofill,
         uuid,
         prio
       })
@@ -101,6 +103,8 @@ function getChecker(config) {
   }, []);
 
   const allQuestions = getQuestions(x);
+  // allQuestions.map(({ question }) => autofillResolver(question));
+
   const permits = permitsConfig.map(permit => {
     const { questions, decisions, name } = permit;
 

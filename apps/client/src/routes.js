@@ -8,6 +8,7 @@ import AddressPage from "./pages/AddressPage";
 import QuestionsPage from "./pages/QuestionsPage";
 import ConclusionPage from "./pages/ConclusionPage";
 import ResultsPage from "./pages/ResultsPage";
+// import PreflightPage from "./pages/PreflightPage";
 
 // System pages
 import NotFoundPage from "./pages/NotFoundPage";
@@ -40,6 +41,11 @@ export const routeConfig = [
     path: "/:slug",
     component: IntroPage
   },
+  // {
+  //   name: "preflight",
+  //   path: "/:slug/_preflight",
+  //   component: PreflightPage
+  // },
   {
     name: "location",
     path: "/:slug/locatie",

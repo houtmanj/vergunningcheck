@@ -3,8 +3,9 @@ import React from "react";
 import Loading from "../components/Loading";
 import Layout from "../components/Layouts/BaseLayout";
 import Helmet from "react-helmet";
+import withConfig from "../hoc/withConfig";
 
-const IntroPage = () => (
+const LoadingPage = () => (
   <Layout>
     <Helmet>
       <title>Laden... - Amsterdam Vergunningchecker</title>
@@ -13,4 +14,4 @@ const IntroPage = () => (
   </Layout>
 );
 
-export default IntroPage;
+export default withConfig(LoadingPage);

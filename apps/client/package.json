@@ -67,6 +67,7 @@
     "lodash.get": "^4.4.2",
     "node-fetch": "^2.6.0",
     "react-scripts": "^3.2.0",
+    "rewire": "^5.0.0",
     "typescript": "^3.7.5",
     "yargs": "^15.1.0"
   },

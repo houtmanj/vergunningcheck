@@ -3,6 +3,7 @@ import React from "react";
 import Error from "../components/Error";
 import Layout from "../components/Layouts/DefaultLayout";
 import Helmet from "react-helmet";
+import withConfig from "../hoc/withConfig";
 
 const ErrorPage = ({ error }) => (
   <Layout>
@@ -13,4 +14,4 @@ const ErrorPage = ({ error }) => (
   </Layout>
 );
 
-export default ErrorPage;
+export default withConfig(ErrorPage);

@@ -5,7 +5,7 @@ import { Paragraph } from "@datapunt/asc-ui";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 
-import withAddress from "../hoc/withAddress";
+import withData from "../hoc/withData";
 import Layout from "../components/Layouts/DefaultLayout";
 import AddressData from "../components/AddressData";
 import Form from "../components/Form";
@@ -31,15 +31,17 @@ const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   return `${OLO.location}?param=postcodecheck&${oloPostalCode}&${oloStreetNumber}&${oloSuffix}`;
 };
 
-const AddressPage = ({ topic, address }) => {
+const AddressPage = ({ topic, data }) => {
   const history = useHistory();
   const { slug } = topic;
   const useSTTR = !!topic.sttrFile;
+  const { address } = data;
 
   const handleSubmit = e => {
     e.preventDefault();
     if (useSTTR) {
       history.push(geturl(routes.questions, { slug }));
+      return null; // XXX
     } else {
       window.open(getOloUrl(address), "_blank");
     }
@@ -90,4 +92,4 @@ AddressPage.propTypes = {
   bagLoading: PropTypes.bool
 };
 
-export default withAddress(AddressPage);
+export default withData(AddressPage);

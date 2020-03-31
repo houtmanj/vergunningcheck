@@ -19,7 +19,7 @@ export interface BaseLayoutProps {
 }
 
 function BaseLayout({ children, heading }: BaseLayoutProps) {
-  const { topic } = useContext(Context);
+  const { topic, checker } = useContext(Context);
   const title = heading || topic?.text?.heading || null;
 
   // const showNavLink = !topic || !topic.sttrPath;
@@ -60,7 +60,12 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           <HiddenDebugInfo title="Topic">
             <p>slug: {topic.slug}</p>
             <p>redirectToOlo: {JSON.stringify(!!topic.redirectToOlo)}</p>
-            <p>sttrFile: {topic.sttrFile}</p>
+            <p>
+              sttrFile:{" "}
+              <a href={`/sttr/${topic.sttrFile}`} target="_blank">
+                {topic.sttrFile}
+              </a>
+            </p>
           </HiddenDebugInfo>
         )}
       </ContentContainer>

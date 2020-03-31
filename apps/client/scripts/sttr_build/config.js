@@ -10,6 +10,12 @@ module.exports = {
     //     naam: "test"
     //   }
     // ],
+    kappen: [
+      {
+        id: "xxx",
+        naam: "Kappen"
+      }
+    ],
     dakraam: [
       // {
       //   id: "mpQ4YsJWhRTzxkM8n",

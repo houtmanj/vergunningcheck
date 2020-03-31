@@ -1,4 +1,4 @@
-import { collectionOfType, uniqueFilter } from "../util";
+import { collectionOfType, uniqueFilter } from "../../utils";
 
 /**
  * Step checker class for quiz
@@ -25,10 +25,6 @@ class Checker {
       (firstEl, secondEl) =>
         firstEl.questions.length < secondEl.questions.length
     );
-
-    this._questions = this._permits
-      .flatMap(permit => permit.questions) // getOpenInputs would be faster for the user
-      .filter(uniqueFilter);
 
     /**
      * @type {Question[]}
@@ -58,8 +54,12 @@ class Checker {
   }
 
   _getUpcomingQuestions() {
-    // todo: filter duplicate questions
-    // todo: optimization would be to return only first value
+    return this._getQuestions().filter(
+      question => !this.stack.includes(question)
+    );
+  }
+
+  _getQuestions() {
     return this.permits
       .reduce((acc, permit) => {
         const conclusion = permit.getDecisionById("dummy");

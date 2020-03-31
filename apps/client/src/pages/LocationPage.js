@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import withTopic from "../hoc/withTopic";
+import withChecker from "../hoc/withChecker";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
 
 import Context from "../context";
@@ -13,7 +13,7 @@ import Nav from "../components/Nav";
 import LocationFinder from "../components/Location/LocationFinder";
 import Helmet from "react-helmet";
 
-const LocationPage = ({ topic }) => {
+const LocationPage = ({ topic, config }) => {
   const { trackEvent } = useMatomo();
   const context = useContext(Context);
   const history = useHistory();
@@ -31,8 +31,12 @@ const LocationPage = ({ topic }) => {
         value: address.postalCode.substring(0, 4)
       });
 
-      context.address = address;
-      history.push(geturl(routes.address, { slug }));
+      context.data.address = address;
+      if (config.autofill.skipRegisterPage) {
+        history.push(geturl(routes.questions, { slug }));
+      } else {
+        history.push(geturl(routes.address, { slug }));
+      }
     } else {
       alert("Selecteer eerst een adres aub.");
     }
@@ -62,4 +66,4 @@ const LocationPage = ({ topic }) => {
   );
 };
 
-export default withTopic(LocationPage);
+export default withChecker(LocationPage);

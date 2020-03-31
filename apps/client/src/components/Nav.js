@@ -17,11 +17,11 @@ const Nav = ({
   nextText,
   formEnds
 }) => {
-  const {
-    topic: { slug: name }
-  } = useContext(Context);
+  const context = useContext(Context);
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
+
+  const { topic } = context;
   const route = routeConfig.find(route => route.path === path);
   const category = route.matamoPage || route.name;
 
@@ -32,14 +32,14 @@ const Nav = ({
     trackEvent({
       category,
       action,
-      name
+      name: topic.slug
     });
   };
   const handlePrevClick = e => {
     trackEvent({
       category,
       action: "form-vorige-knop",
-      name
+      name: topic.slug
     });
     if (onGoToPrev) onGoToPrev(e);
   };

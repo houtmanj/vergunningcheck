@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Paragraph } from "@datapunt/asc-ui";
 import { OLO } from "../config";
 import Layout from "../components/Layouts/DefaultLayout";
+import withConfig from "../hoc/withConfig";
 
 const RedirectPage = () => {
   useEffect(() => {
@@ -27,4 +28,4 @@ const RedirectPage = () => {
   );
 };
 
-export default RedirectPage;
+export default withConfig(RedirectPage);

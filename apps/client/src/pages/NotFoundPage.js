@@ -2,6 +2,7 @@ import React from "react";
 import { Heading, Paragraph } from "@datapunt/asc-ui";
 import Layout from "../components/Layouts/DefaultLayout";
 import Helmet from "react-helmet";
+import withConfig from "../hoc/withConfig";
 
 const NotFoundPage = () => (
   <Layout>
@@ -13,4 +14,4 @@ const NotFoundPage = () => (
   </Layout>
 );
 
-export default NotFoundPage;
+export default withConfig(NotFoundPage);

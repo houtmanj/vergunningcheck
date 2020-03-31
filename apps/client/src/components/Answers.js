@@ -20,6 +20,7 @@ const Answers = ({
   answers,
   currentAnswer,
   errors,
+  disableInputs,
   questionId,
   onChange
 }) => (
@@ -36,6 +37,7 @@ const Answers = ({
             <Label
               htmlFor={answerId}
               key={answerId}
+              disabled={disableInputs}
               label={label.replace(/['"]+/g, "")}
             >
               <Radio

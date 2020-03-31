@@ -38,6 +38,8 @@ const Question = ({
     description,
     longDescription
   },
+  disableInputs,
+  flashMessage,
   className,
   headingAs,
   onSubmit: onSubmitProp,
@@ -110,6 +112,7 @@ const Question = ({
       onSubmit={handleSubmit(onSubmit)}
       data-id={questionId}
     >
+      {flashMessage}
       {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
       {description && (
         <ReactMarkdown
@@ -124,6 +127,7 @@ const Question = ({
         onChange={handleChange}
         errors={errors}
         answers={answers}
+        disableInputs={disableInputs}
         currentAnswer={answer}
       />
       {!hideNavigation && (

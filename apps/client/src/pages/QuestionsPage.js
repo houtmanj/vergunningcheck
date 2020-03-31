@@ -3,13 +3,13 @@ import { useHistory, useParams, Redirect } from "react-router-dom";
 import { geturl, routes, getslug } from "../routes";
 import { Helmet } from "react-helmet";
 
-import withChecker from "../hoc/withChecker";
+import withData from "../hoc/withData";
 import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
-// import ErrorPage from "./ErrorPage";
+import { Paragraph } from "@datapunt/asc-ui";
 
-const QuestionsPage = ({ topic, checker }) => {
+const QuestionsPage = ({ topic, checker, config }) => {
   const params = useParams();
   const history = useHistory();
   const [question, setQuestion] = useState(
@@ -30,11 +30,8 @@ const QuestionsPage = ({ topic, checker }) => {
       />
     );
   }
+
   const { slug } = topic;
-  // @TODO: We shouldn't need this check because of withChecker()
-  // if (!checker) {
-  //   return <ErrorPage error={new Error("Error! Geen checker...")}></ErrorPage>;
-  // }
 
   const needContactPermits = () =>
     checker.permits.find(permit => {
@@ -56,7 +53,18 @@ const QuestionsPage = ({ topic, checker }) => {
     if (needContactPermits()) {
       history.push(geturl(routes.conclusion, { slug }));
     } else {
-      const next = checker.next();
+      let next;
+      let done = false;
+      while (!done) {
+        next = checker.next();
+        if (
+          config.autofill.skipQuestions === false ||
+          !next ||
+          !next.autofill
+        ) {
+          done = true;
+        }
+      }
 
       if (!next) {
         // Go to Result page
@@ -68,13 +76,28 @@ const QuestionsPage = ({ topic, checker }) => {
     }
   };
 
+  const goBack = () => {
+    // Go back to Location page
+    // XXX fails for flows who dont have a location-page
+    history.push(geturl(routes.address, { slug }));
+  };
+
   const onQuestionPrev = () => {
-    if (checker?.stack?.length > 1) {
-      const prev = checker.previous();
-      setQuestion(prev);
+    let prev;
+    let done = false;
+    while (!done) {
+      if (checker?.stack?.length > 1) {
+        goBack();
+      }
+      prev = checker.previous();
+      if (config.autofill.skipQuestions === false || !prev || !prev.autofill) {
+        done = true;
+      }
+    }
+    if (!prev) {
+      goBack();
     } else {
-      // Go back to Location page
-      history.push(geturl(routes.address, { slug }));
+      setQuestion(prev);
     }
   };
 
@@ -86,6 +109,15 @@ const QuestionsPage = ({ topic, checker }) => {
         </title>
       </Helmet>
       <Question
+        flashMessage={
+          config.autofill.flashMessage &&
+          question.autofill && (
+            <Paragraph style={{ padding: "1em", background: "orange" }}>
+              Op basis van onze gegevens is het antwoord op deze vraag...
+            </Paragraph>
+          )
+        }
+        disableInputs={config.autofill.disableInputs && question.autofill}
         question={question}
         onSubmit={onQuestionNext}
         onGoToPrev={onQuestionPrev}
@@ -99,4 +131,4 @@ const QuestionsPage = ({ topic, checker }) => {
   );
 };
 
-export default withChecker(QuestionsPage);
+export default withData(QuestionsPage);

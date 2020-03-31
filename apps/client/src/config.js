@@ -15,7 +15,12 @@ export const OLO = {
 const topics = [
   {
     slug: "kappen-of-snoeien",
-    redirectToOlo: true
+    redirectToOlo: true,
+    intro: "DebugIntro",
+    // sttrFile: "kappen.json",
+    text: {
+      heading: "Vergunningchecker kappen of snoeien"
+    }
   },
   {
     slug: "dakkapel-plaatsen",
@@ -83,6 +88,8 @@ const topics = [
     intro: "InternVerbouwenIntro"
   }
 ];
+
+console.log("starting with", process.env.REACT_APP_STTR_ENV);
 
 if (process.env.REACT_APP_STTR_ENV !== "production") {
   topics.push({

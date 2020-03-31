@@ -3,7 +3,7 @@ import {
   isSimpleType,
   collectionOfSimpleTypes,
   collectionOfType
-} from "./util";
+} from ".";
 
 describe("util", () => {
   test("uniqueFilter", () => {

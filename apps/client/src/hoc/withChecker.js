@@ -2,37 +2,27 @@ import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import Context from "../context";
 import { routes, geturl } from "../routes";
-import withAddress from "./withAddress";
+import withTopic from "./withTopic";
 import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
 import getChecker from "../sttr_client";
 
+// This checker is complete, filled with data
 const withChecker = Component =>
-  withAddress(({ ...rest }) => {
+  withTopic(props => {
     const context = useContext(Context);
     const [checker, setChecker] = useState(context.checker);
     const [error, setError] = useState();
 
-    const { topic } = rest;
-    if (!context.address) {
-      // TODO: doesn't withAddress already guarantee this? :-/
-      console.warn("Address not found, redirecting to location page");
-      return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
-    }
-
-    const fetchData = sttrFile =>
-      fetch(`${window.location.origin}/sttr/${sttrFile}`).then(response =>
-        response.json()
-      );
-
     useEffect(() => {
       if (!checker && !error) {
-        fetchData(topic.sttrFile)
+        fetch(`${window.location.origin}/sttr/${props.topic.sttrFile}`)
+          .then(response => response.json())
           .then(json => {
-            const checker = getChecker(json);
-            checker.next();
-            context.checker = checker;
-            setChecker(checker);
+            const newChecker = getChecker(json);
+            newChecker.next();
+            context.checker = newChecker;
+            setChecker(newChecker);
           })
           .catch(e => {
             setError(e);
@@ -42,11 +32,12 @@ const withChecker = Component =>
 
     if (error) {
       console.error(error);
-      return <ErrorPage error={error} />;
+      return <ErrorPage error={error} {...props} />;
     } else if (checker) {
-      return <Component checker={checker} {...rest} />;
+      console.log("render component now with checker", checker);
+      return <Component checker={checker} {...props} />;
     } else {
-      return <LoadingPage />;
+      return <LoadingPage {...props} />;
     }
   });
 
