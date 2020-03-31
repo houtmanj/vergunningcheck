@@ -6,8 +6,7 @@ import {
   Heading,
   Icon,
   TopBar,
-  Modal as BaseModal,
-  Paragraph
+  Modal as BaseModal
 } from "@datapunt/asc-ui";
 import { Close } from "@datapunt/asc-assets";
 import styled from "@datapunt/asc-core";

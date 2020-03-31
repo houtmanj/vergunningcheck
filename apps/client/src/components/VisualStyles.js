@@ -5,7 +5,7 @@ export const FigCaption = styled.figcaption`
 `;
 
 export const Figure = styled.figure`
-  margin: 0;
+  margin: 0 0 24px 0;
 `;
 
 export const Img = styled.img`
