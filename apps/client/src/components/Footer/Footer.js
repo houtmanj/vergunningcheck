@@ -135,7 +135,7 @@ const Footer = () => (
                 </FooterContent>
               </FooterToggle>
               <FooterContent showAt="tabletM">
-                <FooterHeading $as="h3">Contact</FooterHeading>
+                <FooterHeading forwardedAs="h3">Contact</FooterHeading>
                 <FirstColumn />
               </FooterContent>
             </>
@@ -151,7 +151,7 @@ const Footer = () => (
                 </FooterContent>
               </FooterToggle>
               <FooterContent showAt="tabletM">
-                <FooterHeading $as="h3">Volg de gemeente</FooterHeading>
+                <FooterHeading forwardedAs="h3">Volg de gemeente</FooterHeading>
                 <SecondColumn />
               </FooterContent>
             </>
@@ -167,7 +167,7 @@ const Footer = () => (
                 </FooterContent>
               </FooterToggle>
               <FooterContent showAt="tabletM">
-                <FooterHeading $as="h3" styleAs="h3">
+                <FooterHeading forwardedAs="h3" styleAs="h3">
                   Uit in Amsterdam
                 </FooterHeading>
                 <ThirdColumn />

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "@datapunt/asc-core";
+import styled from "styled-components";
 import { Label, Radio, RadioGroup } from "@datapunt/asc-ui";
 import { StyledAnswerErrorText, StyledAnswer } from "./AnswersStyles";
 

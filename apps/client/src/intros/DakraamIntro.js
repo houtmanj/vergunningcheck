@@ -14,7 +14,7 @@ export default () => (
       U kunt deze vergunningcheck gebruiken voor dakramen, daklichten en
       lichtstraten.
     </Paragraph>
-    <Heading $as="h3">Hoe het werkt:</Heading>
+    <Heading forwardedAs="h3">Hoe het werkt:</Heading>
     <OrderedList>
       <ListItem>
         U voert op de volgende pagina eerst het adres van het gebouw in.
@@ -42,7 +42,7 @@ export default () => (
       </ListItem>
     </OrderedList>
 
-    <Heading $as="h4">Onderhoud:</Heading>
+    <Heading forwardedAs="h4">Onderhoud:</Heading>
     <Paragraph gutterBottom={12}>
       Gaat u een bestaand dakraam, daklicht of lichtstraat vervangen? Onderhoud
       is vergunningvrij als het nieuwe dakraam gelijk blijft aan het bestaande
@@ -56,7 +56,7 @@ export default () => (
       <ListItem>de kleur van het dakraam blijft gelijk</ListItem>
     </List>
 
-    <Heading $as="h4">Bijzondere situaties:</Heading>
+    <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
     <List variant="bullet">
       <ListItem>
         Gaat u de woning splitsen in 2 of meer woningen? Bel dan de gemeente op

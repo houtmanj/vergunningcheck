@@ -109,7 +109,9 @@ const Question = ({
       onSubmit={handleSubmit(onSubmit)}
       data-id={questionId}
     >
-      {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
+      {questionTitle && (
+        <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
+      )}
       {description && (
         <ReactMarkdown
           source={description}

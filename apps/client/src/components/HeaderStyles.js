@@ -1,4 +1,4 @@
-import styled from "@datapunt/asc-core";
+import styled from "styled-components";
 import { Header, MenuInline } from "@datapunt/asc-ui";
 
 export const StyledHeader = styled(Header)`
