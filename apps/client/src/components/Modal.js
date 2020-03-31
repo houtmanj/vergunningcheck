@@ -10,8 +10,9 @@ import {
   Paragraph
 } from "@datapunt/asc-ui";
 import { Close } from "@datapunt/asc-assets";
-import ReactMarkdown from "react-markdown";
 import styled from "@datapunt/asc-core";
+
+import Markdown from "./Markdown";
 
 const ModalBlock = styled.div`
   display: block;
@@ -53,11 +54,7 @@ const Modal = ({ modalText }) => {
           </TopBar>
           <Divider />
           <ModalBlock>
-            <ReactMarkdown
-              source={modalText}
-              renderers={{ paragraph: Paragraph }}
-              linkTarget="_blank"
-            />
+            <Markdown source={modalText} />
           </ModalBlock>
         </div>
       </BaseModal>
