@@ -9,14 +9,7 @@ import { useRouteMatch } from "react-router-dom";
 import { routeConfig } from "../routes";
 import Context from "../context";
 
-const Nav = ({
-  showPrev,
-  onGoToPrev,
-  showNext,
-  disableNext,
-  nextText,
-  formEnds
-}) => {
+const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
   const context = useContext(Context);
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
@@ -51,7 +44,6 @@ const Nav = ({
           <Button
             type="submit"
             variant="secondary"
-            disabled={disableNext}
             onClick={handleNextClick}
             taskflow={!formEnds}
             style={{ marginRight: formEnds ? 10 : 25 }}
@@ -90,8 +82,7 @@ Nav.propTypes = {
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
   nextText: PropTypes.string,
-  formEnds: PropTypes.bool,
-  disableNext: PropTypes.bool
+  formEnds: PropTypes.bool
 };
 
 export default Nav;

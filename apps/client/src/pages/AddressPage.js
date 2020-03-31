@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { Paragraph } from "@datapunt/asc-ui";
@@ -12,7 +13,6 @@ import Form from "../components/Form";
 import Nav from "../components/Nav";
 
 import { StyledAddressResult } from "./AddressPageStyles";
-import Helmet from "react-helmet";
 
 const getOloUrl = ({ postalCode, houseNumberFull, houseNumber }) => {
   // Form is validated, we can proceed
@@ -65,9 +65,13 @@ const AddressPage = ({ topic, data }) => {
         </StyledAddressResult>
 
         <Paragraph>
-          U hebt deze informatie nodig om de vergunningcheck te doen. De
-          informatie over de bestemmingsplannen is pas nodig als u een
-          omgevingsvergunning gaat aanvragen.
+          {useSTTR
+            ? `
+            U hebt deze informatie nodig om de vergunningcheck te doen. De
+            informatie over de bestemmingsplannen is pas nodig als u een
+            omgevingsvergunning gaat aanvragen.
+            `
+            : `U hebt deze informatie nodig om de vergunningcheck te doen op het Omgevingsloket.`}
         </Paragraph>
 
         {useSTTR && (
@@ -78,6 +82,7 @@ const AddressPage = ({ topic, data }) => {
         <Nav
           onGoToPrev={() => history.push(geturl(routes.location, { slug }))}
           nextText={!useSTTR ? "Naar het omgevingsloket" : undefined}
+          formEnds={!useSTTR}
           showPrev
           showNext
         />

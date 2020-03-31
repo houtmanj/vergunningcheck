@@ -26,7 +26,7 @@ const AddressData = ({ address }) => {
             Wij kunnen op dit moment niet uit ons systeem halen of het gebouw in
             een beschermd stads- of dorpsgezicht ligt. Controleer dit zelf op de{" "}
             <a
-              href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&amp;L=6,7,8,9,10"
+              href="https://maps.amsterdam.nl/cultuurhistorie/?LANG=nl&amp;L=6,7,8,9,10&amp;T=2"
               rel="noopener noreferrer"
               target="_blank"
             >

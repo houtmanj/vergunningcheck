@@ -16,8 +16,6 @@ const topics = [
   {
     slug: "kappen-of-snoeien",
     redirectToOlo: true,
-    intro: "DebugIntro",
-    // sttrFile: "kappen.json",
     text: {
       heading: "Vergunningchecker kappen of snoeien"
     }

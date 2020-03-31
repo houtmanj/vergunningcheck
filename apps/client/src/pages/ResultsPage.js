@@ -1,9 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import Helmet from "react-helmet";
+import uniqBy from "lodash.uniqby";
 import { Paragraph, Button } from "@datapunt/asc-ui";
 import { Alert } from "@datapunt/asc-assets";
-import withConclusion from "../hoc/withConclusion";
 import { routes, geturl, getslug } from "../routes";
+import withConclusion from "../hoc/withConclusion";
 
 import Layout from "../components/Layouts/DefaultLayout";
 import Form from "../components/Form";
@@ -18,7 +20,6 @@ import {
   UserResult,
   Change
 } from "./ResultsPageStyles";
-import Helmet from "react-helmet";
 
 const ResultsPage = ({ topic, checker }) => {
   const history = useHistory();
@@ -71,7 +72,8 @@ const ResultsPage = ({ topic, checker }) => {
           <Change />
         </MainWrapper>
         {checker?.stack?.map((question, index) => {
-          const isDecisiveForPermits = permitsPerQuestion[index] || [];
+          const isDecisiveForPermits =
+            uniqBy(permitsPerQuestion[index], "name") || [];
           return (
             <div key={question.id}>
               <Wrapper>

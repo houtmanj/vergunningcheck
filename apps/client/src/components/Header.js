@@ -38,6 +38,7 @@ export const Header = ({ showLinks }) => {
   return (
     <StyledHeader
       tall
+      css={{ zIndex: 2 }}
       backgroundColor="#fff"
       homeLink={
         process.env.NODE_ENV === "production" ? "https://amsterdam.nl" : "/"
