@@ -5,6 +5,7 @@ export const FigCaption = styled.figcaption`
 `;
 
 export const Figure = styled.figure`
+  min-height: 1px; /* IE11 Bug */
   margin: 0 0 24px 0;
 `;
 
