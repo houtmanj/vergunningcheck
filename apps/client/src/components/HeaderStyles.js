@@ -2,6 +2,7 @@ import LogoDesktop from "../static/media/logo-desktop.svg";
 import LogoMobile from "../static/media/logo-mobile.svg";
 import styled, { css } from "styled-components";
 import { breakpoint, themeSpacing } from "@datapunt/asc-ui";
+import { focusOutlineStyle } from "../utils/themeUtils";
 
 import { Header } from "@datapunt/asc-ui";
 
@@ -42,10 +43,6 @@ export const StyledLogo = styled.span`
   width: 100%;
   background-size: cover;
   background-image: url("${LogoMobile}");
-
-  @media screen and ${breakpoint("min-width", "tabletS")} {
-   margin-left: -5px; /* Hack to align logo with content */
-  }
 `;
 
 export const StyledLogoWrapper = styled.a`
@@ -59,9 +56,12 @@ export const StyledLogoWrapper = styled.a`
     height: 68px;
     width: 152px;
     margin-right: ${themeSpacing(10)};
+    margin-left: -5px; /* Hack to align logo with content */
 
     ${StyledLogo} {
       background-image: url("${LogoDesktop}");
     }
   }
+
+  ${focusOutlineStyle}
 `;
