@@ -7,11 +7,10 @@ import {
   Icon,
   TopBar,
   Modal as BaseModal,
-  Paragraph
 } from "@datapunt/asc-ui";
 import { Close } from "@datapunt/asc-assets";
-import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
+import Markdown from "./Markdown";
 
 const ModalBlock = styled.div`
   display: block;
@@ -53,11 +52,7 @@ const Modal = ({ modalText }) => {
           </TopBar>
           <Divider />
           <ModalBlock>
-            <ReactMarkdown
-              source={modalText}
-              renderers={{ paragraph: Paragraph }}
-              linkTarget="_blank"
-            />
+            <Markdown source={modalText} />
           </ModalBlock>
         </div>
       </BaseModal>
@@ -66,7 +61,7 @@ const Modal = ({ modalText }) => {
 };
 
 Modal.propTypes = {
-  modalText: PropTypes.string
+  modalText: PropTypes.string,
 };
 
 export default Modal;

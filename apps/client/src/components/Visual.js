@@ -1,6 +1,9 @@
-import styled from "styled-components";
+import React from "react";
+import { Figure, Img, FigCaption } from "./VisualStyles";
 
-export default styled.img`
-  max-width: 100%;
-  border: 1px solid #aaa;
-`;
+export default ({ title, ...rest }) => (
+  <Figure>
+    <Img {...rest} />
+    <FigCaption>{title}</FigCaption>
+  </Figure>
+);
