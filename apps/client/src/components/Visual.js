@@ -4,6 +4,6 @@ import { Figure, Img, FigCaption } from "./VisualStyles";
 export default ({ title, ...rest }) => (
   <Figure>
     <Img {...rest} />
-    <FigCaption>{title}</FigCaption>
+    {title && <FigCaption>{title}</FigCaption>}
   </Figure>
 );
