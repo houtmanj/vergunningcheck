@@ -1,5 +1,5 @@
 import styled from "@datapunt/asc-core";
-import { themeColor, themeSpacing } from "@datapunt/asc-ui";
+import { themeColor, themeSpacing, List } from "@datapunt/asc-ui";
 
 export const Container = styled.div`
   max-width: 1400px;
@@ -26,4 +26,9 @@ export const FormTitle = styled.h4`
 export const Content = styled.div`
   display: block;
   width: 100%;
+`;
+
+export const StyledList = styled(List)`
+  /* Draft. Needs to be approved by design system */
+  padding-left: ${themeSpacing(5)};
 `;

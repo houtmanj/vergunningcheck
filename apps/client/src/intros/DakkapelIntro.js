@@ -1,5 +1,6 @@
 import React from "react";
-import { Heading, OrderedList, List, ListItem } from "@datapunt/asc-ui";
+import { Heading, OrderedList, ListItem } from "@datapunt/asc-ui";
+import { StyledList } from "../components/Layouts/BaseLayoutStyles";
 import ListInsideOrderedList from "../components/ListInsideOrderedList";
 
 export default () => (
@@ -33,7 +34,7 @@ export default () => (
     </OrderedList>
 
     <Heading $as="h4">Bijzondere situaties:</Heading>
-    <List variant="bullet">
+    <StyledList variant="bullet">
       <ListItem>
         Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een
         blokhut of een vakantiehuis? Bel dan de gemeente op 14 020, maandag tot
@@ -43,6 +44,6 @@ export default () => (
         Gaat u de woning splitsen in 2 of meer woningen? Bel dan de gemeente op
         14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.
       </ListItem>
-    </List>
+    </StyledList>
   </>
 );

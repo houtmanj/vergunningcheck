@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@datapunt/asc-core";
-import { Paragraph, List } from "@datapunt/asc-ui";
+import { Paragraph } from "@datapunt/asc-ui";
+import { StyledList } from "./Layouts/BaseLayoutStyles";
 
 // IE11 Fix
 export const StyledParagraph = styled(Paragraph)`
@@ -9,5 +10,5 @@ export const StyledParagraph = styled(Paragraph)`
 
 // List from Markdown
 export const MarkDownList = ({ children }) => (
-  <List variant="bullet">{children}</List>
+  <StyledList variant="bullet">{children}</StyledList>
 );

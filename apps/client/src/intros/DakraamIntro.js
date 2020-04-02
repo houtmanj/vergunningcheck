@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  Heading,
-  OrderedList,
-  List,
-  ListItem,
-  Paragraph
-} from "@datapunt/asc-ui";
+import { Heading, OrderedList, ListItem, Paragraph } from "@datapunt/asc-ui";
+import { StyledList } from "../components/Layouts/BaseLayoutStyles";
 import ListInsideOrderedList from "../components/ListInsideOrderedList";
 
 export default () => (
@@ -49,19 +44,19 @@ export default () => (
       dakraam. Dit geldt niet voor een illegaal geplaatst dakraam. Voorbeelden
       van vergunningvrij onderhoud:
     </Paragraph>
-    <List variant="bullet" style={{ marginBottom: "8px" }}>
+    <StyledList variant="bullet" style={{ marginBottom: "8px" }}>
       <ListItem>de positie van het dakraam blijft gelijk</ListItem>
       <ListItem>de maten van het dakraam blijft gelijk</ListItem>
       <ListItem>de detaillering van het raamhout blijft gelijk</ListItem>
       <ListItem>de kleur van het dakraam blijft gelijk</ListItem>
-    </List>
+    </StyledList>
 
     <Heading $as="h4">Bijzondere situaties:</Heading>
-    <List variant="bullet">
+    <StyledList variant="bullet">
       <ListItem>
         Gaat u de woning splitsen in 2 of meer woningen? Bel dan de gemeente op
         14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.
       </ListItem>
-    </List>
+    </StyledList>
   </>
 );
