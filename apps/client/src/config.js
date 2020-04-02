@@ -62,6 +62,7 @@ const topics = [
   },
   {
     slug: "zonnepanelen-of-warmtecollectoren-plaatsen",
+    sttrFile: "zonnepaneel.json",
     text: {
       heading: "Vergunningchecker zonnepanelen of warmtecollectoren plaatsen",
       locationIntro:

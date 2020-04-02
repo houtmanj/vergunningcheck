@@ -29,6 +29,16 @@ module.exports = {
         id: "Aa2EX3YprpZQ65non",
         naam: "Dakkapel bouwen"
       }
+    ],
+    zonnepaneel: [
+      {
+        id: "TRhZrFexMjBW42Ky6",
+        naam: "Zonnepaneel en warmtecollector monument"
+      },
+      {
+        id: "skPG9qqTqWyX9tSY7",
+        naam: "Zonnepaneel en warmtecollector bouwen"
+      }
     ]
   },
   staging: {
