@@ -9,7 +9,7 @@ const NotFoundPage = () => (
     <Helmet>
       <title>Pagina niet gevonden - Amsterdam Vergunningchecker</title>
     </Helmet>
-    <Heading $as="h2">Deze pagina is niet gevonden.</Heading>
+    <Heading forwardedAs="h2">Deze pagina is niet gevonden.</Heading>
     <Paragraph>Helaas</Paragraph>
   </Layout>
 );

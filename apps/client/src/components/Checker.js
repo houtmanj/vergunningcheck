@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 // import gql from "graphql-tag";
 import { gql } from "apollo-boost";
-// import styled from "@datapunt/asc-core";
+// import styled from "styled-components";
 
 // const P = styled.p`
 //   text-decoration: underline;

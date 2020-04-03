@@ -53,7 +53,7 @@ const LocationPage = ({ topic, config }) => {
       <Helmet>
         <title>Invullen adres - {text.heading}</title>
       </Helmet>
-      <Heading $as="h4">Invullen adres</Heading>
+      <Heading forwardedAs="h4">Invullen adres</Heading>
       <Paragraph>{text.locationIntro}.</Paragraph>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder

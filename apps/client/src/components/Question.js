@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import ReactMarkdown from "react-markdown";
 import { useForm } from "react-hook-form";
-import { StyledParagraph, MarkDownList } from "./QuestionStyles";
-import { Heading, ListItem } from "@datapunt/asc-ui";
+import { Heading } from "@datapunt/asc-ui";
 
 import Modal from "./Modal";
 import Form from "./Form";
 import Nav from "./Nav";
 import Answers from "./Answers";
-import Visual from "./Visual";
+import Markdown from "./Markdown";
 
 export const booleanOptions = [
   {
@@ -80,7 +78,15 @@ const Question = ({
       }
     }
     return () => unregister(questionId);
-  });
+  }, [
+    questionId,
+    required,
+    register,
+    unregister,
+    currentAnswer,
+    questionAnswers,
+    setValue
+  ]); // IE11 fix to put all dependencies here
 
   const handleChange = e => {
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
@@ -112,19 +118,11 @@ const Question = ({
       data-id={questionId}
     >
       {flashMessage}
-      {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
-      {description && (
-        <ReactMarkdown
-          source={description}
-          renderers={{
-            paragraph: StyledParagraph,
-            image: Visual,
-            list: MarkDownList,
-            listItem: ListItem
-          }}
-          linkTarget="_blank"
-        />
+      {questionTitle && (
+        <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
       )}
+      {description && <Markdown source={description} />}
+      {description && <Markdown source={description} />}
       {longDescription && <Modal modalText={longDescription} />}
       <Answers
         questionId={questionId}

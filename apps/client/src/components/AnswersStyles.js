@@ -1,4 +1,4 @@
-import styled, { css } from "@datapunt/asc-core";
+import styled, { css } from "styled-components";
 
 export const StyledAnswer = styled.div`
   ${props =>
