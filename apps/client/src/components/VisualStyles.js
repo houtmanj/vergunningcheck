@@ -1,4 +1,4 @@
-import styled from "@datapunt/asc-core";
+import styled from "styled-components";
 
 export const FigCaption = styled.figcaption`
   font-style: italic;

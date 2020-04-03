@@ -71,7 +71,7 @@ const ConclusionsPage = ({ topic, checker }) => {
         <title>Conclusie - {topic.text.heading}</title>
       </Helmet>
       <Form onSubmit={handleSubmit}>
-        <Heading $as="h1">Conclusie</Heading>
+        <Heading forwardedAs="h1">Conclusie</Heading>
 
         <Paragraph>
           Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit
@@ -80,7 +80,7 @@ const ConclusionsPage = ({ topic, checker }) => {
 
         {displayConclusions.map(({ title, description }) => (
           <>
-            <Heading $as="h2">{title}</Heading>
+            <Heading forwardedAs="h2">{title}</Heading>
             <ReactMarkdown
               source={description}
               renderers={{ paragraph: Paragraph }}
