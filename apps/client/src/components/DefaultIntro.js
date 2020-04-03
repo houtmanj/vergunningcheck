@@ -3,7 +3,7 @@ import { List, ListItem, Heading, Paragraph } from "@datapunt/asc-ui";
 
 export default ({ children }) => (
   <>
-    <Heading $as="h3">Hoe werkt het?</Heading>
+    <Heading forwardedAs="h3">Hoe werkt het?</Heading>
     <Paragraph gutterBottom={8}>{children}</Paragraph>
     <List variant="bullet">
       <ListItem>U voert eerst het adres van het gebouw in.</ListItem>

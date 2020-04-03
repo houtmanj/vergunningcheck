@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "@datapunt/asc-core";
+import styled from "styled-components";
 import { Paragraph, List } from "@datapunt/asc-ui";
 
 // IE11 Fix
