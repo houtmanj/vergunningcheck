@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import withTopic from "../hoc/withTopic";
-import { Paragraph, Heading } from "@datapunt/asc-ui";
+
+import { Paragraph, Heading } from "@datapunt/asc";
 
 import Context from "../context";
 import { geturl, routes } from "../routes";
