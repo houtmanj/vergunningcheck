@@ -31,6 +31,7 @@ const MenuChildren = () => (
 export const Header = ({ showLinks }) => (
   <StyledHeader
     tall
+    css={{ zIndex: 2 }}
     backgroundColor="#fff"
     homeLink={
       process.env.NODE_ENV === "production" ? "https://amsterdam.nl" : "/"

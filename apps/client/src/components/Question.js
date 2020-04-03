@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import ReactMarkdown from "react-markdown";
 import { useForm } from "react-hook-form";
-import { StyledParagraph } from "./QuestionStyles";
 import { Heading } from "@datapunt/asc-ui";
 
 import Modal from "./Modal";
 import Form from "./Form";
 import Nav from "./Nav";
 import Answers from "./Answers";
-import Visual from "./Visual";
+import Markdown from "./Markdown";
 
 export const booleanOptions = [
   {
@@ -42,7 +40,6 @@ const Question = ({
   headingAs,
   onSubmit: onSubmitProp,
   hideNavigation,
-  disableNext,
   showNext,
   showPrev,
   onGoToPrev,
@@ -111,13 +108,7 @@ const Question = ({
       data-id={questionId}
     >
       {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
-      {description && (
-        <ReactMarkdown
-          source={description}
-          renderers={{ paragraph: StyledParagraph, image: Visual }}
-          linkTarget="_blank"
-        />
-      )}
+      {description && <Markdown source={description} />}
       {longDescription && <Modal modalText={longDescription} />}
       <Answers
         questionId={questionId}
@@ -127,12 +118,7 @@ const Question = ({
         currentAnswer={answer}
       />
       {!hideNavigation && (
-        <Nav
-          showPrev={showPrev}
-          showNext={showNext}
-          onGoToPrev={onGoToPrev}
-          disableNext={disableNext}
-        />
+        <Nav showPrev={showPrev} showNext={showNext} onGoToPrev={onGoToPrev} />
       )}
     </Form>
   );
@@ -164,7 +150,6 @@ Question.propTypes = {
   required: PropTypes.bool,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
-  disableNext: PropTypes.bool,
   onGoToPrev: PropTypes.func
 };
 

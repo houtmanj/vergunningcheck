@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import withTopic from "../hoc/withTopic";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
@@ -18,23 +19,28 @@ const LocationPage = ({ topic }) => {
   const context = useContext(Context);
   const history = useHistory();
   const [address, setAddress] = useState(null);
-
+  const { clearError, errors, register, unregister, handleSubmit } = useForm();
   const { slug, text } = topic;
 
-  const onSubmit = e => {
-    e.preventDefault();
+  useEffect(() => {
+    if (!address) {
+      register({ name: "suffix" }, { required: "Kies een toevoeging" });
+    } else {
+      clearError("suffix");
+    }
+    return () => unregister("suffix");
+  }, [address, clearError, register, unregister]);
+
+  const onSubmit = () => {
     if (address) {
       trackEvent({
-        category: "location",
-        action: "postcode",
-        name: slug,
-        value: address.postalCode.substring(0, 4)
+        category: "postcode-input",
+        action: `postcode - ${slug.replace("-", " ")}`,
+        name: address.postalCode.substring(0, 4)
       });
 
       context.address = address;
       history.push(geturl(routes.address, { slug }));
-    } else {
-      alert("Selecteer eerst een adres aub.");
     }
   };
 
@@ -45,15 +51,19 @@ const LocationPage = ({ topic }) => {
       </Helmet>
       <Heading $as="h4">Invullen adres</Heading>
       <Paragraph>{text.locationIntro}.</Paragraph>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <LocationFinder
-          onChange={setAddress}
+          setAddress={setAddress}
           postalCode={context.address?.postalCode}
           houseNumberFull={context.address?.houseNumberFull}
+          houseNumber={context.address?.houseNumberFull}
+          errors={errors}
         />
         <Nav
-          onGoToPrev={() => history.push(geturl(routes.intro, { slug }))}
-          disableNext={!address}
+          onGoToPrev={() => {
+            context.address = address;
+            history.push(geturl(routes.intro, { slug }));
+          }}
           showPrev
           showNext
         />

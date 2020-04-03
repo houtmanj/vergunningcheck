@@ -9,16 +9,15 @@ module.exports = {
     //     id: "FMbPHJhi3B3mwb7pT",
     //     naam: "test"
     //   }
-    // ],    "_id": "hMwHKR7Wz4FP8Dm4x",
-
+    // ],
     dakraam: [
-      {
-        id: "dRy4PfDs7jQPc9gMG",
-        naam: "Dakraam bouwen"
-      },
       {
         id: "hMwHKR7Wz4FP8Dm4x",
         naam: "Het wijzigen van een monument bij een dakraam"
+      },
+      {
+        id: "dRy4PfDs7jQPc9gMG",
+        naam: "Dakraam bouwen"
       }
     ],
     dakkapel: [

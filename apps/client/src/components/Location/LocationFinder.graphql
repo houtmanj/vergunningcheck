@@ -1,29 +1,44 @@
-query findAddress($postalCode: String!, $houseNumberFull: String!) {
+query findAddress(
+  $postalCode: String!
+  $houseNumberFull: String!
+  $extraHouseNumberFull: String!
+  $queryExtra: Boolean!
+) {
+  extraAddress: findAddress(
+    postalCode: $postalCode
+    houseNumberFull: $extraHouseNumberFull
+  ) @include(if: $queryExtra) {
+    matches {
+      ...basicAddress
+    }
+  }
   findAddress(postalCode: $postalCode, houseNumberFull: $houseNumberFull) {
     exactMatch {
-      ...basicAddress
-      restrictions {
-        __typename
-        ... on CityScape {
-          __typename
-          name
-        }
-        ... on Monument {
-          __typename
-          name
-          # type
-        }
-      }
-      zoningPlans {
-        name
-      }
+      ...exactMatchFragment
     }
     matches {
       ...basicAddress
     }
   }
 }
-
+fragment exactMatchFragment on Address {
+  ...basicAddress
+  restrictions {
+    __typename
+    ... on CityScape {
+      __typename
+      name
+    }
+    ... on Monument {
+      __typename
+      name
+      # type
+    }
+  }
+  zoningPlans {
+    name
+  }
+}
 fragment basicAddress on Address {
   __typename
   id

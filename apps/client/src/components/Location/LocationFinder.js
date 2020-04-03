@@ -1,43 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Paragraph, Select } from "@datapunt/asc-ui";
 import { loader } from "graphql.macro";
-import { StyledTextField } from "./LocationFinderStyles";
+import { StyledTextField, StyledErrorParagraph } from "./LocationFinderStyles";
 import Error from "../Error";
 import Teaser from "./Teaser";
-// import debounce from "lodash-es/debounce";
 
 const findAddress = loader("./LocationFinder.graphql");
-
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
 const LocationFinder = props => {
   const [postalCode, setPostalCode] = useState(props.postalCode);
+  const [houseNumber, setHouseNumber] = useState(props.houseNumber);
   const [houseNumberFull, setHouseNumberFull] = useState(props.houseNumberFull);
   const [touched, setTouched] = useState({});
+  const { setAddress } = props;
 
+  // GraphQL query
   const { loading, error, data } = useQuery(findAddress, {
     variables: {
       postalCode,
-      houseNumberFull
+      houseNumberFull,
+      extraHouseNumberFull: houseNumber,
+      queryExtra: houseNumber !== houseNumberFull
     },
-    skip: !postalCode || !houseNumberFull
+    skip: !postalCode || !houseNumberFull || !houseNumber
   });
 
-  const { onChange } = props;
-  const matches = data?.findAddress?.matches || [];
+  // Prevent setState error
+  useEffect(() => {
+    if (postalCode && houseNumberFull && !loading && (data || error)) {
+      setAddress(data?.findAddress?.exactMatch);
+    }
+  });
+
   const exactMatch = data?.findAddress?.exactMatch;
+  const findAddressMatches = data?.findAddress?.matches || [];
+  const extraAddressMatches = data?.extraAddress?.matches || [];
+  const addressMatches = extraAddressMatches.length
+    ? extraAddressMatches
+    : findAddressMatches.length > 1
+    ? findAddressMatches
+    : null;
 
-  if (postalCode && houseNumberFull && !loading && (data || error)) {
-    onChange(exactMatch);
-  }
+  // Validate address
+  const notFoundAddress =
+    postalCode &&
+    houseNumber &&
+    houseNumberFull &&
+    !loading &&
+    !exactMatch &&
+    !findAddressMatches.length;
 
+  // Validate forms
   const validate = (name, value, required) => {
     if (touched[name]) {
-      if (required && (!value || value.trim() === "")) {
+      if (required && (!value || value?.trim() === "")) {
         return "Dit veld is verplicht.";
       }
-      const trimmed = value.trim();
+      const trimmed = value?.trim();
       if (name === "postalCode" && !trimmed.match(postalCodeRegex)) {
         return "De ingevoerde postcode is niet goed geformuleerd. Een postcode bestaat uit 4 cijfers en 2 letters.";
       }
@@ -59,19 +80,59 @@ const LocationFinder = props => {
         label="Postcode"
         defaultValue={postalCode}
         name="postalCode"
-        errorMessage={validate("postalCode", postalCode, true)}
+        errorMessage={
+          validate("postalCode", postalCode, true) || notFoundAddress
+        }
       />
       <StyledTextField
         label="Huisnummer"
         onChange={e => {
           setHouseNumberFull(e.target.value);
+          setHouseNumber(e.target.value);
         }}
         required={true}
         onBlur={handleBlur}
         defaultValue={houseNumberFull}
         name="houseNumberFull"
-        errorMessage={validate("houseNumberFull", houseNumberFull, true)}
+        errorMessage={
+          validate("houseNumberFull", houseNumberFull, true) || notFoundAddress
+        }
       />
+
+      {notFoundAddress && (
+        <StyledErrorParagraph>
+          Er is geen adres in Amsterdam gevonden op basis van deze gegevens.
+          Probeer het opnieuw.
+        </StyledErrorParagraph>
+      )}
+
+      {postalCode && houseNumberFull && addressMatches && (
+        <>
+          <Paragraph>
+            Er bestaan meerdere adressen bij {addressMatches[0]?.streetName}{" "}
+            {addressMatches[0]?.houseNumber}
+          </Paragraph>
+          <Select
+            label="Toevoeging"
+            name="suffix"
+            value={exactMatch?.houseNumberFull}
+            onChange={e => {
+              setHouseNumberFull(e.target.value);
+              e.preventDefault();
+            }}
+            style={{ marginBottom: "24px" }}
+            errorMessage={props.errors?.suffix?.message}
+            required={true}
+          >
+            <option value={houseNumber}>Maak een keuze</option>
+            {addressMatches.map(match => (
+              <option value={match.houseNumberFull} key={match.houseNumberFull}>
+                {match.houseNumberFull}
+              </option>
+            ))}
+          </Select>
+        </>
+      )}
 
       {loading && (
         <>
@@ -80,42 +141,16 @@ const LocationFinder = props => {
         </>
       )}
 
+      {exactMatch && !loading && (
+        <>
+          <Teaser {...exactMatch} />
+          <Paragraph>
+            Klopt dit niet? Wijzig dan postcode of huisnummer.
+          </Paragraph>
+        </>
+      )}
+
       {error && <Error error={error} />}
-
-      {exactMatch && <Teaser {...exactMatch} />}
-      {postalCode &&
-        houseNumberFull &&
-        !loading &&
-        !exactMatch &&
-        matches.length === 0 && <p>Er is geen adres gevonden</p>}
-
-      {postalCode &&
-        houseNumberFull &&
-        !loading &&
-        !exactMatch &&
-        matches.length > 0 && (
-          <>
-            <Paragraph strong>Kies een adres:</Paragraph>
-
-            <Select
-              label="Toevoeging"
-              name="suffix"
-              onChange={e => {
-                setHouseNumberFull(e.target.value);
-              }}
-            >
-              <option value="">Maak een keuze</option>
-              {matches.map(match => (
-                <option
-                  value={match.houseNumberFull}
-                  key={match.houseNumberFull}
-                >
-                  {match.houseNumberFull}
-                </option>
-              ))}
-            </Select>
-          </>
-        )}
     </>
   );
   // }
