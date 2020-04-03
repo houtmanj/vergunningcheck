@@ -23,7 +23,7 @@ export default ({ source }) => (
       paragraph: BlockRenderer,
       list: MarkDownList,
       listItem: ListItem,
-      image: Visual
+      image: Visual,
     }}
     linkTarget="_blank"
   />
