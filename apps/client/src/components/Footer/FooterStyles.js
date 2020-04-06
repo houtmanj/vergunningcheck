@@ -1,4 +1,4 @@
-import styled from "@datapunt/asc-core";
+import styled from "styled-components";
 
 export const ContentContainer = styled.div`
   max-width: 960px;
