@@ -65,7 +65,7 @@ class Decision {
     // Find the values for our inputs
     const inputs = inputReducer ? this._inputs.map(inputReducer) : this._inputs;
     const values = inputs.map(({ answer }) => answer);
-    return this._rules.filter(rule => rule.evaluateNew(values).length !== 0);
+    return this._rules.filter((rule) => rule.evaluateNew(values).length !== 0);
   }
 
   /**
@@ -76,8 +76,8 @@ class Decision {
   getDecisiveInputs() {
     const values = this._inputs.map(({ answer }) => answer);
     return this._rules
-      .flatMap(rule =>
-        rule.evaluateNew(values).map(index => this._inputs[index])
+      .flatMap((rule) =>
+        rule.evaluateNew(values).map((index) => this._inputs[index])
       )
       .filter(uniqueFilter);
   }
@@ -88,7 +88,7 @@ class Decision {
    * @returns {Question[]} the unfiltered inputs
    */
   getQuestions() {
-    return this._inputs.filter(input => input.__type === "Question");
+    return this._inputs.filter((input) => input.__type === "Question");
   }
 
   /**

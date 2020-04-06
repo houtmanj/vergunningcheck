@@ -7,7 +7,7 @@ const Form = ({ children, onSubmit, action, ...rest }) => {
 
   return (
     <StyledForm
-      onSubmit={e => {
+      onSubmit={(e) => {
         e.preventDefault();
         if (onSubmit) {
           onSubmit(e);

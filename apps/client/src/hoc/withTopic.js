@@ -5,12 +5,12 @@ import { topics } from "../config";
 import NotFoundPage from "../pages/NotFoundPage";
 import { geturl, routes } from "../routes";
 
-const withTopic = Component => () => {
+const withTopic = (Component) => () => {
   const context = useContext(Context);
   const { slug } = useParams();
   const { search } = useLocation();
 
-  const topic = topics.find(t => t.slug === slug);
+  const topic = topics.find((t) => t.slug === slug);
   const params = new URLSearchParams(search);
 
   if (params.get("resetChecker")) {

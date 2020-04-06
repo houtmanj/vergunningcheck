@@ -25,7 +25,7 @@ const QuestionsPage = ({ topic, checker }) => {
       <Redirect
         to={geturl(routes.questions, {
           slug: topic.slug,
-          question: currSlug
+          question: currSlug,
         })}
       />
     );
@@ -37,19 +37,19 @@ const QuestionsPage = ({ topic, checker }) => {
   // }
 
   const needContactPermits = () =>
-    checker.permits.find(permit => {
+    checker.permits.find((permit) => {
       const conclusion = permit.getDecisionById("dummy");
       const conclusionMatchingRules = conclusion.getMatchingRules();
       return conclusionMatchingRules.find(
-        rule => rule.outputValue === '"NeemContactOpMet"'
+        (rule) => rule.outputValue === '"NeemContactOpMet"'
       );
     });
 
-  const onQuestionNext = value => {
+  const onQuestionNext = (value) => {
     if (question.options) {
       question.setAnswer(value);
     } else {
-      const responseObj = booleanOptions.find(o => o.formValue === value);
+      const responseObj = booleanOptions.find((o) => o.formValue === value);
       question.setAnswer(responseObj.value);
     }
 

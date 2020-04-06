@@ -4,7 +4,7 @@ import Context from "../context";
 import { routes, geturl } from "../routes";
 import withTopic from "./withTopic";
 
-const withAddress = Component =>
+const withAddress = (Component) =>
   withTopic(({ ...rest }) => {
     const { address } = useContext(Context);
     const { topic } = rest;

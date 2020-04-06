@@ -6,7 +6,7 @@ const getQuestion = () =>
     type: "boolean",
     text: "Are you ok?",
     prio: 10,
-    description: "Describe how you are _feeling_."
+    description: "Describe how you are _feeling_.",
   });
 
 describe("Question", () => {

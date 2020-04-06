@@ -17,7 +17,7 @@ import {
   Question,
   UserAnswer,
   UserResult,
-  Change
+  Change,
 } from "./ResultsPageStyles";
 import Helmet from "react-helmet";
 
@@ -26,21 +26,21 @@ const ResultsPage = ({ topic, checker }) => {
   const { slug } = topic;
   const permitsPerQuestion = [];
 
-  const onGoToQuestion = index => {
+  const onGoToQuestion = (index) => {
     const q = checker.rewindTo(index);
     history.push(
       geturl(routes.questions, {
         slug,
-        question: getslug(q.text)
+        question: getslug(q.text),
       })
     );
   };
 
-  checker.permits.forEach(permit => {
+  checker.permits.forEach((permit) => {
     const conclusionDecision = permit.getDecisionById("dummy");
     if (conclusionDecision.getOutput() === '"Vergunningplicht"') {
       const decisiveDecisions = conclusionDecision.getDecisiveInputs();
-      decisiveDecisions.forEach(decision => {
+      decisiveDecisions.forEach((decision) => {
         const decisiveQuestion = decision.getDecisiveInputs().pop();
         const index = checker.stack.indexOf(decisiveQuestion);
         permitsPerQuestion[index] = (permitsPerQuestion[index] || []).concat(
@@ -56,7 +56,7 @@ const ResultsPage = ({ topic, checker }) => {
         <title>Uitkomsten - {topic.text.heading}</title>
       </Helmet>
       <Form
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           history.push(geturl(routes.conclusion, { slug }));
         }}
@@ -86,7 +86,7 @@ const ResultsPage = ({ topic, checker }) => {
                   <UserAnswer>
                     {
                       booleanOptions.find(
-                        option => option.value === question.answer
+                        (option) => option.value === question.answer
                       ).label
                     }
                   </UserAnswer>
@@ -98,21 +98,21 @@ const ResultsPage = ({ topic, checker }) => {
                   Wijzig
                 </Button>
               </Wrapper>
-              {isDecisiveForPermits.map(permit => (
+              {isDecisiveForPermits.map((permit) => (
                 <UserResult>
                   <Alert
                     style={{
                       width: "20%",
                       maxWidth: "30px",
                       marginBottom: "8px",
-                      fill: "#ec0000"
+                      fill: "#ec0000",
                     }}
                   />
                   <p
                     style={{
                       marginBottom: "25px",
                       marginLeft: "7px",
-                      display: "inline-block"
+                      display: "inline-block",
                     }}
                   >
                     Op basis van dit antwoord bent u vergunningplichtig voor{" "}

@@ -15,7 +15,7 @@ export default ({ source }) => (
       list: ListRenderer,
       listItem: ListItem,
       image: Visual,
-      link: LinkRenderer
+      link: LinkRenderer,
     }}
   />
 );

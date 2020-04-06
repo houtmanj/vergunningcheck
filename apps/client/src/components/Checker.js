@@ -34,8 +34,8 @@ const Checker = () => {
   const { loading, error, data } = useQuery(query, {
     variables: {
       streetName: "Nieuwe uilenburgerstraat",
-      houseNumberFull: "20"
-    }
+      houseNumberFull: "20",
+    },
   });
   if (loading) {
     return <p>loading...</p>;
