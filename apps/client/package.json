@@ -36,7 +36,8 @@
     "test": "react-scripts test",
     "lint": "eslint . --ignore-path .gitignore",
     "precommit": "lint-staged",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -68,6 +69,7 @@
     "lodash.get": "^4.4.2",
     "node-fetch": "^2.6.0",
     "react-scripts": "^3.2.0",
+    "source-map-explorer": "^2.4.2",
     "typescript": "^3.7.5",
     "yargs": "^15.1.0"
   },
