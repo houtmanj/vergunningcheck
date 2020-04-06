@@ -34,6 +34,8 @@
     "build": "react-scripts build",
     "sttr": "node scripts/sttr_build --output=./public/sttr",
     "test": "react-scripts test",
+    "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
+    "test:snapshot": "npm run test -- --watchAll=false --updateSnapshot",
     "lint": "eslint . --ignore-path .gitignore",
     "precommit": "lint-staged",
     "eject": "react-scripts eject",
