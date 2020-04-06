@@ -74,6 +74,9 @@
     "yargs": "^15.1.0"
   },
   "lint-staged": {
+    "*.json": [
+      "prettier --write"
+    ],
     "*.{js,ts,tsx}": [
       "prettier --write",
       "eslint --fix",
