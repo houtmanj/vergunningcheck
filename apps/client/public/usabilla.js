@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 window.lightningjs ||
   (function(c) {
     function g(b, d) {

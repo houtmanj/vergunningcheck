@@ -6,7 +6,7 @@ import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { ThemeProvider } from "@datapunt/asc-ui";
 
 import Context, { defaultValues } from "../context";
-import { matamo } from "../config";
+import { matomo } from "../config";
 import apolloClient from "../apolloClient";
 
 dotenv.config();
@@ -16,7 +16,7 @@ const AllTheProviders = ({ children }) => {
     <Context.Provider value={defaultValues}>
       <ApolloProvider client={apolloClient}>
         <ThemeProvider>
-          <MatomoProvider value={createInstance(matamo)}>
+          <MatomoProvider value={createInstance(matomo)}>
             {children}
           </MatomoProvider>
         </ThemeProvider>
