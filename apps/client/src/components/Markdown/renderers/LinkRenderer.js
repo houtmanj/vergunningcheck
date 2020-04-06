@@ -8,7 +8,7 @@ import React from "react";
 export default ({ children, ...rest }) => {
   const props = Object.assign({}, rest, {
     target: "_blank",
-    rel: "noopener noreferrer",
+    rel: "noopener noreferrer"
   });
   return <a {...props}>{children}</a>;
 };
