@@ -2,3 +2,6 @@ public/sttr/*.xml
 public/sttr/*.source.json
 build/
 .env*.local
+
+# testing
+coverage
