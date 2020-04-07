@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const StyledAnswer = styled.div`
-  ${props =>
+  ${(props) =>
     props.hasError &&
     css`
       color: red;

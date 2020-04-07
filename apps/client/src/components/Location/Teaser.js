@@ -6,7 +6,7 @@ const LocationTeaser = ({
   streetName,
   postalCode,
   houseNumberFull,
-  residence
+  residence,
 }) => (
   <StyledAddressResult>
     <Paragraph strong style={{ marginBottom: "0px" }}>

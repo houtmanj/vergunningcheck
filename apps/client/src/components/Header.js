@@ -3,7 +3,7 @@ import {
   StyledHeader,
   StyledHeaderWrapper,
   StyledLogoWrapper,
-  StyledLogo
+  StyledLogo,
 } from "./HeaderStyles";
 
 export const Header = ({ showLinks }) => (

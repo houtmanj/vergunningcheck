@@ -56,10 +56,10 @@ describe("Rule", () => {
 
     // partial match values
     expect(new Rule([true], "yes").evaluateNew([true, false])).toStrictEqual([
-      0
+      0,
     ]);
     expect(new Rule([false], "yes").evaluateNew([false, true])).toStrictEqual([
-      0
+      0,
     ]);
     expect(
       new Rule([true, false], "yes").evaluateNew([true, false, "x"])

@@ -2,7 +2,7 @@ import React from "react";
 import { Heading, Paragraph, OrderedList } from "@datapunt/asc-ui";
 import {
   StyledList,
-  StyledListItem
+  StyledListItem,
 } from "../components/Layouts/BaseLayoutStyles";
 import ListInsideOrderedList from "../components/ListInsideOrderedList";
 

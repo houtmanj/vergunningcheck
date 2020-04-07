@@ -9,7 +9,7 @@ const getRestrictionByTypeName = (address, typeName) =>
 const AddressData = ({ address }) => {
   const monument = getRestrictionByTypeName(address, "Monument")?.name;
   const cityScape = getRestrictionByTypeName(address, "CityScape")?.name;
-  const zoningPlans = address.zoningPlans.map(plan => plan.name);
+  const zoningPlans = address.zoningPlans.map((plan) => plan.name);
 
   return (
     <div>
@@ -46,10 +46,10 @@ const AddressData = ({ address }) => {
             style={{
               backgroundColor: "inherit",
               marginTop: 10,
-              marginBottom: 0
+              marginBottom: 0,
             }}
           >
-            {zoningPlans.map(plan => (
+            {zoningPlans.map((plan) => (
               <StyledListItem key={plan}>{plan}</StyledListItem>
             ))}
           </StyledList>
