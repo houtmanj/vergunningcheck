@@ -1,4 +1,6 @@
 import React from "react";
-import { List } from "@datapunt/asc-ui";
+import { StyledList } from "../../Layouts/BaseLayoutStyles";
 
-export default ({ children }) => <List variant="bullet">{children}</List>;
+export default ({ children }) => (
+  <StyledList variant="bullet">{children}</StyledList>
+);

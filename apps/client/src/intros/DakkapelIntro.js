@@ -1,49 +1,52 @@
 import React from "react";
-import { Heading, OrderedList, ListItem } from "@datapunt/asc-ui";
-import { StyledList } from "../components/Layouts/BaseLayoutStyles";
+import { Heading, OrderedList } from "@datapunt/asc-ui";
+import {
+  StyledList,
+  StyledListItem
+} from "../components/Layouts/BaseLayoutStyles";
 import ListInsideOrderedList from "../components/ListInsideOrderedList";
 
 export default () => (
   <>
     <Heading forwardedAs="h3">Hoe het werkt:</Heading>
     <OrderedList>
-      <ListItem>
+      <StyledListItem>
         U voert op de volgende pagina eerst het adres van het gebouw in.
-      </ListItem>
-      <ListItem>
+      </StyledListItem>
+      <StyledListItem>
         Vervolgens krijgt u te zien:
         <ListInsideOrderedList variant="bullet">
-          <ListItem>of het gebouw een monument is.</ListItem>
-          <ListItem>
+          <StyledListItem>of het gebouw een monument is.</StyledListItem>
+          <StyledListItem>
             of het gebouw in een beschermd stads- of dorpsgezicht ligt.
-          </ListItem>
-          <ListItem>welk bestemmingsplan er geldt.</ListItem>
+          </StyledListItem>
+          <StyledListItem>welk bestemmingsplan er geldt.</StyledListItem>
         </ListInsideOrderedList>
-      </ListItem>
-      <ListItem>
+      </StyledListItem>
+      <StyledListItem>
         Wij stellen u een aantal vragen over het gebouw en de dakkapel.
-      </ListItem>
-      <ListItem>
+      </StyledListItem>
+      <StyledListItem>
         U leest of u een vergunning nodig hebt. Wij vertellen u hoe u een
         aanvraag doet.
-      </ListItem>
-      <ListItem>
+      </StyledListItem>
+      <StyledListItem>
         Wij vertellen u waar u verder op moet letten als u de dakkapel gaat
         plaatsen.
-      </ListItem>
+      </StyledListItem>
     </OrderedList>
 
     <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
     <StyledList variant="bullet">
-      <ListItem>
+      <StyledListItem>
         Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een
         blokhut of een vakantiehuis? Bel dan de gemeente op 14 020, maandag tot
         en met vrijdag van 08.00 uur tot 18.00 uur
-      </ListItem>
-      <ListItem>
+      </StyledListItem>
+      <StyledListItem>
         Gaat u de woning splitsen in 2 of meer woningen? Bel dan de gemeente op
         14 020, maandag tot en met vrijdag van 08.00 uur tot 18.00 uur.
-      </ListItem>
+      </StyledListItem>
     </StyledList>
   </>
 );
