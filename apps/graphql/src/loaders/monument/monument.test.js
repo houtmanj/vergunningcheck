@@ -2,13 +2,15 @@ const uuid = require("uuid");
 const monument = require("rewire")("./monument.js");
 const loader = monument.__get__("loader");
 
-const load = jest.fn(id => new Promise(resolve => resolve(`data for ${id}`)));
+const load = jest.fn(
+  (id) => new Promise((resolve) => resolve(`data for ${id}`))
+);
 
 // Setup mock
 monument.__set__(
   "loader",
   Object.assign({}, loader, {
-    load
+    load,
   })
 );
 

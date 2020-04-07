@@ -63,17 +63,17 @@ const getPostBody = (lat, lon) => `
   </GetFeature>`;
 
 const loader = {
-  reducer: o =>
+  reducer: (o) =>
     o["wfs:FeatureCollection"]["wfs:member"]
       // .filter(item => !!item["app:Bestemmingsplangebied"])
-      .map(plans => ({
-        name: _.get(Object.values(plans).pop(), "0.app:naam.0")
+      .map((plans) => ({
+        name: _.get(Object.values(plans).pop(), "0.app:naam.0"),
       })),
-  load: key =>
+  load: (key) =>
     postXml(config.url, getPostBody(...key.split(" "))).then(loader.reducer),
-  cached: key => withCache(`zoningPlan:${key}`, () => loader.load(key), TTL)
+  cached: (key) => withCache(`zoningPlan:${key}`, () => loader.load(key), TTL),
 };
 
 module.exports = {
-  load: async keys => keys.map(loader.cached)
+  load: async (keys) => keys.map(loader.cached),
 };

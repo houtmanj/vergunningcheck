@@ -2,13 +2,15 @@ const uuid = require("uuid");
 const situation = require("rewire")("./situation.js");
 const loader = situation.__get__("loader");
 
-const load = jest.fn(id => new Promise(resolve => resolve(`data for ${id}`)));
+const load = jest.fn(
+  (id) => new Promise((resolve) => resolve(`data for ${id}`))
+);
 
 // Setup mock
 situation.__set__(
   "loader",
   Object.assign({}, loader, {
-    load
+    load,
   })
 );
 

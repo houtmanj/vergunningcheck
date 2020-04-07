@@ -2,7 +2,7 @@ const { withCache, fetchJson, getUrl } = require("../../util");
 const {
   bagSearch: config,
   CACHE_TIMEOUT,
-  HOST
+  HOST,
 } = require("config").loaders.datapunt;
 const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
@@ -16,11 +16,11 @@ const URL = `${HOST}${config.url}`;
 // phrased differently:
 // - houseNumberFull = `${houseNumber} ${houseNumberLetter} ${houseNumberSuffix}`
 
-const propFilterUnique = prop => (obj, index, self) =>
-  self.findIndex(item => item[prop] === obj[prop]) === index;
+const propFilterUnique = (prop) => (obj, index, self) =>
+  self.findIndex((item) => item[prop] === obj[prop]) === index;
 
 const loader = {
-  reducer: o => ({
+  reducer: (o) => ({
     _adressableObjectId: o.adresseerbaar_object_id,
     streetName: o.straatnaam,
     houseNumberFull: o.toevoeging,
@@ -29,22 +29,22 @@ const loader = {
     houseNumberSuffix: o.bag_toevoeging || null,
     postalCode: o.postcode,
     residence: o.woonplaats,
-    type: o.subtype === "ligplaats" ? "BERTH" : "BUILDING"
+    type: o.subtype === "ligplaats" ? "BERTH" : "BUILDING",
   }),
-  load: q =>
-    fetchJson(getUrl(`${URL}search/adres/`, { q })).then(data => {
+  load: (q) =>
+    fetchJson(getUrl(`${URL}search/adres/`, { q })).then((data) => {
       return (
         data.results
           .map(loader.reducer)
           // filter unique values (sometimes there are duplicate values for postalCode + houseNumberFull
           .filter(propFilterUnique("houseNumberFull"))
           // filter addresses that don't have a postalCode (like a metro-station)
-          .filter(address => !!address.postalCode)
+          .filter((address) => !!address.postalCode)
       );
     }),
-  cached: key => withCache(`atlas:${key}`, () => loader.load(key), TTL)
+  cached: (key) => withCache(`atlas:${key}`, () => loader.load(key), TTL),
 };
 
 module.exports = {
-  load: async keys => keys.map(loader.cached)
+  load: async (keys) => keys.map(loader.cached),
 };

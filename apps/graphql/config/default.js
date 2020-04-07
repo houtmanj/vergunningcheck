@@ -7,8 +7,8 @@ module.exports = {
     requestCacheEnabled: true,
     dnsCacheEnabled: true,
     redis: {
-      url: process.env.REDIS_URL
-    }
+      url: process.env.REDIS_URL,
+    },
   },
   loaders: {
     datapunt: {
@@ -17,22 +17,22 @@ module.exports = {
 
       bag: {
         url: "/bag/v1.1/",
-        cacheTimeout: 600
+        cacheTimeout: 600,
       },
       bagSearch: {
-        url: "/atlas/"
+        url: "/atlas/",
       },
       geoSearch: {
-        url: "/geosearch/"
+        url: "/geosearch/",
       },
       monument: {
-        url: "/monumenten/"
-      }
+        url: "/monumenten/",
+      },
     },
     zoningPlan: {
       url:
         "https://afnemers.ruimtelijkeplannen.nl/afnemers/services?REQUEST=GetFeature&service=WFS&version=1.0.0&typename=ProvinciaalPlangebied",
-      cacheTimeout: 600
-    }
-  }
+      cacheTimeout: 600,
+    },
+  },
 };

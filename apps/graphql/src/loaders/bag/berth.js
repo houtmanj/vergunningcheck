@@ -4,16 +4,16 @@ const TTL = config.cacheTimeout || CACHE_TIMEOUT;
 const URL = `${HOST}${config.url}`;
 
 const loader = {
-  reducer: o => ({
+  reducer: (o) => ({
     // nationalId: o.landelijk_id
   }),
-  load: id =>
+  load: (id) =>
     fetchJson(getUrl(`${URL}ligplaats/${id}/`)).then(
-      data => data.results.map(loader.reducer)[0]
+      (data) => data.results.map(loader.reducer)[0]
     ),
-  cached: key => withCache(`bag:berth:${key}`, () => loader.load(key), TTL)
+  cached: (key) => withCache(`bag:berth:${key}`, () => loader.load(key), TTL),
 };
 
 module.exports = {
-  load: async keys => keys.map(loader.cached)
+  load: async (keys) => keys.map(loader.cached),
 };

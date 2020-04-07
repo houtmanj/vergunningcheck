@@ -22,11 +22,11 @@ const resolvers = {
           `found ${lat} ${lon} from bag.accommodation, now fetch zoningPlans`
         );
         return zoningPlan.load(`${lat} ${lon}`);
-      })
-  }
+      }),
+  },
 };
 
 module.exports = {
   typeDefs,
-  resolvers
+  resolvers,
 };
