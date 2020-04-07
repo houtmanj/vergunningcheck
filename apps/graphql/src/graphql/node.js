@@ -9,11 +9,11 @@ const typeDefs = gql`
 
 const resolvers = {
   Node: {
-    id: ({ id }) => Buffer.from(id).toString("base64")
-  }
+    id: ({ id }) => Buffer.from(id).toString("base64"),
+  },
 };
 
 module.exports = {
   typeDefs,
-  resolvers
+  resolvers,
 };

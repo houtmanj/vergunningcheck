@@ -7,7 +7,7 @@ import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
 import getChecker from "../sttr_client";
 
-const withChecker = Component =>
+const withChecker = (Component) =>
   withAddress(({ ...rest }) => {
     const context = useContext(Context);
     const [checker, setChecker] = useState(context.checker);
@@ -20,21 +20,21 @@ const withChecker = Component =>
       return <Redirect to={geturl(routes.location, { slug: topic.slug })} />;
     }
 
-    const fetchData = sttrFile =>
-      fetch(`${window.location.origin}/sttr/${sttrFile}`).then(response =>
+    const fetchData = (sttrFile) =>
+      fetch(`${window.location.origin}/sttr/${sttrFile}`).then((response) =>
         response.json()
       );
 
     useEffect(() => {
       if (!checker && !error) {
         fetchData(topic.sttrFile)
-          .then(json => {
+          .then((json) => {
             const checker = getChecker(json);
             checker.next();
             context.checker = checker;
             setChecker(checker);
           })
-          .catch(e => {
+          .catch((e) => {
             setError(e);
           });
       }

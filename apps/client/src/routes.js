@@ -14,10 +14,10 @@ import NotFoundPage from "./pages/NotFoundPage";
 // Developer homepage, not used in production
 import DevHomePage from "./pages/DevHomePage";
 
-export const getslug = text =>
+export const getslug = (text) =>
   slugify(text, {
     remove: /[*+~,.()'"!?:@]/g, // regex to remove characters
-    lower: true // result in lower case
+    lower: true, // result in lower case
   });
 
 export const geturl = (route, params) => {
@@ -32,45 +32,45 @@ export const routeConfig = [
     name: "home",
     exact: true,
     path: "/",
-    component: process.env.NODE_ENV !== "production" && DevHomePage
+    component: process.env.NODE_ENV !== "production" && DevHomePage,
   },
   {
     name: "intro",
     exact: true,
     path: "/:slug",
-    component: IntroPage
+    component: IntroPage,
   },
   {
     name: "location",
     path: "/:slug/locatie",
-    component: LocationPage
+    component: LocationPage,
   },
   {
     name: "address",
     path: "/:slug/adresgegevens",
     component: AddressPage,
-    matamoPage: "location-results"
+    matomoPage: "location-results",
   },
   {
     name: "questions",
     path: "/:slug/vragen/:question?",
-    component: QuestionsPage
+    component: QuestionsPage,
   },
   {
     name: "results",
     path: "/:slug/uitkomsten",
-    component: ResultsPage
+    component: ResultsPage,
   },
   {
     name: "conclusion",
     path: "/:slug/conclusie",
-    component: ConclusionPage
+    component: ConclusionPage,
   },
   {
     name: "notfound",
     path: "*",
-    component: NotFoundPage
-  }
+    component: NotFoundPage,
+  },
 ];
 
 // build map of routes with `name` => `path`

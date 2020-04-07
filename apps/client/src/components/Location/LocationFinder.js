@@ -9,7 +9,7 @@ import Teaser from "./Teaser";
 const findAddress = loader("./LocationFinder.graphql");
 const postalCodeRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
 
-const LocationFinder = props => {
+const LocationFinder = (props) => {
   const [postalCode, setPostalCode] = useState(props.postalCode);
   const [houseNumber, setHouseNumber] = useState(props.houseNumber);
   const [houseNumberFull, setHouseNumberFull] = useState(props.houseNumberFull);
@@ -22,9 +22,9 @@ const LocationFinder = props => {
       postalCode,
       houseNumberFull,
       extraHouseNumberFull: houseNumber,
-      queryExtra: houseNumber !== houseNumberFull
+      queryExtra: houseNumber !== houseNumberFull,
     },
-    skip: !postalCode || !houseNumberFull || !houseNumber
+    skip: !postalCode || !houseNumberFull || !houseNumber,
   });
 
   // Prevent setState error
@@ -65,14 +65,14 @@ const LocationFinder = props => {
     }
   };
 
-  const handleBlur = e => {
+  const handleBlur = (e) => {
     setTouched({ ...touched, [e.target.name]: true });
   };
 
   return (
     <>
       <StyledTextField
-        onChange={e => {
+        onChange={(e) => {
           setPostalCode(e.target.value);
         }}
         required={true}
@@ -86,7 +86,7 @@ const LocationFinder = props => {
       />
       <StyledTextField
         label="Huisnummer"
-        onChange={e => {
+        onChange={(e) => {
           setHouseNumberFull(e.target.value);
           setHouseNumber(e.target.value);
         }}
@@ -116,7 +116,7 @@ const LocationFinder = props => {
             label="Toevoeging"
             name="suffix"
             value={exactMatch?.houseNumberFull}
-            onChange={e => {
+            onChange={(e) => {
               setHouseNumberFull(e.target.value);
               e.preventDefault();
             }}
@@ -125,7 +125,7 @@ const LocationFinder = props => {
             required={true}
           >
             <option value={houseNumber}>Maak een keuze</option>
-            {addressMatches.map(match => (
+            {addressMatches.map((match) => (
               <option value={match.houseNumberFull} key={match.houseNumberFull}>
                 {match.houseNumberFull}
               </option>

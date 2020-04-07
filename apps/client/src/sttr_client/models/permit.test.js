@@ -4,11 +4,11 @@ import Question from "./question";
 import Rule from "./rule";
 import Decision from "./decision";
 
-const getChecker = questions => {
+const getChecker = (questions) => {
   const d1 = new Decision("dummy", questions, [
     new Rule([false], "no"),
     new Rule([true, false], "not sure"),
-    new Rule([true, true], "yes")
+    new Rule([true, true], "yes"),
   ]);
   const dummy = new Decision(
     "dummy",
@@ -16,7 +16,7 @@ const getChecker = questions => {
     [
       new Rule(["no"], "nope"),
       new Rule(["not sure"], "what?"),
-      new Rule(["yes"], "hell yeah")
+      new Rule(["yes"], "hell yeah"),
     ]
   );
   return new Checker([new Permit("drivers-licence", [dummy])]);
@@ -26,20 +26,20 @@ const getQuestions = () => [
     id: "aaa",
     type: "boolean",
     text: "Are you older then 18 years?",
-    prio: 10
+    prio: 10,
   }),
   new Question({
     id: "bbb",
     type: "boolean",
     text: "Do you live in the Netherlands?",
-    prio: 20
-  })
+    prio: 20,
+  }),
 ];
 
 describe("Permit", () => {
   test("getDecisionById", () => {
     const d = new Decision("somedummy", getQuestions(), [
-      new Rule([false], "no")
+      new Rule([false], "no"),
     ]);
     const permit = new Permit("myperm", [d]);
     expect(permit.getDecisionById("somedummy")).toBe(d);

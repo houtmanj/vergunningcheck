@@ -12,7 +12,7 @@ import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
 import { createGlobalStyle } from "@datapunt/asc-core";
 import Context, { defaultValues } from "./context";
 
-import { matamo } from "./config";
+import { matomo } from "./config";
 import apolloClient from "./apolloClient";
 import * as serviceWorker from "./serviceWorker";
 
@@ -40,7 +40,7 @@ ReactDOM.render(
       <ThemeProvider>
         <GlobalStyle />
         <AppGlobalStyle />
-        <MatomoProvider value={createInstance(matamo)}>
+        <MatomoProvider value={createInstance(matomo)}>
           <Router />
         </MatomoProvider>
       </ThemeProvider>

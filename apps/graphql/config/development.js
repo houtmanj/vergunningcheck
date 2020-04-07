@@ -6,13 +6,13 @@
  */
 module.exports = {
   cache: {
-    redis: false
+    redis: false,
   },
   loaders: {
     datapunt: {
       host: "http://acc.api.data.amsterdam.nl",
-      CACHE_TIMEOUT: 10
-    }
+      CACHE_TIMEOUT: 10,
+    },
   },
   graphql: {
     graphiql: {
@@ -56,7 +56,7 @@ module.exports = {
           }
           __typename
         }
-      }`
-    }
-  }
+      }`,
+    },
+  },
 };

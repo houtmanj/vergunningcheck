@@ -16,14 +16,14 @@ const AddressResult = ({ title, loading, loadingText, children }) => (
 );
 
 AddressResult.defaultProps = {
-  loadingText: "Laden..."
+  loadingText: "Laden...",
 };
 
 AddressResult.propTypes = {
   title: PropTypes.string,
   loading: PropTypes.bool,
   loadingText: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default AddressResult;
