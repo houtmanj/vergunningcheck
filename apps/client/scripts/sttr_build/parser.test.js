@@ -29,10 +29,10 @@ describe("sttr_build parser", () => {
     const config = parser(xml);
     const mapping = {
       '"NeemContactOpMet"': "Uitleg bij Neem Contact Op Met.",
-      '"Vergunningplicht"': "Uitleg bij Vergunningplicht."
+      '"Vergunningplicht"': "Uitleg bij Vergunningplicht.",
     };
     expect(config.decisions.dummy.decisionTable.rules.length).toBe(3);
-    config.decisions.dummy.decisionTable.rules.map(rule =>
+    config.decisions.dummy.decisionTable.rules.map((rule) =>
       expect(rule.description).toBe(mapping[rule.output])
     );
   });
@@ -55,19 +55,19 @@ describe("sttr_build parser", () => {
       "input-id-wietplantage": { href: "#vraag-wietplantage", type: "boolean" },
       "input-id-aanbouwmetvergunning": {
         href: "#vraag-aanbouwmetvergunning",
-        type: "boolean"
-      }
+        type: "boolean",
+      },
     };
     const questions = {
       "vraag-wietplantage": {
         type: "boolean",
-        text: "Ga je wiet plantage opzetten?"
+        text: "Ga je wiet plantage opzetten?",
       },
       "vraag-aanbouwmetvergunning": {
         type: "boolean",
         text:
-          "Ga je een aanbouw maken waar je een vergunning voor moet aanvragen?"
-      }
+          "Ga je een aanbouw maken waar je een vergunning voor moet aanvragen?",
+      },
     };
     const decisions = {
       "decision-pad-1": {
@@ -76,36 +76,36 @@ describe("sttr_build parser", () => {
           rules: [
             {
               inputs: [true],
-              output: '"Vergunningplicht"'
+              output: '"Vergunningplicht"',
             },
             {
               inputs: [false],
-              output: '"no hit"'
-            }
-          ]
-        }
+              output: '"no hit"',
+            },
+          ],
+        },
       },
       "decision-pad-2": {
         requiredInputs: [
           "#input-id-wietplantage",
-          "#input-id-aanbouwmetvergunning"
+          "#input-id-aanbouwmetvergunning",
         ],
         decisionTable: {
           rules: [
             {
               inputs: [false, true],
-              output: '"Vergunningplicht"'
+              output: '"Vergunningplicht"',
             },
             {
               inputs: [true, "-"],
-              output: '"no hit"'
+              output: '"no hit"',
             },
             {
               inputs: ["-", false],
-              output: '"no hit"'
-            }
-          ]
-        }
+              output: '"no hit"',
+            },
+          ],
+        },
       },
       dummy: {
         requiredDecisions: ["#decision-pad-1", "#decision-pad-2"],
@@ -115,24 +115,24 @@ describe("sttr_build parser", () => {
           rules: [
             {
               inputs: ['"Vergunningplicht"', "-"],
-              output: '"Vergunningplicht"'
+              output: '"Vergunningplicht"',
             },
             {
               inputs: ["-", '"Vergunningplicht"'],
-              output: '"Vergunningplicht"'
+              output: '"Vergunningplicht"',
             },
             {
               inputs: ['"no hit"', '"no hit"'],
-              output: '"Toestemmingsvrij"'
-            }
-          ]
-        }
-      }
+              output: '"Toestemmingsvrij"',
+            },
+          ],
+        },
+      },
     };
     expect(config).toMatchObject({
       questions,
       inputs,
-      decisions
+      decisions,
     });
   });
   test("geo", () => {
@@ -143,8 +143,8 @@ describe("sttr_build parser", () => {
     const questions = {
       [id]: {
         type: "geo",
-        identification: "nl.imow-gm0363.gebied.4"
-      }
+        identification: "nl.imow-gm0363.gebied.4",
+      },
     };
     const config = parser(xml);
     expect(config.questions[id]).toMatchObject(questions[id]);

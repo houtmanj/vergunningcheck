@@ -56,7 +56,7 @@ function getExactMatch(queryHouseNumberFull, addressList) {
       !first.houseNumberLetter &&
       !first.houseNumberSuffix
     ) {
-      const res = list.filter(address => {
+      const res = list.filter((address) => {
         // debug(
         //   "equal? ",
         //   JSON.stringify(address.houseNumberFull),
@@ -79,19 +79,14 @@ function getExactMatch(queryHouseNumberFull, addressList) {
   }
 
   return addressList.filter(
-    address =>
+    (address) =>
       address.houseNumber === Number(queryHouseNumberFull) ||
       address.houseNumberFull === queryHouseNumberFull
   );
 }
 
 function getHouseNumberFromHouseNumberFull(queryHouseNumberFull) {
-  return Number(
-    queryHouseNumberFull
-      .replace("-", " ")
-      .trim()
-      .split(" ")[0]
-  );
+  return Number(queryHouseNumberFull.replace("-", " ").trim().split(" ")[0]);
 }
 
 function getSameHouseNumbers(queryHouseNumberFull, addressList) {
@@ -101,7 +96,7 @@ function getSameHouseNumbers(queryHouseNumberFull, addressList) {
   );
 
   const res = dataWithoutDuplicates.filter(
-    a => a.houseNumber === queryHouseNumber
+    (a) => a.houseNumber === queryHouseNumber
   );
   // debug(`getSameHouseNumbers`, res);
   return res;
@@ -129,7 +124,7 @@ const resolve = (args, bagSearch, one) => {
   }
   const key = (postalCode || "") + (streetName || "") + " " + houseNumberFull;
 
-  return bagSearch.load(key).then(addressList => {
+  return bagSearch.load(key).then((addressList) => {
     if (one) {
       const res = getExactMatch(houseNumberFull, addressList);
       // debug(`getExactMatch`, res);
@@ -146,11 +141,12 @@ const resolve = (args, bagSearch, one) => {
 const resolvers = {
   AddressSearch: {
     matches: (args, _, { loaders }) => resolve(args, loaders.bagSearch),
-    exactMatch: (args, _, { loaders }) => resolve(args, loaders.bagSearch, true)
+    exactMatch: (args, _, { loaders }) =>
+      resolve(args, loaders.bagSearch, true),
   },
   Address: {
     id: ({ _adressableObjectId }) =>
-      Buffer.from(_adressableObjectId).toString("base64")
+      Buffer.from(_adressableObjectId).toString("base64"),
   },
   Query: {
     findAddress: (_, args) => args,
@@ -158,11 +154,11 @@ const resolvers = {
       const x = Buffer.from(id, "base64").toString("ascii");
       const res = await loaders.bagSearch.load(x);
       return res[0];
-    }
-  }
+    },
+  },
 };
 
 module.exports = {
   typeDefs,
-  resolvers
+  resolvers,
 };

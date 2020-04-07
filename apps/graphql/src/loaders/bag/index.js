@@ -5,5 +5,5 @@ const accommodation = require("./accommodation");
 module.exports = {
   berth,
   building,
-  accommodation
+  accommodation,
 };
