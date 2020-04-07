@@ -27,7 +27,7 @@ class Checker {
     );
 
     this._questions = this._permits
-      .flatMap(permit => permit.questions) // getOpenInputs would be faster for the user
+      .flatMap((permit) => permit.questions) // getOpenInputs would be faster for the user
       .filter(uniqueFilter);
 
     /**
@@ -63,11 +63,12 @@ class Checker {
     return this.permits
       .reduce((acc, permit) => {
         const conclusion = permit.getDecisionById("dummy");
-        const inputReducer = input => (this.stack.includes(input) ? input : {});
+        const inputReducer = (input) =>
+          this.stack.includes(input) ? input : {};
         conclusion._inputs
-          .filter(d => d.getMatchingRules(inputReducer).length === 0)
-          .forEach(decision => {
-            decision.getQuestions().forEach(input => {
+          .filter((d) => d.getMatchingRules(inputReducer).length === 0)
+          .forEach((decision) => {
+            decision.getQuestions().forEach((input) => {
               if (this.stack.indexOf(input) === -1) {
                 acc.push(input);
               }

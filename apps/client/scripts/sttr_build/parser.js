@@ -26,7 +26,7 @@ class Parser {
   constructor(xml) {
     const parsed = parser.parse(xml, {
       ignoreAttributes: false,
-      arrayMode: true
+      arrayMode: true,
     });
 
     const definitions = parsed["dmn:definitions"][0];
@@ -71,12 +71,12 @@ class Parser {
             return inputEntry;
           }, []),
           output: outputEntry["dmn:text"],
-          description
+          description,
         });
         return acc;
       }, []);
       res.decisionTable = {
-        rules
+        rules,
       };
       const copy = xmlDecisions;
       copy[xmlDecision["@_id"]] = res;
@@ -95,7 +95,7 @@ class Parser {
       const href = el["uitv:uitvoeringsregelRef"][0]["@_href"];
       acc[curr["@_id"]] = {
         href,
-        type: feelTypeMap(curr["dmn:variable"][0]["@_typeRef"])
+        type: feelTypeMap(curr["dmn:variable"][0]["@_typeRef"]),
       };
       return acc;
     }, {});
@@ -110,14 +110,14 @@ class Parser {
     const rules = this.xmlExtensionElements["uitv:uitvoeringsregels"][0];
     const questions = rules["uitv:uitvoeringsregel"];
 
-    return questions.map(curr => {
+    return questions.map((curr) => {
       let result;
       if (curr["uitv:geoVerwijzing"]) {
         const question = curr["uitv:geoVerwijzing"][0];
         result = {
           identification: question["uitv:locatie"][0]["@_identificatie"],
           text: question["uitv:vraagTekst"],
-          type: "geo"
+          type: "geo",
         };
       } else {
         // list or boolean
@@ -135,7 +135,7 @@ class Parser {
           longDescription:
             desc && desc.length && desc[0]["content:langeToelichting"]
               ? desc[0]["content:langeToelichting"].trim()
-              : undefined
+              : undefined,
         };
 
         if (sttrType === "list") {
@@ -145,7 +145,7 @@ class Parser {
             result.collection = true;
           }
           result.options = question["uitv:opties"][0]["uitv:optie"].map(
-            option => option["uitv:optieText"]
+            (option) => option["uitv:optieText"]
           );
         }
 
@@ -169,9 +169,9 @@ class Parser {
       name: this.name,
       questions: this.questions,
       inputs: this.inputs,
-      decisions: this.decisions
+      decisions: this.decisions,
     };
   }
 }
 
-module.exports = xml => new Parser(xml).getClientConfig();
+module.exports = (xml) => new Parser(xml).getClientConfig();

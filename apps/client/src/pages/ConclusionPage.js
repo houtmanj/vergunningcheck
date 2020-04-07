@@ -15,7 +15,7 @@ import Helmet from "react-helmet";
 const outcomes = {
   NEED_PERMIT: '"Vergunningplicht"',
   NEED_CONTACT: '"NeemContactOpMet"',
-  PERMIT_FREE: '"Toestemmingsvrij"'
+  PERMIT_FREE: '"Toestemmingsvrij"',
 };
 const ConclusionsPage = ({ topic, checker }) => {
   const history = useHistory();
@@ -23,8 +23,8 @@ const ConclusionsPage = ({ topic, checker }) => {
 
   // find conclusions we want to display to the user
   const conclusions = checker.permits
-    .filter(permit => !!permit.getOutputByDecisionId("dummy"))
-    .map(permit => {
+    .filter((permit) => !!permit.getOutputByDecisionId("dummy"))
+    .map((permit) => {
       const outcome = permit.getOutputByDecisionId("dummy");
       const dummyDecision = permit.getDecisionById("dummy");
       const matchingRules = dummyDecision.getMatchingRules();
@@ -38,7 +38,7 @@ const ConclusionsPage = ({ topic, checker }) => {
                 /['"]+/g,
                 ""
               )}`,
-        description: matchingRules[0].description
+        description: matchingRules[0].description,
       };
     });
 
@@ -56,7 +56,7 @@ const ConclusionsPage = ({ topic, checker }) => {
     ? geturl(routes.questions, { slug })
     : geturl(routes.results, { slug });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (needsPermit) {
       window.open(OLO.home, "_blank");

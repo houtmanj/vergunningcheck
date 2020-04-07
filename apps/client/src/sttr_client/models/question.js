@@ -48,7 +48,7 @@ class Question {
     options,
     uuid,
     prio,
-    multipleAnswers = false
+    multipleAnswers = false,
   }) {
     if (id !== undefined && !isString(id)) {
       throw Error(`'id' for Question must be a string (got "${id}"`);
@@ -97,7 +97,7 @@ class Question {
     this._uuid = uuid;
     this._prio = prio;
     this._multipleAnswers = multipleAnswers;
-    this._options = options ? options.map(val => `"${val}"`) : undefined;
+    this._options = options ? options.map((val) => `"${val}"`) : undefined;
     this._description = description;
     this._longDescription = longDescription;
     if (answer !== undefined) {

@@ -11,7 +11,7 @@ const { argv } = yargs
   .option("output", {
     alias: "o",
     description: "Directory to place json output.",
-    type: "string"
+    type: "string",
   })
   .help()
   .alias("help", "h");
@@ -30,7 +30,7 @@ const sttrApi = `https://sttr-builder${
 const listUrl = `${sttrApi}/activiteiten`;
 const detailUrl = `${sttrApi}/conclusie/sttr`;
 const headers = {
-  "x-api-key": process.env.STTR_BUILDER_API_KEY
+  "x-api-key": process.env.STTR_BUILDER_API_KEY,
 };
 
 console.log("Using environment", env);
@@ -53,7 +53,7 @@ function checkStatus(res) {
   if (!res.ok) {
     // res.status >= 200 && res.status < 300
     console.error(res.statusText);
-    res.text().then(text => {
+    res.text().then((text) => {
       console.error(text);
       throw Error(res.statusText);
     });
@@ -63,39 +63,39 @@ function checkStatus(res) {
 
 (async () => {
   const permitIds = await fetch(listUrl, { headers })
-    .then(res => res.json())
-    .then(json => {
+    .then((res) => res.json())
+    .then((json) => {
       const target = path.join(OUTPUT_DIR, "topics.source.json");
-      fs.writeFile(target, jsonString(json), err => {
+      fs.writeFile(target, jsonString(json), (err) => {
         if (err) throw err;
         console.log(`${target} has been saved`);
       });
       return json.map(({ _id }) => _id);
     });
 
-  const permitsXML = await batchPromises(MAX_PARALLEL, permitIds, id =>
+  const permitsXML = await batchPromises(MAX_PARALLEL, permitIds, (id) =>
     fetch(detailUrl, {
       method: "post",
       body: `activiteitId=${id}`,
       headers: {
         ...headers,
-        "content-type": "application/x-www-form-urlencoded"
-      }
+        "content-type": "application/x-www-form-urlencoded",
+      },
     })
       .then(checkStatus)
-      .then(res => res.text())
-      .then(xml => ({
+      .then((res) => res.text())
+      .then((xml) => ({
         id,
-        xml
+        xml,
       }))
-      .catch(e => {
+      .catch((e) => {
         console.error("Failed to get xml for ", id, e);
       })
   );
 
   // write activity source xml files
   permitsXML.forEach(({ id, xml }) => {
-    fs.writeFile(path.join(OUTPUT_DIR, `${id}.xml`), xml, err => {
+    fs.writeFile(path.join(OUTPUT_DIR, `${id}.xml`), xml, (err) => {
       if (err) throw err;
       console.log(`${id}.xml has been saved!`);
     });
@@ -105,11 +105,11 @@ function checkStatus(res) {
     const file = `${id}.json`;
     const data = {
       id,
-      permits: permits.map(permit =>
-        sttrbuild(permitsXML.find(p => p.id === permit.id).xml)
-      )
+      permits: permits.map((permit) =>
+        sttrbuild(permitsXML.find((p) => p.id === permit.id).xml)
+      ),
     };
-    fs.writeFile(path.join(OUTPUT_DIR, file), jsonString(data), err => {
+    fs.writeFile(path.join(OUTPUT_DIR, file), jsonString(data), (err) => {
       if (err) throw err;
       console.log(`'${file}' has been saved!`);
     });

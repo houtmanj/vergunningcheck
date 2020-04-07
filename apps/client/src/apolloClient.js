@@ -4,7 +4,7 @@ import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
 import {
   InMemoryCache,
-  IntrospectionFragmentMatcher
+  IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
 
 // use a FragmentManager so we don't need to generate a schema with the
@@ -12,9 +12,9 @@ import {
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: {
     __schema: {
-      types: [] // no types provided
-    }
-  }
+      types: [], // no types provided
+    },
+  },
 });
 
 const client = new ApolloClient({
@@ -30,11 +30,11 @@ const client = new ApolloClient({
     }),
     new HttpLink({
       uri: process.env.REACT_APP_GRAPHQL_API_URL,
-      credentials: "same-origin"
-    })
+      credentials: "same-origin",
+    }),
   ]),
   // cache: new InMemoryCache()
-  cache: new InMemoryCache({ fragmentMatcher })
+  cache: new InMemoryCache({ fragmentMatcher }),
 });
 
 export default client;
