@@ -105,9 +105,7 @@ const IntroductionTextDakraam = () => (
 
 const IntroductionTextZonnepaneel = () => (
   <>
-    <Paragraph gutterBottom={20}>
-      U kunt deze vergunningcheck gebruiken voor zonnepanelen en warmtecollectoren.
-    </Paragraph>
+    <Paragraph gutterBottom={20}>U kunt deze vergunningcheck gebruiken voor zonnepanelen en zonneboiler.</Paragraph>
     <Heading $as="h3">Hoe het werkt:</Heading>
     <OrderedList>
       <ListItem>U voert op de volgende pagina eerst het adres van het gebouw in.</ListItem>
@@ -119,10 +117,10 @@ const IntroductionTextZonnepaneel = () => (
           <ListItem>welk bestemmingsplan er geldt.</ListItem>
         </StyledList>
       </ListItem>
-      <ListItem>Wij stellen u een aantal vragen over het gebouw en de zonnepanelen of warmtecollector.</ListItem>
+      <ListItem>Wij stellen u een aantal vragen over het gebouw en de zonnepanelen of de zonneboiler.</ListItem>
       <ListItem>U leest of u een vergunning nodig hebt. Wij vertellen u hoe u een aanvraag doet.</ListItem>
       <ListItem>
-        Wij vertellen u waar u verder op moet letten als u de zonnepanelen of warmtecollector gaat plaatsen.
+        Wij vertellen u waar u verder op moet letten als u de zonnepanelen of zonneboiler gaat plaatsen.
       </ListItem>
     </OrderedList>
   </>
@@ -141,7 +139,7 @@ const IntroductionPage = () => (
     >
       {GET_TEXT?.entity === 'dakkapel' && <IntroductionTextDakkapel />}
       {GET_TEXT?.entity === 'dakraam' && <IntroductionTextDakraam />}
-      {GET_TEXT?.entity === 'zonnepaneel of warmtecollector' && <IntroductionTextZonnepaneel />}
+      {GET_TEXT?.entity === 'zonnepaneel of zonneboiler' && <IntroductionTextZonnepaneel />}
       <Navigation page={`checker-${PAGES.checkerIntroduction}`} showNext />
     </Form>
   </>
