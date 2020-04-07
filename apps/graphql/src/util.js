@@ -10,18 +10,18 @@ const parser = new xml2js.Parser();
 const { redis: redisConfig } = config.cache;
 const cachePrefix = "4_";
 
-const qs = obj => (obj ? "?" + stringify(obj) : "");
+const qs = (obj) => (obj ? "?" + stringify(obj) : "");
 const noop = async (_, fn) => await fn();
 const getUrl = (path, params) => path + qs(params);
 const withLog = (msg, res) => {
   debug(msg);
   return res;
 };
-const fetchJson = url => {
+const fetchJson = (url) => {
   debug(`fetching '${url}'`);
-  return fetch(url).then(res => res.json());
+  return fetch(url).then((res) => res.json());
 };
-const gql = input => input.toString();
+const gql = (input) => input.toString();
 
 // Setup cache
 const cache = redisConfig && redis.createClient(redisConfig);
@@ -48,10 +48,10 @@ const postXml = (url, body) => {
   debug(`fetching '${url}'`);
   return fetch(url, {
     method: "POST",
-    body
+    body,
   })
-    .then(response => response.text())
-    .then(xml => parser.parseStringPromise(xml));
+    .then((response) => response.text())
+    .then((xml) => parser.parseStringPromise(xml));
 };
 
 module.exports = {
@@ -60,5 +60,5 @@ module.exports = {
   getUrl,
   postXml,
   withLog,
-  withCache: redisConfig ? withCache : noop
+  withCache: redisConfig ? withCache : noop,
 };

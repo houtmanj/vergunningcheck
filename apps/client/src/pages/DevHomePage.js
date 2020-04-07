@@ -18,7 +18,7 @@ const DevHomePage = () => (
       </thead>
       <tbody>
         {topics
-          .sort(a => !!a.sttrFile && -1) // make sure sttr flow is on top
+          .sort((a) => !!a.sttrFile && -1) // make sure sttr flow is on top
           .map(({ slug, sttrFile, redirectToOlo }) => (
             <tr key={slug}>
               <td>

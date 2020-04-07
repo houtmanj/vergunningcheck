@@ -76,7 +76,15 @@ const Question = ({
       }
     }
     return () => unregister(questionId);
-  }, [questionId, required, register, unregister, currentAnswer, questionAnswers, setValue]); // IE11 fix to put all dependencies here
+  }, [
+    questionId,
+    required,
+    register,
+    unregister,
+    currentAnswer,
+    questionAnswers,
+    setValue,
+  ]); // IE11 fix to put all dependencies here
 
   const handleChange = (e) => {
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);

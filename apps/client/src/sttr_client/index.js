@@ -22,7 +22,7 @@ function getQuestions(questionConfig) {
       description,
       longDescription,
       ids,
-      prio
+      prio,
     }) => ({
       ids,
       question: new Question({
@@ -34,8 +34,8 @@ function getQuestions(questionConfig) {
         collection,
         options,
         uuid,
-        prio
-      })
+        prio,
+      }),
     })
   );
 }
@@ -57,8 +57,8 @@ function getDecision(id, decisionConfig, questions) {
 
   const inputs =
     (requiredInputs &&
-      requiredInputs.map(href => {
-        const res = questions.find(q =>
+      requiredInputs.map((href) => {
+        const res = questions.find((q) =>
           q.ids.includes(href.replace("#input__", "uitv__"))
         );
         return res.question;
@@ -87,9 +87,9 @@ function getChecker(config) {
     throw new Error("Permits cannot be empty.");
   }
   const x = permitsConfig.reduce((acc, permitConfig) => {
-    permitConfig.questions.forEach(question => {
+    permitConfig.questions.forEach((question) => {
       const previousByUUID = question.uuid
-        ? acc.find(q => q.uuid === question.uuid)
+        ? acc.find((q) => q.uuid === question.uuid)
         : null;
       if (previousByUUID) {
         previousByUUID.ids.push(question.id);
@@ -101,7 +101,7 @@ function getChecker(config) {
   }, []);
 
   const allQuestions = getQuestions(x);
-  const permits = permitsConfig.map(permit => {
+  const permits = permitsConfig.map((permit) => {
     const { questions, decisions, name } = permit;
 
     const decisionConfigs = Object.entries(decisions);
@@ -119,8 +119,8 @@ function getChecker(config) {
     const complexDecisions = decisionConfigs
       .filter(([_, json]) => !!json.requiredDecisions) // only get complex ones
       .map(([id, json]) => {
-        const requiredDecisions = json.requiredDecisions.map(href =>
-          simpleDecisions.find(sd => sd.id === href.substring(1))
+        const requiredDecisions = json.requiredDecisions.map((href) =>
+          simpleDecisions.find((sd) => sd.id === href.substring(1))
         );
         const decisionConfig = { ...json, requiredDecisions };
         return getDecision(id, decisionConfig, allQuestions);

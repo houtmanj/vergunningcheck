@@ -4,7 +4,7 @@ import {
   OrderedList,
   List,
   ListItem,
-  Paragraph
+  Paragraph,
 } from "@datapunt/asc-ui";
 import ListInsideOrderedList from "../components/ListInsideOrderedList";
 

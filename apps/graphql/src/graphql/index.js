@@ -16,12 +16,12 @@ const modules = [
   require("./monument"),
   require("./cityScape"),
   require("./restriction"),
-  require("./zoningPlan")
+  require("./zoningPlan"),
 ];
 
 const schema = makeExecutableSchema({
-  typeDefs: modules.map(m => m.typeDefs),
-  resolvers: modules.map(m => m.resolvers)
+  typeDefs: modules.map((m) => m.typeDefs),
+  resolvers: modules.map((m) => m.resolvers),
 });
 
 // const server = graphqlHTTP((request, response, graphQLParams) => ({
@@ -36,23 +36,23 @@ const server = graphqlHTTP({
       bag: {
         building: new DataLoader(bag.building.load),
         accommodation: new DataLoader(bag.accommodation.load),
-        berth: new DataLoader(bag.berth.load)
+        berth: new DataLoader(bag.berth.load),
       },
       zoningPlan: new DataLoader(zoningPlan.load),
       geoSearch: new DataLoader(geoSearch.load),
       monument: {
         situation: new DataLoader(monument.situation.load),
-        monument: new DataLoader(monument.monument.load)
-      }
-    }
+        monument: new DataLoader(monument.monument.load),
+      },
+    },
   },
   customFormatErrorFn: ({ stack, ...rest }) => ({
     stack: stack ? stack.split("\n") : [],
-    ...rest
-  })
+    ...rest,
+  }),
 });
 
 module.exports = {
   schema,
-  server
+  server,
 };

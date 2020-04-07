@@ -14,7 +14,7 @@ import {
   FooterLinkListItem,
   FooterBottom,
   FooterBottomLinkList,
-  FooterBottomLinkListItem
+  FooterBottomLinkListItem,
 } from "@datapunt/asc-ui";
 import { ContentContainer } from "./FooterStyles";
 
