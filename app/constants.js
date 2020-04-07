@@ -67,18 +67,17 @@ const TOPICS = {
       locationResultsPageDescription2: 'Gaat u meer dan 1 dakraam plaatsen? Doe dan per dakraam de vergunningcheck.',
     },
   },
-  'zonnepanelen-of-warmtecollectoren-plaatsen': {
-    status: STATUS.PRE_LIVE, // LIVE ON ACC, PRE_LIVE ON PROD
+  'zonnepanelen-of-zonneboiler-plaatsen': {
+    status: STATUS.LIVE, // LIVE ON ACC, PRE_LIVE ON PROD
     sttrPath: '/shared/content/sttr/OefenHekOfSchuttingPlaatsenVeranderenOfVerwijderen.json',
     text: {
-      entity: 'zonnepaneel of warmtecollector',
-      heading: 'Vergunningchecker zonnepanelen of warmtecollectoren plaatsen',
-      topic: 'zonnepanelen of warmtecollectoren te plaatsen',
-      topicLocation: 'de zonnepanelen of warmtecollectoren wilt gaan plaatsen',
+      entity: 'zonnepaneel of zonneboiler',
+      heading: 'Vergunningchecker zonnepanelen of zonneboiler plaatsen',
+      topic: 'zonnepanelen of een zonneboiler te plaatsen',
+      topicLocation: 'de zonnepanelen of de zonneboiler wilt gaan plaatsen',
       locationResultsPageDescription:
-        'U hebt deze informatie nodig om de vergunningcheck zonnepanelen of warmtecollectoren te doen. De informatie over de bestemmingsplannen is pas nodig als u een vergunning gaat aanvragen.',
-      locationResultsPageDescription2:
-        'Gaat u zonnepanelen op meer dan 1 dak plaatsen? Doe dan per dak de vergunningcheck. Gaat u zowel zonnepanelen als een warmtecollector plaatsen? Doe dan voor voor zowel zonnepanelen als warmtecollector een vergunningcheck.',
+        'U hebt deze informatie nodig om de vergunningcheck zonnepanelen of zonneboiler te doen. De informatie over de bestemmingsplannen is pas nodig als u een vergunning gaat aanvragen.',
+      locationResultsPageDescription2: '',
     },
   },
   'kozijnen-plaatsen-of-vervangen': {
@@ -116,6 +115,9 @@ const TOPICS = {
     },
   },
 };
+
+// Make duplicate for the old URL
+TOPICS['zonnepanelen-of-warmtecollectoren-plaatsen'] = TOPICS['zonnepanelen-of-zonneboiler-plaatsen'];
 
 export const TOPIC_EXISTS = TOPICS[GET_CURRENT_TOPIC()];
 
