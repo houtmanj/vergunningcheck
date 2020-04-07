@@ -9,16 +9,16 @@ import { ApolloProvider } from "@apollo/react-hooks";
 
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 import { GlobalStyle, ThemeProvider, themeColor } from "@datapunt/asc-ui";
-import Context, { defaultValues } from "./context";
 import { createGlobalStyle } from "@datapunt/asc-core";
+import Context, { defaultValues } from "./context";
 
-import { matamo } from "./config";
+import { matomo } from "./config";
 import apolloClient from "./apolloClient";
 import * as serviceWorker from "./serviceWorker";
 
 import Router from "./components/Router";
 
-import "@datapunt/asc-assets/lib/assets/fonts.css";
+import "@datapunt/asc-assets/static/fonts/fonts.css";
 
 dotenv.config();
 
@@ -40,7 +40,7 @@ ReactDOM.render(
       <ThemeProvider>
         <GlobalStyle />
         <AppGlobalStyle />
-        <MatomoProvider value={createInstance(matamo)}>
+        <MatomoProvider value={createInstance(matomo)}>
           <Router />
         </MatomoProvider>
       </ThemeProvider>

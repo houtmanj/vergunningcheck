@@ -1,5 +1,5 @@
-import styled from "@datapunt/asc-core";
-import { themeColor, themeSpacing, List } from "@datapunt/asc-ui";
+import styled from "styled-components";
+import { themeColor, themeSpacing, List, breakpoint } from "@datapunt/asc-ui";
 
 export const Container = styled.div`
   max-width: 1400px;
@@ -12,8 +12,11 @@ export const ContentContainer = styled.div`
   max-width: 960px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
   background-color: white;
+
+  @media screen and ${breakpoint("min-width", "tabletS")} {
+    padding: 0 25px;
+  }
 `;
 
 export const FormTitle = styled.h4`

@@ -1,4 +1,4 @@
-export const matamo = {
+export const matomo = {
   urlBase: "https://analytics.data.amsterdam.nl/",
   siteId: 29
 };

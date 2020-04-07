@@ -9,8 +9,7 @@ import {
   Modal as BaseModal
 } from "@datapunt/asc-ui";
 import { Close } from "@datapunt/asc-assets";
-import styled from "@datapunt/asc-core";
-
+import styled from "styled-components";
 import Markdown from "./Markdown";
 
 const ModalBlock = styled.div`
@@ -40,7 +39,7 @@ const Modal = ({ modalText }) => {
       >
         <div style={{ minHeight: "50vh" }}>
           <TopBar>
-            <Heading $as="h4" style={{ flexGrow: 1 }}>
+            <Heading forwardedAs="h4" style={{ flexGrow: 1 }}>
               Toelichting
               <Button type="button" size={30} variant="blank">
                 <Icon size={20}>

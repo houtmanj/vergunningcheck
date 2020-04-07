@@ -76,7 +76,15 @@ const Question = ({
       }
     }
     return () => unregister(questionId);
-  });
+  }, [
+    questionId,
+    required,
+    register,
+    unregister,
+    currentAnswer,
+    questionAnswers,
+    setValue
+  ]); // IE11 fix to put all dependencies here
 
   const handleChange = e => {
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
@@ -107,7 +115,9 @@ const Question = ({
       onSubmit={handleSubmit(onSubmit)}
       data-id={questionId}
     >
-      {questionTitle && <Heading $as={headingAs}>{questionTitle}</Heading>}
+      {questionTitle && (
+        <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
+      )}
       {description && <Markdown source={description} />}
       {longDescription && <Modal modalText={longDescription} />}
       <Answers

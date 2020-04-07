@@ -4,7 +4,7 @@ import { StyledList } from "./Layouts/BaseLayoutStyles";
 
 export default ({ children }) => (
   <>
-    <Heading $as="h3">Hoe werkt het?</Heading>
+    <Heading forwardedAs="h3">Hoe werkt het?</Heading>
     <Paragraph gutterBottom={8}>{children}</Paragraph>
     <StyledList variant="bullet">
       <ListItem>U voert eerst het adres van het gebouw in.</ListItem>

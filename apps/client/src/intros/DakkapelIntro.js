@@ -5,7 +5,7 @@ import ListInsideOrderedList from "../components/ListInsideOrderedList";
 
 export default () => (
   <>
-    <Heading $as="h3">Hoe het werkt:</Heading>
+    <Heading forwardedAs="h3">Hoe het werkt:</Heading>
     <OrderedList>
       <ListItem>
         U voert op de volgende pagina eerst het adres van het gebouw in.
@@ -33,7 +33,7 @@ export default () => (
       </ListItem>
     </OrderedList>
 
-    <Heading $as="h4">Bijzondere situaties:</Heading>
+    <Heading forwardedAs="h4">Bijzondere situaties:</Heading>
     <StyledList variant="bullet">
       <ListItem>
         Wilt u de dakkapel plaatsen op een woonwagen, een tijdelijk gebouw, een

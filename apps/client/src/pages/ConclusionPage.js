@@ -1,12 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import withFinalChecker from "../hoc/withFinalChecker";
 
 import Layout from "../components/Layouts/DefaultLayout";
+import Markdown from "../components/Markdown";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
@@ -71,7 +71,7 @@ const ConclusionsPage = ({ topic, checker }) => {
         <title>Conclusie - {topic.text.heading}</title>
       </Helmet>
       <Form onSubmit={handleSubmit}>
-        <Heading $as="h1">Conclusie</Heading>
+        <Heading forwardedAs="h1">Conclusie</Heading>
 
         <Paragraph>
           Op basis van uw antwoorden vindt u hieronder wat voor uw activiteit
@@ -80,12 +80,8 @@ const ConclusionsPage = ({ topic, checker }) => {
 
         {displayConclusions.map(({ title, description }) => (
           <>
-            <Heading $as="h2">{title}</Heading>
-            <ReactMarkdown
-              source={description}
-              renderers={{ paragraph: Paragraph }}
-              linkTarget="_blank"
-            />
+            <Heading forwardedAs="h2">{title}</Heading>
+            <Markdown source={description} />
           </>
         ))}
 

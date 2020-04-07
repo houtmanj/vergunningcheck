@@ -6,29 +6,30 @@ Object {
   "baseElement": <body>
     <div>
       <footer
-        class="sc-bwCtUz ZzjLL"
+        class="sc-LzLqH gbqxOd"
       >
         <div
-          class="sc-hrWEMg bWhTXF"
+          class="sc-LzLqI kmQXLL"
         >
           <div
-            class="sc-esOvli kVTZtX"
+            class="sc-LzLrT fiMTsN"
           >
             <div
-              class="sc-cJSrbW eSjbJi"
+              class="sc-fzXfOZ fZxknb"
             >
               <div
-                class="sc-kgAjT fZqetg"
+                class="sc-fzXfOY sPsWY"
               >
                 <div
-                  class="sc-elJkPf gPjgzi sc-cmthru lbMmdK"
+                  class="sc-fzXfQt cXlgcJ sc-LzLrU fbrLnL"
                   tabindex="-1"
                 >
                   <h3
-                    class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo sc-hMFtBS jWYNMj"
+                    as="h3"
+                    class="sc-LzLqG ksGPWf sc-LzLrV hOhAYP"
                   >
                     <span
-                      class="sc-bxivhb jewvTc"
+                      class="sc-AykKG jTaJGf"
                       rotate="0"
                       size="20"
                     >
@@ -46,42 +47,42 @@ Object {
                   </h3>
                   <div
                     aria-hidden="true"
-                    class="sc-RefOD cGbrYS"
+                    class="sc-LzLqF mkSHZ"
                   >
                     <ul
-                      class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                      class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                     >
                       <p
-                        class="sc-EHOje sc-jTzLTM evcmP"
+                        class="sc-AykKI sc-fzXfLU ePUhqY"
                       >
                         Hebt u een vraag en kunt u het antwoord niet vinden op deze website? Neem dan contact met ons op.
                       </p>
                       <p
-                        class="sc-EHOje sc-jTzLTM cTptgu"
+                        class="sc-AykKI sc-fzXfLU iiUBIK"
                       >
                         Bel het telefoonnummer
                          
                         <a
-                          class="sc-EHOje hhCEXm sc-VigVT kXYtwx"
+                          class="sc-AykKI hvEmiT sc-fzXfLT fScWkL"
                           href="tel:14020"
                         >
                           14 020
                         </a>
                       </p>
                       <p
-                        class="sc-EHOje sc-jTzLTM eparCo"
+                        class="sc-AykKI sc-fzXfLU lZxRR"
                       >
                         maandag tot en met vrijdag van 08.00 tot 18.00 uur.
                       </p>
                       <li
-                        class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                        class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                       >
                         <a
-                          class="sc-EHOje FkoFm sc-VigVT PthHi"
+                          class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                           href="https://formulieren.amsterdam.nl/tripleforms/DirectRegelen/formulier/nl-NL/evAmsterdam/Klachtenformulier.aspx"
                         >
                           <span
-                            class="sc-bxivhb iMrrNS"
+                            class="sc-AykKG invwX"
                             size="12"
                           >
                             <svg
@@ -95,21 +96,21 @@ Object {
                             </svg>
                           </span>
                           <span
-                            class="sc-gqjmRU hQHBvj"
+                            class="sc-fzXfLS fDvwiU"
                           >
                             Contactformulier
                           </span>
                         </a>
                       </li>
                       <li
-                        class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                        class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                       >
                         <a
-                          class="sc-EHOje FkoFm sc-VigVT PthHi"
+                          class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                           href="https://www.amsterdam.nl/contact/"
                         >
                           <span
-                            class="sc-bxivhb iMrrNS"
+                            class="sc-AykKG invwX"
                             size="12"
                           >
                             <svg
@@ -123,7 +124,7 @@ Object {
                             </svg>
                           </span>
                           <span
-                            class="sc-gqjmRU hQHBvj"
+                            class="sc-fzXfLS fDvwiU"
                           >
                             Contactgegevens en openingstijden
                           </span>
@@ -133,47 +134,47 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="sc-RefOD eJuoxd"
+                  class="sc-LzLqF fBRPWn"
                 >
                   <h3
-                    class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo"
+                    class="sc-AykKI bJuAQV sc-AykKJ hOhWtF sc-LzLqG ksGPWf"
                   >
                     Contact
                   </h3>
                   <ul
-                    class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                    class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                   >
                     <p
-                      class="sc-EHOje sc-jTzLTM evcmP"
+                      class="sc-AykKI sc-fzXfLU ePUhqY"
                     >
                       Hebt u een vraag en kunt u het antwoord niet vinden op deze website? Neem dan contact met ons op.
                     </p>
                     <p
-                      class="sc-EHOje sc-jTzLTM cTptgu"
+                      class="sc-AykKI sc-fzXfLU iiUBIK"
                     >
                       Bel het telefoonnummer
                        
                       <a
-                        class="sc-EHOje hhCEXm sc-VigVT kXYtwx"
+                        class="sc-AykKI hvEmiT sc-fzXfLT fScWkL"
                         href="tel:14020"
                       >
                         14 020
                       </a>
                     </p>
                     <p
-                      class="sc-EHOje sc-jTzLTM eparCo"
+                      class="sc-AykKI sc-fzXfLU lZxRR"
                     >
                       maandag tot en met vrijdag van 08.00 tot 18.00 uur.
                     </p>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://formulieren.amsterdam.nl/tripleforms/DirectRegelen/formulier/nl-NL/evAmsterdam/Klachtenformulier.aspx"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -187,21 +188,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Contactformulier
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.amsterdam.nl/contact/"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -215,7 +216,7 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Contactgegevens en openingstijden
                         </span>
@@ -225,17 +226,18 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-kgAjT TNHOw"
+                class="sc-fzXfOY eqkMYG"
               >
                 <div
-                  class="sc-elJkPf gPjgzi sc-cLQEGU ksfGfW"
+                  class="sc-fzXfQt cXlgcJ sc-LzLrW jZkxil"
                   tabindex="-1"
                 >
                   <h3
-                    class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo sc-gqPbQI YIKcn"
+                    as="h3"
+                    class="sc-LzLqG ksGPWf sc-LzLrX fekdMl"
                   >
                     <span
-                      class="sc-bxivhb jewvTc"
+                      class="sc-AykKG jTaJGf"
                       rotate="0"
                       size="20"
                     >
@@ -253,20 +255,20 @@ Object {
                   </h3>
                   <div
                     aria-hidden="true"
-                    class="sc-RefOD cGbrYS"
+                    class="sc-LzLqF mkSHZ"
                   >
                     <ul
-                      class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                      class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                     >
                       <li
-                        class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                        class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                       >
                         <a
-                          class="sc-EHOje FkoFm sc-VigVT PthHi"
+                          class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                           href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/"
                         >
                           <span
-                            class="sc-bxivhb iMrrNS"
+                            class="sc-AykKG invwX"
                             size="12"
                           >
                             <svg
@@ -280,21 +282,21 @@ Object {
                             </svg>
                           </span>
                           <span
-                            class="sc-gqjmRU hQHBvj"
+                            class="sc-fzXfLS fDvwiU"
                           >
                             Nieuwsbrief Amsterdam.nl
                           </span>
                         </a>
                       </li>
                       <li
-                        class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                        class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                       >
                         <a
-                          class="sc-EHOje FkoFm sc-VigVT PthHi"
+                          class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                           href="https://twitter.com/AmsterdamNL"
                         >
                           <span
-                            class="sc-bxivhb iMrrNS"
+                            class="sc-AykKG invwX"
                             size="12"
                           >
                             <svg
@@ -308,21 +310,21 @@ Object {
                             </svg>
                           </span>
                           <span
-                            class="sc-gqjmRU hQHBvj"
+                            class="sc-fzXfLS fDvwiU"
                           >
                             Twitter
                           </span>
                         </a>
                       </li>
                       <li
-                        class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                        class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                       >
                         <a
-                          class="sc-EHOje FkoFm sc-VigVT PthHi"
+                          class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                           href="https://www.facebook.com/gemeenteamsterdam"
                         >
                           <span
-                            class="sc-bxivhb iMrrNS"
+                            class="sc-AykKG invwX"
                             size="12"
                           >
                             <svg
@@ -336,21 +338,21 @@ Object {
                             </svg>
                           </span>
                           <span
-                            class="sc-gqjmRU hQHBvj"
+                            class="sc-fzXfLS fDvwiU"
                           >
                             Facebook
                           </span>
                         </a>
                       </li>
                       <li
-                        class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                        class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                       >
                         <a
-                          class="sc-EHOje FkoFm sc-VigVT PthHi"
+                          class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                           href="https://www.instagram.com/gemeenteamsterdam/"
                         >
                           <span
-                            class="sc-bxivhb iMrrNS"
+                            class="sc-AykKG invwX"
                             size="12"
                           >
                             <svg
@@ -364,21 +366,21 @@ Object {
                             </svg>
                           </span>
                           <span
-                            class="sc-gqjmRU hQHBvj"
+                            class="sc-fzXfLS fDvwiU"
                           >
                             Instagram
                           </span>
                         </a>
                       </li>
                       <li
-                        class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                        class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                       >
                         <a
-                          class="sc-EHOje FkoFm sc-VigVT PthHi"
+                          class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                           href="https://www.linkedin.com/company/gemeente-amsterdam"
                         >
                           <span
-                            class="sc-bxivhb iMrrNS"
+                            class="sc-AykKG invwX"
                             size="12"
                           >
                             <svg
@@ -392,21 +394,21 @@ Object {
                             </svg>
                           </span>
                           <span
-                            class="sc-gqjmRU hQHBvj"
+                            class="sc-fzXfLS fDvwiU"
                           >
                             Linkedin
                           </span>
                         </a>
                       </li>
                       <li
-                        class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                        class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                       >
                         <a
-                          class="sc-EHOje FkoFm sc-VigVT PthHi"
+                          class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                           href="https://www.amsterdam.nl/bestuur-organisatie/werkenbij/"
                         >
                           <span
-                            class="sc-bxivhb iMrrNS"
+                            class="sc-AykKG invwX"
                             size="12"
                           >
                             <svg
@@ -420,7 +422,7 @@ Object {
                             </svg>
                           </span>
                           <span
-                            class="sc-gqjmRU hQHBvj"
+                            class="sc-fzXfLS fDvwiU"
                           >
                             Werken bij
                           </span>
@@ -430,25 +432,25 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="sc-RefOD eJuoxd"
+                  class="sc-LzLqF fBRPWn"
                 >
                   <h3
-                    class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo"
+                    class="sc-AykKI bJuAQV sc-AykKJ hOhWtF sc-LzLqG ksGPWf"
                   >
                     Volg de gemeente
                   </h3>
                   <ul
-                    class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                    class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                   >
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -462,21 +464,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Nieuwsbrief Amsterdam.nl
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://twitter.com/AmsterdamNL"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -490,21 +492,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Twitter
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.facebook.com/gemeenteamsterdam"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -518,21 +520,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Facebook
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.instagram.com/gemeenteamsterdam/"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -546,21 +548,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Instagram
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.linkedin.com/company/gemeente-amsterdam"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -574,21 +576,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Linkedin
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.amsterdam.nl/bestuur-organisatie/werkenbij/"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -602,7 +604,7 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Werken bij
                         </span>
@@ -612,17 +614,18 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-kgAjT brRyfg"
+                class="sc-fzXfOY cWpFhi"
               >
                 <div
-                  class="sc-elJkPf gPjgzi sc-hORach hAyWSN"
+                  class="sc-fzXfQt cXlgcJ sc-LzLrY dHHzDP"
                   tabindex="-1"
                 >
                   <h3
-                    class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo sc-bMVAic dkGoJU"
+                    as="h3"
+                    class="sc-LzLqG ksGPWf sc-LzLrZ cumGzH"
                   >
                     <span
-                      class="sc-bxivhb jewvTc"
+                      class="sc-AykKG jTaJGf"
                       rotate="0"
                       size="20"
                     >
@@ -640,18 +643,18 @@ Object {
                   </h3>
                   <div
                     aria-hidden="true"
-                    class="sc-RefOD cGbrYS"
+                    class="sc-LzLqF mkSHZ"
                   >
                     <ul
-                      class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                      class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                     >
                       <p
-                        class="sc-EHOje sc-jTzLTM gjBXwB"
+                        class="sc-AykKI sc-fzXfLU dBsrnT"
                       >
                         Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur, uitgaan, evenementen en meer vindt u op
                          
                         <a
-                          class="sc-EHOje hhCEXm sc-VigVT kXYtwx"
+                          class="sc-AykKI hvEmiT sc-fzXfLT fScWkL"
                           href="http://www.iamsterdam.com/"
                         >
                           Iamsterdam.com
@@ -661,23 +664,23 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="sc-RefOD eJuoxd"
+                  class="sc-LzLqF fBRPWn"
                 >
                   <h3
-                    class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo"
+                    class="sc-AykKI bJuAQV sc-AykKJ hOhWtF sc-LzLqG ksGPWf"
                   >
                     Uit in Amsterdam
                   </h3>
                   <ul
-                    class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                    class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                   >
                     <p
-                      class="sc-EHOje sc-jTzLTM gjBXwB"
+                      class="sc-AykKI sc-fzXfLU dBsrnT"
                     >
                       Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur, uitgaan, evenementen en meer vindt u op
                        
                       <a
-                        class="sc-EHOje hhCEXm sc-VigVT kXYtwx"
+                        class="sc-AykKI hvEmiT sc-fzXfLT fScWkL"
                         href="http://www.iamsterdam.com/"
                       >
                         Iamsterdam.com
@@ -690,29 +693,29 @@ Object {
           </div>
         </div>
         <div
-          class="sc-ibxdXY bXEncT"
+          class="sc-LzLqE iOMfOG"
         >
           <div
-            class="sc-esOvli kVTZtX"
+            class="sc-LzLrT fiMTsN"
           >
             <div
-              class="sc-cJSrbW eSjbJi"
+              class="sc-fzXfOZ fZxknb"
             >
               <div
-                class="sc-kgAjT gNxpZN"
+                class="sc-fzXfOY ieYskA"
               >
                 <ul
-                  class="sc-fMiknA fzSdsW sc-hXRMBi jsSisI"
+                  class="sc-fzXfOs kcvQFY sc-LzLqL kHFQul"
                 >
                   <li
-                    class="sc-dVhcbM wddMQ sc-epnACN gfJoDF"
+                    class="sc-fzXfOt clyLJk sc-LzLrj kzgSik"
                   >
                     <a
-                      class="sc-EHOje iRCPDX sc-VigVT PthHi"
+                      class="sc-AykKI bKnKFY sc-fzXfLT eAphdR"
                       href="https://www.amsterdam.nl/overdezesite/"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -726,21 +729,21 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Over deze site
                       </span>
                     </a>
                   </li>
                   <li
-                    class="sc-dVhcbM wddMQ sc-epnACN gfJoDF"
+                    class="sc-fzXfOt clyLJk sc-LzLrj kzgSik"
                   >
                     <a
-                      class="sc-EHOje iRCPDX sc-VigVT PthHi"
+                      class="sc-AykKI bKnKFY sc-fzXfLT eAphdR"
                       href="https://www.amsterdam.nl/privacy/"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -754,21 +757,21 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Privacy
                       </span>
                     </a>
                   </li>
                   <li
-                    class="sc-dVhcbM wddMQ sc-epnACN gfJoDF"
+                    class="sc-fzXfOt clyLJk sc-LzLrj kzgSik"
                   >
                     <a
-                      class="sc-EHOje iRCPDX sc-VigVT PthHi"
+                      class="sc-AykKI bKnKFY sc-fzXfLT eAphdR"
                       href="https://www.amsterdam.nl/privacy/cookies-site/"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -782,21 +785,21 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Cookies op deze site
                       </span>
                     </a>
                   </li>
                   <li
-                    class="sc-dVhcbM wddMQ sc-epnACN gfJoDF"
+                    class="sc-fzXfOt clyLJk sc-LzLrj kzgSik"
                   >
                     <a
-                      class="sc-EHOje iRCPDX sc-VigVT PthHi"
+                      class="sc-AykKI bKnKFY sc-fzXfLT eAphdR"
                       href="https://www.amsterdam.nl/nieuwsarchief/"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -810,7 +813,7 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Webarchief
                       </span>
@@ -826,29 +829,30 @@ Object {
   </body>,
   "container": <div>
     <footer
-      class="sc-bwCtUz ZzjLL"
+      class="sc-LzLqH gbqxOd"
     >
       <div
-        class="sc-hrWEMg bWhTXF"
+        class="sc-LzLqI kmQXLL"
       >
         <div
-          class="sc-esOvli kVTZtX"
+          class="sc-LzLrT fiMTsN"
         >
           <div
-            class="sc-cJSrbW eSjbJi"
+            class="sc-fzXfOZ fZxknb"
           >
             <div
-              class="sc-kgAjT fZqetg"
+              class="sc-fzXfOY sPsWY"
             >
               <div
-                class="sc-elJkPf gPjgzi sc-cmthru lbMmdK"
+                class="sc-fzXfQt cXlgcJ sc-LzLrU fbrLnL"
                 tabindex="-1"
               >
                 <h3
-                  class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo sc-hMFtBS jWYNMj"
+                  as="h3"
+                  class="sc-LzLqG ksGPWf sc-LzLrV hOhAYP"
                 >
                   <span
-                    class="sc-bxivhb jewvTc"
+                    class="sc-AykKG jTaJGf"
                     rotate="0"
                     size="20"
                   >
@@ -866,42 +870,42 @@ Object {
                 </h3>
                 <div
                   aria-hidden="true"
-                  class="sc-RefOD cGbrYS"
+                  class="sc-LzLqF mkSHZ"
                 >
                   <ul
-                    class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                    class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                   >
                     <p
-                      class="sc-EHOje sc-jTzLTM evcmP"
+                      class="sc-AykKI sc-fzXfLU ePUhqY"
                     >
                       Hebt u een vraag en kunt u het antwoord niet vinden op deze website? Neem dan contact met ons op.
                     </p>
                     <p
-                      class="sc-EHOje sc-jTzLTM cTptgu"
+                      class="sc-AykKI sc-fzXfLU iiUBIK"
                     >
                       Bel het telefoonnummer
                        
                       <a
-                        class="sc-EHOje hhCEXm sc-VigVT kXYtwx"
+                        class="sc-AykKI hvEmiT sc-fzXfLT fScWkL"
                         href="tel:14020"
                       >
                         14 020
                       </a>
                     </p>
                     <p
-                      class="sc-EHOje sc-jTzLTM eparCo"
+                      class="sc-AykKI sc-fzXfLU lZxRR"
                     >
                       maandag tot en met vrijdag van 08.00 tot 18.00 uur.
                     </p>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://formulieren.amsterdam.nl/tripleforms/DirectRegelen/formulier/nl-NL/evAmsterdam/Klachtenformulier.aspx"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -915,21 +919,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Contactformulier
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.amsterdam.nl/contact/"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -943,7 +947,7 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Contactgegevens en openingstijden
                         </span>
@@ -953,47 +957,47 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-RefOD eJuoxd"
+                class="sc-LzLqF fBRPWn"
               >
                 <h3
-                  class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo"
+                  class="sc-AykKI bJuAQV sc-AykKJ hOhWtF sc-LzLqG ksGPWf"
                 >
                   Contact
                 </h3>
                 <ul
-                  class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                  class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                 >
                   <p
-                    class="sc-EHOje sc-jTzLTM evcmP"
+                    class="sc-AykKI sc-fzXfLU ePUhqY"
                   >
                     Hebt u een vraag en kunt u het antwoord niet vinden op deze website? Neem dan contact met ons op.
                   </p>
                   <p
-                    class="sc-EHOje sc-jTzLTM cTptgu"
+                    class="sc-AykKI sc-fzXfLU iiUBIK"
                   >
                     Bel het telefoonnummer
                      
                     <a
-                      class="sc-EHOje hhCEXm sc-VigVT kXYtwx"
+                      class="sc-AykKI hvEmiT sc-fzXfLT fScWkL"
                       href="tel:14020"
                     >
                       14 020
                     </a>
                   </p>
                   <p
-                    class="sc-EHOje sc-jTzLTM eparCo"
+                    class="sc-AykKI sc-fzXfLU lZxRR"
                   >
                     maandag tot en met vrijdag van 08.00 tot 18.00 uur.
                   </p>
                   <li
-                    class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                    class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                   >
                     <a
-                      class="sc-EHOje FkoFm sc-VigVT PthHi"
+                      class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                       href="https://formulieren.amsterdam.nl/tripleforms/DirectRegelen/formulier/nl-NL/evAmsterdam/Klachtenformulier.aspx"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -1007,21 +1011,21 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Contactformulier
                       </span>
                     </a>
                   </li>
                   <li
-                    class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                    class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                   >
                     <a
-                      class="sc-EHOje FkoFm sc-VigVT PthHi"
+                      class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                       href="https://www.amsterdam.nl/contact/"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -1035,7 +1039,7 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Contactgegevens en openingstijden
                       </span>
@@ -1045,17 +1049,18 @@ Object {
               </div>
             </div>
             <div
-              class="sc-kgAjT TNHOw"
+              class="sc-fzXfOY eqkMYG"
             >
               <div
-                class="sc-elJkPf gPjgzi sc-cLQEGU ksfGfW"
+                class="sc-fzXfQt cXlgcJ sc-LzLrW jZkxil"
                 tabindex="-1"
               >
                 <h3
-                  class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo sc-gqPbQI YIKcn"
+                  as="h3"
+                  class="sc-LzLqG ksGPWf sc-LzLrX fekdMl"
                 >
                   <span
-                    class="sc-bxivhb jewvTc"
+                    class="sc-AykKG jTaJGf"
                     rotate="0"
                     size="20"
                   >
@@ -1073,20 +1078,20 @@ Object {
                 </h3>
                 <div
                   aria-hidden="true"
-                  class="sc-RefOD cGbrYS"
+                  class="sc-LzLqF mkSHZ"
                 >
                   <ul
-                    class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                    class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                   >
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -1100,21 +1105,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Nieuwsbrief Amsterdam.nl
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://twitter.com/AmsterdamNL"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -1128,21 +1133,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Twitter
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.facebook.com/gemeenteamsterdam"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -1156,21 +1161,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Facebook
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.instagram.com/gemeenteamsterdam/"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -1184,21 +1189,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Instagram
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.linkedin.com/company/gemeente-amsterdam"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -1212,21 +1217,21 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Linkedin
                         </span>
                       </a>
                     </li>
                     <li
-                      class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                      class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                     >
                       <a
-                        class="sc-EHOje FkoFm sc-VigVT PthHi"
+                        class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                         href="https://www.amsterdam.nl/bestuur-organisatie/werkenbij/"
                       >
                         <span
-                          class="sc-bxivhb iMrrNS"
+                          class="sc-AykKG invwX"
                           size="12"
                         >
                           <svg
@@ -1240,7 +1245,7 @@ Object {
                           </svg>
                         </span>
                         <span
-                          class="sc-gqjmRU hQHBvj"
+                          class="sc-fzXfLS fDvwiU"
                         >
                           Werken bij
                         </span>
@@ -1250,25 +1255,25 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-RefOD eJuoxd"
+                class="sc-LzLqF fBRPWn"
               >
                 <h3
-                  class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo"
+                  class="sc-AykKI bJuAQV sc-AykKJ hOhWtF sc-LzLqG ksGPWf"
                 >
                   Volg de gemeente
                 </h3>
                 <ul
-                  class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                  class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                 >
                   <li
-                    class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                    class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                   >
                     <a
-                      class="sc-EHOje FkoFm sc-VigVT PthHi"
+                      class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                       href="https://www.amsterdam.nl/nieuwsbrieven/nieuws/nieuwsbrief/nieuwsbrief/"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -1282,21 +1287,21 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Nieuwsbrief Amsterdam.nl
                       </span>
                     </a>
                   </li>
                   <li
-                    class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                    class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                   >
                     <a
-                      class="sc-EHOje FkoFm sc-VigVT PthHi"
+                      class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                       href="https://twitter.com/AmsterdamNL"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -1310,21 +1315,21 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Twitter
                       </span>
                     </a>
                   </li>
                   <li
-                    class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                    class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                   >
                     <a
-                      class="sc-EHOje FkoFm sc-VigVT PthHi"
+                      class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                       href="https://www.facebook.com/gemeenteamsterdam"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -1338,21 +1343,21 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Facebook
                       </span>
                     </a>
                   </li>
                   <li
-                    class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                    class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                   >
                     <a
-                      class="sc-EHOje FkoFm sc-VigVT PthHi"
+                      class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                       href="https://www.instagram.com/gemeenteamsterdam/"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -1366,21 +1371,21 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Instagram
                       </span>
                     </a>
                   </li>
                   <li
-                    class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                    class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                   >
                     <a
-                      class="sc-EHOje FkoFm sc-VigVT PthHi"
+                      class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                       href="https://www.linkedin.com/company/gemeente-amsterdam"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -1394,21 +1399,21 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Linkedin
                       </span>
                     </a>
                   </li>
                   <li
-                    class="sc-dVhcbM wddMQ sc-gwVKww bpGbYH"
+                    class="sc-fzXfOt clyLJk sc-LzLqK frZRMX"
                   >
                     <a
-                      class="sc-EHOje FkoFm sc-VigVT PthHi"
+                      class="sc-AykKI dLuCfC sc-fzXfLT eAphdR"
                       href="https://www.amsterdam.nl/bestuur-organisatie/werkenbij/"
                     >
                       <span
-                        class="sc-bxivhb iMrrNS"
+                        class="sc-AykKG invwX"
                         size="12"
                       >
                         <svg
@@ -1422,7 +1427,7 @@ Object {
                         </svg>
                       </span>
                       <span
-                        class="sc-gqjmRU hQHBvj"
+                        class="sc-fzXfLS fDvwiU"
                       >
                         Werken bij
                       </span>
@@ -1432,17 +1437,18 @@ Object {
               </div>
             </div>
             <div
-              class="sc-kgAjT brRyfg"
+              class="sc-fzXfOY cWpFhi"
             >
               <div
-                class="sc-elJkPf gPjgzi sc-hORach hAyWSN"
+                class="sc-fzXfQt cXlgcJ sc-LzLrY dHHzDP"
                 tabindex="-1"
               >
                 <h3
-                  class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo sc-bMVAic dkGoJU"
+                  as="h3"
+                  class="sc-LzLqG ksGPWf sc-LzLrZ cumGzH"
                 >
                   <span
-                    class="sc-bxivhb jewvTc"
+                    class="sc-AykKG jTaJGf"
                     rotate="0"
                     size="20"
                   >
@@ -1460,18 +1466,18 @@ Object {
                 </h3>
                 <div
                   aria-hidden="true"
-                  class="sc-RefOD cGbrYS"
+                  class="sc-LzLqF mkSHZ"
                 >
                   <ul
-                    class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                    class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                   >
                     <p
-                      class="sc-EHOje sc-jTzLTM gjBXwB"
+                      class="sc-AykKI sc-fzXfLU dBsrnT"
                     >
                       Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur, uitgaan, evenementen en meer vindt u op
                        
                       <a
-                        class="sc-EHOje hhCEXm sc-VigVT kXYtwx"
+                        class="sc-AykKI hvEmiT sc-fzXfLT fScWkL"
                         href="http://www.iamsterdam.com/"
                       >
                         Iamsterdam.com
@@ -1481,23 +1487,23 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-RefOD eJuoxd"
+                class="sc-LzLqF fBRPWn"
               >
                 <h3
-                  class="sc-EHOje jjCRJL sc-bZQynM hJEdCc sc-iQKALj BdPdo"
+                  class="sc-AykKI bJuAQV sc-AykKJ hOhWtF sc-LzLqG ksGPWf"
                 >
                   Uit in Amsterdam
                 </h3>
                 <ul
-                  class="sc-fMiknA fzSdsW sc-eTuwsz eyPNpp"
+                  class="sc-fzXfOs kcvQFY sc-LzLqJ eNdnAf"
                 >
                   <p
-                    class="sc-EHOje sc-jTzLTM gjBXwB"
+                    class="sc-AykKI sc-fzXfLU dBsrnT"
                   >
                     Wat is er te doen in Amsterdam? Informatie over toerisme, cultuur, uitgaan, evenementen en meer vindt u op
                      
                     <a
-                      class="sc-EHOje hhCEXm sc-VigVT kXYtwx"
+                      class="sc-AykKI hvEmiT sc-fzXfLT fScWkL"
                       href="http://www.iamsterdam.com/"
                     >
                       Iamsterdam.com
@@ -1510,29 +1516,29 @@ Object {
         </div>
       </div>
       <div
-        class="sc-ibxdXY bXEncT"
+        class="sc-LzLqE iOMfOG"
       >
         <div
-          class="sc-esOvli kVTZtX"
+          class="sc-LzLrT fiMTsN"
         >
           <div
-            class="sc-cJSrbW eSjbJi"
+            class="sc-fzXfOZ fZxknb"
           >
             <div
-              class="sc-kgAjT gNxpZN"
+              class="sc-fzXfOY ieYskA"
             >
               <ul
-                class="sc-fMiknA fzSdsW sc-hXRMBi jsSisI"
+                class="sc-fzXfOs kcvQFY sc-LzLqL kHFQul"
               >
                 <li
-                  class="sc-dVhcbM wddMQ sc-epnACN gfJoDF"
+                  class="sc-fzXfOt clyLJk sc-LzLrj kzgSik"
                 >
                   <a
-                    class="sc-EHOje iRCPDX sc-VigVT PthHi"
+                    class="sc-AykKI bKnKFY sc-fzXfLT eAphdR"
                     href="https://www.amsterdam.nl/overdezesite/"
                   >
                     <span
-                      class="sc-bxivhb iMrrNS"
+                      class="sc-AykKG invwX"
                       size="12"
                     >
                       <svg
@@ -1546,21 +1552,21 @@ Object {
                       </svg>
                     </span>
                     <span
-                      class="sc-gqjmRU hQHBvj"
+                      class="sc-fzXfLS fDvwiU"
                     >
                       Over deze site
                     </span>
                   </a>
                 </li>
                 <li
-                  class="sc-dVhcbM wddMQ sc-epnACN gfJoDF"
+                  class="sc-fzXfOt clyLJk sc-LzLrj kzgSik"
                 >
                   <a
-                    class="sc-EHOje iRCPDX sc-VigVT PthHi"
+                    class="sc-AykKI bKnKFY sc-fzXfLT eAphdR"
                     href="https://www.amsterdam.nl/privacy/"
                   >
                     <span
-                      class="sc-bxivhb iMrrNS"
+                      class="sc-AykKG invwX"
                       size="12"
                     >
                       <svg
@@ -1574,21 +1580,21 @@ Object {
                       </svg>
                     </span>
                     <span
-                      class="sc-gqjmRU hQHBvj"
+                      class="sc-fzXfLS fDvwiU"
                     >
                       Privacy
                     </span>
                   </a>
                 </li>
                 <li
-                  class="sc-dVhcbM wddMQ sc-epnACN gfJoDF"
+                  class="sc-fzXfOt clyLJk sc-LzLrj kzgSik"
                 >
                   <a
-                    class="sc-EHOje iRCPDX sc-VigVT PthHi"
+                    class="sc-AykKI bKnKFY sc-fzXfLT eAphdR"
                     href="https://www.amsterdam.nl/privacy/cookies-site/"
                   >
                     <span
-                      class="sc-bxivhb iMrrNS"
+                      class="sc-AykKG invwX"
                       size="12"
                     >
                       <svg
@@ -1602,21 +1608,21 @@ Object {
                       </svg>
                     </span>
                     <span
-                      class="sc-gqjmRU hQHBvj"
+                      class="sc-fzXfLS fDvwiU"
                     >
                       Cookies op deze site
                     </span>
                   </a>
                 </li>
                 <li
-                  class="sc-dVhcbM wddMQ sc-epnACN gfJoDF"
+                  class="sc-fzXfOt clyLJk sc-LzLrj kzgSik"
                 >
                   <a
-                    class="sc-EHOje iRCPDX sc-VigVT PthHi"
+                    class="sc-AykKI bKnKFY sc-fzXfLT eAphdR"
                     href="https://www.amsterdam.nl/nieuwsarchief/"
                   >
                     <span
-                      class="sc-bxivhb iMrrNS"
+                      class="sc-AykKG invwX"
                       size="12"
                     >
                       <svg
@@ -1630,7 +1636,7 @@ Object {
                       </svg>
                     </span>
                     <span
-                      class="sc-gqjmRU hQHBvj"
+                      class="sc-fzXfLS fDvwiU"
                     >
                       Webarchief
                     </span>

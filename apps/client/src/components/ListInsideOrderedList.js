@@ -1,4 +1,4 @@
-import styled from "@datapunt/asc-core";
+import styled from "styled-components";
 import { StyledList } from "./Layouts/BaseLayoutStyles";
 
 export default styled(StyledList)`

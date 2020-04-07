@@ -1,10 +1,11 @@
-import styled from "@datapunt/asc-core";
+import styled from "styled-components";
 
 export const FigCaption = styled.figcaption`
   font-style: italic;
 `;
 
 export const Figure = styled.figure`
+  min-height: 1px; /* IE11 Bug */
   margin: 0 0 24px 0;
 `;
 
