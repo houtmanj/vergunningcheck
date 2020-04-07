@@ -49,7 +49,7 @@ export const routeConfig = [
     name: "address",
     path: "/:slug/adresgegevens",
     component: AddressPage,
-    matamoPage: "location-results",
+    matomoPage: "location-results",
   },
   {
     name: "questions",

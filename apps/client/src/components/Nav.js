@@ -16,7 +16,7 @@ const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
   const route = routeConfig.find((route) => route.path === path);
-  const category = route.matamoPage || route.name;
+  const category = route.matomoPage || route.name;
 
   const handleNextClick = () => {
     const action = formEnds
