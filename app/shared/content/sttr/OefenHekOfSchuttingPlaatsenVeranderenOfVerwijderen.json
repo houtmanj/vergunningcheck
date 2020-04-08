@@ -41,7 +41,7 @@
         }
       },
       "decisions": {
-        "_205ec3ab-9b2f-4da7-a970-124ee3c1d08b": {
+        "_c370d842-9d30-4345-964a-19e377ff3275": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__30a75386-d045-473c-b4b8-3aad506986f2"
@@ -63,7 +63,7 @@
             ]
           }
         },
-        "_0d6e3a49-3eff-4469-8833-2182e19c2712": {
+        "_76755bfd-3dc5-4688-9064-01b4582e60ea": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d"
@@ -86,7 +86,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_205ec3ab-9b2f-4da7-a970-124ee3c1d08b", "#_0d6e3a49-3eff-4469-8833-2182e19c2712"],
+          "requiredDecisions": ["#_c370d842-9d30-4345-964a-19e377ff3275", "#_76755bfd-3dc5-4688-9064-01b4582e60ea"],
           "decisionTable": {
             "rules": [
               {
@@ -114,7 +114,7 @@
       "questions": [
         {
           "text": "Gaat u zonnepanelen of een zonneboiler plaatsen?",
-          "description": "Het verschil tussen zonnepanelen en een zonneboiler:\n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.",
+          "description": "Het verschil tussen zonnepanelen en een zonneboiler:\n\n*   Zonnepanelen wekken elektriciteit op uit zonlicht.\n*   Een zonneboiler is een installatie die water verwarmt door zonlicht.\n\nGaat u zowel zonnepanelen als een zonneboiler plaatsen? Doe dan voor zowel zonnepanelen als voor de zonneboiler een vergunningcheck.",
           "options": ["Zonnepanelen", "Zonneboiler"],
           "type": "string",
           "id": "uitv__d09a954d-cb3c-441c-b564-d2c1e6530974",
@@ -194,7 +194,7 @@
         },
         {
           "text": "Wordt de installatie voor het omzetten van de opgewekte elektriciteit onderdeel van het zonnepaneel?",
-          "description": "Een zonnepaneel zet zonlicht om in elektriciteit. De opgewekte elektriciteit is niet direct geschikt voor de apparaten in huis of het energienet. Daarom kan er een losse installatie nodig zijn voor het omzetten van de opgewekte elektriciteit. Dit heet een omvormer. Deze omvormer wordt meestal geplaatst:\n\n*   op zolder onder het dak\n*   in de meterkast\n*   in de garage of schuur\n*   buiten onder een afdak\n\nWanneer er sprake is van een losse installatie, dan beantwoordt u deze vraag met ‘nee’.",
+          "description": "De elektriciteit die een zonnepaneel opwekt kan niet direct gebruikt worden door de apparaten in huis. Daarom kan er een installatie nodig zijn voor het omzetten van de opgewekte elektriciteit. Dit heet een omvormer. Wanneer er sprake is van een losse omvormer, dan beantwoordt u deze vraag met ‘nee’.",
           "options": ["Ja, paneel en installatie zitten aan elkaar vast", "Nee, er zijn twee losse onderdelen"],
           "type": "string",
           "id": "uitv__d2e1d3a6-4ed8-45dd-8876-107db345d841"
@@ -270,7 +270,7 @@
         },
         {
           "text": "Gaat u de zonnepanelen in het dak plaatsen?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_d_Zonnepaneel_in_dak.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_d_Zonnepaneel_in_dak.png)\n\nEen zonnepaneel kan onderdeel van het dak zijn, bijvoorbeeld bij dakpannen die zonnestroom opwekken.",
           "type": "boolean",
           "id": "uitv__679562df-0ee1-4958-b173-677c95eb812f"
         },
@@ -282,7 +282,7 @@
         },
         {
           "text": "Gaat u de zonnepanelen direct op het dak plaatsen?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_c_Zonnepaneel_direct_op_dak.png)",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/8_c_Zonnepaneel_direct_op_dak.png)\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/9_a_Zonnepaneel_evenwijdig_aan_dak.png)\n\nAls u de standaard bevestigingsmiddelen van de fabrikant gaat gebruiken, beantwoordt u de vraag met ‘ja’.",
           "type": "boolean",
           "id": "uitv__4a6d1c04-9f16-4c2a-8abe-6af395cd886d"
         },
@@ -294,7 +294,7 @@
         },
         {
           "text": "Gaat u de zonnepanelen net zo schuin plaatsen als het dak?",
-          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/9_a_Zonnepaneel_evenwijdig_aan_dak.png)\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/9_b_Zonnepaneel_helling_op_dak.png)\n\nAls de zonnepanelen de helling van het dak volgen, vallen ze minder op.",
+          "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/9_a_Zonnepaneel_evenwijdig_aan_dak.png)\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/9_b_Zonnepaneel_helling_op_dak.png)\n\nAls de zonnepanelen niet de helling van het dak volgen, is er altijd een vergunning nodig voor het plaatsen.",
           "type": "boolean",
           "id": "uitv__03596543-74bc-43ef-bd91-81bc09fa3b1a"
         },
@@ -432,7 +432,7 @@
         }
       },
       "decisions": {
-        "_deeb72d3-ff87-45e2-935b-91ace2a7f4b3": {
+        "_a59d46a3-d1e8-4788-8aa9-d3db0af179dd": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7a581a66-8143-4f7f-b864-a7dabd06850d"
@@ -454,7 +454,7 @@
             ]
           }
         },
-        "_1f428890-8d79-439d-b3ff-00ae3ba95fd1": {
+        "_0251771b-f4d5-431c-b92f-3f9c8e8d59bc": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c"
@@ -476,7 +476,7 @@
             ]
           }
         },
-        "_eb2ac61d-64a1-46b5-9f6c-95f990c80eed": {
+        "_06280036-84e7-49ce-b364-454f73fc4469": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
@@ -503,7 +503,7 @@
             ]
           }
         },
-        "_8ade1cda-d934-4abe-a044-aecd6ee12b11": {
+        "_10e5ac6d-923f-4dee-a6a5-b77402bfc370": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a80db030-b747-4a5c-9231-ef77e279387f",
@@ -530,7 +530,7 @@
             ]
           }
         },
-        "_b0205912-248b-4030-b248-666ef8444427": {
+        "_dd4890d3-5ae3-4e8d-9ec0-5cdf598bc72d": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -557,7 +557,7 @@
             ]
           }
         },
-        "_fa2f1139-f9e6-4b76-85e9-9f8c4be0dc9a": {
+        "_d5b9a9c2-f64b-4dd3-ab91-9550db51dd7b": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -584,7 +584,7 @@
             ]
           }
         },
-        "_b7e3278a-ef7d-4b68-8dfe-e59b275a5054": {
+        "_1da585d5-6df5-4979-af5d-9c68d9df8502": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -611,7 +611,7 @@
             ]
           }
         },
-        "_7232d326-082e-43b7-8d4f-549c649c1748": {
+        "_d3a9e571-6f51-45c7-a0d1-d8059543ac9c": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__63d8e3e4-8881-4eea-a453-c466e4c4a9d1",
@@ -638,7 +638,7 @@
             ]
           }
         },
-        "_2ce83f5e-fe9d-4244-90f0-d41b30627a6a": {
+        "_cd5174cc-9418-41ba-a2d6-15be5c1703b1": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__d2e1d3a6-4ed8-45dd-8876-107db345d841",
@@ -665,7 +665,7 @@
             ]
           }
         },
-        "_14a618ca-583c-4021-ac7f-0427f8850a33": {
+        "_e7bb6b19-c66c-411f-8b86-260be5327243": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -692,7 +692,7 @@
             ]
           }
         },
-        "_ea99f2cd-7f22-4791-a623-31655500cab7": {
+        "_6b9869a0-71bb-4f23-9ecd-60674e6763d7": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a80db030-b747-4a5c-9231-ef77e279387f",
@@ -724,7 +724,7 @@
             ]
           }
         },
-        "_a5a680bf-f3a4-49a5-bdd4-0b635e715516": {
+        "_de89c854-fdb9-41d1-ad36-d986236b421f": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -756,7 +756,7 @@
             ]
           }
         },
-        "_0a6355a3-e01e-49c1-ae26-c859e901d94c": {
+        "_ddf57aec-98a8-4bf8-ba34-6761c96ed414": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -788,7 +788,7 @@
             ]
           }
         },
-        "_8f3286f3-4584-4dd0-946a-08cdf1385ece": {
+        "_fdcd05f2-4af3-45ab-84ca-59f5d65ad0a9": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
@@ -820,7 +820,7 @@
             ]
           }
         },
-        "_9ba710c2-4e0a-48a9-80d4-a4dfaa01dfde": {
+        "_20198018-e4ff-4c1a-9dc4-6054a99769be": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a80db030-b747-4a5c-9231-ef77e279387f",
@@ -857,7 +857,7 @@
             ]
           }
         },
-        "_a6ef7d90-7b25-4f4d-8062-366588008652": {
+        "_266079e8-1791-4424-baea-49b4f155432e": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
@@ -894,7 +894,7 @@
             ]
           }
         },
-        "_0e1fc795-7801-438d-92bd-03184d622d80": {
+        "_f1dc878c-a747-4edd-8a90-639513cff0c9": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
@@ -936,7 +936,7 @@
             ]
           }
         },
-        "_f140e8dd-040d-4ecc-85d9-4866a37a80cb": {
+        "_1d8a325d-a2d2-4fd9-9f82-b45ee6d30fbc": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -978,7 +978,7 @@
             ]
           }
         },
-        "_c73a39e0-0e4b-4497-96d7-55d799af7fcf": {
+        "_b31ab7af-7beb-4697-b899-79104edf58d8": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -1020,7 +1020,7 @@
             ]
           }
         },
-        "_d192cdc1-fc0d-4352-b16d-117320f4294d": {
+        "_c696c440-5fb3-43f4-8aaa-9590d61a5ef5": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -1062,7 +1062,7 @@
             ]
           }
         },
-        "_050b66d7-c4f7-4193-b21a-0e74081bcd1d": {
+        "_4303f388-9488-487a-80ca-93f34d53719b": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a80db030-b747-4a5c-9231-ef77e279387f",
@@ -1104,7 +1104,7 @@
             ]
           }
         },
-        "_89baa58d-092d-4671-9e96-d730c65d84ea": {
+        "_e07b4298-4b6d-4db8-a5ec-a23b3b587f28": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -1146,7 +1146,7 @@
             ]
           }
         },
-        "_362b2158-7331-42c4-8409-d127b5998508": {
+        "_af912d69-b7a1-40fc-8f97-cb760adc7964": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -1193,7 +1193,7 @@
             ]
           }
         },
-        "_787b7afd-6227-4d92-b536-15eb2a72238d": {
+        "_aa5086f2-0f33-446f-99fa-4f54d21661f7": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -1242,30 +1242,30 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_deeb72d3-ff87-45e2-935b-91ace2a7f4b3",
-            "#_1f428890-8d79-439d-b3ff-00ae3ba95fd1",
-            "#_eb2ac61d-64a1-46b5-9f6c-95f990c80eed",
-            "#_8ade1cda-d934-4abe-a044-aecd6ee12b11",
-            "#_b0205912-248b-4030-b248-666ef8444427",
-            "#_fa2f1139-f9e6-4b76-85e9-9f8c4be0dc9a",
-            "#_b7e3278a-ef7d-4b68-8dfe-e59b275a5054",
-            "#_7232d326-082e-43b7-8d4f-549c649c1748",
-            "#_2ce83f5e-fe9d-4244-90f0-d41b30627a6a",
-            "#_14a618ca-583c-4021-ac7f-0427f8850a33",
-            "#_ea99f2cd-7f22-4791-a623-31655500cab7",
-            "#_a5a680bf-f3a4-49a5-bdd4-0b635e715516",
-            "#_0a6355a3-e01e-49c1-ae26-c859e901d94c",
-            "#_8f3286f3-4584-4dd0-946a-08cdf1385ece",
-            "#_9ba710c2-4e0a-48a9-80d4-a4dfaa01dfde",
-            "#_a6ef7d90-7b25-4f4d-8062-366588008652",
-            "#_0e1fc795-7801-438d-92bd-03184d622d80",
-            "#_f140e8dd-040d-4ecc-85d9-4866a37a80cb",
-            "#_c73a39e0-0e4b-4497-96d7-55d799af7fcf",
-            "#_d192cdc1-fc0d-4352-b16d-117320f4294d",
-            "#_050b66d7-c4f7-4193-b21a-0e74081bcd1d",
-            "#_89baa58d-092d-4671-9e96-d730c65d84ea",
-            "#_362b2158-7331-42c4-8409-d127b5998508",
-            "#_787b7afd-6227-4d92-b536-15eb2a72238d"
+            "#_a59d46a3-d1e8-4788-8aa9-d3db0af179dd",
+            "#_0251771b-f4d5-431c-b92f-3f9c8e8d59bc",
+            "#_06280036-84e7-49ce-b364-454f73fc4469",
+            "#_10e5ac6d-923f-4dee-a6a5-b77402bfc370",
+            "#_dd4890d3-5ae3-4e8d-9ec0-5cdf598bc72d",
+            "#_d5b9a9c2-f64b-4dd3-ab91-9550db51dd7b",
+            "#_1da585d5-6df5-4979-af5d-9c68d9df8502",
+            "#_d3a9e571-6f51-45c7-a0d1-d8059543ac9c",
+            "#_cd5174cc-9418-41ba-a2d6-15be5c1703b1",
+            "#_e7bb6b19-c66c-411f-8b86-260be5327243",
+            "#_6b9869a0-71bb-4f23-9ecd-60674e6763d7",
+            "#_de89c854-fdb9-41d1-ad36-d986236b421f",
+            "#_ddf57aec-98a8-4bf8-ba34-6761c96ed414",
+            "#_fdcd05f2-4af3-45ab-84ca-59f5d65ad0a9",
+            "#_20198018-e4ff-4c1a-9dc4-6054a99769be",
+            "#_266079e8-1791-4424-baea-49b4f155432e",
+            "#_f1dc878c-a747-4edd-8a90-639513cff0c9",
+            "#_1d8a325d-a2d2-4fd9-9f82-b45ee6d30fbc",
+            "#_b31ab7af-7beb-4697-b899-79104edf58d8",
+            "#_c696c440-5fb3-43f4-8aaa-9590d61a5ef5",
+            "#_4303f388-9488-487a-80ca-93f34d53719b",
+            "#_e07b4298-4b6d-4db8-a5ec-a23b3b587f28",
+            "#_af912d69-b7a1-40fc-8f97-cb760adc7964",
+            "#_aa5086f2-0f33-446f-99fa-4f54d21661f7"
           ],
           "decisionTable": {
             "rules": [
