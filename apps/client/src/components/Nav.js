@@ -9,7 +9,14 @@ import { useRouteMatch } from "react-router-dom";
 import { routeConfig } from "../routes";
 import Context from "../context";
 
-const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
+const Nav = ({
+  prevText,
+  showPrev,
+  onGoToPrev,
+  showNext,
+  nextText,
+  formEnds,
+}) => {
   const {
     topic: { slug: name },
   } = useContext(Context);
@@ -62,7 +69,7 @@ const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
             onClick={handlePrevClick}
             type="button"
           >
-            Vorige
+            {prevText}
           </Button>
         )}
       </div>
@@ -73,6 +80,7 @@ const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
 Nav.defaultProps = {
   page: "undefined-page",
   nextText: "Volgende",
+  prevText: "Vorige",
   formEnds: false,
 };
 
@@ -82,6 +90,7 @@ Nav.propTypes = {
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
   nextText: PropTypes.string,
+  prevText: PropTypes.string,
   formEnds: PropTypes.bool,
 };
 
