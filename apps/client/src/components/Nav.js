@@ -15,14 +15,14 @@ const Nav = ({
   onGoToPrev,
   showNext,
   nextText,
-  formEnds
+  formEnds,
 }) => {
   const {
-    topic: { slug: name }
+    topic: { slug: name },
   } = useContext(Context);
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
-  const route = routeConfig.find(route => route.path === path);
+  const route = routeConfig.find((route) => route.path === path);
   const category = route.matomoPage || route.name;
 
   const handleNextClick = () => {
@@ -32,14 +32,14 @@ const Nav = ({
     trackEvent({
       category,
       action,
-      name
+      name,
     });
   };
-  const handlePrevClick = e => {
+  const handlePrevClick = (e) => {
     trackEvent({
       category,
       action: "form-vorige-knop",
-      name
+      name,
     });
     if (onGoToPrev) onGoToPrev(e);
   };
@@ -81,7 +81,7 @@ Nav.defaultProps = {
   page: "undefined-page",
   nextText: "Volgende",
   prevText: "Vorige",
-  formEnds: false
+  formEnds: false,
 };
 
 Nav.propTypes = {
@@ -91,7 +91,7 @@ Nav.propTypes = {
   showNext: PropTypes.bool,
   nextText: PropTypes.string,
   prevText: PropTypes.string,
-  formEnds: PropTypes.bool
+  formEnds: PropTypes.bool,
 };
 
 export default Nav;
