@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import { ListItem } from "@datapunt/asc-ui";
+import { ListItem } from "../Atoms";
 import ListRenderer from "./renderers/ListRenderer";
 import BlockRenderer from "./renderers/BlockRenderer";
 import LinkRenderer from "./renderers/LinkRenderer";
