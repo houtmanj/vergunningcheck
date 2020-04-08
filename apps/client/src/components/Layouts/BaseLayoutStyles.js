@@ -1,11 +1,5 @@
 import styled from "styled-components";
-import {
-  themeColor,
-  themeSpacing,
-  List,
-  ListItem,
-  breakpoint,
-} from "@datapunt/asc-ui";
+import { themeColor, themeSpacing, breakpoint } from "@datapunt/asc-ui";
 
 export const Container = styled.div`
   max-width: 1400px;
@@ -35,14 +29,4 @@ export const FormTitle = styled.h4`
 export const Content = styled.div`
   display: block;
   width: 100%;
-`;
-
-export const StyledList = styled(List)`
-  padding-left: ${themeSpacing(5)};
-`;
-
-export const StyledListItem = styled(ListItem)`
-  &:last-of-type {
-    margin: 0;
-  }
 `;

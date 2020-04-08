@@ -1,6 +1,4 @@
 import React from "react";
-import { StyledList } from "../../Layouts/BaseLayoutStyles";
+import List from "../../Atoms/List";
 
-export default ({ children }) => (
-  <StyledList variant="bullet">{children}</StyledList>
-);
+export default ({ children }) => <List variant="bullet">{children}</List>;

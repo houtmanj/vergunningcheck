@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import { StyledListItem } from "../Layouts/BaseLayoutStyles";
+import { ListItem } from "../Atoms";
 import ListRenderer from "./renderers/ListRenderer";
 import BlockRenderer from "./renderers/BlockRenderer";
 import LinkRenderer from "./renderers/LinkRenderer";
@@ -13,7 +13,7 @@ export default ({ source }) => (
     renderers={{
       paragraph: BlockRenderer,
       list: ListRenderer,
-      listItem: StyledListItem,
+      listItem: ListItem,
       image: Visual,
       link: LinkRenderer,
     }}

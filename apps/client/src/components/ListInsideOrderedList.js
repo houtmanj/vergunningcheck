@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { StyledList } from "./Layouts/BaseLayoutStyles";
+import { List } from "../components/Atoms";
 
-export default styled(StyledList)`
+export default styled(List)`
   margin-top: 5px;
   margin-bottom: 0;
   margin-left: -5px; /* Fix to align with other Lists on the page */
