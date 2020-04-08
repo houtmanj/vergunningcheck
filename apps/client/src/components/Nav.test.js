@@ -1,32 +1,25 @@
-import React, { useContext } from "react";
+import React from "react";
 import { render, fireEvent, cleanup, screen } from "../utils/test-utils";
-import Context from "../context";
 import Nav from "./Nav";
 import Form from "./Form";
-import { topics } from "../config";
 import { MemoryRouter } from "react-router-dom";
+import Context from "../__mocks__/context";
 
 const onSubmitMock = jest.fn();
 const onPrevClickMock = jest.fn();
 
 afterEach(cleanup);
 
-const ContextMock = ({ children, topicMock }) => {
-  const context = useContext(Context);
-  context.topic = topics.find((t) => t.slug === topicMock);
-  return children;
-};
-
 const Wrapper = ({ children }) => {
   const topicMock = "dakraam-plaatsen";
   const topicUrlMock = `/${topicMock}`;
 
   return (
-    <ContextMock topicMock={topicMock}>
+    <Context topicMock={topicMock}>
       <MemoryRouter initialEntries={[topicUrlMock]}>
         <Form onSubmit={onSubmitMock}>{children}</Form>
       </MemoryRouter>
-    </ContextMock>
+    </Context>
   );
 };
 
