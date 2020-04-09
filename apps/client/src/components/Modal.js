@@ -6,7 +6,7 @@ import {
   Heading,
   Icon,
   TopBar,
-  Modal as BaseModal
+  Modal as BaseModal,
 } from "@datapunt/asc-ui";
 import { Close } from "@datapunt/asc-assets";
 import styled from "styled-components";
@@ -61,7 +61,7 @@ const Modal = ({ modalText }) => {
 };
 
 Modal.propTypes = {
-  modalText: PropTypes.string
+  modalText: PropTypes.string,
 };
 
 export default Modal;

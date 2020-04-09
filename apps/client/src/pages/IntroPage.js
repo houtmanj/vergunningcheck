@@ -2,12 +2,12 @@ import React, { Suspense } from "react";
 import Helmet from "react-helmet";
 
 import { routes, geturl } from "../routes";
-import withChecker from "../hoc/withChecker";
 
 import Loading from "../components/Loading";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import Layout from "../components/Layouts/DefaultLayout";
+import withTopic from "../hoc/withTopic";
 
 const IntroPage = ({ topic }) => {
   const { text, intro } = topic;
@@ -19,7 +19,13 @@ const IntroPage = ({ topic }) => {
       </Helmet>
       <Suspense fallback={<Loading />}>
         <Intro />
-        <Form action={geturl(routes.questions, topic)}>
+
+        <Form
+          action={geturl(
+            topic.sttrFile ? routes.questions : routes.location,
+            topic
+          )}
+        >
           <Nav showNext />
         </Form>
       </Suspense>
@@ -27,4 +33,4 @@ const IntroPage = ({ topic }) => {
   );
 };
 
-export default withChecker(IntroPage);
+export default withTopic(IntroPage);

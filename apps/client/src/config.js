@@ -16,7 +16,6 @@ const topics = [
   {
     slug: "kappen-of-snoeien",
     redirectToOlo: true,
-    intro: "DebugIntro",
     text: {
       heading: "Vergunningchecker kappen of snoeien",
     },

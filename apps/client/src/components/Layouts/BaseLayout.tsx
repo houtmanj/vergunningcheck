@@ -59,16 +59,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           <HiddenDebugInfo title="Topic">
             <p>slug: {topic.slug}</p>
             <p>redirectToOlo: {JSON.stringify(!!topic.redirectToOlo)}</p>
-            <p>
-              sttrFile:{" "}
-              <a
-                href={`/sttr/${topic.sttrFile}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {topic.sttrFile}
-              </a>
-            </p>
+            <p>sttrFile: {topic.sttrFile}</p>
           </HiddenDebugInfo>
         )}
       </ContentContainer>
