@@ -3,13 +3,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import { routeConfig } from "../routes";
 import ScrollToTop from "./ScrollToTop";
+import LoadingPage from "../pages/LoadingPage";
 
-const Loading = () => <p>laden</p>;
 const Router = (props) => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<LoadingPage />}>
         <Switch>
           {routeConfig
             .filter((route) => route.component)

@@ -5,6 +5,7 @@ const fetch = require("node-fetch");
 const batchPromises = require("batch-promises");
 const sttrbuild = require("./parser");
 const mkdirp = require("mkdirp");
+const topics = require("./config");
 
 const MAX_PARALLEL = 6;
 const env = process.env.STTR_ENV === "production" ? "PROD" : "STAGING";
@@ -19,7 +20,7 @@ const outputDir = path.join(
 const sttrApi = `https://sttr-builder${
   env === "PROD" ? "" : "-staging"
 }.eu.meteorapp.com/api`;
-const listUrl = `${sttrApi}/activiteiten/bijwerkzaamheid`;
+const listUrl = `${sttrApi}/activiteiten`;
 const detailUrl = `${sttrApi}/conclusie/sttr`;
 const headers = {
   "x-api-key": process.env.STTR_BUILDER_API_KEY,
@@ -63,6 +64,7 @@ function checkStatus(res) {
         if (err) throw err;
         console.log(`${target} has been saved`);
       });
+      return json.map(({ _id }) => _id);
     });
 
   const topics = require("./config");

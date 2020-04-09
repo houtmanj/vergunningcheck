@@ -32,9 +32,12 @@
     "build": "react-scripts build",
     "sttr": "node scripts/sttr_build",
     "test": "react-scripts test",
+    "test:coverage": "npm run test -- --watchAll=false --collect-coverage",
+    "test:snapshot": "npm run test -- --watchAll=false --updateSnapshot",
     "lint": "eslint . --ignore-path .gitignore",
     "precommit": "lint-staged",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -66,11 +69,15 @@
     "lint-staged": "^10.0.8",
     "lodash.get": "^4.4.2",
     "node-fetch": "^2.6.0",
+    "prettier": "^2.0.4",
     "react-scripts": "^3.2.0",
-    "rewire": "^5.0.0",
+    "source-map-explorer": "^2.4.2",
     "typescript": "^3.7.5"
   },
   "lint-staged": {
+    "*.json": [
+      "prettier --write"
+    ],
     "*.{js,ts,tsx}": [
       "prettier --write",
       "eslint --fix",

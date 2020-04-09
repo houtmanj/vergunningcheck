@@ -2,19 +2,8 @@ import React from "react";
 import { reverse } from "named-urls";
 import slugify from "slugify";
 
-// Main application routes
-// import IntroPage from "./pages/IntroPage";
-// import LocationPage from "./pages/LocationPage";
-// import AddressPage from "./pages/AddressPage";
-// import QuestionsPage from "./pages/QuestionsPage";
-// import ConclusionPage from "./pages/ConclusionPage";
-// import ResultsPage from "./pages/ResultsPage";
-// import PreflightPage from "./pages/PreflightPage";
-
 // System pages
 import NotFoundPage from "./pages/NotFoundPage";
-// Developer homepage, not used in production
-// import DevHomePage from "./pages/DevHomePage";
 
 export const getslug = (text) =>
   slugify(text, {
@@ -34,7 +23,6 @@ export const routeConfig = [
     name: "home",
     exact: true,
     path: "/",
-    // component: process.env.NODE_ENV !== "production" && DevHomePage
     component:
       process.env.NODE_ENV !== "production" &&
       React.lazy(() => import(`./pages/DevHomePage`)),

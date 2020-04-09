@@ -9,8 +9,8 @@ const getQuestions = () => [
     id: "aaa",
     type: "boolean",
     text: "Do you live in a well-being area (welstandsgebied)?",
-    prio: 10
-  })
+    prio: 10,
+  }),
 ];
 
 describe("STTR specific", () => {
@@ -19,13 +19,13 @@ describe("STTR specific", () => {
       id: "aaa",
       type: "boolean",
       text: "Do you need a permit?",
-      prio: 10
+      prio: 10,
     });
     const q2 = new Question({
       id: "bbb",
       type: "boolean",
       text: "Are you sure?",
-      prio: 20
+      prio: 20,
     });
     const d1 = new Decision(
       "d1",
@@ -33,7 +33,7 @@ describe("STTR specific", () => {
       [
         new Rule([true], "permit-required"),
         new Rule([false, false], "permit-required"),
-        new Rule([false, true], "no-permit-required")
+        new Rule([false, true], "no-permit-required"),
       ]
     );
     const dummy = new Decision(
@@ -41,7 +41,7 @@ describe("STTR specific", () => {
       [d1],
       [
         new Rule(["permit-required"], "You need a permit."),
-        new Rule(["no-permit-required"], "You don't need a permit.")
+        new Rule(["no-permit-required"], "You don't need a permit."),
       ]
     );
     const checker = new Checker([new Permit("some permit", [dummy])]);

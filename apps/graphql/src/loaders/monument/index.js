@@ -3,5 +3,5 @@ const situation = require("./situation");
 
 module.exports = {
   monument,
-  situation
+  situation,
 };

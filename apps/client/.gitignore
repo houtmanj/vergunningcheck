@@ -4,3 +4,6 @@ public/sttr/prod/*.source.json
 
 build/
 .env*.local
+
+# testing
+coverage

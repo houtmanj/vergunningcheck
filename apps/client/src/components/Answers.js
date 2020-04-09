@@ -11,7 +11,7 @@ const Answers = ({
   errors,
   disableInputs,
   questionId,
-  onChange
+  onChange,
 }) => (
   <StyledAnswer hasError={errors[questionId]}>
     {errors[questionId] && (
@@ -21,7 +21,7 @@ const Answers = ({
     )}
     <RadioGroup className={className} name={questionId}>
       {answers &&
-        answers.map(answer => {
+        answers.map((answer) => {
           const { label, formValue } = answer;
           const answerId = `${questionId}-${formValue}`;
           return (
@@ -35,7 +35,7 @@ const Answers = ({
                 key={answerId}
                 value={formValue}
                 id={answerId}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
                 checked={currentAnswer === answer.formValue}
               />
             </Label>
@@ -57,7 +57,7 @@ Answers.propTypes = {
   errors: PropTypes.any,
   answers: PropTypes.array,
   questionId: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 export default StyledAnswers;

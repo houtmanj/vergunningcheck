@@ -1,12 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 import { Paragraph, Heading } from "@datapunt/asc-ui";
 import { geturl, routes } from "../routes";
 import { OLO } from "../config";
 import withConclusion from "../hoc/withConclusion";
 
 import Layout from "../components/Layouts/DefaultLayout";
+import Markdown from "../components/Markdown";
 import Form from "../components/Form";
 import Nav from "../components/Nav";
 import DebugDecisionTable from "../components/DebugDecisionTable";
@@ -81,11 +81,7 @@ const ConclusionsPage = ({ topic, checker }) => {
         {displayConclusions.map(({ title, description }) => (
           <div key={title}>
             <Heading forwardedAs="h2">{title}</Heading>
-            <ReactMarkdown
-              source={description}
-              renderers={{ paragraph: Paragraph }}
-              linkTarget="_blank"
-            />
+            <Markdown source={description} />
           </div>
         ))}
 

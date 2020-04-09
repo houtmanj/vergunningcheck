@@ -30,8 +30,8 @@ const resolvers = {
       return Promise.all([
         bag.accommodation
           .load(_adressableObjectId)
-          .then(acc => monument.situation.load([acc.mainAddressNationalId]))
-          .then(situations => {
+          .then((acc) => monument.situation.load([acc.mainAddressNationalId]))
+          .then((situations) => {
             const situation = situations.shift();
 
             debug("first situation", situation);
@@ -49,16 +49,16 @@ const resolvers = {
             );
             return geoSearch.load(`${lat} ${lon}`);
           })
-          .then(data => data || [])
-      ]).then(results => results.flat());
-    }
+          .then((data) => data || []),
+      ]).then((results) => results.flat());
+    },
   },
   Restriction: {
-    __resolveType: parent => parent._type
-  }
+    __resolveType: (parent) => parent._type,
+  },
 };
 
 module.exports = {
   typeDefs,
-  resolvers
+  resolvers,
 };

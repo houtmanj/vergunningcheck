@@ -37,7 +37,7 @@ const AddressPage = ({ topic, data }) => {
   const useSTTR = !!topic.sttrFile;
   const { address } = data;
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (useSTTR) {
       history.push(geturl(routes.questions, { slug }));
@@ -94,7 +94,7 @@ const AddressPage = ({ topic, data }) => {
 AddressPage.propTypes = {
   addressResults: PropTypes.any,
   addressResultsLoading: PropTypes.bool,
-  bagLoading: PropTypes.bool
+  bagLoading: PropTypes.bool,
 };
 
 export default withData(AddressPage);

@@ -26,7 +26,7 @@ export default ({ checker }) => {
                   fontWeight:
                     checker.stack[checker.stack.length - 1] === q
                       ? "bold"
-                      : "normal"
+                      : "normal",
                 }}
               >
                 <td>
@@ -82,14 +82,14 @@ export default ({ checker }) => {
                       <div>
                         <strong>Vragen</strong>
                         <ol>
-                          {questions.map(q => (
+                          {questions.map((q) => (
                             <li
                               key={q.id}
                               style={{
                                 fontWeight:
                                   decisiveInputs.indexOf(q) > -1
                                     ? "bold"
-                                    : "normal"
+                                    : "normal",
                               }}
                             >
                               {q.text}
@@ -107,7 +107,7 @@ export default ({ checker }) => {
                       <div>
                         <strong>Rules:</strong>
                         <ol>
-                          {rules.map(r => {
+                          {rules.map((r) => {
                             return (
                               <li
                                 key={r.inputConditions + r.outputValue}
@@ -115,7 +115,7 @@ export default ({ checker }) => {
                                   fontWeight:
                                     matchingRules.indexOf(r) > -1
                                       ? "bold"
-                                      : "normal"
+                                      : "normal",
                                 }}
                               >
                                 inputConditions:{" "}
@@ -135,8 +135,8 @@ export default ({ checker }) => {
             <p>
               <b>{conclusionString || <em>[unknown]</em>}</b>
               .<br />
-              {decisiveDecisions.map(decision =>
-                decision.getDecisiveInputs().map(question => question.text)
+              {decisiveDecisions.map((decision) =>
+                decision.getDecisiveInputs().map((question) => question.text)
               )}
             </p>
             <h3>Notes:</h3>

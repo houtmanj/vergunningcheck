@@ -9,14 +9,21 @@ import { useRouteMatch } from "react-router-dom";
 import { routeConfig } from "../routes";
 import Context from "../context";
 
-const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
+const Nav = ({
+  prevText,
+  showPrev,
+  onGoToPrev,
+  showNext,
+  nextText,
+  formEnds,
+}) => {
   const context = useContext(Context);
   const { trackEvent } = useMatomo();
   const { path } = useRouteMatch();
 
   const { topic } = context;
-  const route = routeConfig.find(route => route.path === path);
-  const category = route.matamoPage || route.name;
+  const route = routeConfig.find((route) => route.path === path);
+  const category = route.matomoPage || route.name;
 
   const handleNextClick = () => {
     const action = formEnds
@@ -25,14 +32,14 @@ const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
     trackEvent({
       category,
       action,
-      name: topic.slug
+      name: topic.slug,
     });
   };
-  const handlePrevClick = e => {
+  const handlePrevClick = (e) => {
     trackEvent({
       category,
       action: "form-vorige-knop",
-      name: topic.slug
+      name: topic.slug,
     });
     if (onGoToPrev) onGoToPrev(e);
   };
@@ -62,7 +69,7 @@ const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
             onClick={handlePrevClick}
             type="button"
           >
-            Vorige
+            {prevText}
           </Button>
         )}
       </div>
@@ -73,7 +80,8 @@ const Nav = ({ showPrev, onGoToPrev, showNext, nextText, formEnds }) => {
 Nav.defaultProps = {
   page: "undefined-page",
   nextText: "Volgende",
-  formEnds: false
+  prevText: "Vorige",
+  formEnds: false,
 };
 
 Nav.propTypes = {
@@ -82,7 +90,8 @@ Nav.propTypes = {
   onGoToPrev: PropTypes.func,
   showNext: PropTypes.bool,
   nextText: PropTypes.string,
-  formEnds: PropTypes.bool
+  prevText: PropTypes.string,
+  formEnds: PropTypes.bool,
 };
 
 export default Nav;

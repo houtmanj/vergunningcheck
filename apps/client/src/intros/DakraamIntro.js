@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  Heading,
-  OrderedList,
-  List,
-  ListItem,
-  Paragraph
-} from "@datapunt/asc-ui";
+import { Heading, Paragraph, OrderedList } from "@datapunt/asc-ui";
+import { List, ListItem } from "../components/Atoms";
 import ListInsideOrderedList from "../components/ListInsideOrderedList";
 
 export default () => (
@@ -49,7 +44,7 @@ export default () => (
       dakraam. Dit geldt niet voor een illegaal geplaatst dakraam. Voorbeelden
       van vergunningvrij onderhoud:
     </Paragraph>
-    <List variant="bullet" style={{ marginBottom: "8px" }}>
+    <List variant="bullet">
       <ListItem>de positie van het dakraam blijft gelijk</ListItem>
       <ListItem>de maten van het dakraam blijft gelijk</ListItem>
       <ListItem>de detaillering van het raamhout blijft gelijk</ListItem>

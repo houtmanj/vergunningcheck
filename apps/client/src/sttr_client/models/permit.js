@@ -25,14 +25,14 @@ class Permit {
       throw Error("'decisions' must be an array of type 'Decision'");
     }
     this.name = name;
-    this._questions = decisions.flatMap(decision => decision.getQuestions());
+    this._questions = decisions.flatMap((decision) => decision.getQuestions());
     this._decisions = decisions;
 
     this.__type = "Permit";
   }
 
   getDecisionById(id) {
-    return this._decisions.find(d => d.id === id);
+    return this._decisions.find((d) => d.id === id);
   }
 
   get questions() {
