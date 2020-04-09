@@ -126,7 +126,16 @@ const QuestionsPage = ({ topic, checker, config }) => {
               <FlashMessage type="warning">
                 Op basis van onze gegevens hebben wij dit antwoord voor u
                 ingevult. U kunt het antwoord evengoed wijzigen om te kijken wat
-                voor effect dit...
+                voor effect dit... Klopt dit antwoord volgens u niet? Neem dan{" "}
+                <a
+                  href="https://www.amsterdam.nl/contact/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Contactgegevens en openingstijden"
+                >
+                  contact op
+                </a>{" "}
+                met uw gemeente.
               </FlashMessage>
               {userOverrides && (
                 <FlashMessage type="danger">

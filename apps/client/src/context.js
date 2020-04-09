@@ -4,7 +4,7 @@ export const defaultValues = {
   config: {
     autofill: {
       flashMessage: true,
-      disableInputs: false,
+      disableInputs: true, // no user-overrides implemented yet
       skipQuestions: false,
       skipRegisterPage: true,
     },

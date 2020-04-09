@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import withChecker from "./withChecker";
 import Context from "../context";
-import { routes, geturl, autofillRoutes } from "../routes";
+import { geturl, autofillRoutes } from "../routes";
 import { useHistory } from "react-router-dom";
 
 const withData = (Component) =>
@@ -28,8 +28,6 @@ const withData = (Component) =>
       }
     });
 
-    console.log("missing data needs", checker.getDataNeeds(true));
-    // const next = checker.getDataNeeds(undefined);
     const dataNeed = checker.getDataNeeds(true).shift();
 
     if (dataNeed) {

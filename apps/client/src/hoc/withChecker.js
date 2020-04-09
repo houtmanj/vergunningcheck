@@ -5,7 +5,8 @@ import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
 import getChecker from "../sttr_client";
 
-const dir = process.env.STTR_ENV === "production" ? "PROD" : "STAGING";
+const dir =
+  process.env.REACT_APP_STTR_ENV === "production" ? "PROD" : "STAGING";
 
 const withChecker = (Component) =>
   withTopic((props) => {
@@ -15,7 +16,11 @@ const withChecker = (Component) =>
 
     useEffect(() => {
       if (!checker && !error) {
-        fetch(`${window.location.origin}/sttr/${dir}/${props.topic.sttrFile}`)
+        fetch(
+          `${window.location.origin}/sttr/${dir.toLowerCase()}/${
+            props.topic.sttrFile
+          }`
+        )
           .then((response) => response.json())
           .then((json) => {
             const newChecker = getChecker(json);

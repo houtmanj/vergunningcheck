@@ -20,44 +20,32 @@
         }
       },
       "decisions": {
-        "_bcc09bdf-2855-450e-ab68-cec34959cb94": {
-          "requiredInputs": [
-            "#input__a165828d-8708-4db6-92c4-9c767ad7cc72"
-          ],
+        "_470ae22f-5a74-4480-bbb5-a04f667aee45": {
+          "requiredInputs": ["#input__a165828d-8708-4db6-92c4-9c767ad7cc72"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true
-                ],
+                "inputs": [true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  false
-                ],
+                "inputs": [false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
         "dummy": {
-          "requiredDecisions": [
-            "#_bcc09bdf-2855-450e-ab68-cec34959cb94"
-          ],
+          "requiredDecisions": ["#_470ae22f-5a74-4480-bbb5-a04f667aee45"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  "\"Vergunningplicht\""
-                ],
+                "inputs": ["\"Vergunningplicht\""],
                 "output": "\"Vergunningplicht\"",
                 "description": "U wilt een dakraam plaatsen op een monument. Daarom hebt u waarschijnlijk een vergunning nodig. U vraagt deze vergunning aan bij het landelijke omgevingsloket. Klik hiervoor op onderstaande knop."
               },
               {
-                "inputs": [
-                  "\"no hit\""
-                ],
+                "inputs": ["\"no hit\""],
                 "output": "\"Toestemmingsvrij\"",
                 "description": "U woont niet in een monument en hebt geen vergunning nodig voor het onderdeel monument."
               }
@@ -138,11 +126,7 @@
         {
           "text": "Waar gaat u een dakraam plaatsen?",
           "description": "![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/5_a_Voorkant.png)\n\nVoorkant\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/5_a_Zijkant.png)\n\nZijkant\n\n![](https://s3.eu-central-1.amazonaws.com/sttr-builder.flolegal.app/00000001002564440000/5_a_Achterkant.png)\n\nAchterkant",
-          "options": [
-            "Voorkant",
-            "Zijkant",
-            "Achterkant"
-          ],
+          "options": ["Voorkant", "Zijkant", "Achterkant"],
           "type": "string",
           "id": "uitv__c4c04d83-e8ad-4f99-b60c-b395c6d7aa27",
           "prio": 100
@@ -269,28 +253,22 @@
         }
       },
       "decisions": {
-        "_965a3e2c-30b4-48b9-9175-03d9cfd5943f": {
-          "requiredInputs": [
-            "#input__1403b7ef-97be-4d7e-9f41-7838d5833804"
-          ],
+        "_529aa52a-4c71-451d-b7b0-d2049bebe166": {
+          "requiredInputs": ["#input__1403b7ef-97be-4d7e-9f41-7838d5833804"],
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true
-                ],
+                "inputs": [true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  false
-                ],
+                "inputs": [false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_706886d5-2f3a-4e7e-b057-ee5e0fdddd2d": {
+        "_1da266d9-d3db-419e-9840-d20e7e176860": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1"
@@ -298,30 +276,21 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  false
-                ],
+                "inputs": [true, false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  false,
-                  "-"
-                ],
+                "inputs": [false, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true
-                ],
+                "inputs": ["-", true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_a736062e-5b3a-4070-90de-9fb71c6cf047": {
+        "_306a7a6c-1862-4876-a7a9-61ccccfae5ba": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -330,41 +299,25 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  true,
-                  true
-                ],
+                "inputs": [true, true, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  false,
-                  "-",
-                  "-"
-                ],
+                "inputs": [false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  false,
-                  "-"
-                ],
+                "inputs": ["-", false, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_1556f433-80fb-475c-82e0-8fa0761db8fd": {
+        "_6451a788-9728-4aef-921c-72107971df2b": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -373,41 +326,25 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  false,
-                  false
-                ],
+                "inputs": [false, false, false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  true
-                ],
+                "inputs": ["-", "-", true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_0f767f1d-db1e-4937-be89-a39fbbea6d26": {
+        "_8f5ad7d8-01eb-495b-8236-97711d689dff": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -416,41 +353,25 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  true,
-                  true
-                ],
+                "inputs": [false, true, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  false,
-                  "-"
-                ],
+                "inputs": ["-", false, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_5e8f0007-ff73-4566-a21e-653a932a1c75": {
+        "_c05e856b-8260-49e1-9309-ed2754d2daf2": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -460,54 +381,29 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  true,
-                  false,
-                  false
-                ],
+                "inputs": [false, true, false, false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  false,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true
-                ],
+                "inputs": ["-", "-", "-", true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_e3e2821f-d1f8-4cf5-856b-3bc36a565997": {
+        "_4eef685f-11df-46da-a279-317694a9cd4c": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -517,54 +413,29 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  true,
-                  false,
-                  true
-                ],
+                "inputs": [true, true, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  false,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [false, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  false,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_429353e6-b765-4816-930d-a5e32fc58576": {
+        "_9d6f3210-8f6a-498e-8e86-e011b11e6b6e": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -574,63 +445,33 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  false,
-                  "\"Achterkant\"",
-                  true
-                ],
+                "inputs": [false, false, "\"Achterkant\"", true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Voorkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Zijkant\"",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Zijkant\"", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_1f9e825d-ca92-4931-b434-bfb8de247c9b": {
+        "_defbdf4d-cafd-4871-8453-3ba9d5fc9d3d": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -641,69 +482,33 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  true,
-                  false,
-                  false,
-                  true
-                ],
+                "inputs": [true, true, false, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  false,
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [false, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  false,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", false, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_b620d9ed-2b8e-4d59-bcda-41dbcb4e6eaf": {
+        "_b3d68cae-dc03-4a26-8112-18e912fe0d76": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -714,79 +519,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  false,
-                  true
-                ],
+                "inputs": [false, false, "\"Voorkant\"", false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Zijkant\"",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Zijkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Achterkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_e4908c56-71cf-4584-adb9-541937803e8d": {
+        "_eea78522-d890-4390-a881-d78bcf273b70": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -797,79 +560,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  false,
-                  "\"Voorkant\"",
-                  true,
-                  true
-                ],
+                "inputs": [false, false, "\"Voorkant\"", true, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Zijkant\"",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Zijkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Achterkant\"", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", false, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_055f1384-dc0a-4cd7-85d4-5166241b3c99": {
+        "_386ac384-1a52-49a8-bc52-4d226885fadb": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -881,86 +602,37 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  true,
-                  false,
-                  false,
-                  false,
-                  true
-                ],
+                "inputs": [true, true, false, false, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  false,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [false, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  false,
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", false, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_8582fdb4-b218-4830-9d34-d012387f388d": {
+        "_31922b91-bb16-49dd-ba76-51f609336207": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -972,97 +644,41 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  true,
-                  false,
-                  true
-                ],
+                "inputs": [false, false, "\"Zijkant\"", true, false, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Voorkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Achterkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_13e705b9-dd5a-46f2-bd54-146c41ccca81": {
+        "_af7d27f8-49d7-4e96-9891-62d4dd482666": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -1074,97 +690,41 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  false,
-                  false,
-                  "\"Zijkant\"",
-                  true,
-                  true,
-                  true
-                ],
+                "inputs": [false, false, "\"Zijkant\"", true, true, true],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Voorkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Achterkant\"", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", false, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_135e6269-515f-4dde-bea8-db3bc34f9f83": {
+        "_b5dbe3cd-fb9f-4af1-bdf7-37d2f038e607": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -1189,105 +749,41 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Voorkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Achterkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_f1b845a7-7dc1-4c9b-a8c3-6605b6b32504": {
+        "_bea937c4-848a-4f2a-a56f-da3f1a322f7e": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ee8c045e-b188-4285-8a60-f6b115f692e1",
@@ -1300,105 +796,41 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": [
-                  true,
-                  true,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false
-                ],
+                "inputs": [true, true, false, false, false, false, false],
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  false,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [false, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  false,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", false, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", true, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true
-                ],
+                "inputs": ["-", "-", "-", "-", "-", "-", true],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_be31bc23-a9d3-493c-8ad8-0c7979e21608": {
+        "_cacca170-c061-4976-959e-aa67406e1717": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -1423,105 +855,41 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Voorkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Achterkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", "-", false, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_1d8652e1-843d-403b-a90b-5c081b2c0da0": {
+        "_32d1b65c-1a75-4b87-8371-33438b6dfdfc": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -1546,105 +914,41 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Voorkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Achterkant\"", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_6ac3b243-7b58-4717-9b10-a50241d3eb36": {
+        "_c30eb47e-8ddd-4c25-9a70-9949ba8597ca": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -1671,126 +975,45 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Voorkant\"", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Achterkant\"", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", "-", "-", true, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
           }
         },
-        "_d3ac1863-7c97-4ca1-aed6-ed44dc850c6f": {
+        "_d28340f8-0303-4ead-b633-1d8bd0a5b104": {
           "requiredInputs": [
             "#input__db3e3c46-1efc-404a-8520-94974c5a1061",
             "#input__ef6f95f6-bd48-498c-9b19-52d20d8ba364",
@@ -1817,120 +1040,39 @@
                 "output": "\"Vergunningplicht\""
               },
               {
-                "inputs": [
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": [true, "-", "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", true, "-", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Voorkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Voorkant\"", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "\"Achterkant\"",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "\"Achterkant\"", "-", "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", true, "-", "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  true,
-                  "-",
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", true, "-", "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-",
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", "-", false, "-", "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false,
-                  "-"
-                ],
+                "inputs": ["-", "-", "-", "-", "-", "-", false, "-"],
                 "output": "\"no hit\""
               },
               {
-                "inputs": [
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  "-",
-                  false
-                ],
+                "inputs": ["-", "-", "-", "-", "-", "-", "-", false],
                 "output": "\"no hit\""
               }
             ]
@@ -1938,26 +1080,26 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_965a3e2c-30b4-48b9-9175-03d9cfd5943f",
-            "#_706886d5-2f3a-4e7e-b057-ee5e0fdddd2d",
-            "#_a736062e-5b3a-4070-90de-9fb71c6cf047",
-            "#_1556f433-80fb-475c-82e0-8fa0761db8fd",
-            "#_0f767f1d-db1e-4937-be89-a39fbbea6d26",
-            "#_5e8f0007-ff73-4566-a21e-653a932a1c75",
-            "#_e3e2821f-d1f8-4cf5-856b-3bc36a565997",
-            "#_429353e6-b765-4816-930d-a5e32fc58576",
-            "#_1f9e825d-ca92-4931-b434-bfb8de247c9b",
-            "#_b620d9ed-2b8e-4d59-bcda-41dbcb4e6eaf",
-            "#_e4908c56-71cf-4584-adb9-541937803e8d",
-            "#_055f1384-dc0a-4cd7-85d4-5166241b3c99",
-            "#_8582fdb4-b218-4830-9d34-d012387f388d",
-            "#_13e705b9-dd5a-46f2-bd54-146c41ccca81",
-            "#_135e6269-515f-4dde-bea8-db3bc34f9f83",
-            "#_f1b845a7-7dc1-4c9b-a8c3-6605b6b32504",
-            "#_be31bc23-a9d3-493c-8ad8-0c7979e21608",
-            "#_1d8652e1-843d-403b-a90b-5c081b2c0da0",
-            "#_6ac3b243-7b58-4717-9b10-a50241d3eb36",
-            "#_d3ac1863-7c97-4ca1-aed6-ed44dc850c6f"
+            "#_529aa52a-4c71-451d-b7b0-d2049bebe166",
+            "#_1da266d9-d3db-419e-9840-d20e7e176860",
+            "#_306a7a6c-1862-4876-a7a9-61ccccfae5ba",
+            "#_6451a788-9728-4aef-921c-72107971df2b",
+            "#_8f5ad7d8-01eb-495b-8236-97711d689dff",
+            "#_c05e856b-8260-49e1-9309-ed2754d2daf2",
+            "#_4eef685f-11df-46da-a279-317694a9cd4c",
+            "#_9d6f3210-8f6a-498e-8e86-e011b11e6b6e",
+            "#_defbdf4d-cafd-4871-8453-3ba9d5fc9d3d",
+            "#_b3d68cae-dc03-4a26-8112-18e912fe0d76",
+            "#_eea78522-d890-4390-a881-d78bcf273b70",
+            "#_386ac384-1a52-49a8-bc52-4d226885fadb",
+            "#_31922b91-bb16-49dd-ba76-51f609336207",
+            "#_af7d27f8-49d7-4e96-9891-62d4dd482666",
+            "#_b5dbe3cd-fb9f-4af1-bdf7-37d2f038e607",
+            "#_bea937c4-848a-4f2a-a56f-da3f1a322f7e",
+            "#_cacca170-c061-4976-959e-aa67406e1717",
+            "#_32d1b65c-1a75-4b87-8371-33438b6dfdfc",
+            "#_c30eb47e-8ddd-4c25-9a70-9949ba8597ca",
+            "#_d28340f8-0303-4ead-b633-1d8bd0a5b104"
           ],
           "decisionTable": {
             "rules": [
