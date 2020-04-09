@@ -4,12 +4,12 @@ export const defaultValues = {
   config: {
     autofill: {
       flashMessage: true,
-      disableInputs: true,
-      skipQuestions: true,
-      skipRegisterPage: true
-    }
+      disableInputs: false,
+      skipQuestions: false,
+      skipRegisterPage: true,
+    },
   },
   data: {},
-  checker: null
+  checker: null,
 };
 export default React.createContext();

@@ -13,16 +13,16 @@ export const booleanOptions = [
   {
     label: "Nee",
     formValue: "no",
-    value: false
+    value: false,
   },
   {
     label: "Ja",
     formValue: "yes",
-    value: true
-  }
+    value: true,
+  },
 ];
 
-const hasKeys = obj =>
+const hasKeys = (obj) =>
   // convert to array, map, and then give the length
   Object.entries(obj).map(([key, value]) => [key, value]).length;
 
@@ -34,7 +34,7 @@ const Question = ({
     options: questionAnswers,
     answer: currentAnswer,
     description,
-    longDescription
+    longDescription,
   },
   disableInputs,
   flashMessage,
@@ -45,13 +45,13 @@ const Question = ({
   showNext,
   showPrev,
   onGoToPrev,
-  required
+  required,
 }) => {
   const { handleSubmit, register, unregister, setValue, errors } = useForm();
-  const listAnswers = questionAnswers?.map(answer => ({
+  const listAnswers = questionAnswers?.map((answer) => ({
     label: answer,
     formValue: answer,
-    value: answer
+    value: answer,
   }));
   const answers = questionType === "string" ? listAnswers : booleanOptions;
   let answer;
@@ -61,7 +61,7 @@ const Question = ({
       register(
         { name: questionId },
         {
-          required: "Dit veld is verplicht"
+          required: "Dit veld is verplicht",
         }
       );
 
@@ -71,7 +71,7 @@ const Question = ({
           setValue(questionId, currentAnswer);
         } else {
           const responseObj = booleanOptions.find(
-            o => o.value === currentAnswer
+            (o) => o.value === currentAnswer
           );
           setValue(questionId, responseObj.formValue);
         }
@@ -85,14 +85,14 @@ const Question = ({
     unregister,
     currentAnswer,
     questionAnswers,
-    setValue
+    setValue,
   ]); // IE11 fix to put all dependencies here
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     if (e.target.type === "radio") setValue(e.target.name, e.target.value);
   };
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     // Is only triggered with validated form
     // Check if data has a key that matches the questionId
     window.scrollTo(0, 0);
@@ -107,7 +107,7 @@ const Question = ({
   if (questionAnswers) {
     answer = currentAnswer;
   } else {
-    const responseObj = booleanOptions.find(o => o.value === currentAnswer);
+    const responseObj = booleanOptions.find((o) => o.value === currentAnswer);
     answer = responseObj?.formValue;
   }
 
@@ -121,7 +121,6 @@ const Question = ({
       {questionTitle && (
         <Heading forwardedAs={headingAs}>{questionTitle}</Heading>
       )}
-      {description && <Markdown source={description} />}
       {description && <Markdown source={description} />}
       {longDescription && <Modal modalText={longDescription} />}
       <Answers
@@ -143,9 +142,9 @@ Question.defaultProps = {
   question: {
     answer: "",
     description: "",
-    longDescription: ""
+    longDescription: "",
   },
-  headingAs: "h3"
+  headingAs: "h3",
 };
 
 Question.propTypes = {
@@ -156,7 +155,7 @@ Question.propTypes = {
     options: PropTypes.array,
     description: PropTypes.string,
     longDescription: PropTypes.string,
-    answer: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+    answer: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   }),
   className: PropTypes.string,
   headingAs: PropTypes.string,
@@ -165,7 +164,7 @@ Question.propTypes = {
   required: PropTypes.bool,
   showNext: PropTypes.bool,
   showPrev: PropTypes.bool,
-  onGoToPrev: PropTypes.func
+  onGoToPrev: PropTypes.func,
 };
 
 export default Question;

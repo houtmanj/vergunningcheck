@@ -5,9 +5,10 @@ import {
   Container,
   ContentContainer,
   FormTitle,
-  Content
+  Content,
 } from "./BaseLayoutStyles";
 
+import DevMenu from "../DevMenu";
 import Context from "../../context";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -19,18 +20,16 @@ export interface BaseLayoutProps {
 }
 
 function BaseLayout({ children, heading }: BaseLayoutProps) {
-  const { topic, checker } = useContext(Context);
+  const { topic } = useContext(Context);
   const title = heading || topic?.text?.heading || null;
-
-  // const showNavLink = !topic || !topic.sttrPath;
-  const showNavLink = false;
 
   return (
     <Container>
       <Helmet>
         <title>Amsterdam Vergunningchecker</title>
       </Helmet>
-      <Header showLinks={showNavLink} />
+      <Header />
+      {process.env.NODE_ENV !== "production" && <DevMenu />}
       <ContentContainer>
         <Row>
           <Column
@@ -40,7 +39,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
               medium: 2,
               big: 5,
               large: 9,
-              xLarge: 9
+              xLarge: 9,
             }}
           >
             <Content>
@@ -62,7 +61,11 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
             <p>redirectToOlo: {JSON.stringify(!!topic.redirectToOlo)}</p>
             <p>
               sttrFile:{" "}
-              <a href={`/sttr/${topic.sttrFile}`} target="_blank">
+              <a
+                href={`/sttr/${topic.sttrFile}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {topic.sttrFile}
               </a>
             </p>
@@ -77,7 +80,7 @@ function BaseLayout({ children, heading }: BaseLayoutProps) {
           __html: `<!--
             Version: ${process.env.REACT_APP_VERSION}
             Environment: ${process.env.NODE_ENV}
-            -->`
+            -->`,
         }}
       />
     </Container>

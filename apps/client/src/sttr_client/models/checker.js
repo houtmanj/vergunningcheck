@@ -55,7 +55,7 @@ class Checker {
 
   _getUpcomingQuestions() {
     return this._getQuestions().filter(
-      question => !this.stack.includes(question)
+      (question) => !this.stack.includes(question)
     );
   }
 
@@ -63,11 +63,12 @@ class Checker {
     return this.permits
       .reduce((acc, permit) => {
         const conclusion = permit.getDecisionById("dummy");
-        const inputReducer = input => (this.stack.includes(input) ? input : {});
+        const inputReducer = (input) =>
+          this.stack.includes(input) ? input : {};
         conclusion._inputs
-          .filter(d => d.getMatchingRules(inputReducer).length === 0)
-          .forEach(decision => {
-            decision.getQuestions().forEach(input => {
+          .filter((d) => d.getMatchingRules(inputReducer).length === 0)
+          .forEach((decision) => {
+            decision.getQuestions().forEach((input) => {
               if (this.stack.indexOf(input) === -1) {
                 acc.push(input);
               }
@@ -115,6 +116,21 @@ class Checker {
    */
   previous() {
     return this.rewindTo(this._stack.length - (this._done === true ? 1 : 2));
+  }
+
+  getDataNeeds(onlyMissing = false) {
+    const autofillMap = {
+      monument: "address",
+      cityScape: "address",
+      // geo: 'map', // for trees ?
+    };
+
+    // find one unfullfilled data need
+    return this._getQuestions()
+      .filter(({ autofill }) => !!autofill)
+      .filter(({ answer }) => (onlyMissing ? answer === undefined : true))
+      .map(({ autofill }) => autofillMap[autofill])
+      .filter(uniqueFilter);
   }
 
   /**

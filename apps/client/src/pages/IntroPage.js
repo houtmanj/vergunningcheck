@@ -3,7 +3,6 @@ import Helmet from "react-helmet";
 
 import { routes, geturl } from "../routes";
 import withChecker from "../hoc/withChecker";
-import withOloRedirect from "../hoc/withOloRedirect";
 
 import Loading from "../components/Loading";
 import Form from "../components/Form";
@@ -28,4 +27,4 @@ const IntroPage = ({ topic }) => {
   );
 };
 
-export default withOloRedirect(withChecker(IntroPage));
+export default withChecker(IntroPage);

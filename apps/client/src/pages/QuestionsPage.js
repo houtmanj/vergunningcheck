@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
-import { geturl, routes, getslug } from "../routes";
+import { geturl, routes, getslug, autofillRoutes } from "../routes";
 import { Helmet } from "react-helmet";
 
 import withData from "../hoc/withData";
 import Layout from "../components/Layouts/DefaultLayout";
 import DebugDecisionTable from "../components/DebugDecisionTable";
 import Question, { booleanOptions } from "../components/Question";
-import { Paragraph } from "@datapunt/asc-ui";
+import FlashMessage from "../components/FlashMessage";
 
 const QuestionsPage = ({ topic, checker, config }) => {
   const params = useParams();
@@ -25,7 +25,7 @@ const QuestionsPage = ({ topic, checker, config }) => {
       <Redirect
         to={geturl(routes.questions, {
           slug: topic.slug,
-          question: currSlug
+          question: currSlug,
         })}
       />
     );
@@ -34,19 +34,19 @@ const QuestionsPage = ({ topic, checker, config }) => {
   const { slug } = topic;
 
   const needContactPermits = () =>
-    checker.permits.find(permit => {
+    checker.permits.find((permit) => {
       const conclusion = permit.getDecisionById("dummy");
       const conclusionMatchingRules = conclusion.getMatchingRules();
       return conclusionMatchingRules.find(
-        rule => rule.outputValue === '"NeemContactOpMet"'
+        (rule) => rule.outputValue === '"NeemContactOpMet"'
       );
     });
 
-  const onQuestionNext = value => {
+  const onQuestionNext = (value) => {
     if (question.options) {
       question.setAnswer(value);
     } else {
-      const responseObj = booleanOptions.find(o => o.formValue === value);
+      const responseObj = booleanOptions.find((o) => o.formValue === value);
       question.setAnswer(responseObj.value);
     }
 
@@ -77,21 +77,30 @@ const QuestionsPage = ({ topic, checker, config }) => {
   };
 
   const goBack = () => {
-    // Go back to Location page
-    // XXX fails for flows who dont have a location-page
-    history.push(geturl(routes.address, { slug }));
+    // Go back to Location page if needed or intropage otherwise
+    const dataNeed = checker.getDataNeeds().shift();
+    if (dataNeed) {
+      history.push(geturl(autofillRoutes[dataNeed], { slug }));
+    } else {
+      history.push(geturl(routes.intro, { slug }));
+    }
   };
 
   const onQuestionPrev = () => {
     let prev;
     let done = false;
     while (!done) {
-      if (checker?.stack?.length > 1) {
-        goBack();
-      }
-      prev = checker.previous();
-      if (config.autofill.skipQuestions === false || !prev || !prev.autofill) {
+      if (checker.stack.length === 1) {
         done = true;
+      } else {
+        prev = checker.previous();
+        if (
+          config.autofill.skipQuestions === false ||
+          !prev ||
+          !prev.autofill
+        ) {
+          done = true;
+        }
       }
     }
     if (!prev) {
@@ -100,6 +109,7 @@ const QuestionsPage = ({ topic, checker, config }) => {
       setQuestion(prev);
     }
   };
+  const userOverrides = false; // XXX question.answer !== data[question.autofill map...] &&
 
   return (
     <Layout>
@@ -112,9 +122,18 @@ const QuestionsPage = ({ topic, checker, config }) => {
         flashMessage={
           config.autofill.flashMessage &&
           question.autofill && (
-            <Paragraph style={{ padding: "1em", background: "orange" }}>
-              Op basis van onze gegevens is het antwoord op deze vraag...
-            </Paragraph>
+            <>
+              <FlashMessage type="warning">
+                Op basis van onze gegevens hebben wij dit antwoord voor u
+                ingevult. U kunt het antwoord evengoed wijzigen om te kijken wat
+                voor effect dit...
+              </FlashMessage>
+              {userOverrides && (
+                <FlashMessage type="danger">
+                  U heeft deze vraag zelf overschreven...
+                </FlashMessage>
+              )}
+            </>
           )
         }
         disableInputs={config.autofill.disableInputs && question.autofill}

@@ -3,7 +3,6 @@ import Helmet from "react-helmet";
 import { Paragraph } from "@datapunt/asc-ui";
 import { OLO } from "../config";
 import Layout from "../components/Layouts/DefaultLayout";
-import withConfig from "../hoc/withConfig";
 
 const RedirectPage = ({ topic }) => {
   useEffect(() => {
@@ -19,7 +18,7 @@ const RedirectPage = ({ topic }) => {
   return (
     <Layout heading="Een ogenblik geduld alstublieft">
       <Helmet>
-        <title>Redirect naar OLO - {topic.text.heading}</title>
+        <title>Redirect naar OLO - {topic.text?.heading || "..."}</title>
       </Helmet>
       <Paragraph>
         Wij sturen u automatisch door naar de website van het{" "}
@@ -32,4 +31,4 @@ const RedirectPage = ({ topic }) => {
   );
 };
 
-export default withConfig(RedirectPage);
+export default RedirectPage;

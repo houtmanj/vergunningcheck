@@ -36,7 +36,7 @@ const LocationPage = ({ topic, config }) => {
       trackEvent({
         category: "postcode-input",
         action: `postcode - ${slug.replace("-", " ")}`,
-        name: address.postalCode.substring(0, 4)
+        name: address.postalCode.substring(0, 4),
       });
 
       context.data.address = address;

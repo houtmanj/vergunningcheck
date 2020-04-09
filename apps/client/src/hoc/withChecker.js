@@ -1,30 +1,29 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Redirect } from "react-router-dom";
 import Context from "../context";
-import { routes, geturl } from "../routes";
 import withTopic from "./withTopic";
 import LoadingPage from "../pages/LoadingPage";
 import ErrorPage from "../pages/ErrorPage";
 import getChecker from "../sttr_client";
 
-// This checker is complete, filled with data
-const withChecker = Component =>
-  withTopic(props => {
+const dir = process.env.STTR_ENV === "production" ? "PROD" : "STAGING";
+
+const withChecker = (Component) =>
+  withTopic((props) => {
     const context = useContext(Context);
     const [checker, setChecker] = useState(context.checker);
     const [error, setError] = useState();
 
     useEffect(() => {
       if (!checker && !error) {
-        fetch(`${window.location.origin}/sttr/${props.topic.sttrFile}`)
-          .then(response => response.json())
-          .then(json => {
+        fetch(`${window.location.origin}/sttr/${dir}/${props.topic.sttrFile}`)
+          .then((response) => response.json())
+          .then((json) => {
             const newChecker = getChecker(json);
             newChecker.next();
             context.checker = newChecker;
             setChecker(newChecker);
           })
-          .catch(e => {
+          .catch((e) => {
             setError(e);
           });
       }
@@ -34,7 +33,6 @@ const withChecker = Component =>
       console.error(error);
       return <ErrorPage error={error} {...props} />;
     } else if (checker) {
-      console.log("render component now with checker", checker);
       return <Component checker={checker} {...props} />;
     } else {
       return <LoadingPage {...props} />;
