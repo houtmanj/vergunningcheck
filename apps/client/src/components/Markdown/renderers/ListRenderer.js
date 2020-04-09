@@ -1,4 +1,4 @@
 import React from "react";
-import { List } from "@datapunt/asc-ui";
+import List from "../../Atoms/List";
 
 export default ({ children }) => <List variant="bullet">{children}</List>;

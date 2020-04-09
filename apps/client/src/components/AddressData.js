@@ -1,6 +1,7 @@
 import React from "react";
-import { List, ListItem, Paragraph } from "@datapunt/asc-ui";
+import { Paragraph } from "@datapunt/asc-ui";
 import AddressResult from "./AddressResult";
+import { List, ListItem } from "../components/Atoms";
 
 const getRestrictionByTypeName = (address, typeName) =>
   address.restrictions.find(({ __typename }) => __typename === typeName);
@@ -42,7 +43,11 @@ const AddressData = ({ address }) => {
         ) : (
           <List
             variant="bullet"
-            style={{ backgroundColor: "inherit", marginBottom: "0" }}
+            style={{
+              backgroundColor: "inherit",
+              marginTop: 10,
+              marginBottom: 0,
+            }}
           >
             {zoningPlans.map((plan) => (
               <ListItem key={plan}>{plan}</ListItem>
