@@ -41,7 +41,7 @@
         }
       },
       "decisions": {
-        "_4d0120c0-3ccf-4930-bcf9-c7d94932fa96": {
+        "_52d159ca-a6ad-401b-b740-ec1a35489617": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__30a75386-d045-473c-b4b8-3aad506986f2"
@@ -63,7 +63,7 @@
             ]
           }
         },
-        "_277a579f-5447-40f1-bdeb-ed8a2bb11baa": {
+        "_30e3df05-df75-43c0-ab41-77422ae657ed": {
           "requiredInputs": [
             "#input__cbb9d7fa-04e9-403f-8141-c918ef8fd8ec",
             "#input__a0f9b9d3-918d-4b8d-a392-545b46c4591d"
@@ -86,7 +86,7 @@
           }
         },
         "dummy": {
-          "requiredDecisions": ["#_4d0120c0-3ccf-4930-bcf9-c7d94932fa96", "#_277a579f-5447-40f1-bdeb-ed8a2bb11baa"],
+          "requiredDecisions": ["#_52d159ca-a6ad-401b-b740-ec1a35489617", "#_30e3df05-df75-43c0-ab41-77422ae657ed"],
           "decisionTable": {
             "rules": [
               {
@@ -195,14 +195,14 @@
         {
           "text": "Staat de installatie voor het omzetten van de opgewekte elektriciteit los van het zonnepaneel?",
           "description": "De elektriciteit die een zonnepaneel opwekt kan niet direct gebruikt worden door de apparaten in huis. Daarom kan er een installatie nodig zijn voor het omzetten van de opgewekte elektriciteit. Dit heet een omvormer. Wanneer er sprake is van een losse omvormer, dan beantwoordt u deze vraag met ‘nee’.",
-          "options": ["Ja, paneel en installatie zitten aan elkaar vast", "Nee, er zijn twee losse onderdelen"],
+          "options": ["Nee, paneel en installatie zitten aan elkaar vast", "Ja, er zijn twee losse onderdelen"],
           "type": "string",
           "id": "uitv__d2e1d3a6-4ed8-45dd-8876-107db345d841"
         },
         {
           "text": "Staat de installatie voor het opslaan van warm water los van de zonneboiler?",
           "description": "Een zonneboiler verwarmt water door zonlicht. Het verwarmde water kan in de zonneboiler zelf of in een aparte installatie opgeslagen worden. Wanneer er sprake is van een losse installatie voor de opslag van water, dan beantwoordt u deze vraag met ‘nee’.",
-          "options": ["Ja, zonneboiler en installatie zitten aan elkaar vast.", "Nee, er zijn twee losse onderdelen."],
+          "options": ["Nee, zonneboiler en installatie zitten aan elkaar vast.", "Ja, er zijn twee losse onderdelen."],
           "type": "string",
           "id": "uitv__63d8e3e4-8881-4eea-a453-c466e4c4a9d1"
         },
@@ -432,7 +432,7 @@
         }
       },
       "decisions": {
-        "_729520f1-f0e4-4871-abd3-33f344887884": {
+        "_b14be6ea-17af-46b1-b6a6-1ee1c0e2bf27": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7a581a66-8143-4f7f-b864-a7dabd06850d"
@@ -454,7 +454,7 @@
             ]
           }
         },
-        "_80a4fe27-b237-4afe-b76a-5b8edc4ed533": {
+        "_68722007-aa3d-49ec-9433-668c63ff5467": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a2047d87-2ba2-4803-a9d3-37d624a4de0c"
@@ -476,7 +476,7 @@
             ]
           }
         },
-        "_c0852d69-6329-41c0-8113-dd494003387d": {
+        "_1d8579da-f91d-4070-b68e-eb1ac835351c": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
@@ -503,7 +503,7 @@
             ]
           }
         },
-        "_791ebf0f-c5c3-418c-a191-169db9a8a973": {
+        "_286839d3-9d69-4e1b-803c-717345fab51f": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a80db030-b747-4a5c-9231-ef77e279387f",
@@ -530,7 +530,7 @@
             ]
           }
         },
-        "_b80445bd-2c51-4fbd-aefd-132a26e9a4dd": {
+        "_22e20d5a-135f-4222-a00d-7621d689b52a": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -557,7 +557,7 @@
             ]
           }
         },
-        "_f75b0f3a-3385-43c4-9e8f-2a496dd450ed": {
+        "_c05449f1-57c8-489f-adde-785490692b1d": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -584,7 +584,7 @@
             ]
           }
         },
-        "_1dc9da98-8e6a-4b86-8678-aa5fe1e69368": {
+        "_55dea5e7-974c-41a7-9f5e-28c1c3bcb363": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -611,7 +611,7 @@
             ]
           }
         },
-        "_0b01e68f-0409-4977-97c7-97ed2cebf58b": {
+        "_53f6c70d-8f7b-426d-8e4d-11860ec1c227": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__63d8e3e4-8881-4eea-a453-c466e4c4a9d1",
@@ -620,7 +620,7 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Zonneboiler\"", "\"Nee, er zijn twee losse onderdelen.\"", "\"Buiten\""],
+                "inputs": ["\"Zonneboiler\"", "\"Ja, er zijn twee losse onderdelen.\"", "\"Buiten\""],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -628,7 +628,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Ja, zonneboiler en installatie zitten aan elkaar vast.\"", "-"],
+                "inputs": ["-", "\"Nee, zonneboiler en installatie zitten aan elkaar vast.\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -638,7 +638,7 @@
             ]
           }
         },
-        "_ed061f05-cb24-47d0-8a93-ed120254a1f7": {
+        "_1bb183e3-268a-48e5-9b77-c89b6e8996a9": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__d2e1d3a6-4ed8-45dd-8876-107db345d841",
@@ -647,7 +647,7 @@
           "decisionTable": {
             "rules": [
               {
-                "inputs": ["\"Zonnepanelen\"", "\"Nee, er zijn twee losse onderdelen\"", "\"Buiten\""],
+                "inputs": ["\"Zonnepanelen\"", "\"Ja, er zijn twee losse onderdelen\"", "\"Buiten\""],
                 "output": "\"Vergunningplicht\""
               },
               {
@@ -655,7 +655,7 @@
                 "output": "\"no hit\""
               },
               {
-                "inputs": ["-", "\"Ja, paneel en installatie zitten aan elkaar vast\"", "-"],
+                "inputs": ["-", "\"Nee, paneel en installatie zitten aan elkaar vast\"", "-"],
                 "output": "\"no hit\""
               },
               {
@@ -665,7 +665,7 @@
             ]
           }
         },
-        "_6f5894db-00c1-4cee-94f3-9db006406565": {
+        "_294a399b-84ed-4250-8c11-d7176a66f04c": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -692,7 +692,7 @@
             ]
           }
         },
-        "_a175cc55-3ffa-492e-9f3a-18905f786d3c": {
+        "_ff82b31c-e17d-4787-88b5-04a8514e0288": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a80db030-b747-4a5c-9231-ef77e279387f",
@@ -724,7 +724,7 @@
             ]
           }
         },
-        "_bd473ada-52ac-42f8-a314-c0626eb6bf84": {
+        "_542c8cd8-92c4-498a-845c-c888aecdd327": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -756,7 +756,7 @@
             ]
           }
         },
-        "_974fa10f-d551-4c22-a0cf-92a64a47a0a4": {
+        "_a139fa9f-9056-4a11-8e3c-0457860df8e0": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -788,7 +788,7 @@
             ]
           }
         },
-        "_5a9fbe25-9c1b-40cf-be2d-71200fcd794f": {
+        "_348100cc-188f-4c0e-8ef9-b2cec17a6bc8": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
@@ -820,7 +820,7 @@
             ]
           }
         },
-        "_70ea106b-d74c-4e3d-a021-567efd144648": {
+        "_782ce6dc-3d35-4e0f-ac2c-40a652560ac6": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a80db030-b747-4a5c-9231-ef77e279387f",
@@ -857,7 +857,7 @@
             ]
           }
         },
-        "_a3a3c9b7-f02d-415f-89b7-f337331e94c2": {
+        "_61858fda-2e73-44f2-b13b-84ca94d96f0f": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
@@ -894,7 +894,7 @@
             ]
           }
         },
-        "_8ef1b453-7dd8-406d-a6a6-87533f18125b": {
+        "_78694f4f-5a25-4586-ae9c-f8202613172a": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__7054e7c3-6acc-4ca3-9a45-2e60110713e5",
@@ -936,7 +936,7 @@
             ]
           }
         },
-        "_eb469eb7-ca02-4eb4-99b3-5dd9324244bd": {
+        "_be628a1d-830a-4f0c-b603-150be3abd001": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -978,7 +978,7 @@
             ]
           }
         },
-        "_b31e5c63-951a-4eee-8d63-257c48e794cd": {
+        "_0ed1e997-9bcb-4523-96eb-7b8c45f15109": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -1020,7 +1020,7 @@
             ]
           }
         },
-        "_6d3d4830-4432-475e-b04b-956c64805bea": {
+        "_d58bae38-3c53-4d09-aca7-afec4392bf43": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -1062,7 +1062,7 @@
             ]
           }
         },
-        "_8c3d4082-ad42-488b-8a68-4060c8ca14a3": {
+        "_2519185e-7b4e-4d48-8baa-7a171c2a4586": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__a80db030-b747-4a5c-9231-ef77e279387f",
@@ -1104,7 +1104,7 @@
             ]
           }
         },
-        "_3d560fa4-dedd-42d4-97e5-f6d1c8672c1c": {
+        "_942d4353-c373-4464-9627-1e32513c3e57": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -1146,7 +1146,7 @@
             ]
           }
         },
-        "_fb4aaf94-1260-4e9e-b20d-759c70e3e52f": {
+        "_cda8f487-f1f2-4d7f-b159-eee4317a23ee": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__eedcc481-936b-45ac-b4aa-46b655c84fe1",
@@ -1193,7 +1193,7 @@
             ]
           }
         },
-        "_d33be87a-c6d8-4d69-8352-b5d4c34ce7d2": {
+        "_d6233043-4ab2-46d7-a33b-c431bb0abbd9": {
           "requiredInputs": [
             "#input__d09a954d-cb3c-441c-b564-d2c1e6530974",
             "#input__0b0105bb-169d-47ff-a96b-ebf93256dff4",
@@ -1242,30 +1242,30 @@
         },
         "dummy": {
           "requiredDecisions": [
-            "#_729520f1-f0e4-4871-abd3-33f344887884",
-            "#_80a4fe27-b237-4afe-b76a-5b8edc4ed533",
-            "#_c0852d69-6329-41c0-8113-dd494003387d",
-            "#_791ebf0f-c5c3-418c-a191-169db9a8a973",
-            "#_b80445bd-2c51-4fbd-aefd-132a26e9a4dd",
-            "#_f75b0f3a-3385-43c4-9e8f-2a496dd450ed",
-            "#_1dc9da98-8e6a-4b86-8678-aa5fe1e69368",
-            "#_0b01e68f-0409-4977-97c7-97ed2cebf58b",
-            "#_ed061f05-cb24-47d0-8a93-ed120254a1f7",
-            "#_6f5894db-00c1-4cee-94f3-9db006406565",
-            "#_a175cc55-3ffa-492e-9f3a-18905f786d3c",
-            "#_bd473ada-52ac-42f8-a314-c0626eb6bf84",
-            "#_974fa10f-d551-4c22-a0cf-92a64a47a0a4",
-            "#_5a9fbe25-9c1b-40cf-be2d-71200fcd794f",
-            "#_70ea106b-d74c-4e3d-a021-567efd144648",
-            "#_a3a3c9b7-f02d-415f-89b7-f337331e94c2",
-            "#_8ef1b453-7dd8-406d-a6a6-87533f18125b",
-            "#_eb469eb7-ca02-4eb4-99b3-5dd9324244bd",
-            "#_b31e5c63-951a-4eee-8d63-257c48e794cd",
-            "#_6d3d4830-4432-475e-b04b-956c64805bea",
-            "#_8c3d4082-ad42-488b-8a68-4060c8ca14a3",
-            "#_3d560fa4-dedd-42d4-97e5-f6d1c8672c1c",
-            "#_fb4aaf94-1260-4e9e-b20d-759c70e3e52f",
-            "#_d33be87a-c6d8-4d69-8352-b5d4c34ce7d2"
+            "#_b14be6ea-17af-46b1-b6a6-1ee1c0e2bf27",
+            "#_68722007-aa3d-49ec-9433-668c63ff5467",
+            "#_1d8579da-f91d-4070-b68e-eb1ac835351c",
+            "#_286839d3-9d69-4e1b-803c-717345fab51f",
+            "#_22e20d5a-135f-4222-a00d-7621d689b52a",
+            "#_c05449f1-57c8-489f-adde-785490692b1d",
+            "#_55dea5e7-974c-41a7-9f5e-28c1c3bcb363",
+            "#_53f6c70d-8f7b-426d-8e4d-11860ec1c227",
+            "#_1bb183e3-268a-48e5-9b77-c89b6e8996a9",
+            "#_294a399b-84ed-4250-8c11-d7176a66f04c",
+            "#_ff82b31c-e17d-4787-88b5-04a8514e0288",
+            "#_542c8cd8-92c4-498a-845c-c888aecdd327",
+            "#_a139fa9f-9056-4a11-8e3c-0457860df8e0",
+            "#_348100cc-188f-4c0e-8ef9-b2cec17a6bc8",
+            "#_782ce6dc-3d35-4e0f-ac2c-40a652560ac6",
+            "#_61858fda-2e73-44f2-b13b-84ca94d96f0f",
+            "#_78694f4f-5a25-4586-ae9c-f8202613172a",
+            "#_be628a1d-830a-4f0c-b603-150be3abd001",
+            "#_0ed1e997-9bcb-4523-96eb-7b8c45f15109",
+            "#_d58bae38-3c53-4d09-aca7-afec4392bf43",
+            "#_2519185e-7b4e-4d48-8baa-7a171c2a4586",
+            "#_942d4353-c373-4464-9627-1e32513c3e57",
+            "#_cda8f487-f1f2-4d7f-b159-eee4317a23ee",
+            "#_d6233043-4ab2-46d7-a33b-c431bb0abbd9"
           ],
           "decisionTable": {
             "rules": [
