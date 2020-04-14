@@ -38,7 +38,6 @@ const LocationPage = ({ topic }) => {
         action: `postcode - ${slug.replace("-", " ")}`,
         name: address.postalCode.substring(0, 4),
       });
-
       context.address = address;
       history.push(geturl(routes.address, { slug }));
     }
