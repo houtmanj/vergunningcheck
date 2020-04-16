@@ -21,5 +21,7 @@ RUN npm run build --no-color
 
 # Release
 FROM nginx:stable-alpine
-COPY ci/nginx-client.default.conf /etc/nginx/conf.d/default.conf
+COPY ci/nginx-deployed.conf /etc/nginx/conf.d/vergunningcheck.template
 COPY --from=builder /app/build /usr/share/nginx/html/
+
+CMD /bin/bash -c "envsubst < /etc/nginx/conf.d/vergunningcheck.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
