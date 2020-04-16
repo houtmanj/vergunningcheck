@@ -57,6 +57,7 @@ Answers.propTypes = {
   errors: PropTypes.any,
   answers: PropTypes.array,
   questionId: PropTypes.string,
+  disableInputs: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
