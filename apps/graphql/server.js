@@ -29,6 +29,11 @@ app.use(function (err, req, res, next) {
 // Setup main graphql application logic
 app.use(`/${config.path}`, server);
 
+// Setup health endpoint for cluster management
+app.use(`/${config.healthPath}`, (_, res) => {
+  res.send("OK");
+});
+
 app.listen(port, () =>
   console.log(`🚀 Server running at http://localhost:${port}/${config.path}`)
 );

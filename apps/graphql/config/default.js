@@ -1,6 +1,7 @@
 module.exports = {
   port: 4000,
   path: "graphql",
+  healthPath: "health",
   graphql: { graphiql: false },
   cache: {
     dataLoaderEnabled: true,
