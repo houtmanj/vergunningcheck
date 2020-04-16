@@ -31,38 +31,45 @@ export const routeConfig = [
     name: "intro",
     exact: true,
     path: "/:slug",
-    component: React.lazy(() => import(`./pages/IntroPage`)),
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/IntroPage`)
+    ),
   },
-  // {
-  //   name: "preflight",
-  //   path: "/:slug/_preflight",
-  //   component: PreflightPage
-  // },
   {
     name: "location",
     path: "/:slug/locatie",
-    component: React.lazy(() => import(`./pages/LocationPage`)),
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/LocationPage`)
+    ),
   },
   {
     name: "address",
     path: "/:slug/adresgegevens",
-    component: React.lazy(() => import(`./pages/AddressPage`)),
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/AddressPage`)
+    ),
     matamoPage: "location-results",
   },
   {
     name: "questions",
     path: "/:slug/vragen/:question?",
-    component: React.lazy(() => import(`./pages/QuestionsPage`)),
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/QuestionsPage`)
+    ),
   },
   {
     name: "results",
     path: "/:slug/uitkomsten",
-    component: React.lazy(() => import(`./pages/ResultsPage`)),
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/ResultsPage`)
+    ),
   },
   {
     name: "conclusion",
     path: "/:slug/conclusie",
-    component: React.lazy(() => import(`./pages/ConclusionPage`)),
+    component: React.lazy(() =>
+      import(/* webpackPrefetch: true */ `./pages/ConclusionPage`)
+    ),
   },
   {
     name: "notfound",
