@@ -1,7 +1,7 @@
 #!groovy
 
 def sendMessage(String message, String status, String color = "good") {
-  slackSend message: "${env.JOB_NAME}: ${message} ${status} ${env.BUILD_URL}", channel: "#ci-chappie", color: color
+  slackSend message: "${env.JOB_NAME}: ${message} ${status} ${env.BUILD_URL}", channel: "#ci-vergunningcheck", color: color
   slackSend message: "${env.JOB_NAME}: ${message} ${status} ${env.BUILD_URL}", channel: "#ci-channel", color: color
 }
 
